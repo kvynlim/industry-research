@@ -106,7 +106,7 @@ ISO 3691-4 defines a three-party responsibility framework:
 - **Standard purchase**: $200 (ANSI members) / $250 (non-members)
 - **Certification assessment**: Typically $50,000-$150,000 depending on complexity, number of variants, and certification body
 - **Timeline**: 3-6 months for the certification process itself (assuming the product is already designed to the standard)
-- **Note**: ISO 3691-4 is not yet a harmonized European standard, meaning it is not legally mandatory. However, it represents best practice and is increasingly expected by customers and insurers
+- **Note**: ISO 3691-4 was harmonized with the EU Machinery Directive 2006/42/EC in May 2024 (published in OJEU), giving it presumption of conformity status. This means compliance with ISO 3691-4 creates a legal presumption that the essential health and safety requirements of the Directive are met. See [iso-3691-4-deep-dive.md](iso-3691-4-deep-dive.md) for detailed clause-by-clause analysis
 
 ### Practical Considerations for Airport AVs
 
