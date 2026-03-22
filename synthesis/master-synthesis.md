@@ -28,7 +28,7 @@ The autonomous driving field has undergone a paradigm shift from modular percept
 
 1. **World models are production-ready.** Comma.ai's openpilot v0.11 ships a 2B-parameter diffusion transformer world model — the first robotics agent trained fully in learned simulation. Wayve's GAIA series (up to 15B params) navigates 500+ cities with a single model.
 
-2. **NVIDIA Alpamayo provides an open foundation.** Released January 2026, this 10.5B-parameter VLA with Chain-of-Causation reasoning, 1,727 hours of driving data, and AlpaSim closed-loop simulator is Apache 2.0 / NVIDIA Open Model licensed. It's the most accessible starting point for building a world-model-based AV stack.
+2. **NVIDIA Alpamayo provides a research foundation.** Released January 2026, this 10B-parameter VLA (8.2B Cosmos-Reason backbone + 2.3B action expert) with Chain-of-Causation reasoning, 1,727 hours of driving data, and AlpaSim closed-loop simulator. **Important:** Model weights are non-commercial (research/eval only), and it is camera-only — designed as a teacher model for distillation to smaller edge-deployable models.
 
 3. **Airside is an ideal ODD for world models.** Low speeds (5-30 km/h), structured environments, and the absence of large-scale airside datasets (a weakness for traditional approaches) becomes a *strength* for world models that can leverage pre-training on road driving and adapt with minimal domain-specific data.
 
@@ -133,7 +133,7 @@ Key advantages over current airside AV solutions (TractEasy, Aurrigo, etc.):
 ### 3.3 Tier 3: Research & Future
 
 #### G. JEPA-Style World Models (V-JEPA 2, AD-L-JEPA)
-- **What:** Predict future scene embeddings, not pixels — 240x faster planning than video generation
+- **What:** Predict future scene embeddings, not pixels — ~15x faster planning than video-generation baselines
 - **Why:** Massive efficiency gains. V-JEPA 2-AC plans in 16 seconds vs. 4 minutes for pixel-generation baselines
 - **Status:** Early but Meta open-sourcing aggressively. AD-L-JEPA is first driving-specific JEPA (AAAI 2026)
 

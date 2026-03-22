@@ -55,7 +55,7 @@
 
 ### 2.1 NVIDIA (January 2026 — CES)
 
-- **Alpamayo-R1-10B** released: 10.5B VLA with Chain-of-Causation reasoning
+- **Alpamayo-R1-10B** released: 10B VLA (8.2B Cosmos-Reason backbone + 2.3B action expert) with Chain-of-Causation reasoning
 - **Alpamayo 1.5**: RL post-training via GRPO, text-guided planning, flexible multi-camera
 - **AlpaSim**: Open-source microservice closed-loop simulator
 - **Physical AI dataset**: 1,727 hours across 25 countries, 700K reasoning traces (v1), 3M traces (v1.5)
@@ -96,7 +96,7 @@
 
 - **Genie 2/3**: Interactive world models generating photorealistic environments at 24fps/720p
 - **Scaling to driving**: Waymo World Model uses Genie 3 backbone
-- **V-JEPA 2** (Meta, not DeepMind): 1B params, 240x faster planning than generation
+- **V-JEPA 2** (Meta, not DeepMind): 1B params, ~15x faster planning than video-generation baselines (16s vs ~4min)
 
 ### 2.7 Physical Intelligence
 

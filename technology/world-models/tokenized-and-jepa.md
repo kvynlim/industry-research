@@ -157,7 +157,7 @@ JEPA-style approaches are highly relevant to driving for several reasons:
 
 3. **Robustness to irrelevant variation:** Driving scenes contain massive amounts of unpredictable detail (cloud shapes, exact shadow patterns, pedestrian clothing). JEPA's ability to focus on semantically meaningful features while ignoring such details is particularly valuable.
 
-4. **Computational feasibility for real-time planning:** The 240x speedup of V-JEPA 2-AC over video-generation baselines for planning (16s vs 4min) suggests embedding-space prediction could enable real-time driving decisions.
+4. **Computational feasibility for real-time planning:** The ~15x speedup of V-JEPA 2-AC over video-generation baselines for planning (16s vs ~4min) suggests embedding-space prediction could enable real-time driving decisions.
 
 ---
 
@@ -297,7 +297,7 @@ The most promising recent work combines multiple paradigms:
 
 1. **Tokenization is the bridge** between the LLM scaling paradigm and world models. VQ-VAE/VQ-GAN enable conversion of video, LiDAR, and occupancy data into discrete tokens, making next-token prediction directly applicable.
 
-2. **JEPA offers a fundamentally different path** -- predicting in embedding space rather than pixel/token space. AD-L-JEPA and V-JEPA 2-AC show early but promising applicability to driving, with massive efficiency gains (1.9-4x compute reduction, 240x faster planning).
+2. **JEPA offers a fundamentally different path** -- predicting in embedding space rather than pixel/token space. AD-L-JEPA and V-JEPA 2-AC show early but promising applicability to driving, with massive efficiency gains (1.9-4x compute reduction, ~15x faster planning).
 
 3. **Hybrid architectures are winning.** The best recent systems (Epona, Copilot4D) combine autoregressive structure with diffusion refinement.
 
