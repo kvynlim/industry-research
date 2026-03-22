@@ -589,3 +589,16 @@ POC 8 (Turnaround Estimator) ───────────────→│
 ```
 
 When all POCs are integrated, you have the Simplex high-performance controller from the design spec — running in shadow mode alongside the current Aurrigo stack.
+
+---
+
+## Related Documents
+
+| Document | What It Adds |
+|----------|-------------|
+| `synthesis/getting-started.md` | Day 1 runnable code for POCs 1, 2, 4, 5, 6 |
+| `synthesis/technology-readiness.md` | TRL assessment and go/no-go criteria per POC |
+| `synthesis/risk-register.md` | 18 risks to POC execution with mitigations |
+| `synthesis/competitive-landscape.md` | Why world models differentiate from all competitors |
+| `synthesis/design-spec.md` | Full Simplex architecture these POCs build toward |
+| `technology/e2e-driving/e2e-world-model-pipeline.md` | Detailed 7-day quick start with tensor shapes |

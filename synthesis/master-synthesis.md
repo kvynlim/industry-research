@@ -535,4 +535,15 @@ Given that airside AV falls between automotive and aviation domains:
 
 ---
 
-*This synthesis draws from 20 deep-dive research reports totaling 13,210 lines of analysis across 200+ papers, models, and systems. Each report is available in this directory for detailed reference.*
+*This synthesis draws from 159 research documents totaling ~134,000 lines of analysis across 300+ papers, models, and systems. See `INDEX.md` for topic-based navigation.*
+
+## Related Documents
+
+| Next Step | Document |
+|-----------|----------|
+| **Start coding today** | `synthesis/getting-started.md` |
+| **Choose POCs** | `synthesis/poc-proposals.md` |
+| **Assess readiness** | `synthesis/technology-readiness.md` |
+| **Understand competition** | `synthesis/competitive-landscape.md` |
+| **Manage risks** | `synthesis/risk-register.md` |
+| **Full architecture** | `synthesis/design-spec.md` |
