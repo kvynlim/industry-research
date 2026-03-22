@@ -117,17 +117,30 @@
 
 ---
 
+#### Synthesis & strategy
+| Topic | Primary |
+|-------|---------|
+| Master synthesis | `synthesis/master-synthesis.md` — Executive summary, tiered recommendations |
+| Design spec | `synthesis/design-spec.md` — 891-line Simplex architecture |
+| POC proposals | `synthesis/poc-proposals.md` — 8 models with code and costs |
+| Competitive landscape | `synthesis/competitive-landscape.md` — All players compared, strategic quadrant |
+| Technology readiness | `synthesis/technology-readiness.md` — TRL per POC, go/no-go criteria |
+| Getting started | `synthesis/getting-started.md` — Day 1 guide with runnable code |
+
+---
+
 ## Document Statistics
 
 | Metric | Value |
 |--------|-------|
-| Total documents | 153 |
-| Total lines | 132,429 |
+| Total documents | 156 |
+| Total lines | ~134,000 |
 | Companies covered | 21 |
 | Technology domains | 9 |
 | Safety documents | 8 |
 | Hardware specs | 12 |
 | Foundation theory | 11 |
+| Synthesis documents | 6 |
 | Papers referenced | 300+ |
 | Open-source repos evaluated | 21 |
 | Occupancy methods compared | 20 |

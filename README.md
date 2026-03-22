@@ -1,6 +1,6 @@
 # Industry Research
 
-Comprehensive autonomous vehicle technology research — **153 documents, 132,429 lines**.
+Comprehensive autonomous vehicle technology research — **156 documents, ~134,000 lines**.
 
 ## Directory Structure
 
@@ -12,20 +12,24 @@ industry-research/
 ├── hardware/           # 4 domains, 12 docs
 ├── foundations/        # 11 docs
 ├── cross-cutting/      # 17 docs
-└── synthesis/          # 3 docs
+└── synthesis/          # 6 docs
 ```
 
 ## Quick Start
 
 | Goal | Document |
 |------|----------|
+| **Day 1: Start coding now** | `synthesis/getting-started.md` (runnable Python code) |
 | **Overview of everything** | `synthesis/master-synthesis.md` |
 | **What to build first** | `synthesis/poc-proposals.md` (8 POCs, $2-5K total) |
+| **Technology readiness** | `synthesis/technology-readiness.md` (TRL per POC, go/no-go) |
+| **Competitive landscape** | `synthesis/competitive-landscape.md` (all players compared) |
 | **Full architecture** | `synthesis/design-spec.md` (891-line Simplex design) |
 | **Get a world model running in 7 days** | `technology/e2e-driving/e2e-world-model-pipeline.md` |
 | **Research a company** | `companies/<name>/` |
 | **Research a technology** | `technology/<domain>/` |
 | **Safety & certification** | `operations/safety/` (8 docs) |
+| **Find anything** | `INDEX.md` (topic-based navigation) |
 
 ---
 
@@ -95,8 +99,11 @@ PointPillars (tensor shapes, TensorRT 6.84ms), VQ-VAE/FSQ tokenization (codebook
 
 Sensor fusion architectures (BEVFusion, masked modality training, graceful degradation), synthetic data generation (Cosmos +16.2% mAP foggy, 7-phase airside pipeline), evaluation benchmarks (WorldModelBench, ACT-Bench 30-44% action fidelity), nuScenes/Waymo practical guide (download procedures, format conversion, 4-phase pre-training strategy), transfer learning (LoRA 500-1,000 frames, open research gap), ROS 2 migration (Jazzy, Isaac ROS NITROS 7x on Orin), Autoware Universe deep dive (50+ modules, Agnocast 16% latency improvement, 40-50% reusable for airside), embodied AI crossover (pi0 flow matching, RT-X, convergence thesis), data engines & datasets, data engine from ROS bags, open-source ecosystem (openpilot first production world model), signal processing & weather, calibration & tracking, ground safety, fusion & geometric, formal methods & regulatory, continual learning.
 
-### `synthesis/` — 3 documents
+### `synthesis/` — 6 documents
 
+- **getting-started.md** — Day 1 guide with runnable Python code for all quick-start POCs
 - **master-synthesis.md** — Executive summary with tiered technology recommendations
-- **design-spec.md** — 891-line spec-reviewed Simplex architecture for airside world model AV
 - **poc-proposals.md** — 8 concrete POC models with architectures, code, configs, cost estimates ($2-5K total)
+- **technology-readiness.md** — Component-level TRL assessment for each POC with go/no-go criteria
+- **competitive-landscape.md** — Head-to-head comparison of all 7 AV + 3 software players, strategic quadrant
+- **design-spec.md** — 891-line spec-reviewed Simplex architecture for airside world model AV
