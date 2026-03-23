@@ -74,6 +74,7 @@
 | Pushback systems | `operations/airside/pushback-systems.md` | Mototok, TaxiBot, WheelTug |
 | Electric GSE market | `operations/airside/electric-gse-market.md` | $2.8B→$5.2B, autonomy rankings |
 | Aviation ecosystem | `operations/airside/aviation-ground-ops-ecosystem.md` | Strategic context, business case |
+| Battery & charging | `operations/airside/battery-charging-infrastructure.md` | LiFePO4, 0.84yr payback, autonomous self-charging |
 
 #### Deployment & operations
 | Topic | Primary | Supporting |
@@ -114,6 +115,8 @@
 | Embodied AI crossover | `cross-cutting/embodied-ai-crossover.md` |
 | Data engine from bags | `cross-cutting/data-engine-from-bags.md` |
 | Continual learning | `cross-cutting/continual-learning.md` |
+| 3D annotation tools | `cross-cutting/3d-annotation-tools.md` |
+| Isaac ROS for airside | `cross-cutting/isaac-ros-for-airside.md` |
 
 ---
 
@@ -129,18 +132,35 @@
 
 ---
 
+## Recently Added (Latest Sessions)
+
+| Document | Key Contribution |
+|----------|-----------------|
+| `technology/vla/vla-distillation-scaling.md` | How to get 10B VLA onto Orin via distillation |
+| `technology/localization/map-free-driving.md` | Three-layer map system, 10-25x faster deployment |
+| `cross-cutting/3d-annotation-tools.md` | CVAT recommended, 17-class airside taxonomy |
+| `technology/multi-agent/airside-multi-agent.md` | Turnaround choreography, A-CDM dispatch triggers |
+| `technology/robustness/airside-adverse-conditions.md` | 4D radar as PRIMARY sensor for airside |
+| `cross-cutting/isaac-ros-for-airside.md` | NITROS 7x on Orin, nvblox 100x occupancy |
+| `operations/airside/battery-charging-infrastructure.md` | 0.84-year payback, autonomous self-charging |
+| `METHODOLOGY.md` | How the 167-document corpus was created |
+| `GLOSSARY.md` | 160+ acronyms defined across aviation/AV/AI |
+
+---
+
 ## Document Statistics
 
 | Metric | Value |
 |--------|-------|
-| Total documents | 156 |
-| Total lines | ~134,000 |
+| Total documents | 167 |
+| Total lines | ~136,000 |
 | Companies covered | 21 |
 | Technology domains | 9 |
-| Safety documents | 8 |
+| Safety documents | 9 |
 | Hardware specs | 12 |
 | Foundation theory | 11 |
-| Synthesis documents | 6 |
+| Synthesis documents | 8 |
+| Cross-cutting | 19 |
 | Papers referenced | 300+ |
 | Open-source repos evaluated | 21 |
 | Occupancy methods compared | 20 |
