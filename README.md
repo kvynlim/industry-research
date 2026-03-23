@@ -1,6 +1,6 @@
 # Industry Research
 
-Comprehensive autonomous vehicle technology research — **156 documents, ~134,000 lines**.
+Comprehensive autonomous vehicle technology research — **167 documents, ~136,000 lines**.
 
 ## Directory Structure
 

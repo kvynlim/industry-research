@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Comprehensive autonomous vehicle technology research repository — **153 documents, 132,429 lines**. Covers AV company tech stacks, perception systems, world models, simulation, deployment, safety, and airport airside operations.
+Comprehensive autonomous vehicle technology research repository — **167 documents, ~136,000 lines**. Covers AV company tech stacks, perception systems, world models, simulation, deployment, safety, and airport airside operations.
 
 ## Directory Structure
 
