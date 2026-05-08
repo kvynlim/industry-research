@@ -1373,8 +1373,8 @@ Monthly_RaaS = RaaS_Price / 12
 | Regulatory trajectory | Operations safety regulatory doc | FAA, EASA, CAAS timeline predictions |
 | Insurance/liability | Operations safety insurance doc | Insurance cost modeling, EU PLD impact |
 | Scenario taxonomy | Operations safety scenario taxonomy doc | Validation test count, simulation cost basis |
-| Compute hardware | [hardware/compute/](../../../20-av-platform/compute/edge-platforms.md) | Orin specs, Thor roadmap, TensorRT optimization |
-| Sensor hardware | [hardware/sensors/](../../../20-av-platform/sensors/sensor-degradation-health-monitoring.md) | RoboSense, Hesai, FLIR, Continental specs and pricing |
+| Compute hardware | [20-av-platform/compute/](../../../20-av-platform/compute/edge-platforms.md) | Orin specs, Thor roadmap, TensorRT optimization |
+| Sensor hardware | [20-av-platform/sensors/](../../../20-av-platform/sensors/sensor-degradation-health-monitoring.md) | RoboSense, Hesai, FLIR, Continental specs and pricing |
 
 ---
 

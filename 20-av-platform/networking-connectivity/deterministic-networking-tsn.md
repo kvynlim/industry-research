@@ -1039,4 +1039,4 @@ TSN enables cleaner ASIL decomposition (see fail-operational-architecture.md):
 - `60-safety-validation/cybersecurity/cybersecurity-airside-av.md` — Cybersecurity (MACsec over TSN)
 - `30-autonomy-stack/multi-agent-v2x/v2x-protocols-airside.md` — V2X protocols (transported over 5G TSN bridge)
 - `20-av-platform/sensors/multi-lidar-calibration.md` — Multi-LiDAR calibration (gPTP synchronization)
-- `hardware/vehicle/can-bus-drive-by-wire.md` — Current CAN architecture (migration source)
+- `20-av-platform/drive-by-wire/can-bus-dbw.md` — Current CAN architecture (migration source)

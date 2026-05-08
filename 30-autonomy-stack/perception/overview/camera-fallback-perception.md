@@ -1584,6 +1584,6 @@ rosbag play test_scenario_001.bag \
 - **Simplex architecture**: `90-synthesis/decisions/design-spec.md`
 - **Functional safety software**: `60-safety-validation/standards-certification/functional-safety-software.md`
 - **Ground crew safety**: `70-operations-domains/airside/safety/ground-crew-pedestrian-safety.md`
-- **Orin compute platform**: `hardware/compute/orin-compute-platform.md`
+- **Orin compute platform**: `20-av-platform/compute/nvidia-orin-technical.md`
 - **CenterPoint detection**: `30-autonomy-stack/perception/overview/openpcdet-centerpoint.md`
 - **Multi-object tracking**: `30-autonomy-stack/perception/overview/multi-object-tracking.md`

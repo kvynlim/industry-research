@@ -1432,7 +1432,7 @@ Jet blast is the only airside hazard that is **geometrically invisible** -- ther
 - A world model trained on sequences near running engines can learn to predict plume expansion
 - The predicted "occupied" region expands behind the engine over time, even if LiDAR returns are sparse
 
-**Limitation:** Pure LiDAR detection of jet blast is unreliable without particles in the exhaust. Thermal cameras (see `hardware/sensors/`) are the primary sensor for jet blast detection. However, a world model that incorporates historical jet blast observations can provide prediction even when current LiDAR returns are sparse.
+**Limitation:** Pure LiDAR detection of jet blast is unreliable without particles in the exhaust. Thermal cameras (see `20-av-platform/sensors/thermal-ir-cameras.md`) are the primary sensor for jet blast detection. However, a world model that incorporates historical jet blast observations can provide prediction even when current LiDAR returns are sparse.
 
 ### 12.6 Combining Predictions for Integrated Safety
 

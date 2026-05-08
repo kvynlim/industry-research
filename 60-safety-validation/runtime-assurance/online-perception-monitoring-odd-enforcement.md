@@ -860,7 +860,7 @@ When two independent perception channels disagree, at least one is wrong. Cross-
 
 ### 5.2 LiDAR vs Radar Detection Agreement
 
-4D imaging radar (Continental ARS548, see `hardware/sensors/4d-imaging-radar.md`) provides independent object detections. Compare against LiDAR detections.
+4D imaging radar (Continental ARS548, see `20-av-platform/sensors/4d-radar.md`) provides independent object detections. Compare against LiDAR detections.
 
 ```cpp
 // cross_modal_consistency.hpp
@@ -2031,7 +2031,7 @@ At 10 Hz, this produces approximately 1.2 KB/s of monitoring data -- negligible 
 
 ### 9.1 The Calibration Problem
 
-Multi-LiDAR extrinsic calibration drifts due to thermal expansion, vibration, and mechanical settling (see `hardware/sensors/multi-lidar-extrinsic-calibration.md`). A 0.1 degree error produces 17 cm error at 100m -- enough to cause ghost detections and split objects that degrade perception without triggering sensor health alarms.
+Multi-LiDAR extrinsic calibration drifts due to thermal expansion, vibration, and mechanical settling (see `20-av-platform/sensors/multi-lidar-calibration.md`). A 0.1 degree error produces 17 cm error at 100m -- enough to cause ghost detections and split objects that degrade perception without triggering sensor health alarms.
 
 ### 9.2 Mutual Information Between Overlapping FOVs
 
@@ -3206,9 +3206,9 @@ class FaultInjectionTest:
 - `60-safety-validation/runtime-assurance/simplex-safety-architecture.md` -- Dual-stack AC/BC architecture
 - `60-safety-validation/runtime-assurance/fail-operational-architecture.md` -- ASIL decomposition, redundancy patterns
 - `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` -- Epistemic/aleatoric decomposition, conformal prediction
-- `hardware/sensors/multi-lidar-extrinsic-calibration.md` -- Calibration procedures, thermal drift compensation
+- `20-av-platform/sensors/multi-lidar-calibration.md` -- Calibration procedures, thermal drift compensation
 - `30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md` -- GTSAM factor graph, innovation sequences
-- `hardware/sensors/4d-imaging-radar.md` -- Continental ARS548 integration
+- `20-av-platform/sensors/4d-radar.md` -- Continental ARS548 integration
 - `60-safety-validation/standards-certification/functional-safety-software.md` -- MISRA C, ISO 26262 Part 6 development
 - `60-safety-validation/verification-validation/airside-scenario-taxonomy.md` -- ISO 34502 scenario classification
 - `50-cloud-fleet/observability/fleet-anomaly-root-cause-attribution.md` -- Fleet-level anomaly attribution

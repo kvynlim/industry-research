@@ -2016,7 +2016,7 @@ alerts:
 - `70-operations-domains/airside/operations/battery-charging-infrastructure.md` — Battery specs, charging strategies, fleet charging economics
 - `50-cloud-fleet/fleet-management/fleet-management-dispatch.md` — Fleet routing, dispatch algorithms, NVIDIA Fleet Command
 - `30-autonomy-stack/perception/overview/infrastructure-cooperative-perception.md` — V2I/V2V cooperative perception, Where2comm bandwidth
-- `hardware/sensors/robosense-lidar-products.md` — RoboSense RSHELIOS/RSBP power and interface specs
+- `20-av-platform/sensors/robosense-lidar.md` — RoboSense RSHELIOS/RSBP power and interface specs
 - `60-safety-validation/standards-certification/functional-safety-software.md` — MISRA C, safety-critical node lifecycle
 - `30-autonomy-stack/perception/overview/night-operations-thermal-fusion.md` — YOLO-Thermal on DLA, thermal camera power
 

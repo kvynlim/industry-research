@@ -2279,7 +2279,7 @@ This MVP immediately improves planning by replacing sparse RANSAC clusters with 
 | Sensor fusion architectures | `30-autonomy-stack/perception/overview/sensor-fusion-architectures.md` |
 | CBF safety-critical planning | `30-autonomy-stack/planning/safety-critical-planning-cbf.md` |
 | Runtime verification and monitoring | `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md` |
-| Multi-LiDAR extrinsic calibration | `hardware/sensors/multi-lidar-extrinsic-calibration.md` |
+| Multi-LiDAR extrinsic calibration | `20-av-platform/sensors/multi-lidar-calibration.md` |
 | HD map standards for airside | `30-autonomy-stack/localization-mapping/maps/hd-map-standards-airside.md` |
 | Fleet cooperative perception | `30-autonomy-stack/perception/overview/collaborative-fleet-perception.md` |
 | Active perception and sensor scheduling | `30-autonomy-stack/perception/overview/active-perception-sensor-scheduling.md` |

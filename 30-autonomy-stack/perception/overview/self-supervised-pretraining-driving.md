@@ -358,7 +358,7 @@ LiDAR points  ──> 3D encoder (trainable) ──> 3D features
 - Radar provides velocity and reflectivity that LiDAR lacks
 - LiDAR provides geometric precision that radar lacks
 - Contrastive alignment of LiDAR-radar features at matched spatial locations
-- Particularly relevant for airside where 4D radar is recommended for adverse weather robustness (see `hardware/sensors/continental-ars548-4d-radar.md`)
+- Particularly relevant for airside where 4D radar is recommended for adverse weather robustness (see `20-av-platform/sensors/4d-radar.md`)
 
 **Cross-modal self-supervised learning study (2024):**
 A systematic study demonstrated that cross-modality contrastive learning outperforms single-modality alternatives for self-driving point clouds. The key insight: using a modality with richer semantics (images) to supervise a modality with better geometry (LiDAR) yields better features than either modality can learn alone.
@@ -1537,7 +1537,7 @@ Cloud pre-training (FP32/FP16, A100)
 | INT8 (TensorRT PTQ) | ~25-50ms | 0.5-2% |
 | INT8 (TensorRT QAT) | ~25-50ms | 0.1-0.5% |
 
-See `hardware/compute/tensorrt-optimization-guide.md` for detailed Orin optimization pipeline.
+See `20-av-platform/compute/tensorrt-deployment-guide.md` for detailed Orin optimization pipeline.
 
 ---
 
@@ -2034,5 +2034,5 @@ What modalities are available?
 - `30-autonomy-stack/perception/overview/lidar-semantic-segmentation.md` -- 18-class airside taxonomy, FlatFormer, ALPINE
 - `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` -- TensorRT optimization, INT8 quantization, multi-model orchestration
 - `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md` -- 8-week onboarding, PointLoRA per-airport, scaling economics
-- `hardware/compute/tensorrt-optimization-guide.md` -- Orin deployment pipeline, INT8 calibration
+- `20-av-platform/compute/tensorrt-deployment-guide.md` -- Orin deployment pipeline, INT8 calibration
 - `30-autonomy-stack/perception/overview/camera-fallback-perception.md` -- Degraded mode with camera-only, BEVDistill

@@ -19,6 +19,10 @@ const SECTION_ORDER = [
 
 const START_FILES = [
   { rel: 'README.md', text: 'Home', link: '/' },
+  { rel: '00-start-here/reading-guide.md', text: 'Reading Guide' },
+  { rel: '00-start-here/repo-map.md', text: 'Repository Map' },
+  { rel: '00-start-here/glossary.md', text: 'Glossary Entry Point' },
+  { rel: '00-start-here/methodology.md', text: 'Methodology Entry Point' },
   { rel: 'INDEX.md', text: 'Research Index' },
   { rel: 'GLOSSARY.md', text: 'Glossary' },
   { rel: 'METHODOLOGY.md', text: 'Methodology' }

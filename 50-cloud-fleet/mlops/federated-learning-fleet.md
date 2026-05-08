@@ -531,7 +531,7 @@ class FederatedPointPillarsTrainer:
     Each airport runs PointPillars locally on Orin or edge GPU.
     Model updates are aggregated at a central server.
     
-    Architecture: PointPillars (see foundations/pointpillars-technical.md)
+    Architecture: PointPillars (see 10-knowledge-base/geometry-3d/pointpillars.md)
     - Pillar Feature Net: learned point cloud encoding
     - 2D Backbone: pseudo-image feature extraction
     - Detection Head: class, bbox, orientation prediction
@@ -606,7 +606,7 @@ class FederatedPointPillarsTrainer:
 
 LiDAR-based FL faces unique challenges compared to image-based FL:
 
-**Point density heterogeneity**: Different sensor configs produce different point densities. Aurrigo uses RSHELIOS (32-beam, ~30K points/scan) and RSBP (16-beam, ~16K points/scan). Other fleet vehicles or partner deployments may use different sensors entirely (see `hardware/sensors/` for specifications). The pillar/voxel feature encoding must be robust to these variations.
+**Point density heterogeneity**: Different sensor configs produce different point densities. Aurrigo uses RSHELIOS (32-beam, ~30K points/scan) and RSBP (16-beam, ~16K points/scan). Other fleet vehicles or partner deployments may use different sensors entirely (see `20-av-platform/sensors/` for specifications). The pillar/voxel feature encoding must be robust to these variations.
 
 **Coordinate system differences**: Different vehicle types (ADT3 with Ackermann, POD, STL2) have different sensor mounting positions and orientations. The ego-to-sensor transform differs per vehicle, affecting the point cloud distribution even for identical scenes.
 
@@ -2718,4 +2718,4 @@ Fleet size 100+ vehicles, 10+ airports, multi-country:
 - `30-autonomy-stack/perception/overview/bev-encoding.md` -- BEV perception architecture
 - `20-av-platform/networking-connectivity/airport-5g-cbrs.md` -- Airport 5G infrastructure
 - `20-av-platform/compute/nvidia-orin-technical.md` -- Orin compute specifications
-- `foundations/pointpillars-technical.md` -- PointPillars architecture details
+- `10-knowledge-base/geometry-3d/pointpillars.md` -- PointPillars architecture details
