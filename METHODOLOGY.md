@@ -6,9 +6,9 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 359-document research corpus, surfaced as 367 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 394-document research corpus, surfaced as 402 VitePress reader pages.
 
-The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 225k+ lines of Markdown.
+The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 230k+ lines of Markdown.
 
 ## Research Process
 
@@ -63,6 +63,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 - **Method:** Six parallel research agents audited the post-restructure architecture across foundations, AV platform, autonomy stack, runtime/cloud, safety/validation, and operations/industry. One autonomy agent was split into two narrower replacement agents after exceeding context, preserving coverage without overloading the review.
 - **Output:** [End-to-End AV Knowledge Gap Backlog](90-synthesis/readiness-risk/knowledge-gap-backlog.md), with P0/P1/P2 missing-file queues across reusable fundamentals, platform power/thermal/diagnostics, planning/control/V2X, runtime/cloud operations, safety evidence, and non-airside operations domains.
 
+### Phase 12: P0 Knowledge Gap Research Wave
+- **Method:** Six parallel writing agents plus one follow-up agent converted the P0 gap backlog into first-class research files. Each agent owned a disjoint write scope: foundations, AV platform, planning/control/V2X, E2E/VLA/world models, runtime/cloud+safety evidence, operations domains, and delivery robots.
+- **Output:** 35 source-backed P0 gap files across `10-knowledge-base/`, `20-av-platform/`, `30-autonomy-stack/`, `40-runtime-systems/`, `50-cloud-fleet/`, `60-safety-validation/`, and `70-operations-domains/`.
+
 ## Quality Controls
 
 1. **Spec Review:** Design specification reviewed by automated spec-review agent with factual corrections
@@ -73,6 +77,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 6. **Coverage Audits:** Broad method libraries now include explicit backlog documents for missing first-class pages, starting with SLAM and perception
 7. **Atomic Method Pages:** SLAM and perception now separate overview synthesis from one-method research files, so individual techniques can be updated and compared without burying them inside family documents
 8. **Cross-Architecture Gap Tracking:** The synthesis layer now tracks P0/P1/P2 research gaps outside the dedicated SLAM and perception audits
+9. **P0 Gap Promotion:** High-priority cross-architecture gaps are promoted into first-class files before P1/P2 backlog work begins
 
 ## Limitations
 
@@ -86,10 +91,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 359 |
-| Reader pages | 367 |
-| Total lines | 225k+ |
-| Research agents spawned | 118+ |
+| Core research documents | 394 |
+| Reader pages | 402 |
+| Total lines | 230k+ |
+| Research agents spawned | 125+ |
 | Companies researched | 21 |
 | Method-level SLAM library | 58 method files + overview |
 | Method-level perception files | 54 |

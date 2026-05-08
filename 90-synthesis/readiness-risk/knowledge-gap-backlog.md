@@ -29,11 +29,15 @@ Priorities:
 
 | Finding | Evidence | Implication |
 |---|---|---|
-| Generic operations scope is underbuilt | `00-start-here/repo-map.md` says `70-operations-domains/` should cover airside, indoor warehouse, outdoor campus, road AV, and deployment playbooks, but `README.md` and `INDEX.md` are still airside-heavy. | Add domain operation files for warehouse, yards, ports, mining, agriculture, construction, road AV, and delivery robots. |
-| Platform tree promises power and thermal but lacks directories | `README.md` and `00-start-here/repo-map.md` describe power and thermal systems, while `20-av-platform/` currently has compute, sensors, drive-by-wire, and networking. | Add first-class `power-electrical/`, `thermal/`, diagnostics, and ruggedization topics. |
-| Foundations need reusable primers | `10-knowledge-base/` is strong on selected deep dives, but lacks coordinate frames, Bayesian filtering, vehicle dynamics, planning taxonomy, costmaps, middleware timing, and assurance fundamentals. | Extract concise fundamentals that link into deeper implementation docs. |
-| Runtime and cloud need operations discipline | Existing files cover telemetry, OTA, data pipelines, and MLOps, but not fleet SRE, incident command, SUMS governance, map ops, data governance, and runtime security operations. | Add operator-facing cloud/fleet playbooks. |
-| Safety needs traceable evidence packages | Safety content is deep, but incident reporting, living safety-case traceability, EU compliance dossiering, ISO 3450x evidence, and ML assurance governance are scattered. | Add evidence-oriented files that turn standards into reviewable artifacts. |
+| Generic operations scope was underbuilt | `00-start-here/repo-map.md` says `70-operations-domains/` should cover airside, indoor warehouse, outdoor campus, road AV, and deployment playbooks, but `README.md` and `INDEX.md` were airside-heavy. | P0 first wave added warehouse, logistics yard, port, mining, agriculture, construction, robotaxi, trucking, and sidewalk delivery robot operations files. |
+| Platform tree promised power and thermal but lacked directories | `README.md` and `00-start-here/repo-map.md` describe power and thermal systems, while `20-av-platform/` had compute, sensors, drive-by-wire, and networking. | P0 first wave added power/electrical, diagnostics, ruggedization, and close-range safety sensing. P1 still tracks vehicle-level thermal management. |
+| Foundations needed reusable primers | `10-knowledge-base/` was strong on selected deep dives, but lacked coordinate frames, Bayesian filtering, vehicle dynamics, planning taxonomy, and calibration fundamentals. | P0 first wave added five foundation primers. P1 still tracks costmaps, middleware timing, and assurance fundamentals. |
+| Runtime and cloud needed operations discipline | Existing files covered telemetry, OTA, data pipelines, and MLOps, but not fleet SRE, incident command, SUMS governance, map ops, data governance, and runtime security operations. | P0 first wave added operator-facing runtime/cloud playbooks and evidence models. |
+| Safety needed traceable evidence packages | Safety content was deep, but incident reporting, living safety-case traceability, and EU compliance dossiering were scattered. | P0 first wave added incident reporting, safety-case evidence traceability, and EU AI Act/Machinery/CRA dossier files. P1 still tracks ISO 3450x evidence, HARA/STPA, PLd/SIL, and ML assurance governance. |
+
+## P0 First-Wave Completion (2026-05-09)
+
+The P0 rows below were promoted into first-class research files by seven writing agents: six parallel workers plus one focused delivery-robot follow-up. The table remains as the provenance record for what was promoted. The next active queue is P1.
 
 ## P0 Backlog
 
@@ -138,8 +142,7 @@ Priorities:
 
 ## Execution Order
 
-1. Fill P0 structural gaps outside perception and SLAM, starting with foundations, platform power/thermal/diagnostics, and non-airside operations domains.
+1. Treat P0 as completed at the first-file level, then revisit individual files only for deeper expansion or source refreshes.
 2. Promote P1 files where they unlock multiple downstream docs, especially model lifecycle governance, ISO 3450x evidence, VLA reliability, and cross-domain regulatory/competitive maps.
 3. Keep P2 as extension work unless a new deployment or repo goal makes a topic urgent.
-4. When a gap is completed, move it from this backlog into the relevant domain overview or audit and update `README.md`, `INDEX.md`, and `METHODOLOGY.md` counts.
-
+4. When a P1/P2 gap is completed, move it from this backlog into the relevant domain overview or audit and update `README.md`, `INDEX.md`, and `METHODOLOGY.md` counts.

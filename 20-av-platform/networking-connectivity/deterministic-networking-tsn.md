@@ -527,6 +527,150 @@ Currently, synchronizing 4-8 RoboSense LiDARs uses PTP/PPS (IEEE 1588). With gPT
 | Failure detection | Manual monitoring | gPTP fault annunciation |
 | Integration with TAS | Separate | Native (same time domain) |
 
+### 6.5 Whole-Vehicle Timebase Policy
+
+gPTP is not only a sensor convenience. It should be the whole-vehicle evidence
+timebase for autonomy, safety, diagnostics, logging, and incident reconstruction.
+As of 2026, IEEE 802.1DG-2025 defines the automotive in-vehicle TSN profile for
+secure, reliable, deterministic Ethernet networks, and IEEE 802.1AS-2020 plus
+its 2024 hot-standby amendment provide the TSN timing foundation. AUTOSAR
+Adaptive R24-11 also treats time synchronization as a platform service with
+time-base resources, synchronization status, and status-change notification.
+
+Policy:
+
+| Time domain | Owner | Consumers | Rule |
+|---|---|---|---|
+| `vehicle_global_time` | TSN grandmaster, GPS-disciplined when available | Sensor timestamps, fusion, control logs, DTC freeze frames, event recorder | Primary mission and evidence timebase. |
+| `safety_local_time` | Safety MCU / safety PLC oscillator | E-stop, brake watchdogs, safety scanner outputs | Independent local watchdog time; mapped to global time when available. |
+| `compute_monotonic_time` | Orin/HPC steady clock | Real-time scheduling, process supervision, latency timers | Never used alone for incident ordering unless mapped to global time. |
+| `wall_utc_time` | GNSS/NTP/backend when authenticated | Fleet UI, maintenance tickets, human-readable reports | Presentation layer; not trusted without provenance. |
+| `sensor_native_time` | Sensor hardware clock | Raw capture, driver diagnostics, vendor tools | Preserved for debugging; converted with offset/uncertainty metadata. |
+
+The vehicle should publish a timebase-status message at 1-10 Hz:
+
+```yaml
+vehicle_timebase_status:
+  global_time_valid: true
+  grandmaster_id: "tsn-sw-central-01"
+  clock_domain: "gptp-domain-0"
+  source: "gnss_disciplined_gptp"
+  offset_from_gm_ns: 42
+  offset_uncertainty_ns: 100
+  rate_error_ppb: 8
+  holdover_state: "locked"
+  holdover_age_s: 0
+  last_leap_or_step_time: null
+  config_id: "timebase-profile-adt3-r4"
+```
+
+Any module that stamps safety-relevant data must also log the current
+`timebase_status` or a compact reference to it. A timestamp without its clock
+domain is not evidence; it is just a number.
+
+### 6.6 Timestamp Provenance
+
+Timestamp provenance answers four questions: where was the timestamp captured,
+which clock produced it, how was it converted, and how uncertain is it?
+
+| Timestamp class | Example | Provenance requirement | Use in fusion and forensics |
+|---|---|---|---|
+| Hardware ingress timestamp | Ethernet MAC RX timestamp on LiDAR packet | PHC ID, gPTP domain, switch path, driver version | Best for packet arrival and network latency analysis. |
+| Sensor acquisition timestamp | Camera exposure start, LiDAR firing time, IMU sample time | Sensor clock ID, sync method, offset estimate, trigger source | Best for multi-sensor alignment. |
+| Driver publish timestamp | ROS message creation time | Host clock, process, queue depth, conversion from PHC if any | Useful for software latency, not physical acquisition time. |
+| Fusion frame timestamp | Perception cycle reference time | Input sensor timestamps, fusion window, interpolation policy | Used by tracking, prediction, planning, and replay. |
+| Actuator command timestamp | Steering/brake command send time | Control clock, network clock, gateway timestamp | Used for command-to-actuation latency and incident reconstruction. |
+| DTC freeze-frame timestamp | Fault first seen / confirmed | Timebase status, local fallback counter, power state | Used to sequence faults across power and network events. |
+
+Implementation rules:
+
+- Store both acquisition time and receive/publish time for high-rate sensors.
+- Preserve raw sensor-native counters when available; do not overwrite them with
+  ROS time.
+- Convert timestamps through a single timebase library that returns
+  `(global_time, uncertainty, source_clock, conversion_status)`.
+- Mark data as `time_uncertain` when offset, domain, or holdover quality exceeds
+  the fusion or safety-case threshold.
+- Include timestamp provenance in bag/MCAP logs, DTC freeze frames, and incident
+  bundles.
+
+### 6.7 Holdover and Grandmaster Failover
+
+GNSS-disciplined gPTP is valuable, but airport stands, warehouses, metal yards,
+and depots can block or degrade GNSS. The vehicle needs a holdover policy:
+
+| State | Condition | Vehicle action |
+|---|---|---|
+| Locked | Grandmaster valid, offsets within threshold | Full timing-dependent ODD allowed. |
+| Holdover warm | Grandmaster lost, oscillator age within validated limit | Continue mission with increasing timestamp uncertainty. |
+| Holdover degraded | Holdover age or rate error exceeds fusion threshold | Reduce speed, widen fusion windows, restrict docking and close-clearance maneuvers. |
+| Time unsafe | Clock step, domain split, failover disagreement, or uncertainty above safety threshold | Safe stop or refuse mission depending on current maneuver. |
+| Reacquiring | Grandmaster returns after holdover | Slew where possible; block timestamp jumps from silently reordering logs. |
+
+Design points:
+
+- Use hot-standby grandmaster design where the TSN switch/silicon and profile
+  support it.
+- Keep the safety controller capable of stopping the vehicle using local time if
+  the global timebase fails.
+- Bound the maximum allowed holdover age per ODD. A warehouse AMR may tolerate a
+  longer GNSS-free mission than an airside vehicle performing aircraft docking.
+- Record every grandmaster change, clock step, holdover entry/exit, and domain
+  change as a diagnostic event.
+- Treat time reacquisition like a state transition. Applications should receive
+  a status-change callback and must not assume monotonic global time across a
+  failover.
+
+### 6.8 Clock-Domain Failure Modes
+
+| Failure mode | Symptom | Impact | Mitigation |
+|---|---|---|---|
+| Grandmaster loss | No announce/sync, rising holdover age | Fusion timestamps drift; logs remain ordered only locally | Holdover state, speed reduction, safe-stop threshold. |
+| Dual grandmasters | Two valid sources in one vehicle | Split-brain timestamps and contradictory event order | BMCA policy, configured GM priority, domain monitoring. |
+| Clock step | Sudden time jump after reacquisition or manual set | Replay and incident timeline can reorder events | Prefer slew; if step occurs, emit leap/step event and segment logs. |
+| Sensor in wrong domain | One LiDAR/camera follows a different PTP domain or free-runs | Ghosting, tracking jitter, false calibration drift | Domain ID checks, source-clock metadata, quarantine sensor. |
+| PHC to system-clock mapping failure | Hardware timestamps valid but ROS/system time wrong | Bad software latency and misleading logs | Log both PHC and system time; monitor phc2sys or equivalent. |
+| Network asymmetry change | Cable/switch path changes cause offset bias | Sensor alignment bias under otherwise "locked" status | Path-change diagnostics, calibrated asymmetry, post-service validation. |
+| Holdover oscillator aging | Rate error grows with temperature and age | Increasing timestamp uncertainty in GNSS-denied operation | Temperature-compensated oscillator, drift model, holdover limit. |
+| Power brownout resets time node | Time service restarts with stale or default time | Fault sequence corrupted near power event | Safe rail hold-up for time/event recorder; persist last valid timestamp. |
+
+### 6.9 Incident Reconstruction Implications
+
+Incident reconstruction depends on trustworthy time more than on high log volume.
+For a near miss, E-stop, aircraft proximity event, or unexpected stop, the
+evidence bundle should include:
+
+| Evidence item | Timing requirement |
+|---|---|
+| Sensor frames and detections | Acquisition timestamp, receive timestamp, clock domain, uncertainty. |
+| Planner and control decisions | Cycle start/end time, input frame set, output command time. |
+| DBW feedback | Command send time, gateway time, actuator feedback time, CAN/TSN receive time. |
+| Safety events | Safety local counter, mapped global time if available, input/output state. |
+| Power events | Rail voltage/current timestamped through safe-stop rail hold-up. |
+| Diagnostics | DTC first-seen and confirmed times with timebase status. |
+| Operator/fleet actions | UTC presentation time plus vehicle global-time mapping. |
+
+Forensics rules:
+
+1. Never merge logs from two clock domains without an explicit offset and
+   uncertainty interval.
+2. Preserve raw local counters so investigators can recover ordering even when
+   global time failed.
+3. Flag intervals affected by clock steps, holdover, grandmaster changes, and
+   PHC/system-clock mapping faults.
+4. Include the timebase configuration ID in the incident package so replay uses
+   the same clock-domain assumptions as the vehicle.
+5. Make timestamp uncertainty visible in replay tools. A 50 ms uncertainty band
+   can change whether an object was inside braking distance.
+
+Current source anchors for this extension: [IEEE 802.1DG-2025 automotive TSN
+profile](https://1.ieee802.org/tsn/802-1dg/), [IEEE 1588-2019 precision time
+protocol](https://standards.ieee.org/standard/1588-2019/), [IEEE
+802.1AS-2020 and 802.1ASdm-2024 timing synchronization](https://standards.ieee.org/standard/802_1AS-2020.html),
+[AUTOSAR Adaptive R24-11 Time Synchronization](https://www.autosar.org/fileadmin/standards/R24-11/AP/AUTOSAR_AP_SWS_TimeSynchronization.pdf),
+[Linux kernel hardware timestamping documentation](https://docs.kernel.org/networking/timestamping.html),
+and [NVIDIA DRIVE/Jetson Orin PTP timestamping documentation](https://developer.nvidia.com/docs/drive/drive-os/6.0.8/public/drive-os-linux-sdk/common/topics/network_stub/time_sync_details.html?hl=ptp).
+
 ---
 
 ## 7. TSN for Multi-Sensor Fusion

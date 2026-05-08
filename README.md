@@ -10,15 +10,15 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 | Scope | Count |
 |-------|-------|
-| Reader pages | 367 |
-| Core research documents | 359 |
-| Corpus size | 225k+ lines |
+| Reader pages | 402 |
+| Core research documents | 394 |
+| Corpus size | 230k+ lines |
 | Companies covered | 21 |
 | Technology domains | 9 |
 | Method-level SLAM library | 58 method files + overview |
 | Method-level perception files | 54 |
-| Safety and validation docs | 21 |
-| AV platform docs | 21 |
+| Safety and validation docs | 24 |
+| AV platform docs | 25 |
 | Synthesis docs | 8 |
 | Papers referenced | 400+ |
 | Open-source repos evaluated | 50+ |
@@ -68,13 +68,13 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Section | Docs | Start At | What It Holds |
 |---------|------|----------|---------------|
 | `00-start-here/` | 4 | [Reading Guide](00-start-here/reading-guide.md) | Reader entry points and orientation material. |
-| `10-knowledge-base/` | 14 | [Theoretical Foundations](10-knowledge-base/systems-engineering/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, and more. |
-| `20-av-platform/` | 21 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, drive-by-wire, power, and edge-cloud architecture. |
-| `30-autonomy-stack/` | 199 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, E2E driving, and multi-agent systems. |
-| `40-runtime-systems/` | 9 | [Production ML Deployment](40-runtime-systems/ml-deployment/production-ml-deployment.md) | ML deployment, ROS/Autoware, observability, teleoperation, and vehicle-side data logging. |
-| `50-cloud-fleet/` | 16 | [Cloud Backend Infrastructure](50-cloud-fleet/data-platform/cloud-backend-infrastructure.md) | Data engines, fleet data loops, MLOps, OTA, observability, and fleet management. |
-| `60-safety-validation/` | 21 | [Certification Guide](60-safety-validation/standards-certification/certification-guide.md) | Safety case, standards, runtime assurance, verification, validation, robustness, and cybersecurity. |
-| `70-operations-domains/` | 15 | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Airside operations, deployment playbooks, business case, and domain-specific safety. |
+| `10-knowledge-base/` | 19 | [Theoretical Foundations](10-knowledge-base/systems-engineering/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, coordinate frames, filtering, vehicle dynamics, planning taxonomy, and calibration. |
+| `20-av-platform/` | 25 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, drive-by-wire, power, diagnostics, ruggedization, and edge-cloud architecture. |
+| `30-autonomy-stack/` | 208 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, E2E driving, and multi-agent systems. |
+| `40-runtime-systems/` | 10 | [Production ML Deployment](40-runtime-systems/ml-deployment/production-ml-deployment.md) | ML deployment, ROS/Autoware, observability, teleoperation, software operations, and vehicle-side data logging. |
+| `50-cloud-fleet/` | 20 | [Cloud Backend Infrastructure](50-cloud-fleet/data-platform/cloud-backend-infrastructure.md) | Data engines, fleet data loops, MLOps, OTA/SUMS, observability, map operations, data governance, and fleet management. |
+| `60-safety-validation/` | 24 | [Certification Guide](60-safety-validation/standards-certification/certification-guide.md) | Safety case, standards, runtime assurance, verification, validation, robustness, cybersecurity, incident reporting, and evidence traceability. |
+| `70-operations-domains/` | 24 | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Airside, warehouse, yard, port, mining, agriculture, construction, road AV, delivery robot, deployment, business-case, and safety operations. |
 | `80-industry-intel/` | 56 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, autonomy company profiles, market intelligence, and regulations. |
 | `90-synthesis/` | 8 | [Master Synthesis](90-synthesis/master/master-synthesis.md) | Executive synthesis, POCs, readiness, risk, decision framework, architecture, and gap backlog. |
 
@@ -82,31 +82,35 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 
 | Technology | Docs |
 |------------|------|
-| World models | 13 |
+| World models | 14 |
 | Perception | 82 |
 | Method-level perception library | 54 |
-| Planning | 12 |
+| Planning | 15 |
 | Localization and mapping | 72 |
 | Method-level SLAM library | 58 method files + overview |
 | Simulation | 7 |
-| VLA / VLM | 5 |
-| Multi-agent and V2X | 5 |
+| VLA / VLM | 6 |
+| Multi-agent and V2X | 6 |
 | Robustness validation files | 2 |
-| E2E driving | 3 |
+| E2E driving | 6 |
 
 | Operations | Docs |
 |------------|------|
-| Safety and validation | 21 |
+| Safety and validation | 24 |
 | Deployment | 13 |
 | Airside operations | 10 |
+| Cross-domain operations | 9 |
 | Teleoperation | 1 |
 
 | AV Platform | Docs |
 |-------------|------|
 | Compute | 7 |
-| Sensors | 9 |
+| Sensors | 10 |
 | Networking/connectivity | 3 |
 | Drive-by-wire | 2 |
+| Power/electrical | 1 |
+| Diagnostics | 1 |
+| Ruggedization | 1 |
 
 ## Reader Notes
 
