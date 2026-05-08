@@ -13,6 +13,80 @@ The current SLAM library is useful, but it is not complete. Treat the P0 backlog
 | Most severe structural gap | LiDAR-visual-inertial, radar, robust registration, loop-closure backend, and dataset coverage are underrepresented as first-class files. |
 | How to use this audit | Add P0 files first, then P1, then P2 or mention-only aliases. Update this audit whenever a missing method is promoted into the library. |
 
+## Second Latest-Method Sweep (2026-05-08)
+
+This second sweep used parallel web-search agents plus direct spot checks for 2025-2026 SLAM methods. It focused on methods likely to be missed by older SLAM surveys: degeneracy-robust LIO, LiDAR-visual-inertial odometry, wheel/GNSS factors, 4D radar localization, Gaussian/foundation-model visual SLAM, and current benchmarks.
+
+Interpretation:
+
+- **P0 latest** means create a dedicated file before describing the SLAM library as current.
+- **P1 latest** means create a dedicated file after P0s, or cross-link clearly from the closest existing method page.
+- **Watch** means the technique is promising but venue status, code release, official source availability, or independent benchmark maturity is not strong enough yet.
+- Venue claims are treated cautiously when only an arXiv comment, project page, or third-party index was found.
+
+### P0 Latest Additions and Upgrades
+
+| Suggested file | Method or technique | Category | Why it matters | Primary sources |
+|---|---|---|---|---|
+| `okvis2-x.md` | OKVIS2-X | Multi-modal VI/LiDAR/GNSS SLAM | Modern open keyframe VI SLAM configurable with dense depth, LiDAR, GNSS, volumetric submaps, and map-alignment factors; good companion to OKVIS/ROVIO/BASALT and VILENS. | https://arxiv.org/abs/2510.04612, https://github.com/ethz-mrl/OKVIS2-X |
+| `mm-lins.md` | MM-LINS | Degeneracy-robust LIO | Multi-map LiDAR-inertial system for over-degenerate environments such as warehouses, crowds, smoke, temporary LiDAR blindness, and long corridors. | https://arxiv.org/abs/2503.19506 |
+| `pg-lio.md` | PG-LIO | Intensity/photometric-geometric LIO | Uses LiDAR intensity to stabilize self-similar tunnels and corridors; directly relevant to GPS-denied indoor/outdoor transitions and long feature-poor routes. | https://arxiv.org/abs/2506.18583 |
+| `lir-livo.md` | LIR-LIVO | LiDAR-visual-inertial odometry | Lightweight LIVO using illumination-resilient learned features, LiDAR depth association, SuperPoint, and LightGlue; upgrades FAST-LIVO-style coverage for poor lighting. | https://arxiv.org/abs/2502.08676 |
+| `semantic-liw-odometry.md` | Semantic LiDAR-Inertial-Wheel odometry | Vehicle/industrial multi-sensor odometry | Strong deployment signal from automated-port operation; important for low-speed industrial vehicles where wheel odometry, semantics, and LiDAR need to coexist. | https://arxiv.org/abs/2509.14999 |
+| `gv-iriom-4d-radar.md` | GV-iRIOM | GNSS/visual/4D-radar inertial odometry and mapping | Large-scale 4D radar SLAM extension combining radar inertial odometry, visual-inertial odometry, GNSS, loop closure, and map fusion for adverse weather. | https://www.sciencedirect.com/science/article/pii/S0924271625000449 |
+| `cfear-teach-repeat.md` | CFEAR-Teach-and-Repeat | Radar-only teach-and-repeat localization | March 2026 radar-only localization pipeline with Boreas evaluation, reported 29 Hz operation, and strong adverse-weather relevance. | https://arxiv.org/abs/2603.06501 |
+| `radarsplat-rio.md` | RadarSplat-RIO | Radar bundle adjustment / Gaussian radar map | April 2026 radar-inertial method that frames radar SLAM drift reduction as local bundle adjustment over range-azimuth-Doppler data with Gaussian splatting. | https://arxiv.org/abs/2604.13492 |
+| `vggt-slam-plus-plus.md` | VGGT-SLAM++ | Foundation-model visual SLAM | April 2026 VGGT-based SLAM with DEM graph construction, DINOv2 retrieval, and local optimization; belongs beside SLAM3R/VGGT/AIM-SLAM coverage. | https://arxiv.org/abs/2604.06830 |
+| `vista-slam.md` | ViSTA-SLAM | Foundation/pointmap monocular SLAM | Calibration-free monocular SLAM using lightweight pointmap/pose prediction and Sim(3) loop closure; relevant to the foundation-geometry SLAM lineage. | https://ganlinzhang.xyz/vista-slam/, https://github.com/zhangganlin/vista-slam, https://arxiv.org/abs/2509.01584 |
+| `s3po-gs.md` | S3PO-GS | Outdoor monocular Gaussian SLAM | ICCV 2025 outdoor RGB-only Gaussian SLAM with global scale-consistent 3D Gaussian pointmaps; fills the outdoor 3DGS gap beyond indoor MonoGS/SplaTAM. | https://arxiv.org/abs/2507.03737, https://openaccess.thecvf.com/content/ICCV2025/html/Cheng_Outdoor_Monocular_SLAM_with_Global_Scale-Consistent_3D_Gaussian_Pointmaps_ICCV_2025_paper.html |
+| `vigs-slam.md` | VIGS-SLAM | Visual-inertial Gaussian SLAM | Tightly couples visual, inertial, depth/pose optimization, and Gaussian mapping for blur, low texture, and exposure variation; promote out of the watchlist. | https://arxiv.org/abs/2512.02293, https://vigs-slam.github.io/ |
+| `gaussianflow-slam.md` | GaussianFlow SLAM | Monocular Gaussian SLAM | April 2026 monocular 3DGS SLAM using optical-flow-guided GaussianFlow constraints to regularize pose and structure. | https://arxiv.org/abs/2604.15612 |
+| `hi-slam2.md` | HI-SLAM2 | Geometry-aware monocular Gaussian SLAM | T-RO 2025 RGB-only Gaussian SLAM with monocular priors, scale alignment, loop closure, and instant map updates. | https://hi-slam2.github.io/, https://doi.org/10.1109/TRO.2025.3626627 |
+| `segs-slam.md` | SEGS-SLAM | Structure-enhanced Gaussian SLAM | ICCV 2025 3DGS SLAM across monocular, stereo, and RGB-D inputs; useful for organizing the fast-moving Gaussian SLAM family. | https://segs-slam.github.io/ |
+| `scalemaster-benchmark.md` | ScaleMaster | Learned monocular SLAM benchmark | February 2026 benchmark for scale consistency and map-to-map quality in deep monocular SLAM, especially large indoor and multi-floor sequences. | https://arxiv.org/abs/2602.18174 |
+| `snail-radar-benchmark.md` | SNAIL Radar | 4D radar SLAM benchmark | IJRR 2025 radar benchmark with 4D radar, stereo, LiDAR, IMU, GNSS/INS, rain/night/tunnel coverage, and updated 2025 poses/extrinsics. | https://snail-radar.github.io/, https://arxiv.org/abs/2407.11705 |
+| `hercules-radar-benchmark.md` | HeRCULES | Heterogeneous radar benchmark | ICRA 2025 benchmark combining 4D radar, spinning radar, FMCW LiDAR, IMU, GPS, and cameras for radar SLAM, place recognition, and fusion. | https://sites.google.com/view/herculesdataset, https://arxiv.org/abs/2502.01946 |
+| `geode-degenerate-lidar-benchmark.md` | GEODE | Degenerate LiDAR benchmark | Large multi-LiDAR benchmark with many geometrically degenerate settings; directly supports the degeneracy-robust LIO backlog. | https://thisparticle.github.io/geode/, https://arxiv.org/abs/2409.04961 |
+
+### P1 Latest Additions
+
+| Suggested file | Method or technique | Category | Why it matters | Primary sources |
+|---|---|---|---|---|
+| `genz-icp.md` | GenZ-ICP | Degeneracy-robust LiDAR odometry / ICP | Already mentioned in broader LiDAR docs, but now deserves a focused file because degeneracy-robust registration is a 2025-2026 hotspot. | https://github.com/cocel-postech/genz-icp |
+| `bev-lio-lc.md` | BEV-LIO-LC | LIO plus learned BEV loop closure | Bridges FAST-LIO-style odometry with BEV image place recognition for long warehouse, campus, and outdoor loops. | https://github.com/HxCa1/BEV-LIO-LC |
+| `omni-livo.md` | Omni-LIVO | Multi-camera LiDAR-visual-inertial odometry | Extends LIVO toward surround/multi-camera FoV coverage, a better fit for AV-style sensor suites than monocular LIVO. | https://arxiv.org/abs/2509.15673 |
+| `online-neural-liw-factor.md` | Online neural LiDAR-IMU-wheel factor graph | Wheel/vehicle state estimation | Learns skid-steer or terrain-dependent wheel kinematics inside the estimator rather than treating wheel odometry as fixed noise. | https://arxiv.org/abs/2407.08907 |
+| `cm-liuw-odometry.md` | CM-LIUW-Odometry | LiDAR-IMU-UWB-wheel odometry | Underground/tunnel-focused fusion with nonholonomic constraints, lever-arm compensation, and adaptive mode switching. | https://arxiv.org/abs/2511.01379 |
+| `4dral-radar-lidar-place-recognition.md` | 4DRaL | 4D radar / LiDAR place recognition | LiDAR-teacher distillation for radar-to-radar and radar-to-LiDAR retrieval; important for all-weather map lookup and loop closure. | https://arxiv.org/abs/2603.26206 |
+| `sherloc-radar-place-recognition.md` | SHeRLoc | Heterogeneous radar place recognition | Cross-modal place recognition across spinning radar, 4D radar, and FMCW LiDAR for mixed-sensor fleets. | https://arxiv.org/abs/2506.15175 |
+| `cao-ronet.md` | CAO-RONet | Learning-based 4D radar odometry | 2025 ICRA line for low-quality 4D radar point completion and context-aware association, useful for AV radar odometry comparison. | https://arxiv.org/abs/2503.01438, https://github.com/NEU-REAL/CAO-RONet |
+| `radar-correspondence-rio.md` | Radar point correspondence learning for RIO | Radar-inertial frontend | Transformer-based radar point correspondences that can plug into radar-inertial odometry pipelines. | https://arxiv.org/abs/2506.18580, https://github.com/aau-cns/radar_transformer |
+| `point-uncertainty-radar-slam.md` | Point uncertainty in radar SLAM | Radar backend modeling | Explicit radar point uncertainty improves association and backend estimation; useful ingredient across radar SLAM pages. | https://arxiv.org/abs/2402.16082, https://github.com/HKUST-Aerial-Robotics/RIO |
+| `radar-inertial-online-calibration.md` | Online radar-IMU spatial and temporal calibration | Radar-inertial deployment hardening | March 2026 continuous-time calibration for radar-inertial odometry, important for productizing radar fusion. | https://arxiv.org/abs/2603.19958 |
+| `gs-livm.md` | GS-LIVM | LiDAR-inertial-visual Gaussian mapping | ICCV 2025 real-time outdoor Gaussian mapping using LIVO poses, voxel GPR, and CUDA; compare with Gaussian-LIC and FAST-LIVO2. | https://openaccess.thecvf.com/content/ICCV2025/html/Xie_GS-LIVM_Real-Time_Photo-Realistic_LiDAR-Inertial-Visual_Mapping_with_Gaussian_Splatting_ICCV_2025_paper.html, https://github.com/xieyuser/GS-LIVM |
+| `4dtam.md` | 4DTAM | Dynamic/non-rigid 4D Gaussian SLAM | CVPR 2025 dynamic-surface-Gaussian tracking and mapping; lower AV-localization priority but important for dynamic Gaussian maps. | https://github.com/muskie82/4dtam |
+| `ace-slam.md` | ACE-SLAM | Neural implicit RGB-D SLAM | Scene-coordinate regression as live implicit map, compact relocalization angle; promote after code maturity is checked. | https://arxiv.org/abs/2512.14032, https://ialzugaray.github.io/ace-slam/ |
+| `dropd-slam.md` | DropD-SLAM | Monocular dense/RGB-D replacement | Uses pretrained metric depth, learned keypoints, and segmentation to drive an RGB-D-style backend from monocular video. | https://arxiv.org/abs/2510.06216 |
+| `levio.md` | LEVIO | Embedded visual-inertial odometry | Ultra-low-power VIO for RISC-V/embedded devices; useful if the corpus covers small robots or auxiliary wearable/camera nodes. | https://arxiv.org/abs/2602.03294 |
+| `iilabs-3d-benchmark.md` | IILABS 3D | Indoor LiDAR SLAM benchmark | Indoor wheeled-robot benchmark with heterogeneous 3D LiDARs, IMU, wheel odometry, and MoCap ground truth. | https://jorgedfr.github.io/3d_lidar_slam_benchmark_at_iilab/ |
+| `smapper-benchmark.md` | SMapper / SMapper-light | Open-hardware SLAM benchmark platform | Reproducible acquisition platform with public indoor/outdoor sequences and sub-cm offline SLAM ground truth. | https://snt-arg.github.io/smapper_docs/, https://arxiv.org/abs/2509.09509 |
+| `agrilira4d-benchmark.md` | AgriLiRa4D | UAV LiDAR/radar benchmark | Agricultural UAV benchmark with 3D LiDAR, 4D radar, IMU, and RTK; useful for vegetation, repetitive texture, and outdoor robustness. | https://zhan994.github.io/AgriLiRa4D/, https://arxiv.org/abs/2512.01753 |
+| `diter-plus-plus-benchmark.md` | DiTer++ | Multi-robot/multi-session benchmark | Legged-robot, thermal, RGB/RGB-D, LiDAR, IMU, and proprioception coverage for outdoor multi-session SLAM. | https://arxiv.org/abs/2412.05839 |
+
+### Latest Watchlist
+
+| Method or technique | Why watch | Current concern | Sources |
+|---|---|---|---|
+| LTR^2 / LiDAR Teach, Radar Repeat | Very relevant cross-modal LiDAR-teach and 4D-radar-repeat navigation, with long-term deployment claims across smoke/night/changed environments. | Official arXiv page did not surface in direct search yet; keep watch until primary arXiv/proceedings link is stable. | https://papers.cool/arxiv/2605.02809 |
+| CUBE-LIO | Intensity-assisted cubemap projection for degenerate LIO. | Venue listing found, but paper/repo not found in this sweep. | https://ras.papercept.net/conferences/conferences/ICRA26/program/ICRA26_ContentListWeb_4.html |
+| RMGS-SLAM | Real-time LIV Gaussian SLAM with loop closure on a global Gaussian map. | Preprint-only in this sweep. | https://arxiv.org/abs/2604.12942 |
+| R-VoxelMap | 2026 VoxelMap successor candidate. | Code/release maturity unclear. | https://arxiv.org/abs/2601.12377 |
+| LIO-MARS | Non-uniform continuous-time B-spline LIO. | Submitted status; wait for venue/code. | https://arxiv.org/abs/2511.13985 |
+| AKF-LIO | Adaptive covariance and Gaussian map for degraded/dynamic scenes. | Code appears not released yet. | https://arxiv.org/abs/2503.06891 |
+| Super4DR, DNOI-4DRO, Equi-RO | Fast-moving 4D radar odometry and Gaussian/radar learning line. | Good technical signal, but code and repeated external evaluation are not yet mature. | https://arxiv.org/abs/2512.09608, https://arxiv.org/abs/2505.12310, https://arxiv.org/abs/2509.20674 |
+| SCE-SLAM and GSO-SLAM | Scene-coordinate and Gaussian/direct-VO visual SLAM variants worth tracking. | Strong preprint signal, but not yet core AV 3D SLAM coverage without code/benchmark maturity checks. | https://arxiv.org/abs/2601.09665, https://arxiv.org/abs/2602.11714 |
+| D-GVIO and CT-VIR | Decentralized GNSS-VIO and visual-inertial-ranging fusion. | Interesting for multi-agent or UWB work, but not yet core AV 3D SLAM coverage. | https://arxiv.org/abs/2603.01404, https://arxiv.org/abs/2604.14545 |
+
 ## P0 Dedicated Files
 
 | Suggested file | Method or technique | Category | Why it matters | Primary sources |
@@ -81,13 +155,19 @@ The current SLAM library is useful, but it is not complete. Treat the P0 backlog
 | Optimization solver comparison: Ceres, g2o, GTSAM | P2, because [GTSAM](../../../foundations/gtsam-factor-graphs.md) already exists; add only if readers need solver selection. | https://ceres-solver.org/, https://github.com/RainerKuemmerle/g2o, https://gtsam.org/docs/ |
 | Submap graphs and map-centric SLAM | P2 design-pattern page; [Cartographer 3D](cartographer-3d.md) covers one implementation. | https://google-cartographer.readthedocs.io/ |
 | CPD, colored ICP, SegMatch, M2DP, ISC, OverlapNet | Mention under registration/place-recognition pages unless the repo expands those sublibraries. | https://arxiv.org/abs/0905.2635, https://www.open3d.org/docs/0.9.0/tutorial/Advanced/colored_pointcloud_registration.html, https://github.com/PRBonn/OverlapNet |
-| RMGS-SLAM, PINGS, MegaSaM, VGGT/SwiftVGGT/Reloc-VGGT, QLIO, VIGS-SLAM, Dy3DGS-SLAM, Super4DR | Track as 2024-2026 emerging methods; most should live in a survey page until code/adoption stabilizes. | https://arxiv.org/abs/2604.12942, https://www.roboticsproceedings.org/rss21/p040.pdf, https://mega-sam.github.io/, https://arxiv.org/abs/2503.11651 |
+| RMGS-SLAM, PINGS, MegaSaM, VGGT/SwiftVGGT/Reloc-VGGT, QLIO, Dy3DGS-SLAM, Super4DR | Track as 2024-2026 emerging methods; most should live in a survey page until code/adoption stabilizes. VIGS-SLAM and VGGT-SLAM++ were promoted in the 2026-05-08 latest-method sweep. | https://arxiv.org/abs/2604.12942, https://www.roboticsproceedings.org/rss21/p040.pdf, https://mega-sam.github.io/, https://arxiv.org/abs/2503.11651, https://arxiv.org/abs/2512.02293, https://arxiv.org/abs/2604.06830 |
 
 ## Benchmark and Dataset Gaps
 
 | Dataset or benchmark | Why it should be added to [SLAM Benchmarking Metrics and Datasets](benchmarking-metrics-datasets.md) | Sources |
 |---|---|---|
 | LaMAria / city-scale egocentric VI SLAM | Current hard visual-inertial benchmark with low light, moving platforms, long routes, and time-varying calibration. | https://lamaria.ethz.ch/, https://openaccess.thecvf.com/content/ICCV2025/papers/Krishnan_Benchmarking_Egocentric_Visual-Inertial_SLAM_at_City_Scale_ICCV_2025_paper.pdf |
+| M3DGR / Ground-Fusion++ | Ground-robot sensor-fusion benchmark for visual degradation, LiDAR degeneracy, wheel slip, and GNSS denial, with broad baseline evaluation. | https://arxiv.org/abs/2507.08364, https://github.com/SJTU-ViSYS/Ground-Fusion |
+| SNAIL Radar | 4D radar SLAM/localization benchmark with stereo, LiDAR, IMU, GNSS/INS, and difficult rain/night/tunnel conditions. | https://snail-radar.github.io/, https://arxiv.org/abs/2407.11705 |
+| HeRCULES | Heterogeneous radar benchmark combining 4D radar, spinning radar, FMCW LiDAR, IMU, GPS, and cameras for multi-session radar SLAM and place recognition. | https://sites.google.com/view/herculesdataset, https://arxiv.org/abs/2502.01946 |
+| GEODE | Large degenerate-scene LiDAR benchmark for stress-testing LIO and multi-LiDAR pipelines in weak geometry. | https://thisparticle.github.io/geode/, https://arxiv.org/abs/2409.04961 |
+| ScaleMaster | Learned monocular SLAM benchmark for scale consistency and map quality in large indoor and multi-floor environments. | https://arxiv.org/abs/2602.18174 |
+| IILABS 3D | Indoor 3D LiDAR SLAM benchmark with wheeled robot, IMU, wheel odometry, MoCap ground truth, and multiple LiDAR types. | https://jorgedfr.github.io/3d_lidar_slam_benchmark_at_iilab/ |
 | HeLiPR | Heterogeneous LiDAR and long-term place recognition, important for sensors and route revisits. | https://sites.google.com/view/heliprdataset, https://journals.sagepub.com/doi/10.1177/02783649241242136 |
 | FusionPortableV2 | Generalized multi-platform SLAM evaluation: handheld, legged robot, UGV, vehicle, 27 sequences, 38.7 km. | https://arxiv.org/abs/2404.08563 |
 | Oxford Spires | LiDAR, cameras, IMU, TLS reference maps, and large landmark-scale reconstruction for radiance-field/SLAM/localization work. | https://dynamic.robots.ox.ac.uk/datasets/oxford-spires/, https://arxiv.org/abs/2411.10546 |
@@ -115,6 +195,9 @@ The current SLAM library is useful, but it is not complete. Treat the P0 backlog
 | [KinectFusion](kinectfusion.md) and [ElasticFusion](elasticfusion.md) | InfiniTAM, voxel hashing, Kintinuous, BAD SLAM, surfel maps. |
 | [iMAP](imap.md), [NICE-SLAM](nice-slam.md), [Co-SLAM and ESLAM](co-slam-eslam.md), [NeRF-SLAM](nerf-slam.md) | CodeSLAM, DeepFactors, Vox-Fusion, GO-SLAM, and neural dense SLAM survey. |
 | [Open-Source SLAM Stack Comparison](open-source-stack-comparison.md) | MOLA, GLIM, KISS-SLAM, LOCUS/LAMP, FAST-LIVO2/R3LIVE, DLIO/DLIOM, cuVSLAM/Isaac ROS. |
+| [Splat-LOAM](splat-loam.md) | Already covers LiDAR Gaussian-splatting odometry and mapping; cross-link it with GS-LIVM, Gaussian-LIC, RadarSplat-RIO, S3PO-GS, and the neural/Gaussian survey page. |
+| [WildGS-SLAM](wildgs-slam.md) | Already covers dynamic monocular Gaussian SLAM; add aliases from the latest sweep so WildGS is discoverable from Gaussian, dynamic-scene, and visual SLAM paths. |
+| [LiDAR SLAM Algorithms](../lidar-slam-algorithms.md) | GenZ-ICP is already mentioned there; promote to a dedicated file if degeneracy-robust registration becomes a first-class subsection. |
 
 ## Guardrail Process
 

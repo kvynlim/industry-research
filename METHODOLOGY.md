@@ -49,7 +49,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 ### Phase 8: Method-Level SLAM Expansion and Coverage Audit
 - **Method:** Parallel web-search agents audited LiDAR, visual, dense/RGB-D, LiDAR-visual-inertial, radar, registration, loop-closure, and backend SLAM coverage against the existing method library
-- **Output:** Dedicated [GLIM](technology/localization/slam/glim.md) method file plus [SLAM Coverage Audit and Backlog](technology/localization/slam/coverage-audit-2026.md), with P0/P1/P2 missing-method queues and source links
+- **Output:** Dedicated [GLIM](technology/localization/slam/glim.md) method file plus [SLAM Coverage Audit and Backlog](technology/localization/slam/coverage-audit-2026.md), with P0/P1/P2 missing-method queues, a 2026-05-08 latest-method sweep, and source links
 
 ## Quality Controls
 
@@ -63,7 +63,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 ## Limitations
 
 1. **Web search rate limits:** Some agents hit API rate limits during research. Affected topics were written from training knowledge rather than live web search.
-2. **Point-in-time:** Research reflects the state of the field as of March 2026. Fast-moving areas (world models, VLAs) may have newer developments.
+2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with a 2026-05-08 refresh for the SLAM latest-method audit. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM) may have newer developments.
 3. **Airside data gap:** No public airside driving datasets exist, so comparative analysis relies on published deployment reports rather than reproducible benchmarks.
 4. **Company information:** Some companies (UISEE, AeroVect) have limited public technical information. Claims are attributed but not all independently verified.
 5. **Regulatory predictions:** Timeline predictions for FAA/EASA standards are based on published roadmaps and industry trends, not official commitments.

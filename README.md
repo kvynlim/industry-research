@@ -51,7 +51,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | Perception stack | [Production Perception Systems](technology/perception/production-perception-systems.md) | Compares production AV approaches and the perception patterns that transfer to airside autonomy. |
 | Localization and mapping | [Mapping and Localization](technology/localization/mapping-and-localization.md) | Covers HD maps, LiDAR SLAM, map-free driving, map maintenance, localization, and occupancy grids. |
 | Method-level 3D SLAM | [SLAM Library Overview](technology/localization/slam/overview.md) | Breaks classical, LiDAR, visual, dense, neural, Gaussian, and radar SLAM into focused method files. |
-| SLAM coverage gaps | [SLAM Coverage Audit](technology/localization/slam/coverage-audit-2026.md) | Tracks missing first-class SLAM pages found by parallel web-search agents. |
+| SLAM coverage gaps | [SLAM Coverage Audit](technology/localization/slam/coverage-audit-2026.md) | Tracks missing first-class SLAM pages, including a May 2026 latest-method sweep across LIO, LIVO, 4D radar, Gaussian/foundation SLAM, and benchmarks. |
 
 ## Corpus Map
 
