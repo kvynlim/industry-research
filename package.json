@@ -1,0 +1,20 @@
+{
+  "name": "industry-research",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev . --host 127.0.0.1",
+    "docs:build": "vitepress build .",
+    "docs:preview": "vitepress preview . --host 127.0.0.1",
+    "test": "node --test tests/navigation.test.mjs tests/site-config.test.mjs tests/content-smoke.test.mjs tests/workflow.test.mjs",
+    "verify": "npm test && npm run docs:build"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.13"
+  }
+}
