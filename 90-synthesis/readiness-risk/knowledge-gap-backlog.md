@@ -31,13 +31,25 @@ Priorities:
 |---|---|---|
 | Generic operations scope was underbuilt | `00-start-here/repo-map.md` says `70-operations-domains/` should cover airside, indoor warehouse, outdoor campus, road AV, and deployment playbooks, but `README.md` and `INDEX.md` were airside-heavy. | P0 first wave added warehouse, logistics yard, port, mining, agriculture, construction, robotaxi, trucking, and sidewalk delivery robot operations files. |
 | Platform tree promised power and thermal but lacked directories | `README.md` and `00-start-here/repo-map.md` describe power and thermal systems, while `20-av-platform/` had compute, sensors, drive-by-wire, and networking. | P0 first wave added power/electrical, diagnostics, ruggedization, and close-range safety sensing. P1 still tracks vehicle-level thermal management. |
-| Foundations needed reusable primers | `10-knowledge-base/` was strong on selected deep dives, but lacked coordinate frames, Bayesian filtering, vehicle dynamics, planning taxonomy, and calibration fundamentals. | P0 first wave added five foundation primers. P1 still tracks costmaps, middleware timing, and assurance fundamentals. |
+| Foundations needed reusable primers | `10-knowledge-base/` was strong on selected deep dives, but lacked coordinate frames, Bayesian filtering, vehicle dynamics, planning taxonomy, calibration fundamentals, and sensor measurement models. | P0 first wave added five foundation primers. The 2026-05-09 loop added LiDAR, camera, IMU, GNSS/RTK, radar, event/thermal, wheel odometry, time synchronization, and calibration observability fundamentals. |
 | Runtime and cloud needed operations discipline | Existing files covered telemetry, OTA, data pipelines, and MLOps, but not fleet SRE, incident command, SUMS governance, map ops, data governance, and runtime security operations. | P0 first wave added operator-facing runtime/cloud playbooks and evidence models. |
 | Safety needed traceable evidence packages | Safety content was deep, but incident reporting, living safety-case traceability, and EU compliance dossiering were scattered. | P0 first wave added incident reporting, safety-case evidence traceability, and EU AI Act/Machinery/CRA dossier files. P1 still tracks ISO 3450x evidence, HARA/STPA, PLd/SIL, and ML assurance governance. |
 
 ## P0 First-Wave Completion (2026-05-09)
 
 The P0 rows below were promoted into first-class research files by seven writing agents: six parallel workers plus one focused delivery-robot follow-up. The table remains as the provenance record for what was promoted. The next active queue is P1.
+
+## Perception, SLAM, and Sensor Loop (2026-05-09)
+
+A follow-up loop focused specifically on method-level perception, method-level SLAM, and sensor fundamentals for perception, SLAM, and mapping. The loop is tracked in [Continuous Research Loop](continuous-research-loop.md).
+
+| Track | Files promoted |
+|---|---|
+| Perception methods | SplatAD, GaussianFormer, GaussianOcc, streaming Gaussian occupancy, Cam4DOcc, StreamingFlow, Sparse4D, TacoDepth, and RaCFormer. |
+| SLAM methods | MOLA, KISS-SLAM, KISS-Matcher, LVI-SAM, FAST-LIVO/FAST-LIVO2, R2LIVE/R3LIVE, Splat-SLAM, S3PO-GS, Gaussian-LIC, GS-LIVM, VIGS-SLAM, dynamic 4D Gaussian SLAM, and RadarSplat-RIO. |
+| Sensor and estimation fundamentals | LiDAR, camera, IMU, GNSS/RTK, radar, event/thermal, time synchronization, multi-sensor calibration observability, wheel odometry, visible-camera hardware, and IMU/GNSS/RTK hardware. |
+
+The next active queue is no longer just P1 cross-architecture work. It also includes method-library loops for temporal occupancy, radar-camera/4D-radar perception, robust SLAM backends, alternative localization sensors, and sensor calibration operations.
 
 ## P0 Backlog
 

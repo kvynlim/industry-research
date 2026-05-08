@@ -13,22 +13,22 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 
 | Topic | Read next | Why it matters for this library |
 |---|---|---|
-| Modern LiDAR odometry and SLAM front ends | [LiDAR SLAM Algorithms](../overview/lidar-slam-algorithms.md) | Detailed treatment of [KISS-ICP](kiss-icp.md), [LIO-SAM](lio-sam.md), [FAST-LIO2](fast-lio-fast-lio2.md), Faster-LIO-style voxel LIO, [CT-ICP](ct-icp.md), and [Point-LIO](point-lio.md). |
+| Modern LiDAR odometry and SLAM front ends | [LiDAR SLAM Algorithms](../overview/lidar-slam-algorithms.md) | Detailed treatment of [KISS-ICP](kiss-icp.md), [KISS-SLAM](kiss-slam.md), [MOLA](mola.md), [LIO-SAM](lio-sam.md), [LVI-SAM](lvi-sam.md), [FAST-LIO2](fast-lio-fast-lio2.md), [FAST-LIVO2](fast-livo-fast-livo2.md), [R2LIVE/R3LIVE](r2live-r3live.md), [CT-ICP](ct-icp.md), and [Point-LIO](point-lio.md). |
 | Production scan-to-map localization | [Production LiDAR Map Localization](../overview/production-lidar-map-localization.md) | Explains why production AV localization should usually match live scans to a prebuilt map instead of relying only on online SLAM. |
 | Loop closure and kidnapped-robot recovery | [LiDAR Place Recognition and Re-Localization](../overview/lidar-place-recognition-relocalization.md) | SLAM without robust place recognition becomes odometry with drift; this doc covers descriptor and verification pipelines. |
 | Offline survey processing | [Map Construction Pipeline](../maps/map-construction-pipeline.md) | Shows where SLAM outputs become fleet-deployable HD maps, geodetic alignment, QA artifacts, and OTA packages. |
 | Ego-state fusion and uncertainty | [Robust State Estimation Multi-Sensor](../overview/robust-state-estimation-multi-sensor.md) | SLAM factors must land in an estimator with sane gating, covariance, fallback, and sensor-fault behavior. |
 | Factor graph foundations | [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) | The common backend language for LIO-SAM, map optimization, loop closure, IMU preintegration, and production smoothing. |
-| Dense/neural scene representations | [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md) | Useful for future dense mapping, semantic map QA, and simulation; not yet the primary safety-critical pose source. |
+| Dense/neural scene representations | [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md) | Connects [Splat-SLAM](splat-slam.md), [S3PO-GS](s3po-gs.md), [Gaussian-LIC](gaussian-lic.md), [GS-LIVM](gs-livm.md), [VIGS-SLAM](vigs-slam.md), [Dynamic 4D Gaussian SLAM](dynamic-4d-gaussian-slam.md), and [RadarSplat-RIO](radarsplat-rio.md) to future dense mapping, semantic map QA, and simulation. |
 | Coverage audit and backlog | [SLAM Coverage Audit and Backlog](coverage-audit-2026.md) | Tracks missing first-class method pages found by parallel web-search agents so the library does not silently omit major techniques. |
 
 ## Scope Boundaries
 
 | Term | Primary output | Updates a map? | Drift behavior | Production role | Typical methods |
 |---|---:|---:|---|---|---|
-| Odometry | Relative pose stream | Local map only | Unbounded without correction | Fallback, prediction, survey front-end | [KISS-ICP](kiss-icp.md), [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md), [CT-ICP](ct-icp.md) |
-| SLAM | Trajectory plus map | Yes | Bounded by loop closures and global constraints | Survey mapping, map repair, exploratory operation | [LIO-SAM](lio-sam.md), KISS-SLAM, [Cartographer](cartographer-3d.md), RTAB-Map, [GLIM](glim.md) |
-| Localization | Pose in an existing map | No, except quality overlays | Bounded by map quality and scan matching | Normal AV runtime | Autoware NDT, VGICP, MOLA localization, GTSAM scan-to-map factors |
+| Odometry | Relative pose stream | Local map only | Unbounded without correction | Fallback, prediction, survey front-end | [KISS-ICP](kiss-icp.md), [FAST-LIO2](fast-lio-fast-lio2.md), [FAST-LIVO2](fast-livo-fast-livo2.md), [Point-LIO](point-lio.md), [CT-ICP](ct-icp.md) |
+| SLAM | Trajectory plus map | Yes | Bounded by loop closures and global constraints | Survey mapping, map repair, exploratory operation | [LIO-SAM](lio-sam.md), [LVI-SAM](lvi-sam.md), [KISS-SLAM](kiss-slam.md), [Cartographer](cartographer-3d.md), RTAB-Map, [GLIM](glim.md), [MOLA](mola.md) |
+| Localization | Pose in an existing map | No, except quality overlays | Bounded by map quality and scan matching | Normal AV runtime | Autoware NDT, VGICP, [MOLA](mola.md) localization, [KISS-Matcher](kiss-matcher.md), GTSAM scan-to-map factors |
 | Relocalization | Global pose hypothesis | No | Recovers after losing track | Startup and fault recovery | Scan Context, MinkLoc3D, LCDNet, ICP/NDT verification |
 | Mapping pipeline | Validated HD map package | Offline | Optimized globally | Airport onboarding and maintenance | Multi-session SLAM, GCP alignment, AMDB/Lanelet2 overlays |
 
@@ -65,7 +65,7 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | Road AV in mapped ODD | Prebuilt HD map localization plus LiDAR/radar/camera odometry | [FAST-LIO2](fast-lio-fast-lio2.md), [GLIM](glim.md), [Autoware NDT](ndt.md) | GNSS/INS fusion, dynamic object removal, map versioning, online map-change detection | Using indoor RGB-D or monocular-only SLAM for safety-critical pose |
 | Indoor warehouse, planar floors | 2D LiDAR SLAM or 3D LiDAR-inertial if tall racks matter | SLAM Toolbox, [Cartographer](cartographer-3d.md), RTAB-Map | Wheel odometry, reflector/AprilTag anchors, floor-zone maps, periodic relocalization | Forklifts or racks create persistent dynamic clutter without filtering |
 | Underground/construction | 3D LiDAR-inertial with multi-session SLAM | [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md), [GLIM](glim.md), [CT-ICP](ct-icp.md) | Loop closure, cross-session map merging, robust kernels, lidar intensity if geometry repeats | Pure visual tracking in dust/dark or pure GNSS outdoors/indoors mixed |
-| Outdoor campus/service robot | LiDAR-inertial plus place recognition | [KISS-ICP](kiss-icp.md), KISS-SLAM, [LIO-SAM](lio-sam.md), MOLA | Long-term dataset validation, seasonal map maintenance, semantic/dynamic filtering | Assuming one sunny-day map covers all seasons and construction changes |
+| Outdoor campus/service robot | LiDAR-inertial plus place recognition | [KISS-ICP](kiss-icp.md), [KISS-SLAM](kiss-slam.md), [LIO-SAM](lio-sam.md), [MOLA](mola.md) | Long-term dataset validation, seasonal map maintenance, semantic/dynamic filtering | Assuming one sunny-day map covers all seasons and construction changes |
 | UAV/handheld inspection | Visual-inertial or LiDAR-inertial depending payload | [OpenVINS](openvins.md), [VINS-Fusion](vins-mono-vins-fusion.md), [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md) | Rolling-shutter handling, aggressive-motion IMU validation, loop closure | Low-grade IMU plus unsynchronized camera/LiDAR under fast motion |
 
 ## Airside SLAM Architecture Recommendation
@@ -73,7 +73,7 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | Layer | Recommended role | Candidate implementation | Why |
 |---|---|---|---|
 | Survey odometry | Generate per-session trajectories and submaps | [FAST-LIO2](fast-lio-fast-lio2.md) or [GLIM](glim.md) as primary; [KISS-ICP](kiss-icp.md) as independent check | LIO gives robust deskewing and fast motion handling; LiDAR-only validation catches IMU/calibration-specific failures. |
-| Loop closure | Correct drift across long apron loops and repeated passes | [LIO-SAM](lio-sam.md) loop module, KISS-SLAM, Scan Context from place-recognition library | Required to prevent multi-kilometer survey maps from accumulating meter-scale drift. |
+| Loop closure | Correct drift across long apron loops and repeated passes | [LIO-SAM](lio-sam.md) loop module, [KISS-SLAM](kiss-slam.md), [KISS-Matcher](kiss-matcher.md), Scan Context from place-recognition library | Required to prevent multi-kilometer survey maps from accumulating meter-scale drift. |
 | Global optimization | Fuse odometry, loop closure, GCP, RTK, and prior map constraints | GTSAM/iSAM2, see [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) | The same factor-graph representation can be reused by map construction and runtime localization. |
 | Production runtime pose | Match live LiDAR to the validated HD map | GPU VGICP/NDT plus [Production LiDAR Map Localization](../overview/production-lidar-map-localization.md) | Bounded drift and calibrated uncertainty are more important than online map growth during normal operation. |
 | Recovery | Reinitialize after startup, tow, GPS loss, or bad scan matching | [LiDAR Place Recognition and Re-Localization](../overview/lidar-place-recognition-relocalization.md) plus ICP/NDT verification | Avoids blindly trusting a local optimizer when the initial pose is wrong. |
@@ -107,9 +107,13 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | Page | Method class | Primary question it should answer |
 |---|---|---|
 | [KISS-ICP](kiss-icp.md) | LiDAR-only odometry | How far can a simple point-to-point ICP pipeline go, and when is it the right baseline? |
-| KISS-SLAM | LiDAR-only SLAM | When is a lightweight LiDAR-only SLAM system enough for survey mapping? |
+| [KISS-SLAM](kiss-slam.md) | LiDAR-only SLAM | When is a lightweight LiDAR-only SLAM system enough for survey mapping? |
+| [KISS-Matcher](kiss-matcher.md) | Global point-cloud registration | When can a robust matcher support relocalization, loop verification, or map merging? |
 | [LIO-SAM](lio-sam.md) | Factor-graph LiDAR-inertial SLAM | How should LiDAR, IMU, GPS, and loop factors be structured in GTSAM? |
+| [LVI-SAM](lvi-sam.md) | LiDAR-visual-inertial SLAM | When does adding visual information to LiDAR-inertial smoothing improve robustness? |
 | [FAST-LIO2](fast-lio-fast-lio2.md) | Direct LiDAR-inertial odometry | When is a tightly coupled IEKF front-end the best real-time mapper? |
+| [FAST-LIVO2](fast-livo-fast-livo2.md) | Direct LiDAR-inertial-visual odometry | When should a stack use camera constraints with FAST-LIO-style direct mapping? |
+| [R2LIVE/R3LIVE](r2live-r3live.md) | LiDAR-inertial-visual reconstruction | When are colorized maps and dense LIV reconstruction useful for survey QA? |
 | Faster-LIO family | iVox LiDAR-inertial odometry | What are the speed/accuracy trade-offs of incremental voxels versus trees? |
 | [Point-LIO](point-lio.md) | High-bandwidth point-wise LIO | When do aggressive motion and high-rate control justify point-level updates? |
 | [CT-ICP](ct-icp.md) | Continuous-time LiDAR odometry | How should a method model intra-scan motion without relying on IMU? |
@@ -118,7 +122,11 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | [ORB-SLAM3](orb-slam2-orb-slam3.md) | Visual and visual-inertial SLAM | What is the strongest sparse feature baseline for cameras? |
 | [OpenVINS](openvins.md) | Filter-based VIO | When is MSCKF-style VIO preferable to full bundle adjustment? |
 | [GLIM](glim.md) | Range-inertial factor-graph mapping | How do GPU scan-matching factors, GTSAM, and manual map correction fit together? |
+| [MOLA](mola.md) | Modular LiDAR odometry, mapping, and localization | When is a ROS 2-ready modular mapping/localization framework useful? |
 | [Autoware NDT](ndt.md) | Production scan-to-map localization | What can the AV open-source ecosystem teach about diagnostics and integration? |
+| [Splat-SLAM](splat-slam.md), [S3PO-GS](s3po-gs.md) | Gaussian visual SLAM | What can RGB-only Gaussian maps do, and why are scale and uncertainty still limiting? |
+| [Gaussian-LIC](gaussian-lic.md), [GS-LIVM](gs-livm.md), [VIGS-SLAM](vigs-slam.md) | Multi-sensor Gaussian SLAM | How do LiDAR, camera, and IMU constraints stabilize neural/Gaussian maps? |
+| [Dynamic 4D Gaussian SLAM](dynamic-4d-gaussian-slam.md), [RadarSplat-RIO](radarsplat-rio.md) | Dynamic/radar Gaussian SLAM | How should dynamic scenes and radar measurements be handled before these maps are trusted? |
 
 ## Key Takeaways
 

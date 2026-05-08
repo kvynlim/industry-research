@@ -10,8 +10,21 @@ The current SLAM library is useful, but it is not complete. Treat the P0 backlog
 |---|---|
 | Dedicated GLIM page | Added as [GLIM](glim.md). |
 | GTSAM coverage | Present in [Factor Graph SLAM with iSAM2 and GTSAM](factor-graph-isam2-gtsam.md) and [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md). |
-| Most severe structural gap | LiDAR-visual-inertial, radar, robust registration, loop-closure backend, dataset, collaborative/lifelong, specialized visual/VIO, and alternative-sensor coverage are underrepresented as first-class files. |
+| Latest promotion status | The 2026-05-09 deep-dive wave added MOLA, KISS-SLAM, KISS-Matcher, LVI-SAM, FAST-LIVO/FAST-LIVO2, R2LIVE/R3LIVE, Splat-SLAM, S3PO-GS, Gaussian-LIC, GS-LIVM, VIGS-SLAM, Dynamic 4D Gaussian SLAM, and RadarSplat-RIO. |
+| Most severe structural gap | Robust registration, loop-closure backend, collaborative/lifelong SLAM, specialized visual/VIO, degeneracy-robust LIO, alternative-sensor coverage, and current datasets still need more first-class files. |
 | How to use this audit | Add P0 files first, then P1, then P2 or mention-only aliases. Update this audit whenever a missing method is promoted into the library. |
+
+## Deep-Dive Promotion Wave (2026-05-09)
+
+The May 9 loop took the highest-value "mentioned but not atomic" SLAM gaps and created dedicated method pages.
+
+| Cluster | Promoted method files |
+|---|---|
+| Production-relevant LiDAR and LIVO | [MOLA](mola.md), [KISS-SLAM](kiss-slam.md), [KISS-Matcher](kiss-matcher.md), [LVI-SAM](lvi-sam.md), [FAST-LIVO/FAST-LIVO2](fast-livo-fast-livo2.md), [R2LIVE/R3LIVE](r2live-r3live.md) |
+| Gaussian and neural SLAM | [Splat-SLAM](splat-slam.md), [S3PO-GS](s3po-gs.md), [Gaussian-LIC](gaussian-lic.md), [GS-LIVM](gs-livm.md), [VIGS-SLAM](vigs-slam.md), [Dynamic 4D Gaussian SLAM](dynamic-4d-gaussian-slam.md) |
+| Radar and adverse-weather Gaussian mapping | [RadarSplat-RIO](radarsplat-rio.md) |
+
+Next SLAM promotion queue: robust PGO/GNC/riSAM, certifiable pose-graph optimization, Kimera-RPGO/PCM, Scan Context family, LiDAR bundle-adjustment factors, multi-robot/distributed PGO, UWB/range-only SLAM, GPR localization, event-camera VIO, and thermal RGBT VIO.
 
 ## Second Latest-Method Sweep (2026-05-08)
 

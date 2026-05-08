@@ -13,6 +13,7 @@ This repository is an end-to-end autonomous-vehicle research knowledge base. Sta
 | Build the safety case | `60-safety-validation/` |
 | Study operating domains | `70-operations-domains/` |
 | Compare companies and markets | `80-industry-intel/` |
+| Continue gap-filling research | `90-synthesis/readiness-risk/continuous-research-loop.md` |
 
 ## Reading Order
 

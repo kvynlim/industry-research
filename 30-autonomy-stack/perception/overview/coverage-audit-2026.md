@@ -6,9 +6,9 @@ The perception library is broad, but the May 2026 agent sweeps found several met
 
 | Item | Status |
 |---|---|
-| Dedicated perception files | 21 top-level perception synthesis/audit files plus 54 atomic method files in [Perception Method Library](../methods/overview.md). |
-| Strongest existing coverage | Production sensor suites, CenterPoint/OpenPCDet, BEV basics, method-level camera BEV/occupancy, LiDAR MOS, radar/event/FMCW, open-world/OOD, robust fusion, V2X, latency, data engines, model compression, uncertainty, and thermal fusion. |
-| Most severe structural gap | Remaining P1/P2 items still need atomic pages: panoptic/open-vocabulary occupancy, sparse-query camera detection, radar-camera fusion, newer cooperative compression, airside FOD datasets, and long-tail adverse-weather datasets. |
+| Dedicated perception files | 21 top-level perception synthesis/audit files plus 63 atomic method files in [Perception Method Library](../methods/overview.md). |
+| Strongest existing coverage | Production sensor suites, CenterPoint/OpenPCDet, BEV basics, method-level camera BEV/occupancy, Gaussian/3DGS occupancy, LiDAR MOS, radar-camera fusion, radar/event/FMCW, open-world/OOD, robust fusion, V2X, latency, data engines, model compression, uncertainty, and thermal fusion. |
+| Most severe structural gap | Remaining P0/P1 items still need atomic pages: panoptic/open-vocabulary occupancy, temporal occupancy uncertainty, radar-camera/4D-radar follow-ons, newer cooperative compression, airside FOD datasets, and long-tail adverse-weather datasets. |
 | How to use this audit | Use the method library for promoted atomic pages. Use the P0/P1/P2 rows below as discovery clusters and backlog for remaining splits. Update this audit whenever a missing perception method becomes a dedicated file. |
 
 ## Multi-Agent Discovery Sweep (2026-05-08)
@@ -26,6 +26,18 @@ Five parallel writing agents converted the highest-value discovery clusters into
 | Open-world and open-vocabulary | [OpenAD](../methods/openad.md), [OP3Det](../methods/op3det.md), [WildDet3D](../methods/wilddet3d.md), [DetAny3D](../methods/detany3d.md), [OW-OVD](../methods/ow-ovd.md), [Clipomaly](../methods/clipomaly.md), [S2M](../methods/s2m.md), [SAM 3](../methods/sam3.md), [3D-AVS](../methods/3d-avs.md), [Mosaic3D](../methods/mosaic3d.md), [OpenVox](../methods/openvox.md) |
 | Robust fusion, calibration, and validation | [MoME](../methods/mome.md), [GraphBEV](../methods/graphbev.md), [SOAC](../methods/soac.md), [RC-AutoCalib](../methods/rc-autocalib.md), [ASF](../methods/availability-aware-sensor-fusion.md), [MSC-Bench](../methods/msc-bench.md), [MultiCorrupt](../methods/multicorrupt.md), [S2R-Bench](../methods/s2r-bench.md), [Occluded nuScenes](../methods/occluded-nuscenes.md), [Conformal Boxes](../methods/conformal-boxes.md) |
 | Cooperative, latency, closed-loop, and data engines | [RCooper](../methods/rcooper.md), [HoloVIC](../methods/holovic.md), [CoInfra](../methods/coinfra.md), [V2X-ReaLO](../methods/v2x-realo.md), [CoHFF](../methods/cohff.md), [CoSDH](../methods/cosdh.md), [CoopTrack](../methods/cooptrack.md), [LASP](../methods/lasp.md), [Fail2Drive](../methods/fail2drive.md), [AIDE](../methods/aide.md) |
+
+## Deep-Dive Promotion Wave (2026-05-09)
+
+Fresh parallel discovery and writing agents promoted the first Gaussian/4DGS and latest radar-camera/sparse-query gaps into atomic pages. The rows below are now the primary pages for those methods; older backlog rows remain as provenance for related follow-ons.
+
+| Cluster | Promoted method files |
+|---|---|
+| Gaussian and 3DGS perception | [SplatAD](../methods/splatad.md), [GaussianFormer](../methods/gaussianformer.md), [GaussianOcc](../methods/gaussianocc.md), [Streaming Gaussian Occupancy](../methods/streaming-gaussian-occupancy.md) |
+| 4D occupancy and sparse-query perception | [Cam4DOcc](../methods/cam4docc.md), [StreamingFlow](../methods/streamingflow.md), [Sparse4D](../methods/sparse4d.md) |
+| Radar-camera fusion | [TacoDepth](../methods/tacodepth.md), [RaCFormer](../methods/racformer.md) |
+
+Next perception promotion queue: UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, CVFusion, RobuRCDet, 4DRC-OCC, SparseBEV, DETR4D, ForeSight, DriveBench, SAM4D, and airside FOD benchmarks.
 
 ### P0 Discovery Clusters To Split Or Link
 

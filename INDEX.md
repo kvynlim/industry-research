@@ -41,7 +41,7 @@
 | DINOv2 for driving | `30-autonomy-stack/perception/overview/dinov2-foundation-models-driving.md` | LoRA, adapter integration |
 | CenterPoint/OpenPCDet | `30-autonomy-stack/perception/overview/openpcdet-centerpoint.md` | `20-av-platform/compute/tensorrt-deployment-guide.md` |
 | Production systems | `30-autonomy-stack/perception/overview/production-perception-systems.md` | Waymo/Tesla/comma sensor suites |
-| Perception method library | `30-autonomy-stack/perception/methods/overview.md` | 54 atomic method files across camera BEV, occupancy, LiDAR MOS, 4D radar, event/FMCW, open-world/OOD, robust fusion, V2X, latency, and data-engine evaluation |
+| Perception method library | `30-autonomy-stack/perception/methods/overview.md` | 63 atomic method files across camera BEV, occupancy, Gaussian/3DGS, LiDAR MOS, radar-camera/4D radar, event/FMCW, open-world/OOD, robust fusion, V2X, latency, and data-engine evaluation |
 | Perception coverage audit | `30-autonomy-stack/perception/overview/coverage-audit-2026.md` | May 2026 multi-agent sweeps across camera BEV/occupancy, LiDAR MOS, 4D radar, open-world/OOD, V2X, robust fusion, deployment validation, and benchmarks |
 | Sensor fusion | `30-autonomy-stack/perception/overview/sensor-fusion-architectures.md` | BEVFusion, masked modality training |
 | Infrastructure cooperative perception | `30-autonomy-stack/perception/overview/infrastructure-cooperative-perception.md` | V2I fusion, fixed sensors, DAIR-V2X, airport existing systems |
@@ -55,7 +55,7 @@
 | Fleet task allocation & scheduling | `30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md` | MRTA MT-SR-TA formulation, MILP/CP-SAT (OR-Tools optimal in 10-60s for 200 vehicles), Hungarian O(n³) single-assignment, CBBA decentralized auction (95% optimal, <100ms), SSI real-time auction, A-CDM predictive scheduling (ELDT→pre-positioning, 60-75% delay reduction), online reactive scheduling (event-driven rescheduling, 85% stability), RL dispatch policy (<1ms inference), charging-aware scheduling, multi-objective (tardiness+energy+safety), priority-based task shedding, $42-67K/15-17 weeks |
 | Ramp traffic conflict & deadlock prevention | `30-autonomy-stack/multi-agent-v2x/ramp-traffic-conflict-deadlock-prevention.md` | Zone-capacity graph from Lanelet2, reservation-based traffic management, wait-die deadlock prevention (guarantees no circular wait), 9-level priority conflict resolution, stand turnaround sequencing, V2X decentralized fallback, token mutex for single-lane zones, MAPF (CBS/ECBS for offline, PIBT for real-time), livelock detection/resolution, capacity-constrained routing, dispatch-traffic integration, $50-75K/17 weeks |
 | Self-supervised pre-training | `30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md` | Contrastive (SLidR, ScaLR), MAE (Voxel-MAE, GD-MAE, BEV-MAE), JEPA (AD-L-JEPA, V-JEPA 2), DINOv2, multi-modal pre-training, LoRA fine-tuning, 50-80% label reduction, airside curriculum strategy |
-| 3DGS for perception & mapping | `30-autonomy-stack/perception/overview/gaussian-splatting-driving.md` | GaussianFormer (39.2 mIoU, 20 FPS), GaussianOcc (self-supervised), SplaTAM/MonoGS SLAM, LiDAR-Gaussian fusion, dynamic object tracking, semantic Gaussians, FOD detection, aircraft proximity, Orin deployment (92ms) |
+| 3DGS for perception & mapping | `30-autonomy-stack/perception/overview/gaussian-splatting-driving.md` | GaussianFormer/GaussianOcc, SplatAD, streaming Gaussian occupancy, SplaTAM/MonoGS/Splat-SLAM/S3PO-GS, LiDAR-Gaussian fusion, dynamic object tracking, semantic Gaussians, FOD detection, aircraft proximity, Orin deployment notes |
 | Uncertainty quantification | `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` | Epistemic/aleatoric decomposition, MC-Dropout (T=3, 21.5ms), deep ensembles (M=5, 0.93 AUROC), evidential deep learning (single pass, 7.5ms), conformal prediction (99% coverage guarantee), temperature scaling (ECE 0.03), LiDAR range-dependent uncertainty, multi-LiDAR fusion (65% reduction), teleop trigger criteria |
 | Multi-task unified perception | `30-autonomy-stack/perception/overview/multi-task-unified-perception.md` | UniAD (CVPR 2023 Best Paper), SparseDrive (3x faster), VAD-Tiny (80ms Orin), StreamPETR, shared-backbone multi-head (14.8ms on Orin, 56% savings), task interference/PCGrad, uncertainty-weighted loss, incremental deployment, 14-class airside segmentation |
 | Night operations & thermal fusion | `30-autonomy-stack/perception/overview/night-operations-thermal-fusion.md` | LiDAR-primary + thermal-augmented architecture, YOLO-Thermal INT8 (6-8ms Orin), asymmetric late fusion (+8-10ms), hi-vis paradox solved (84-88% camera AEB failure → 85-92% thermal AP), heated-target calibration (<0.5deg), jet blast/fuel spill thermal detection, night ODD (subset of daytime), DINOv2 LoRA thermal adapter, 22.8-25.8ms total pipeline (38-44 Hz), $6,700-22,600/vehicle |
@@ -65,7 +65,7 @@
 #### Method-level SLAM
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
-| SLAM method library | `30-autonomy-stack/localization-mapping/slam-methods/overview.md` | 58 focused method files plus an overview page covering classical, LiDAR, visual, RGB-D, neural, Gaussian, radar, and fusion SLAM |
+| SLAM method library | `30-autonomy-stack/localization-mapping/slam-methods/overview.md` | 71 focused method files plus an overview page covering classical, LiDAR, LIVO, visual, RGB-D, neural, Gaussian, radar, and fusion SLAM |
 | SLAM coverage audit | `30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md` | Source-backed backlog plus May 2026 discovery sweeps: LVI-SAM, FAST-LIVO/R3LIVE, KISS-SLAM, MOLA, robust/certifiable PGO, C-SLAM, degeneracy-robust LIO, event/thermal/multi-camera VIO, GPR/UWB/RF fallbacks, 4D radar, Gaussian/foundation SLAM, and current benchmarks |
 | AV / indoor / outdoor selection | `30-autonomy-stack/localization-mapping/slam-methods/av-indoor-outdoor-decision-matrix.md` | Method fit by GNSS availability, dynamics, map dependence, compute budget, and safety criticality |
 | Benchmarks and datasets | `30-autonomy-stack/localization-mapping/slam-methods/benchmarking-metrics-datasets.md` | ATE/RPE, KITTI drift, loop closure, map quality, dynamic-scene metrics, KITTI/KITTI-360, EuRoC, TUM, Oxford, Boreas, MulRan |
@@ -76,7 +76,7 @@
 | Visual and visual-inertial SLAM | `30-autonomy-stack/localization-mapping/slam-methods/orb-slam2-orb-slam3.md` | `lsd-slam-dso.md`, `svo.md`, `vins-mono-vins-fusion.md`, `openvins.md`, `kimera-vio.md`, `droid-slam.md`, `dpvo.md`, `mast3r-slam.md` |
 | Indoor and dense SLAM | `30-autonomy-stack/localization-mapping/slam-methods/rtab-map.md` | `kinectfusion.md`, `elasticfusion.md`, `bundlefusion.md`, `imap.md`, `nice-slam.md`, `co-slam-eslam.md`, `nerf-slam.md` |
 | Learned, semantic, and Gaussian SLAM | `30-autonomy-stack/localization-mapping/slam-methods/splatam.md` | `lo-net-learned-lidar-odometry.md`, `regformer-learned-registration.md`, `semantic-slam.md`, `dynamic-object-aware-slam.md`, `object-level-slam.md`, `gs-slam-monogs.md`, `photo-slam.md` |
-| Outdoor Gaussian and radar SLAM | `30-autonomy-stack/localization-mapping/slam-methods/splat-loam.md` | `gigaslam.md`, `wildgs-slam.md`, `radar-odometry-radar-slam.md`, `radar-inertial-odometry.md`, `radar-lidar-inertial-fusion.md` |
+| Outdoor Gaussian and radar SLAM | `30-autonomy-stack/localization-mapping/slam-methods/splat-loam.md` | `gigaslam.md`, `wildgs-slam.md`, `splat-slam.md`, `s3po-gs.md`, `gaussian-lic.md`, `gs-livm.md`, `vigs-slam.md`, `dynamic-4d-gaussian-slam.md`, `radarsplat-rio.md`, `radar-odometry-radar-slam.md`, `radar-inertial-odometry.md`, `radar-lidar-inertial-fusion.md` |
 
 #### Localization & mapping
 | Topic | Primary | Supporting |
@@ -104,6 +104,8 @@
 | Hesai LiDAR | `20-av-platform/sensors/hesai-lidar.md` | XT32, AT128 ASIL-B, FMC500 SoC |
 | RoboSense LiDAR | `20-av-platform/sensors/robosense-lidar.md` | RSHELIOS, RSBP, 7-sensor layout |
 | 4D radar | `20-av-platform/sensors/4d-radar.md` | Continental ARS548, weather immunity |
+| Visible cameras | `20-av-platform/sensors/visible-cameras.md` | Global vs rolling shutter, HDR/LFM, lens/FOV, trigger/PTP, ISP/RAW, cleaning, heating, and weather integration |
+| IMU, GNSS, and RTK hardware | `20-av-platform/sensors/imu-gnss-rtk.md` | Receiver/IMU classes, PPS/PTP wiring, antenna lever arms, correction transport, outage modes, spoofing/jamming health |
 | Thermal/IR cameras | `20-av-platform/sensors/thermal-ir-cameras.md` | FLIR Boson 640, LWIR fusion, night personnel, jet blast |
 | Multi-LiDAR calibration | `20-av-platform/sensors/multi-lidar-calibration.md` | Target-based + targetless (ICP, feature, learning-based), GTSAM-integrated online refinement, thermal drift compensation (-10C to +50C), PTP/PPS synchronization, overlap optimization for 4-8 RoboSense, calibration health monitoring, ISO 3691-4 traceability, 400-800h/year labor savings for 20+ vehicle fleet |
 | Sensor degradation & health monitoring | `20-av-platform/sensors/sensor-degradation-health-monitoring.md` | Degradation taxonomy (optical/mechanical/environmental/electronic), 10 airside contamination sources, per-sensor diagnostics (LiDAR 7-check, radar SNR/coverage, thermal NUC/dead pixel, camera exposure/blur), cross-sensor consistency scoring, EMA-based temporal tracking with z-score anomaly, response matrix (4 sensors × 4 severity), fleet health analytics (zone correlation, seasonal patterns), predictive maintenance (linear extrapolation), cleaning schedules, 1 Hz ROS monitoring at <2ms, $35K/11 weeks |
@@ -193,6 +195,10 @@
 | Transformers | `10-knowledge-base/machine-learning/transformer-world-models.md` — causal attention, KV-cache, scaling laws |
 | Diffusion models | `10-knowledge-base/machine-learning/diffusion-models.md` — DDPM, DiT, flow matching |
 | GTSAM | `10-knowledge-base/state-estimation/gtsam-factor-graphs.md` — ISAM2, VGICP, neural factors |
+| Sensor measurement models | `10-knowledge-base/geometry-3d/lidar-working-principles-noise-models.md`, `10-knowledge-base/geometry-3d/camera-imaging-noise-calibration.md`, `10-knowledge-base/signal-processing/radar-fmcw-mimo-doppler.md` — LiDAR, camera, and radar physics, noise, covariance, and calibration implications |
+| IMU, GNSS, and wheel odometry | `10-knowledge-base/state-estimation/imu-error-models-preintegration.md`, `10-knowledge-base/state-estimation/gnss-rtk-error-models.md`, `10-knowledge-base/state-estimation/wheel-odometry-encoder-models.md` — propagation, preintegration, RTK factors, dead reckoning, covariance, and outage behavior |
+| Timing and calibration observability | `10-knowledge-base/systems-engineering/time-synchronization-error-budgets.md`, `10-knowledge-base/geometry-3d/multi-sensor-calibration-observability.md` — timestamp error budgets, PTP/PPS, hand-eye calibration, observability motions, and online health checks |
+| Event and thermal cameras | `10-knowledge-base/geometry-3d/event-thermal-camera-models.md` — event camera contrast model, timestamp noise, thermal radiometry, NUC, and low-light/perception transfer |
 | Lanelet2 | `10-knowledge-base/robotics/lanelet2-maps.md` — airport extensions, AIXM conversion |
 | Frenet planning | `10-knowledge-base/controls/frenet-trajectory-math.md` — Werling 2010, quintic polynomials |
 | RTK/GPS/IMU | `10-knowledge-base/state-estimation/rtk-gps-imu-localization.md` — preintegration, NTRIP |
@@ -246,6 +252,8 @@
 
 | Document | Key Contribution |
 |----------|-----------------|
+| `90-synthesis/readiness-risk/continuous-research-loop.md` | Continuous research loop for discovery, triage, atomic-file promotion, cross-linking, verification, and next-queue selection across perception, SLAM, sensors, and mapping |
+| Perception/SLAM/sensor deep-dive wave | 33 source-backed files covering SplatAD and Gaussian/4DGS perception, latest sparse/radar-camera perception, production LIVO/SLAM, Gaussian/radar SLAM, and sensor measurement/noise fundamentals |
 | `10-knowledge-base/`, `20-av-platform/`, `30-autonomy-stack/`, `40-runtime-systems/`, `50-cloud-fleet/`, `60-safety-validation/`, `70-operations-domains/` P0 gap wave | 35 source-backed P0 gap files covering foundations, platform power/diagnostics/ruggedization, planning/control/V2X, E2E/VLA/world models, runtime/cloud operations, safety evidence, and non-airside operations domains |
 | `90-synthesis/readiness-risk/knowledge-gap-backlog.md` | Cross-architecture gap backlog from parallel research agents: P0/P1/P2 missing files across foundations, platform, autonomy, runtime/cloud, safety, operations, and industry intelligence |
 | `30-autonomy-stack/localization-mapping/overview/production-lidar-map-localization.md` | Production scan-to-map matching: VGICP/NDT/ICP comparison, multi-resolution coarse-to-fine, eigenvalue degeneracy detection, multi-LiDAR fusion strategies, GTSAM adaptive noise, 5-level fallback, GeoTransformer cold start, 15-25ms Orin, $30-53K |
@@ -321,29 +329,29 @@
 
 | Metric | Value |
 |--------|-------|
-| Reader Markdown pages | 398 |
-| Core research documents | 390 |
-| Reader/research lines | 230k+ |
+| Reader Markdown pages | 432 |
+| Core research documents | 424 |
+| Reader/research lines | 233k+ |
 | `00-start-here/` documents | 4 |
-| `10-knowledge-base/` documents | 19 |
-| `20-av-platform/` documents | 25 |
-| `30-autonomy-stack/` documents | 208 |
+| `10-knowledge-base/` documents | 28 |
+| `20-av-platform/` documents | 27 |
+| `30-autonomy-stack/` documents | 230 |
 | `40-runtime-systems/` documents | 10 |
 | `50-cloud-fleet/` documents | 20 |
 | `60-safety-validation/` documents | 24 |
 | `70-operations-domains/` documents | 24 |
 | `80-industry-intel/` documents | 52 |
-| `90-synthesis/` documents | 8 |
+| `90-synthesis/` documents | 9 |
 | Companies covered | 20 |
 | Technology domains | 9 |
-| Method-level SLAM library | 58 method files + overview |
-| Method-level perception files | 54 |
+| Method-level SLAM library | 71 method files + overview |
+| Method-level perception files | 63 |
 | Safety and validation documents | 24 |
-| AV platform documents | 25 |
-| Knowledge base documents | 19 |
-| Synthesis documents | 8 |
-| Perception documents | 82 |
-| Localization/mapping | 72 |
+| AV platform documents | 27 |
+| Knowledge base documents | 28 |
+| Synthesis documents | 9 |
+| Perception documents | 91 |
+| Localization/mapping | 85 |
 | Planning documents | 15 |
 | Multi-agent and V2X | 6 |
 | Robustness validation files | 2 |

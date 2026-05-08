@@ -10,16 +10,16 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 | Scope | Count |
 |-------|-------|
-| Reader pages | 398 |
-| Core research documents | 390 |
-| Corpus size | 230k+ lines |
+| Reader pages | 432 |
+| Core research documents | 424 |
+| Corpus size | 233k+ lines |
 | Companies covered | 20 |
 | Technology domains | 9 |
-| Method-level SLAM library | 58 method files + overview |
-| Method-level perception files | 54 |
+| Method-level SLAM library | 71 method files + overview |
+| Method-level perception files | 63 |
 | Safety and validation docs | 24 |
-| AV platform docs | 25 |
-| Synthesis docs | 8 |
+| AV platform docs | 27 |
+| Synthesis docs | 9 |
 | Papers referenced | 400+ |
 | Open-source repos evaluated | 50+ |
 | Airport deployments documented | 15+ |
@@ -38,6 +38,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Pick concrete POCs | [POC Proposals](90-synthesis/poc-roadmaps/poc-proposals.md) |
 | Understand readiness and risk | [Technology Readiness](90-synthesis/readiness-risk/technology-readiness.md) |
 | Prioritize gap-filling research | [Knowledge Gap Backlog](90-synthesis/readiness-risk/knowledge-gap-backlog.md) |
+| Continue the research loop | [Continuous Research Loop](90-synthesis/readiness-risk/continuous-research-loop.md) |
 | Compare the market | [Competitive Landscape](80-industry-intel/market-competitive/competitive-landscape.md) |
 | Read the core system architecture | [Design Spec](90-synthesis/decisions/design-spec.md) |
 | Go deep on perception methods | [Method-Level Perception Library](30-autonomy-stack/perception/methods/overview.md) |
@@ -56,11 +57,12 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Fleet economics | [Fleet TCO Business Case](70-operations-domains/airside/business-case/fleet-tco-business-case.md) | Tracks vehicle CAPEX, labor savings, certification costs, operator ratios, and break-even logic. |
 | Edge hardware choices | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Grounds model choices in compute, power, TensorRT, DLA, and sensor constraints. |
 | Perception stack | [Production Perception Systems](30-autonomy-stack/perception/overview/production-perception-systems.md) | Compares production AV approaches and the perception patterns that transfer to airside autonomy. |
-| Method-level perception | [Perception Method Library](30-autonomy-stack/perception/methods/overview.md) | Splits BEV, occupancy, LiDAR MOS, 4D radar, open-world, robust fusion, V2X, latency, and data-engine methods into single-technique research pages. |
-| Perception coverage gaps | [Perception Coverage Audit](30-autonomy-stack/perception/overview/coverage-audit-2026.md) | Tracks missing first-class perception pages across BEV, occupancy, LiDAR/radar/thermal, open-world/OOD, V2X, robustness, and benchmarks. |
+| Method-level perception | [Perception Method Library](30-autonomy-stack/perception/methods/overview.md) | Splits BEV, occupancy, Gaussian/3DGS, LiDAR MOS, radar-camera, 4D radar, open-world, robust fusion, V2X, latency, and data-engine methods into single-technique research pages. |
+| Perception coverage gaps | [Perception Coverage Audit](30-autonomy-stack/perception/overview/coverage-audit-2026.md) | Tracks missing first-class perception pages across BEV, occupancy, Gaussian/3DGS, LiDAR/radar/thermal, open-world/OOD, V2X, robustness, and benchmarks. |
 | Localization and mapping | [Mapping and Localization](30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md) | Covers HD maps, LiDAR SLAM, map-free driving, map maintenance, localization, and occupancy grids. |
-| Method-level 3D SLAM | [SLAM Library Overview](30-autonomy-stack/localization-mapping/slam-methods/overview.md) | Breaks classical, LiDAR, visual, dense, neural, Gaussian, and radar SLAM into focused method files. |
+| Method-level 3D SLAM | [SLAM Library Overview](30-autonomy-stack/localization-mapping/slam-methods/overview.md) | Breaks classical, LiDAR, LIVO, visual, dense, neural, Gaussian, radar, and multi-sensor SLAM into focused method files. |
 | SLAM coverage gaps | [SLAM Coverage Audit](30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md) | Tracks missing first-class SLAM pages, including May 2026 sweeps across LIO, LIVO, 4D radar, Gaussian/foundation SLAM, backends, collaborative SLAM, alternative sensors, and benchmarks. |
+| Sensor and estimation fundamentals | [LiDAR Noise Models](10-knowledge-base/geometry-3d/lidar-working-principles-noise-models.md) | Starts the sensor-model foundation path: LiDAR, camera, IMU, GNSS/RTK, radar, event/thermal, timing, calibration, and wheel odometry. |
 | End-to-end architecture gaps | [Knowledge Gap Backlog](90-synthesis/readiness-risk/knowledge-gap-backlog.md) | Tracks P0/P1/P2 missing research files across fundamentals, platform, autonomy, runtime/cloud, safety, operations, and industry intelligence. |
 
 ## Corpus Map
@@ -68,26 +70,26 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Section | Docs | Start At | What It Holds |
 |---------|------|----------|---------------|
 | `00-start-here/` | 4 | [Reading Guide](00-start-here/reading-guide.md) | Reader entry points and orientation material. |
-| `10-knowledge-base/` | 19 | [Theoretical Foundations](10-knowledge-base/systems-engineering/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, coordinate frames, filtering, vehicle dynamics, planning taxonomy, and calibration. |
-| `20-av-platform/` | 25 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, drive-by-wire, power, diagnostics, ruggedization, and edge-cloud architecture. |
-| `30-autonomy-stack/` | 208 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, E2E driving, and multi-agent systems. |
+| `10-knowledge-base/` | 28 | [Theoretical Foundations](10-knowledge-base/systems-engineering/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, coordinate frames, filtering, vehicle dynamics, planning taxonomy, calibration, sensor models, and timing. |
+| `20-av-platform/` | 27 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, drive-by-wire, power, diagnostics, ruggedization, and edge-cloud architecture. |
+| `30-autonomy-stack/` | 230 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, E2E driving, and multi-agent systems. |
 | `40-runtime-systems/` | 10 | [Production ML Deployment](40-runtime-systems/ml-deployment/production-ml-deployment.md) | ML deployment, ROS/Autoware, observability, teleoperation, software operations, and vehicle-side data logging. |
 | `50-cloud-fleet/` | 20 | [Cloud Backend Infrastructure](50-cloud-fleet/data-platform/cloud-backend-infrastructure.md) | Data engines, fleet data loops, MLOps, OTA/SUMS, observability, map operations, data governance, and fleet management. |
 | `60-safety-validation/` | 24 | [Certification Guide](60-safety-validation/standards-certification/certification-guide.md) | Safety case, standards, runtime assurance, verification, validation, robustness, cybersecurity, incident reporting, and evidence traceability. |
 | `70-operations-domains/` | 24 | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Airside, warehouse, yard, port, mining, agriculture, construction, road AV, delivery robot, deployment, business-case, and safety operations. |
 | `80-industry-intel/` | 52 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, autonomy company profiles, market intelligence, and regulations. |
-| `90-synthesis/` | 8 | [Master Synthesis](90-synthesis/master/master-synthesis.md) | Executive synthesis, POCs, readiness, risk, decision framework, architecture, and gap backlog. |
+| `90-synthesis/` | 9 | [Master Synthesis](90-synthesis/master/master-synthesis.md) | Executive synthesis, POCs, readiness, risk, decision framework, architecture, gap backlog, and continuous research loop. |
 
 ## Domain Snapshot
 
 | Technology | Docs |
 |------------|------|
 | World models | 14 |
-| Perception | 82 |
-| Method-level perception library | 54 |
+| Perception | 91 |
+| Method-level perception library | 63 |
 | Planning | 15 |
-| Localization and mapping | 72 |
-| Method-level SLAM library | 58 method files + overview |
+| Localization and mapping | 85 |
+| Method-level SLAM library | 71 method files + overview |
 | Simulation | 7 |
 | VLA / VLM | 6 |
 | Multi-agent and V2X | 6 |
@@ -105,7 +107,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | AV Platform | Docs |
 |-------------|------|
 | Compute | 7 |
-| Sensors | 10 |
+| Sensors | 12 |
 | Networking/connectivity | 3 |
 | Drive-by-wire | 2 |
 | Power/electrical | 1 |

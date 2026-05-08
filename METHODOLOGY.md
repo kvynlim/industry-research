@@ -6,9 +6,9 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 390-document research corpus, surfaced as 398 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 424-document research corpus, surfaced as 432 VitePress reader pages.
 
-The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 230k+ lines of Markdown.
+The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 233k+ lines of Markdown.
 
 ## Research Process
 
@@ -57,7 +57,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 ### Phase 10: Method-Level Perception Library
 - **Method:** Five parallel writing agents split the perception coverage audit into atomic, one-method research files across camera BEV/occupancy, LiDAR/radar/event/FMCW perception, open-world/open-vocabulary perception, robust fusion/validation, and cooperative/latency/data-engine methods
-- **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), with 54 single-technique method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
+- **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), initially with 54 single-technique method files and now expanded to 63 atomic method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
 
 ### Phase 11: Cross-Architecture Knowledge Gap Audit
 - **Method:** Six parallel research agents audited the post-restructure architecture across foundations, AV platform, autonomy stack, runtime/cloud, safety/validation, and operations/industry. One autonomy agent was split into two narrower replacement agents after exceeding context, preserving coverage without overloading the review.
@@ -66,6 +66,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 ### Phase 12: P0 Knowledge Gap Research Wave
 - **Method:** Six parallel writing agents plus one follow-up agent converted the P0 gap backlog into first-class research files. Each agent owned a disjoint write scope: foundations, AV platform, planning/control/V2X, E2E/VLA/world models, runtime/cloud+safety evidence, operations domains, and delivery robots.
 - **Output:** 35 source-backed P0 gap files across `10-knowledge-base/`, `20-av-platform/`, `30-autonomy-stack/`, `40-runtime-systems/`, `50-cloud-fleet/`, `60-safety-validation/`, and `70-operations-domains/`.
+
+### Phase 13: Perception, SLAM, and Sensor Deep-Dive Loop
+- **Method:** Parallel discovery agents re-audited perception, SLAM, Gaussian/3DGS methods, and sensor fundamentals, then six writing agents promoted the highest-value gaps into atomic files. The wave explicitly covered SplatAD and other Gaussian/4DGS methods, production-relevant LIVO/SLAM stacks, radar/Gaussian SLAM, and sensor measurement/noise models for perception, SLAM, and mapping.
+- **Output:** 33 source-backed files: 9 perception method pages, 13 SLAM method pages, 9 knowledge-base sensor/state-estimation fundamentals, 2 platform sensor hardware pages, plus a [Continuous Research Loop](90-synthesis/readiness-risk/continuous-research-loop.md) to keep the next gap queue active.
 
 ## Quality Controls
 
@@ -78,11 +82,12 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 7. **Atomic Method Pages:** SLAM and perception now separate overview synthesis from one-method research files, so individual techniques can be updated and compared without burying them inside family documents
 8. **Cross-Architecture Gap Tracking:** The synthesis layer now tracks P0/P1/P2 research gaps outside the dedicated SLAM and perception audits
 9. **P0 Gap Promotion:** High-priority cross-architecture gaps are promoted into first-class files before P1/P2 backlog work begins
+10. **Continuous Research Loop:** Discovery, triage, promotion, cross-linking, verification, and next-queue selection are now documented as a repeatable loop
 
 ## Limitations
 
 1. **Web search rate limits:** Some agents hit API rate limits during research. Affected topics were written from training knowledge rather than live web search.
-2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with a 2026-05-08 refresh for the SLAM and perception gap-discovery audits plus the first method-level perception expansion. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM, open-world perception, and 4D radar) may have newer developments.
+2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with 2026-05-08 and 2026-05-09 refreshes for SLAM, perception, Gaussian/3DGS methods, and sensor fundamentals. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM, open-world perception, and 4D radar) may have newer developments.
 3. **Airside data gap:** No public airside driving datasets exist, so comparative analysis relies on published deployment reports rather than reproducible benchmarks.
 4. **Company information:** Some companies (UISEE, AeroVect) have limited public technical information. Claims are attributed but not all independently verified.
 5. **Regulatory predictions:** Timeline predictions for FAA/EASA standards are based on published roadmaps and industry trends, not official commitments.
@@ -91,13 +96,13 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 390 |
-| Reader pages | 398 |
-| Total lines | 230k+ |
-| Research agents spawned | 125+ |
+| Core research documents | 424 |
+| Reader pages | 432 |
+| Total lines | 233k+ |
+| Research agents spawned | 140+ |
 | Companies researched | 20 |
-| Method-level SLAM library | 58 method files + overview |
-| Method-level perception files | 54 |
+| Method-level SLAM library | 71 method files + overview |
+| Method-level perception files | 63 |
 | Papers referenced | 400+ |
 | GitHub repos evaluated | 50+ |
 | API endpoints documented | 15+ |
