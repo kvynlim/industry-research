@@ -1064,5 +1064,5 @@ Part of NVIDIA Cosmos ecosystem:
 - **Occupancy world models:** `30-autonomy-stack/world-models/occupancy-world-models.md`
 - **Sensor fusion architectures:** `30-autonomy-stack/perception/overview/sensor-fusion-architectures.md`
 - **RoboSense LiDAR specs:** `20-av-platform/sensors/robosense-lidar.md`
-- **Master synthesis:** `synthesis/master-synthesis.md`
-- **POC proposals:** `synthesis/poc-proposals.md`
+- **Master synthesis:** `90-synthesis/master/master-synthesis.md`
+- **POC proposals:** `90-synthesis/poc-roadmaps/poc-proposals.md`

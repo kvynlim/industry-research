@@ -1026,7 +1026,7 @@ These improvements are measured at road intersections. **Airport aprons likely s
 | Edge server failure | Low | Cluster of RSPUs loses coordination | Server health monitoring | RSPUs switch to direct vehicle transmission (bypass server) |
 | Power failure (RSPU) | Low-Medium | Node goes dark | Battery backup alarm | Battery sustains 4-8 hours; maintenance dispatched |
 
-**Critical design principle**: **The vehicle must always be able to operate safely on onboard sensors alone.** Infrastructure-cooperative perception is an enhancement, not a dependency. This is the Simplex architecture principle (see `synthesis/design-spec.md`):
+**Critical design principle**: **The vehicle must always be able to operate safely on onboard sensors alone.** Infrastructure-cooperative perception is an enhancement, not a dependency. This is the Simplex architecture principle (see `90-synthesis/decisions/design-spec.md`):
 
 ```
 Simplex Architecture for Cooperative Perception:

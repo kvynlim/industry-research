@@ -2291,5 +2291,5 @@ Based on Aurrigo's 22-package architecture and the Simplex safety design:
 31. [Cybersecurity for Airside AVs](../cybersecurity/cybersecurity-airside-av.md) — Threat models, ISO 21434, defense strategies
 32. [Ground Crew and Pedestrian Safety](../../70-operations-domains/airside/safety/ground-crew-pedestrian-safety.md) — Ramp accident data, detection challenges
 33. [Failure Modes Analysis](../safety-case/failure-modes-analysis.md) — FMEA for airside AV systems
-34. [comma.ai Openpilot Codebase Analysis](../../companies/comma-ai/openpilot-codebase-analysis.md) — Detailed analysis of panda safety firmware
-35. [comma.ai Production World Model](../../companies/comma-ai/production-world-model.md) — Safety architecture in production
+34. [comma.ai Openpilot Codebase Analysis](../../80-industry-intel/companies/comma-ai/openpilot-codebase-analysis.md) — Detailed analysis of panda safety firmware
+35. [comma.ai Production World Model](../../80-industry-intel/companies/comma-ai/production-world-model.md) — Safety architecture in production

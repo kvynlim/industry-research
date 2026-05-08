@@ -541,9 +541,9 @@ Given that airside AV falls between automotive and aviation domains:
 
 | Next Step | Document |
 |-----------|----------|
-| **Start coding today** | `synthesis/getting-started.md` |
-| **Choose POCs** | `synthesis/poc-proposals.md` |
-| **Assess readiness** | `synthesis/technology-readiness.md` |
-| **Understand competition** | `synthesis/competitive-landscape.md` |
-| **Manage risks** | `synthesis/risk-register.md` |
-| **Full architecture** | `synthesis/design-spec.md` |
+| **Start coding today** | `90-synthesis/master/getting-started.md` |
+| **Choose POCs** | `90-synthesis/poc-roadmaps/poc-proposals.md` |
+| **Assess readiness** | `90-synthesis/readiness-risk/technology-readiness.md` |
+| **Understand competition** | `80-industry-intel/market-competitive/competitive-landscape.md` |
+| **Manage risks** | `90-synthesis/readiness-risk/risk-register.md` |
+| **Full architecture** | `90-synthesis/decisions/design-spec.md` |

@@ -7,22 +7,22 @@
 #### A specific company
 | Company | Primary | Also mentioned in |
 |---------|---------|------------------|
-| **Waymo** | `companies/waymo/` (5 docs) | `30-autonomy-stack/end-to-end-driving/company-approaches.md`, `60-safety-validation/safety-case/safety-incidents-lessons.md`, `50-cloud-fleet/ota/ota-fleet-management.md`, `50-cloud-fleet/fleet-management/fleet-management-dispatch.md`, `30-autonomy-stack/perception/overview/production-perception-systems.md` |
-| **Tesla** | `companies/tesla/` (4 docs) | `30-autonomy-stack/end-to-end-driving/company-approaches.md`, `60-safety-validation/safety-case/safety-incidents-lessons.md`, `50-cloud-fleet/ota/ota-fleet-management.md`, `30-autonomy-stack/perception/overview/production-perception-systems.md` |
-| **comma.ai** | `companies/comma-ai/` (2 docs) | `30-autonomy-stack/world-models/opensource-implementations.md`, `60-safety-validation/verification-validation/shadow-mode.md`, `40-runtime-systems/ml-deployment/opensource-ecosystem.md` |
-| **Aurrigo** | `companies/aurrigo/` (3 docs) | `70-operations-domains/airside/operations/industry-overview.md`, `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md` |
-| **UISEE** | `companies/uisee/tech-stack.md` | `companies/changi-programme/`, `70-operations-domains/airside/operations/industry-overview.md` |
-| **TractEasy/EasyMile** | `companies/tracteasy/` (2 docs) | `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md`, `70-operations-domains/airside/operations/industry-overview.md` |
-| **Wayve** | `companies/wayve/` (4 docs) | `30-autonomy-stack/end-to-end-driving/company-approaches.md`, `30-autonomy-stack/world-models/overview.md` |
-| **AeroVect** | `companies/aerovect/tech-stack.md` | `70-operations-domains/airside/operations/industry-overview.md` |
-| **Assaia** | `companies/assaia/tech-stack.md` | `companies/moonware/halo-operations.md` |
-| **Fernride** | `companies/fernride/tech-stack.md` | `40-runtime-systems/monitoring-observability/teleoperation-systems.md` |
-| **Applied Intuition** | `companies/applied-intuition/tech-stack.md` | `30-autonomy-stack/simulation/airport-digital-twins.md` |
+| **Waymo** | `80-industry-intel/companies/waymo/` (5 docs) | `30-autonomy-stack/end-to-end-driving/company-approaches.md`, `60-safety-validation/safety-case/safety-incidents-lessons.md`, `50-cloud-fleet/ota/ota-fleet-management.md`, `50-cloud-fleet/fleet-management/fleet-management-dispatch.md`, `30-autonomy-stack/perception/overview/production-perception-systems.md` |
+| **Tesla** | `80-industry-intel/companies/tesla/` (4 docs) | `30-autonomy-stack/end-to-end-driving/company-approaches.md`, `60-safety-validation/safety-case/safety-incidents-lessons.md`, `50-cloud-fleet/ota/ota-fleet-management.md`, `30-autonomy-stack/perception/overview/production-perception-systems.md` |
+| **comma.ai** | `80-industry-intel/companies/comma-ai/` (2 docs) | `30-autonomy-stack/world-models/opensource-implementations.md`, `60-safety-validation/verification-validation/shadow-mode.md`, `40-runtime-systems/ml-deployment/opensource-ecosystem.md` |
+| **Aurrigo** | `80-industry-intel/companies/aurrigo/` (3 docs) | `70-operations-domains/airside/operations/industry-overview.md`, `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md` |
+| **UISEE** | `80-industry-intel/companies/uisee/tech-stack.md` | `80-industry-intel/companies/changi-programme/`, `70-operations-domains/airside/operations/industry-overview.md` |
+| **TractEasy/EasyMile** | `80-industry-intel/companies/tracteasy/` (2 docs) | `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md`, `70-operations-domains/airside/operations/industry-overview.md` |
+| **Wayve** | `80-industry-intel/companies/wayve/` (4 docs) | `30-autonomy-stack/end-to-end-driving/company-approaches.md`, `30-autonomy-stack/world-models/overview.md` |
+| **AeroVect** | `80-industry-intel/companies/aerovect/tech-stack.md` | `70-operations-domains/airside/operations/industry-overview.md` |
+| **Assaia** | `80-industry-intel/companies/assaia/tech-stack.md` | `80-industry-intel/companies/moonware/halo-operations.md` |
+| **Fernride** | `80-industry-intel/companies/fernride/tech-stack.md` | `40-runtime-systems/monitoring-observability/teleoperation-systems.md` |
+| **Applied Intuition** | `80-industry-intel/companies/applied-intuition/tech-stack.md` | `30-autonomy-stack/simulation/airport-digital-twins.md` |
 
 #### World models
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
-| What are world models | `30-autonomy-stack/world-models/overview.md` | `synthesis/master-synthesis.md` |
+| What are world models | `30-autonomy-stack/world-models/overview.md` | `90-synthesis/master/master-synthesis.md` |
 | Diffusion-based | `30-autonomy-stack/world-models/diffusion-world-models.md` | `10-knowledge-base/machine-learning/diffusion-models.md` |
 | Occupancy-based | `30-autonomy-stack/world-models/occupancy-world-models.md` | `30-autonomy-stack/world-models/occupancy-networks-comparison.md` (20 methods) |
 | Tokenized / JEPA | `30-autonomy-stack/world-models/tokenized-and-jepa.md` | `10-knowledge-base/machine-learning/vqvae-tokenization.md` |
@@ -233,12 +233,12 @@
 #### Synthesis & strategy
 | Topic | Primary |
 |-------|---------|
-| Master synthesis | `synthesis/master-synthesis.md` — Executive summary, tiered recommendations |
-| Design spec | `synthesis/design-spec.md` — 891-line Simplex architecture |
-| POC proposals | `synthesis/poc-proposals.md` — 8 models with code and costs |
-| Competitive landscape | `synthesis/competitive-landscape.md` — All players compared, strategic quadrant |
-| Technology readiness | `synthesis/technology-readiness.md` — TRL per POC, go/no-go criteria |
-| Getting started | `synthesis/getting-started.md` — Day 1 guide with runnable code |
+| Master synthesis | `90-synthesis/master/master-synthesis.md` — Executive summary, tiered recommendations |
+| Design spec | `90-synthesis/decisions/design-spec.md` — 891-line Simplex architecture |
+| POC proposals | `90-synthesis/poc-roadmaps/poc-proposals.md` — 8 models with code and costs |
+| Competitive landscape | `80-industry-intel/market-competitive/competitive-landscape.md` — All players compared, strategic quadrant |
+| Technology readiness | `90-synthesis/readiness-risk/technology-readiness.md` — TRL per POC, go/no-go criteria |
+| Getting started | `90-synthesis/master/getting-started.md` — Day 1 guide with runnable code |
 
 ---
 
@@ -286,7 +286,7 @@
 | `30-autonomy-stack/localization-mapping/overview/lidar-slam-algorithms.md` | KISS-ICP, LIO-SAM, FAST-LIO2, Point-LIO comparison; degeneracy detection; airside algorithm selection |
 | `60-safety-validation/cybersecurity/cybersecurity-airside-av.md` | Threat models, ISO/SAE 21434, EASA requirements, sensor security, incident response |
 | `70-operations-domains/deployment-playbooks/workforce-transition.md` | 1.5-2M workers affected, union considerations, retraining, SATS case study |
-| `synthesis/decision-framework.md` | Architectural decision framework and diffusion planning guide |
+| `90-synthesis/decisions/decision-framework.md` | Architectural decision framework and diffusion planning guide |
 | `30-autonomy-stack/vla-vlm/vlm-scene-understanding.md` | VLM as co-pilot (not controller): DriveVLM CoT reasoning, DriveLM graph QA, NOTAM interpretation, turnaround status, FOD classification, anomaly detection, InternVL2-2B on Orin (300ms), $30-55K phased deployment |
 | `60-safety-validation/verification-validation/airside-scenario-taxonomy.md` | ISO 34502 adapted for airside ODD, Pegasus 6-layer model, 115 functional / 566 logical scenarios, SOTIF hazard catalog (H1-H8+), STPA control structure, risk matrix, testing strategy, regulatory coverage mapping |
 | `70-operations-domains/airside/operations/ground-control-instructions.md` | Airside instruction hierarchy (A-CDM→ATC→marshaller), A-SMGCS integration, D-TAXI digital clearance, NOTAM machine-readable parsing pipeline, marshaller gesture recognition (ViTPose+LSTM), NLU for ground control phraseology, instruction-to-trajectory mapping, conflict resolution priority, phased deployment $30-50K→$50-100K |

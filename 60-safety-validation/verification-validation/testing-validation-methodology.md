@@ -2411,4 +2411,4 @@ The test vehicle must be configured for both safe testing and comprehensive data
 35. **[../safety-case/failure-modes-analysis.md](../safety-case/failure-modes-analysis.md)** -- Perception, world model, and planning failure taxonomy
 36. **[../../30-autonomy-stack/simulation/simulators-for-airside.md](../../30-autonomy-stack/simulation/simulators-for-airside.md)** -- CARLA, Isaac Sim, Gazebo evaluation for airside environments
 37. **[../../30-autonomy-stack/simulation/airport-digital-twins.md](../../30-autonomy-stack/simulation/airport-digital-twins.md)** -- Airport digital twin construction and validation
-38. **[../../synthesis/design-spec.md](../../synthesis/design-spec.md)** -- 891-line Simplex architecture design specification
+38. **[../../90-synthesis/decisions/design-spec.md](../../90-synthesis/decisions/design-spec.md)** -- 891-line Simplex architecture design specification

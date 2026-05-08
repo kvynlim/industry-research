@@ -605,7 +605,7 @@ Optional Position 3-4: Additional side-facing for 360° coverage
 
 ### 10.3 Sensor Suite Update
 
-Adding thermal to the recommended airside sensor suite (from `synthesis/master-synthesis.md`):
+Adding thermal to the recommended airside sensor suite (from `90-synthesis/master/master-synthesis.md`):
 
 | Sensor | Qty | Purpose | Airside Rationale |
 |--------|-----|---------|-------------------|

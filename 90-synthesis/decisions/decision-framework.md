@@ -121,7 +121,7 @@ For each major architectural decision, this document provides:
 
 **Key finding:** comma.ai's panda safety layer (STM32H725, MISRA C, 100% line coverage + mutation testing) is the gold standard for hardware-independent safety. **Safety must NEVER depend on neural networks.**
 
-**Read more:** `60-safety-validation/runtime-assurance/simplex-safety-architecture.md`, `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md`, `companies/comma-ai/openpilot-codebase-analysis.md`
+**Read more:** `60-safety-validation/runtime-assurance/simplex-safety-architecture.md`, `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md`, `80-industry-intel/companies/comma-ai/openpilot-codebase-analysis.md`
 
 ---
 
@@ -137,7 +137,7 @@ For each major architectural decision, this document provides:
 
 **Decision:** **Shadow mode first** (zero regulatory risk, builds data). Then **teleoperation for revenue** (Fernride model, operator ratio 1:4→1:10). Then **graduated autonomy** as world model matures.
 
-**Read more:** `60-safety-validation/verification-validation/shadow-mode.md`, `companies/fernride/tech-stack.md`, `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md`
+**Read more:** `60-safety-validation/verification-validation/shadow-mode.md`, `80-industry-intel/companies/fernride/tech-stack.md`, `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md`
 
 ---
 

@@ -97,8 +97,8 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 ## How to Extend This Research
 
-1. **Add a new company:** Create `companies/<name>/tech-stack.md`, update `INDEX.md` and `README.md`
+1. **Add a new company:** Create `80-industry-intel/companies/<name>/tech-stack.md`, update `INDEX.md` and `README.md`
 2. **Add new autonomy-stack research:** Create it in the appropriate `30-autonomy-stack/<domain>/` directory, or use `60-safety-validation/` for safety validation and robustness material.
 3. **Update a finding:** Edit the document, run `rg` to find all references to the finding across the corpus, update all
-4. **Add a new POC:** Add to `synthesis/poc-proposals.md` and `synthesis/technology-readiness.md`
+4. **Add a new POC:** Add to `90-synthesis/poc-roadmaps/poc-proposals.md` and `90-synthesis/readiness-risk/technology-readiness.md`
 5. **Track regulatory changes:** Update `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md`

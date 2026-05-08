@@ -2190,7 +2190,7 @@ Test scenarios for CBF validation:
 
 ### 8.1 Current Architecture
 
-The current Aurrigo Simplex architecture (documented in `synthesis/design-spec.md`):
+The current Aurrigo Simplex architecture (documented in `90-synthesis/decisions/design-spec.md`):
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐

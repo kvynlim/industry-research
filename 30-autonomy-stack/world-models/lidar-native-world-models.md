@@ -1599,6 +1599,6 @@ Decision:
 | `30-autonomy-stack/world-models/tokenized-and-jepa.md` | VQ-VAE tokenization and JEPA theory |
 | `30-autonomy-stack/perception/overview/lidar-foundation-models.md` | LiDAR pre-training and backbone models |
 | `30-autonomy-stack/world-models/cutting-edge-2026.md` | Latest 2025-2026 developments |
-| `synthesis/design-spec.md` | Simplex architecture and world model integration |
-| `synthesis/poc-proposals.md` | POC cost estimates |
+| `90-synthesis/decisions/design-spec.md` | Simplex architecture and world model integration |
+| `90-synthesis/poc-roadmaps/poc-proposals.md` | POC cost estimates |
 | `30-autonomy-stack/localization-mapping/overview/lidar-slam-algorithms.md` | LiDAR SLAM for map building |

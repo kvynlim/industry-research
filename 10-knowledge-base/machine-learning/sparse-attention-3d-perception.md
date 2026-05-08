@@ -1489,7 +1489,7 @@ But requires FlashAttention for competitive speed
 - **Performance (AC) path:** FlatFormer at 16ms INT8 or PTv3-Small at 24ms INT8.
 - **Offline training/analysis:** PTv3-Base for maximum accuracy.
 
-This aligns with the Simplex architecture described in `synthesis/design-spec.md`.
+This aligns with the Simplex architecture described in `90-synthesis/decisions/design-spec.md`.
 
 ---
 
@@ -2764,4 +2764,4 @@ if __name__ == '__main__':
 - `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` -- Compression and Orin deployment
 - `20-av-platform/compute/tensorrt-deployment-guide.md` -- TensorRT conversion pipeline
 - `30-autonomy-stack/perception/overview/multi-task-unified-perception.md` -- Shared backbone multi-head architecture
-- `synthesis/design-spec.md` -- Simplex architecture (AC/BC pattern)
+- `90-synthesis/decisions/design-spec.md` -- Simplex architecture (AC/BC pattern)

@@ -648,9 +648,9 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 
 ## Entry Points
 
-- **Start here**: `synthesis/master-synthesis.md`
-- **POCs**: `synthesis/poc-proposals.md` (8 models, $2K-5K total)
-- **Design**: `synthesis/design-spec.md` (891-line Simplex architecture)
+- **Start here**: `90-synthesis/master/master-synthesis.md`
+- **POCs**: `90-synthesis/poc-roadmaps/poc-proposals.md` (8 models, $2K-5K total)
+- **Design**: `90-synthesis/decisions/design-spec.md` (891-line Simplex architecture)
 - **Quick start**: `30-autonomy-stack/end-to-end-driving/e2e-world-model-pipeline.md` (7-day plan)
 - **Company research**: `companies/<name>/`
 - **Autonomy stack**: `30-autonomy-stack/<domain>/`

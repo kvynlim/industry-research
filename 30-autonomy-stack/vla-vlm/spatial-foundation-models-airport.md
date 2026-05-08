@@ -1732,7 +1732,7 @@ This follows the pattern documented in `30-autonomy-stack/planning/joint-predict
 
 ### 8.3 Simplex Architecture: Foundation Model Policy (AC) + Classical Controller (BC)
 
-The Simplex architecture (documented in `synthesis/design-spec.md`) maps naturally to spatial foundation models:
+The Simplex architecture (documented in `90-synthesis/decisions/design-spec.md`) maps naturally to spatial foundation models:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐

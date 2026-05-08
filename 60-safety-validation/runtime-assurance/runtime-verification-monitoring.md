@@ -2921,4 +2921,4 @@ class SafetyEvidenceLogger:
 | FOD and jet blast | [../../70-operations-domains/airside/operations/fod-and-jetblast.md](../../70-operations-domains/airside/operations/fod-and-jetblast.md) | Jet blast zone geometry for STL specs |
 | Ground control instructions | [../../70-operations-domains/airside/operations/ground-control-instructions.md](../../70-operations-domains/airside/operations/ground-control-instructions.md) | NOTAM parsing for ODD monitor |
 | Multi-airport adaptation | [../../70-operations-domains/deployment-playbooks/multi-airport-adaptation.md](../../70-operations-domains/deployment-playbooks/multi-airport-adaptation.md) | Safe harbor positions, ODD parameters per airport |
-| Design specification | [../../synthesis/design-spec.md](../../synthesis/design-spec.md) | Overall system architecture context |
+| Design specification | [../../90-synthesis/decisions/design-spec.md](../../90-synthesis/decisions/design-spec.md) | Overall system architecture context |

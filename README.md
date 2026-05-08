@@ -33,12 +33,12 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Need | Open |
 |------|------|
 | Navigate the whole corpus | [Research Index](INDEX.md) |
-| Get the executive view | [Master Synthesis](synthesis/master-synthesis.md) |
-| Start building from the research | [Getting Started](synthesis/getting-started.md) |
-| Pick concrete POCs | [POC Proposals](synthesis/poc-proposals.md) |
-| Understand readiness and risk | [Technology Readiness](synthesis/technology-readiness.md) |
-| Compare the market | [Competitive Landscape](synthesis/competitive-landscape.md) |
-| Read the core system architecture | [Design Spec](synthesis/design-spec.md) |
+| Get the executive view | [Master Synthesis](90-synthesis/master/master-synthesis.md) |
+| Start building from the research | [Getting Started](90-synthesis/master/getting-started.md) |
+| Pick concrete POCs | [POC Proposals](90-synthesis/poc-roadmaps/poc-proposals.md) |
+| Understand readiness and risk | [Technology Readiness](90-synthesis/readiness-risk/technology-readiness.md) |
+| Compare the market | [Competitive Landscape](80-industry-intel/market-competitive/competitive-landscape.md) |
+| Read the core system architecture | [Design Spec](90-synthesis/decisions/design-spec.md) |
 | Go deep on perception methods | [Method-Level Perception Library](30-autonomy-stack/perception/methods/overview.md) |
 | Go deep on SLAM methods | [Method-Level SLAM Library](30-autonomy-stack/localization-mapping/slam-methods/overview.md) |
 | Check terms and abbreviations | [Glossary](GLOSSARY.md) |
@@ -65,8 +65,8 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 
 | Section | Docs | Start At | What It Holds |
 |---------|------|----------|---------------|
-| `synthesis/` | 8 | [Master Synthesis](synthesis/master-synthesis.md) | Executive synthesis, POCs, readiness, competitive landscape, risk, decision framework, and architecture. |
-| `companies/` | 53 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, and autonomy company profiles. |
+| `90-synthesis/` | 8 | [Master Synthesis](90-synthesis/master/master-synthesis.md) | Executive synthesis, POCs, readiness, competitive landscape, risk, decision framework, and architecture. |
+| `80-industry-intel/companies/` | 53 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, and autonomy company profiles. |
 | `30-autonomy-stack/` | 195 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, E2E driving, and multi-agent systems. |
 | `70-operations-domains/` | 15 | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Airside operations, deployment playbooks, business case, and domain-specific safety. |
 | `hardware/` | 20 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, vehicle interfaces, power, and edge-cloud architecture. |

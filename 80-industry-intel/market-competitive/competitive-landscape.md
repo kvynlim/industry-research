@@ -142,16 +142,16 @@ This is the target position for a world-model-powered airside AV.
 
 ---
 
-*Sources: All data from company-specific research documents in `companies/` directory and operations reports.*
+*Sources: All data from company-specific research documents in `80-industry-intel/companies/` and operations reports.*
 
 ## Related Documents
 
 | Document | Relevance |
 |----------|-----------|
-| `synthesis/poc-proposals.md` | What to build to capture the technology advantage |
-| `synthesis/technology-readiness.md` | How ready each POC is for execution |
-| `synthesis/risk-register.md` | Risks to execution including competitive risks (R13) |
-| `companies/uisee/tech-stack.md` | Deep dive on the market leader (1,000+ vehicles) |
-| `companies/tracteasy/production-deployment.md` | Deep dive on the safety leader (zero accidents) |
-| `companies/aurrigo/tech-stack.md` | Your current stack — technology gaps identified |
+| `90-synthesis/poc-roadmaps/poc-proposals.md` | What to build to capture the technology advantage |
+| `90-synthesis/readiness-risk/technology-readiness.md` | How ready each POC is for execution |
+| `90-synthesis/readiness-risk/risk-register.md` | Risks to execution including competitive risks (R13) |
+| `80-industry-intel/companies/uisee/tech-stack.md` | Deep dive on the market leader (1,000+ vehicles) |
+| `80-industry-intel/companies/tracteasy/production-deployment.md` | Deep dive on the safety leader (zero accidents) |
+| `80-industry-intel/companies/aurrigo/tech-stack.md` | Your current stack — technology gaps identified |
 | `70-operations-domains/airside/operations/aviation-ground-ops-ecosystem.md` | Full market context and business case |

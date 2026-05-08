@@ -334,10 +334,10 @@ Based on Week 1 results, choose:
 
 | Topic | Document |
 |-------|----------|
-| Full architecture | `synthesis/design-spec.md` |
-| All 8 POCs in detail | `synthesis/poc-proposals.md` |
-| TRL assessment | `synthesis/technology-readiness.md` |
-| Competitive landscape | `synthesis/competitive-landscape.md` |
+| Full architecture | `90-synthesis/decisions/design-spec.md` |
+| All 8 POCs in detail | `90-synthesis/poc-roadmaps/poc-proposals.md` |
+| TRL assessment | `90-synthesis/readiness-risk/technology-readiness.md` |
+| Competitive landscape | `80-industry-intel/market-competitive/competitive-landscape.md` |
 | BEV encoding details | `30-autonomy-stack/perception/overview/bev-encoding.md` |
 | OccWorld implementation | `30-autonomy-stack/world-models/occworld-implementation.md` |
 | Data pipeline from bags | `50-cloud-fleet/data-platform/data-engine-from-bags.md` |

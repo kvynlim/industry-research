@@ -596,9 +596,9 @@ When all POCs are integrated, you have the Simplex high-performance controller f
 
 | Document | What It Adds |
 |----------|-------------|
-| `synthesis/getting-started.md` | Day 1 runnable code for POCs 1, 2, 4, 5, 6 |
-| `synthesis/technology-readiness.md` | TRL assessment and go/no-go criteria per POC |
-| `synthesis/risk-register.md` | 18 risks to POC execution with mitigations |
-| `synthesis/competitive-landscape.md` | Why world models differentiate from all competitors |
-| `synthesis/design-spec.md` | Full Simplex architecture these POCs build toward |
+| `90-synthesis/master/getting-started.md` | Day 1 runnable code for POCs 1, 2, 4, 5, 6 |
+| `90-synthesis/readiness-risk/technology-readiness.md` | TRL assessment and go/no-go criteria per POC |
+| `90-synthesis/readiness-risk/risk-register.md` | 18 risks to POC execution with mitigations |
+| `80-industry-intel/market-competitive/competitive-landscape.md` | Why world models differentiate from all competitors |
+| `90-synthesis/decisions/design-spec.md` | Full Simplex architecture these POCs build toward |
 | `30-autonomy-stack/end-to-end-driving/e2e-world-model-pipeline.md` | Detailed 7-day quick start with tensor shapes |

@@ -1067,7 +1067,7 @@ TTT should be automatically disabled under the following conditions:
 
 ### 6.1 TTT within Simplex AC/BC Framework
 
-The Simplex architecture (described in `synthesis/design-spec.md`) provides the natural safety wrapper for TTT. The TTT-adapted model operates as the Advanced Controller (AC), while a frozen pre-deployment model serves as the Baseline Controller (BC):
+The Simplex architecture (described in `90-synthesis/decisions/design-spec.md`) provides the natural safety wrapper for TTT. The TTT-adapted model operates as the Advanced Controller (AC), while a frozen pre-deployment model serves as the Baseline Controller (BC):
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -1837,4 +1837,4 @@ context.set_tensor_address("lora_b_layer1", updated_lora_b_ptr)
 - `30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md` -- MAE, contrastive, JEPA pre-training strategies; SSL curriculum
 - `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md` -- 8-week onboarding playbook; PointLoRA fine-tuning budgets; cost model
 - `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` -- OOD detection methods; conformal prediction; uncertainty-driven decisions
-- `synthesis/design-spec.md` -- Simplex architecture; AC/BC framework; safety decomposition
+- `90-synthesis/decisions/design-spec.md` -- Simplex architecture; AC/BC framework; safety decomposition

@@ -868,7 +868,7 @@ Student: π_sensor(a | lidar_features, map_features) ← trained with distillati
 1. Train teacher with PPO/IQL using privileged state (fast, converges well)
 2. Distill into student that takes sensor features as input (supervised, stable)
 
-This is the approach used by comma.ai (see `companies/comma-ai/tech-stack.md`): 2B parameter DiT world model as teacher → small FastViT+Transformer policy for on-device deployment.
+This is the approach used by comma.ai (see `80-industry-intel/companies/comma-ai/production-world-model.md`): 2B parameter DiT world model as teacher → small FastViT+Transformer policy for on-device deployment.
 
 ### 9.4 Distilled Policy Architecture for Orin
 
