@@ -61,6 +61,21 @@
 | Streaming temporal perception | `technology/perception/streaming-temporal-perception.md` | StreamPETR (+6-8% NDS, <3ms overhead, implicit tracking), Sparse4D v3 (71.9% NDS SOTA), multi-sweep LiDAR accumulation (3-sweep: +2.5% mAP, +1.4ms), latency compensation (ASAP/LASP), temporal filtering eliminates transient noise (de-icing spray, jet blast shimmer), extended airside track persistence (10-30s for GSE occlusion), video backbones vs query propagation, turnaround phase detection, $38K/13 weeks |
 | Active perception & sensor scheduling | `technology/perception/active-perception-sensor-scheduling.md` | Context-aware model switching (35-45% compute reduction), information-theoretic sensor selection (entropy-based attention), foveated LiDAR (89% voxel reduction), multi-LiDAR scheduling (3-4 of 8 LiDARs full at any time), early exit networks (48% average compute), risk-aware allocation (safety-critical always first), planner-guided attention, 30-36% power savings for electric GSE, $25-40K/10 weeks |
 
+#### Method-level SLAM
+| Topic | Primary | Supporting |
+|-------|---------|-----------|
+| SLAM method library | `technology/localization/slam/overview.md` | 57 focused files covering classical, LiDAR, visual, RGB-D, neural, Gaussian, radar, and fusion SLAM |
+| AV / indoor / outdoor selection | `technology/localization/slam/av-indoor-outdoor-decision-matrix.md` | Method fit by GNSS availability, dynamics, map dependence, compute budget, and safety criticality |
+| Benchmarks and datasets | `technology/localization/slam/benchmarking-metrics-datasets.md` | ATE/RPE, KITTI drift, loop closure, map quality, dynamic-scene metrics, KITTI/KITTI-360, EuRoC, TUM, Oxford, Boreas, MulRan |
+| Open-source stacks | `technology/localization/slam/open-source-stack-comparison.md` | ORB-SLAM3, RTAB-Map, Cartographer, OpenVINS, Kimera, KISS-ICP, LIO-SAM, FAST-LIO2, GTSAM, Open3D |
+| Classical SLAM foundations | `technology/localization/slam/graphslam-pose-graph-optimization.md` | `ekf-slam.md`, `fastslam-particle-slam.md`, `bundle-adjustment-slam.md`, `factor-graph-isam2-gtsam.md`, `loop-closure-place-recognition.md`, `occupancy-grid-tsdf-esdf-mapping.md` |
+| Point-cloud registration | `technology/localization/slam/gicp-vgicp.md` | `icp.md`, `point-to-plane-icp.md`, `ndt.md`, `continuous-time-registration.md` |
+| 3D LiDAR SLAM | `technology/localization/slam/kiss-icp.md` | `loam.md`, `lego-loam.md`, `hdl-graph-slam.md`, `ct-icp.md`, `lio-sam.md`, `fast-lio-fast-lio2.md`, `point-lio.md`, `cartographer-3d.md`, `suma.md` |
+| Visual and visual-inertial SLAM | `technology/localization/slam/orb-slam2-orb-slam3.md` | `lsd-slam-dso.md`, `svo.md`, `vins-mono-vins-fusion.md`, `openvins.md`, `kimera-vio.md`, `droid-slam.md`, `dpvo.md`, `mast3r-slam.md` |
+| Indoor and dense SLAM | `technology/localization/slam/rtab-map.md` | `kinectfusion.md`, `elasticfusion.md`, `bundlefusion.md`, `imap.md`, `nice-slam.md`, `co-slam-eslam.md`, `nerf-slam.md` |
+| Learned, semantic, and Gaussian SLAM | `technology/localization/slam/splatam.md` | `lo-net-learned-lidar-odometry.md`, `regformer-learned-registration.md`, `semantic-slam.md`, `dynamic-object-aware-slam.md`, `object-level-slam.md`, `gs-slam-monogs.md`, `photo-slam.md` |
+| Outdoor Gaussian and radar SLAM | `technology/localization/slam/splat-loam.md` | `gigaslam.md`, `wildgs-slam.md`, `radar-odometry-radar-slam.md`, `radar-inertial-odometry.md`, `radar-lidar-inertial-fusion.md` |
+
 #### Localization & mapping
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
@@ -301,16 +316,17 @@
 
 | Metric | Value |
 |--------|-------|
-| Total documents | 247 |
-| Total lines | ~211,000 |
+| Total documents | 304 |
+| Total lines | ~221,000 |
 | Companies covered | 21 |
 | Technology domains | 9 |
+| Method-level SLAM files | 57 |
 | Safety documents | 18 |
 | Hardware specs | 20 |
 | Foundation theory | 12 |
 | Synthesis documents | 8 |
 | Cross-cutting | 26 |
-| Localization/mapping | 13 |
+| Localization/mapping | 70 |
 | Planning documents | 12 |
 | Multi-agent/fleet | 5 |
 | Papers referenced | 400+ |

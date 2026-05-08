@@ -6,7 +6,7 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 243-document research corpus, surfaced as 247 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 300-document research corpus, surfaced as 304 VitePress reader pages.
 
 The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, and browser-friendly reading.
 
@@ -67,11 +67,12 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 243 |
-| Reader pages | 247 |
-| Total lines | ~211,000+ |
+| Core research documents | 300 |
+| Reader pages | 304 |
+| Total lines | ~221,000+ |
 | Research agents spawned | 100+ |
 | Companies researched | 21 |
+| Method-level SLAM files | 57 |
 | Papers referenced | 400+ |
 | GitHub repos evaluated | 50+ |
 | API endpoints documented | 15+ |
