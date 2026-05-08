@@ -13,6 +13,7 @@ This comparison is for engineering selection, not leaderboard admiration. A SLAM
 | State estimation | [Robust State Estimation Multi-Sensor](../robust-state-estimation-multi-sensor.md) | Pose output quality is not enough; covariance, gating, dropout, and sensor health matter. |
 | Backend math | [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md) | Essential for understanding LIO-SAM, GLIM, map optimization, and production factor insertion. |
 | Gaussian/neural maps | [Gaussian Splatting for Driving](../../perception/gaussian-splatting-driving.md) | Good future-facing map/QA representation, but not yet a primary certified pose stack. |
+| Coverage audit | [SLAM Coverage Audit and Backlog](coverage-audit-2026.md) | Tracks missing stack pages such as MOLA, KISS-SLAM, FAST-LIVO/R3LIVE, LOCUS/LAMP, DLIO/DLIOM, and cuVSLAM. |
 
 ## Comparison Criteria
 
@@ -39,7 +40,7 @@ This comparison is for engineering selection, not leaderboard admiration. A SLAM
 | Faster-LIO family | 3D LiDAR, IMU | Tightly coupled LIO, iVox incremental voxels | GPL-family repo terms require review | ROS 1 | Faster map structure than tree-based LIO in many cases | Voxel-size sensitivity; less common production adoption | Speed-focused LIO experiments |
 | [Point-LIO](point-lio.md) | 3D LiDAR, IMU | Point-wise LIO with high-rate output | GPL-2.0 repo terms require review | ROS 1 | High-bandwidth odometry, aggressive motion/vibration robustness | IMU synchronization and saturation configuration are non-negotiable | UAV, vibration-heavy platforms, high-rate control |
 | [CT-ICP](ct-icp.md) | 3D LiDAR | Continuous-time ICP, LiDAR-only elastic model | Check repo license before product use | Standalone/ROS wrappers | Models intra-scan motion without IMU; good LiDAR-only reference | Less natural multi-sensor fusion than factor-graph LIO | LiDAR-only vehicles, motion-distortion studies |
-| GLIM | Range sensors, IMU optional, RGB-D capable | Direct multi-scan registration on factor graphs, GPU scan-matching factors via gtsam_points | MIT | ROS 2 and standalone ecosystem | Modern, extensible, GPU-aware, GTSAM-based, manual map correction | Newer stack; dependencies include GTSAM/gtsam_points/CUDA for full benefit | Serious 3D mapping research and survey tooling |
+| [GLIM](glim.md) | Range sensors, IMU optional, RGB-D capable | Direct multi-scan registration on factor graphs, GPU scan-matching factors via gtsam_points | MIT | ROS 2 and standalone ecosystem | Modern, extensible, GPU-aware, GTSAM-based, manual map correction | Newer stack; dependencies include GTSAM/gtsam_points/CUDA for full benefit | Serious 3D mapping research and survey tooling |
 | [Cartographer](cartographer-3d.md) | 2D/3D LiDAR, IMU, odom | Submaps, scan matching, sparse pose adjustment | Apache-2.0 | ROS integrations, standalone core | Mature submap architecture, branch-and-bound loop closure, strong 2D heritage | Google project is effectively mature/maintenance-mode; configuration-heavy | 2D/3D robotics mapping reference, indoor SLAM |
 | RTAB-Map | RGB-D, stereo, LiDAR, IMU/odom inputs | Graph SLAM, appearance-based loop closure | BSD-style core; verify dependencies | ROS 1/2 and standalone | Very practical robotics tool, broad sensor support, visualization | Many knobs; not a minimal AV localization core | Indoor mapping, RGB-D, multi-sensor robot prototypes |
 | [ORB-SLAM3](orb-slam2-orb-slam3.md) | Monocular, stereo, RGB-D, visual-inertial | Sparse features, bundle adjustment, multi-map SLAM | GPL-3.0 | Standalone examples, community ROS wrappers | Strong visual/VIO baseline, multi-map recovery | GPL; visual degradation in glare/weather/low texture | Camera-first robotics and research benchmark |
@@ -66,9 +67,9 @@ This comparison is for engineering selection, not leaderboard admiration. A SLAM
 | Domain | Shortlist | Stack role | Expected additions |
 |---|---|---|---|
 | Airside runtime localization | Autoware NDT diagnostics, custom GPU VGICP/gtsam_points, GTSAM/iSAM2, Scan Context/MinkLoc3D | Runtime pose in validated map | Multi-LiDAR calibration, covariance gating, RTK/wheel/IMU factors, safe fallback |
-| Airside survey mapping | [FAST-LIO2](fast-lio-fast-lio2.md), GLIM, [LIO-SAM](lio-sam.md), [KISS-ICP](kiss-icp.md), KISS-SLAM | Build and validate maps | GCP factors, map QA, dynamic filtering, geodetic export |
+| Airside survey mapping | [FAST-LIO2](fast-lio-fast-lio2.md), [GLIM](glim.md), [LIO-SAM](lio-sam.md), [KISS-ICP](kiss-icp.md), KISS-SLAM | Build and validate maps | GCP factors, map QA, dynamic filtering, geodetic export |
 | Indoor warehouse product | SLAM Toolbox, AMCL/Nav2, RTAB-Map for RGB-D | Occupancy map and navigation | Reflectors/AprilTags, map versioning, aisle relocalization |
-| Construction/underground mapping | GLIM, [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md), RTAB-Map | 3D mapping in hard geometry | Multi-session loop closure, dust/dark testing, Hilti-style benchmark |
+| Construction/underground mapping | [GLIM](glim.md), [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md), RTAB-Map | 3D mapping in hard geometry | Multi-session loop closure, dust/dark testing, Hilti-style benchmark |
 | Camera-first robot | [ORB-SLAM3](orb-slam2-orb-slam3.md), [OpenVINS](openvins.md), [VINS-Fusion](vins-mono-vins-fusion.md) | Visual/VIO baseline | Exposure/blur checks, robust relocalization, calibration automation |
 | Dense visual map research | RTAB-Map, NICE-SLAM, SplaTAM, Splat-SLAM | Reconstruction/QA/simulation | Classical pose fallback, uncertainty estimation, static/dynamic segmentation |
 
@@ -78,7 +79,7 @@ This comparison is for engineering selection, not leaderboard admiration. A SLAM
 |---|---|---|---|
 | LiDAR-only independent fallback | [KISS-ICP](kiss-icp.md) running beside production scan-to-map | Detect IMU/map-localization failures and provide dead-reckoning fallback | Drift if used too long; must have safe-stop budget |
 | LIO survey front-end plus graph backend | [FAST-LIO2](fast-lio-fast-lio2.md) or [Point-LIO](point-lio.md) producing odometry into GTSAM | Build high-quality survey maps with external anchors | Double-counting IMU if factors are not modeled correctly |
-| Full factor-graph SLAM | [LIO-SAM](lio-sam.md) or GLIM-style graph | Need loop closure, GPS/GCP, multi-session constraints | Bad loop factors can corrupt full map without robust gating |
+| Full factor-graph SLAM | [LIO-SAM](lio-sam.md) or [GLIM](glim.md)-style graph | Need loop closure, GPS/GCP, multi-session constraints | Bad loop factors can corrupt full map without robust gating |
 | Localization-only mode | Autoware NDT, MOLA localization, custom VGICP | Production operation in a known map | Wrong initial pose and map staleness |
 | Visual auxiliary | [ORB-SLAM3](orb-slam2-orb-slam3.md), [OpenVINS](openvins.md), [VINS-Fusion](vins-mono-vins-fusion.md) feeding health or relative motion | Cameras already available and lighting is acceptable | Visual failure under glare/weather if treated as primary |
 | Dense/neural QA overlay | Gaussian/RGB-D stack after classical pose/map generation | Inspect map, create digital twin, support simulation | Overinterpreting rendering quality as localization certainty |
@@ -87,7 +88,7 @@ This comparison is for engineering selection, not leaderboard admiration. A SLAM
 
 | License/status | Examples | Product implication |
 |---|---|---|
-| MIT/BSD/Apache-friendly | [KISS-ICP](kiss-icp.md), KISS-SLAM, GTSAM, Ceres, GLIM, SLAM Toolbox, Autoware | Usually easier to integrate, but still review dependencies and modifications. |
+| MIT/BSD/Apache-friendly | [KISS-ICP](kiss-icp.md), KISS-SLAM, GTSAM, Ceres, [GLIM](glim.md), SLAM Toolbox, Autoware | Usually easier to integrate, but still review dependencies and modifications. |
 | GPL-family | [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md), [ORB-SLAM3](orb-slam2-orb-slam3.md), [OpenVINS](openvins.md), [VINS-Fusion](vins-mono-vins-fusion.md) | Excellent research baselines; product linking/distribution requires legal review or clean-room reimplementation. |
 | Research/new stack | Splat-SLAM, many Gaussian SLAM projects, newer LIO variants | Useful for experimentation; require extra maturity assessment and failure monitoring. |
 | Dataset license restrictions | Hilti non-commercial, some AV datasets | Good for benchmarking, not necessarily for commercial training/product use. |
@@ -101,7 +102,7 @@ This comparison is for engineering selection, not leaderboard admiration. A SLAM
 | [FAST-LIO2](fast-lio-fast-lio2.md) | Great front-end but not a full map lifecycle | Feed outputs into loop closure/GTSAM/GCP map optimization. |
 | [Point-LIO](point-lio.md) | High-rate point updates expose sensor timestamp mistakes quickly | Add IMU saturation checks and time-sync health metrics. |
 | [CT-ICP](ct-icp.md) | Continuous-time LiDAR-only modeling can be compute/config sensitive | Compare against IMU-deskewed LIO on same motion profiles. |
-| GLIM | Powerful but newer and dependency-rich | Freeze versions and benchmark CUDA/GTSAM compatibility on target hardware. |
+| [GLIM](glim.md) | Powerful but newer and dependency-rich | Freeze versions and benchmark CUDA/GTSAM compatibility on target hardware. |
 | [Cartographer](cartographer-3d.md) | Tuning submaps and loop closure can dominate project time | Use when submap behavior is needed and configuration effort is acceptable. |
 | RTAB-Map | Broad feature set can hide complexity | Lock a narrow sensor mode and parameter set for deployment. |
 | [ORB-SLAM3](orb-slam2-orb-slam3.md) | Visual-only failure under airport glare/night/rain | Use as auxiliary or camera-first research baseline, not primary airside pose. |
@@ -113,8 +114,8 @@ This comparison is for engineering selection, not leaderboard admiration. A SLAM
 | Layer | Recommended open-source reference | Production interpretation |
 |---|---|---|
 | Primary LiDAR-only baseline | [KISS-ICP](kiss-icp.md) | Keep as a simple benchmark and independent odometry monitor. |
-| Primary LIO survey baseline | [FAST-LIO2](fast-lio-fast-lio2.md) and GLIM | Use to generate survey trajectories/submaps; check license before product embedding. |
-| Factor-graph reference | [LIO-SAM](lio-sam.md), GTSAM, GLIM/gtsam_points | Reuse concepts for IMU, GPS/GCP, loop, scan-matching, and map factors. |
+| Primary LIO survey baseline | [FAST-LIO2](fast-lio-fast-lio2.md) and [GLIM](glim.md) | Use to generate survey trajectories/submaps; check license before product embedding. |
+| Factor-graph reference | [LIO-SAM](lio-sam.md), GTSAM, [GLIM](glim.md)/gtsam_points | Reuse concepts for IMU, GPS/GCP, loop, scan-matching, and map factors. |
 | Indoor navigation reference | SLAM Toolbox, [Cartographer](cartographer-3d.md), RTAB-Map | Use for warehouse/AGV scenarios, not as airside AV default. |
 | Visual/VIO reference | [ORB-SLAM3](orb-slam2-orb-slam3.md), [OpenVINS](openvins.md), [VINS-Fusion](vins-mono-vins-fusion.md) | Use to benchmark camera contribution and calibration, not primary all-weather pose. |
 | Runtime AV localization reference | Autoware NDT and MOLA localization | Study diagnostics/interfaces; production stack may use custom VGICP/GTSAM. |

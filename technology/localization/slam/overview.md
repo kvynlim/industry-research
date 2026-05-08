@@ -20,13 +20,14 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | Ego-state fusion and uncertainty | [Robust State Estimation Multi-Sensor](../robust-state-estimation-multi-sensor.md) | SLAM factors must land in an estimator with sane gating, covariance, fallback, and sensor-fault behavior. |
 | Factor graph foundations | [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md) | The common backend language for LIO-SAM, map optimization, loop closure, IMU preintegration, and production smoothing. |
 | Dense/neural scene representations | [Gaussian Splatting for Driving](../../perception/gaussian-splatting-driving.md) | Useful for future dense mapping, semantic map QA, and simulation; not yet the primary safety-critical pose source. |
+| Coverage audit and backlog | [SLAM Coverage Audit and Backlog](coverage-audit-2026.md) | Tracks missing first-class method pages found by parallel web-search agents so the library does not silently omit major techniques. |
 
 ## Scope Boundaries
 
 | Term | Primary output | Updates a map? | Drift behavior | Production role | Typical methods |
 |---|---:|---:|---|---|---|
 | Odometry | Relative pose stream | Local map only | Unbounded without correction | Fallback, prediction, survey front-end | [KISS-ICP](kiss-icp.md), [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md), [CT-ICP](ct-icp.md) |
-| SLAM | Trajectory plus map | Yes | Bounded by loop closures and global constraints | Survey mapping, map repair, exploratory operation | [LIO-SAM](lio-sam.md), KISS-SLAM, [Cartographer](cartographer-3d.md), RTAB-Map, GLIM |
+| SLAM | Trajectory plus map | Yes | Bounded by loop closures and global constraints | Survey mapping, map repair, exploratory operation | [LIO-SAM](lio-sam.md), KISS-SLAM, [Cartographer](cartographer-3d.md), RTAB-Map, [GLIM](glim.md) |
 | Localization | Pose in an existing map | No, except quality overlays | Bounded by map quality and scan matching | Normal AV runtime | Autoware NDT, VGICP, MOLA localization, GTSAM scan-to-map factors |
 | Relocalization | Global pose hypothesis | No | Recovers after losing track | Startup and fault recovery | Scan Context, MinkLoc3D, LCDNet, ICP/NDT verification |
 | Mapping pipeline | Validated HD map package | Offline | Optimized globally | Airport onboarding and maintenance | Multi-session SLAM, GCP alignment, AMDB/Lanelet2 overlays |
@@ -61,9 +62,9 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | Environment | First-choice family | Good candidate pages | Add-ons that make it production-ready | Avoid as primary source when |
 |---|---|---|---|---|
 | Airside AV apron, known map | LiDAR-to-map localization plus state estimation | [Production LiDAR Map Localization](../production-lidar-map-localization.md), [KISS-ICP](kiss-icp.md), [LIO-SAM](lio-sam.md) | RTK/GCP anchored maps, GTSAM scan-to-map factors, place recognition, degeneracy gating | Treating online SLAM as the only global reference; open tarmac is geometrically weak |
-| Road AV in mapped ODD | Prebuilt HD map localization plus LiDAR/radar/camera odometry | [FAST-LIO2](fast-lio-fast-lio2.md), GLIM, [Autoware NDT](ndt.md) | GNSS/INS fusion, dynamic object removal, map versioning, online map-change detection | Using indoor RGB-D or monocular-only SLAM for safety-critical pose |
+| Road AV in mapped ODD | Prebuilt HD map localization plus LiDAR/radar/camera odometry | [FAST-LIO2](fast-lio-fast-lio2.md), [GLIM](glim.md), [Autoware NDT](ndt.md) | GNSS/INS fusion, dynamic object removal, map versioning, online map-change detection | Using indoor RGB-D or monocular-only SLAM for safety-critical pose |
 | Indoor warehouse, planar floors | 2D LiDAR SLAM or 3D LiDAR-inertial if tall racks matter | SLAM Toolbox, [Cartographer](cartographer-3d.md), RTAB-Map | Wheel odometry, reflector/AprilTag anchors, floor-zone maps, periodic relocalization | Forklifts or racks create persistent dynamic clutter without filtering |
-| Underground/construction | 3D LiDAR-inertial with multi-session SLAM | [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md), GLIM, [CT-ICP](ct-icp.md) | Loop closure, cross-session map merging, robust kernels, lidar intensity if geometry repeats | Pure visual tracking in dust/dark or pure GNSS outdoors/indoors mixed |
+| Underground/construction | 3D LiDAR-inertial with multi-session SLAM | [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md), [GLIM](glim.md), [CT-ICP](ct-icp.md) | Loop closure, cross-session map merging, robust kernels, lidar intensity if geometry repeats | Pure visual tracking in dust/dark or pure GNSS outdoors/indoors mixed |
 | Outdoor campus/service robot | LiDAR-inertial plus place recognition | [KISS-ICP](kiss-icp.md), KISS-SLAM, [LIO-SAM](lio-sam.md), MOLA | Long-term dataset validation, seasonal map maintenance, semantic/dynamic filtering | Assuming one sunny-day map covers all seasons and construction changes |
 | UAV/handheld inspection | Visual-inertial or LiDAR-inertial depending payload | [OpenVINS](openvins.md), [VINS-Fusion](vins-mono-vins-fusion.md), [FAST-LIO2](fast-lio-fast-lio2.md), [Point-LIO](point-lio.md) | Rolling-shutter handling, aggressive-motion IMU validation, loop closure | Low-grade IMU plus unsynchronized camera/LiDAR under fast motion |
 
@@ -71,7 +72,7 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 
 | Layer | Recommended role | Candidate implementation | Why |
 |---|---|---|---|
-| Survey odometry | Generate per-session trajectories and submaps | [FAST-LIO2](fast-lio-fast-lio2.md) or GLIM as primary; [KISS-ICP](kiss-icp.md) as independent check | LIO gives robust deskewing and fast motion handling; LiDAR-only validation catches IMU/calibration-specific failures. |
+| Survey odometry | Generate per-session trajectories and submaps | [FAST-LIO2](fast-lio-fast-lio2.md) or [GLIM](glim.md) as primary; [KISS-ICP](kiss-icp.md) as independent check | LIO gives robust deskewing and fast motion handling; LiDAR-only validation catches IMU/calibration-specific failures. |
 | Loop closure | Correct drift across long apron loops and repeated passes | [LIO-SAM](lio-sam.md) loop module, KISS-SLAM, Scan Context from place-recognition library | Required to prevent multi-kilometer survey maps from accumulating meter-scale drift. |
 | Global optimization | Fuse odometry, loop closure, GCP, RTK, and prior map constraints | GTSAM/iSAM2, see [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md) | The same factor-graph representation can be reused by map construction and runtime localization. |
 | Production runtime pose | Match live LiDAR to the validated HD map | GPU VGICP/NDT plus [Production LiDAR Map Localization](../production-lidar-map-localization.md) | Bounded drift and calibrated uncertainty are more important than online map growth during normal operation. |
@@ -116,7 +117,7 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | RTAB-Map | RGB-D/visual/LiDAR graph SLAM | When is a mature multi-sensor robotics stack more useful than a leaderboard method? |
 | [ORB-SLAM3](orb-slam2-orb-slam3.md) | Visual and visual-inertial SLAM | What is the strongest sparse feature baseline for cameras? |
 | [OpenVINS](openvins.md) | Filter-based VIO | When is MSCKF-style VIO preferable to full bundle adjustment? |
-| GLIM | Range-inertial factor-graph mapping | How do GPU scan-matching factors, GTSAM, and manual map correction fit together? |
+| [GLIM](glim.md) | Range-inertial factor-graph mapping | How do GPU scan-matching factors, GTSAM, and manual map correction fit together? |
 | [Autoware NDT](ndt.md) | Production scan-to-map localization | What can the AV open-source ecosystem teach about diagnostics and integration? |
 
 ## Key Takeaways

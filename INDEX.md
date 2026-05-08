@@ -64,13 +64,14 @@
 #### Method-level SLAM
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
-| SLAM method library | `technology/localization/slam/overview.md` | 57 focused files covering classical, LiDAR, visual, RGB-D, neural, Gaussian, radar, and fusion SLAM |
+| SLAM method library | `technology/localization/slam/overview.md` | 59 focused files covering classical, LiDAR, visual, RGB-D, neural, Gaussian, radar, and fusion SLAM |
+| SLAM coverage audit | `technology/localization/slam/coverage-audit-2026.md` | Source-backed P0/P1/P2 backlog for missing methods: LVI-SAM, FAST-LIVO/R3LIVE, KISS-SLAM, MOLA, robust global registration, Scan Context, LiDAR BA/BALM, radar RIO, BAD SLAM, OKVIS/ROVIO/BASALT, COLMAP, SLAM3R/VGGT |
 | AV / indoor / outdoor selection | `technology/localization/slam/av-indoor-outdoor-decision-matrix.md` | Method fit by GNSS availability, dynamics, map dependence, compute budget, and safety criticality |
 | Benchmarks and datasets | `technology/localization/slam/benchmarking-metrics-datasets.md` | ATE/RPE, KITTI drift, loop closure, map quality, dynamic-scene metrics, KITTI/KITTI-360, EuRoC, TUM, Oxford, Boreas, MulRan |
-| Open-source stacks | `technology/localization/slam/open-source-stack-comparison.md` | ORB-SLAM3, RTAB-Map, Cartographer, OpenVINS, Kimera, KISS-ICP, LIO-SAM, FAST-LIO2, GTSAM, Open3D |
+| Open-source stacks | `technology/localization/slam/open-source-stack-comparison.md` | ORB-SLAM3, RTAB-Map, Cartographer, OpenVINS, Kimera, KISS-ICP, LIO-SAM, FAST-LIO2, GLIM, GTSAM, Open3D |
 | Classical SLAM foundations | `technology/localization/slam/graphslam-pose-graph-optimization.md` | `ekf-slam.md`, `fastslam-particle-slam.md`, `bundle-adjustment-slam.md`, `factor-graph-isam2-gtsam.md`, `loop-closure-place-recognition.md`, `occupancy-grid-tsdf-esdf-mapping.md` |
 | Point-cloud registration | `technology/localization/slam/gicp-vgicp.md` | `icp.md`, `point-to-plane-icp.md`, `ndt.md`, `continuous-time-registration.md` |
-| 3D LiDAR SLAM | `technology/localization/slam/kiss-icp.md` | `loam.md`, `lego-loam.md`, `hdl-graph-slam.md`, `ct-icp.md`, `lio-sam.md`, `fast-lio-fast-lio2.md`, `point-lio.md`, `cartographer-3d.md`, `suma.md` |
+| 3D LiDAR SLAM | `technology/localization/slam/kiss-icp.md` | `loam.md`, `lego-loam.md`, `hdl-graph-slam.md`, `ct-icp.md`, `lio-sam.md`, `fast-lio-fast-lio2.md`, `point-lio.md`, `glim.md`, `cartographer-3d.md`, `suma.md` |
 | Visual and visual-inertial SLAM | `technology/localization/slam/orb-slam2-orb-slam3.md` | `lsd-slam-dso.md`, `svo.md`, `vins-mono-vins-fusion.md`, `openvins.md`, `kimera-vio.md`, `droid-slam.md`, `dpvo.md`, `mast3r-slam.md` |
 | Indoor and dense SLAM | `technology/localization/slam/rtab-map.md` | `kinectfusion.md`, `elasticfusion.md`, `bundlefusion.md`, `imap.md`, `nice-slam.md`, `co-slam-eslam.md`, `nerf-slam.md` |
 | Learned, semantic, and Gaussian SLAM | `technology/localization/slam/splatam.md` | `lo-net-learned-lidar-odometry.md`, `regformer-learned-registration.md`, `semantic-slam.md`, `dynamic-object-aware-slam.md`, `object-level-slam.md`, `gs-slam-monogs.md`, `photo-slam.md` |
@@ -316,17 +317,17 @@
 
 | Metric | Value |
 |--------|-------|
-| Total documents | 304 |
+| Total documents | 306 |
 | Total lines | ~221,000 |
 | Companies covered | 21 |
 | Technology domains | 9 |
-| Method-level SLAM files | 57 |
+| Method-level SLAM files | 59 |
 | Safety documents | 18 |
 | Hardware specs | 20 |
 | Foundation theory | 12 |
 | Synthesis documents | 8 |
 | Cross-cutting | 26 |
-| Localization/mapping | 70 |
+| Localization/mapping | 72 |
 | Planning documents | 12 |
 | Multi-agent/fleet | 5 |
 | Papers referenced | 400+ |

@@ -10,12 +10,12 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 | Scope | Count |
 |-------|-------|
-| Reader pages | 304 |
-| Core research documents | 300 |
+| Reader pages | 306 |
+| Core research documents | 302 |
 | Corpus size | 221k+ lines |
 | Companies covered | 21 |
 | Technology domains | 9 |
-| Method-level SLAM files | 57 |
+| Method-level SLAM files | 59 |
 | Safety and certification docs | 18 |
 | Hardware docs | 20 |
 | Synthesis docs | 8 |
@@ -51,6 +51,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | Perception stack | [Production Perception Systems](technology/perception/production-perception-systems.md) | Compares production AV approaches and the perception patterns that transfer to airside autonomy. |
 | Localization and mapping | [Mapping and Localization](technology/localization/mapping-and-localization.md) | Covers HD maps, LiDAR SLAM, map-free driving, map maintenance, localization, and occupancy grids. |
 | Method-level 3D SLAM | [SLAM Library Overview](technology/localization/slam/overview.md) | Breaks classical, LiDAR, visual, dense, neural, Gaussian, and radar SLAM into focused method files. |
+| SLAM coverage gaps | [SLAM Coverage Audit](technology/localization/slam/coverage-audit-2026.md) | Tracks missing first-class SLAM pages found by parallel web-search agents. |
 
 ## Corpus Map
 
@@ -58,7 +59,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 |---------|------|----------|---------------|
 | `synthesis/` | 8 | [Master Synthesis](synthesis/master-synthesis.md) | Executive synthesis, POCs, readiness, competitive landscape, risk, decision framework, and architecture. |
 | `companies/` | 53 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, and autonomy company profiles. |
-| `technology/` | 139 | [World Models Overview](technology/world-models/overview.md) | World models, perception, planning, localization, SLAM, simulation, VLA/VLM, robustness, E2E driving, and multi-agent systems. |
+| `technology/` | 141 | [World Models Overview](technology/world-models/overview.md) | World models, perception, planning, localization, SLAM, simulation, VLA/VLM, robustness, E2E driving, and multi-agent systems. |
 | `operations/` | 42 | [Airside Industry Overview](operations/airside/industry-overview.md) | Airside operations, deployment, safety, certification, teleoperation, workforce, and fleet management. |
 | `hardware/` | 20 | [NVIDIA Orin Technical](hardware/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, vehicle interfaces, power, and edge-cloud architecture. |
 | `foundations/` | 12 | [Theoretical Foundations](foundations/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, and more. |
@@ -71,8 +72,8 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | World models | 13 |
 | Perception | 20 |
 | Planning | 12 |
-| Localization and mapping | 70 |
-| Method-level SLAM library | 57 |
+| Localization and mapping | 72 |
+| Method-level SLAM library | 59 |
 | Simulation | 7 |
 | VLA / VLM | 5 |
 | Multi-agent and fleet coordination | 5 |

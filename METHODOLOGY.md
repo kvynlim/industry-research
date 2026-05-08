@@ -6,7 +6,7 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 300-document research corpus, surfaced as 304 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 302-document research corpus, surfaced as 306 VitePress reader pages.
 
 The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, and browser-friendly reading.
 
@@ -47,6 +47,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 - **Method:** Reorganized from flat/topic-based to domain-organized directory structure
 - **Output:** INDEX.md, competitive landscape, technology readiness, getting-started guide, risk register, cross-references
 
+### Phase 8: Method-Level SLAM Expansion and Coverage Audit
+- **Method:** Parallel web-search agents audited LiDAR, visual, dense/RGB-D, LiDAR-visual-inertial, radar, registration, loop-closure, and backend SLAM coverage against the existing method library
+- **Output:** Dedicated [GLIM](technology/localization/slam/glim.md) method file plus [SLAM Coverage Audit and Backlog](technology/localization/slam/coverage-audit-2026.md), with P0/P1/P2 missing-method queues and source links
+
 ## Quality Controls
 
 1. **Spec Review:** Design specification reviewed by automated spec-review agent with factual corrections
@@ -54,6 +58,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 3. **Cross-Referencing:** Synthesis documents cross-reference each other and the detailed research
 4. **Source Attribution:** Each research document includes a Sources section with paper references, URLs, and datasets
 5. **Direct Verification:** Aurrigo tech stack analyzed from actual source code, not secondary sources
+6. **Coverage Audits:** Broad method libraries now include explicit backlog documents for missing first-class pages, starting with SLAM
 
 ## Limitations
 
@@ -67,12 +72,12 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 300 |
-| Reader pages | 304 |
+| Core research documents | 302 |
+| Reader pages | 306 |
 | Total lines | ~221,000+ |
 | Research agents spawned | 100+ |
 | Companies researched | 21 |
-| Method-level SLAM files | 57 |
+| Method-level SLAM files | 59 |
 | Papers referenced | 400+ |
 | GitHub repos evaluated | 50+ |
 | API endpoints documented | 15+ |
