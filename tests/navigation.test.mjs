@@ -43,7 +43,11 @@ test('builds top navigation for the public portal', () => {
   assert.deepEqual(buildNav(), [
     { text: 'Home', link: '/' },
     { text: 'Index', link: '/INDEX/' },
-    { text: 'Synthesis', link: '/synthesis/master-synthesis' },
+    {
+      text: 'Autonomy Stack',
+      link: '/30-autonomy-stack/perception/overview/production-perception-systems'
+    },
+    { text: 'Synthesis', link: '/90-synthesis/master/master-synthesis' },
     { text: 'GitHub', link: 'https://github.com/kvynlim/industry-research' }
   ])
 })
@@ -54,13 +58,15 @@ test('builds sidebar groups from the existing repository folders', () => {
 
   assert.deepEqual(sectionNames, [
     'Start Here',
-    'Synthesis',
-    'Companies',
-    'Technology',
-    'Operations',
-    'Hardware',
-    'Foundations',
-    'Cross-Cutting'
+    'Knowledge Base',
+    'AV Platform',
+    'Autonomy Stack',
+    'Runtime Systems',
+    'Cloud Fleet',
+    'Safety Validation',
+    'Operations Domains',
+    'Industry Intel',
+    'Synthesis'
   ])
 
   const startHere = sidebar.find((section) => section.text === 'Start Here')
@@ -68,10 +74,6 @@ test('builds sidebar groups from the existing repository folders', () => {
   assert.ok(startHere.items.some((item) => item.link === '/INDEX/'))
   assert.ok(startHere.items.some((item) => item.link === '/GLOSSARY'))
   assert.ok(startHere.items.some((item) => item.link === '/METHODOLOGY'))
-
-  const technology = sidebar.find((section) => section.text === 'Technology')
-  assert.ok(technology.items.some((item) => item.text === 'World Models'))
-  assert.ok(technology.items.some((item) => item.text === 'Perception'))
 })
 
 test('does not include planning/spec files as public research pages', () => {
@@ -80,7 +82,18 @@ test('does not include planning/spec files as public research pages', () => {
 })
 
 test('required source directories exist before navigation is generated', () => {
-  for (const dir of ['companies', 'technology', 'operations', 'hardware', 'foundations', 'cross-cutting', 'synthesis']) {
+  for (const dir of [
+    '00-start-here',
+    '10-knowledge-base',
+    '20-av-platform',
+    '30-autonomy-stack',
+    '40-runtime-systems',
+    '50-cloud-fleet',
+    '60-safety-validation',
+    '70-operations-domains',
+    '80-industry-intel',
+    '90-synthesis'
+  ]) {
     assert.ok(fs.existsSync(path.join(repoRoot, dir)), `${dir} should exist`)
   }
 })
@@ -90,6 +103,6 @@ test('throws when required source directories are missing', () => {
 
   assert.throws(
     () => buildSidebar(missingRoot),
-    /Missing required documentation directory: synthesis/
+    /Missing required documentation directory: 10-knowledge-base/
   )
 })

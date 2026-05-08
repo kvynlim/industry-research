@@ -6,13 +6,15 @@ const configDir = path.dirname(fileURLToPath(import.meta.url))
 export const repoRoot = path.resolve(configDir, '..')
 
 const SECTION_ORDER = [
-  { dir: 'synthesis', text: 'Synthesis', collapsed: false },
-  { dir: 'companies', text: 'Companies', collapsed: true },
-  { dir: 'technology', text: 'Technology', collapsed: true },
-  { dir: 'operations', text: 'Operations', collapsed: true },
-  { dir: 'hardware', text: 'Hardware', collapsed: true },
-  { dir: 'foundations', text: 'Foundations', collapsed: true },
-  { dir: 'cross-cutting', text: 'Cross-Cutting', collapsed: true }
+  { dir: '10-knowledge-base', text: 'Knowledge Base', collapsed: true },
+  { dir: '20-av-platform', text: 'AV Platform', collapsed: true },
+  { dir: '30-autonomy-stack', text: 'Autonomy Stack', collapsed: true },
+  { dir: '40-runtime-systems', text: 'Runtime Systems', collapsed: true },
+  { dir: '50-cloud-fleet', text: 'Cloud Fleet', collapsed: true },
+  { dir: '60-safety-validation', text: 'Safety Validation', collapsed: true },
+  { dir: '70-operations-domains', text: 'Operations Domains', collapsed: true },
+  { dir: '80-industry-intel', text: 'Industry Intel', collapsed: true },
+  { dir: '90-synthesis', text: 'Synthesis', collapsed: false }
 ]
 
 const START_FILES = [
@@ -172,13 +174,11 @@ export function buildSidebar(root = repoRoot) {
 
   for (const section of SECTION_ORDER) {
     const items = buildDirectoryItems(root, section.dir)
-    if (items.length > 0) {
-      sidebar.push({
-        text: section.text,
-        collapsed: section.collapsed,
-        items
-      })
-    }
+    sidebar.push({
+      text: section.text,
+      collapsed: section.collapsed,
+      items
+    })
   }
 
   return sidebar
@@ -188,7 +188,11 @@ export function buildNav() {
   return [
     { text: 'Home', link: '/' },
     { text: 'Index', link: '/INDEX/' },
-    { text: 'Synthesis', link: '/synthesis/master-synthesis' },
+    {
+      text: 'Autonomy Stack',
+      link: '/30-autonomy-stack/perception/overview/production-perception-systems'
+    },
+    { text: 'Synthesis', link: '/90-synthesis/master/master-synthesis' },
     { text: 'GitHub', link: 'https://github.com/kvynlim/industry-research' }
   ]
 }

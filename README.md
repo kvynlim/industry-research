@@ -8,6 +8,10 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 ## Current Shape
 
+## Architecture
+
+The corpus is being organized as an end-to-end AV knowledge base: fundamentals, platform hardware, autonomy stack, runtime systems, cloud/fleet systems, safety validation, operations domains, industry intelligence, and synthesis.
+
 | Scope | Count |
 |-------|-------|
 | Reader pages | 362 |

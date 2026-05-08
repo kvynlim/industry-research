@@ -45,5 +45,5 @@ test('configures repository source links', () => {
 
 test('provides sidebar and top nav entries', () => {
   assert.ok(config.themeConfig.nav.some((item) => item.link === '/INDEX/'))
-  assert.ok(config.themeConfig.sidebar.some((section) => section.text === 'Technology'))
+  assert.ok(config.themeConfig.sidebar.some((section) => section.text === 'Autonomy Stack'))
 })
