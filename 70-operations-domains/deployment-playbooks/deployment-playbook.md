@@ -1716,12 +1716,12 @@ Update Procedures --> Collect Data (repeat)
 
 | Airport | Technology | Operator | Status | Key Learning |
 |---|---|---|---|---|
-| Cincinnati/Northern Kentucky (CVG) | Auto-DollyTug (Aurrigo) | CVG + airlines | Operational testing | 2,163 km over 3 weeks; 81.3% zero-disengagement mission rate; 13.2 km per disengagement |
-| Singapore Changi | Auto-DollyTug (Aurrigo) | Changi Airport Group | Phase 2 trials (at aircraft stand) | Rain-sensing algorithm validated to 50 mm/h; multi-phase testing approach |
-| Teesside International | Auto-DollyTug + passenger shuttle | Aurrigo | Testing from Jan 2026, airside from 2027 | World's first combined cargo + passenger autonomous airport vehicles |
+| Cincinnati/Northern Kentucky (CVG) | autonomous baggage/cargo tug (reference airside AV stack) | CVG + airlines | Operational testing | 2,163 km over 3 weeks; 81.3% zero-disengagement mission rate; 13.2 km per disengagement |
+| Singapore Changi | autonomous baggage/cargo tug (reference airside AV stack) | Changi Airport Group | Phase 2 trials (at aircraft stand) | Rain-sensing algorithm validated to 50 mm/h; multi-phase testing approach |
+| Teesside International | autonomous baggage/cargo tug + passenger shuttle | reference airside AV stack | Testing from Jan 2026, airside from 2027 | World's first combined cargo + passenger autonomous airport vehicles |
 | Amsterdam Schiphol | Autonomous baggage tug | Multiple trials | Advanced trials | Large hub complexity; mixed traffic management |
 | Dubai (DXB) | TractEasy autonomous tug | dnata + EasyMile | Level 3 operational, Level 4 from 2026 | Created new UAE regulatory framework for airport AV; GCAA collaboration |
-| East Midlands (UK) | Auto-DollyTug (Aurrigo) | Aurrigo | Ground handling license issued | Proving ground strategy before multi-site expansion |
+| East Midlands (UK) | autonomous baggage/cargo tug (reference airside AV stack) | reference airside AV stack | Ground handling license issued | Proving ground strategy before multi-site expansion |
 | Phoenix Sky Harbor | Waymo robotaxi (landside) | Waymo + PHX | Operational | Landside rideshare to terminal; different use case but demonstrates airport AV acceptance |
 
 ## Appendix C: Glossary

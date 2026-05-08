@@ -18,7 +18,7 @@
 10. [Fleet Telemetry and Monitoring](#10-fleet-telemetry-and-monitoring)
 11. [Storage and Cost Models](#11-storage-and-cost-models)
 12. [Integration with ML Training Pipeline](#12-integration-with-ml-training-pipeline)
-13. [Recommended Architecture for Aurrigo](#13-recommended-architecture-for-aurrigo)
+13. [Recommended Architecture for reference airside AV stack](#13-recommended-architecture-for-airside_av)
 14. [References](#14-references)
 
 ---
@@ -29,7 +29,7 @@ Fleet-scale data infrastructure is the single most important enabler for transit
 
 The data flywheel that powers companies like Tesla, Waymo, and comma.ai follows a consistent pattern: vehicles collect data in the field, interesting or problematic scenarios are identified and uploaded, data is processed and labeled, models are trained on the expanded dataset, improved models are deployed back to vehicles, and the cycle repeats. Tesla reported 8.3 billion FSD miles by early 2026, with shadow mode feeding a continuous data engine. Waymo operates 2,500+ robotaxis generating petabytes of driving data. comma.ai leverages its open-source fleet of 10,000+ devices for distributed data collection.
 
-For Aurrigo's airside operations, the data pipeline challenge has unique characteristics:
+For the reference airside AV stack's airside operations, the data pipeline challenge has unique characteristics:
 
 - **No public airside driving datasets exist.** Every frame of airside data has proprietary value.
 - **LiDAR-dominant perception** generates extreme data volumes (200+ GB/day per vehicle).
@@ -37,7 +37,7 @@ For Aurrigo's airside operations, the data pipeline challenge has unique charact
 - **Rare but safety-critical events** (near-misses, FOD encounters, jet blast exposure) must never be lost.
 - **Fleet size is growing.** The pipeline that works for 5 vehicles at one airport must scale to 100 vehicles across 10 airports.
 
-This document provides the complete architecture for a fleet data pipeline tailored to Aurrigo's ROS Noetic stack, RoboSense LiDAR sensors, and GTSAM localization system, with concrete cost projections and a phased deployment plan.
+This document provides the complete architecture for a fleet data pipeline tailored to the reference ROS Noetic airside stack, RoboSense LiDAR sensors, and GTSAM localization system, with concrete cost projections and a phased deployment plan.
 
 ---
 
@@ -45,7 +45,7 @@ This document provides the complete architecture for a fleet data pipeline tailo
 
 ### 2.1 LiDAR Point Clouds (Dominant Data Source)
 
-Aurrigo vehicles run 4-8 RoboSense sensors (RSHELIOS 32-beam and RSBP 16-beam). Each sensor generates PointCloud2 messages at 10 Hz.
+reference airside vehicles run 4-8 RoboSense sensors (RSHELIOS 32-beam and RSBP 16-beam). Each sensor generates PointCloud2 messages at 10 Hz.
 
 | Sensor Config | Points/Scan | Message Size | Rate | Per-Sensor/Hour | Per-Vehicle/Day (8h) |
 |---|---|---|---|---|---|
@@ -67,7 +67,7 @@ LZ4 achieves approximately 1.3-1.5x compression on point cloud data with near-ze
 
 ### 2.2 Camera Data (If Added)
 
-Aurrigo's current stack is LiDAR-only, but camera addition is under evaluation for VLA integration and thermal personnel detection.
+the reference airside AV stack's current stack is LiDAR-only, but camera addition is under evaluation for VLA integration and thermal personnel detection.
 
 | Camera Type | Resolution | Format | FPS | Per-Camera/Hour | Per-Vehicle/Day (8h, 6 cams) |
 |---|---|---|---|---|---|
@@ -311,7 +311,7 @@ rosbag record -j --lz4 \
 mcap convert input.bag output.mcap --compression zstd --compression-level 6
 ```
 
-**Compression benchmarks on Aurrigo-typical data:**
+**Compression benchmarks on reference airside AV stack-typical data:**
 
 | Method | Ratio (LiDAR) | Compress Speed | Decompress Speed | CPU Load |
 |---|---|---|---|---|
@@ -412,7 +412,6 @@ The primary data transfer mechanism is WiFi bulk upload when vehicles return to 
 ```bash
 # On-vehicle upload script (runs when WiFi detected at depot)
 #!/bin/bash
-UPLOAD_ENDPOINT="https://data-ingest.aurrigo.internal/api/v1/upload"
 BAG_DIR="/data/bags/pending"
 VEHICLE_ID=$(cat /etc/vehicle_id)
 
@@ -513,7 +512,7 @@ Vehicle WiFi Upload
 | S3 API compatibility | Full | Native |
 | Disaster recovery | Must implement | Built-in cross-region |
 
-**Recommendation for Aurrigo:** Start with MinIO on-premises at each airport depot for hot storage, with S3 as the archival tier. MinIO provides S3 API compatibility, so the pipeline code does not change when migrating between on-prem and cloud.
+**Recommendation for reference airside AV stack:** Start with MinIO on-premises at each airport depot for hot storage, with S3 as the archival tier. MinIO provides S3 API compatibility, so the pipeline code does not change when migrating between on-prem and cloud.
 
 ---
 
@@ -529,7 +528,7 @@ For autonomous vehicle data pipelines, DVC solves three critical problems:
 2. **Collaboration:** Multiple engineers can work on different dataset versions without conflict.
 3. **Storage efficiency:** DVC uses content-addressable storage, so duplicate data across versions is stored once.
 
-### 5.2 DVC Setup for Aurrigo
+### 5.2 DVC Setup for reference airside AV stack
 
 ```bash
 # Initialize DVC in the ML training repository
@@ -539,12 +538,11 @@ dvc init
 
 # Configure remote storage (MinIO with S3 API)
 dvc remote add -d minio-storage s3://airside-datasets
-dvc remote modify minio-storage endpointurl http://minio.aurrigo.internal:9000
 dvc remote modify minio-storage access_key_id ${MINIO_ACCESS_KEY}
 dvc remote modify minio-storage secret_access_key ${MINIO_SECRET_KEY}
 
 # For cloud backup
-dvc remote add s3-archive s3://aurrigo-airside-archive
+dvc remote add s3-archive s3://airside-airside-archive
 dvc remote modify s3-archive region eu-west-2
 ```
 
@@ -937,7 +935,7 @@ def batch_process_bags(
 
 ### 6.3 MCAP Format Migration
 
-MCAP is the default format for ROS 2 and is increasingly used for ROS 1 data archival due to its indexed random access, crash recovery, and superior compression. For Aurrigo's ROS Noetic bags, conversion to MCAP is recommended for the archival and training pipeline.
+MCAP is the default format for ROS 2 and is increasingly used for ROS 1 data archival due to its indexed random access, crash recovery, and superior compression. For the reference airside AV stack's ROS Noetic bags, conversion to MCAP is recommended for the archival and training pipeline.
 
 ```bash
 # Install tools
@@ -989,7 +987,7 @@ Bags are segmented into discrete scenarios for structured dataset organization:
 
 CREATE TABLE vehicles (
     vehicle_id      VARCHAR(32) PRIMARY KEY,
-    vehicle_type    VARCHAR(32) NOT NULL,  -- 'ADT3', 'STL2', 'POD', 'ACA1'
+    vehicle_type    VARCHAR(32) NOT NULL,  -- 'third-generation tug', 'small tug platform', 'POD', 'ACA1'
     sensor_config   JSONB NOT NULL,        -- LiDAR types, camera config
     created_at      TIMESTAMP DEFAULT NOW()
 );
@@ -1117,7 +1115,7 @@ GROUP BY l.annotator_id;
 | Tool | Type | 3D Support | Multi-LiDAR | Pre-labeling | Cost | Recommendation |
 |---|---|---|---|---|---|---|
 | CVAT | Open-source, self-hosted | 3D cuboids on PCD/PLY | Manual merge needed | Via API | Free | Good for small teams |
-| Segments.ai | Cloud platform | Native 3D, batch tracking | Supported | Built-in | $0.10-0.30/frame | **Recommended for Aurrigo** |
+| Segments.ai | Cloud platform | Native 3D, batch tracking | Supported | Built-in | $0.10-0.30/frame | **Recommended for reference airside AV stack** |
 | Scale AI | Managed service | Full pipeline | Native | Proprietary | $1-5/frame | For production-scale |
 | SUSTechPOINTS | Open-source | 3D boxes, strong UI | Limited | None | Free | Good for prototyping |
 | BasicAI | Cloud platform | 3D boxes, segmentation | Supported | Built-in | $0.15-0.40/frame | Alternative to Segments.ai |
@@ -1152,7 +1150,7 @@ Labeling every frame uniformly is wasteful. Active learning identifies the frame
 
 **ActiveAD (2025)** demonstrated that planning-oriented active learning achieves comparable end-to-end driving performance using only 30% of labeled data through uncertainty-based sample selection.
 
-**Practical active learning pipeline for Aurrigo:**
+**Practical active learning pipeline for reference airside AV stack:**
 
 ```python
 """Active learning frame selection for airside annotation prioritization."""
@@ -1659,7 +1657,7 @@ Airside datasets suffer from severe class imbalance: baggage tractors appear 100
 
 # Output: MQTT to fleet broker
 [[outputs.mqtt]]
-  servers = ["tcp://fleet-broker.aurrigo.internal:8883"]
+  servers = ["tcp://fleet-broker.airside_av.internal:8883"]
   topic_prefix = "fleet/${VEHICLE_ID}"
   tls_ca = "/etc/telegraf/ca.pem"
   tls_cert = "/etc/telegraf/client.pem"
@@ -1670,7 +1668,7 @@ Airside datasets suffer from severe class imbalance: baggage tractors appear 100
 [[outputs.influxdb_v2]]
   urls = ["http://localhost:8086"]
   token = "${INFLUXDB_TOKEN}"
-  organization = "aurrigo"
+  organization = "airside_av"
   bucket = "vehicle_telemetry"
 ```
 
@@ -1679,7 +1677,7 @@ Airside datasets suffer from severe class imbalance: baggage tractors appear 100
 ```json
 {
   "dashboard": {
-    "title": "Aurrigo Fleet Operations",
+    "title": "reference airside AV stack Fleet Operations",
     "panels": [
       {
         "title": "Fleet Map",
@@ -2053,7 +2051,7 @@ model-registry/
       "name": "pointpillars",
       "version": "1.1.0",
       "status": "production",
-      "deployed_to": ["ADT3-001", "ADT3-002", "ADT3-003", "STL2-001", "STL2-002"],
+      "deployed_to": ["third-generation tug-001", "third-generation tug-002", "third-generation tug-003", "small tug platform-001", "small tug platform-002"],
       "trained_on": "dataset-v1.2",
       "training_date": "2026-03-15",
       "metrics": {
@@ -2073,7 +2071,7 @@ model-registry/
 
 ---
 
-## 13. Recommended Architecture for Aurrigo
+## 13. Recommended Architecture for reference airside AV stack
 
 ### 13.1 Architecture Diagram
 

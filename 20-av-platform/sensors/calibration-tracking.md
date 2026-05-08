@@ -2,7 +2,7 @@
 
 **Date:** 2026-03-16
 **Analyst:** Perception Engineering Review
-**Source code verified against:** `/home/kvyn/aurrigo-ws/src/aurrigo_perception/`
+**Source code verified against:** `/home/kvyn/airside-ws/src/airside_perception/`
 
 ---
 
@@ -19,8 +19,8 @@
 **Code Integration Points:**
 
 The primary integration target is the `PointcloudAggregator` class in:
-- `/home/kvyn/aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_aggregator/src/PointcloudAggregator.cpp`
-- `/home/kvyn/aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_aggregator/include/aurrigo_pointcloud_aggregator/PointcloudAggregator.hpp`
+- `/home/kvyn/airside-ws/src/airside_perception/airside_pointcloud_aggregator/src/PointcloudAggregator.cpp`
+- `/home/kvyn/airside-ws/src/airside_perception/airside_pointcloud_aggregator/include/airside_pointcloud_aggregator/PointcloudAggregator.hpp`
 
 **Current state of the code:**
 
@@ -34,7 +34,7 @@ The 5 LiDARs are subscribed dynamically via topic array (lines 36-52, cpp). The 
    - Subscribes to the same 5 LiDAR topics as the Aggregator.
    - For each overlapping LiDAR pair (determined from static TF geometry at startup), crops both clouds to the overlap region using `pcl::CropBox`.
    - Runs `pcl::IterativeClosestPointWithNormals` at 1Hz on cropped overlap regions.
-   - Publishes registration error (translation norm, rotation angle) as `aurrigo_perception_msgs::CalibrationHealth`.
+   - Publishes registration error (translation norm, rotation angle) as `airside_perception_msgs::CalibrationHealth`.
 
 2. **Data structures needed:**
    ```cpp
@@ -69,7 +69,7 @@ The key practical consideration: ICP-based monitoring works well for *detecting*
 - Short-range overlap regions may have too few points. Mitigation: require minimum point count (e.g., 500 points) before running ICP.
 
 **Revised Implementation Plan:**
-1. Create `aurrigo_calibration_monitor` package with nodelet (1 week)
+1. Create `airside_calibration_monitor` package with nodelet (1 week)
 2. Implement overlap region detection from TF tree (2 days)
 3. Implement ICP-based registration monitoring at 1Hz (3 days)
 4. Add diagnostic publishing and alerting (2 days)
@@ -97,13 +97,13 @@ The key practical consideration: ICP-based monitoring works well for *detecting*
 
 The primary integration point is the RoboSense ROS driver (external package, not in the perception stack) and the Aggregator's timestamp handling:
 
-- `/home/kvyn/aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_aggregator/src/PointcloudAggregator.cpp` lines 96-101 (`cloudCallback`) -- currently stores raw message timestamps.
+- `/home/kvyn/airside-ws/src/airside_perception/airside_pointcloud_aggregator/src/PointcloudAggregator.cpp` lines 96-101 (`cloudCallback`) -- currently stores raw message timestamps.
 - Lines 121-128 (`update()`) -- uses `clouds_[i].header.stamp` for staleness computation: `double age = (now - clouds_[i].header.stamp).toSec()`.
 - Line 136 -- TF transform uses message timestamp for lookup: `pcl_ros::transformPointCloud(target_frame_, clouds_[i], transformed, *tf_buffer_)`.
 
 **Current timestamp flow:** The RS32 driver publishes `sensor_msgs::PointCloud2` with `header.stamp` set by ROS message arrival time (unless PTP is configured). The Aggregator trusts these timestamps for both staleness detection and TF lookup.
 
-**RoboSense RS32 PTP support confirmed:** According to RoboSense documentation, the RS-LiDAR-32 firmware versions after V1.7 support time mode configuration, including GPS (GPRMC + PPS) and PTP (IEEE 1588v2) synchronization. The RS-Ruby Plus (their higher-end model) explicitly supports both GPS and gPTP. The RS32's PTP support needs firmware version verification on Aurrigo's specific units.
+**RoboSense RS32 PTP support confirmed:** According to RoboSense documentation, the RS-LiDAR-32 firmware versions after V1.7 support time mode configuration, including GPS (GPRMC + PPS) and PTP (IEEE 1588v2) synchronization. The RS-Ruby Plus (their higher-end model) explicitly supports both GPS and gPTP. The RS32's PTP support needs firmware version verification on the reference airside AV stack's specific units.
 
 **Specific integration plan:**
 
@@ -121,7 +121,7 @@ The primary integration point is the RoboSense ROS driver (external package, not
 
 **Industry Reality Check:**
 
-PTP is universal in production AV stacks. Waymo, Zoox, Aurora, and Motional all use GPS-disciplined PTP. The practical benefit at Aurrigo's operating speeds (5-15 km/h) is modest: at 10 km/h, a 10ms sync error = 2.8cm spatial offset. This is within the LiDAR's own range accuracy (+-2cm for RS32). However, PTP becomes critical for:
+PTP is universal in production AV stacks. Waymo, Zoox, Aurora, and Motional all use GPS-disciplined PTP. The practical benefit at the reference airside AV stack's operating speeds (5-15 km/h) is modest: at 10 km/h, a 10ms sync error = 2.8cm spatial offset. This is within the LiDAR's own range accuracy (+-2cm for RS32). However, PTP becomes critical for:
 - Future camera/radar integration (cameras are timestamp-sensitive)
 - Moving object tracking accuracy (an aircraft at 20 km/h creates 5.5cm error per LiDAR per 10ms)
 - Regulatory/certification requirements (traceability of sensor timestamps)
@@ -163,9 +163,9 @@ The RoboSense community has reported mixed experiences with PTP on RS32 units --
 This builds directly on Rec #6 (Calibration Monitoring). The integration target is the same overlap region ICP infrastructure, extended with:
 
 - TF broadcaster to publish corrected transforms
-- `/home/kvyn/aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_aggregator/src/PointcloudAggregator.cpp` line 136 (`pcl_ros::transformPointCloud`) -- would benefit from corrected TF automatically
+- `/home/kvyn/airside-ws/src/airside_perception/airside_pointcloud_aggregator/src/PointcloudAggregator.cpp` line 136 (`pcl_ros::transformPointCloud`) -- would benefit from corrected TF automatically
 
-The current TF chain for each LiDAR is: `lidar_i_frame` -> `3d_base_lidar` (static transform from URDF calibration file at `/home/kvyn/aurrigo-ws/src/aurrigo_vehicle_description/config/<type>/<unit>.yaml`).
+The current TF chain for each LiDAR is: `lidar_i_frame` -> `3d_base_lidar` (static transform from URDF calibration file at `/home/kvyn/airside-ws/src/airside_vehicle_description/config/<type>/<unit>.yaml`).
 
 **Specific integration plan:**
 
@@ -225,14 +225,14 @@ The recommendation is to implement monitoring (Rec #6) first and defer automatic
 ### Rec #9: Interacting Multiple Model (IMM) Filter
 
 **Original Priority:** Critical
-**Revised Priority:** High (downgraded -- the existing 4-state CV Kalman already handles Aurrigo's low-speed domain reasonably well)
+**Revised Priority:** High (downgraded -- the existing 4-state CV Kalman already handles the reference airside AV stack's low-speed domain reasonably well)
 **Feasibility Verdict:** FEASIBLE WITH MODIFICATIONS
 
 **Code Integration Points:**
 
 The tracker lives in:
-- `/home/kvyn/aurrigo-ws/src/aurrigo_perception/aurrigo_polygon_detector/src/kalman_tracker.cpp`
-- `/home/kvyn/aurrigo-ws/src/aurrigo_perception/aurrigo_polygon_detector/include/aurrigo_polygon_detector/kalman_tracker.hpp`
+- `/home/kvyn/airside-ws/src/airside_perception/airside_polygon_detector/src/kalman_tracker.cpp`
+- `/home/kvyn/airside-ws/src/airside_perception/airside_polygon_detector/include/airside_polygon_detector/kalman_tracker.hpp`
 
 **Current Kalman architecture (verified from source):**
 
@@ -488,8 +488,8 @@ for (size_t i = 0; i < trackers_.size(); ++i) {
 **Code Integration Points:**
 
 The ULD tracking code is in:
-- `/home/kvyn/aurrigo-ws/src/aurrigo_perception/aurrigo_uld_detection/src/UldDetection.cpp`
-- `/home/kvyn/aurrigo-ws/src/aurrigo_perception/aurrigo_uld_detection/include/aurrigo_uld_detection/UldDetection.h`
+- `/home/kvyn/airside-ws/src/airside_perception/airside_uld_detection/src/UldDetection.cpp`
+- `/home/kvyn/airside-ws/src/airside_perception/airside_uld_detection/include/airside_uld_detection/UldDetection.h`
 
 **Current ULD tracking architecture (verified from source):**
 

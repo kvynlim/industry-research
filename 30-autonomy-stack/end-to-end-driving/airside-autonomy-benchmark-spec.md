@@ -258,4 +258,3 @@ Each evaluation run should emit:
 - [Bench2Drive project page](https://thinklab-sjtu.github.io/Bench2Drive/)
 - [Bench2Drive paper](https://arxiv.org/abs/2406.03877)
 - [CARLA Leaderboard](https://leaderboard.carla.org/)
-- [Aurrigo Auto-Sim Gerald R. Ford Airport digital twin announcement](https://aurrigo.com/aurrigo-is-creating-a-digital-twin-of-a-us-airport-that-will-explore-the-viability-of-introducing-autonomous-solutions-to-airside-operations/)

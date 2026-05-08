@@ -263,7 +263,7 @@ Navigation uses:
 ### 5.2 Deployment at a New Airport
 
 ```
-Traditional approach (TractEasy/Aurrigo):
+Traditional approach (TractEasy/reference airside AV stack):
   Week 1-4: Site survey, map creation
   Week 4-8: Waypoint authoring, route programming
   Week 8-12: Testing, tuning, validation
@@ -330,7 +330,7 @@ Airports have standardized markings (ICAO Annex 14, FAA AC 150/5340-1M):
 | **Construction handling** | Map becomes stale | Detected by perception + NOTAM |
 | **Risk** | Low (proven, deterministic) | Medium (learned, probabilistic) |
 
-**Recommendation:** Start with HD map approach (proven, what Aurrigo already does). Develop map-lite capability in parallel. Transition when world model accuracy is validated. Keep HD map as fallback.
+**Recommendation:** Start with HD map approach (proven, what reference airside AV stack already does). Develop map-lite capability in parallel. Transition when world model accuracy is validated. Keep HD map as fallback.
 
 ---
 

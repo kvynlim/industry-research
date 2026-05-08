@@ -42,7 +42,7 @@
 
 Research models run on A100/H100 GPUs with 40-80GB HBM and 300-700W TDP. NVIDIA Orin AGX provides 275 TOPS at 15-60W with 64GB unified memory. The **10-30x compute gap** requires systematic compression.
 
-### 1.2 Aurrigo Orin Compute Budget
+### 1.2 reference airside AV stack Orin Compute Budget
 
 ```
 Available: 275 TOPS (INT8), 138 TFLOPS (FP16), 32GB or 64GB unified memory
@@ -361,7 +361,7 @@ Teacher: Camera + LiDAR multi-modal model (BEVFusion)
          - Uses 6 cameras + 4 LiDAR for training
          - Rich texture + depth information
 Student: LiDAR-only model (FlatFormer)
-         - Deployed with LiDAR only (Aurrigo's sensor suite)
+         - Deployed with LiDAR only (the reference airside AV stack's sensor suite)
          - Inherits camera-informed features without camera at inference
 
 Benefit: LiDAR model learns texture-aware features from camera teacher
@@ -827,7 +827,7 @@ public:
         allocateBuffers();
         
         // ROS interface
-        sub_ = nh.subscribe("/aurrigo/lidar/aggregated", 1,
+        sub_ = nh.subscribe("/airside_av/lidar/aggregated", 1,
                            &TrtInferenceNode::callback, this);
         pub_ = nh.advertise<perception_msgs::SemanticPointCloud>(
                "/perception/segmentation", 1);

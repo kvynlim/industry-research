@@ -259,9 +259,9 @@ Sources:
 - [EasyMile -- How It Works](https://easymile.com/technology/how-it-works)
 - [EasyMile Safety Report 2023](https://easymile.com/sites/default/files/easymile_safety_report_2023_1.pdf)
 
-### 4.2 Aurrigo (Auto-DollyTug, Auto-Cargo, Auto-Dolly)
+### 4.2 reference airside AV stack (autonomous baggage/cargo tug, autonomous cargo vehicle, autonomous baggage dolly)
 
-**Overview:** UK-based company with autonomous airside vehicles now operational at six airports. Recently won a global aviation prize for the Auto-DollyTug.
+**Overview:** UK-based company with autonomous airside vehicles now operational at six airports. Recently won a global aviation prize for the autonomous baggage/cargo tug.
 
 **Sensor Suite:**
 - LiDAR sensors
@@ -270,22 +270,19 @@ Sources:
 - Sensor fusion combining all inputs into unified perception
 
 **Safety Architecture:**
-- **Auto-Stack** autonomous driving software controlling steering, braking, drive power, sensor integration, safety, localization, and navigation
+- **autonomy stack** autonomous driving software controlling steering, braking, drive power, sensor integration, safety, localization, and navigation
 - Obstacle detection with sensor fusion creating a "safety bubble" -- when objects enter this zone, the system determines how to react
 - Wheel covers to protect pedestrians from wheel contact
 - Safety operator present during testing phases
 - 360-degree tank turn capability and sideways drive reduce manoeuvring in tight spaces, reducing collision risk
 
-**Auto-DollyTug Specifications:**
+**autonomous baggage/cargo tug Specifications:**
 - Carries 1 ULD on board while towing up to 4 ULDs
 - Bi-directional robotic arms for autonomous loading/unloading
 - End-to-end autonomous solution (world's first)
 - Currently testing at Amsterdam Schiphol with KLM
 
 Sources:
-- [Aurrigo Aviation](https://aurrigo.com/airport/)
-- [Aurrigo Auto-DollyTug Breakthrough](https://aurrigo.com/aurrigos-smart-airside-solution-wins-global-aviation-prize-with-auto-dollytug-breakthrough/)
-- [Auto-DollyTug at Schiphol](https://aurrigo.com/auto-dollytug-aims-to-streamline-baggage-transfer-with-schiphol/)
 
 ### 4.3 UISEE
 
@@ -864,7 +861,6 @@ Based on the research above, a comprehensive ground crew safety system should in
 ### Autonomous GSE Deployments
 - [TractEasy](https://tracteasy.com/)
 - [EasyMile](https://easymile.com/technology/how-it-works)
-- [Aurrigo Aviation](https://aurrigo.com/airport/)
 - [UISEE Airports](https://www.uisee.com/en/solution-airports.html)
 - [UISEE -- Changi Partnership](https://www.uisee.com/en/article226-news1.html)
 - [Future Travel Experience -- Changi Deployment](https://www.futuretravelexperience.com/2026/01/changi-airport-deploys-autonomous-tractors-in-major-step-towards-airside-automation/)

@@ -2,7 +2,7 @@
 
 ## Complete Technical Analysis for Airport Autonomous Vehicle Deployment
 
-This document provides a detailed technical breakdown of ISO 3691-4:2020 and its 2023 revision -- the primary safety standard used by TractEasy (EasyMile/TLD) and Aurrigo for autonomous vehicle deployment at airports. It supplements the overview in [certification-guide.md](certification-guide.md) with clause-level detail, exact Performance Level requirements, audit procedures, and practical guidance for handling AI/ML components under a standard not originally designed for them.
+This document provides a detailed technical breakdown of ISO 3691-4:2020 and its 2023 revision -- the primary safety standard used by TractEasy (EasyMile/TLD) and reference airside AV stack for autonomous vehicle deployment at airports. It supplements the overview in [certification-guide.md](certification-guide.md) with clause-level detail, exact Performance Level requirements, audit procedures, and practical guidance for handling AI/ML components under a standard not originally designed for them.
 
 ---
 
@@ -19,7 +19,7 @@ This document provides a detailed technical breakdown of ISO 3691-4:2020 and its
 9. [Notified Bodies and Assessment Organizations](#9-notified-bodies-and-assessment-organizations)
 10. [Cost Breakdown and Timeline](#10-cost-breakdown-and-timeline)
 11. [How TractEasy Meets the Requirements](#11-how-tracteasy-meets-the-requirements)
-12. [How Aurrigo Meets the Requirements](#12-how-aurrigo-meets-the-requirements)
+12. [How reference airside AV stack Meets the Requirements](#12-how-airside-meets-the-requirements)
 13. [Differences Between 2020 and 2023 Editions](#13-differences-between-2020-and-2023-editions)
 14. [Required Documentation Package](#14-required-documentation-package)
 15. [Handling AI/ML Components Under ISO 3691-4](#15-handling-aiml-components-under-iso-3691-4)
@@ -49,7 +49,7 @@ This document provides a detailed technical breakdown of ISO 3691-4:2020 and its
 - Autonomous mobile robots (AMRs)
 - Automated guided carts (AGCs)
 - Autonomous tow tractors (e.g., TractEasy EZTow)
-- Autonomous baggage dollies (e.g., Aurrigo Auto-DollyTug)
+- Autonomous baggage dollies (e.g., reference airside AV stack autonomous baggage/cargo tug)
 - Tunnel tuggers, under carts, and similar driverless platforms
 - Vehicles with automatic modes, rider transport capability, and maintenance modes
 
@@ -592,15 +592,15 @@ EasyMile's autonomous driving stack implements a layered safety approach:
 
 ---
 
-## 12. How Aurrigo Meets the Requirements
+## 12. How reference airside AV stack Meets the Requirements
 
 ### Company Background
-Aurrigo International is a UK-based autonomous vehicle company specializing in aviation ground support. Their key products:
-- **Auto-Dolly**: Autonomous baggage dolly with bi-directional movement
-- **Auto-DollyTug**: Autonomous tug with ULD loading/unloading capability and dolly towing
+reference airside AV vendor is a UK-based autonomous vehicle company specializing in aviation ground support. Their key products:
+- **autonomous baggage dolly**: Autonomous baggage dolly with bi-directional movement
+- **autonomous baggage/cargo tug**: Autonomous tug with ULD loading/unloading capability and dolly towing
 
 ### Certification Approach
-Aurrigo's certification information is less publicly detailed than TractEasy's, but based on available information:
+the reference airside AV stack's certification information is less publicly detailed than TractEasy's, but based on available information:
 
 - Products are designed to comply with applicable safety standards for deployment at airports
 - Safety validation through extensive phased trial programs at airports
@@ -619,7 +619,7 @@ Aurrigo's certification information is less publicly detailed than TractEasy's, 
 - Rules-based safety system ensuring compliance with operational requirements
 - Obstacle detection with multi-mode response (stop, speed reduction, lane change)
 - Real-time environment mapping and route following
-- Auto-Connect fleet management platform for scheduling and monitoring
+- fleet integration platform fleet management platform for scheduling and monitoring
 
 ### Airport Deployments and Testing Phases
 
@@ -633,12 +633,12 @@ Aurrigo's certification information is less publicly detailed than TractEasy's, 
 
 **Testing Methodology:**
 - Phase 2A: Vehicle operations in wet weather, heat, humidity; baggage transfer and close-quarter maneuvers at aircraft stands
-- Phase 2B: Fleet communication testing via Auto-Connect platform; scheduling and monitoring for wide-body flight turnaround
+- Phase 2B: Fleet communication testing via fleet integration platform platform; scheduling and monitoring for wide-body flight turnaround
 - Progressive autonomy: currently with safety driver; moving toward fully driverless operations
 
 ### Compliance Path
 
-Aurrigo's approach to ISO 3691-4 compliance appears to follow a deployment-validation model:
+the reference airside AV stack's approach to ISO 3691-4 compliance appears to follow a deployment-validation model:
 1. Design vehicle with safety systems informed by the standard's requirements
 2. Deploy with safety driver during trial phases
 3. Collect operational data demonstrating safety performance
@@ -810,7 +810,7 @@ ISO 3691-4 was written with deterministic safety systems in mind. Its Performanc
 - **Binary fault detection**: Faults can be detected and the system brought to a safe state
 - **Architecture categories**: Hardware redundancy patterns (Cat 1-4) assume conventional components
 
-Modern autonomous vehicles (including TractEasy and Aurrigo) use AI/ML components that violate these assumptions:
+Modern autonomous vehicles (including TractEasy and reference airside AV stack) use AI/ML components that violate these assumptions:
 - **Neural networks** for object detection and classification are non-deterministic
 - **Learned perception models** have opaque failure modes that cannot be enumerated via FMEA
 - **Distribution shift** means real-world inputs may differ from training data
@@ -996,7 +996,7 @@ Autonomous AGVs/AMRs using AI for navigation and perception will almost certainl
 
 ## Key Takeaways for Airport AV Development
 
-1. **ISO 3691-4 is the right standard** for autonomous tow tractors and baggage vehicles at airports -- both TractEasy and Aurrigo reference it for their deployments.
+1. **ISO 3691-4 is the right standard** for autonomous tow tractors and baggage vehicles at airports -- both TractEasy and reference airside AV stack reference it for their deployments.
 
 2. **PLd for braking and personnel detection is confirmed** -- these are the most critical safety functions requiring high-reliability dual-channel architectures.
 

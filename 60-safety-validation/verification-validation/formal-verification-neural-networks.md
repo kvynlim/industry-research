@@ -6,7 +6,7 @@
 
 ---
 
-> **Key Takeaway:** Formal verification of neural networks provides mathematical guarantees about the behavior of learned components -- guarantees that testing alone cannot supply. For Aurrigo's airside AV stack, the critical question is not whether to verify neural networks (regulatory pressure from ISO 3691-4, UL 4600, the EU AI Act, and the 2027 EU Machinery Regulation makes this inevitable) but which components to verify, to what degree, and with which methods. Complete verification (SMT/MILP) can prove exact properties but scales only to networks under ~100K parameters. Over-approximation methods (alpha-beta-CROWN, DeepPoly, PRIMA) scale to millions of parameters but provide conservative bounds. Certified training (IBP, SABR) builds robustness into the model from the start. The practical strategy for Aurrigo is a layered approach: formally verify small safety-critical components (policy networks, CBF approximators, Simplex decision modules) with complete methods; certify robustness of perception backbones (PointPillars, CenterPoint) with scalable bound propagation; and complement both with runtime verification monitors that catch what static analysis misses. This layered verification strategy directly maps onto the existing Simplex architecture and defense-in-depth philosophy.
+> **Key Takeaway:** Formal verification of neural networks provides mathematical guarantees about the behavior of learned components -- guarantees that testing alone cannot supply. For the reference airside AV stack's airside AV stack, the critical question is not whether to verify neural networks (regulatory pressure from ISO 3691-4, UL 4600, the EU AI Act, and the 2027 EU Machinery Regulation makes this inevitable) but which components to verify, to what degree, and with which methods. Complete verification (SMT/MILP) can prove exact properties but scales only to networks under ~100K parameters. Over-approximation methods (alpha-beta-CROWN, DeepPoly, PRIMA) scale to millions of parameters but provide conservative bounds. Certified training (IBP, SABR) builds robustness into the model from the start. The practical strategy for reference airside AV stack is a layered approach: formally verify small safety-critical components (policy networks, CBF approximators, Simplex decision modules) with complete methods; certify robustness of perception backbones (PointPillars, CenterPoint) with scalable bound propagation; and complement both with runtime verification monitors that catch what static analysis misses. This layered verification strategy directly maps onto the existing Simplex architecture and defense-in-depth philosophy.
 
 ---
 
@@ -229,7 +229,7 @@ The entire network becomes a MILP with:
 
 ### 3.3 Practical Application: Verifying Airside Decision Networks
 
-Complete methods are practical for small, safety-critical decision networks in the Aurrigo stack:
+Complete methods are practical for small, safety-critical decision networks in the reference airside AV stack:
 
 **Simplex decision module:** The module that decides whether to switch from the neural AC (advanced controller) to the classical BC (baseline controller) is a small network (typically <1K neurons) that can be fully verified:
 
@@ -624,7 +624,7 @@ Training networks with explicit Lipschitz constraints produces models that are b
 
 **Orthogonal layers (Li et al., 2019):** Constrain weight matrices to be orthogonal (||W||_2 = 1 exactly), preserving information flow while bounding Lipschitz constant to 1 per layer.
 
-**Practical strategy for Aurrigo:**
+**Practical strategy for reference airside AV stack:**
 
 | Component | Target Lipschitz | Method | Accuracy Impact |
 |-----------|-----------------|--------|-----------------|
@@ -672,7 +672,7 @@ Static verification and runtime verification (see `60-safety-validation/runtime-
 | **Finds** | Input regions with guaranteed violations | Actual violations at runtime |
 | **Regulatory value** | Design evidence (ISO 26262 Pt 6) | Operational evidence (UL 4600 Cl 7.6) |
 
-### 7.2 The Verification Hierarchy for Aurrigo
+### 7.2 The Verification Hierarchy for reference airside AV stack
 
 The recommended layered approach, from strongest to weakest guarantees:
 
@@ -735,7 +735,7 @@ This is precisely the defense-in-depth philosophy described in `60-safety-valida
 
 ### 8.1 Model Inventory
 
-The Aurrigo stack deploys the following neural network components on NVIDIA Orin (see `20-av-platform/compute/nvidia-orin-technical.md`):
+The reference airside AV stack deploys the following neural network components on NVIDIA Orin (see `20-av-platform/compute/nvidia-orin-technical.md`):
 
 | Component | Architecture | Parameters | Layers | ReLU Neurons | Verifiable? |
 |-----------|-------------|-----------|--------|-------------|-------------|
@@ -893,7 +893,7 @@ forall s in S : |f_plan(s).curvature| <= kappa_max  AND
                 |f_plan(s).jerk| <= j_max
 ```
 
-For the Aurrigo ADT3 (Ackermann, min turning radius ~6m): kappa_max = 1/6 = 0.167 m^-1.
+For the reference airside AV stack third-generation tug (Ackermann, min turning radius ~6m): kappa_max = 1/6 = 0.167 m^-1.
 
 **Property 2 -- Minimum clearance:**
 ```
@@ -925,11 +925,11 @@ Verify: forall x in X\{0} :
     nabla_V(x) . f(x, pi(x)) < -alpha * V(x)   for some alpha > 0
 ```
 
-**dReal (Gao et al., 2013):** An SMT solver over the reals with delta-decidability, capable of handling nonlinear dynamics (transcendental functions). Suitable for verifying neural Lyapunov functions when the dynamics include trigonometric terms (as in the bicycle kinematic model used by Aurrigo).
+**dReal (Gao et al., 2013):** An SMT solver over the reals with delta-decidability, capable of handling nonlinear dynamics (transcendental functions). Suitable for verifying neural Lyapunov functions when the dynamics include trigonometric terms (as in the bicycle kinematic model used by reference airside AV stack).
 
 **Verification of the bicycle model controller:**
 
-The Aurrigo vehicles use a Stanley lateral controller. If a neural controller replaces or augments Stanley, verification can establish:
+The reference airside vehicles use a Stanley lateral controller. If a neural controller replaces or augments Stanley, verification can establish:
 
 ```
 forall (e_y, e_psi, v) in S_operate:
@@ -972,7 +972,7 @@ This is strictly harder than single-task verification because the joint certifie
 | **dReal** | delta-SMT | Nonlinear dynamics + NN | ~10K params | No | Apache 2.0 | Research |
 | **Certified Patch Robustness** | Randomized smoothing | Any (black-box) | Unlimited | Yes | Various | Research |
 
-### 10.2 auto_LiRPA: Primary Tool for Aurrigo
+### 10.2 auto_LiRPA: Primary Tool for reference airside AV stack
 
 auto_LiRPA (Automatic Linear Relaxation based Perturbation Analysis) is the recommended primary verification tool for several reasons:
 
@@ -1194,7 +1194,7 @@ class VerificationSafetyNode:
         # Load verification certificates (generated offline)
         cert_path = rospy.get_param(
             '~certificate_path',
-            '/home/aurrigo/aurrigo-ws/config/verification_certificates.json'
+            '/home/airside_av/airside-ws/config/verification_certificates.json'
         )
         self.certificates = self._load_certificates(cert_path)
         
@@ -1401,7 +1401,7 @@ if __name__ == '__main__':
 
 ### 11.1 Verification in the Defense-in-Depth Stack
 
-Formal verification slots into Aurrigo's existing defense-in-depth architecture as the design-time complement to runtime safeguards:
+Formal verification slots into the reference airside AV stack's existing defense-in-depth architecture as the design-time complement to runtime safeguards:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -1630,7 +1630,7 @@ Breakeven: verification pays for itself if it prevents even a single safety inci
 
 10. **Verification should be integrated into CI/CD.** Every model update should automatically re-verify safety properties. The automated pipeline (Phase 4) ensures verification is not a one-time activity but a continuous assurance process.
 
-11. **auto_LiRPA is the recommended primary tool** for Aurrigo's verification needs: PyTorch-native, GPU-accelerated, supports certified training, and is actively maintained by the VNN-COMP-winning team.
+11. **auto_LiRPA is the recommended primary tool** for the reference airside AV stack's verification needs: PyTorch-native, GPU-accelerated, supports certified training, and is actively maintained by the VNN-COMP-winning team.
 
 12. **No public verification benchmarks exist for airside AV models.** Creating verified airside perception models with published certificates would be a significant competitive advantage -- both for certification and for customer trust.
 

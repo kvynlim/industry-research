@@ -10,7 +10,7 @@
 7. [TSN for Multi-Sensor Fusion](#7-tsn-for-multi-sensor-fusion)
 8. [CAN-to-Ethernet Gateway Architecture](#8-can-to-ethernet-gateway-architecture)
 9. [5G TSN Integration for V2X](#9-5g-tsn-integration-for-v2x)
-10. [In-Vehicle Network Architecture for Aurrigo](#10-in-vehicle-network-architecture-for-aurrigo)
+10. [In-Vehicle Network Architecture for reference airside AV stack](#10-in-vehicle-network-architecture-for-airside_av)
 11. [Functional Safety and TSN](#11-functional-safety-and-tsn)
 12. [Production Deployments and Case Studies](#12-production-deployments-and-case-studies)
 13. [Implementation Roadmap](#13-implementation-roadmap)
@@ -23,7 +23,7 @@
 
 ### 1.1 The Networking Gap in Autonomous GSE
 
-Aurrigo's current in-vehicle network architecture relies on:
+the reference airside AV stack's current in-vehicle network architecture relies on:
 - **CAN bus** (ISO 11898): Vehicle control, actuators, safety signals — 500 kbps to 1 Mbps
 - **Ethernet** (standard, non-deterministic): LiDAR point clouds, compute interconnect — 1 Gbps
 - **Two separate domains** with no unified timing or priority management
@@ -176,7 +176,7 @@ TRADITIONAL (Domain):               ZONAL with TSN:
 | 10GBASE-T1 | 10 Gbps | Single UTP pair | 15m | Announced (Marvell) | $15-30 |
 | Standard Ethernet (1000BASE-T) | 1 Gbps | Cat5e/Cat6 | 100m | No (consumer-grade) | $1-3 |
 
-**For Aurrigo**: 1000BASE-T1 is the optimal choice — sufficient bandwidth for LiDAR point clouds (each RoboSense at ~100 Mbps), automotive-grade, single-pair wiring reduces cable weight and connector count.
+**For reference airside AV stack**: 1000BASE-T1 is the optimal choice — sufficient bandwidth for LiDAR point clouds (each RoboSense at ~100 Mbps), automotive-grade, single-pair wiring reduces cable weight and connector count.
 
 ### 3.3 Bandwidth Requirements Analysis
 
@@ -198,10 +198,10 @@ A 1 Gbps TSN backbone is sufficient for compressed sensor data. 2.5 Gbps provide
 
 ## 4. CAN Bus Limitations and Migration
 
-### 4.1 CAN Bus in Current Aurrigo Stack
+### 4.1 CAN Bus in Current reference airside AV stack Stack
 
 ```
-Current Aurrigo CAN Architecture (estimated):
+Current reference airside AV stack CAN Architecture (estimated):
 
   CAN Bus 1 (Safety, 500 kbps):
   ├── Safety MCU (STM32H725)
@@ -210,7 +210,7 @@ Current Aurrigo CAN Architecture (estimated):
   └── Speed limiter
 
   CAN Bus 2 (Drive, 500 kbps):
-  ├── Steering actuator (ADT3: Ackermann + crab)
+  ├── Steering actuator (third-generation tug: Ackermann + crab)
   ├── Drive motor controller
   ├── Brake controller
   └── Wheel odometry encoder
@@ -250,7 +250,7 @@ CAN FD (Flexible Data-rate) extends CAN while maintaining backward compatibility
 | Redundancy | None | None | FRER (802.1CB) |
 | Backward compatible | — | With CAN | Requires gateway |
 
-**CAN FD verdict for Aurrigo**: Useful upgrade for actuator control (8x payload, 8x speed), but does not solve the fundamental problems of no clock sync, no deterministic scheduling, and no redundancy. CAN FD is a tactical improvement; TSN is the strategic solution.
+**CAN FD verdict for reference airside AV stack**: Useful upgrade for actuator control (8x payload, 8x speed), but does not solve the fundamental problems of no clock sync, no deterministic scheduling, and no redundancy. CAN FD is a tactical improvement; TSN is the strategic solution.
 
 ---
 
@@ -318,7 +318,7 @@ Benefit: Worst-case SC latency drops from 12 μs to <1 μs
 
 ```python
 """
-TSN Gate Control List configuration for Aurrigo airside AV.
+TSN Gate Control List configuration for a reference airside AV.
 Uses tc (traffic control) on Linux with TAPRIO qdisc.
 """
 
@@ -408,7 +408,7 @@ def configure_vlan_priorities():
 
 ### 6.1 Why Sub-Microsecond Synchronization Matters
 
-Current Aurrigo sensor synchronization relies on software timestamps:
+Current reference airside AV stack sensor synchronization relies on software timestamps:
 
 | Method | Accuracy | Problem |
 |---|---|---|
@@ -455,7 +455,7 @@ Synchronization process (Peer-to-Peer):
 Result: All nodes within <100 ns of Grandmaster clock
 ```
 
-### 6.3 Benefits for Aurrigo Sensor Fusion
+### 6.3 Benefits for reference airside AV stack Sensor Fusion
 
 ```python
 """
@@ -793,7 +793,7 @@ During migration from CAN to TSN Ethernet, a gateway bridges the two domains:
 | R-Car S4 | Renesas | 16 CAN FD | 8× 1GbE TSN | Full | $40-60 | Gateway-focused SoC |
 | Custom (Xilinx) | AMD/Xilinx | FPGA-based | FPGA-based | Configurable | $50-100 | Maximum flexibility |
 
-**Recommendation for Aurrigo**: NXP S32G3 — best combination of CAN FD port count, TSN support, ASIL D capability, and automotive ecosystem support. The GoldVIP software platform provides pre-certified CAN-Ethernet gateway functionality.
+**Recommendation for reference airside AV stack**: NXP S32G3 — best combination of CAN FD port count, TSN support, ASIL D capability, and automotive ecosystem support. The GoldVIP software platform provides pre-certified CAN-Ethernet gateway functionality.
 
 ### 8.3 Migration Phases
 
@@ -885,13 +885,13 @@ End-to-end path: Vehicle LiDAR detection → Fleet emergency broadcast
 
 ---
 
-## 10. In-Vehicle Network Architecture for Aurrigo
+## 10. In-Vehicle Network Architecture for reference airside AV stack
 
 ### 10.1 Proposed TSN Architecture
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│           AURRIGO GSE — TSN NETWORK ARCHITECTURE             │
+│           REFERENCE AIRSIDE AV STACK GSE — TSN NETWORK ARCHITECTURE             │
 │                                                              │
 │  ┌────────────┐  ┌────────────┐  ┌────────────┐            │
 │  │ LiDAR ×6   │  │ Camera ×4  │  │ Radar ×2   │            │

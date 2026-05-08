@@ -136,7 +136,7 @@ The P0 rows below were promoted into first-class research files by seven writing
 | Safety | `60-safety-validation/cybersecurity/cybersecurity-airside-av.md` | Extend with CSMS/SUMS evidence matrix, SBOM ownership, vulnerability reporting, red-team cadence, SOC exercises. |
 | Safety | `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md` | Extend with monitor qualification, threshold calibration, WCET proof, false-positive/false-negative acceptance, monitor failure handling. |
 | Safety | `60-safety-validation/standards-certification/airside-agvs-regulatory-approval-playbook.md` | FAA, EASA/ICAO, CAAS/TR68 approval path for airside AGVS deployments. |
-| Operations/industry | Airside refresh set | Update airside industry, regulatory trajectory, Aurrigo production deployment, and TractEasy production deployment for 2024-2026 changes. |
+| Operations/industry | Airside refresh set | Update airside industry, regulatory trajectory, reference airside AV stack production deployment, and TractEasy production deployment for 2024-2026 changes. |
 | Operations/industry | `70-operations-domains/deployment-playbooks/generic-site-onboarding-checklist.md` | Generic AV site onboarding checklist with domain overlays. |
 | Operations/industry | `80-industry-intel/deployments/2024-2026-autonomy-deployment-index.md` | Neutral deployment ledger by domain, site, vehicle type, autonomy level, safety operator status, regulatory basis, and source date. |
 

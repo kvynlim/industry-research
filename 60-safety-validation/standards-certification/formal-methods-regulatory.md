@@ -19,24 +19,24 @@ Unlike road vehicles (governed by national highway codes and type-approval regul
 
 2. **IATA AHM (Airport Handling Manual), 45th Edition (2025)** -- AHM 908 now includes explicit provisions for autonomous vehicle operations airside, including risk assessment toolbox, sensor failure notification protocols, and categories for equipment with/without human involvement. This is the most directly applicable industry standard.
 
-3. **UK CAA / Airports (Ground Handling) Regulations 1997** -- Under the Civil Aviation Act 2012, the CAA grants ground handling licences. Aurrigo holds a licence at East Midlands Airport (valid to June 2026) under this framework. The CAA's CAP 790 governs airside driving permits but does not yet address autonomous operations specifically.
+3. **UK CAA / Airports (Ground Handling) Regulations 1997** -- Under the Civil Aviation Act 2012, the CAA grants ground handling licences. reference airside AV stack holds a licence at East Midlands Airport (valid to June 2026) under this framework. The CAA's CAP 790 governs airside driving permits but does not yet address autonomous operations specifically.
 
 4. **EASA** -- Currently focused on airborne AI trustworthiness (NPA 2025-07) and Innovative Air Mobility (VTOL). No specific regulation for autonomous ground vehicles airside exists yet. EASA's AI regulatory framework (RMT 0742) will extend to aviation domains in 2026-2027.
 
-5. **ISO 26262 / ISO 21448 (SOTIF)** -- Both are formally scoped to "road vehicles." Airport ground vehicles are not road vehicles. However, these standards represent industry best practice and are used as reference frameworks by safety assessors. Zoox and Kodiak cite them; Aurrigo should adopt them voluntarily as part of the safety case.
+5. **ISO 26262 / ISO 21448 (SOTIF)** -- Both are formally scoped to "road vehicles." Airport ground vehicles are not road vehicles. However, these standards represent industry best practice and are used as reference frameworks by safety assessors. Zoox and Kodiak cite them; reference airside AV stack should adopt them voluntarily as part of the safety case.
 
 6. **DO-178C** -- Applies to airborne software, not ground support equipment. However, airport authorities may reference DO-178C principles for software assurance of safety-critical ground systems, especially for NUIC (No User in Charge) operations.
 
-### Aurrigo's Specific Regulatory Position
+### the reference airside AV stack's Specific Regulatory Position
 
-Aurrigo is actively developing a NUIC framework in collaboration with IAG to define the safety, regulatory, cybersecurity and operational standards for driverless airport deployment. The Changi Airport precedent (Uisee tractors deployed January 2026 after 20,000 km of trials with zero safety incidents) demonstrates that autonomous airside deployment is achievable, but requires:
+reference airside AV stack is actively developing a NUIC framework in collaboration with IAG to define the safety, regulatory, cybersecurity and operational standards for driverless airport deployment. The Changi Airport precedent (Uisee tractors deployed January 2026 after 20,000 km of trials with zero safety incidents) demonstrates that autonomous airside deployment is achievable, but requires:
 - Designated autonomous vehicle zones marked on the airside
 - Remote operator oversight from a control centre
 - Co-funding/endorsement from the local Civil Aviation Authority
 
 ### Key Operational Constraints
 
-- **Apron speed limits:** Typically 15-30 km/h (airport-specific, not ICAO-mandated). Aurrigo's vehicles operate at very low speeds (walking pace to ~25 km/h).
+- **Apron speed limits:** Typically 15-30 km/h (airport-specific, not ICAO-mandated). the reference airside AV stack's vehicles operate at very low speeds (walking pace to ~25 km/h).
 - **Jet blast zones:** Exhaust hazard areas extend 60m+ behind idling aircraft at 40% thrust; up to 400 feet (122m) at breakaway thrust (Boeing data via IATA).
 - **Sensor environment:** Jet exhaust, rain, de-icing fluid spray, FOD, dark-clothed ground crew, reflective aircraft surfaces, dynamic stand layouts.
 
@@ -55,7 +55,7 @@ Aurrigo is actively developing a NUIC framework in collaboration with IAG to def
 ### Airport Regulatory Context
 
 - **IATA AHM 908** requires risk assessment for autonomous vehicle operations. An RSS-based safety distance model provides a mathematically auditable response to this requirement -- the distance model parameters become part of the documented safety case.
-- **UK CAA** does not mandate a specific safety distance model, but the NUIC framework Aurrigo is co-developing with IAG will need a provable collision avoidance argument. RSS provides exactly this.
+- **UK CAA** does not mandate a specific safety distance model, but the NUIC framework reference airside AV stack is co-developing with IAG will need a provable collision avoidance argument. RSS provides exactly this.
 - **Changi precedent:** Uisee's deployment uses designated autonomous vehicle zones with clearly marked boundaries. RSS-derived minimum distances would formalize what is currently achieved by zone segregation.
 
 ### Industry Reality Check
@@ -69,7 +69,7 @@ Aurrigo is actively developing a NUIC framework in collaboration with IAG to def
 
 **Where it integrates:** The RSS safety distance model should be implemented as a new module consumed by two existing systems:
 
-1. **`SafetyMonitor` (`/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_nav/src/behaviour_planner/safety_monitor.cpp`)** -- Currently performs only 2 checks (remote e-stop and system health). The RSS distance checker would be added as a third check in `checkAll()`:
+1. **`SafetyMonitor` (`/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_nav/src/behaviour_planner/safety_monitor.cpp`)** -- Currently performs only 2 checks (remote e-stop and system health). The RSS distance checker would be added as a third check in `checkAll()`:
    ```
    checkRemoteEstop();
    checkSystemHealth();
@@ -77,7 +77,7 @@ Aurrigo is actively developing a NUIC framework in collaboration with IAG to def
    ```
    The `SafetyMonitor::report()` mechanism and `SafetyLevel` enum already support graded responses (CLEAR, WARNING, STOP, EMERGENCY). An RSS violation would report at STOP level, feeding into the `StopArbiter` priority chain.
 
-2. **`LocalPlanningNodelet` (`/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_nav/include/aurrigo_nav/local_planner/local_planning_nodelet.h`)** -- The Frenet trajectory generator evaluates 420 candidates per cycle. RSS safe distance can be added as a hard constraint during `checkTrajectoryCollisions()`. Trajectories that violate RSS longitudinal or lateral minimums would be marked infeasible (`has_collision = true`).
+2. **`LocalPlanningNodelet` (`/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_nav/include/airside_nav/local_planner/local_planning_nodelet.h`)** -- The Frenet trajectory generator evaluates 420 candidates per cycle. RSS safe distance can be added as a hard constraint during `checkTrajectoryCollisions()`. Trajectories that violate RSS longitudinal or lateral minimums would be marked infeasible (`has_collision = true`).
 
 **Input data available:** The local planner already has:
 - `current_vehicle_velocity` (from CAN feedback at 50Hz)
@@ -132,7 +132,7 @@ Aurrigo is actively developing a NUIC framework in collaboration with IAG to def
 ### Airport Regulatory Context
 
 - **IATA AHM 908** risk assessment toolbox requires identification of safety risks and mitigations. Formal temporal logic specifications make these machine-checkable rather than document-only.
-- **NUIC framework:** For removing the safety operator, Aurrigo needs to demonstrate that safety invariants are continuously monitored. STL runtime monitoring provides exactly this evidence trail.
+- **NUIC framework:** For removing the safety operator, reference airside AV stack needs to demonstrate that safety invariants are continuously monitored. STL runtime monitoring provides exactly this evidence trail.
 - **SMS (Safety Management System):** ICAO Annex 19 requires airports to maintain an SMS. Formal safety specifications with logged violations feed directly into the SMS hazard register.
 
 ### Industry Reality Check
@@ -217,7 +217,7 @@ Aurrigo is actively developing a NUIC framework in collaboration with IAG to def
 
 ### Source Code Integration Analysis
 
-**Where it integrates:** The `StopArbiter` already at `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_nav/src/behaviour_planner/stop_arbiter.cpp` implements 10-level priority resolution. The Frenet trajectory selector in `LocalPlanningNodelet` evaluates candidates by cost function with weights for jerk, lateral offset, curvature, velocity, and obstacle proximity.
+**Where it integrates:** The `StopArbiter` already at `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_nav/src/behaviour_planner/stop_arbiter.cpp` implements 10-level priority resolution. The Frenet trajectory selector in `LocalPlanningNodelet` evaluates candidates by cost function with weights for jerk, lateral offset, curvature, velocity, and obstacle proximity.
 
 The gap: trajectory selection does not use a strict priority ordering. It uses weighted cost summation, meaning a slightly faster trajectory could be selected over a slightly safer one if the weights are not perfectly calibrated. A Rulebook would enforce lexicographic ordering: first minimize safety violations, then minimize rule violations, then optimize comfort.
 
@@ -276,18 +276,18 @@ rules:
 
 ### Airport Regulatory Context
 
-- **Critical finding:** ISO 26262 and ISO 21448 are formally scoped to "road vehicles." However, Aurrigo's NUIC framework with IAG explicitly requires defining "safety, regulatory, cybersecurity and operational standards." In the absence of an airport-specific functional safety standard, ISO 26262 and SOTIF serve as the de facto reference frameworks.
+- **Critical finding:** ISO 26262 and ISO 21448 are formally scoped to "road vehicles." However, the reference airside AV stack's NUIC framework with IAG explicitly requires defining "safety, regulatory, cybersecurity and operational standards." In the absence of an airport-specific functional safety standard, ISO 26262 and SOTIF serve as the de facto reference frameworks.
 - **Zoox precedent:** Zoox cites ISO 26262, SOTIF, and ARP4754A in their safety framework for their on-road robotaxi, showing that AV companies voluntarily adopt these standards.
 - **Kodiak precedent:** Claims ASIL-D compliance for their ACE (Autonomous Compute Engine), demonstrating that rigorous ASIL compliance is achievable for perception/compute hardware.
-- **EASA direction:** EASA's AI trustworthiness framework (NPA 2025-07, RMT 0742) will extend to ground systems. Early voluntary alignment with ISO 26262/SOTIF positions Aurrigo favourably.
+- **EASA direction:** EASA's AI trustworthiness framework (NPA 2025-07, RMT 0742) will extend to ground systems. Early voluntary alignment with ISO 26262/SOTIF positions reference airside AV stack favourably.
 
-### SOTIF Analysis for Aurrigo's Perception Stack
+### SOTIF Analysis for the reference airside AV stack's Perception Stack
 
-SOTIF (ISO 21448) specifically addresses "hazards resulting from functional insufficiencies of the intended functionality." For Aurrigo's LiDAR-only perception stack, the triggering conditions analysis is:
+SOTIF (ISO 21448) specifically addresses "hazards resulting from functional insufficiencies of the intended functionality." For the reference airside AV stack's LiDAR-only perception stack, the triggering conditions analysis is:
 
 | Triggering Condition | Hazardous Behaviour | Current Mitigation | Gap |
 |---|---|---|---|
-| Jet exhaust plume | False positive obstacles, emergency stop | `aurrigo_rain_detection` SOR filter | Not jet-blast-specific |
+| Jet exhaust plume | False positive obstacles, emergency stop | `airside_rain_detection` SOR filter | Not jet-blast-specific |
 | Heavy rain / fog | Reduced detection range, missed obstacles | Multi-return (not yet implemented) | **Critical gap** |
 | Dark-clothed personnel at night | Missed detection (low LiDAR reflectivity) | None | **Critical gap** -- thermal camera recommended |
 | Reflective aircraft surface | Ghost detections, multipath | None | Medium gap |
@@ -364,13 +364,13 @@ SOTIF (ISO 21448) specifically addresses "hazards resulting from functional insu
 
 - **No AV industry analog.** This is genuinely airport-domain-specific. On-road AV companies do not encounter jet blast.
 - **Airport operations practice:** Human drivers are trained to maintain safe distances from running engines. Autonomous vehicles need this knowledge encoded explicitly.
-- **Existing LiDAR data:** Hot exhaust plumes create low-intensity, high-variance LiDAR returns that are temporally transient. The existing `aurrigo_rain_detection` SOR (Statistical Outlier Removal) filter handles some of this, but it was designed for rain, not directional exhaust plumes.
+- **Existing LiDAR data:** Hot exhaust plumes create low-intensity, high-variance LiDAR returns that are temporally transient. The existing `airside_rain_detection` SOR (Statistical Outlier Removal) filter handles some of this, but it was designed for rain, not directional exhaust plumes.
 
 ### Source Code Integration Analysis
 
 **Integration point 1 -- Static exclusion zones:** Load jet blast exclusion zones from airport configuration data as polygonal regions in the map frame. The `LocalPlanningNodelet` already supports `ObstaclePolygon` with polygon collision checking (SAT-based). Jet blast zones would be loaded as permanent obstacles with a special type flag.
 
-**Integration point 2 -- Dynamic filtering in perception:** In the `PointcloudPreprocessor` (`/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_preprocessor/src/PointcloudPreprocessor.cpp`), add a jet blast zone filter that:
+**Integration point 2 -- Dynamic filtering in perception:** In the `PointcloudPreprocessor` (`/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_pointcloud_preprocessor/src/PointcloudPreprocessor.cpp`), add a jet blast zone filter that:
 - Takes known engine positions (from airport config or from perception of parked aircraft)
 - Defines conical exclusion zones behind each engine (cone axis = engine thrust vector, opening angle = ~30 degrees, length = 60m for idle)
 - Points within the zone that match the exhaust signature (low intensity < threshold, high frame-to-frame variance) are classified as exhaust artifacts
@@ -633,8 +633,6 @@ The six recommendations in this section form an integrated safety verification l
 - [RSS Gains Traction Worldwide](https://www.mobileye.com/blog/responsibility-sensitive-safety-gains-traction-worldwide/)
 - [IATA Engine Danger Areas](https://www.iata.org/contentassets/f135f60f52e9495d9a6bb09aab8e39e7/engine-danger-areas.pdf)
 - [Jet Efflux Hazard (SKYbrary)](https://skybrary.aero/articles/jet-efflux-hazard)
-- [Aurrigo EMA Ground Handling Licence](https://www.aviationpros.com/ground-support-worldwide/ground-handling/press-release/55361193/aurrigo-secures-ground-handling-licence-at-east-midlands-airport-to-support-autonomous-roll-out)
-- [Aurrigo NUIC Framework with IAG](https://aurrigo.com/aurrigo-secures-1m-grants-to-advance-new-autonomous-transport-innovations/)
 - [Changi Airport Autonomous Tractors Deployment](https://www.futuretravelexperience.com/2026/01/changi-airport-deploys-autonomous-tractors-in-major-step-towards-airside-automation/)
 - [UK CAA Airside Driving Permit (CAP 790)](https://www.caa.co.uk/publication/download/14228)
 - [EASA AI Trustworthiness NPA 2025-07](https://www.easa.europa.eu/en/document-library/notices-of-proposed-amendment/npa-2025-07)
@@ -649,4 +647,3 @@ The six recommendations in this section form an integrated safety verification l
 - [ICAO Annex 14 Amendment 18](https://www.icao.int/sites/default/files/APAC/Meetings/2025/2025%20Workshop%20on%20Implementation%20of%20New%20ICAO%20Annex/Training%20Materials/SL-2025-23_amendment-18-to-Annex-14-Vol-I.pdf)
 - [CASA Advisory Circular 139.C-14: Airside Vehicle Control](https://www.casa.gov.au/sites/default/files/2023-06/advisory-circular-139-c-14-airside-vehicle-control.pdf)
 - [NASA ASRS: Ground Jet Blast Hazard](https://asrs.arc.nasa.gov/publications/directline/dl6_blast.htm)
-- [Aurrigo Autonomous Vehicles at Changi Airport](https://aurrigo.com/aurrigo-to-introduce-four-new-autonomous-baggage-handling-vehicles-at-changi-airport/)

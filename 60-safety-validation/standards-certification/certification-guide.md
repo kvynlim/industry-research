@@ -855,7 +855,7 @@ The current regulatory environment means:
 
 ### International Comparison
 
-**United Kingdom**: Aurrigo obtained its ground handling licence at East Midlands Airport under the Airports (Ground Handling) Regulations 1997 and the Civil Aviation Authority's compliance framework under the Civil Aviation Act 2012. This provides a more structured path than the US.
+**United Kingdom**: reference airside AV stack obtained its ground handling licence at East Midlands Airport under the Airports (Ground Handling) Regulations 1997 and the Civil Aviation Authority's compliance framework under the Civil Aviation Act 2012. This provides a more structured path than the US.
 
 **Japan**: TractEasy/EasyMile deployed at Narita International Airport in partnership with the airport corporation and Ministry of Land, Infrastructure, Transport and Tourism, with driverless operations under remote supervision.
 
@@ -1212,11 +1212,11 @@ Specific costs are highly variable and dependent on scope, but industry ranges a
 - TractEasy now embraces FAA involvement, believing it will help set standards and provide consistent guidelines
 - European deployments (Toulouse) have proceeded more smoothly due to existing CE marking and machinery regulation frameworks
 
-### Aurrigo
+### reference airside AV stack
 
-**Company**: Aurrigo International plc, Coventry-based technology company specializing in autonomous aviation ground support equipment.
+**Company**: reference airside AV vendor plc, Coventry-based technology company specializing in autonomous aviation ground support equipment.
 
-**Products**: Auto-Cargo autonomous cargo vehicles, Auto-Shuttle.
+**Products**: autonomous cargo vehicle autonomous cargo vehicles, autonomous shuttle.
 
 **Certification and Approval:**
 - Obtained formal ground handling licence at East Midlands Airport (EMA) under the Airports (Ground Handling) Regulations 1997
@@ -1225,7 +1225,7 @@ Specific costs are highly variable and dependent on scope, but industry ranges a
 - Operating alongside UPS for cargo operations
 
 **Deployment Details:**
-- Two Auto-Cargo vehicles and one Auto-Shuttle deployed at EMA
+- Two autonomous cargo vehicle vehicles and one autonomous shuttle deployed at EMA
 - One-to-one support during roll-out and integration phases (safety operator present)
 - Operating within EMA's established safety and operational governance
 - Key stakeholders: David Keene (CEO), Lauren Turner (Head of Airfield Operations at EMA)

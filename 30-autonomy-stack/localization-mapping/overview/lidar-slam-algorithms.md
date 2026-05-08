@@ -124,9 +124,9 @@ Key results:
 - **Sensor-agnostic**: works with Velodyne (16/32/64/128), Ouster, Livox, Hesai, Robosense, and even solid-state LiDARs
 - **Runs at 100+ Hz** on modern hardware for typical automotive point clouds
 
-### 1.4 Comparison with Aurrigo's VGICP
+### 1.4 Comparison with the reference airside AV stack's VGICP
 
-| Aspect | KISS-ICP | Aurrigo VGICP |
+| Aspect | KISS-ICP | reference airside AV stack VGICP |
 |--------|----------|---------------|
 | **Registration type** | Point-to-Point ICP | Generalized ICP (distribution-to-distribution) |
 | **Map representation** | Spatial hash map (voxels with raw points) | Voxelized Gaussian distributions |
@@ -139,13 +139,13 @@ Key results:
 | **Loop closure** | Not included | Not included (handled by GTSAM) |
 | **Degeneracy handling** | Adaptive threshold provides implicit robustness | No explicit degeneracy handling |
 
-**Key distinction:** KISS-ICP is an **odometry** system (estimates relative motion, builds map online), while Aurrigo's VGICP is a **localization** system (matches against a pre-built map). They serve different roles in the stack:
+**Key distinction:** KISS-ICP is an **odometry** system (estimates relative motion, builds map online), while the reference airside AV stack's VGICP is a **localization** system (matches against a pre-built map). They serve different roles in the stack:
 
 ```
 KISS-ICP role:    Build map during survey; provide odometry when map unavailable
 VGICP role:       Localize against known map during operations
 
-For Aurrigo's stack, KISS-ICP could:
+For the reference airside AV stack's stack, KISS-ICP could:
   1. Replace the survey process — use KISS-ICP for initial map building
   2. Serve as odometry fallback when VGICP scan matching fails
   3. Provide an independent odometry factor in the GTSAM graph
@@ -166,7 +166,7 @@ VGICP is theoretically more accurate for scan-to-map matching because it models 
 
 ### 2.2 Architecture and Factor Graph Formulation
 
-LIO-SAM formulates the SLAM problem as a factor graph optimized by GTSAM's incremental solver (iSAM2), directly analogous to Aurrigo's existing localization architecture:
+LIO-SAM formulates the SLAM problem as a factor graph optimized by GTSAM's incremental solver (iSAM2), directly analogous to the reference airside AV stack's existing localization architecture:
 
 ```
 Factor Graph Structure:
@@ -200,7 +200,7 @@ Factor Graph Structure:
   Solver: iSAM2 (incremental Bayes tree optimization)
     → Only re-linearizes affected variables
     → O(log n) per update in typical cases
-    → Same solver Aurrigo uses in their factor graph
+    → Same solver reference airside AV stack uses in their factor graph
 ```
 
 ### 2.3 IMU Preintegration
@@ -312,12 +312,12 @@ Loop closure pipeline:
 **Strengths:** GPS integration, loop closure, direct GTSAM compatibility, well-tested in real deployments.
 **Weaknesses:** Feature extraction assumes structured environments (walls, poles); degrades in featureless open areas. LOAM features can fail on solid-state LiDARs with limited FOV.
 
-### 2.8 Relevance to Aurrigo's Stack
+### 2.8 Relevance to the reference airside AV stack's Stack
 
-LIO-SAM's architecture is directly analogous to Aurrigo's existing factor graph:
+LIO-SAM's architecture is directly analogous to the reference airside AV stack's existing factor graph:
 
 ```
-Aurrigo factor graph:              LIO-SAM factor graph:
+reference airside AV stack factor graph:              LIO-SAM factor graph:
   IMU Preintegration Factor   ↔     IMU Preintegration Factor
   VGICP LiDAR Factor          ↔     LiDAR Odometry Factor
   GPS Factor                  ↔     GPS Factor
@@ -325,11 +325,11 @@ Aurrigo factor graph:              LIO-SAM factor graph:
   Level Factor                ↔     (not included)
   (no loop closure)           ↔     Loop Closure Factor
 
-Key difference: Aurrigo uses VGICP scan-to-map (localization against pre-built map)
+Key difference: reference airside AV stack uses VGICP scan-to-map (localization against pre-built map)
 while LIO-SAM uses feature-based scan-to-submap (online SLAM).
 ```
 
-LIO-SAM's loop closure module could be added to Aurrigo's graph to correct drift during extended operations or map-building surveys.
+LIO-SAM's loop closure module could be added to the reference airside AV stack's graph to correct drift during extended operations or map-building surveys.
 
 ---
 
@@ -776,7 +776,7 @@ Point-LIO's primary advantages (sub-millisecond latency, aggressive motion robus
 | **FAST-LIO2** | 2022 | LiDAR + IMU | Point-to-Plane ICP | ikd-tree | None (direct) | No | No | IEKF |
 | **CT-ICP** | 2022 | LiDAR only | Continuous-Time ICP | Voxel map | None (direct) | Optional | No | Standalone |
 | **Point-LIO** | 2023 | LiDAR + IMU | Point-to-Plane (per-point) | ikd-tree | None (direct) | No | No | IEKF |
-| **VGICP** (Aurrigo) | 2021 | LiDAR (+ GPU) | Distribution-to-Distribution | Voxel Gaussians | None (direct) | No | Via GTSAM | GTSAM |
+| **VGICP** (reference airside AV stack) | 2021 | LiDAR (+ GPU) | Distribution-to-Distribution | Voxel Gaussians | None (direct) | No | Via GTSAM | GTSAM |
 
 ### 7.2 Quantitative Performance Comparison (KITTI Benchmark)
 
@@ -835,7 +835,7 @@ Operational characteristics:
   3. Large open areas: aprons with 100m+ of featureless flat concrete
   4. Multi-LiDAR: 4-8 sensors for 360° coverage around vehicle and cargo
   5. cm-level accuracy: stand positioning, centerline following
-  6. Existing GTSAM stack: Aurrigo already uses iSAM2 factor graph
+  6. Existing GTSAM stack: reference airside AV stack already uses iSAM2 factor graph
   7. GPS availability: intermittent (multipath from aircraft, terminals)
   8. Pre-built maps: currently used (PCD maps, 166-287MB)
   9. Dynamic obstacles: aircraft, GSE, ground crew
@@ -858,7 +858,7 @@ Operational characteristics:
 
 ### 8.3 Recommended Architecture: Hybrid LIO-SAM + KISS-ICP
 
-The optimal architecture for airside operations is not a single algorithm but a hybrid approach that leverages the strengths of multiple systems within Aurrigo's existing GTSAM factor graph:
+The optimal architecture for airside operations is not a single algorithm but a hybrid approach that leverages the strengths of multiple systems within the reference airside AV stack's existing GTSAM factor graph:
 
 ```
 Recommended Airside Localization Stack:
@@ -923,7 +923,7 @@ Recommended Airside Localization Stack:
 6. **pip-installable** — `pip install kiss-icp`, fastest path to integration and prototyping
 
 **Why LIO-SAM's loop closure module (not full LIO-SAM):**
-1. Aurrigo's existing GTSAM graph already handles IMU + LiDAR + GPS + wheel odometry
+1. the reference airside AV stack's existing GTSAM graph already handles IMU + LiDAR + GPS + wheel odometry
 2. Replacing the full stack with LIO-SAM would lose VGICP map-matching and wheel odometry
 3. LIO-SAM's loop closure detection and factor addition are modular and can be extracted
 4. The loop closure BetweenFactor is compatible with any GTSAM-based graph
@@ -932,12 +932,12 @@ Recommended Airside Localization Stack:
 1. VGICP scan-to-map matching provides **absolute** positioning (within the pre-built map frame)
 2. Odometry (KISS-ICP, FAST-LIO2) provides only **relative** positioning — drift accumulates
 3. For cm-level accuracy at aircraft stands, absolute positioning is essential
-4. VGICP is already integrated, tested, and GPU-accelerated in Aurrigo's stack
+4. VGICP is already integrated, tested, and GPU-accelerated in the reference airside AV stack's stack
 
 ### 8.5 Multi-LiDAR Handling
 
 ```
-Aurrigo's multi-LiDAR setup (4-8 sensors):
+the reference airside AV stack's multi-LiDAR setup (4-8 sensors):
 
 Option A: Merge-then-register (recommended for KISS-ICP odometry)
   1. Transform all LiDAR points to vehicle body frame using known extrinsics
@@ -955,7 +955,7 @@ Option B: Per-sensor odometry with fusion
   → Higher computational cost (4-8x)
   → Extrinsic calibration errors affect each estimate differently
 
-Option C: Multi-LiDAR VGICP (current Aurrigo approach)
+Option C: Multi-LiDAR VGICP (current reference airside AV stack approach)
   1. Merge point clouds in vehicle frame
   2. Match merged cloud against pre-built map via VGICP
   → Works well when map is available
@@ -1134,7 +1134,7 @@ Proposed architecture for airside:
 Challenge: no public dataset of airport LiDAR data for training learned features.
 
 Approach 1: Self-supervised learning
-  - Use KISS-ICP on Aurrigo's collected data to generate pseudo-ground-truth
+  - Use KISS-ICP on the reference airside AV stack's collected data to generate pseudo-ground-truth
   - Train contrastive features: same location → similar features, different → dissimilar
   - No manual annotation needed
 
@@ -1332,7 +1332,7 @@ Strategy 4: Multi-LiDAR viewpoint diversity
   - Ground-pointing LiDAR may see surface texture/markings
   - Elevated LiDAR may see distant structures not visible from low mount
   - Different viewpoints reduce the chance of total degeneracy
-  - Already partially implemented in Aurrigo's sensor configuration
+  - Already partially implemented in the reference airside AV stack's sensor configuration
 ```
 
 ### 10.4 Quantifying Degeneracy Risk at Airports

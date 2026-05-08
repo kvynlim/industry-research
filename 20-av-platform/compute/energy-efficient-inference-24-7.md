@@ -584,7 +584,7 @@ Limitation: Pump is additional failure point, higher cost
 Failure mode: Pump failure or leak — needs monitoring
 ```
 
-**Recommendation for Aurrigo fleet:** Option 2 (sealed enclosure with external radiator) provides the best balance of reliability, dust immunity, and cost for airport operations. The IP67 rating is particularly important given de-icing spray exposure. Budget $500 per vehicle for compute thermal solution, with $10K total for fleet of 20 including engineering design.
+**Recommendation for reference airside fleet:** Option 2 (sealed enclosure with external radiator) provides the best balance of reliability, dust immunity, and cost for airport operations. The IP67 rating is particularly important given de-icing spray exposure. Budget $500 per vehicle for compute thermal solution, with $10K total for fleet of 20 including engineering design.
 
 ### 4.4 Temperature-Aware Power Mode Governor
 
@@ -1728,7 +1728,7 @@ The annual electricity savings of ~$1,100 are modest. The real fleet-level value
 
 ### 11.1 System Architecture
 
-The power management system integrates with the existing Aurrigo ROS Noetic stack as a set of additional nodes that observe vehicle state and publish power mode commands:
+The power management system integrates with the existing reference airside AV stack ROS Noetic stack as a set of additional nodes that observe vehicle state and publish power mode commands:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -1789,18 +1789,18 @@ The power management system integrates with the existing Aurrigo ROS Noetic stac
 
 ```xml
 <!-- power_management.launch -->
-<!-- Launches power management nodes alongside existing Aurrigo stack -->
+<!-- Launches power management nodes alongside existing reference airside AV stack -->
 
 <launch>
     <!-- Power monitor (always runs, lightweight) -->
-    <node pkg="aurrigo_power" type="orin_power_monitor.py"
+    <node pkg="airside_power" type="orin_power_monitor.py"
           name="orin_power_monitor" output="screen">
         <param name="rate_hz" value="10"/>
         <param name="publish_diagnostics" value="true"/>
     </node>
 
     <!-- Power manager (main controller) -->
-    <node pkg="aurrigo_power" type="power_manager_node.py"
+    <node pkg="airside_power" type="power_manager_node.py"
           name="power_manager" output="screen">
         <!-- Tier selection parameters -->
         <param name="aircraft_proximity_full_m" value="30.0"/>
@@ -1833,7 +1833,7 @@ The power management system integrates with the existing Aurrigo ROS Noetic stac
     </node>
 
     <!-- Sensor power controller (manages LiDAR power states) -->
-    <node pkg="aurrigo_power" type="sensor_power_controller.py"
+    <node pkg="airside_power" type="sensor_power_controller.py"
           name="sensor_power_controller" output="screen">
         <param name="num_lidars" value="4"/>
         <param name="lidar_standby_power_w" value="5.0"/>
@@ -1847,7 +1847,7 @@ The power management system integrates with the existing Aurrigo ROS Noetic stac
 
 ### 11.3 Perception Node Gating Pattern
 
-Each perception node in the Aurrigo stack needs minimal modification to support tier-based gating. The pattern is a check at the beginning of the main callback:
+Each perception node in the reference airside AV stack needs minimal modification to support tier-based gating. The pattern is a check at the beginning of the main callback:
 
 ```cpp
 // Example: Adding power-aware gating to existing CenterPoint nodelet
@@ -1900,7 +1900,7 @@ class CenterPointNodelet : public nodelet::Nodelet {
 ### 11.4 Package Structure
 
 ```
-aurrigo_power/
+airside_power/
 ├── CMakeLists.txt
 ├── package.xml
 ├── launch/

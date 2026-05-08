@@ -105,7 +105,7 @@ No airside AV competitor has published V2X protocol specifications:
 | **UISEE** | Proprietary fleet management over 5G, vehicle-to-cloud-to-vehicle | No direct V2V |
 | **TractEasy** | WiFi-based fleet management, teleoperation link | No V2X |
 | **AeroVect** | Cloud-based task dispatch, teleoperation fallback | No V2X |
-| **Aurrigo (current)** | ROS topics over WiFi within each vehicle | No V2X |
+| **reference airside AV stack (current)** | ROS topics over WiFi within each vehicle | No V2X |
 
 All competitors use a centralized cloud/server model where vehicles communicate through a fleet management server rather than directly with each other. This creates a single point of failure and adds latency (vehicle-to-cloud-to-vehicle: 50-200 ms vs V2V direct: 5-20 ms). Building native V2X capability is a potential competitive differentiator.
 
@@ -275,7 +275,7 @@ Does the airport have or plan private 5G/CBRS?
 
 ### 2.5 Hybrid Architecture: The Practical Choice
 
-For Aurrigo's deployment timeline (2026-2030), the practical architecture is hybrid:
+For the reference airside AV stack's deployment timeline (2026-2030), the practical architecture is hybrid:
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -1175,7 +1175,7 @@ While the wire format uses protobuf (or ASN.1 UPER for ETSI-standard messages), 
     "version": 1,
     "messageType": "CAM",
     "messageTypeId": 2,
-    "senderId": "GSE-ADT3-007",
+    "senderId": "GSE-third-generation tug-007",
     "senderStationId": 3007,
     "timestamp": "2026-04-11T14:23:45.123456Z",
     "timestampUs": 1744381425123456,
@@ -1384,7 +1384,7 @@ While the wire format uses protobuf (or ASN.1 UPER for ETSI-standard messages), 
     "version": 1,
     "messageType": "FDA",
     "messageTypeId": 134,
-    "senderId": "GSE-ADT3-012",
+    "senderId": "GSE-third-generation tug-012",
     "senderStationId": 3012,
     "timestamp": "2026-04-11T14:23:44.800000Z",
     "timestampUs": 1744381424800000,
@@ -1395,7 +1395,7 @@ While the wire format uses protobuf (or ASN.1 UPER for ETSI-standard messages), 
     "detectionTime": "2026-04-11T14:23:42.500000Z",
     "detectionConfidence": 78,
     "detectorType": "lidar",
-    "detectingVehicle": "GSE-ADT3-012",
+    "detectingVehicle": "GSE-third-generation tug-012",
     "sensorDetails": {
       "sensorModel": "RoboSense_RSHELIOS",
       "sensorMountPosition": "front_top",
@@ -1422,8 +1422,8 @@ While the wire format uses protobuf (or ASN.1 UPER for ETSI-standard messages), 
   "confirmation": {
     "confirmedBy": 2,
     "confirmations": [
-      {"vehicleId": "GSE-ADT3-012", "time": "2026-04-11T14:23:42.500Z", "confidence": 78},
-      {"vehicleId": "GSE-STL2-003", "time": "2026-04-11T14:23:43.100Z", "confidence": 85}
+      {"vehicleId": "GSE-third-generation tug-012", "time": "2026-04-11T14:23:42.500Z", "confidence": 78},
+      {"vehicleId": "GSE-small tug platform-003", "time": "2026-04-11T14:23:43.100Z", "confidence": 85}
     ]
   },
   "status": {
@@ -1437,11 +1437,11 @@ While the wire format uses protobuf (or ASN.1 UPER for ETSI-standard messages), 
 
 ### 5.3 Protobuf Schema Definition
 
-For on-wire encoding within the Aurrigo fleet (non-ETSI messages), protobuf is recommended over ASN.1 for practical reasons: better tooling, ROS compatibility, and developer familiarity.
+For on-wire encoding within the reference airside fleet (non-ETSI messages), protobuf is recommended over ASN.1 for practical reasons: better tooling, ROS compatibility, and developer familiarity.
 
 ```protobuf
 syntax = "proto3";
-package aurrigo.v2x;
+package airside_av.v2x;
 
 // Timestamp in microseconds since Unix epoch
 message Timestamp {
@@ -2611,12 +2611,12 @@ Vehicle B feature (t=120ms) ────────▶ Fused result (t=120ms)
 
 ### 9.4 Heterogeneous Agent Fusion
 
-Aurrigo fleet includes ADT3, STL2, POD, and ACA1 with different sensor configurations. HEAL (from `collaborative-fleet-perception.md` Section 6) handles this:
+reference airside fleet includes third-generation tug, small tug platform, POD, and ACA1 with different sensor configurations. HEAL (from `collaborative-fleet-perception.md` Section 6) handles this:
 
 ```
-ADT3 (4x RoboSense RSHELIOS) ──▶ ┌──────────────┐
+third-generation tug (4x RoboSense RSHELIOS) ──▶ ┌──────────────┐
                                    │              │
-STL2 (8x RoboSense RSBP)    ──▶  │   HEAL       │ ──▶ Unified BEV
+small tug platform (8x RoboSense RSBP)    ──▶  │   HEAL       │ ──▶ Unified BEV
                                    │   Alignment  │
 POD  (2x RoboSense + cameras)──▶  │   Modules    │
                                    │              │
@@ -2631,11 +2631,11 @@ Infrastructure (CCTV + radar) ──▶  └────────────
 
 ### 10.1 V2X ROS Node Architecture
 
-Integration with Aurrigo's ROS Noetic stack:
+Integration with the reference ROS Noetic airside stack:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                          AURRIGO VEHICLE                            │
+│                          REFERENCE AIRSIDE AV STACK VEHICLE                            │
 │                                                                     │
 │  ┌──────────────────────────────────────────────────────────────┐  │
 │  │                    ROS NOETIC                                 │  │
@@ -2749,14 +2749,14 @@ Airport IT systems typically use MQTT or AMQP. ROS 2 uses DDS natively, but ROS 
 # MQTT bridge for airport IT integration (Python, runs alongside ROS)
 import paho.mqtt.client as mqtt
 import rospy
-from aurrigo_v2x.msg import StandOperationStatus, AircraftProximityAlert
+from airside_v2x.msg import StandOperationStatus, AircraftProximityAlert
 
 class AirportMQTTBridge:
     """Bridges airport MQTT topics to ROS V2X topics."""
     
     def __init__(self):
         # MQTT connection to airport message bus
-        self.mqtt_client = mqtt.Client(client_id="aurrigo-v2x-bridge")
+        self.mqtt_client = mqtt.Client(client_id="airside-v2x-bridge")
         self.mqtt_client.tls_set(
             ca_certs="/etc/v2x/airport_ca.pem",
             certfile="/etc/v2x/bridge_cert.pem",
@@ -3005,7 +3005,7 @@ AIRSIDE V2X STANDARDIZATION TIMELINE (PREDICTED)
          │
 2026 ─── Industry proposals
          │ ■ First industry white papers on airside V2X
-         │ ■ Aurrigo/UISEE/TractEasy begin publishing approaches
+         │ ■ reference airside AV stack/UISEE/TractEasy begin publishing approaches
          │ ■ ETSI opens study item on airport ITS profile
          │ ■ Changi driverless deployment generates requirement pull
          │
@@ -3039,7 +3039,7 @@ Given the long timeline for formal standards, the practical strategy is:
 
 1. **Build on ETSI ITS foundation**: Use CAM, DENM, CPM, MCM as-is for standard messages. Add airside extensions in the reserved range (0x80-0xFF).
 
-2. **Publish specifications openly**: Release airside message specifications as open documents. If Aurrigo's specifications become the basis for the eventual standard, significant competitive advantage.
+2. **Publish specifications openly**: Release airside message specifications as open documents. If the reference airside AV stack's specifications become the basis for the eventual standard, significant competitive advantage.
 
 3. **Engage with EUROCAE WG-107**: Provide input from deployment experience. Shape the standard rather than react to it.
 
@@ -3090,7 +3090,7 @@ ISO 3691-4 (Safety of industrial trucks --- Driverless industrial trucks) includ
 
 13. **Protobuf is recommended over ASN.1 for airside extensions.** While ETSI standard messages use ASN.1 UPER for interoperability, airside-specific messages benefit from protobuf's superior tooling, ROS integration, schema evolution, and developer familiarity. Migration to ASN.1 can occur when formal standards are published.
 
-14. **Formal standards are predicted to emerge around 2028-2030.** EUROCAE WG-107 activity, EU Machinery Regulation 2027 interoperability requirements, and growing deployment experience will drive standardization. Publishing Aurrigo's V2X specifications openly could influence the emerging standard.
+14. **Formal standards are predicted to emerge around 2028-2030.** EUROCAE WG-107 activity, EU Machinery Regulation 2027 interoperability requirements, and growing deployment experience will drive standardization. Publishing the reference airside AV stack's V2X specifications openly could influence the emerging standard.
 
 15. **Misbehavior detection and trust scoring are essential for safety.** Even in a closed fleet, sensor degradation, software bugs, and (less likely) compromise can cause a vehicle to broadcast incorrect V2X data. Trust scores (0.0-1.0) with automatic demotion on validation failure prevent cascading errors.
 

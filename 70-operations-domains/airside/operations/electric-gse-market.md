@@ -501,7 +501,7 @@ Exact new-unit pricing is rarely published; manufacturers require RFQ. Indicativ
 - **No aircraft contact**: No direct aircraft interaction reduces risk profile vs pushback
 - **High labor intensity**: Chronic driver shortage makes automation ROI compelling
 - **Electric-first**: Largest installed base of eGSE; electric platform is prerequisite for autonomy (drive-by-wire ready)
-- **Proven trials**: Aurrigo Auto-DollyTug, AeroVect Driver, TractEasy/EasyMile EZTow all in operational trials
+- **Proven trials**: reference airside AV stack autonomous baggage/cargo tug, AeroVect Driver, TractEasy/EasyMile EZTow all in operational trials
 
 **Technical readiness**: Multiple autonomous platforms already deployed or in advanced trials at 6+ airports globally.
 
@@ -642,12 +642,12 @@ For autonomous conversion, the critical vehicle interfaces are:
 - **Partnerships**: dnata (pilot at major US airport), GAT Airlines, Delta Air Lines (tested at ATL)
 - **Status**: Operational testing at multiple airports; commercial deployment underway
 
-### Aurrigo (UK)
+### reference airside AV stack (UK)
 
-- **Product**: Auto-DollyTug (autonomous baggage/cargo transporter)
+- **Product**: autonomous baggage/cargo tug (autonomous baggage/cargo transporter)
 - **Unique capability**: Rotates in its own length; sideways drive system for tight spaces; auto-loading/unloading
 - **Sensors**: GNSS, multiple HD cameras, LiDAR for collision avoidance
-- **Related products**: Auto-Dolly, Auto-Shuttle (passenger/crew buses), Auto-Cargo, Auto-Sim (3D digital twin)
+- **Related products**: autonomous baggage dolly, autonomous shuttle (passenger/crew buses), autonomous cargo vehicle, airside autonomy simulator (3D digital twin)
 - **Active trials**:
   - Changi Airport (Singapore): 2+ years testing, fleet of 4 vehicles for underwing ops (2024)
   - Schiphol Airport (Amsterdam): Pier-level testing, aircraft-stand testing planned for end of 2025
@@ -695,7 +695,7 @@ For autonomous conversion, the critical vehicle interfaces are:
 
 1. **Electric is prerequisite**: Autonomous conversion requires drive-by-wire platforms. Electric GSE are inherently closer to drive-by-wire than diesel (electronic motor controllers, EPS, regenerative braking). Target electric platforms exclusively.
 
-2. **Baggage tractors are the beachhead**: Fixed routes, low speeds, high labor cost, proven technology, multiple players (AeroVect, Aurrigo, TractEasy). This is where autonomous GSE will scale first.
+2. **Baggage tractors are the beachhead**: Fixed routes, low speeds, high labor cost, proven technology, multiple players (AeroVect, reference airside AV stack, TractEasy). This is where autonomous GSE will scale first.
 
 3. **Platform agnosticism matters**: AeroVect's success retrofitting across all OEM platforms suggests that autonomous kits should be designed for multi-manufacturer compatibility rather than single-platform integration.
 
@@ -720,7 +720,6 @@ For autonomous conversion, the critical vehicle interfaces are:
 - [Oshkosh AeroTech Electric GSE](https://oshkoshaerotech.com/products-and-services/ground-support-equipment/electric-gse)
 - [Autonomous GSE and the Future of Airside Operations](https://airsideint.com/issue-article/autonomous-gse-and-the-future-of-airside-operations/)
 - [AeroVect](https://www.aerovect.com/)
-- [Aurrigo Auto-DollyTug](https://aurrigo.com/introducing-auto-dollytug/)
 - [TractEasy/EasyMile -- dnata Deployment](https://easymile.com/news/dnata-rolls-out-autonomous-vehicles-in-airport-operations)
 - [Gaussin AAT Autonomous](https://www.gaussin.com/aat-autonomous)
 - [CARB Zero-Emission Airport GSE](https://ww2.arb.ca.gov/our-work/programs/zero-emission-airport-ground-support-equipment/about)

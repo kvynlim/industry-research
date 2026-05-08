@@ -890,12 +890,12 @@ For efficient loading and updating, the airport map should be spatially tiled:
 | **Update granularity** | Per-tile versioning | Only changed tiles redistributed |
 | **Pre-load distance** | 300-500m ahead of vehicle | Sufficient for 30 km/h operation |
 
-### 11.3 Integration with Aurrigo Stack
+### 11.3 Integration with reference airside AV stack Stack
 
-For the current ROS Noetic Aurrigo stack:
+For the current ROS Noetic reference airside AV stack:
 
 ```
-Current Aurrigo localization:
+Current reference airside AV stack localization:
   GTSAM + GPU VGICP + IMU + RTK-GPS + wheel odom
   
 Map integration points:

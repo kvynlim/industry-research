@@ -52,7 +52,7 @@
 
 | Component | Current TRL | Target TRL | Blocker | Risk |
 |-----------|------------|------------|---------|------|
-| Frenet planner (existing) | **8** (production in Aurrigo stack) | 8 | None — exists | Low |
+| Frenet planner (existing) | **8** (production in reference airside AV stack) | 8 | None — exists | Low |
 | World model cost function | **2** (concept from Think2Drive, WorldRFT) | 5 | POC 1 must work first | High |
 | Batched GPU trajectory eval | **4** (18.7ms benchmark exists) | 6 | C++/Python interop latency | Medium |
 | Safety fallback to traditional | **3** (Simplex concept designed) | 6 | Arbitration logic | Medium |

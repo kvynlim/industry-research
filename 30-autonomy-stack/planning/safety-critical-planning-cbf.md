@@ -6,7 +6,7 @@
 
 ---
 
-> **Key Takeaway:** Control Barrier Functions (CBFs) provide mathematically provable collision avoidance by enforcing forward invariance of a safe set via a lightweight QP solved at 100-200 Hz. For Aurrigo's airside AV stack, CBFs serve as a safety filter on *both* the neural AC and classical BC paths of the Simplex architecture -- providing formal guarantees regardless of which planner is active. Combined with game-theoretic interaction modeling (GameFormer-style level-k reasoning adapted for airside multi-agent scenarios), this creates a planning stack that is simultaneously safe, interactive, and certifiable. The CBF-QP solves in 50-500 us on Orin, well within the 10 ms latency budget, and directly addresses ISO 3691-4 requirements for provable braking safety and personnel clearance. This is the missing formal safety layer between Aurrigo's existing Frenet planner and the aspirational neural planning stack.
+> **Key Takeaway:** Control Barrier Functions (CBFs) provide mathematically provable collision avoidance by enforcing forward invariance of a safe set via a lightweight QP solved at 100-200 Hz. For the reference airside AV stack's airside AV stack, CBFs serve as a safety filter on *both* the neural AC and classical BC paths of the Simplex architecture -- providing formal guarantees regardless of which planner is active. Combined with game-theoretic interaction modeling (GameFormer-style level-k reasoning adapted for airside multi-agent scenarios), this creates a planning stack that is simultaneously safe, interactive, and certifiable. The CBF-QP solves in 50-500 us on Orin, well within the 10 ms latency budget, and directly addresses ISO 3691-4 requirements for provable braking safety and personnel clearance. This is the missing formal safety layer between the reference airside AV stack's existing Frenet planner and the aspirational neural planning stack.
 
 ---
 
@@ -52,7 +52,7 @@ where:
   g: R^n -> R^(n x m)  -- control matrix
 ```
 
-This form captures the bicycle kinematic model (Aurrigo's ADT3), robotic vehicles, and most control systems of practical interest.
+This form captures the bicycle kinematic model (the reference airside AV stack's third-generation tug), robotic vehicles, and most control systems of practical interest.
 
 **Definition (Control Barrier Function).** A continuously differentiable function `h: R^n -> R` is a **Control Barrier Function** for the system `x_dot = f(x) + g(x)u` on the set C = {x : h(x) >= 0} if there exists a class-K_inf function alpha such that:
 
@@ -112,7 +112,7 @@ For airside operations at 5-25 km/h, **linear alpha with gamma = 1.0-3.0** provi
 
 ### 1.3 CBF with the Bicycle Kinematic Model
 
-Aurrigo's ADT3 uses a bicycle kinematic model (documented in `20-av-platform/drive-by-wire/bicycle-kinematic-model.md`) with state `x = [px, py, theta, v]` and control `u = [a, delta]` where a is acceleration and delta is front steering angle.
+the reference airside AV stack's third-generation tug uses a bicycle kinematic model (documented in `20-av-platform/drive-by-wire/bicycle-kinematic-model.md`) with state `x = [px, py, theta, v]` and control `u = [a, delta]` where a is acceleration and delta is front steering angle.
 
 **System Dynamics (Control-Affine Form):**
 
@@ -147,15 +147,15 @@ g(x) = [0, 0, 0, 1]^T
 
 This simplification is valid because:
 1. At low speeds, longitudinal braking is the primary safety action
-2. Steering response has significant delay (hydraulic actuators on ADT3)
+2. Steering response has significant delay (hydraulic actuators on third-generation tug)
 3. Emergency braking is always achievable via acceleration control alone
 
 For the full 2D CBF with both acceleration and steering, see Section 1.5 (Higher-Order CBF).
 
-**ADT3 Parameters (from `20-av-platform/drive-by-wire/bicycle-kinematic-model.md`):**
+**third-generation tug Parameters (from `20-av-platform/drive-by-wire/bicycle-kinematic-model.md`):**
 
 ```python
-ADT3_PARAMS = {
+third-generation tug_PARAMS = {
     'wheelbase': 3.15,              # meters (L_eff)
     'max_steering_angle': 0.8762,   # radians (50.2 degrees)
     'max_speed': 6.67,              # m/s (24 km/h)
@@ -267,7 +267,7 @@ Choosing p = 1.0-3.0 gives smooth convergence back to the safe set interior.
 
 ### 1.6 Input-Constrained CBF
 
-Real actuators have limits. The ADT3 has:
+Real actuators have limits. The third-generation tug has:
 - Acceleration: [-2.0, 1.0] m/s^2
 - Steering rate: approximately [-0.5, 0.5] rad/s (hydraulic limitation)
 
@@ -587,7 +587,7 @@ class AirsideCBFFilter:
     """CBF safety filter for airside autonomous vehicle.
     
     Solves the CBF-QP to find the minimally invasive safe control input.
-    Designed for Aurrigo ADT3 with bicycle kinematic model.
+    Designed for reference airside AV stack third-generation tug with bicycle kinematic model.
     """
     
     def __init__(self, params):
@@ -829,7 +829,7 @@ Airport airside is inherently a multi-agent environment with complex interaction
 | Convoy/platoon | 2-5 baggage tractors | Cooperative formation |
 | Gate approach | Arriving vehicle + departing vehicle | Timing game |
 
-Classical planners (including Aurrigo's Frenet planner) treat other agents as **static or constant-velocity obstacles**. This leads to:
+Classical planners (including the reference airside AV stack's Frenet planner) treat other agents as **static or constant-velocity obstacles**. This leads to:
 - **Frozen robot problem:** Vehicle stops because it predicts collision with an agent that would actually yield
 - **Overly aggressive behavior:** Vehicle proceeds because it predicts an agent will stay put, but the agent moves
 - **Deadlock:** Two vehicles wait for each other indefinitely at an intersection
@@ -1106,7 +1106,7 @@ as a convex program when linearized around the nominal trajectory.
 
 ### 3.4 Nash Equilibrium for Multi-AV Fleet Coordination
 
-When Aurrigo deploys multiple AVs on the same apron (the target scenario), fleet coordination requires a multi-agent planning solution. If all vehicles use the same priority-based system, equal-priority encounters require Nash equilibrium.
+When reference airside AV stack deploys multiple AVs on the same apron (the target scenario), fleet coordination requires a multi-agent planning solution. If all vehicles use the same priority-based system, equal-priority encounters require Nash equilibrium.
 
 **Fleet Intersection Protocol:**
 
@@ -1260,7 +1260,7 @@ class CBFFilteredController:
 
 ### 4.2 CBF-QP on NVIDIA Orin: Timing Analysis
 
-The NVIDIA Jetson Orin AGX (275 TOPS) is Aurrigo's deployment platform. The CBF-QP must solve within the 10 ms control budget.
+The NVIDIA Jetson Orin AGX (275 TOPS) is the reference airside AV stack's deployment platform. The CBF-QP must solve within the 10 ms control budget.
 
 **QP Complexity:**
 
@@ -1391,7 +1391,7 @@ generates safe trajectories without post-hoc filtering.
 
 ### 5.1 Decentralized CBF
 
-When Aurrigo deploys multiple AVs, each vehicle maintains barrier functions with respect to all other vehicles in communication range.
+When reference airside AV stack deploys multiple AVs, each vehicle maintains barrier functions with respect to all other vehicles in communication range.
 
 **Pairwise CBF:**
 
@@ -1423,7 +1423,7 @@ If one vehicle fails, the other still provides half the margin.
 
 ### 5.2 Communication-Aware CBF
 
-With V2V communication (which Aurrigo's fleet will have via airport 5G/CBRS), the CBF can be relaxed based on communicated intent.
+With V2V communication (which the reference airside fleet will have via airport 5G/CBRS), the CBF can be relaxed based on communicated intent.
 
 ```
 Without communication (worst case):
@@ -1453,7 +1453,7 @@ If V2V heartbeat lost (>200 ms timeout):
 
 ```python
 class MultiAgentCBF:
-    """Decentralized multi-agent CBF for Aurrigo fleet coordination.
+    """Decentralized multi-agent CBF for reference airside fleet coordination.
     
     Each vehicle runs this locally, using communicated state from other
     fleet vehicles and tracked state from non-fleet agents.
@@ -1671,7 +1671,7 @@ worst-case disturbance. This makes the CBF more conservative
 (larger safety margins) but provably safe under model uncertainty.
 ```
 
-**For the ADT3 bicycle model:**
+**For the third-generation tug bicycle model:**
 - Tire slip disturbance: d_max ~ 0.1 m/s at low speed
 - Actuator delay: modeled as first-order lag, adds ~0.2 m effective distance
 - Combined: rCBF adds approximately 0.5-1.0 m to all safe distances
@@ -1701,7 +1701,7 @@ For obstacle avoidance:
 
 ### 6.5 Delay-Compensated CBF
 
-Actuator delay is the most significant practical challenge for CBF on Aurrigo vehicles. The hydraulic steering/braking system has 50-200 ms delay.
+Actuator delay is the most significant practical challenge for CBF on reference airside vehicles. The hydraulic steering/braking system has 50-200 ms delay.
 
 **Predictor-Based CBF:**
 
@@ -1744,7 +1744,7 @@ Solve CBF-QP at x_pred:
 (declare-fun v () Real)
 (declare-fun a () Real)  ; control input
 
-; ADT3 parameters
+; third-generation tug parameters
 (define-fun L () Real 3.15)
 (define-fun a_min () Real -2.0)
 (define-fun a_max () Real 1.0)
@@ -1824,7 +1824,7 @@ SOTIF Triggering Conditions → CBF Response:
 | Custom active-set | C/C++ | N/A | 20-100 us | Yes | Fastest, but development effort |
 | Clarabel | Rust/C | Apache 2.0 | 50-300 us | Yes | Modern interior-point, well-maintained |
 
-**Recommendation for Aurrigo:**
+**Recommendation for reference airside AV stack:**
 - **Prototyping:** cvxpy with OSQP backend (Python, fast iteration)
 - **ROS integration:** OSQP C library called from C++ nodelet
 - **Production:** qpOASES or custom active-set solver for deterministic timing
@@ -1934,7 +1934,7 @@ ROS Node Graph:
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/TwistStamped.h>
 
-namespace aurrigo_safety {
+namespace airside_safety {
 
 class CBFSafetyFilterNodelet : public nodelet::Nodelet {
 public:
@@ -2022,10 +2022,10 @@ private:
     bool ego_state_valid_ = false, plan_valid_ = false;
 };
 
-} // namespace aurrigo_safety
+} // namespace airside_safety
 
 #include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS(aurrigo_safety::CBFSafetyFilterNodelet, nodelet::Nodelet)
+PLUGINLIB_EXPORT_CLASS(airside_safety::CBFSafetyFilterNodelet, nodelet::Nodelet)
 ```
 
 ### 7.3 Latency Budget
@@ -2060,18 +2060,18 @@ Worst case with 50 obstacles:     300-800       Still within budget
 | Update rate | 10-50 Hz | 50-100 Hz | Higher rate because closer to obstacles |
 | QP variables | 2 (accel + steer) | 1 (accel) or 2 | Steering less urgent at low speed |
 
-**Heavy Vehicle Dynamics:** Aurrigo vehicles weigh 2-5 tonnes. This affects:
+**Heavy Vehicle Dynamics:** reference airside vehicles weigh 2-5 tonnes. This affects:
 
 ```
 Effective braking distance: 
-  2-tonne vehicle (empty ADT3): d_brake = v^2 / (2*2.0) standard
+  2-tonne vehicle (empty third-generation tug): d_brake = v^2 / (2*2.0) standard
   5-tonne vehicle (loaded):     d_brake = v^2 / (2*1.5) degraded braking
   
   CBF must use the CURRENT vehicle weight estimate to compute safe distances.
   Weight estimation from suspension sensors or load cell data.
 ```
 
-**Crab Steering Mode (ADT3 Special):** The ADT3 supports crab steering (all four wheels steer in the same direction for lateral translation). The CBF must be aware of the steering mode:
+**Crab Steering Mode (third-generation tug Special):** The third-generation tug supports crab steering (all four wheels steer in the same direction for lateral translation). The CBF must be aware of the steering mode:
 
 ```
 Normal (Ackermann): bicycle model, CBF as described
@@ -2090,7 +2090,7 @@ Crab mode: lateral velocity is the primary control
 ```python
 def test_cbf_barrier_invariance():
     """Verify that CBF maintains h(x) >= 0 over time."""
-    cbf = AirsideCBFFilter(ADT3_PARAMS)
+    cbf = AirsideCBFFilter(third-generation tug_PARAMS)
     
     # Start near an obstacle
     ego = [0, 0, 0, 5.0]          # Moving at 5 m/s toward obstacle
@@ -2120,7 +2120,7 @@ def test_cbf_barrier_invariance():
 
 def test_cbf_minimal_intervention():
     """Verify CBF does not modify already-safe inputs."""
-    cbf = AirsideCBFFilter(ADT3_PARAMS)
+    cbf = AirsideCBFFilter(third-generation tug_PARAMS)
     
     # Far from any obstacle
     ego = [0, 0, 0, 3.0]
@@ -2137,7 +2137,7 @@ def test_cbf_minimal_intervention():
 
 def test_cbf_emergency_braking():
     """Verify CBF triggers full braking when critically close."""
-    cbf = AirsideCBFFilter(ADT3_PARAMS)
+    cbf = AirsideCBFFilter(third-generation tug_PARAMS)
     
     # Very close to obstacle, moving fast
     ego = [0, 0, 0, 6.0]  # 6 m/s
@@ -2154,7 +2154,7 @@ def test_cbf_emergency_braking():
         "Personnel constraint should be active"
 ```
 
-**Simulation Tests (using Aurrigo's pysim):**
+**Simulation Tests (using the reference airside AV stack's pysim):**
 
 ```
 Test scenarios for CBF validation:
@@ -2190,7 +2190,7 @@ Test scenarios for CBF validation:
 
 ### 8.1 Current Architecture
 
-The current Aurrigo Simplex architecture (documented in `90-synthesis/decisions/design-spec.md`):
+The current reference airside AV stack Simplex architecture (documented in `90-synthesis/decisions/design-spec.md`):
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐

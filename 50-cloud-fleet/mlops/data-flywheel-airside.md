@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-The data flywheel is the core engine that transforms operational driving data into continuous model improvement. This document covers the **ML-centric closed loop** for Aurrigo's airside operations: trigger-based data mining, auto-labeling pipelines, active learning selection, model training orchestration, deployment validation, and production monitoring — the intelligence layer that sits on top of the fleet data pipeline infrastructure (see `50-cloud-fleet/data-platform/fleet-data-pipeline.md`). Tesla's data engine processes 160 petaflops daily across 10,000+ GPUs, training on billions of auto-labeled clips from 8.3B+ fleet miles. Waymo's content search system mines petabytes for specific scenarios. comma.ai's open fleet of 10,000+ devices enables rapid iteration with openpilot releasing every 2 weeks. For airport airside — where no public datasets exist and every frame has proprietary value — a well-designed flywheel is the difference between a static system and one that improves with every mile driven. This document provides the complete flywheel architecture scaled to Aurrigo's current fleet (5-20 vehicles) with a path to 100+ vehicles across multiple airports.
+The data flywheel is the core engine that transforms operational driving data into continuous model improvement. This document covers the **ML-centric closed loop** for the reference airside AV stack's airside operations: trigger-based data mining, auto-labeling pipelines, active learning selection, model training orchestration, deployment validation, and production monitoring — the intelligence layer that sits on top of the fleet data pipeline infrastructure (see `50-cloud-fleet/data-platform/fleet-data-pipeline.md`). Tesla's data engine processes 160 petaflops daily across 10,000+ GPUs, training on billions of auto-labeled clips from 8.3B+ fleet miles. Waymo's content search system mines petabytes for specific scenarios. comma.ai's open fleet of 10,000+ devices enables rapid iteration with openpilot releasing every 2 weeks. For airport airside — where no public datasets exist and every frame has proprietary value — a well-designed flywheel is the difference between a static system and one that improves with every mile driven. This document provides the complete flywheel architecture scaled to the reference airside AV stack's current fleet (5-20 vehicles) with a path to 100+ vehicles across multiple airports.
 
 ---
 
@@ -65,8 +65,8 @@ The flywheel **accelerates**: more vehicles → more data → better models → 
 | **Waymo** | 2,500+ robotaxis | PB/day | 100,000+ TPUv4 | Continuous | Miles per contact |
 | **comma.ai** | 10,000+ devices | TB/day (uploaded subset) | ~500 GPUs | Bi-weekly | % engaged miles |
 | **Cruise** (pre-pause) | 400+ vehicles | 50TB/day | ~5,000 GPUs | Monthly | Trips between issues |
-| **Aurrigo** (current) | 5-20 vehicles | 200GB-1TB/day | 0 (no ML training) | N/A | N/A |
-| **Aurrigo** (target) | 50-100 vehicles | 5-10TB/day | 8-64 GPUs | Monthly | Missions per intervention |
+| **reference airside AV stack** (current) | 5-20 vehicles | 200GB-1TB/day | 0 (no ML training) | N/A | N/A |
+| **reference airside AV stack** (target) | 50-100 vehicles | 5-10TB/day | 8-64 GPUs | Monthly | Missions per intervention |
 
 ### 1.3 Why Airside Demands a Flywheel
 
@@ -85,7 +85,7 @@ The airside environment has characteristics that make a data flywheel especially
 
 ### 2.1 Why Not Upload Everything?
 
-With 4-8 RoboSense LiDARs + cameras, each Aurrigo vehicle generates 200-400 GB/day. Uploading everything is:
+With 4-8 RoboSense LiDARs + cameras, each reference airside vehicle generates 200-400 GB/day. Uploading everything is:
 - **Expensive**: At $0.09/GB S3 storage, 10 vehicles × 300GB/day × 365 days = $98K/year in storage alone
 - **Wasteful**: 95%+ of driving is routine (straight taxiway, empty apron) — low information value
 - **Bandwidth-constrained**: Airport 5G upload realistic at ~100 Mbps → 1.1 TB/day max per vehicle
@@ -594,17 +594,17 @@ experiment:
   
 data:
   train:
-    - source: "s3://aurrigo-data/airport-a/train/"
+    - source: "s3://airside-data/airport-a/train/"
       version: "dvc://v2.3"
       frames: 45000
-    - source: "s3://aurrigo-data/airport-b/train/"
+    - source: "s3://airside-data/airport-b/train/"
       version: "dvc://v1.1"  
       frames: 12000
   val:
-    - source: "s3://aurrigo-data/airport-a/val/"
+    - source: "s3://airside-data/airport-a/val/"
       frames: 5000
   test:
-    - source: "s3://aurrigo-data/airport-a/test/"
+    - source: "s3://airside-data/airport-a/test/"
       frames: 5000
       
 model:
@@ -646,7 +646,7 @@ export:
   format: "tensorrt"
   precision: "fp16"  # int8 for PointPillars backbone
   target: "orin_agx"
-  calibration_dataset: "s3://aurrigo-data/calibration/int8_500frames/"
+  calibration_dataset: "s3://airside-data/calibration/int8_500frames/"
 ```
 
 ### 5.3 Experiment Tracking
@@ -1309,4 +1309,4 @@ Assumes:
 
 ---
 
-*Document generated for Aurrigo industry research, April 2026. Covers the ML-centric data flywheel — for infrastructure (storage, transfer, DVC), see `50-cloud-fleet/data-platform/fleet-data-pipeline.md`. For bag processing specifics, see `50-cloud-fleet/data-platform/data-engine-from-bags.md`. For public datasets, see `50-cloud-fleet/data-platform/data-engines-datasets.md`.*
+*Document generated for reference airside AV stack industry research, April 2026. Covers the ML-centric data flywheel — for infrastructure (storage, transfer, DVC), see `50-cloud-fleet/data-platform/fleet-data-pipeline.md`. For bag processing specifics, see `50-cloud-fleet/data-platform/data-engine-from-bags.md`. For public datasets, see `50-cloud-fleet/data-platform/data-engines-datasets.md`.*

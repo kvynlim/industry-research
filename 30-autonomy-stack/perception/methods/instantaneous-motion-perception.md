@@ -69,7 +69,7 @@
 - Relevant to apron cases where a parked tug, belt loader, baggage train, or bus begins moving at low speed.
 - Needs extension beyond road vehicles to GSE shapes and personnel.
 - Could run only on objects near the ego vehicle's planned path or aircraft clearance envelope.
-- Aurrigo's RTK/IMU/GTSAM stack is a good source of ego-motion for this method's assumptions.
+- the reference airside AV stack's RTK/IMU/GTSAM stack is a good source of ego-motion for this method's assumptions.
 - Should be fused with radar Doppler where available, because radar gives direct radial velocity for many moving actors.
 
 ## Implementation Notes

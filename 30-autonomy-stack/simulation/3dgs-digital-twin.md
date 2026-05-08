@@ -850,4 +850,3 @@ Use glTF with KHR_gaussian_splatting extension (standardized August 2025) for in
 
 **Airport Digital Twin Context:**
 - Autonoma Airport Simulation: https://www.autonoma.ai/
-- Aurrigo Auto-Sim: https://www.theengineer.co.uk/content/news/aurrigo-investigates-autonomy-at-gerald-r-ford-international-airport

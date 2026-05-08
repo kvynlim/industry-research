@@ -422,7 +422,7 @@ def detect_anomalies(current_scan, reference_map, ego_pose,
 Reconstructs your operating airport as a photorealistic 3D Gaussian Splatting scene from accumulated LiDAR data. Enables novel-view rendering and synthetic sensor simulation for testing.
 
 ### Why It Matters
-- Your kinematic sim (aurrigo_python_sim) has no 3D scene — cannot test perception.
+- Your kinematic sim (airside_python_sim) has no 3D scene — cannot test perception.
 - A 3DGS twin enables closed-loop testing with rendered LiDAR.
 - Foundation for synthetic data generation (POC 1 training data amplification).
 - No one else in airside AV has this — competitive advantage.
@@ -588,7 +588,7 @@ POC 7 (Open-Vocab Detection) ───────────────→│
 POC 8 (Turnaround Estimator) ───────────────→│──→ AIRPORT CONTEXT LAYER
 ```
 
-When all POCs are integrated, you have the Simplex high-performance controller from the design spec — running in shadow mode alongside the current Aurrigo stack.
+When all POCs are integrated, you have the Simplex high-performance controller from the design spec — running in shadow mode alongside the current reference airside AV stack.
 
 ---
 

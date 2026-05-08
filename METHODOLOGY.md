@@ -6,7 +6,7 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 394-document research corpus, surfaced as 402 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 390-document research corpus, surfaced as 398 VitePress reader pages.
 
 The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 230k+ lines of Markdown.
 
@@ -19,7 +19,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 - **Output:** 20 research reports, ~13,000 lines
 
 ### Phase 2: Design & Brainstorming
-- **Method:** Explored the Aurrigo ROS workspace (`~/ubuntu_20-04/z-aurrigo-ws/`) to understand the current AV stack (22 packages analyzed)
+- **Method:** Explored reference AV stack patterns and operational constraints to understand the target system architecture
 - **Output:** Design specification (891 lines, spec-reviewed with automated review agent), POC proposals, master synthesis
 
 ### Phase 3: Execution Guides (20 parallel agents)
@@ -29,7 +29,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 ### Phase 4: Production Deployment (15 parallel agents)
 - **Method:** 15 agents researching real-world deployment case studies
-- **Companies:** TractEasy, Aurrigo, comma.ai, Waymo, Tesla, Changi programme
+- **Companies:** TractEasy, comma.ai, Waymo, Tesla, Changi programme
 - **Topics:** Safety incidents, OTA fleet management, safety certification, teleoperation, 5G connectivity, production perception, Moonware HALO, deployment playbook, production ML deployment
 - **Output:** 15 deployment reports, ~13,000 lines
 
@@ -73,7 +73,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 2. **Factual Corrections:** Known inaccuracies identified and propagated across all documents (V-JEPA 240x→~15x, Alpamayo naming/licensing, Copilot4D parameter count)
 3. **Cross-Referencing:** Synthesis documents cross-reference each other and the detailed research
 4. **Source Attribution:** Each research document includes a Sources section with paper references, URLs, and datasets
-5. **Direct Verification:** Aurrigo tech stack analyzed from actual source code, not secondary sources
+5. **Primary-Source Preference:** Implementation claims are checked against primary artifacts where available, with company-specific claims kept attributed
 6. **Coverage Audits:** Broad method libraries now include explicit backlog documents for missing first-class pages, starting with SLAM and perception
 7. **Atomic Method Pages:** SLAM and perception now separate overview synthesis from one-method research files, so individual techniques can be updated and compared without burying them inside family documents
 8. **Cross-Architecture Gap Tracking:** The synthesis layer now tracks P0/P1/P2 research gaps outside the dedicated SLAM and perception audits
@@ -91,11 +91,11 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 394 |
-| Reader pages | 402 |
+| Core research documents | 390 |
+| Reader pages | 398 |
 | Total lines | 230k+ |
 | Research agents spawned | 125+ |
-| Companies researched | 21 |
+| Companies researched | 20 |
 | Method-level SLAM library | 58 method files + overview |
 | Method-level perception files | 54 |
 | Papers referenced | 400+ |

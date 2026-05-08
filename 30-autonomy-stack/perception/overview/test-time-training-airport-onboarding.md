@@ -2,11 +2,11 @@
 
 **Research Date:** 2026-04-11
 **Scope:** Gradient-based test-time training methods for adapting LiDAR perception models to new airport environments without labeled data, deployed on NVIDIA Orin AGX within Simplex safety architecture
-**Stack Context:** Aurrigo ROS Noetic, 4-8 RoboSense LiDAR (RSHELIOS/RSBP), PointPillars/CenterPoint detection, GTSAM localization, Frenet planner, Simplex AC/BC
+**Stack Context:** reference airside AV stack ROS Noetic, 4-8 RoboSense LiDAR (RSHELIOS/RSBP), PointPillars/CenterPoint detection, GTSAM localization, Frenet planner, Simplex AC/BC
 
 ---
 
-**Key Takeaway:** Test-time training (TTT) occupies a critical middle ground between lightweight TTA (BN statistics only, covered in `test-time-adaptation-airside.md`) and full supervised fine-tuning (requires labels, covered in `multi-airport-adaptation.md`). TTT uses self-supervised auxiliary losses -- masked point cloud reconstruction, contrastive temporal consistency, ground plane prediction -- to compute actual gradients and update model parameters at test time, recovering 40-70% of the domain gap at a new airport *before any labeled data exists*. On Orin AGX, a LoRA-constrained TTT update (rank 4-8, 1 gradient step per 10 frames) adds 8-15ms amortized overhead per inference cycle, fitting within the 50ms planning budget. The critical safety requirement is bounding TTT's risk: an anchor loss prevents deviation beyond 5% of pre-deployment weights, a frozen baseline model (Simplex BC) runs in parallel at all times, and OOD-triggered fallback overrides TTT if adapted model uncertainty exceeds threshold. For Aurrigo's airport onboarding, TTT compresses the "unlabeled shadow mode" phase from 2 weeks of passive observation to 3-5 days of active adaptation, after which the adapted model can be evaluated against a small labeled sample (200-500 frames) and locked as the new airport baseline.
+**Key Takeaway:** Test-time training (TTT) occupies a critical middle ground between lightweight TTA (BN statistics only, covered in `test-time-adaptation-airside.md`) and full supervised fine-tuning (requires labels, covered in `multi-airport-adaptation.md`). TTT uses self-supervised auxiliary losses -- masked point cloud reconstruction, contrastive temporal consistency, ground plane prediction -- to compute actual gradients and update model parameters at test time, recovering 40-70% of the domain gap at a new airport *before any labeled data exists*. On Orin AGX, a LoRA-constrained TTT update (rank 4-8, 1 gradient step per 10 frames) adds 8-15ms amortized overhead per inference cycle, fitting within the 50ms planning budget. The critical safety requirement is bounding TTT's risk: an anchor loss prevents deviation beyond 5% of pre-deployment weights, a frozen baseline model (Simplex BC) runs in parallel at all times, and OOD-triggered fallback overrides TTT if adapted model uncertainty exceeds threshold. For the reference airside AV stack's airport onboarding, TTT compresses the "unlabeled shadow mode" phase from 2 weeks of passive observation to 3-5 days of active adaptation, after which the adapted model can be evaluated against a small labeled sample (200-500 frames) and locked as the new airport baseline.
 
 ---
 
@@ -90,7 +90,7 @@ TTT is the right choice when all of the following hold:
 4. **A safety fallback exists** -- Simplex BC catches TTT failures
 5. **Auxiliary task was included during source training** -- model architecture supports it
 
-For Aurrigo's airport onboarding, conditions 1-4 are always met. Condition 5 requires architectural planning: the auxiliary task head must be trained alongside the main detection head during source model training. This is a one-time cost.
+For the reference airside AV stack's airport onboarding, conditions 1-4 are always met. Condition 5 requires architectural planning: the auxiliary task head must be trained alongside the main detection head during source model training. This is a one-time cost.
 
 ### 1.4 What TTT Cannot Do
 
@@ -325,9 +325,9 @@ Where `L_ssl` is a reconstruction loss: `L_ssl = ||W * x_t - x_t||^2` (self-reco
 - Expressiveness that grows with test sequence length (more data = better state)
 - The "mini-batch TTT" variant accumulates multiple tokens before updating `W`, amortizing cost
 
-**Relevance to Aurrigo:**
+**Relevance to reference airside AV stack:**
 - TTT-Linear is an *architectural* innovation, not a deployment technique. It cannot be applied to existing PointPillars/CenterPoint models -- it requires training a new model from scratch with TTT layers replacing attention.
-- **Long-term potential:** If Aurrigo adopts a transformer-based 3D backbone (PTv3, FlatFormer, LitePT), replacing attention layers with TTT layers would provide *inherent* continuous adaptation capability at the architecture level. The model would automatically adapt to each new airport by construction.
+- **Long-term potential:** If reference airside AV stack adopts a transformer-based 3D backbone (PTv3, FlatFormer, LitePT), replacing attention layers with TTT layers would provide *inherent* continuous adaptation capability at the architecture level. The model would automatically adapt to each new airport by construction.
 - **Current applicability:** Low. This is a research direction, not a deployment-ready method.
 - **Compute:** Each TTT layer update requires one backward pass per token group, which on Orin at 120K+ LiDAR points is prohibitive without careful voxelization to reduce token count to 1-5K.
 
@@ -609,7 +609,7 @@ Frame t:     P_t → Encoder → F_t (features per voxel)
 Frame t+1:   P_{t+1} → Ego-compensate → Encoder → F_{t+1}
 
 Ego-compensation: Transform P_{t+1} into frame t's coordinate system
-using GTSAM odometry (available from Aurrigo's localization stack)
+using GTSAM odometry (available from the reference airside AV stack's localization stack)
 
 Loss: L_temporal = -mean(cosine_sim(F_t[v], F_{t+1}[v])) 
       for all voxels v occupied in both frames
@@ -627,7 +627,7 @@ Loss: L_temporal = -mean(cosine_sim(F_t[v], F_{t+1}[v]))
 
 **Why airports are special:** Airports are flat -- by ICAO standards, apron slopes must be <1% (1m rise per 100m), and taxiway cross-slopes are <1.5%. This provides an extraordinarily strong geometric prior that is consistent across airports.
 
-**Self-supervised ground truth:** The Aurrigo stack already computes ground plane estimates via RANSAC as part of the perception pipeline. These RANSAC outputs can serve as pseudo-labels for the ground plane prediction auxiliary task.
+**Self-supervised ground truth:** The reference airside AV stack already computes ground plane estimates via RANSAC as part of the perception pipeline. These RANSAC outputs can serve as pseudo-labels for the ground plane prediction auxiliary task.
 
 **Auxiliary task:**
 ```
@@ -706,7 +706,7 @@ Note: the backward passes share the encoder's computation graph, so the combined
 
 ### 4.1 Compute Budget Analysis
 
-The Aurrigo perception pipeline has a 50ms cycle time (10Hz LiDAR). The current budget allocation:
+The reference airside AV stack perception pipeline has a 50ms cycle time (10Hz LiDAR). The current budget allocation:
 
 ```
 50ms Total Budget
@@ -1022,7 +1022,7 @@ At new airport (TTT):
 **Advantage:** Zero forgetting by construction -- source parameters literally cannot change.
 **Disadvantage:** Limited capacity. After adapting to 4 airports (each using 75% of remaining free parameters), the model has only `0.75^4 ≈ 32%` of its LoRA capacity remaining.
 
-**For Aurrigo's scale (5-15 airports in 3-year horizon):** PackNet is viable for the first 3-4 airports but will run out of capacity. Transition to EWC-based TTT after that. Alternatively, use LoRA rank 16 (instead of 8) to double capacity.
+**For the reference airside AV stack's scale (5-15 airports in 3-year horizon):** PackNet is viable for the first 3-4 airports but will run out of capacity. Transition to EWC-based TTT after that. Alternatively, use LoRA rank 16 (instead of 8) to double capacity.
 
 ### 5.5 Source-Domain Validation Set Monitoring
 
@@ -1751,7 +1751,7 @@ context.set_tensor_address("lora_b_layer1", updated_lora_b_ptr)
 |------|-----------|-------|
 | Engineering (20 weeks x 1 ML engineer) | $30-50K | Core implementation |
 | GPU training compute (A100 hours) | $2-4K | Re-training with auxiliary tasks |
-| Orin development kit | $0 (existing) | Use existing Aurrigo Orin AGX |
+| Orin development kit | $0 (existing) | Use existing reference airside AV stack Orin AGX |
 | Field deployment (airport access, travel) | $5-8K | 4 weeks on-site for validation |
 | Annotation for validation (200 frames) | $2-3K | Small labeled set for quantitative eval |
 | **Total** | **$42-64K** | |
@@ -1831,7 +1831,7 @@ context.set_tensor_address("lora_b_layer1", updated_lora_b_ptr)
 19. Li, X., Wang, Z., & Zhang, H. (2024). *Online LoRA for Efficient Test-Time Training on Edge Devices.* ECCV 2024 Workshop.
 20. NVIDIA. (2024). *Orin AGX Developer Guide: Multi-Stream CUDA Programming.* NVIDIA Developer Documentation.
 
-### Related Aurrigo Repository Documents
+### Related reference airside AV stack Repository Documents
 
 - `30-autonomy-stack/perception/overview/test-time-adaptation-airside.md` -- TTA methods (TENT, CoTTA, SAR, SFDA); OOD detection; active learning; continual learning baselines
 - `30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md` -- MAE, contrastive, JEPA pre-training strategies; SSL curriculum

@@ -615,5 +615,4 @@ Each XYZIRT point = 26 bytes, so total raw bandwidth = ~221 MB/s. This is well w
 - [RoboSense E1R Product Page](https://www.robosense.ai/en/IncrementalComponents/E1R)
 - [TechInsights RS-Helios Teardown](https://electronics360.globalspec.com/article/18208/techinsights-teardown-robosense-lidar-rs-helios)
 - [Ouster vs RoboSense Comparison (Generation Robots)](https://www.generationrobots.com/blog/en/ouster-vs-robosense-which-brand-of-3d-lidar-to-choose/)
-- [Aurrigo Auto-Shuttle](https://aurrigo.com/autoshuttle/)
 - [RoboSense Store: Helios Series](https://store.robosense.ai/products/helios-series)

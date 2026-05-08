@@ -15,7 +15,7 @@
 5. [Architecture for On-Vehicle Deployment](#5-architecture-for-on-vehicle-deployment)
 6. [Transfer Learning and Adaptation](#6-transfer-learning-and-adaptation)
 7. [Benchmarks and Evaluation](#7-benchmarks-and-evaluation)
-8. [Integration with Aurrigo Stack](#8-integration-with-aurrigo-stack)
+8. [Integration with reference airside AV stack Stack](#8-integration-with-airside-stack)
 9. [Implementation Roadmap](#9-implementation-roadmap)
 10. [Key Takeaways](#10-key-takeaways)
 11. [References](#11-references)
@@ -26,7 +26,7 @@
 
 ### 1.1 Beyond Point-to-Point Navigation
 
-The autonomous driving research community has invested heavily in solving the open-road navigation problem: detect obstacles, predict their motion, plan a trajectory, and follow it. This perception-prediction-planning loop is the core of every AV stack, including Aurrigo's current ROS Noetic pipeline (PointPillars detection at 6.84ms, GTSAM localization, Frenet planning with 420 candidates/cycle). It works well for the "drive from A to B" portion of airport airside operations.
+The autonomous driving research community has invested heavily in solving the open-road navigation problem: detect obstacles, predict their motion, plan a trajectory, and follow it. This perception-prediction-planning loop is the core of every AV stack, including the reference airside AV stack's current ROS Noetic pipeline (PointPillars detection at 6.84ms, GTSAM localization, Frenet planning with 420 candidates/cycle). It works well for the "drive from A to B" portion of airport airside operations.
 
 But airport GSE vehicles do far more than drive between points. A turnaround at a single stand involves a sequence of heterogeneous physical tasks that have more in common with industrial robotics than with highway driving:
 
@@ -41,7 +41,7 @@ But airport GSE vehicles do far more than drive between points. A turnaround at 
 | Cargo container placement | +-5 cm for ULD locks | 3D pose estimation, spatial reasoning | Precision positioning |
 | Aircraft push from gate | Follow ATC-cleared route | Spatial awareness, clearance estimation | Multi-waypoint with constraints |
 
-Each of these tasks currently requires its own specialized perception module, its own training pipeline, its own labeled dataset, and its own control policy. The result is a combinatorial explosion of engineering effort that scales poorly across airports and across vehicle types (ADT3, STL2, POD, ACA1).
+Each of these tasks currently requires its own specialized perception module, its own training pipeline, its own labeled dataset, and its own control policy. The result is a combinatorial explosion of engineering effort that scales poorly across airports and across vehicle types (third-generation tug, small tug platform, POD, ACA1).
 
 ### 1.2 The Spatial Intelligence Gap
 
@@ -96,7 +96,7 @@ This mirrors the evolution already underway in driving perception (shared-backbo
 
 ### 1.4 Scope of This Document
 
-This document surveys the landscape of spatial foundation models and embodied foundation models (EFMs) as of early 2026, evaluates their applicability to airport airside GSE operations, and proposes a concrete integration path with Aurrigo's existing ROS Noetic stack. It builds on:
+This document surveys the landscape of spatial foundation models and embodied foundation models (EFMs) as of early 2026, evaluates their applicability to airport airside GSE operations, and proposes a concrete integration path with the reference airside AV stack's existing ROS Noetic stack. It builds on:
 - `30-autonomy-stack/vla-vlm/vla-for-driving.md` — VLA architectures for driving
 - `30-autonomy-stack/vla-vlm/vlm-scene-understanding.md` — VLM co-pilot for scene understanding
 - `30-autonomy-stack/vla-vlm/vla-distillation-scaling.md` — distilling large VLAs for Orin
@@ -351,7 +351,7 @@ LLM backbone (LLaMA-2 7B / OPT-1.3B)
 
 #### 2.4.3 Airside Potential
 
-3D-LLM's native point cloud understanding is directly applicable given Aurrigo's LiDAR-primary stack:
+3D-LLM's native point cloud understanding is directly applicable given the reference airside AV stack's LiDAR-primary stack:
 
 ```
 AIRSIDE 3D-LLM USAGE:
@@ -370,7 +370,7 @@ AIRSIDE 3D-LLM USAGE:
       route via taxiway Bravo."
 ```
 
-**Limitation:** 3D-LLM requires known camera poses for multi-view feature lifting. On Aurrigo's stack, this is available from GTSAM localization, so integration is feasible. However, 7B parameters makes real-time Orin deployment impractical — suitable for edge-server or cloud-based spatial reasoning at 0.5-1 Hz.
+**Limitation:** 3D-LLM requires known camera poses for multi-view feature lifting. On the reference airside AV stack's stack, this is available from GTSAM localization, so integration is feasible. However, 7B parameters makes real-time Orin deployment impractical — suitable for edge-server or cloud-based spatial reasoning at 0.5-1 Hz.
 
 ### 2.5 SpatialRGPT (UC San Diego)
 
@@ -398,7 +398,7 @@ Input: RGB image + depth map (from LiDAR projection or depth estimator)
 | Spatial relation | 93.4% | 89.2% | +4.2% |
 | Depth-conditioned QA | 88.7% | 79.3% | +9.4% |
 
-**Airside advantage:** Aurrigo vehicles already produce dense depth maps from 4-8 RoboSense LiDARs. Projecting LiDAR points into camera frames provides a high-quality depth channel that SpatialRGPT can directly consume — no monocular depth estimation needed. This eliminates the primary error source in camera-only spatial reasoning (depth estimation errors >3-5m at 50m) and provides metric-accurate spatial answers.
+**Airside advantage:** reference airside vehicles already produce dense depth maps from 4-8 RoboSense LiDARs. Projecting LiDAR points into camera frames provides a high-quality depth channel that SpatialRGPT can directly consume — no monocular depth estimation needed. This eliminates the primary error source in camera-only spatial reasoning (depth estimation errors >3-5m at 50m) and provides metric-accurate spatial answers.
 
 ### 2.6 Comparison of Spatial Foundation Models
 
@@ -412,7 +412,7 @@ Input: RGB image + depth map (from LiDAR projection or depth estimator)
 | 3D-LLM (1.3B) | 1.3B | Point cloud / multi-view | Language (3D-grounded) | 0.82m dist. error | ~80ms | Yes | MIT |
 | SpatialRGPT | 7-13B | RGB + depth + language | Language (spatial) | 0.28m dist. error (indoor) | ~300ms | Yes | Apache 2.0 |
 
-**Recommendation for Aurrigo:** Start with SPA (small, open, egocentric) for spatial feature extraction and SpatialRGPT (depth-aware, LiDAR-projectable) for spatial reasoning co-pilot. Use 4M as teacher for offline distillation of multi-task perception heads.
+**Recommendation for reference airside AV stack:** Start with SPA (small, open, egocentric) for spatial feature extraction and SpatialRGPT (depth-aware, LiDAR-projectable) for spatial reasoning co-pilot. Use 4M as teacher for offline distillation of multi-task perception heads.
 
 ---
 
@@ -457,7 +457,7 @@ RT-2/RT-X demonstrates three principles directly applicable to airport GSE:
 
 1. **Web-scale pre-training helps physical tasks**: Language understanding of spatial concepts ("left of," "aligned with," "close to") transfers to physical execution. A model pre-trained on internet data understands "dock at the cargo door" even without airside training data.
 
-2. **Cross-embodiment training helps each robot**: If Aurrigo trains on data from ADT3, STL2, POD, and ACA1 jointly (analogous to RT-X's multi-robot training), each vehicle type benefits. The shared backbone learns universal spatial reasoning while vehicle-specific action heads handle different steering geometries.
+2. **Cross-embodiment training helps each robot**: If reference airside AV stack trains on data from third-generation tug, small tug platform, POD, and ACA1 jointly (analogous to RT-X's multi-robot training), each vehicle type benefits. The shared backbone learns universal spatial reasoning while vehicle-specific action heads handle different steering geometries.
 
 3. **Action tokenization works**: Discretizing continuous control (steering angle, velocity) into tokens and predicting them autoregressively is a viable approach — proven at scale by Google.
 
@@ -703,7 +703,7 @@ GR-2's video generation approach connects to NVIDIA Cosmos world models (documen
 
 #### 3.5.1 Architecture
 
-HPT addresses a specific problem: how to pre-train on data from robots with **different proprioceptive spaces** (different numbers of joints, different sensor suites) and different action spaces. This is directly analogous to Aurrigo's challenge of training across ADT3 (Ackermann + crab steering), STL2, POD, and ACA1.
+HPT addresses a specific problem: how to pre-train on data from robots with **different proprioceptive spaces** (different numbers of joints, different sensor suites) and different action spaces. This is directly analogous to the reference airside AV stack's challenge of training across third-generation tug (Ackermann + crab steering), small tug platform, POD, and ACA1.
 
 ```
 ┌──────────────────────────────────────────────────────┐
@@ -712,7 +712,7 @@ HPT addresses a specific problem: how to pre-train on data from robots with **di
 │  Robot A: 7-DoF arm ──→ ┐                             │
 │  Robot B: 6-DoF arm ──→ ├→ Per-robot stem (MLP)       │
 │  Robot C: mobile base ─→ │   normalizes to shared dim  │
-│  Vehicle ADT3 ─────────→ ┘                             │
+│  Vehicle third-generation tug ─────────→ ┘                             │
 │                             │                         │
 │                             ▼                         │
 │                    Shared trunk                        │
@@ -722,7 +722,7 @@ HPT addresses a specific problem: how to pre-train on data from robots with **di
 │  Robot A: 7-DoF out ←─ ┐                             │
 │  Robot B: 6-DoF out ←─ ├← Per-robot head (MLP)       │
 │  Robot C: [v, omega] ← │   maps to specific actions   │
-│  ADT3: [steer, vel] ←─ ┘                             │
+│  third-generation tug: [steer, vel] ←─ ┘                             │
 └──────────────────────────────────────────────────────┘
 ```
 
@@ -739,14 +739,14 @@ HPT addresses a specific problem: how to pre-train on data from robots with **di
 
 **Key finding:** Cross-embodiment training costs ~3% on known tasks but gains ~16% on novel tasks and enables zero-shot transfer to new robots entirely.
 
-#### 3.5.3 Aurrigo Multi-Vehicle Application
+#### 3.5.3 reference airside AV stack Multi-Vehicle Application
 
 ```
-HPT for Aurrigo fleet:
+HPT for reference airside fleet:
 
 Per-vehicle stems:
-  ADT3: [steer_front, steer_rear, velocity, crab_angle] → 256-dim
-  STL2: [steer, velocity] → 256-dim
+  third-generation tug: [steer_front, steer_rear, velocity, crab_angle] → 256-dim
+  small tug platform: [steer, velocity] → 256-dim
   POD:  [steer, velocity, passenger_load] → 256-dim
   ACA1: [steer, velocity, articulation_angle] → 256-dim
 
@@ -755,13 +755,13 @@ Shared trunk (ViT, ~100M params):
   Shared across all vehicle types
 
 Per-vehicle heads:
-  ADT3: 256-dim → [steer_front, steer_rear, velocity, crab_angle]
-  STL2: 256-dim → [steer, velocity]
+  third-generation tug: 256-dim → [steer_front, steer_rear, velocity, crab_angle]
+  small tug platform: 256-dim → [steer, velocity]
   POD:  256-dim → [steer, velocity]
   ACA1: 256-dim → [steer, velocity, articulation]
 ```
 
-**Benefit:** A single pre-trained model backbone, shared across all Aurrigo vehicle types. New vehicle types (future products) get free transfer learning — only a small stem and head need training.
+**Benefit:** A single pre-trained model backbone, shared across all reference airside vehicle types. New vehicle types (future products) get free transfer learning — only a small stem and head need training.
 
 #### 3.5.4 Licensing
 
@@ -780,7 +780,7 @@ Where (approximate exponents from aggregate analysis):
   γ ≈ 0.2   (embodiment diversity — modest but consistent benefit)
 ```
 
-**Practical implications for Aurrigo:**
+**Practical implications for reference airside AV stack:**
 
 | Factor | Value | Impact | Cost |
 |--------|-------|--------|------|
@@ -806,7 +806,7 @@ Where (approximate exponents from aggregate analysis):
 | HPT | 100-300M | Per-embodiment MLP | 52 embodiment types | 200-500 episodes | ~20ms | Yes | MIT |
 | OpenVLA | 7B | Token (autoregressive) | Open X-Embodiment | 100+ episodes | ~200ms | Yes | MIT |
 
-**Recommendation for Aurrigo:** Octo-Base (open, proven, right size for distillation to Orin) as the primary foundation model platform, with HPT's stem/head architecture for cross-vehicle transfer. pi0's flow matching insight should be adopted as the action head architecture.
+**Recommendation for reference airside AV stack:** Octo-Base (open, proven, right size for distillation to Orin) as the primary foundation model platform, with HPT's stem/head architecture for cross-vehicle transfer. pi0's flow matching insight should be adopted as the action head architecture.
 
 ---
 
@@ -1365,8 +1365,8 @@ Stage 2: Driving domain fine-tuning (partially done)
   Learns: BEV understanding, vehicle dynamics, traffic patterns
   Cost: $5-15K compute (LoRA fine-tuning on available data)
 
-Stage 3: Airside domain adaptation (Aurrigo-specific)
-  Data: 500-2,000 demonstrations per task from Aurrigo fleet
+Stage 3: Airside domain adaptation (reference-stack-specific)
+  Data: 500-2,000 demonstrations per task from reference airside fleet
   Learns: Airside objects, docking geometry, GSE behavior, FOD patterns
   Cost: $15-30K (data collection + annotation + compute)
 
@@ -1493,7 +1493,7 @@ Result: Features are domain-invariant; only the task head needs adaptation
   Recovery with 100-500 real examples: <1% AP gap
 ```
 
-This is critical because **no public airside simulation exists** — Aurrigo would need to build an airport environment in Isaac Sim, and the investment in simulation is much more efficient if foundation model features bridge most of the sim-to-real gap.
+This is critical because **no public airside simulation exists** — reference airside AV stack would need to build an airport environment in Isaac Sim, and the investment in simulation is much more efficient if foundation model features bridge most of the sim-to-real gap.
 
 ---
 
@@ -1580,11 +1580,11 @@ Any spatial foundation model approach should be compared against these baselines
 
 ---
 
-## 8. Integration with Aurrigo Stack
+## 8. Integration with reference airside AV stack Stack
 
 ### 8.1 ROS Noetic Integration Patterns
 
-Foundation models are Python-based (PyTorch), while Aurrigo's core stack is C++ nodelets. Integration follows the existing pattern used for any ML model in the ROS stack:
+Foundation models are Python-based (PyTorch), while the reference airside AV stack's core stack is C++ nodelets. Integration follows the existing pattern used for any ML model in the ROS stack:
 
 ```
 INTEGRATION ARCHITECTURE:
@@ -1901,11 +1901,11 @@ Phase 4 (Full Spatial Intelligence, +$20K, 6 weeks):
 
 6. **Simplex architecture decouples safety from spatial intelligence.** Foundation model policy as Advanced Controller with classical Frenet/ICP as Baseline Controller means spatial FM failures do not compromise safety. The safety case depends only on the classical BC.
 
-7. **SpatialRGPT-style depth-conditioned VLM is the highest-value starting point for Aurrigo.** Aurrigo already has dense LiDAR depth — projecting it into camera frames and feeding to a spatial VLM gives metric-accurate spatial reasoning (0.28m indoor error) without monocular depth estimation. Use InternVL2-2B as an open-source backbone, fine-tune with SpatialVLM-style spatial QA data.
+7. **SpatialRGPT-style depth-conditioned VLM is the highest-value starting point for reference airside AV stack.** reference airside AV stack already has dense LiDAR depth — projecting it into camera frames and feeding to a spatial VLM gives metric-accurate spatial reasoning (0.28m indoor error) without monocular depth estimation. Use InternVL2-2B as an open-source backbone, fine-tune with SpatialVLM-style spatial QA data.
 
 8. **No public airside embodied AI benchmark exists.** Defining AirsideTasks (docking accuracy, spatial QA, FOD characterization, cross-airport transfer) creates a competitive moat through standardization — similar to how nuScenes defined autonomous driving evaluation.
 
-9. **HPT's per-embodiment stem/head architecture matches Aurrigo's multi-vehicle fleet.** ADT3, STL2, POD, ACA1 each get a small stem (1-5M params) and head (1-5M params); the shared backbone (~100M params) is trained once. New vehicle types get free transfer.
+9. **HPT's per-embodiment stem/head architecture matches the reference airside AV stack's multi-vehicle fleet.** third-generation tug, small tug platform, POD, ACA1 each get a small stem (1-5M params) and head (1-5M params); the shared backbone (~100M params) is trained once. New vehicle types get free transfer.
 
 10. **Total implementation: $55-95K over 24 weeks, $10-20K per additional airport.** Phase 1 evaluation ($5-10K) provides a clear go/no-go signal before committing to full development. ROI from eliminated per-template engineering and FOD detection alone justifies the investment at 2+ airports.
 

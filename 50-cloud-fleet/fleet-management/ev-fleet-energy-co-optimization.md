@@ -261,7 +261,7 @@ def energy_consumption_kwh(
 
 | GSE Type | Battery (kWh) | Consumption (kWh/km) | Range (km) | Tasks per Charge | Orin % of Budget |
 |---|---|---|---|---|---|
-| Baggage tractor (ADT3) | 40-60 | 0.12-0.18 | 220-500 | 20-35 | 0.8-1.2% |
+| Baggage tractor (third-generation tug) | 40-60 | 0.12-0.18 | 220-500 | 20-35 | 0.8-1.2% |
 | Pushback tug | 66-165 | 0.30-0.50 | 130-550 | 8-20 | 0.3-0.7% |
 | Belt loader | 20-40 | 0.10-0.15 | 130-400 | 15-25 | 1.2-2.4% |
 | Catering truck | 60-100 | 0.20-0.30 | 200-500 | 10-18 | 0.5-0.8% |
@@ -315,12 +315,12 @@ Strategy 3: Opportunity Charging (co-optimized with tasks)
   └────────────────────────────────────────────────────┘
   Pros: Maximum utilization, degradation-optimal SoC window, 24/7 capable
   Cons: Requires co-optimization, more charger infrastructure
-  Best for: High-activity hub airports with 24/7 operations (Aurrigo target)
+  Best for: High-activity hub airports with 24/7 operations (reference airside AV stack target)
 ```
 
 ### 3.2 Opportunity Charging: The Co-Optimization Sweet Spot
 
-For Aurrigo's target deployment --- 20-50 autonomous baggage tractors operating 16-20 hours/day at hub airports --- opportunity charging integrated with task scheduling is optimal. The key insight is that autonomous vehicles naturally create charging opportunities that manual fleets cannot exploit:
+For the reference airside AV stack's target deployment --- 20-50 autonomous baggage tractors operating 16-20 hours/day at hub airports --- opportunity charging integrated with task scheduling is optimal. The key insight is that autonomous vehicles naturally create charging opportunities that manual fleets cannot exploit:
 
 1. **No driver breaks needed.** A human-operated vehicle must charge during the driver's break; an autonomous vehicle can charge during any idle window regardless of shift schedule.
 2. **Precise SoC awareness.** The fleet optimizer knows every vehicle's exact SoC, upcoming task load, and nearest charger status. Human drivers estimate and often charge too early (wasting capacity) or too late (forced emergency charge).
@@ -1490,7 +1490,7 @@ Fleet size?
     ├── Column generation for shift planning (60-300s)
     └── RL policy for real-time dispatch (<1ms)
 
-Recommendation for Aurrigo (20-50 vehicles, initial deployments):
+Recommendation for reference airside AV stack (20-50 vehicles, initial deployments):
   CP-SAT for 2-hour planning horizon (re-solve every 15 min)
   + RL policy for event-driven re-dispatch (<1ms)
   + Greedy heuristic as fallback when solver times out
@@ -1921,7 +1921,7 @@ Night depot charging saves: ~$1,500/vehicle/year = $36,000/year for 24 vehicles
 
 ### 11.2 ROS Integration
 
-The energy co-optimizer integrates with the existing Aurrigo ROS Noetic stack as a fleet-level service. Individual vehicles publish battery state; the fleet manager publishes charging commands:
+The energy co-optimizer integrates with the existing reference airside AV stack ROS Noetic stack as a fleet-level service. Individual vehicles publish battery state; the fleet manager publishes charging commands:
 
 ```python
 # On-vehicle node: battery_state_publisher.py
@@ -2253,7 +2253,7 @@ Recommendation: implement Phase 1-2 (demand charge + basic optimization)
 
 4. **V2G is profitable for demand charge shaving and demand response events**, but marginal for pure time-of-use arbitrage. At a 50-vehicle fleet, V2G adds $15-30K/year in revenue. The co-optimizer should always participate in demand charge avoidance and opt into demand response programs when vehicles are idle.
 
-5. **CP-SAT (OR-Tools) handles Aurrigo-scale fleets (20-50 vehicles)** without requiring a Gurobi commercial license. Combined with MPC rolling horizon (15-minute replans) and an RL policy for real-time dispatch, this three-layer approach covers the full decision timescale from shift planning to event response.
+5. **CP-SAT (OR-Tools) handles reference airside AV stack-scale fleets (20-50 vehicles)** without requiring a Gurobi commercial license. Combined with MPC rolling horizon (15-minute replans) and an RL policy for real-time dispatch, this three-layer approach covers the full decision timescale from shift planning to event response.
 
 6. **A-CDM integration is the critical data feed** that makes proactive energy management possible. ELDT (Estimated Landing Time) gives 15-30 minutes advance notice to pre-position vehicles and pre-schedule charging around predicted demand surges. Without A-CDM, the co-optimizer degenerates to reactive threshold-based charging.
 
@@ -2263,7 +2263,7 @@ Recommendation: implement Phase 1-2 (demand charge + basic optimization)
 
 9. **Fire safety compliance for charging near aircraft adds $5-15K per charger location** in suppression systems and clearance engineering. LiFePO4's inherent thermal stability is an advantage, but airport authorities still require NFPA 855/409 compliance for any lithium battery charging on the apron.
 
-10. **Implementation payback is 9-14 months at 50 vehicles.** Phase 1-2 (basic optimization + demand charge management) delivers 65% of total value at 35% of total implementation cost --- this is the recommended starting scope for Aurrigo's initial deployments.
+10. **Implementation payback is 9-14 months at 50 vehicles.** Phase 1-2 (basic optimization + demand charge management) delivers 65% of total value at 35% of total implementation cost --- this is the recommended starting scope for the reference airside AV stack's initial deployments.
 
 11. **The co-optimizer is additive to the existing CP-SAT task scheduler**, not a replacement. It runs as a parallel service that injects charging tasks and power constraints into the task allocation pipeline described in `../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md`, using the same CP-SAT modeling patterns.
 

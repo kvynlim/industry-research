@@ -6,7 +6,7 @@
 
 ---
 
-> **Key Takeaway:** Runtime verification (RV) is the missing bridge between offline testing (which can never cover all scenarios) and formal static verification (which cannot scale to neural-network-based AV stacks). By synthesizing monitors from temporal logic specifications, deploying calibrated OOD detectors, enforcing safety via reactive shields, and continuously assessing ODD compliance, the Aurrigo airside AV stack gains a mathematically grounded, always-on safety net that operates at <2 ms latency and <5% CPU overhead per monitor. Combined with the existing Simplex architecture, CBF safety filters, and Frenet fallback planner, runtime verification provides the fourth layer of defense-in-depth -- and the certification evidence that standards (ISO 26262, UL 4600, DO-178C) increasingly demand.
+> **Key Takeaway:** Runtime verification (RV) is the missing bridge between offline testing (which can never cover all scenarios) and formal static verification (which cannot scale to neural-network-based AV stacks). By synthesizing monitors from temporal logic specifications, deploying calibrated OOD detectors, enforcing safety via reactive shields, and continuously assessing ODD compliance, the reference airside AV stack gains a mathematically grounded, always-on safety net that operates at <2 ms latency and <5% CPU overhead per monitor. Combined with the existing Simplex architecture, CBF safety filters, and Frenet fallback planner, runtime verification provides the fourth layer of defense-in-depth -- and the certification evidence that standards (ISO 26262, UL 4600, DO-178C) increasingly demand.
 
 ---
 
@@ -479,7 +479,7 @@ class NestedSTLMonitor:
 | **py-metric-temporal-logic** | Python | Partial | Yes | Easy | MIT | Minimalist, pure Python. Good for prototyping |
 | **Reelay** (Ulus, 2019) | C++/Python | Yes | Yes (past-time) | C++ bindings for nodelets | MIT | Very fast past-time monitoring |
 
-**Recommendation for Aurrigo:** Use **RTAMT** for online monitoring (Python, direct ROS integration, quantitative robustness, Apache 2.0 license) and **Breach** for offline analysis (MATLAB, industry standard, mature falsification support).
+**Recommendation for reference airside AV stack:** Use **RTAMT** for online monitoring (Python, direct ROS integration, quantitative robustness, Apache 2.0 license) and **Breach** for offline analysis (MATLAB, industry standard, mature falsification support).
 
 ### 2.7 Robustness as a Safety Margin Metric
 
@@ -1137,7 +1137,7 @@ Shields are the enabling mechanism for safely deploying RL-trained controllers:
 | MESA (Russell et al., 2023) | Shield as RL reward shaping | 100% safe (provable) | -12% reward |
 | Shielded RL (Alshiekh et al., 2018) | DFA shield + Q-learning | 100% safe during training | -5% reward |
 
-For Aurrigo's Simplex architecture, the shield sits between the neural AC planner and the CBF-QP safety filter:
+For the reference airside AV stack's Simplex architecture, the shield sits between the neural AC planner and the CBF-QP safety filter:
 
 ```
 Neural AC Planner → Shield (LTL-based) → CBF-QP (continuous safety) → Actuators
@@ -1587,7 +1587,7 @@ class ReflectiveSurfaceDetector:
 
 The ODD defines the operating conditions under which the autonomous system is designed to function. Per ISO/PAS 21448 (SOTIF), the system must continuously verify that it is operating within its ODD and initiate a Minimal Risk Condition (MRC) when it exits.
 
-**Aurrigo Airside ODD Parameters:**
+**reference airside AV stack Airside ODD Parameters:**
 
 | ODD Dimension | Parameter | Range | Measurement Source |
 |--------------|-----------|-------|-------------------|
@@ -2336,7 +2336,7 @@ IEC 61508 (Functional Safety of Electrical/Electronic/Programmable Electronic Sa
 | SIL 3 | >= 99% | 50 Hz | < 20ms |
 | SIL 4 | >= 99.9% | 100 Hz+ | < 10ms |
 
-For the Aurrigo airside AV (targeting PLd / SIL 2 equivalent for safety functions):
+For the reference airside AV stack (targeting PLd / SIL 2 equivalent for safety functions):
 
 | Safety Function | DC Required | Monitoring Mechanism | Estimated DC |
 |----------------|-------------|---------------------|-------------|

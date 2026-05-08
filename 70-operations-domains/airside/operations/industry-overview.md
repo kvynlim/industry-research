@@ -31,26 +31,14 @@ Autonomous ground support equipment (GSE) on airport airside areas (ramp, apron,
 - **Claims:** "The most widely deployed autonomous tow tractor in the world."
 - **Metrics:** 1.5+ million autonomous km driven, 95% mission success rate, 300+ global deployments (across airport and industrial sites).
 
-### 1.2 Aurrigo
+### 1.2 Purpose-Built Autonomous GSE Vendors
 
-**UK-based specialist in autonomous airport ground handling.**
+Purpose-built autonomous GSE platforms generally combine an electric tug or dolly chassis with 360-degree perception, high-precision localization, and airport-system integration. The common product pattern is an autonomous baggage/cargo tug, cargo vehicle, shuttle, and fleet integration platform rather than a single road-vehicle retrofit.
 
-- **What:** Founded 1993 as an automotive engineering company; pivoted to autonomous aviation technology. Headquartered in Coventry, UK. Publicly traded (investors.aurrigo.com).
-- **Products:**
-  - **Auto-DollyTug** -- All-electric autonomous baggage/cargo vehicle. Lithium-ion 88V batteries. Bi-directional sideways movement, 360-degree tank turn, onboard ULD capacity. Can tow up to 4 conventional dollies or 2 cargo dollies while carrying 1 ULD. LiDAR + 360-degree cameras + GPS + IMU for navigation. Up to 60% carbon reduction vs diesel tugs.
-  - **Auto-Cargo** -- Baggage/cargo handling system.
-  - **Auto-Sim** -- Simulation/training platform.
-  - **Auto-Shuttle** -- Passenger transport.
-  - **Auto-Connect** -- Integration system.
-  - **Auto-Dolly** -- Secondary dolly platform.
-  - **Auto-Pod** -- Pod-based solution.
-- **Technology stack:** LiDAR sensors, 360-degree cameras, GPS, inertial measurement units (IMU). A-frame sensor mounting structure. Sideways Drive System (SDS) for precise GSE approach.
-- **Key deployments:**
-  - **Zurich Airport** -- First global pilot of autonomous ground handling with Swissport (May 2025).
-  - **Amsterdam Schiphol Airport** -- Auto-DollyTug deployed with KLM for baggage transfer (February 2025).
-  - **London Heathrow Terminal 5** -- Trial with British Airways/IAG for autonomous luggage dolly (40 bags/journey). Won Heathrow Clean Vehicles Partnership "Innovator" award (2019).
-- **Industry position:** CEO coined the term "iGSE" (intelligent GSE) to advocate for industry adoption.
-- **Recognition:** Won FTE Startup Idol award.
+- **Typical vehicle capabilities:** Bi-directional motion, tight-radius turning, low-speed autonomous towing, ULD or baggage dolly movement, and close-clearance manoeuvring near stands.
+- **Typical sensor stack:** LiDAR, cameras, GNSS/RTK, IMU, wheel odometry, and safety-rated proximity sensors.
+- **Deployment pattern:** Supervised trials first, followed by constrained L4 operation on mapped routes after airport-specific safety approval.
+- **Operational differentiator:** Airport integration matters as much as autonomy; dispatch, baggage systems, stand allocation, and turnaround sequencing determine whether the vehicle creates measurable value.
 
 ### 1.3 Charlatte Autonom (Navya Mobility + Charlatte Manutention)
 
@@ -108,7 +96,7 @@ Autonomous ground support equipment (GSE) on airport airside areas (ramp, apron,
 - **Technology:** Velodyne LiDAR for navigation and obstacle detection. Cameras and sensors mounted on base tractor pulling luggage carriers.
 - **Deployment:** Proof-of-concept autonomous baggage tractor at Cincinnati/Northern Kentucky International Airport (2021), using a Wollard baggage tractor platform.
 - **Recognition:** FTE Startup Idol award winner (2022).
-- **Status:** Early stage; less visible than TractEasy or Aurrigo in terms of commercial deployments.
+- **Status:** Early stage; less visible than TractEasy or larger purpose-built GSE vendors in terms of commercial deployments.
 
 ### 1.9 Other Notable Players
 
@@ -348,8 +336,8 @@ Autonomous ground support equipment (GSE) on airport airside areas (ramp, apron,
 
 | Phase | Timeframe | Status |
 |-------|-----------|--------|
-| **Proof of concept** | 2019-2022 | ThorDrive (CVG), Aurrigo (Heathrow), Charlatte (CDG) |
-| **Controlled pilots** | 2023-2024 | TractEasy (GSP, Changi), Aurrigo (Zurich, Schiphol) |
+| **Proof of concept** | 2019-2022 | ThorDrive (CVG), purpose-built baggage tug pilots, Charlatte (CDG) |
+| **Controlled pilots** | 2023-2024 | TractEasy (GSP, Changi), additional purpose-built GSE vendor trials |
 | **Early commercial ops** | 2025-2026 | TractEasy at Narita (Level 4), Munich, Dubai |
 | **Scaled deployment** | 2027+ | Anticipated as regulatory frameworks solidify |
 
@@ -379,7 +367,6 @@ Autonomous ground support equipment (GSE) on airport airside areas (ramp, apron,
 - ICAO Annex 14 -- Aerodromes
 - ISO 3691-4:2020 -- Driverless Industrial Trucks
 - TractEasy (tracteasy.com) -- Product specifications and deployment announcements
-- Aurrigo (aurrigo.com) -- Aviation division product information
 - Navya Mobility (navya.tech) -- AT135 specifications and company information
 - EasyMile (easymile.com) -- Autonomous driving platform information
 - Fernride (fernride.com) -- Platform and partnership information

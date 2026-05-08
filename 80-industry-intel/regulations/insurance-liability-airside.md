@@ -12,7 +12,7 @@
 3. [Airport Liability Insurance Requirements](#3-airport-liability-insurance-requirements)
 4. [Product Liability for Autonomous Systems](#4-product-liability-for-autonomous-systems)
 5. [Aviation-Specific Insurance Considerations](#5-aviation-specific-insurance-considerations)
-6. [Vendor Insurance Approaches: TractEasy, Aurrigo, UISEE](#6-vendor-insurance-approaches)
+6. [Vendor Insurance Approaches: TractEasy and UISEE](#6-vendor-insurance-approaches)
 7. [Cyber Insurance for Autonomous Vehicles](#7-cyber-insurance-for-autonomous-vehicles)
 8. [Data Breach Liability for Sensor Recordings at Airports](#8-data-breach-liability-for-sensor-recordings)
 9. [Indemnification Clauses in Autonomous Vehicle Contracts](#9-indemnification-clauses)
@@ -46,7 +46,7 @@ The fundamental principle emerging across jurisdictions is that **as autonomy in
 
 - **Level 0-2 (driver assist):** Liability remains primarily with the human operator/ground handler. The driver is "in the loop" and responsible for vehicle control.
 - **Level 3 (conditional automation):** Liability becomes shared. When the system is engaged and operating within its ODD (Operational Design Domain), the technology provider bears primary responsibility. When the system issues a transition demand and the human fails to respond, the human bears responsibility.
-- **Level 4 (high automation, no driver required within ODD):** Liability shifts substantially to the OEM/software provider. Since no human driver is required within the defined operational domain, the technology creator bears primary product liability. This is the level at which most airside autonomous GSE operates (TractEasy, Aurrigo, UISEE all target L4).
+- **Level 4 (high automation, no driver required within ODD):** Liability shifts substantially to the OEM/software provider. Since no human driver is required within the defined operational domain, the technology creator bears primary product liability. This is the level at which most airside autonomous GSE operates (TractEasy and UISEE both target L4).
 - **Level 5 (full automation):** Liability rests almost entirely with the manufacturer/software provider.
 
 ### Key Legal Precedent
@@ -294,7 +294,7 @@ Autonomous GSE introduces new risk dimensions to aircraft ground damage:
 
 ---
 
-## 6. Vendor Insurance Approaches: TractEasy, Aurrigo, UISEE
+## 6. Vendor Insurance Approaches: TractEasy and UISEE
 
 ### TractEasy (EZTow)
 
@@ -311,23 +311,6 @@ Autonomous GSE introduces new risk dimensions to aircraft ground damage:
 - EasyMile (autonomy partner) has extensive experience with insurance for autonomous shuttle deployments in public environments
 - Likely structured with product liability coverage held by TLD/EasyMile, supplemented by airport operator's airside liability requirements
 - At Changi: must comply with Singapore's TR68 safety standards and CAAS AC-139-7-7 guidance, which likely mandate specific insurance provisions
-
-### Aurrigo
-
-**Background:** UK-based company; designs, engineers, and manufactures autonomous airside solutions. Products include Auto-DollyTug and Auto-Shuttle.
-
-**Deployments:**
-- Cincinnati/Northern Kentucky International Airport (CVG) -- Auto-DollyTug with Delta Cargo (operational, dedicated office at CVG)
-- Stuttgart Airport, Germany (demonstration)
-- Changi Airport, Singapore (trial)
-- Six airports worldwide (various trial stages)
-- Partnership with Aston University on autonomous fleet research (announced Feb 2026)
-
-**Insurance approach:**
-- No public disclosure of specific insurance structures
-- As a UK-based manufacturer, subject to UK Automated Vehicles Act 2024 provisions for domestic operations
-- For US deployments: must meet individual airport insurance requirements (CVG likely requires $5M-$10M airside liability minimum)
-- Likely carries comprehensive product liability and professional indemnity insurance as a technology manufacturer
 
 ### UISEE
 
@@ -832,9 +815,6 @@ The UK's Automated Vehicles Act 2024, building on the Automated and Electric Veh
 - [TractEasy](https://tracteasy.com/)
 - [TractEasy Greenville-Spartanburg Deployment](https://tracteasy.com/news/eztow-autonomous-tow-tractor-deployed-at-greenville-spartanburg-international-airport/)
 - [TractEasy Level 4 Autonomous Baggage Towing in Japan](https://tracteasy.com/news/tracteasy-announces-first-level-4-autonomous-baggage-towing-in-japan/)
-- [Aurrigo Automated Aviation Technology](https://aurrigo.com/)
-- [Aurrigo Auto-DollyTug at CVG Airport](https://www.passengerterminaltoday.com/news/technology/aurrigo-opens-autonomous-vehicle-office-at-cvg-airport.html)
-- [Aston University Partners with Aurrigo - Insurance Edge](https://insurance-edge.net/2026/02/06/aston-uni-partners-with-aurrigo-on-autonomous-fleets/)
 - [UISEE Changi Airport Autonomous Tractor Fleet](https://www.uisee.com/en/article226-news1.html)
 - [UISEE Beijing Daxing Airport Pilot](https://autonews.gasgoo.com/icv/70036759.html)
 - [UISEE Hamad International Airport Trial](https://autonews.gasgoo.com/icv/70036036.html)

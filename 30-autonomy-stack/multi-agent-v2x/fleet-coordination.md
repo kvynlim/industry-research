@@ -290,16 +290,16 @@ Autonomous Ground Support Equipment (GSE) is transitioning from trials to operat
 | Airport | Operator | Vehicle | Status | Fleet Size |
 |---|---|---|---|---|
 | Changi (SIN) | CAG/SATS | Autonomous tractors | Live operations (Jan 2026) | 2 active, 24 by 2027 |
-| Schiphol (AMS) | KLM/Aurrigo | Auto-DollyTug | Phase 2B trials | 4 vehicles |
+| Schiphol (AMS) | KLM/reference airside AV stack | autonomous baggage/cargo tug | Phase 2B trials | 4 vehicles |
 | DFW (Dallas) | DFW/EasyMile | EZTow | Airside trials | Multiple units |
 | DWC (Dubai) | dnata/EasyMile | TractEasy EZTow | Operational | 6 electric tractors |
-| Zurich (ZRH) | Swissport/Aurrigo | Auto-DollyTug | Trial initiated May 2025 | -- |
-| CVG (Cincinnati) | Aurrigo | Auto-DollyTug | First US deployment | -- |
-| Stuttgart (STR) | DTAC | Auto-DollyTug | Demonstration | -- |
+| Zurich (ZRH) | Swissport/reference airside AV stack | autonomous baggage/cargo tug | Trial initiated May 2025 | -- |
+| CVG (Cincinnati) | reference airside AV stack | autonomous baggage/cargo tug | First US deployment | -- |
+| Stuttgart (STR) | DTAC | autonomous baggage/cargo tug | Demonstration | -- |
 | GSP (Greenville) | TractEasy | EZTow | Operational | -- |
 | Narita (NRT) | TractEasy | EZTow | Operational with remote supervision | -- |
 
-**Aurrigo Auto-Connect Platform:** A purpose-built, cyber-resilient fleet manager and data visualization platform that integrates with airport baggage systems, A-CDM, and stand allocation data. It provides central awareness of aviation traffic, stand allocation, baggage system status, lateral allocation, road network, and vehicle fleet status. Enables scheduling and monitoring of multiple autonomous vehicles to support aircraft turnaround.
+**reference airside AV stack fleet integration platform Platform:** A purpose-built, cyber-resilient fleet manager and data visualization platform that integrates with airport baggage systems, A-CDM, and stand allocation data. It provides central awareness of aviation traffic, stand allocation, baggage system status, lateral allocation, road network, and vehicle fleet status. Enables scheduling and monitoring of multiple autonomous vehicles to support aircraft turnaround.
 
 **TractEasy EZDolly (2025):** A new autonomous cargo dolly with capacity to transport full-width ULDs or pallets, designed to reduce baggage and cargo loading/unloading times. Production started in 2025.
 
@@ -372,12 +372,12 @@ Aircraft arrives -> Chocks/GPU/Air supply -> Passenger bridge ->
 Baggage handling is the most mature application area for airport autonomous operations, with multiple live deployments.
 
 **Autonomous Baggage Tug Operations:**
-- Aurrigo Auto-DollyTug: All-electric, autonomous baggage/cargo tractor with bi-directional robotic arms for autonomous ULD loading/unloading, 360-degree tank turn, sideways drive, and capacity for one onboard ULD plus three towed dollies
+- reference airside AV stack autonomous baggage/cargo tug: All-electric, autonomous baggage/cargo tractor with bi-directional robotic arms for autonomous ULD loading/unloading, 360-degree tank turn, sideways drive, and capacity for one onboard ULD plus three towed dollies
 - TractEasy EZTow: Most-deployed autonomous tow tractor globally (since 2018), capable of towing up to 14 tons autonomously
 - TractEasy EZDolly: New autonomous cargo dolly (production 2025) for full-width ULD transport
 
 **Integration with Baggage Handling Systems:**
-- Aurrigo Auto-Connect integrates with airport baggage management systems for task scheduling
+- reference airside AV stack fleet integration platform integrates with airport baggage management systems for task scheduling
 - Changi Airport's deployment connects autonomous tractors with T1-T4 baggage handling areas
 - Pattern Labs and Ericsson partnership uses private 5G to transform baggage handling operations
 
@@ -780,7 +780,6 @@ Based on the research findings across all five domains, the following integrated
 - [Integrated Optimization of Scheduling for Unmanned Follow-me Cars](https://www.nature.com/articles/s41598-024-58918-7)
 - [Bi-Level Optimization for De-Icing Position Allocation and Vehicle Fleet Routing](https://pmc.ncbi.nlm.nih.gov/articles/PMC10813185/)
 - [Application of Coordinated Multi-Vehicle Formations for Airport Snow Shoveling](https://link.springer.com/article/10.1007/s11370-009-0048-5)
-- [Aurrigo Auto-DollyTug](https://aurrigo.com/auto-dollytug/)
 - [TractEasy Autonomous Tow Tractor](https://tracteasy.com/)
 - [Changi Airport Deploys Autonomous Tractors for Airside Operations](https://www.futuretravelexperience.com/2026/01/changi-airport-deploys-autonomous-tractors-in-major-step-towards-airside-automation/)
 - [IATA Ground Ops of the Future](https://www.iata.org/en/programs/ops-infra/ground-operations/ground-ops-of-the-future/)

@@ -1656,7 +1656,7 @@ TOPICS = {
 | **UISEE (Changi)** | Proprietary integration with AeroDCS | Airport-specific, not portable |
 | **TractEasy** | Pre-mapped routes, human ramp liaison | Cannot handle dynamic rerouting |
 | **AeroVect** | API-based mission dispatch | No ATC/NOTAM integration |
-| **Aurrigo** | Human operator receives and executes instructions | No autonomous instruction handling |
+| **reference airside AV stack** | Human operator receives and executes instructions | No autonomous instruction handling |
 
 ### 12.4 Key Differentiators
 

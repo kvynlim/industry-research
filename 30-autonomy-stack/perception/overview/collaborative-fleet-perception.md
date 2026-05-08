@@ -184,7 +184,7 @@ Warp BEV features:
     BEV_j_warped(x', y') = bilinear_interpolate(BEV_j, x, y)
 ```
 
-**Pose accuracy requirement:** ±0.2m position, ±0.5 degree heading. Aurrigo's GTSAM provides ±0.02m with RTK — well within requirement.
+**Pose accuracy requirement:** ±0.2m position, ±0.5 degree heading. the reference airside AV stack's GTSAM provides ±0.02m with RTK — well within requirement.
 
 ### 3.3 V2X-ViT (ECCV 2022)
 
@@ -383,7 +383,7 @@ Airside fleets are heterogeneous:
 
 | Vehicle Type | Sensors | BEV Resolution | Compute |
 |-------------|---------|---------------|---------|
-| ADT3 (Aurrigo) | 4-8 LiDAR, cameras | 0.2m/pixel | Orin (275 TOPS) |
+| third-generation tug (reference airside AV stack) | 4-8 LiDAR, cameras | 0.2m/pixel | Orin (275 TOPS) |
 | Baggage tractor | 2 LiDAR, cameras | 0.5m/pixel | Orin NX (100 TOPS) |
 | Belt loader | 1 LiDAR, cameras | 1.0m/pixel | Orin Nano (40 TOPS) |
 | Manual GSE (retrofit) | Camera-only | 0.5m/pixel | Orin Nano |
@@ -421,7 +421,7 @@ Fusion: Attention(F_base_A, F_base_B, F_base_C) → F_fused
 
 **Training:** AlignNet is trained via knowledge distillation from a strong "oracle" model (the collaboration base). Each agent only needs its own AlignNet; the fusion module is shared.
 
-**Airside application:** The ADT3 (full sensor suite) defines the collaboration base. Simpler vehicles (baggage tractors, belt loaders) learn alignment modules that map their sparser features to the ADT3's rich feature space. New vehicle types can be integrated by training only a lightweight alignment network (~100K parameters, ~1 hour training).
+**Airside application:** The third-generation tug (full sensor suite) defines the collaboration base. Simpler vehicles (baggage tractors, belt loaders) learn alignment modules that map their sparser features to the third-generation tug's rich feature space. New vehicle types can be integrated by training only a lightweight alignment network (~100K parameters, ~1 hour training).
 
 ### 6.3 Handling Missing Modalities
 
@@ -461,7 +461,7 @@ Cooperative fusion requires knowing the relative pose between vehicles to warp f
 - Constructs an agent-object pose graph
 - Joint optimization of poses and feature fusion
 - Robust to ±0.5m position error, ±2 degree heading error
-- Aurrigo's GTSAM provides ±0.02m, ±0.1 deg — well within tolerance
+- the reference airside AV stack's GTSAM provides ±0.02m, ±0.1 deg — well within tolerance
 
 ### 7.3 Agent Dropout
 
@@ -661,7 +661,7 @@ Cooperative perception data traverses the airport network:
 └────────┬──────────┬──────────┬──────────┬──────────────┘
          │          │          │          │
     ┌────┴────┐ ┌───┴────┐ ┌──┴─────┐ ┌─┴──────┐
-    │  ADT3   │ │ Tractor│ │ Loader │ │  Edge  │
+    │  third-generation tug   │ │ Tractor│ │ Loader │ │  Edge  │
     │ (ego)   │ │  #2    │ │  #3    │ │ Server │
     └────┬────┘ └───┬────┘ └──┬─────┘ └─┬──────┘
          │          │          │          │
@@ -915,7 +915,7 @@ At 10 Hz (100ms budget), cooperative perception adds 15-45ms overhead. This fits
 | 6 | Collective FOD detection: P(detect) rises from 0.3-0.6 (single) to 0.95-0.99 (fleet of 5) via multi-view consensus |
 | 7 | Network load for 20-vehicle fleet with spatial selection: ~21 MB/s total — within airport 5G capacity |
 | 8 | Cooperative perception adds 15-45ms overhead on Orin — fits within 100ms planning cycle |
-| 9 | Pose accuracy requirement (±0.2m, ±0.5 deg) easily met by Aurrigo's GTSAM (±0.02m, ±0.1 deg) |
+| 9 | Pose accuracy requirement (±0.2m, ±0.5 deg) easily met by the reference airside AV stack's GTSAM (±0.02m, ±0.1 deg) |
 | 10 | Phased deployment: $15K (late fusion) → $55K (intermediate) → $115K (fleet intelligence) |
 | 11 | Byzantine-tolerant fusion requires ≥3 cooperative views to tolerate 1 malicious/faulty vehicle |
 | 12 | Even one cooperating partner provides +13% mAP improvement — benefits start immediately with 2 vehicles |
@@ -951,4 +951,4 @@ At 10 Hz (100ms budget), cooperative perception adds 15-45ms overhead. This fits
 
 *Document created: 2026-04-11*
 *Complements: infrastructure-cooperative-perception.md (V2I), sensor-fusion-architectures.md (single-vehicle fusion), airport-5g-cbrs.md (communication layer)*
-*Next steps: Phase 1 late fusion prototype using ROS topic relay, evaluate on fleet of 2 ADT3 vehicles at test airport*
+*Next steps: Phase 1 late fusion prototype using ROS topic relay, evaluate on fleet of 2 third-generation tug vehicles at test airport*

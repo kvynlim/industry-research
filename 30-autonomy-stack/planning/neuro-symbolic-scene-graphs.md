@@ -359,7 +359,7 @@ Thing
 
 ```json
 {
-  "odd_id": "aurrigo_airside_v1",
+  "odd_id": "airside_airside_v1",
   "scenery": {
     "road_types": ["service_road", "taxiway_crossing", "ramp_area"],
     "surface_types": ["asphalt", "concrete"],

@@ -11,7 +11,7 @@
 8. [Flash LiDAR](#8-flash-lidar)
 9. [Airside-Specific Requirements](#9-airside-specific-requirements)
 10. [Reliability and Lifetime Analysis](#10-reliability-and-lifetime-analysis)
-11. [Integration with Aurrigo Stack](#11-integration-with-aurrigo-stack)
+11. [Integration with reference airside AV stack Stack](#11-integration-with-airside-stack)
 12. [Cost Roadmap and Market Dynamics](#12-cost-roadmap-and-market-dynamics)
 13. [Migration Strategy: Mechanical to Solid-State](#13-migration-strategy-mechanical-to-solid-state)
 14. [Implementation Roadmap](#14-implementation-roadmap)
@@ -24,7 +24,7 @@
 
 ### 1.1 The Mechanical LiDAR Problem for 24/7 Airside Operations
 
-Aurrigo's current fleet uses 4-8 RoboSense mechanical/semi-mechanical LiDARs per vehicle (RSHELIOS, RSBP). These sensors rely on spinning optical assemblies or MEMS mirrors with moving parts that face accelerated wear in the harsh airside environment:
+the reference airside AV stack's current fleet uses 4-8 RoboSense mechanical/semi-mechanical LiDARs per vehicle (RSHELIOS, RSBP). These sensors rely on spinning optical assemblies or MEMS mirrors with moving parts that face accelerated wear in the harsh airside environment:
 
 | Stress Factor | Impact on Mechanical LiDAR | Airside Severity |
 |---|---|---|
@@ -111,7 +111,7 @@ As of early 2026, solid-state LiDAR technologies are at varying TRL levels:
 
 ### 2.3 Scan Patterns
 
-**Mechanical spinning**: Continuous 360° rotation, uniform angular sampling. Well-suited for current Aurrigo stack (360° coverage from fewer sensors).
+**Mechanical spinning**: Continuous 360° rotation, uniform angular sampling. Well-suited for current reference airside AV stack (360° coverage from fewer sensors).
 
 **MEMS raster**: Lissajous or raster patterns. Non-uniform point density with higher density at edges (mechanical turnaround). Some designs (Livox, Innoviz) use optimized patterns for more uniform coverage.
 
@@ -123,7 +123,7 @@ As of early 2026, solid-state LiDAR technologies are at varying TRL levels:
 
 ## 3. FMCW vs ToF: Measurement Principles
 
-### 3.1 Time-of-Flight (Current Aurrigo Approach)
+### 3.1 Time-of-Flight (Current reference airside AV stack Approach)
 
 ```
 Pulsed ToF:
@@ -373,7 +373,7 @@ Level 4: Fully integrated sensor SoC (future)
 | AT128 | Hesai | Hybrid solid-state | 200m | 1.53M | 120° × 25.4° | $300-800 | Mass production |
 | MX | RoboSense | MEMS | 200m | 750K | 120° × 25° | $500-1,000 | Production |
 
-### 5.3 Comparison with Current Aurrigo Sensors
+### 5.3 Comparison with Current reference airside AV stack Sensors
 
 | Parameter | RoboSense RSHELIOS (current) | Aeva Atlas (FMCW) | Voyant Helium (full SS) |
 |---|---|---|---|
@@ -668,7 +668,7 @@ For a 50-vehicle fleet with 6 LiDARs each (300 total sensors):
 
 ---
 
-## 11. Integration with Aurrigo Stack
+## 11. Integration with reference airside AV stack Stack
 
 ### 11.1 Point Cloud Format Compatibility
 
@@ -890,7 +890,7 @@ Cost per unit ($)
       
 Key insight: Silicon photonics follows semiconductor cost curves.
 At automotive volumes (1M+ units/year), OPA LiDAR approaches $50-100.
-At Aurrigo volumes (100-1000 units/year), OPA premium still significant.
+At reference airside AV stack volumes (100-1000 units/year), OPA premium still significant.
 Strategy: Use automotive-volume sensors designed for cars, adapt for airside.
 ```
 
@@ -905,7 +905,7 @@ The LiDAR market is consolidating rapidly:
 - **Aeva**: Only pure-play FMCW company with automotive design win
 - **Voyant**: Newest entrant, most aggressive silicon photonics approach
 
-**Implication for Aurrigo**: Don't bet on a single vendor. Design sensor interfaces that can swap between RoboSense (current), Aeva (FMCW mid-term), and silicon photonics OPA (long-term). The ROS PointCloud2 abstraction already provides this.
+**Implication for reference airside AV stack**: Don't bet on a single vendor. Design sensor interfaces that can swap between RoboSense (current), Aeva (FMCW mid-term), and silicon photonics OPA (long-term). The ROS PointCloud2 abstraction already provides this.
 
 ---
 
@@ -1032,7 +1032,7 @@ class DualStackPerception:
 
 8. **Flash LiDAR solves docking** — wide-FoV, dense, no moving parts, $200-500/unit. Complementary to long-range FMCW for docking applications requiring ±5cm precision
 
-9. **Silicon photonics cost curves follow semiconductors** — current $1,000-3,000 per FMCW sensor will reach $50-200 at automotive volumes (2028-2030). Aurrigo volumes (100-1000/year) benefit from automotive-scale pricing
+9. **Silicon photonics cost curves follow semiconductors** — current $1,000-3,000 per FMCW sensor will reach $50-200 at automotive volumes (2028-2030). reference airside AV stack volumes (100-1000/year) benefit from automotive-scale pricing
 
 10. **FMCW velocity data improves GTSAM localization** — direct ego-velocity measurement from static-point Doppler provides additional factor for fusion alongside IMU, wheel odometry, and RTK-GPS
 

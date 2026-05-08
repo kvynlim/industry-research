@@ -18,7 +18,7 @@
 8. [Benchmarks and Evaluation](#8-benchmarks-and-evaluation)
 9. [Architecture: VLM as Co-Pilot](#9-architecture-vlm-as-co-pilot)
 10. [Deployment Considerations](#10-deployment-considerations)
-11. [Recommended Strategy for Aurrigo](#11-recommended-strategy)
+11. [Recommended Strategy for reference airside AV stack](#11-recommended-strategy)
 12. [References](#12-references)
 
 ---
@@ -474,11 +474,11 @@ No airside VLM benchmark exists. Proposed evaluation categories:
 
 ## 9. Architecture: VLM as Co-Pilot
 
-### 9.1 Integration with Aurrigo Stack
+### 9.1 Integration with reference airside AV stack Stack
 
 ```
 ┌──────────────────────────────────────────────────────┐
-│                  AURRIGO AV STACK                      │
+│                  REFERENCE AIRSIDE AV STACK AV STACK                      │
 │                                                        │
 │  10Hz Primary Loop (latency-critical):                │
 │  ┌─────────┐  ┌──────────┐  ┌─────────┐  ┌────────┐ │
@@ -566,7 +566,7 @@ Airside operations may involve sensitive information:
 
 ---
 
-## 11. Recommended Strategy for Aurrigo {#11-recommended-strategy}
+## 11. Recommended Strategy for reference airside AV stack {#11-recommended-strategy}
 
 ### 11.1 Phased Deployment
 

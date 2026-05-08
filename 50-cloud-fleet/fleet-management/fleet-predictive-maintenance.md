@@ -19,7 +19,7 @@
 5. [Spare Parts Inventory Optimization](#5-spare-parts-inventory-optimization)
 6. [Maintenance Scheduling Optimization](#6-maintenance-scheduling-optimization)
 7. [Fleet Availability and Reliability Modeling](#7-fleet-availability-and-reliability-modeling)
-8. [Integration with Existing Aurrigo Systems](#8-integration-with-existing-aurrigo-systems)
+8. [Integration with Existing reference airside AV stack Systems](#8-integration-with-existing-airside-systems)
 9. [Industry Benchmarks and Case Studies](#9-industry-benchmarks-and-case-studies)
 10. [Cost Analysis](#10-cost-analysis)
 11. [Implementation Roadmap](#11-implementation-roadmap)
@@ -102,7 +102,7 @@ Unplanned vehicle failure during operations:
 
 For a 20-vehicle fleet averaging 2-3 unplanned failures per vehicle per year, unplanned downtime costs $100,000-420,000 annually. Predictive maintenance aims to convert 60-80% of unplanned failures into planned maintenance events, reducing downtime cost by $60,000-250,000/year.
 
-### 1.3 Current Gap in Aurrigo's Stack
+### 1.3 Current Gap in the reference airside AV stack's Stack
 
 The existing research repository covers individual pieces of the maintenance puzzle:
 
@@ -140,7 +140,7 @@ Three standards govern prognostic health management relevant to autonomous GSE:
 
 **ISO 55000:2014 (Asset Management):** Provides the organizational framework for managing physical assets across their lifecycle. At fleet scale (50+ vehicles, 3+ airports), the maintenance system becomes an asset management system that must consider total lifecycle cost, not just repair cost.
 
-**Relevance to Aurrigo:** ISO 13381 and SAE ARP6461 provide the technical framework for PHM implementation. ISO 55000 provides the organizational framework for scaling beyond a single airport. For ISO 3691-4 certification, demonstrating a systematic PHM approach strengthens the safety case by showing that vehicle hardware is maintained within its designed operating envelope.
+**Relevance to reference airside AV stack:** ISO 13381 and SAE ARP6461 provide the technical framework for PHM implementation. ISO 55000 provides the organizational framework for scaling beyond a single airport. For ISO 3691-4 certification, demonstrating a systematic PHM approach strengthens the safety case by showing that vehicle hardware is maintained within its designed operating envelope.
 
 ### 2.2 PHM Architecture for Autonomous GSE
 
@@ -192,7 +192,7 @@ Three standards govern prognostic health management relevant to autonomous GSE:
 
 ### 2.3 Level 1: Component Diagnostics --- Data Sources
 
-Level 1 collects raw health telemetry from every maintainable component. For Aurrigo's stack, this comes from four data buses:
+Level 1 collects raw health telemetry from every maintainable component. For the reference airside AV stack's stack, this comes from four data buses:
 
 **Source 1: ROS Diagnostics (/diagnostics, /diagnostics_agg)**
 
@@ -335,7 +335,7 @@ class ComputeHealthDiagnostics:
 
 **Source 2: CAN Bus Signals**
 
-The CAN bus on Aurrigo vehicles (see [can-bus-dbw.md](../../20-av-platform/drive-by-wire/can-bus-dbw.md)) exposes real-time actuator telemetry. Key signals for prognostics:
+The CAN bus on reference airside vehicles (see [can-bus-dbw.md](../../20-av-platform/drive-by-wire/can-bus-dbw.md)) exposes real-time actuator telemetry. Key signals for prognostics:
 
 | CAN Signal | Message ID | Rate | Prognostic Value |
 |---|---|---|---|
@@ -547,7 +547,7 @@ Level 4 aggregates vehicle health indices across the fleet and provides decision
 |                                                                          |
 |  Spare Parts Status:                                                     |
 |  RSHELIOS LiDAR: 3 in stock (min: 2, reorder point: 3)  [ORDER]       |
-|  Brake pads (ADT3): 8 sets in stock (min: 4)            [OK]           |
+|  Brake pads (third-generation tug): 8 sets in stock (min: 4)            [OK]           |
 |  Orin module: 1 in stock (min: 1)                        [OK]           |
 |  Battery cell: 0 in stock (min: 2)     [!!! ON ORDER -- ETA 4 weeks]   |
 |                                                                          |
@@ -1242,7 +1242,7 @@ For a battery pack:
 | **Industrial camera + lens** | $250-650 | 6 | 3-4 units | 2-5 days | 4-6 weeks | 4-6 units | Moderate |
 | **NVIDIA Orin AGX module** | $1,000-2,000 | 1-2 | 1-2 units | 5-10 days | 4-12 weeks | 0-1 units | Critical |
 | **STM32H725 safety MCU board** | $200-500 | 1 | 2 units | 2-5 days | 6-12 weeks | 0-1 units | Critical |
-| **Brake pad set (ADT3)** | $50-150 | 1 set | 8-12 sets | 1-3 days | 2-4 weeks | 20-40 sets | Safety-critical |
+| **Brake pad set (third-generation tug)** | $50-150 | 1 set | 8-12 sets | 1-3 days | 2-4 weeks | 20-40 sets | Safety-critical |
 | **Brake disc set** | $100-300 | 1 set | 4-6 sets | 3-7 days | 4-6 weeks | 4-8 sets | Safety-critical |
 | **Tire set (solid rubber)** | $200-600 per tire | 4 | 8-12 tires | 2-5 days | 4-8 weeks | 20-40 tires | Moderate |
 | **Drive motor (BLDC)** | $500-2,000 | 1-2 | 1-2 units | 5-10 days | 6-12 weeks | 1-3 units | Important |
@@ -1634,7 +1634,7 @@ def simulate_fleet_year(n_vehicles=20, n_simulations=1000):
 
 ---
 
-## 8. Integration with Existing Aurrigo Systems
+## 8. Integration with Existing reference airside AV stack Systems
 
 ### 8.1 ROS Diagnostics Integration Architecture
 
@@ -1693,11 +1693,11 @@ def simulate_fleet_year(n_vehicles=20, n_simulations=1000):
 
 ### 8.2 CAN Bus Diagnostic Bridge
 
-The CAN diagnostic bridge converts raw CAN signals into ROS DiagnosticStatus messages. This is the primary new integration required for Aurrigo vehicles:
+The CAN diagnostic bridge converts raw CAN signals into ROS DiagnosticStatus messages. This is the primary new integration required for reference airside vehicles:
 
 ```python
 #!/usr/bin/env python
-"""CAN bus to ROS diagnostics bridge for Aurrigo ADT3.
+"""CAN bus to ROS diagnostics bridge for reference airside AV stack third-generation tug.
 
 Reads drivetrain, steering, brake, and battery CAN signals
 and publishes as DiagnosticStatus messages for the PHM system.
@@ -1713,7 +1713,7 @@ from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
 class CANDiagnosticBridge:
     """Bridge CAN bus signals to ROS diagnostics for PHM."""
     
-    # CAN message definitions (Aurrigo ADT3-specific)
+    # CAN message definitions (reference airside AV stack third-generation tug-specific)
     # These IDs must match the actual vehicle DBC file
     CAN_MOTOR_CURRENT = 0x201
     CAN_MOTOR_TEMP = 0x210
@@ -2026,7 +2026,7 @@ Autonomous haul trucks in mining are the closest operational parallel to autonom
 
 **Komatsu FrontRunner:** Operates 500+ autonomous trucks globally (Pilbara, Chile, Canada). Published metrics: 98% availability target, 3-5% better than human-operated. Komatsu uses a "condition-based maintenance excellence" program that reduced unplanned downtime by 35% in the first 2 years.
 
-**Key lesson for Aurrigo:** Mining companies invested 3-5 years building baseline data before predictive models achieved acceptable accuracy. Start collecting telemetry data from day one of fleet operations, even before implementing predictive algorithms. The data has compounding value.
+**Key lesson for reference airside AV stack:** Mining companies invested 3-5 years building baseline data before predictive models achieved acceptable accuracy. Start collecting telemetry data from day one of fleet operations, even before implementing predictive algorithms. The data has compounding value.
 
 ### 9.3 Waymo Fleet Maintenance at Scale
 
@@ -2046,7 +2046,7 @@ Amazon operates 750,000+ Kiva/Proteus robots across fulfillment centers. Relevan
 - **Predictive battery management:** Battery replacement is the single highest maintenance cost per robot. Amazon's battery management system predicts replacement needs based on cycle count, temperature history, and capacity fade curve.
 - **Scale economics:** At 750K units, Amazon negotiates supplier contracts that include on-site spare parts inventory managed by the supplier (vendor-managed inventory, VMI). This shifts holding cost and obsolescence risk to the supplier.
 
-**Lesson for Aurrigo:** Design vehicles for field-replaceable units (FRUs) wherever possible. A LiDAR module that requires 20 minutes of cable routing to replace should be redesigned into a snap-in/snap-out mounting system. The MTTR reduction pays for the design effort after 10-20 replacements.
+**Lesson for reference airside AV stack:** Design vehicles for field-replaceable units (FRUs) wherever possible. A LiDAR module that requires 20 minutes of cable routing to replace should be redesigned into a snap-in/snap-out mounting system. The MTTR reduction pays for the design effort after 10-20 replacements.
 
 ### 9.5 Common Pitfalls in Fleet Maintenance Scaling
 
@@ -2141,7 +2141,7 @@ At mid-range estimates: $67,500 implementation cost, $150,000/year savings, $12,
 | 3 | Vehicle Health Index | Level 3 composite VHI computation and /vehicle_health topic |
 | 4 | Fleet health dashboard v1 | Grafana dashboards showing per-vehicle VHI, subsystem breakdown, historical trending |
 
-**Dependencies:** Sensor health monitoring node (from [sensor-degradation-health-monitoring.md](../../20-av-platform/sensors/sensor-degradation-health-monitoring.md)) must be operational. CAN DBC file for Aurrigo vehicles must be available.
+**Dependencies:** Sensor health monitoring node (from [sensor-degradation-health-monitoring.md](../../20-av-platform/sensors/sensor-degradation-health-monitoring.md)) must be operational. CAN DBC file for reference airside vehicles must be available.
 
 **Deliverables:**
 - CAN diagnostic bridge ROS node (Python, ~500 lines)

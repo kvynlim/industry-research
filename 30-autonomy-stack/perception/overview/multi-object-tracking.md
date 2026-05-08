@@ -49,7 +49,7 @@ Without robust MOT, an airside AV faces critical failures:
 ### 1.3 Scope of This Document
 
 This document covers 3D multi-object tracking for autonomous vehicles, with emphasis on:
-- LiDAR-primary methods (matching Aurrigo's 4-8 RoboSense sensor stack)
+- LiDAR-primary methods (matching the reference airside AV stack's 4-8 RoboSense sensor stack)
 - Real-time deployment on NVIDIA Jetson AGX Orin (275 TOPS)
 - Practical ROS 1 (Noetic) integration with nodelet architecture
 - Airside-specific adaptations for aircraft, GSE, and personnel tracking
@@ -421,7 +421,7 @@ Rather than performing multi-stage association with different thresholds (like S
 
 **Runtime**: Fully implemented in Python on CPU, no GPU required for tracking.
 
-**Airside relevance**: MCTrack's multi-perspective matching directly addresses a key airside problem. Aircraft on the apron appear very differently in BEV (plan view shows wingspan) vs. range view (side view shows fuselage length). BEV matching may fail for objects at similar depths but different heights (e.g., a pushback tug under the fuselage), while range-view matching resolves these cases. The unified format and world-coordinate operation align well with Aurrigo's multi-LiDAR setup, which already fuses point clouds into a single world frame.
+**Airside relevance**: MCTrack's multi-perspective matching directly addresses a key airside problem. Aircraft on the apron appear very differently in BEV (plan view shows wingspan) vs. range view (side view shows fuselage length). BEV matching may fail for objects at similar depths but different heights (e.g., a pushback tug under the fuselage), while range-view matching resolves these cases. The unified format and world-coordinate operation align well with the reference airside AV stack's multi-LiDAR setup, which already fuses point clouds into a single world frame.
 
 **Code**: https://github.com/megvii-research/MCTrack
 
@@ -472,7 +472,7 @@ S2-Track represents the emerging end-to-end tracking paradigm, jointly optimizin
 
 ## 4. Camera-LiDAR Fusion Tracking {#4-camera-lidar-fusion-tracking}
 
-While Aurrigo's current stack is LiDAR-only, camera-LiDAR fusion tracking becomes relevant as cameras are added for Re-ID (tail numbers, GSE fleet markings) and for detecting distant incoming aircraft.
+While the reference airside AV stack's current stack is LiDAR-only, camera-LiDAR fusion tracking becomes relevant as cameras are added for Re-ID (tail numbers, GSE fleet markings) and for detecting distant incoming aircraft.
 
 ### 4.1 EagerMOT (ICRA 2021)
 
@@ -1035,7 +1035,7 @@ Note: "0 params" means the tracking module has no learned parameters (pure Kalma
 
 ### 10.1 Phased Implementation Plan
 
-Given Aurrigo's current stack (ROS Noetic, 4-8 RoboSense LiDARs, no cameras in perception loop, GTSAM localization), the recommended tracking architecture builds incrementally:
+Given the reference airside AV stack's current stack (ROS Noetic, 4-8 RoboSense LiDARs, no cameras in perception loop, GTSAM localization), the recommended tracking architecture builds incrementally:
 
 #### Phase 1: Baseline Tracker (1-2 weeks)
 
@@ -1194,7 +1194,7 @@ A single set of birth/death thresholds cannot simultaneously handle aircraft (ma
 | Dataset Need | Purpose | Minimum Size | Source |
 |-------------|---------|-------------|--------|
 | nuScenes trainval | Pre-training / baseline evaluation | 300 GB | [nuScenes download](https://www.nuscenes.org/download) |
-| Airside LiDAR recordings | Domain-specific evaluation | 50-100 hours | Aurrigo field deployments |
+| Airside LiDAR recordings | Domain-specific evaluation | 50-100 hours | reference airside AV stack field deployments |
 | Airside 3D box annotations | Tracker evaluation on airside | 500-1000 annotated frames | Manual annotation or auto-label |
 | ADS-B ground truth logs | Identity ground truth | Concurrent with LiDAR | UAT/1090ES receiver at apron |
 

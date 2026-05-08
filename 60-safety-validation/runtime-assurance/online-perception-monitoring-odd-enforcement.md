@@ -53,7 +53,7 @@ The critical insight: **sensor health monitoring answers "are my sensors working
 ### 1.2 The Monitoring Gap
 
 ```
-Current Aurrigo Safety Stack (with existing documents):
+Current reference airside AV stack Safety Stack (with existing documents):
 
   Hardware Health          Runtime Verification          Safety Architecture
   ┌─────────────┐         ┌──────────────────┐         ┌─────────────┐
@@ -856,7 +856,7 @@ struct OccupancyFillMonitor {
 
 ### 5.1 Rationale
 
-When two independent perception channels disagree, at least one is wrong. Cross-modal consistency checking uses agreement between sensors/models as a proxy for correctness without requiring ground truth. This is the most powerful perception monitoring technique for multi-sensor vehicles like Aurrigo's fleet.
+When two independent perception channels disagree, at least one is wrong. Cross-modal consistency checking uses agreement between sensors/models as a proxy for correctness without requiring ground truth. This is the most powerful perception monitoring technique for multi-sensor vehicles like the reference airside fleet.
 
 ### 5.2 LiDAR vs Radar Detection Agreement
 
@@ -961,7 +961,7 @@ With 4-8 RoboSense LiDARs having overlapping fields of view, objects in overlap 
 ```cpp
 struct MultiLidarOverlapMonitor {
     // For each LiDAR pair with overlapping FOV, track detection agreement
-    // Aurrigo typical: pairs (0,1), (1,2), (2,3), (3,0) for 4 front-facing
+    // reference airside AV stack typical: pairs (0,1), (1,2), (2,3), (3,0) for 4 front-facing
     static constexpr int MAX_PAIRS = 12;  // C(8,2) worst case, typically 4-6 active
     
     struct PairResult {

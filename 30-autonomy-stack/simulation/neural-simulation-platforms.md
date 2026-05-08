@@ -412,7 +412,7 @@ The only digital twin platform purpose-built for airside operations (gate to run
 - LiDAR integration simulation
 - Terminal-wide AI coordination modeling
 
-#### Aurrigo Auto-Sim
+#### reference airside AV stack airside autonomy simulator
 Digital twin of airside operations at Gerald R. Ford International Airport:
 - Models roadways, intersections, stands, and all operational vehicle types/movements
 - Simulates busiest periods (112 aircraft movements, 1,000+ individual activities per day)
@@ -682,7 +682,6 @@ Applicable standards include ISO 26262 (functional safety), ISO 21448 (SOTIF -- 
 - [FAA Emerging Entrants Bulletin 25-02](https://www.faa.gov/airports/new_entrants/bulletins/25_02)
 - [Autonoma AutoVerse](https://www.autonoma.ai/)
 - [Autonoma for Airports](https://www.autonoma.ai/industries/airports-airlines)
-- [Aurrigo Digital Twin at Gerald R. Ford Airport](https://www.passengerterminaltoday.com/news/it-software/aurrigo-to-create-digital-twin-of-gerald-r-ford-airport-airside-operations-in-us-first.html)
 - [ACI FOD Detection with AI](https://airportscouncil.org/2025/04/30/the-silent-airside-threat-how-ai-is-fighting-foreign-object-debris-fod-and-revolutionizing-airport-operations/)
 - [AviPLAN Airside Planning](https://www.transoftsolutions.com/aviation/software/airport-design-operations/aviplan/)
 - [IEEE SA ADWG Simulation Testing White Paper](https://sagroups.ieee.org/adwg/wp-content/uploads/sites/661/2024/10/ADWG_STV2_whitepaper.pdf)

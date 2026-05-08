@@ -71,9 +71,9 @@ Airports are among the most dynamic operating environments for autonomous vehicl
 
 **Key insight from industry**: The most successful approaches either (a) eliminate HD maps entirely (Tesla, comma.ai) or (b) use fleet-crowdsourced updates (Mobileye REM, Nuro). Manual re-survey doesn't scale.
 
-### 1.4 Aurrigo's Current State
+### 1.4 the reference airside AV stack's Current State
 
-Aurrigo uses a three-layer map architecture (from `hd-map-standards-airside.md`):
+reference airside AV stack uses a three-layer map architecture (from `hd-map-standards-airside.md`):
 
 1. **AMDB base layer**: Taxiway/apron geometry from aeronautical data (28-day AIRAC cycle)
 2. **HD survey overlay**: Service road centerlines, stand positions (manual LiDAR survey)
@@ -1169,7 +1169,7 @@ map_aggregation_service:
     - /map_maintenance/consensus    # Consensus status per change
 ```
 
-### 11.3 Integration with Existing Aurrigo Architecture
+### 11.3 Integration with Existing reference airside AV stack Architecture
 
 ```
                     AIRAC Feed (28-day)

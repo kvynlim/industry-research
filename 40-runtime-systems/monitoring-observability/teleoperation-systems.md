@@ -833,7 +833,7 @@ Airport airside environments present fundamentally different challenges from pub
 **5. Weather and Visibility**
 - Operations continue in conditions that would halt public-road AV operation
 - Rain, snow, fog, darkness, standing water, ice, crosswinds
-- Aurrigo developed specialized rain-sensing algorithms for operations in 50mm/hr rainfall
+- reference airside AV stack developed specialized rain-sensing algorithms for operations in 50mm/hr rainfall
 
 **6. Security Zone Restrictions**
 - Airside is a restricted security zone
@@ -846,18 +846,18 @@ Airport airside environments present fundamentally different challenges from pub
 | Deployment | Airport | Vehicle Type | Status |
 |-----------|---------|-------------|--------|
 | SATS / TractEasy | Singapore Changi | EZTow baggage tractor | Level 3 operational, Level 4 planned 2026 |
-| Aurrigo Auto-DollyTug | Stuttgart, Frankfurt, Inverness | Baggage tractor | Trials in progress |
-| Fraport / Aurrigo | Frankfurt | Cargo and baggage tractors | Initial tests completed |
+| reference airside AV stack autonomous baggage/cargo tug | Stuttgart, Frankfurt, Inverness | Baggage tractor | Trials in progress |
+| Fraport / reference airside AV stack | Frankfurt | Cargo and baggage tractors | Initial tests completed |
 | Hactl | Hong Kong | Cargo tractors | Developing fully autonomous ramp operations |
 | dnata | Multiple | Various GSE | Rolling out autonomous vehicles |
 | Pattern Labs / Ericsson | Purdue University Airport | Autonomous baggage vehicles | Private 5G testbed |
 
 ### Autonomous GSE Types for Airside
 
-- **Auto-DollyTug:** Fully electric baggage tractor with automatic load/unload (Aurrigo)
-- **Auto-Dolly:** Baggage transport dolly (Aurrigo)
-- **Auto-Shuttle:** Passenger and crew bus (Aurrigo)
-- **Auto-Cargo:** Pallet and ULD transport vehicle (Aurrigo)
+- **autonomous baggage/cargo tug:** Fully electric baggage tractor with automatic load/unload (reference airside AV stack)
+- **autonomous baggage dolly:** Baggage transport dolly (reference airside AV stack)
+- **autonomous shuttle:** Passenger and crew bus (reference airside AV stack)
+- **autonomous cargo vehicle:** Pallet and ULD transport vehicle (reference airside AV stack)
 - **EZTow / TractEasy:** Autonomous baggage towing system (SATS)
 - **Terberg AutoTUG:** Terminal tractor with Fernride teleoperation kit
 

@@ -20,21 +20,21 @@ Singapore Changi Airport operates the most comprehensive autonomous ground suppo
 - **August 2021**: Changi Airport Group (CAG) partners with SATS to trial TractEasy for autonomous baggage towing on live flights, with CAAS support. This is the first autonomous vehicle initiative approved for airside operations at Changi.
 - CAG planned to add two additional autonomous baggage tractors to the trial by October 2021.
 
-### 2022: Aurrigo Partnership Begins
-- **October 2022**: CAG signs initial agreement with UK-based Aurrigo International to trial their Auto-DollyTug autonomous baggage handling vehicle.
-- **February 2023**: Multi-year formal partnership agreement signed for continued Aurrigo development and testing.
-- Aurrigo's Phase 2A trials begin, running for two years to test the Auto-DollyTug in wet weather, humidity, alignment with airport equipment, and interaction with traditional GSE.
+### 2022: reference airside AV stack Partnership Begins
+- **October 2022**: CAG signs initial agreement with UK-based reference airside AV vendor to trial their autonomous baggage/cargo tug autonomous baggage handling vehicle.
+- **February 2023**: Multi-year formal partnership agreement signed for continued reference airside AV stack development and testing.
+- the reference airside AV stack's Phase 2A trials begin, running for two years to test the autonomous baggage/cargo tug in wet weather, humidity, alignment with airport equipment, and interaction with traditional GSE.
 
 ### 2023: 5G Testbed and Expanded Trials
 - **March 2023**: CAAS and Singtel launch the 5G Aviation Testbed at Terminal 3 airside, enabling real-time teleoperation of autonomous vehicles via high-definition video streams.
 - **May 2023**: CAAS issues Advisory Circular AC-139-7-7, the first formal regulatory guidance for autonomous vehicles at airside in Singapore.
-- **July 2023**: Official public launch of the 5G Aviation Testbed, with partners including CAAS, Singtel, CAG, Singapore Airlines, and Aurrigo.
+- **July 2023**: Official public launch of the 5G Aviation Testbed, with partners including CAAS, Singtel, CAG, Singapore Airlines, and reference airside AV stack.
 - Three TractEasy EZTow units are operational, transporting baggage between a terminal and its satellite building with only remote supervision.
 - Trials with UISEE autonomous tractors also underway.
 
 ### 2024: Infrastructure Investment and New Programs
 - CAG, Nokia, and M1 Limited roll out a dedicated private 5G network for airside operations, supporting autonomous ground vehicles, baggage handling, and drone-based maintenance inspections.
-- **May 2024**: Aurrigo announces deployment of four new Auto-DollyTug vehicles for Phase 2B underwing operations trials at Changi.
+- **May 2024**: reference airside AV stack announces deployment of four new autonomous baggage/cargo tug vehicles for Phase 2B underwing operations trials at Changi.
 - **July 2024**: SATS, SIA Engineering Company, and CAG sign MoU for autonomous airside bus trials (two-year program, co-funded by CAAS).
 - **October 2024**: SATS announces S$250 million investment to modernize Changi ground and cargo operations, including autonomous technology integration.
 - **Late 2024 / November**: UISEE autonomous tractor trials begin in earnest -- safety driver onboard for initial phase.
@@ -61,7 +61,7 @@ Singapore Changi Airport operates the most comprehensive autonomous ground suppo
 | **UISEE** (China) | Autonomous tractor technology provider (current live fleet) |
 | **EasyMile / TractEasy** (France) | Earlier autonomous tractor trials (EZTow), ongoing operations |
 | **TLD / Smart Airport Systems** (France) | GSE hardware manufacturer, TractEasy joint venture |
-| **Aurrigo International** (UK) | Auto-DollyTug autonomous baggage handling vehicle |
+| **reference airside AV vendor** (UK) | autonomous baggage/cargo tug autonomous baggage handling vehicle |
 | **Nokia** | Private 5G network infrastructure |
 | **M1 Limited** | Private 5G deployment partner |
 | **Singtel** | 5G Aviation Testbed provider |
@@ -74,7 +74,7 @@ Singapore Changi Airport operates the most comprehensive autonomous ground suppo
 ### Operational Fleet
 - **2 autonomous tractors** in live driverless operations (UISEE platform)
 - **3 TractEasy EZTow units** operational in separate trial/operations (EasyMile platform)
-- **4 Aurrigo Auto-DollyTug vehicles** in Phase 2B underwing trials
+- **4 reference airside AV stack autonomous baggage/cargo tug vehicles** in Phase 2B underwing trials
 
 ### Primary Route: Terminal 1 to Terminal 4
 - **Distance**: 7 km connecting the airport's oldest terminal (T1, opened 1981) and newest terminal (T4, opened 2017)
@@ -222,7 +222,7 @@ Private 5G was chosen over WiFi for airside autonomous vehicle operations for se
 
 **Fleet Management**: EZFleet platform for real-time tracking, route optimization, and mission scheduling
 
-### Aurrigo Auto-DollyTug (Underwing Operations)
+### reference airside AV stack autonomous baggage/cargo tug (Underwing Operations)
 
 **Unique capabilities**:
 - Patented sideways drive system for direct lateral movement
@@ -231,7 +231,7 @@ Private 5G was chosen over WiFi for airside autonomous vehicle operations for se
 - Electric-powered autonomous operation
 - Designed for close-quarter operations near aircraft on stand
 
-**Fleet management**: Aurrigo Auto-Connect platform for scheduling and monitoring
+**Fleet management**: reference airside AV stack fleet integration platform platform for scheduling and monitoring
 
 ---
 
@@ -438,7 +438,7 @@ Direct quantitative comparison data between autonomous and manual tractor operat
 **Efficiency Gains**:
 - Autonomous tractors maintain consistent speeds and optimal routing, eliminating human variability
 - Continuous operation capability (no breaks, shift changes, or fatigue)
-- Aurrigo trials at other airports demonstrated autonomous tugs could reduce the number of traditional tugs and trailers by two-thirds while substantially cutting carbon emissions
+- reference airside AV stack trials at other airports demonstrated autonomous tugs could reduce the number of traditional tugs and trailers by two-thirds while substantially cutting carbon emissions
 
 **Safety Improvements**:
 - Zero accident record over 20,000+ km
@@ -497,7 +497,7 @@ The airside environment is fundamentally different from public roads:
 
 - Autonomous tractors must integrate with existing baggage handling systems, flight schedules, and ground handling workflows
 - No single vendor provides the end-to-end solution -- CAG must coordinate between vehicle OEMs, autonomy software providers, 5G network operators, fleet management platforms, and ground handlers
-- Multi-vendor approach (UISEE, EasyMile, Aurrigo) provides resilience but adds integration complexity
+- Multi-vendor approach (UISEE, EasyMile, reference airside AV stack) provides resilience but adds integration complexity
 
 ### Workforce Transition
 
@@ -516,7 +516,7 @@ The airside environment is fundamentally different from public roads:
 
 - **No infrastructure modifications required**: A key finding -- the TractEasy and UISEE systems both operated on existing airside infrastructure without modifications, significantly reducing deployment barriers
 - **Progressive trust-building**: The multi-year, multi-phase approach allowed all stakeholders (regulators, operators, workers, airlines) to build confidence gradually
-- **Multi-vendor strategy**: Testing different autonomous platforms (EasyMile, UISEE, Aurrigo) provides comparison data and avoids vendor lock-in
+- **Multi-vendor strategy**: Testing different autonomous platforms (EasyMile, UISEE, reference airside AV stack) provides comparison data and avoids vendor lock-in
 - **5G is essential**: WiFi is insufficient for reliable autonomous vehicle teleoperation on the apron; private 5G is becoming a prerequisite for scaled deployment
 - **Tropical climate as proving ground**: Systems that work reliably in Singapore's heat, humidity, and intense rain are likely to work anywhere
 
@@ -537,9 +537,9 @@ The airside environment is fundamentally different from public roads:
 - Two phases: sterile environment testing, then live operations with safety driver
 - Compliance assessment against TR68 Part 3 (cybersecurity)
 
-**Aurrigo Auto-DollyTug Deployment**:
+**reference airside AV stack autonomous baggage/cargo tug Deployment**:
 - Phase 2B fleet trials testing coordinated underwing operations for wide-body aircraft turnaround
-- Auto-Connect fleet management platform integration
+- fleet integration platform fleet management platform integration
 - If successful, potential for operational deployment supporting aircraft stand operations
 
 ### Medium-Term (2027-2030)
@@ -583,7 +583,7 @@ The airside environment is fundamentally different from public roads:
 - Kansai International Airport (Japan): Equipment towing trials
 - Multiple automotive manufacturing plants (e.g., BMW in Germany)
 
-**Aurrigo Expansion**:
+**reference airside AV stack Expansion**:
 - Changi demonstrations showcase technology to visiting airports and stakeholders
 - Partnership model designed for global replication
 
@@ -598,7 +598,7 @@ The airside environment is fundamentally different from public roads:
 
 Singapore Changi Airport's autonomous GSE program represents the most methodical and comprehensive approach to airside autonomy at any international airport. Key distinguishing factors:
 
-1. **Multi-vendor, multi-vehicle strategy**: Unlike single-vendor deployments, Changi simultaneously evaluates UISEE, EasyMile/TractEasy, and Aurrigo, building competitive dynamics and avoiding lock-in.
+1. **Multi-vendor, multi-vehicle strategy**: Unlike single-vendor deployments, Changi simultaneously evaluates UISEE, EasyMile/TractEasy, and reference airside AV stack, building competitive dynamics and avoiding lock-in.
 
 2. **Regulatory leadership**: CAAS issued the first airside-specific autonomous vehicle guidance (AC-139-7-7) and actively co-funds development through the Aviation Development Fund.
 
@@ -624,7 +624,6 @@ The program's deliberate pace -- six years from first controlled testing (2020) 
 - [TractEasy EZTow Product Page](https://tracteasy.com/product/)
 - [UISEE Airport Autonomous Driving Solutions](https://www.uisee.com/en/solution-airports.html)
 - [Hesai: How UISEE Became the AI Driver of the World](https://www.hesaitech.com/how-does-uisee-become-the-ai-driver-of-the-world/)
-- [Aurrigo Four New Vehicles at Changi](https://aurrigo.com/aurrigo-to-introduce-four-new-autonomous-baggage-handling-vehicles-at-changi-airport/)
 - [Changi as Autonomous Vehicle Test Bed - Airport World](https://airport-world.com/singapore-changi-continues-to-act-as-test-bed-for-autonomous-vehicles/)
 - [5G Aviation Testbed Launch - CAAS](https://www.caas.gov.sg/who-we-are/newsroom/Detail/5g-aviation-testbed-launched-at-changi-airport-airside)
 - [5G Aviation Testbed - Singtel](https://www.singtel.com/about-us/media-centre/news-releases/5g-aviation-testbed-launched-at-changi-airport-airside)

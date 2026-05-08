@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-Modern AV perception is converging toward **unified architectures** that perform detection, segmentation, tracking, prediction, and even planning in a single model with shared representations. This document surveys the evolution from task-specific models to end-to-end multi-task systems: UniAD (first unified framework, CVPR 2023 Best Paper), SparseDrive (fully sparse, 9.0 FPS on A100), VAD (vectorized scene representation), StreamPETR (streaming temporal fusion), Far3D (long-range detection), and the emerging paradigm of foundation-model-based unified perception. For Aurrigo's airside stack, the key question is whether to replace the current separate PointPillars detector + GTSAM localizer + Frenet planner with a unified model, or to incrementally add multi-task heads to the existing backbone. Key finding: a **shared-backbone, multi-head** approach preserves the proven PointPillars detection (6.84ms) while adding segmentation, free-space estimation, and motion prediction at marginal cost (~15ms additional), and avoids the risks of monolithic end-to-end systems that are harder to certify. Full end-to-end models (UniAD, SparseDrive) achieve state-of-the-art on nuScenes but require 50-100ms on A100 — too slow for Orin real-time without aggressive optimization.
+Modern AV perception is converging toward **unified architectures** that perform detection, segmentation, tracking, prediction, and even planning in a single model with shared representations. This document surveys the evolution from task-specific models to end-to-end multi-task systems: UniAD (first unified framework, CVPR 2023 Best Paper), SparseDrive (fully sparse, 9.0 FPS on A100), VAD (vectorized scene representation), StreamPETR (streaming temporal fusion), Far3D (long-range detection), and the emerging paradigm of foundation-model-based unified perception. For the reference airside AV stack's airside stack, the key question is whether to replace the current separate PointPillars detector + GTSAM localizer + Frenet planner with a unified model, or to incrementally add multi-task heads to the existing backbone. Key finding: a **shared-backbone, multi-head** approach preserves the proven PointPillars detection (6.84ms) while adding segmentation, free-space estimation, and motion prediction at marginal cost (~15ms additional), and avoids the risks of monolithic end-to-end systems that are harder to certify. Full end-to-end models (UniAD, SparseDrive) achieve state-of-the-art on nuScenes but require 50-100ms on A100 — too slow for Orin real-time without aggressive optimization.
 
 ---
 
@@ -27,7 +27,7 @@ Modern AV perception is converging toward **unified architectures** that perform
 
 ### 1.1 The Problem with Separate Models
 
-Aurrigo's current stack runs perception as independent modules:
+the reference airside AV stack's current stack runs perception as independent modules:
 
 ```
 LiDAR → PointPillars → 3D Detections
@@ -411,9 +411,9 @@ def pcgrad_update(task_losses, shared_params, optimizer):
 
 ## 7. Shared-Backbone Multi-Head Architecture
 
-### 7.1 Recommended Architecture for Aurrigo
+### 7.1 Recommended Architecture for reference airside AV stack
 
-Rather than adopting a monolithic end-to-end model, the recommended approach for Aurrigo is a **shared-backbone, multi-head** design that preserves the proven PointPillars detector while adding capabilities:
+Rather than adopting a monolithic end-to-end model, the recommended approach for reference airside AV stack is a **shared-backbone, multi-head** design that preserves the proven PointPillars detector while adding capabilities:
 
 ```
 LiDAR Scans (4-8 RoboSense)
@@ -791,4 +791,4 @@ With multi-task shared labeling (annotate all tasks per frame): **$40-75K** (30%
 
 ---
 
-*Document generated for Aurrigo industry research, April 2026. Covers multi-task and unified perception architectures — for individual task details, see specific docs: detection (`perception/openpcdet-centerpoint.md`), segmentation (`perception/lidar-semantic-segmentation.md`), prediction (`planning/motion-prediction.md`), occupancy (`world-models/occupancy-networks-comparison.md`).*
+*Document generated for reference airside AV stack industry research, April 2026. Covers multi-task and unified perception architectures — for individual task details, see specific docs: detection (`perception/openpcdet-centerpoint.md`), segmentation (`perception/lidar-semantic-segmentation.md`), prediction (`planning/motion-prediction.md`), occupancy (`world-models/occupancy-networks-comparison.md`).*

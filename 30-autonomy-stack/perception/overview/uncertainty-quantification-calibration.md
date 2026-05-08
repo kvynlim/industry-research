@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-Neural perception models output confident predictions even when they are wrong — a catastrophic property for safety-critical autonomous vehicles. Uncertainty quantification (UQ) provides the mathematical framework to know **when the model doesn't know**, enabling principled decisions about when to slow down, request teleoperation, or engage the safety fallback. This document covers the full UQ stack for Aurrigo's airside perception: epistemic vs aleatoric uncertainty decomposition, Bayesian neural networks, Monte Carlo Dropout, deep ensembles, evidential deep learning, conformal prediction with distribution-free coverage guarantees, calibration metrics (ECE, NLL, Brier score), LiDAR-specific uncertainty sources, and practical deployment on Orin AGX. Key finding: a 5-member ensemble with temperature scaling achieves well-calibrated uncertainty at ~5x compute cost, but for real-time Orin deployment, MC-Dropout (3 passes, ~3x cost) or evidential deep learning (single pass, ~1.1x cost) are more practical. Conformal prediction provides the gold standard: P(true class ∈ prediction set) ≥ 1-α with zero distributional assumptions, requiring only ~1,000 calibration examples. For airside operations where no public datasets exist and novel objects appear regularly, uncertainty-aware perception is the difference between a system that fails silently and one that fails safely.
+Neural perception models output confident predictions even when they are wrong — a catastrophic property for safety-critical autonomous vehicles. Uncertainty quantification (UQ) provides the mathematical framework to know **when the model doesn't know**, enabling principled decisions about when to slow down, request teleoperation, or engage the safety fallback. This document covers the full UQ stack for the reference airside AV stack's airside perception: epistemic vs aleatoric uncertainty decomposition, Bayesian neural networks, Monte Carlo Dropout, deep ensembles, evidential deep learning, conformal prediction with distribution-free coverage guarantees, calibration metrics (ECE, NLL, Brier score), LiDAR-specific uncertainty sources, and practical deployment on Orin AGX. Key finding: a 5-member ensemble with temperature scaling achieves well-calibrated uncertainty at ~5x compute cost, but for real-time Orin deployment, MC-Dropout (3 passes, ~3x cost) or evidential deep learning (single pass, ~1.1x cost) are more practical. Conformal prediction provides the gold standard: P(true class ∈ prediction set) ≥ 1-α with zero distributional assumptions, requiring only ~1,000 calibration examples. For airside operations where no public datasets exist and novel objects appear regularly, uncertainty-aware perception is the difference between a system that fails silently and one that fails safely.
 
 ---
 
@@ -908,7 +908,7 @@ class LiDARUncertaintyModel:
 
 ### 9.3 Multi-LiDAR Uncertainty Fusion
 
-Aurrigo uses 4-8 RoboSense LiDARs. Overlapping observations reduce uncertainty:
+reference airside AV stack uses 4-8 RoboSense LiDARs. Overlapping observations reduce uncertainty:
 
 ```python
 def fuse_multi_lidar_uncertainty(observations):
@@ -1254,7 +1254,7 @@ Uncertainty Assessment
 
 7. **Aleatoric uncertainty (sensor noise) is irreducible** — grows as 1/r² with LiDAR range. At 80m, position uncertainty is ~8.5cm (single LiDAR) vs ~3.0cm with 8-LiDAR fusion (65% reduction)
 
-8. **Multi-LiDAR fusion reduces position uncertainty by up to 65%** — Aurrigo's 4-8 RoboSense config provides 49-65% reduction in overlap zones via covariance intersection
+8. **Multi-LiDAR fusion reduces position uncertainty by up to 65%** — the reference airside AV stack's 4-8 RoboSense config provides 49-65% reduction in overlap zones via covariance intersection
 
 9. **Uncertainty-driven speed control**: Low uncertainty → normal speed; medium → -30% with 2.5m buffer; high → -60% with 3.5m buffer; very high → stop. This formalizes "drive to the confidence of your perception"
 
@@ -1295,4 +1295,4 @@ Uncertainty Assessment
 
 ---
 
-*Document generated for Aurrigo industry research, April 2026. Covers uncertainty quantification and calibration for perception — for runtime monitoring and OOD detection in the safety context, see `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md`. For data flywheel integration, see `50-cloud-fleet/mlops/data-flywheel-airside.md`.*
+*Document generated for reference airside AV stack industry research, April 2026. Covers uncertainty quantification and calibration for perception — for runtime monitoring and OOD detection in the safety context, see `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md`. For data flywheel integration, see `50-cloud-fleet/mlops/data-flywheel-airside.md`.*

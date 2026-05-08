@@ -31,7 +31,7 @@
 
 ### 1.1 The Missing Link
 
-The Aurrigo map lifecycle has three phases:
+The reference airside AV stack map lifecycle has three phases:
 
 ```
 BUILD                    DETECT CHANGES             DISTRIBUTE + UPDATE
@@ -65,7 +65,7 @@ The core difference: a model swap can happen between inference cycles with no ob
 
 ### 1.3 Design Requirements
 
-From analysis of Aurrigo's stack and airport operational constraints:
+From analysis of the reference airside AV stack's stack and airport operational constraints:
 
 | Requirement | Target | Rationale |
 |---|---|---|
@@ -697,7 +697,7 @@ Version provenance record:
     "layers_unchanged": ["lanelet2", "semantics", "geofence"],
     "point_count_delta": +12450,
     "max_geometry_shift_m": 0.08,
-    "vehicles_contributing": ["ADT3-007", "ADT3-012", "STL2-003"],
+    "vehicles_contributing": ["third-generation tug-007", "third-generation tug-012", "small tug platform-003"],
     "sessions_used": 47,
     "time_span": "2026-03-15 to 2026-04-09"
   },
@@ -1294,7 +1294,7 @@ Timing:
 
 ### 5.6 Multi-Airport Fleet
 
-Vehicles that travel between airports (e.g., Aurrigo ADT3 repositioning) need maps for multiple airports:
+Vehicles that travel between airports (e.g., reference airside AV stack third-generation tug repositioning) need maps for multiple airports:
 
 ```
 Multi-airport map management:
@@ -2840,7 +2840,7 @@ Fleet Version Summary:
   Total vehicles:     20
   Fully current:      14 (70.0%)
   Needs MAJOR update:  0 (0.0%)
-  Needs MINOR update:  4 (20.0%) -- ADT3-003, ADT3-008, STL2-001, STL2-005
+  Needs MINOR update:  4 (20.0%) -- third-generation tug-003, third-generation tug-008, small tug platform-001, small tug platform-005
   Needs PATCH update:  2 (10.0%) -- POD-002, POD-004
 
 Tile Version Distribution:
@@ -2954,7 +2954,7 @@ class MapManagerNode:
             'http://map-edge.local:8080/v1')
         self.poll_interval = rospy.get_param('~poll_interval_s', 60)
         self.authority_pubkey = rospy.get_param('~authority_pubkey_hex')
-        self.vehicle_id = rospy.get_param('~vehicle_id', 'ADT3-001')
+        self.vehicle_id = rospy.get_param('~vehicle_id', 'third-generation tug-001')
         
         # State
         self.current_manifest = None

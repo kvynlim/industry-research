@@ -1,6 +1,6 @@
 # V2 Deep Dive: Ground Segmentation & Occupancy (#14-16) and Safety & Redundancy Architecture (#17-21)
 
-**Feasibility verification against Aurrigo source code**
+**Feasibility verification against reference airside AV stack source code**
 **Date: 2026-03-16**
 
 ---
@@ -23,7 +23,7 @@ The analysis below is grounded in direct reading of:
 | `perception.launch` | Pipeline: aggregator -> preprocessor -> ground_filter -> segmentation -> deck/trailer/uld detection + rain detection. All nodelets in shared manager (16 worker threads) |
 
 **Key architecture facts established from code:**
-- GroundGrid is the BSD-licensed algorithm from Freie Universitat Berlin (Steinke, Goehring, Rojas -- IEEE RAL 2024). Aurrigo uses it directly as a nodelet.
+- GroundGrid is the BSD-licensed algorithm from Freie Universitat Berlin (Steinke, Goehring, Rojas -- IEEE RAL 2024). reference airside AV stack uses it directly as a nodelet.
 - The grid is 60m x 60m at 0.33m resolution = 181x181 cells = 32,761 cells. Layers stored in `grid_map::GridMap`.
 - Ground segmentation uses Welford's online variance algorithm per cell, ground patches detected via variance thresholding, confidence-weighted height estimation, and spiral interpolation from vehicle center outward.
 - Non-ground classification: `intensity = 99` marker. Ground: `intensity = 49`.
@@ -78,10 +78,10 @@ This converts the `"points"` layer (raw point count per cell) into an occupancy 
 - Waymo's system uses occupancy grids for free-space reasoning (public safety report). Aurora's free-space estimation is a core component of their autonomy system.
 - Autoware Universe has an open-source `probabilistic_occupancy_grid_map` package that does exactly this with Bresenham ray-casting -- can be used as a reference implementation.
 - At 0.25m resolution, 100m x 100m = 160,000 cells. With 50,000 points per frame and ~50 cells per ray average, that is ~2.5M cell updates per frame. On a single core at ~1ns per update (cache-friendly sequential access), this is ~2.5ms. Trivially real-time.
-- Known limitation: ray-casting assumes a clear line of sight from sensor to point. In multi-sensor setups, each sensor should cast rays from its own origin. Aurrigo already has `cloudOrigin` computed per frame (GroundGridNodelet.cpp line 288-290), but this is a single origin for the aggregated cloud. For proper multi-sensor ray-casting, need per-sensor origins. This is a refinement, not a blocker.
+- Known limitation: ray-casting assumes a clear line of sight from sensor to point. In multi-sensor setups, each sensor should cast rays from its own origin. reference airside AV stack already has `cloudOrigin` computed per frame (GroundGridNodelet.cpp line 288-290), but this is a single origin for the aggregated cloud. For proper multi-sensor ray-casting, need per-sensor origins. This is a refinement, not a blocker.
 
 **Revised Implementation Plan:**
-1. Create `aurrigo_occupancy_grid` package with `OccupancyGridNodelet`.
+1. Create `airside_occupancy_grid` package with `OccupancyGridNodelet`.
 2. Implement 2D log-odds grid with Bresenham ray-casting.
 3. Subscribe to `/pointcloud_aggregator/output` and `/odom/fused`.
 4. Transform points to map frame (reuse existing tf2 pattern from GroundGridNodelet).
@@ -261,7 +261,7 @@ The GCA must be architecturally ISOLATED from the main perception pipeline. It m
 **Input topics (from perception.launch):**
 - Raw aggregated point cloud: `/pointcloud_aggregator/output` (the same topic that `ground_filter` subscribes to, line 93 of `GroundGridNodelet.cpp`)
 - Vehicle odometry: `/odom/fused` (same as ground_filter, line 92)
-- Planned trajectory: from the navigation stack (need to identify the topic -- likely from `behavior_planner_nodelet` or `local_planning_nodelet` in `aurrigo_nav`)
+- Planned trajectory: from the navigation stack (need to identify the topic -- likely from `behavior_planner_nodelet` or `local_planning_nodelet` in `airside_nav`)
 
 **Implementation as a new node (NOT a nodelet -- intentional isolation):**
 
@@ -326,7 +326,7 @@ private:
 d_stop = v * t_reaction + v^2 / (2 * a_brake)
 ```
 Where:
-- `t_reaction` = system reaction time (sensor latency + compute + actuation) -- conservatively 0.3s for Aurrigo
+- `t_reaction` = system reaction time (sensor latency + compute + actuation) -- conservatively 0.3s for reference airside AV stack
 - `a_brake` = comfortable braking deceleration -- 2.0 m/s^2 for airport ground vehicle (conservative)
 - At v = 5 m/s (18 km/h, typical apron speed): d_stop = 5*0.3 + 25/4 = 1.5 + 6.25 = 7.75m
 - At v = 10 m/s (36 km/h): d_stop = 10*0.3 + 100/4 = 3.0 + 25.0 = 28.0m
@@ -433,7 +433,7 @@ class SensorHealthMonitor {
 **Integration with vehicle controller:**
 - Publish on `/sensor_health/status` (diagnostic_msgs::DiagnosticArray -- standard ROS diagnostics format).
 - Publish on `/sensor_health/system_status` (custom msg with enum: NOMINAL, DEGRADED, MRC).
-- The behavior planner (`behavior_planner_nodelet.cpp` in `aurrigo_nav`) should subscribe to `/sensor_health/system_status` and:
+- The behavior planner (`behavior_planner_nodelet.cpp` in `airside_nav`) should subscribe to `/sensor_health/system_status` and:
   - On DEGRADED: reduce max speed proportionally to remaining sensor coverage.
   - On MRC (Minimum Risk Condition): trigger controlled stop.
 
@@ -489,7 +489,7 @@ The Polygon Detector already performs significant validation:
 
    Option B is cleaner architecturally (separation of concerns).
 
-2. **Class-specific dimension validation:** For ULD detections specifically (from `aurrigo_uld_detection`), validate against known ULD standard sizes:
+2. **Class-specific dimension validation:** For ULD detections specifically (from `airside_uld_detection`), validate against known ULD standard sizes:
    - LD3: 1.56m x 1.53m x 1.63m
    - LD6: 3.18m x 1.53m x 1.63m
    - LD8: 2.44m x 1.53m x 1.63m
@@ -511,7 +511,7 @@ The Polygon Detector already performs significant validation:
 **Revised Implementation Plan:**
 1. **Immediate (1 day):** Lower `max_velocity_threshold` from 15.0 to 14.0 m/s in `polygon_detector.yaml`.
 2. **Week 1:** Create a `detection_validator` nodelet that subscribes to detected objects and ground grid. Implement ground plane consistency check (z_min within 0.3m of ground height).
-3. **Week 2:** Add ULD dimension validation in `aurrigo_uld_detection`. Add airport-specific dimension ranges.
+3. **Week 2:** Add ULD dimension validation in `airside_uld_detection`. Add airport-specific dimension ranges.
 4. **Testing:** Replay bag files, count detections filtered by each check. Target: filter >90% of known false positives without filtering any true positives.
 
 **Estimated effort:** 1-2 weeks.
@@ -541,11 +541,11 @@ The Polygon Detector already has everything needed for TTC computation:
 
 In `polygon_detector_node.cpp`, the `publishDetectedObjects()` method (line ~312) iterates over tracked boxes to build the `DetectedObjectArray`. TTC should be computed HERE, after tracking and TF transform to base_link, and stored in the `DetectedObject` message.
 
-Check if the `aurrigo_perception_msgs/DetectedObject` message has a TTC field:
+Check if the `airside_perception_msgs/DetectedObject` message has a TTC field:
 
 If not, the message definition needs to be extended:
 ```
-# In aurrigo_perception_msgs/msg/DetectedObject.msg
+# In airside_perception_msgs/msg/DetectedObject.msg
 float64 time_to_collision   # seconds, -1.0 if not closing
 ```
 
@@ -587,7 +587,7 @@ Publish a new topic `/obstacle_detector/ttc` with per-track TTC values. The beha
 **Industry Reality Check:**
 - TTC is universal in production AV systems. Waymo, Zoox, and Mobileye all compute TTC.
 - The challenge at 10Hz LiDAR rate is noisy velocity estimates causing noisy TTC. Key insight from web research: "Measurements are taken at 10 Hz, therefore small errors in the estimation of the difference of distance become relevant errors in the speed estimation and therefore in TTC estimation."
-- Aurrigo's Kalman-filtered velocity (4-state model: x, y, vx, vy) already smooths raw position differences. The Kalman velocity is suitable for TTC computation.
+- the reference airside AV stack's Kalman-filtered velocity (4-state model: x, y, vx, vy) already smooths raw position differences. The Kalman velocity is suitable for TTC computation.
 - Best practice: compute TTC using BOTH centroid distance (smooth but conservative) and nearest-point distance (responsive but noisier). Report the minimum.
 - Radar-based TTC (Zoox, Aurora) uses direct Doppler velocity, which is instantaneous and not subject to multi-frame noise. Without radar, LiDAR-based TTC has inherently more latency -- one reason 4D radar (Recommendation #24) is valuable.
 
@@ -623,7 +623,7 @@ Publish a new topic `/obstacle_detector/ttc` with per-track TTC values. The beha
 This recommendation spans the perception-to-planning boundary. The validation node needs:
 
 **Inputs:**
-1. Planned trajectory from `local_planning_nodelet` (trajectory format TBD -- likely `nav_msgs::Path` or custom message from `aurrigo_planning_msgs`).
+1. Planned trajectory from `local_planning_nodelet` (trajectory format TBD -- likely `nav_msgs::Path` or custom message from `airside_planning_msgs`).
 2. Tracked objects from polygon detector: `/obstacle_detector/detected_objects_refined` (the refined, high-confidence detections).
 3. Vehicle state from `/odom/fused`.
 4. Drivable area boundary (static map or dynamic occupancy grid from Recommendation #14).
@@ -653,7 +653,7 @@ class TrajectoryValidator {
 
 **Collision checking approach:**
 
-The recommendation mentions GJK/SAT for OBB-OBB collision detection. Given Aurrigo's polygon-based tracking (convex hull polygons, not oriented bounding boxes), SAT on convex polygons is the natural choice:
+The recommendation mentions GJK/SAT for OBB-OBB collision detection. Given the reference airside AV stack's polygon-based tracking (convex hull polygons, not oriented bounding boxes), SAT on convex polygons is the natural choice:
 
 1. Sample the trajectory at discrete time steps (dt = 0.1s).
 2. At each time step, compute the ego vehicle's convex polygon (vehicle footprint transformed to the trajectory pose).
@@ -676,7 +676,7 @@ For two convex polygons with N and M vertices, test N+M candidate separating axe
 - The key challenge in practice is NOT the algorithm but the interface with the planner. The validator must be able to reject trajectories fast enough for the planner to replan within its cycle time.
 
 **Revised Implementation Plan:**
-1. **Week 1:** Identify the exact trajectory message type from `aurrigo_nav`. Define the validation interface (input: trajectory, output: accept/reject + reason).
+1. **Week 1:** Identify the exact trajectory message type from `airside_nav`. Define the validation interface (input: trajectory, output: accept/reject + reason).
 2. **Week 2:** Implement kinematic feasibility checks (acceleration, curvature limits) and collision-free check (SAT on convex polygons).
 3. **Week 3:** Implement drivable area check (trajectory points must be in free cells of occupancy grid -- depends on Recommendation #14).
 4. **Week 4:** Implement RSS-inspired minimum safe distance check using current tracked object velocities.

@@ -4,14 +4,14 @@
 
 **Date:** 2026-03-21
 **Type:** Research Design — Next-Generation AV Stack for Airport Airside Operations
-**Context:** Greenfield parallel track alongside existing Aurrigo ROS Noetic stack (Simplex architecture)
+**Context:** Greenfield parallel track alongside existing reference airside AV stack ROS Noetic stack (Simplex architecture)
 **Approach:** Dual-Track Foundation (Data Engine + World Model Stack)
 
 ---
 
 ## 1. Problem Statement
 
-The current Aurrigo ADS stack is a production-tested, modular ROS Noetic pipeline optimized for waypoint-following on airport airside. It works — but it has fundamental limitations that world models and foundation AI can address:
+The current reference airside AV stack ADS stack is a production-tested, modular ROS Noetic pipeline optimized for waypoint-following on airport airside. It works — but it has fundamental limitations that world models and foundation AI can address:
 
 | Current Limitation | Root Cause | Impact |
 |---|---|---|
@@ -444,7 +444,7 @@ The `AirportContext` is encoded as a conditioning signal for the world model:
 **Multi-fidelity, building on your existing kinematic sim:**
 
 ```
-LEVEL 0: KINEMATIC SIM (existing aurrigo_python_sim)
+LEVEL 0: KINEMATIC SIM (existing airside_python_sim)
 ├── Bicycle model, validated 4.1% error
 ├── Tests nav stack logic (waypoints, FSM, zone management)
 ├── Unchanged — keeps testing current stack
@@ -888,4 +888,4 @@ Digital taxi instruction: "Tractor 7, proceed via Alpha to Stand B12, hold short
 
 ---
 
-*This design specification synthesizes findings from 20 deep-dive research reports (13,210 lines of analysis across 200+ papers) with the concrete reality of the Aurrigo ADS ROS Noetic stack — 22 packages, LiDAR-centric perception, GTSAM localization, Frenet planning, multi-platform vehicle support. The architecture is designed to preserve every strength of the current stack while progressively unlocking capabilities that only learned world models can provide.*
+*This design specification synthesizes findings from 20 deep-dive research reports (13,210 lines of analysis across 200+ papers) with the concrete reality of the reference airside AV stack ADS ROS Noetic stack — 22 packages, LiDAR-centric perception, GTSAM localization, Frenet planning, multi-platform vehicle support. The architecture is designed to preserve every strength of the current stack while progressively unlocking capabilities that only learned world models can provide.*

@@ -652,7 +652,7 @@ class ScenarioCoverageTracker:
 
 ### 3.3 Code Coverage for Safety-Critical Paths
 
-Code coverage metrics for safety-critical C++ nodelets in the Aurrigo ROS stack:
+Code coverage metrics for safety-critical C++ nodelets in the reference airside AV stack ROS stack:
 
 | Metric | Description | Target (ASIL-B) | Target (Non-safety) | Tool |
 |--------|-------------|------------------|---------------------|------|
@@ -667,16 +667,16 @@ Example: For the expression `if (obstacle_detected && speed > 0 && !emergency_ov
 - MC/DC requires 4 test cases minimum (for 3 conditions)
 - Each condition must flip the outcome while others are held constant
 
-**Safety-critical paths in Aurrigo stack:**
+**Safety-critical paths in reference airside AV stack:**
 
 | Package | Safety Criticality | Coverage Target | MC/DC Required |
 |---------|--------------------|-----------------|----------------|
-| `aurrigo_safety` (e-stop, watchdog) | ASIL-B | 100% statement + MC/DC | Yes |
-| `aurrigo_perception` (obstacle detection) | ASIL-B | 100% statement + MC/DC | Yes |
-| `aurrigo_nav` (speed limiting, geofence) | ASIL-B | 100% statement, branch | Yes (safety checks only) |
-| `aurrigo_nav` (Frenet planner core) | ASIL-A | >90% statement, >80% branch | No |
-| `aurrigo_localization` (GTSAM) | ASIL-A | >90% statement | No |
-| `aurrigo_control` (Stanley, low-level) | ASIL-B | 100% statement + MC/DC | Yes (actuator commands) |
+| `airside_safety` (e-stop, watchdog) | ASIL-B | 100% statement + MC/DC | Yes |
+| `airside_perception` (obstacle detection) | ASIL-B | 100% statement + MC/DC | Yes |
+| `airside_nav` (speed limiting, geofence) | ASIL-B | 100% statement, branch | Yes (safety checks only) |
+| `airside_nav` (Frenet planner core) | ASIL-A | >90% statement, >80% branch | No |
+| `airside_localization` (GTSAM) | ASIL-A | >90% statement | No |
+| `airside_control` (Stanley, low-level) | ASIL-B | 100% statement + MC/DC | Yes (actuator commands) |
 | Other packages | QM | >80% statement | No |
 
 ### 3.4 Perception Coverage
@@ -1144,7 +1144,7 @@ SIL testing runs the complete AV software stack (perception, localization, plann
 └──────────────────────────────────────────────────────┘
 ```
 
-**SIL configuration for Aurrigo stack:**
+**SIL configuration for reference airside AV stack:**
 
 | Component | SIL Implementation | Notes |
 |-----------|-------------------|-------|
@@ -1152,7 +1152,7 @@ SIL testing runs the complete AV software stack (perception, localization, plann
 | Camera sensors | CARLA RGB cameras (if using camera fallback mode) | Match resolution, FoV, mounting position |
 | IMU | Simulated 500 Hz IMU with configurable noise model | Match real IMU noise characteristics |
 | GPS | Simulated RTK-GPS with configurable accuracy and dropout | Include multipath effects near buildings |
-| ROS interface | CARLA ROS bridge (publishes to standard ROS topics) | Topic remapping to match Aurrigo namespace |
+| ROS interface | CARLA ROS bridge (publishes to standard ROS topics) | Topic remapping to match reference airside AV stack namespace |
 | Environment | Custom airport map in CARLA (see `simulators-for-airside.md` Section 1) | Import from AMDB + custom 3D assets |
 | Actors | Scripted via OpenSCENARIO or CARLA Python API | Custom blueprints for GSE and aircraft |
 
@@ -1167,7 +1167,7 @@ roslaunch carla_ros_bridge carla_ros_bridge.launch \
     host:=localhost port:=2000 &
 
 # 3. Launch AV stack (production or shadow, depending on test)
-roslaunch aurrigo_bringup sil_test.launch \
+roslaunch airside_bringup sil_test.launch \
     stack:=production \
     record_bag:=true &
 
@@ -1219,11 +1219,11 @@ HIL testing uses the real Orin compute hardware running the AV software stack, b
 │  │  Workstation  │     │                                │  │
 │  │               │     │   Running:                     │  │
 │  │  - LiDAR      │UDP  │   - ROS Noetic                 │  │
-│  │    point cloud │────>│   - aurrigo_perception         │  │
-│  │    generator   │     │   - aurrigo_nav                │  │
-│  │               │     │   - aurrigo_localization        │  │
-│  │  - Camera     │MIPI │   - aurrigo_safety             │  │
-│  │    frame       │CSI  │   - aurrigo_control            │  │
+│  │    point cloud │────>│   - airside_perception         │  │
+│  │    generator   │     │   - airside_nav                │  │
+│  │               │     │   - airside_localization        │  │
+│  │  - Camera     │MIPI │   - airside_safety             │  │
+│  │    frame       │CSI  │   - airside_control            │  │
 │  │    injector    │────>│                                │  │
 │  │               │     │   Output: /av_nav/cmd_twist    │  │
 │  │  - IMU/GPS    │UART │     (captured, not sent to     │  │
@@ -1613,7 +1613,7 @@ The RAND Corporation's 2016 study "Driving to Safety" (Kalra & Paddock) establis
 
 Shadow mode runs the AV software stack in parallel with a human operator who has actual control of the vehicle. The AV system processes real sensor data and makes decisions, but those decisions are recorded rather than executed. This provides real-world testing with zero safety risk.
 
-For the Aurrigo Simplex architecture (see `../runtime-assurance/simplex-safety-architecture.md` Section 4), shadow mode is a natural first step:
+For the reference airside AV stack Simplex architecture (see `../runtime-assurance/simplex-safety-architecture.md` Section 4), shadow mode is a natural first step:
 
 ```
 Real Sensors ──┬──> Production Stack ──> Actuators (human controls)
@@ -1840,7 +1840,7 @@ name: Perception Regression
 on:
   pull_request:
     paths:
-      - 'aurrigo_perception/**'
+      - 'airside_perception/**'
       - 'models/**'
 
 jobs:
@@ -1848,7 +1848,7 @@ jobs:
     runs-on: [self-hosted, gpu, orin]  # or cloud GPU
     steps:
       - name: Build perception stack
-        run: catkin build aurrigo_perception
+        run: catkin build airside_perception
       
       - name: Run evaluation on validation set
         run: |
@@ -2356,7 +2356,7 @@ The test vehicle must be configured for both safe testing and comprehensive data
 | 16 | **Jet blast has no road-driving equivalent**: requires custom airside test protocols with thermal sensor validation | Invest in physics-based jet blast simulation model |
 | 17 | **Digital twin construction costs $65-135K per airport** but enables unlimited safe testing of dangerous scenarios | ROI positive if replacing even 10% of physical test hours |
 | 18 | **Ground truth instrumentation costs $30-65K** (RTK base, overhead cameras, weather station, friction tester) | Essential one-time investment for all physical testing |
-| 19 | **MC/DC coverage required for ASIL-B safety-critical code** (ISO 26262 Part 6) | Applies to aurrigo_safety, aurrigo_perception detection path, aurrigo_control actuator commands |
+| 19 | **MC/DC coverage required for ASIL-B safety-critical code** (ISO 26262 Part 6) | Applies to airside_safety, airside_perception detection path, airside_control actuator commands |
 | 20 | **4-wise covering arrays capture 98% of parameter-interaction faults** with ~1,500 test cases (vs. 390K full combinatorial) | Use 4-wise as default for critical scenarios; pairwise for lower-risk |
 
 ---

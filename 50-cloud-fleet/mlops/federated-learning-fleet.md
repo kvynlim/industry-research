@@ -1,8 +1,8 @@
 # Federated Learning for Fleet-Scale Autonomous Vehicle Training
 
-> Comprehensive technical guide to federated and distributed learning approaches for training perception, prediction, and planning models across a fleet of autonomous vehicles deployed at multiple airports. Covers FL fundamentals (FedAvg through personalized FL), communication efficiency, privacy/security, heterogeneous federation, federated continual learning, multi-airport architecture, practical implementation with Flower/FLARE, and cost modeling. Designed for Aurrigo's ROS Noetic, LiDAR-primary stack scaling from 5-20 vehicles at one airport to 100+ vehicles across 10+ airports.
+> Comprehensive technical guide to federated and distributed learning approaches for training perception, prediction, and planning models across a fleet of autonomous vehicles deployed at multiple airports. Covers FL fundamentals (FedAvg through personalized FL), communication efficiency, privacy/security, heterogeneous federation, federated continual learning, multi-airport architecture, practical implementation with Flower/FLARE, and cost modeling. Designed for the reference airside AV stack's ROS Noetic, LiDAR-primary stack scaling from 5-20 vehicles at one airport to 100+ vehicles across 10+ airports.
 
-**Key Takeaway**: Federated learning is not a replacement for centralized training at Aurrigo's current scale (5-20 vehicles, 1-2 airports) -- the overhead exceeds the benefit. But as the fleet crosses ~30 vehicles across 3+ airports, FL becomes essential: raw data upload costs $98K+/year for 10 vehicles (see `50-cloud-fleet/data-platform/fleet-data-pipeline.md`), airport operators will resist sharing raw sensor data with competitors' infrastructure, and GDPR/data sovereignty requirements make centralized collection legally complex across jurisdictions. The recommended path is a **hybrid architecture**: centralized training on consented/owned data + federated LoRA adapter fine-tuning per airport, reducing communication cost by 97% compared to full-model FL while achieving within 1-2% of centralized accuracy.
+**Key Takeaway**: Federated learning is not a replacement for centralized training at the reference airside AV stack's current scale (5-20 vehicles, 1-2 airports) -- the overhead exceeds the benefit. But as the fleet crosses ~30 vehicles across 3+ airports, FL becomes essential: raw data upload costs $98K+/year for 10 vehicles (see `50-cloud-fleet/data-platform/fleet-data-pipeline.md`), airport operators will resist sharing raw sensor data with competitors' infrastructure, and GDPR/data sovereignty requirements make centralized collection legally complex across jurisdictions. The recommended path is a **hybrid architecture**: centralized training on consented/owned data + federated LoRA adapter fine-tuning per airport, reducing communication cost by 97% compared to full-model FL while achieving within 1-2% of centralized accuracy.
 
 ---
 
@@ -27,7 +27,7 @@
 
 ### 1.1 The Data Problem at Scale
 
-Aurrigo's fleet data pipeline (see `50-cloud-fleet/data-platform/fleet-data-pipeline.md`) generates massive volumes per vehicle:
+the reference airside fleet data pipeline (see `50-cloud-fleet/data-platform/fleet-data-pipeline.md`) generates massive volumes per vehicle:
 
 | Data Source | Per-Vehicle/Day (8h shift) | 10 Vehicles | 50 Vehicles | 100 Vehicles |
 |---|---|---|---|---|
@@ -121,14 +121,14 @@ FL distributes risk: if one airport's edge server fails, other airports continue
 | Factor | Centralized Better | Federated Better |
 |---|---|---|
 | Fleet size | <20 vehicles, 1-2 airports | >30 vehicles, 3+ airports |
-| Data ownership | All data owned by Aurrigo | Airport/airline retains data rights |
+| Data ownership | All data owned by reference airside AV stack | Airport/airline retains data rights |
 | Connectivity | High bandwidth, low cost | Limited bandwidth or high cost |
 | Regulatory | Single jurisdiction | Multi-jurisdiction deployment |
 | Data sensitivity | Low (no cameras, no PII) | High (cameras, PII, security zones) |
 | Model complexity | Large models, long training | Adapter fine-tuning, incremental updates |
 | Label availability | Centralized labeling team | Distributed annotation or auto-labeling |
 
-**Aurrigo's trajectory**: Currently LiDAR-only at 1-2 airports (centralized is fine). Adding cameras + scaling to 5+ airports (hybrid FL becomes necessary). At 10+ airports across multiple countries (FL is essential).
+**the reference airside AV stack's trajectory**: Currently LiDAR-only at 1-2 airports (centralized is fine). Adding cameras + scaling to 5+ airports (hybrid FL becomes necessary). At 10+ airports across multiple countries (FL is essential).
 
 ### 1.4 Comparison with Centralized Data Flywheel
 
@@ -140,7 +140,7 @@ The data flywheel approach (detailed in `50-cloud-fleet/mlops/data-flywheel-airs
 | Labeling | Centralized auto-label + QA | On-vehicle auto-label or no labels (SSL) | Cloud labeling for critical data, FL for incremental |
 | Training | GPU cluster (8-64 GPUs) | On-vehicle/edge (Orin 275 TOPS) | Base model centralized, adapters federated |
 | Model distribution | OTA push to fleet | Aggregated model push to fleet | Base model OTA + adapter FL |
-| Privacy | All data visible to Aurrigo | Data never leaves airport | Safety-critical data centralized, bulk federated |
+| Privacy | All data visible to reference airside AV stack | Data never leaves airport | Safety-critical data centralized, bulk federated |
 | Cost (100 vehicles) | $500K+/year data infrastructure | $80K+/year FL infrastructure | $200K+/year hybrid |
 
 ---
@@ -471,7 +471,7 @@ def fedbn_aggregation(global_model, client_models, client_sizes):
     return global_model
 ```
 
-**Critical for airside**: LiDAR point cloud distributions vary significantly across airports (different ground reflectivity, different sensor mounting heights across vehicle types like ADT3 vs. STL2 vs. POD). BN statistics encode these sensor/environment characteristics. FedBN allows the backbone features to be shared globally while maintaining domain-specific normalization -- exactly the right split for multi-airport perception.
+**Critical for airside**: LiDAR point cloud distributions vary significantly across airports (different ground reflectivity, different sensor mounting heights across vehicle types like third-generation tug vs. small tug platform vs. POD). BN statistics encode these sensor/environment characteristics. FedBN allows the backbone features to be shared globally while maintaining domain-specific normalization -- exactly the right split for multi-airport perception.
 
 ### 2.6 Convergence Analysis for Non-IID Data
 
@@ -485,7 +485,7 @@ def fedbn_aggregation(global_model, client_models, client_sizes):
 | **pFedMe** | N/A (personalized) | Per-client: O(1/sqrt(T)) | ~250 | Personalized model copy |
 | **FedBN** | O(1/T) | O(1/T) for non-BN layers | ~300 | Local BN params only |
 
-**Recommendation for Aurrigo**: Start with FedProx (simplest, good enough for moderate heterogeneity). Move to SCAFFOLD if convergence is too slow. Use FedBN universally for perception models (cheap, always helps).
+**Recommendation for reference airside AV stack**: Start with FedProx (simplest, good enough for moderate heterogeneity). Move to SCAFFOLD if convergence is too slow. Use FedBN universally for perception models (cheap, always helps).
 
 ### 2.7 Communication Rounds Analysis
 
@@ -521,7 +521,7 @@ Federated object detection has been explored in several works targeting autonomo
 
 **FedVision (Liu et al., 2020)**: An FL platform specifically for visual tasks including object detection. Demonstrated that FedAvg achieves 89.2% of centralized mAP on federated COCO splits.
 
-**For 3D LiDAR detection** (directly relevant to Aurrigo):
+**For 3D LiDAR detection** (directly relevant to reference airside AV stack):
 
 ```python
 class FederatedPointPillarsTrainer:
@@ -606,9 +606,9 @@ class FederatedPointPillarsTrainer:
 
 LiDAR-based FL faces unique challenges compared to image-based FL:
 
-**Point density heterogeneity**: Different sensor configs produce different point densities. Aurrigo uses RSHELIOS (32-beam, ~30K points/scan) and RSBP (16-beam, ~16K points/scan). Other fleet vehicles or partner deployments may use different sensors entirely (see `20-av-platform/sensors/` for specifications). The pillar/voxel feature encoding must be robust to these variations.
+**Point density heterogeneity**: Different sensor configs produce different point densities. reference airside AV stack uses RSHELIOS (32-beam, ~30K points/scan) and RSBP (16-beam, ~16K points/scan). Other fleet vehicles or partner deployments may use different sensors entirely (see `20-av-platform/sensors/` for specifications). The pillar/voxel feature encoding must be robust to these variations.
 
-**Coordinate system differences**: Different vehicle types (ADT3 with Ackermann, POD, STL2) have different sensor mounting positions and orientations. The ego-to-sensor transform differs per vehicle, affecting the point cloud distribution even for identical scenes.
+**Coordinate system differences**: Different vehicle types (third-generation tug with Ackermann, POD, small tug platform) have different sensor mounting positions and orientations. The ego-to-sensor transform differs per vehicle, affecting the point cloud distribution even for identical scenes.
 
 **Scale differences**: Aircraft wingspan 30-65m; personnel 0.5m. Object scale distributions vary dramatically by airport type (hub vs. regional) and by the aircraft mix each airport handles.
 
@@ -621,7 +621,7 @@ Phase 1: Self-supervised pre-training (centralized, on road datasets)
    └── Cost: ~$5-15K compute (see 30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md)
 
 Phase 2: Supervised fine-tuning (centralized, on first airport data)
-   └── First airport provides labeled data under Aurrigo's full control
+   └── First airport provides labeled data under the reference airside AV stack's full control
    └── Train full detection head with airside taxonomy
    └── Cost: ~$15-30K labeling + $5K training
 
@@ -636,7 +636,7 @@ This three-phase approach combines the data efficiency of centralized pre-traini
 
 ### 3.3 Federated BEV Perception
 
-If Aurrigo adds cameras and moves toward BEV perception (see `30-autonomy-stack/perception/overview/bev-encoding.md`), federated BEV training introduces additional challenges:
+If reference airside AV stack adds cameras and moves toward BEV perception (see `30-autonomy-stack/perception/overview/bev-encoding.md`), federated BEV training introduces additional challenges:
 
 **Camera intrinsic heterogeneity**: Different camera configurations across vehicle types produce different image resolutions, field-of-view, and distortion characteristics. BEV transformers use these intrinsics in the view transform, so models must handle heterogeneous inputs.
 
@@ -679,7 +679,7 @@ A model trained only at Memphis (cargo hub) would have poor narrow-body aircraft
 
 ### 3.5 Federated Pre-training + Local Fine-tuning Hybrid
 
-The most practical approach for Aurrigo combines centralized pre-training with federated fine-tuning:
+The most practical approach for reference airside AV stack combines centralized pre-training with federated fine-tuning:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -913,7 +913,7 @@ class FederatedLoRA:
         return total
 ```
 
-**LoRA FL is the recommended approach** for Aurrigo because:
+**LoRA FL is the recommended approach** for reference airside AV stack because:
 1. PointLoRA (CVPR 2025) already demonstrated effectiveness for LiDAR point cloud fine-tuning (see `30-autonomy-stack/perception/overview/lidar-foundation-models.md`)
 2. 500 labeled frames sufficient for same-cluster transfer with 1-3% mAP gap (see `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md`)
 3. Communication overhead is negligible over airport 5G
@@ -1089,7 +1089,7 @@ In a fleet setting, a compromised vehicle or a vehicle with severely corrupted d
 | **FLTrust** | Server maintains a small trusted dataset; scores clients by cosine similarity to trusted gradient | Unlimited (with trust anchor) | O(n d) | Cao et al., NDSS 2021 |
 | **Robust FL with Reputation** | Track historical quality per client; weight by reputation | Adaptive | O(n d) | Various |
 
-**Recommendation for Aurrigo**: FLTrust is most practical. The central server maintains a small validation dataset from each airport (100-500 labeled frames per airport, provided during onboarding). Client updates are scored by cosine similarity to the gradient computed on this trusted data. Updates that diverge significantly are down-weighted.
+**Recommendation for reference airside AV stack**: FLTrust is most practical. The central server maintains a small validation dataset from each airport (100-500 labeled frames per airport, provided during onboarding). Client updates are scored by cosine similarity to the gradient computed on this trusted data. Updates that diverge significantly are down-weighted.
 
 ```python
 def fltrust_aggregate(
@@ -1170,14 +1170,14 @@ def fltrust_aggregate(
 
 ### 6.1 Types of Heterogeneity in Fleet Deployment
 
-Aurrigo's fleet is heterogeneous across three dimensions:
+the reference airside fleet is heterogeneous across three dimensions:
 
 #### System Heterogeneity
 
 | Vehicle Type | Compute | TOPS | Training Capacity | Battery for Training |
 |---|---|---|---|---|
-| ADT3 (Ackermann) | Orin AGX | 275 | Full local training | 8-12h operational + charge |
-| STL2 | Orin AGX | 275 | Full local training | 8-12h operational + charge |
+| third-generation tug (Ackermann) | Orin AGX | 275 | Full local training | 8-12h operational + charge |
+| small tug platform | Orin AGX | 275 | Full local training | 8-12h operational + charge |
 | POD | Orin NX or Xavier | 100-275 | Limited local training | Shorter battery life |
 | ACA1 | Xavier or Orin NX | 30-100 | Inference only | Cannot train locally |
 | Future vehicles | Thor | 1,000+ | Full training + world models | Extended capability |
@@ -1190,8 +1190,8 @@ Vehicles with Xavier (30 TOPS) cannot perform full local training in reasonable 
 #### Data Heterogeneity
 
 Each airport produces a different data distribution (see Section 3.4). Within an airport, different vehicle types see different perspectives:
-- ADT3 (low, ackermann): ground-level view, narrow FOV
-- STL2 (higher platform): broader view, different occlusion patterns
+- third-generation tug (low, ackermann): ground-level view, narrow FOV
+- small tug platform (higher platform): broader view, different occlusion patterns
 - POD (passenger vehicle): different routes, different speeds
 
 #### Model Heterogeneity
@@ -1316,7 +1316,7 @@ Client side (on Orin):
 - Intermediate activations may leak information (SplitFed attack papers)
 - Not practical for intermittent connectivity
 
-**Verdict for Aurrigo**: Split learning is impractical for on-vehicle training (latency too high for each batch). Better suited for edge server + vehicle split within an airport (low latency LAN/5G).
+**Verdict for reference airside AV stack**: Split learning is impractical for on-vehicle training (latency too high for each batch). Better suited for edge server + vehicle split within an airport (low latency LAN/5G).
 
 ### 6.5 Knowledge Distillation as Communication
 
@@ -1605,7 +1605,7 @@ class FederatedGenerativeReplay:
 
 **Pros**: Simple, single aggregation point, easy to validate global model.
 **Cons**: Single point of failure, all communication routes through cloud, privacy concentrated at one server.
-**Best for**: Small fleet (5-30 vehicles), 1-5 airports, trusted central operator (Aurrigo owns the server).
+**Best for**: Small fleet (5-30 vehicles), 1-5 airports, trusted central operator (reference airside AV stack owns the server).
 
 #### Option B: Hierarchical (Two-Level Aggregation)
 
@@ -2067,7 +2067,7 @@ if __name__ == "__main__":
 
 ### 8.4 Integration with Existing Infrastructure
 
-The FL system integrates with Aurrigo's existing and planned infrastructure:
+The FL system integrates with the reference airside AV stack's existing and planned infrastructure:
 
 | Existing Component | FL Integration Point | Details |
 |---|---|---|
@@ -2551,7 +2551,7 @@ The edge server:
 | **Federated (SCAFFOLD)** | 68-73% | -1-4% | Best convergence |
 | **Hybrid (centralized base + federated LoRA)** | 69-74% | -0.5-2% | Recommended |
 | **Per-airport centralized** | 60-65% | -8-12% | No cross-airport knowledge sharing |
-| **No ML (classical only)** | N/A | N/A | Current Aurrigo approach |
+| **No ML (classical only)** | N/A | N/A | Current reference airside AV stack approach |
 
 **Key insight**: The accuracy gap between hybrid FL and fully centralized is only 0.5-2%, while the cost and privacy advantages are enormous. The real comparison is not "FL vs. centralized" but "hybrid FL vs. per-airport isolated training," where FL wins by 5-10% mAP through cross-airport knowledge sharing.
 
@@ -2571,7 +2571,7 @@ The edge server:
 | **New airport onboarding** | 8 weeks, $75-150K | 2-4 weeks, $30-50K | 4-6 weeks, $50-100K |
 | **Regulatory readiness** | Needs per-jurisdiction DPA | Built-in compliance | Balanced approach |
 
-### 10.3 Decision Framework for Aurrigo
+### 10.3 Decision Framework for reference airside AV stack
 
 ```
 Fleet size < 20 vehicles, 1-2 airports:
@@ -2612,7 +2612,7 @@ Fleet size 100+ vehicles, 10+ airports, multi-country:
 
 ## 11. Key Takeaways
 
-1. **FL is not needed today but will be essential at scale**: At Aurrigo's current 5-20 vehicles at 1-2 airports, centralized training is simpler and more effective. At 30+ vehicles across 3+ airports, the data transfer cost ($500K+/year for 50 airports), privacy constraints (GDPR, airport security), and airport operators' refusal to share raw data make FL necessary.
+1. **FL is not needed today but will be essential at scale**: At the reference airside AV stack's current 5-20 vehicles at 1-2 airports, centralized training is simpler and more effective. At 30+ vehicles across 3+ airports, the data transfer cost ($500K+/year for 50 airports), privacy constraints (GDPR, airport security), and airport operators' refusal to share raw data make FL necessary.
 
 2. **Hybrid architecture is optimal**: Centralized pre-training + supervised training for the base model, federated LoRA fine-tuning for per-airport adaptation. This achieves within 0.5-2% of fully centralized accuracy while reducing communication cost by 97% and preserving data sovereignty.
 
@@ -2636,11 +2636,11 @@ Fleet size 100+ vehicles, 10+ airports, multi-country:
 
 12. **FL break-even occurs at ~10 airports (Year 3)**: FL infrastructure investment of ~$300K over 3 years saves $470K/year in data transfer and $200K/year in labeling compared to fully centralized training at 10+ airports. Cumulative savings exceed $1M by Year 5.
 
-13. **Hierarchical aggregation matches organizational structure**: Within-airport FL (every 30 min) provides fast site-specific improvement. Cross-airport regional FL (every 4 hours) shares knowledge within regulatory zones. Global FL (daily) creates the universal base model. This maps naturally to airport groups, regulatory jurisdictions, and Aurrigo's deployment regions.
+13. **Hierarchical aggregation matches organizational structure**: Within-airport FL (every 30 min) provides fast site-specific improvement. Cross-airport regional FL (every 4 hours) shares knowledge within regulatory zones. Global FL (daily) creates the universal base model. This maps naturally to airport groups, regulatory jurisdictions, and the reference airside AV stack's deployment regions.
 
 14. **Knowledge distillation enables Xavier-class vehicles to participate**: Vehicles with insufficient compute for local training (Xavier NX: 30 TOPS) can contribute by sending soft predictions on local data instead of gradients. The server distills this knowledge into the global model, ensuring no fleet data is wasted.
 
-15. **Federated distillation (FedDF) solves model heterogeneity**: Different vehicle types (ADT3, STL2, POD) may run different model architectures optimized for their compute. FedDF allows heterogeneous models to participate in the same federation by exchanging predictions on a small public dataset rather than parameters.
+15. **Federated distillation (FedDF) solves model heterogeneity**: Different vehicle types (third-generation tug, small tug platform, POD) may run different model architectures optimized for their compute. FedDF allows heterogeneous models to participate in the same federation by exchanging predictions on a small public dataset rather than parameters.
 
 16. **FL framework recommendation: Flower for development, NVIDIA FLARE for production**: Flower's strategy pattern enables rapid algorithm prototyping (swap FedAvg/FedProx/SCAFFOLD with one line). NVIDIA FLARE provides Orin-optimized training, built-in SecAgg, and TensorRT integration for production deployment.
 

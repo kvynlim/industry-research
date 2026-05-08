@@ -48,7 +48,7 @@ TODAY (2026):                           FUTURE (2030+):
 | Company | Products | Technology | Deployments | Funding/Status |
 |---------|----------|------------|-------------|----------------|
 | **TractEasy** (TLD + EasyMile) | EZTow, EZDolly | GPS + 3D LiDAR + fusion, L4 | Narita, Changi, Munich, Dubai, GSP, Toulouse | Joint venture |
-| **Aurrigo** | Auto-DollyTug, Auto-Cargo, Auto-Sim | LiDAR + 360 cam + GPS + IMU | Zurich (Swissport), Schiphol (KLM), Heathrow (BA) | UK public, partnerships with IAG/Swissport |
+| **reference airside AV stack** | autonomous baggage/cargo tug, autonomous cargo vehicle, airside autonomy simulator | LiDAR + 360 cam + GPS + IMU | Zurich (Swissport), Schiphol (KLM), Heathrow (BA) | UK public, partnerships with IAG/Swissport |
 | **Charlatte Autonom** | AT135 L4 tractor | V2X + sensor fusion | CDG (Air France), Frankfurt | Fiat Industrial group |
 | **Fernride** | Teleoperation platform | Progressive autonomy, NVIDIA partner | Focus on logistics, airport expansion planned | $50M+ funding |
 | **AeroVect** | AutoTug retrofit kit | Camera + LiDAR, retrofit to existing GSE | US airports (specific sites undisclosed) | YC-backed |
@@ -149,8 +149,8 @@ Payback period: < 1 year
 
 ### 5.2 Schiphol Airport (Amsterdam)
 
-- **Operator:** KLM / Aurrigo
-- **Vehicles:** Auto-DollyTug trials
+- **Operator:** KLM / reference airside AV stack
+- **Vehicles:** autonomous baggage/cargo tug trials
 - **Also:** TractEasy EZDolly trials
 - **Multiple competitors testing:** Schiphol is the most competitive airside AV testbed in Europe
 - **Key learning:** Airport operator runs competitive trials → best technology wins
@@ -164,8 +164,8 @@ Payback period: < 1 year
 
 ### 5.4 Zurich Airport
 
-- **Operator:** Swissport + Aurrigo
-- **Vehicles:** Auto-DollyTug
+- **Operator:** Swissport + reference airside AV stack
+- **Vehicles:** autonomous baggage/cargo tug
 - **Scope:** Baggage transport between terminal and aircraft
 - **Key learning:** Ground handler (Swissport) driving adoption, not airport authority
 
@@ -189,7 +189,7 @@ Payback period: < 1 year
 | **EASA (Europe)** | AI Roadmap 2.0, targeting 2028 | W-shaped development process |
 | **ICAO** | No specific standards | Annex 14 (aerodromes) applies generally |
 | **Singapore (CAAS)** | Most advanced — active trials | Supporting TractEasy deployment |
-| **UK (CAA)** | Sandbox approach | Supporting Aurrigo trials |
+| **UK (CAA)** | Sandbox approach | Supporting reference airside AV stack trials |
 
 ### 6.2 Predicted Timeline
 
@@ -203,7 +203,7 @@ Payback period: < 1 year
 2030: First certified autonomous GSE operations in US/Europe
 
 Current certification path: ISO 3691-4:2020 (driverless industrial trucks)
-  → This is what TractEasy and Aurrigo use today
+  → This is what TractEasy and reference airside AV stack use today
   → Sufficient for near-term deployment
   → Will be superseded by aviation-specific standards
 ```
@@ -257,7 +257,7 @@ vs. Moonware: "We have the vehicles AND the intelligence, they're software-only"
 - Airport Cooperative Research Program (ACRP) reports
 - Moonware public announcements and press releases
 - TractEasy / EasyMile deployment announcements
-- Aurrigo investor presentations and press
+- reference airside AV stack investor presentations and press
 - FAA CertAlert 24-02
 - EASA AI Roadmap 2.0
 - Changi Airport Group press releases

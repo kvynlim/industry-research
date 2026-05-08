@@ -234,8 +234,8 @@ Key safety event: After TractEasy initiated operations in the U.S., the FAA issu
 
 Safety features include anti-collision software, a separate safety chain system, and the requirement that the tug will not move until all cargo is properly secured and locked.
 
-**Aurrigo.**
-Secured a ground handling licence at East Midlands Airport (UK) to support autonomous vehicle rollout. Aurrigo's approach includes a digital twin of airside operations for pre-deployment simulation. Their Transport Safety System is designed to prevent movement until all equipment is properly configured. No public incident reports identified.
+**reference airside AV stack.**
+Secured a ground handling licence at East Midlands Airport (UK) to support autonomous vehicle rollout. the reference airside AV stack's approach includes a digital twin of airside operations for pre-deployment simulation. Their Transport Safety System is designed to prevent movement until all equipment is properly configured. No public incident reports identified.
 
 **General Observations.**
 - No publicly reported injury incidents involving autonomous GSE have been identified as of March 2026.
@@ -763,7 +763,6 @@ The incidents catalogued in this report are not just cautionary tales. They are 
 - [FAA: Autonomous Ground Vehicle Systems on Airports](https://www.faa.gov/airports/new_entrants/agvs_on_airports)
 - [EASA on Developing a Regulatory Framework for Autonomous GSE](https://airsideint.com/easa-on-developing-a-regulatory-framework-for-autonomous-gse/)
 - [TractEasy](https://tracteasy.com/)
-- [Aurrigo: Ground Handling Licence at East Midlands Airport](https://www.stattimes.com/air-cargo/aurrigo-secures-ground-handling-licence-at-east-midlands-airport-1358264)
 - [IATA Ground Operations Safety](https://www.iata.org/en/programs/ops-infra/ground-operations/safety/)
 - [SKYbrary: Ground Collision](https://skybrary.aero/articles/ground-collision)
 

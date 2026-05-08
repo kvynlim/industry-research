@@ -32,7 +32,7 @@
 
 ### 1.1 The Compute Waste Problem
 
-Aurrigo's ADT3 runs 4-8 RoboSense LiDARs at 10 Hz, generating ~480K-960K points per cycle. Processing all points through the full perception stack every cycle:
+the reference airside AV stack's third-generation tug runs 4-8 RoboSense LiDARs at 10 Hz, generating ~480K-960K points per cycle. Processing all points through the full perception stack every cycle:
 
 ```
 Current constant pipeline (per cycle):
@@ -569,7 +569,7 @@ With 4-8 LiDARs per vehicle, not all provide equal value at all times:
 class MultiLiDARScheduler:
     """Schedule processing priority across 4-8 RoboSense LiDARs.
     
-    ADT3 layout:
+    third-generation tug layout:
       Front: 2× RSHELIOS (forward, ground-level)
       Rear:  2× RSHELIOS (backward, ground-level)
       Roof:  2× RSBP (360° coverage, elevated)

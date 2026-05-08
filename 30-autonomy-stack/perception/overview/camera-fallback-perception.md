@@ -79,7 +79,7 @@ For a fleet of 10 vehicles operating 16 hours/day, this translates to roughly 20
 
 ### 1.5 Multi-LiDAR Degradation Modes
 
-Aurrigo vehicles carry 4-8 RoboSense LiDAR units. Not all failures blind all units simultaneously. The degradation is typically progressive:
+reference airside vehicles carry 4-8 RoboSense LiDAR units. Not all failures blind all units simultaneously. The degradation is typically progressive:
 
 ```
 Degradation Level 0: All LiDAR operational (normal mode)
@@ -257,7 +257,7 @@ Required baseline = depth^2 * disparity_error / (focal_length * target_accuracy)
                   = 1.79m
 ```
 
-This means reliable stereo depth at 50m requires a baseline of approximately 1.5-2.0m -- achievable on a larger vehicle (ADT3 has sufficient width) but not with a compact stereo camera unit like the ZED 2i (120mm baseline).
+This means reliable stereo depth at 50m requires a baseline of approximately 1.5-2.0m -- achievable on a larger vehicle (third-generation tug has sufficient width) but not with a compact stereo camera unit like the ZED 2i (120mm baseline).
 
 **Practical baselines for airside:**
 
@@ -829,7 +829,7 @@ For airside deployment, camera housings must address:
 
 ### 7.1 Simplex Integration
 
-The Aurrigo stack uses a Simplex architecture with dual channels:
+The reference airside AV stack uses a Simplex architecture with dual channels:
 - **AC (Advanced Controller)**: High-performance perception/planning (normally LiDAR+AI)
 - **BC (Baseline Controller)**: Verified fallback (classical Frenet planner + safety bounds)
 
@@ -1093,7 +1093,7 @@ Where:
   a_brake = deceleration capability (m/s^2)
 ```
 
-**Aurrigo vehicle parameters (estimated):**
+**reference airside vehicle parameters (estimated):**
 
 | Parameter | Normal Mode | Degraded Mode |
 |---|---|---|

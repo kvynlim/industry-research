@@ -43,7 +43,7 @@ At scale, the costs are prohibitive:
 For airport airside operations, the problem is compounded:
 - **No public airside driving datasets exist** -- zero labeled 3D LiDAR frames of apron environments
 - **Novel object taxonomy**: GSE (baggage tractors, belt loaders, pushback tugs, catering trucks), aircraft (30-80m wingspan), ramp personnel -- none present in nuScenes/Waymo/KITTI
-- **Small fleet size**: Aurrigo operates tens of vehicles, not thousands, limiting organic data collection
+- **Small fleet size**: reference airside AV stack operates tens of vehicles, not thousands, limiting organic data collection
 - **Annotation expertise**: Labeling airside objects requires domain knowledge (distinguishing GSE subtypes, identifying FOD, classifying aircraft states)
 
 Self-supervised pre-training directly addresses this bottleneck by learning rich representations from **unlabeled data**, which is cheap to collect (just drive the vehicle).
@@ -265,7 +265,7 @@ SLidR bridges 2D image features to 3D LiDAR points via superpixel correspondence
 
 SLidR outperforms all prior 3D-only contrastive methods by a large margin, demonstrating that 2D image features provide richer supervisory signal than 3D self-augmentation alone.
 
-**Airside relevance:** HIGH. If the Aurrigo stack adds cameras (even minimal -- 2-4 cameras), SLidR enables leveraging powerful 2D foundation models to improve LiDAR features without any labels. The superpixel approach is robust to imperfect camera-LiDAR calibration.
+**Airside relevance:** HIGH. If the reference airside AV stack adds cameras (even minimal -- 2-4 cameras), SLidR enables leveraging powerful 2D foundation models to improve LiDAR features without any labels. The superpixel approach is robust to imperfect camera-LiDAR calibration.
 
 ### 2.5 PPKT: Point-to-Pixel Knowledge Transfer (ICCV 2021)
 
@@ -310,7 +310,7 @@ ScaLR extends SLidR with three key improvements (the "three pillars"):
 
 ScaLR achieves **67.8% mIoU with linear probing alone** -- meaning the frozen LiDAR backbone already produces features good enough for semantic segmentation without any task-specific fine-tuning. This is the best LiDAR-only self-supervised result published as of early 2026.
 
-**Airside relevance:** VERY HIGH. ScaLR is directly applicable to the Aurrigo stack:
+**Airside relevance:** VERY HIGH. ScaLR is directly applicable to the reference airside AV stack:
 - Requires camera-LiDAR pairs (available if cameras are added)
 - Pre-trains LiDAR backbone using only the camera teacher -- no 3D labels needed
 - Frozen features already achieve strong segmentation -- fine-tuning on airside data should yield even better results
@@ -610,7 +610,7 @@ def train_mae_epoch(model, dataloader, optimizer, device):
 | VoxelNet | Scratch | 71.8 |
 | VoxelNet | Voxel-MAE | 73.2 (+1.4) |
 
-**Airside relevance:** Works with voxel-based backbones compatible with the Aurrigo OpenPCDet stack. The dual reconstruction (occupancy + position) learns both coarse spatial structure and fine geometric detail.
+**Airside relevance:** Works with voxel-based backbones compatible with the reference airside AV stack OpenPCDet stack. The dual reconstruction (occupancy + position) learns both coarse spatial structure and fine geometric detail.
 
 ### 3.4 Occupancy-MAE (IEEE TIV 2023)
 
@@ -656,7 +656,7 @@ def train_mae_epoch(model, dataloader, optimizer, device):
 | KITTI (Car) | SECOND | AP | 82.01 (moderate) |
 | ONCE (Vehicle) | CenterPoint | AP | 76.79 (vs 74.10 scratch) |
 
-**Airside relevance:** VERY HIGH. GD-MAE works with the exact voxel-based backbones used in the Aurrigo CenterPoint pipeline. The 80% label reduction directly addresses the zero-airside-dataset problem. See `lidar-foundation-models.md` Section 2.4 for full details.
+**Airside relevance:** VERY HIGH. GD-MAE works with the exact voxel-based backbones used in the reference airside AV stack CenterPoint pipeline. The 80% label reduction directly addresses the zero-airside-dataset problem. See `lidar-foundation-models.md` Section 2.4 for full details.
 
 ### 3.6 BEV-MAE (AAAI 2024)
 
@@ -676,7 +676,7 @@ def train_mae_epoch(model, dataloader, optimizer, device):
 | 100% pretrain, 20% finetune (Waymo) | mAP | +1.42 over baseline |
 | 100% pretrain, 20% finetune (Waymo) | APH | +1.34 over baseline |
 
-**Airside relevance:** The BEV formulation aligns with the Aurrigo stack's BEV-based planning representation. Pre-training in BEV space means learned features are directly compatible with downstream planning.
+**Airside relevance:** The BEV formulation aligns with the reference airside AV stack's BEV-based planning representation. Pre-training in BEV space means learned features are directly compatible with downstream planning.
 
 ### 3.7 NOMAE: Multi-Scale Occupancy MAE (CVPR 2025)
 
@@ -811,7 +811,7 @@ AD-L-JEPA is the **first JEPA-based pre-training method for autonomous driving L
 | GPU memory | 2.8-4x less |
 | Downstream quality | Comparable or better |
 
-**Airside relevance:** VERY HIGH. AD-L-JEPA provides the most efficient pre-training for the LiDAR-primary Aurrigo stack:
+**Airside relevance:** VERY HIGH. AD-L-JEPA provides the most efficient pre-training for the LiDAR-primary reference airside AV stack:
 - Works with existing BEV-based pipeline
 - Dramatically reduces pre-training compute costs
 - Compatible with CenterPoint detection heads
@@ -1096,7 +1096,7 @@ UniPAD introduces a unified encoder that pre-trains on both 2D images and 3D poi
 | mAP | ~68 | ~66 |
 | 3D Segmentation (mIoU) | 79.4 | ~77 |
 
-**Airside relevance:** UniPAD's unified pre-training means a single pre-training run benefits both LiDAR and camera perception pathways. This is particularly valuable for the Phase 2 transition from LiDAR-only to LiDAR+camera fusion in the Aurrigo stack.
+**Airside relevance:** UniPAD's unified pre-training means a single pre-training run benefits both LiDAR and camera perception pathways. This is particularly valuable for the Phase 2 transition from LiDAR-only to LiDAR+camera fusion in the reference airside AV stack.
 
 ### 6.2 BEVDistill: Cross-Modal BEV Distillation (NeurIPS 2023)
 
@@ -1369,7 +1369,7 @@ BEV perception benefits from pre-training that operates in BEV space:
 | BEVDistill | LiDAR→Camera BEV distill | Camera achieves ~80% of LiDAR |
 | UniPAD | Volume rendering | 73.2 NDS, 79.4 mIoU |
 
-**Recommendation for airside:** BEV-MAE or AD-L-JEPA for BEV pre-training. Both align with the Aurrigo stack's BEV-based planning pipeline.
+**Recommendation for airside:** BEV-MAE or AD-L-JEPA for BEV pre-training. Both align with the reference airside AV stack's BEV-based planning pipeline.
 
 ### 8.4 Occupancy Prediction Pre-training
 
@@ -1545,7 +1545,7 @@ See `20-av-platform/compute/tensorrt-deployment-guide.md` for detailed Orin opti
 
 ### 10.1 Current State Assessment
 
-**Aurrigo stack capabilities:**
+**reference airside AV stack capabilities:**
 - LiDAR-only perception (4-8 RoboSense, RANSAC segmentation)
 - No learned perception models in production
 - No cameras in current perception pipeline (planned Phase 2)
@@ -1901,7 +1901,7 @@ class ScaLRPretrainer(nn.Module):
 ```
 What modalities are available?
 │
-├── LiDAR only (current Aurrigo)
+├── LiDAR only (current reference airside AV stack)
 │   │
 │   ├── Want best data efficiency?
 │   │   ├── GD-MAE (80% label savings, proven)
@@ -1916,7 +1916,7 @@ What modalities are available?
 │       ├── AD-L-JEPA (1.9-2.7x faster than MAE)
 │       └── ALSO (lightweight, single-stream)
 │
-├── LiDAR + Camera (Phase 2 Aurrigo)
+├── LiDAR + Camera (Phase 2 reference airside AV stack)
 │   │
 │   ├── Want best data efficiency?
 │   │   ├── GPC (95% label savings)
@@ -1948,11 +1948,11 @@ What modalities are available?
 | 4 | **DINOv2 as drop-in backbone replacement fails completely** (0% mAP). Must use adapter-mediated integration. LoRA rank 32 on query+value projections matches ResNet-101 with 37x fewer learnable parameters. | Robust BEV Seg (2024), DINOv2+LSS (2025) | HIGH |
 | 5 | **JEPA outperforms MAE for semantic tasks** while MAE is better for reconstruction tasks. For detection/segmentation (primary airside needs), JEPA is recommended. For occupancy prediction, MAE is preferred. | AD-L-JEPA (AAAI 2026), V-JEPA (2024) | MEDIUM |
 | 6 | **The road→airside transfer pipeline costs $25-50K** (24-week timeline) vs. $110-250K without pre-training. Pre-training reduces both annotation cost and development time by 60-80%. | Analysis in this document | CRITICAL |
-| 7 | **Cross-modal pre-training (image→LiDAR) consistently outperforms single-modal SSL.** SLidR > DepthContrast > PointContrast. ScaLR >> SLidR due to DINOv2 teacher. Adding cameras to Aurrigo stack unlocks the strongest SSL methods. | SLidR (CVPR 2022), ScaLR (CVPR 2024) | HIGH |
+| 7 | **Cross-modal pre-training (image→LiDAR) consistently outperforms single-modal SSL.** SLidR > DepthContrast > PointContrast. ScaLR >> SLidR due to DINOv2 teacher. Adding cameras to reference airside AV stack unlocks the strongest SSL methods. | SLidR (CVPR 2022), ScaLR (CVPR 2024) | HIGH |
 | 8 | **500-1,000 labeled airside frames are sufficient** for competitive detection performance when combined with SSL pre-training on road data and unlabeled airside scans. Without pre-training, 5,000-10,000 frames are needed. | GD-MAE efficiency curves, airside estimates | CRITICAL |
 | 9 | **Multi-airport scaling is efficient**: First airport requires 500-1,000 labeled frames ($25-50K). Same-cluster airports need only 200-500 frames ($10-20K) via PointLoRA adapter swapping. | PointLoRA (CVPR 2025), multi-airport analysis | HIGH |
 | 10 | **The pre-train cloud → deploy edge pipeline is well-established.** TensorRT INT8 quantization of pre-trained models loses only 0.5-2% mAP while achieving <50ms latency on Orin. No barriers to deploying SSL-pretrained models on edge hardware. | TensorRT benchmarks, Orin deployment experience | MEDIUM |
-| 11 | **No airside-specific pre-training or benchmark exists.** This is simultaneously a challenge (no ready-made solution) and an opportunity (creating the airside benchmark would establish Aurrigo as the reference). | Survey of all existing methods | HIGH |
+| 11 | **No airside-specific pre-training or benchmark exists.** This is simultaneously a challenge (no ready-made solution) and an opportunity (creating the airside benchmark would establish reference airside AV stack as the reference). | Survey of all existing methods | HIGH |
 | 12 | **NOMAE (CVPR 2025) beats fully supervised baselines** with SSL pre-training alone, suggesting that for data-scarce domains like airside, SSL is not just a cost-saving measure but may produce superior models. | NOMAE (CVPR 2025) | HIGH |
 | 13 | **Temporal pre-training (TREND) adds +1.77-2.11% mAP** beyond spatial-only pre-training by learning dynamics from sequential LiDAR frames. Particularly valuable for airside where motion patterns (pushback, GSE traversal) are distinctive. | TREND (NeurIPS 2025) | MEDIUM |
 | 14 | **Language-guided features enable zero-shot airside understanding** via CLIP alignment. Open-vocabulary 3D methods (ULIP-2, OpenScene, Concerto) allow querying scenes with natural language without explicit class definitions. | ULIP-2 (CVPR 2024), OpenScene (CVPR 2023) | MEDIUM |

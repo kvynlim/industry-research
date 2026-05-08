@@ -613,7 +613,7 @@ Cameras have flat, relatively small optical windows (10-30mm diameter), making t
 - **Valeo surround-view camera cleaner**: Integrated into OEM camera pod. Wiper + nozzle + heater. -40C to +80C. Used on Stellantis L2+ vehicles.
 - **dlhBOWLES ClearView**: Air jet + optional wiper for cameras. Air-primary design reduces wiper wear.
 
-For Aurrigo's vehicle, 2-4 visible cameras per vehicle need cleaning modules. At $80-160 per camera, total camera cleaning is $160-640 per vehicle.
+For the reference airside AV stack's vehicle, 2-4 visible cameras per vehicle need cleaning modules. At $80-160 per camera, total camera cleaning is $160-640 per vehicle.
 
 ### 4.3 Thermal Camera (FLIR Boson 640)
 
@@ -681,7 +681,7 @@ No wiper, no air jet, no washer needed. The heated radome prevents the only cont
 
 ### 4.5 Per-Vehicle Cleaning System Summary
 
-For an Aurrigo vehicle with 4-8 LiDAR, 2-4 cameras, 2-4 thermal cameras, and 1-2 radars:
+For a reference airside vehicle with 4-8 LiDAR, 2-4 cameras, 2-4 thermal cameras, and 1-2 radars:
 
 | Sensor Type | Qty | Cleaning System | Cost/Unit | Cost Total | Avg Power |
 |---|---|---|---|---|---|
@@ -1188,7 +1188,7 @@ Assuming a mid-configuration vehicle: 6 LiDAR, 3 cameras, 2 thermal cameras, 1 r
 | Mounting brackets | -- | -- | 200g |
 | **Total** | -- | -- | **3.8-4.9 kg** |
 
-For an ADT3 platform (curb weight ~1,500 kg), this adds 0.25-0.33% to vehicle weight -- negligible impact on payload capacity and battery range.
+For an third-generation tug platform (curb weight ~1,500 kg), this adds 0.25-0.33% to vehicle weight -- negligible impact on payload capacity and battery range.
 
 ### 6.3 Battery Impact
 
@@ -1521,7 +1521,7 @@ Per-vehicle hardware: $345-1,060. For a prototype fleet of 3-5 vehicles: **$1,03
 Scale to full fleet with automated fluid management infrastructure.
 
 **Scope**:
-- Standardize cleaning system design for all vehicle platforms (ADT3, STL2, POD)
+- Standardize cleaning system design for all vehicle platforms (third-generation tug, small tug platform, POD)
 - Install fluid refill port at all charging stations
 - Automated fluid level monitoring and top-off during charging
 - Seasonal fluid management (summer/winter formula switching)

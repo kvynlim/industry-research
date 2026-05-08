@@ -719,7 +719,7 @@ The centralized reservation manager is the primary system, but decentralized V2X
 | Network outage | Cannot reach fleet server | Direct V2V negotiation |
 | Server overload | Reservation latency too high | Local mutual exclusion |
 | Rapid re-planning | Centralized too slow for dynamic events | Distributed token passing |
-| Mixed fleet | Non-Aurrigo vehicles don't use server | V2X interoperability |
+| Mixed fleet | Non-reference airside vehicles don't use server | V2X interoperability |
 
 ### 7.2 V2X Conflict Negotiation Protocol
 

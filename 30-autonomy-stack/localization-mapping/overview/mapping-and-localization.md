@@ -403,7 +403,7 @@ The **4Seasons benchmark** (IJCV 2024) provides the definitive evaluation for lo
 - **FoundLoc**: Vision-based onboard aerial localization using foundation models (AnyLoc)
 - **UAV-VisLoc**: Large-scale dataset for UAV visual localization
 
-**Gap analysis**: No published research specifically targets airport surface vehicle localization as a distinct domain. The closest work comes from autonomous GSE companies (AeroVect, Aurrigo) who develop proprietary solutions combining RTK-GNSS, LiDAR, and cameras, but publish limited technical details.
+**Gap analysis**: No published research specifically targets airport surface vehicle localization as a distinct domain. The closest work comes from autonomous GSE companies (AeroVect, reference airside AV stack) who develop proprietary solutions combining RTK-GNSS, LiDAR, and cameras, but publish limited technical details.
 
 ---
 
@@ -683,4 +683,3 @@ The world model paradigm is particularly compelling for airport airside operatio
 - [Hybrid Mapping for ADAS (Applied Intuition)](https://www.appliedintuition.com/blog/hybrid-mapping-strategies)
 - [Tesla FSD: No HD Maps, Neural Nets and Data](https://www.moomoo.com/community/feed/tesla-explains-how-fsd-chooses-its-path-no-hd-maps-111164555132934)
 - [Aviation 2026: Ground Handling Trends](https://www.airport-suppliers.com/supplier-press-release/aviation-2026-7-ground-handling-trends-that-will-redefine-airport-operations/)
-- [Aurrigo Autonomous Baggage Handling at Changi](https://www.aviationpros.com/ground-support-worldwide/gse/press-release/55039563/aurrigo-aurrigo-to-introduce-four-new-autonomous-baggage-handling-vehicles-at-changi-airport)

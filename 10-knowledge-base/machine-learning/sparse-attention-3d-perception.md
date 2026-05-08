@@ -6,7 +6,7 @@
 
 ---
 
-**Summary:** Transformers have overtaken sparse convolution as the dominant backbone for 3D point cloud perception, with Point Transformer v3 (PTv3) setting records on every major benchmark. But naive self-attention over 100K+ LiDAR points is computationally impossible -- O(n^2) over n=100,000 requires 10^10 operations per attention layer. The solution is sparse attention: restricting each point's attention to a local neighborhood via windows, serialization, ball queries, or learned sampling. This document covers every major sparse attention pattern for 3D perception, from point-level (PTv1-v3) to voxel-level (SST, FlatFormer) to BEV-level (BEVFormer, StreamPETR), with PyTorch implementations, Orin deployment benchmarks, and practical integration guidance for the Aurrigo ROS Noetic stack. The key takeaway: **PTv3 with serialized attention achieves 80.4% mIoU on nuScenes while running 3x faster and using 10x less memory than PTv2, making it the clear choice for next-generation LiDAR perception on Orin** -- but getting it there requires careful TensorRT conversion of custom attention ops, and PointPillars (6.84ms) remains unbeatable for latency-critical safety paths.
+**Summary:** Transformers have overtaken sparse convolution as the dominant backbone for 3D point cloud perception, with Point Transformer v3 (PTv3) setting records on every major benchmark. But naive self-attention over 100K+ LiDAR points is computationally impossible -- O(n^2) over n=100,000 requires 10^10 operations per attention layer. The solution is sparse attention: restricting each point's attention to a local neighborhood via windows, serialization, ball queries, or learned sampling. This document covers every major sparse attention pattern for 3D perception, from point-level (PTv1-v3) to voxel-level (SST, FlatFormer) to BEV-level (BEVFormer, StreamPETR), with PyTorch implementations, Orin deployment benchmarks, and practical integration guidance for the reference airside AV stack ROS Noetic stack. The key takeaway: **PTv3 with serialized attention achieves 80.4% mIoU on nuScenes while running 3x faster and using 10x less memory than PTv2, making it the clear choice for next-generation LiDAR perception on Orin** -- but getting it there requires careful TensorRT conversion of custom attention ops, and PointPillars (6.84ms) remains unbeatable for latency-critical safety paths.
 
 ---
 
@@ -88,8 +88,8 @@ The critical problem: self-attention is O(n^2) in sequence length.
 ```
 Typical LiDAR point counts:
   Single RoboSense RSHELIOS:  ~32,000 points/scan
-  Aurrigo 4-LiDAR setup:     ~120,000 points/scan
-  Aurrigo 8-LiDAR setup:     ~240,000 points/scan
+  reference airside AV stack 4-LiDAR setup:     ~120,000 points/scan
+  reference airside AV stack 8-LiDAR setup:     ~240,000 points/scan
 
 Full self-attention cost:
   n = 120,000 points, d = 64 features
@@ -297,7 +297,7 @@ PTv2 key changes:
 
 **Airside relevance:** Partition-based pooling is ideal for multi-LiDAR setups where overlapping FOVs create varying point density. The grid-based approach handles 4-8 RoboSense sensors naturally.
 
-**Limitation:** Still uses per-point KNN attention -- O(n k log n) KNN search is slow for large outdoor point clouds. On nuScenes (34K points), PTv2 runs at ~180ms on A100. Extrapolating to 120K points from Aurrigo's 4-LiDAR setup: ~630ms. Far too slow for real-time.
+**Limitation:** Still uses per-point KNN attention -- O(n k log n) KNN search is slow for large outdoor point clouds. On nuScenes (34K points), PTv2 runs at ~180ms on A100. Extrapolating to 120K points from the reference airside AV stack's 4-LiDAR setup: ~630ms. Far too slow for real-time.
 
 ### 2.3 Point Transformer v3 (CVPR 2024)
 
@@ -633,7 +633,7 @@ Benefits:
 | **TensorRT** | Harder (custom ops) | Easier (standard 2D ops) |
 | **Best for** | Segmentation, fine-grained | Detection, real-time |
 
-**Recommendation for Aurrigo:** Use PTv3 for offline/training (best accuracy, especially segmentation). Use FlatFormer or PointPillars for real-time on Orin (faster, easier TensorRT). See the multi-head architecture in `30-autonomy-stack/perception/overview/multi-task-unified-perception.md` for combining both in a shared backbone.
+**Recommendation for reference airside AV stack:** Use PTv3 for offline/training (best accuracy, especially segmentation). Use FlatFormer or PointPillars for real-time on Orin (faster, easier TensorRT). See the multi-head architecture in `30-autonomy-stack/perception/overview/multi-task-unified-perception.md` for combining both in a shared backbone.
 
 ---
 
@@ -841,7 +841,7 @@ Range-view attention:
 - Very fast: range image is a regular 2D tensor, standard 2D ops
 - Limitation: Struggles with multi-LiDAR setups (each LiDAR has its own range image)
 
-For Aurrigo's multi-LiDAR setup, range-view attention would require either merging range images (losing structure) or running separate range-view branches per LiDAR.
+For the reference airside AV stack's multi-LiDAR setup, range-view attention would require either merging range images (losing structure) or running separate range-view branches per LiDAR.
 
 ### 4.7 Stride-Based Attention
 
@@ -891,11 +891,11 @@ Bird's Eye View (BEV) is the dominant representation for multi-modal 3D percepti
 - Direct compatibility with 2D CNN heads for detection, segmentation, prediction
 - Natural interface for planning (the planner already reasons in BEV)
 
-For LiDAR-only systems like Aurrigo's current stack, BEV can be constructed by simple pillar-pooling (as in PointPillars -- see `10-knowledge-base/geometry-3d/pointpillars.md`). But for camera-based or LiDAR-camera fusion, **attention-based BEV construction** is required.
+For LiDAR-only systems like the reference airside AV stack's current stack, BEV can be constructed by simple pillar-pooling (as in PointPillars -- see `10-knowledge-base/geometry-3d/pointpillars.md`). But for camera-based or LiDAR-camera fusion, **attention-based BEV construction** is required.
 
 ### 5.2 BEVFormer (ECCV 2022)
 
-BEVFormer uses **deformable cross-attention** to construct BEV features from multi-camera images. While Aurrigo's current stack is LiDAR-only, understanding BEVFormer is essential for future camera integration and because its spatial/temporal cross-attention patterns are widely adopted.
+BEVFormer uses **deformable cross-attention** to construct BEV features from multi-camera images. While the reference airside AV stack's current stack is LiDAR-only, understanding BEVFormer is essential for future camera integration and because its spatial/temporal cross-attention patterns are widely adopted.
 
 ```
 BEVFormer architecture:
@@ -1037,7 +1037,7 @@ For LiDAR-only systems, BEV construction is simpler (direct projection, no depth
 3. **BEV-to-BEV refinement**: Self-attention within the BEV feature map for long-range context
 
 ```
-LiDAR BEV Attention (for Aurrigo 4-8 LiDAR setup):
+LiDAR BEV Attention (for reference airside AV stack 4-8 LiDAR setup):
 
 Step 1: Per-LiDAR PointPillars encoding -> 4-8 BEV feature maps
 Step 2: Ego-frame alignment (transform each LiDAR BEV to vehicle frame)
@@ -1088,7 +1088,7 @@ Given BEV features at times t-2, t-1, t:
 | CenterPoint | LiDAR | Pillar encoding (no attention) | Two-frame concatenation | 67.3% | 52ms |
 | TransFusion | LiDAR+Cam | LiDAR BEV + soft-association cross-attn | None | 71.7% | 95ms |
 
-For Aurrigo's LiDAR-only stack, CenterPoint-style pillar BEV (no attention) remains the fastest option. BEV attention becomes valuable when:
+For the reference airside AV stack's LiDAR-only stack, CenterPoint-style pillar BEV (no attention) remains the fastest option. BEV attention becomes valuable when:
 1. Adding cameras (degraded-mode fallback -- see `30-autonomy-stack/perception/overview/camera-fallback-perception.md`)
 2. Multi-LiDAR fusion beyond simple concatenation
 3. Temporal modeling for tracking/prediction
@@ -1484,7 +1484,7 @@ But requires FlashAttention for competitive speed
 
 *PTv3 Orin numbers are estimates based on A100 scaling with 0.15x throughput ratio. Actual deployment requires custom TensorRT plugin for serialization ops.
 
-**Recommendation for Aurrigo production stack:**
+**Recommendation for reference airside AV stack production stack:**
 - **Safety-critical (BC) path:** PointPillars at 6.8ms INT8. Proven, fast, reliable.
 - **Performance (AC) path:** FlatFormer at 16ms INT8 or PTv3-Small at 24ms INT8.
 - **Offline training/analysis:** PTv3-Base for maximum accuracy.
@@ -1595,7 +1595,7 @@ class TransFusionHead(nn.Module):
 
 ### 8.4 Multi-LiDAR Cross-Attention
 
-For Aurrigo's 4-8 LiDAR setup, cross-attention between LiDARs can resolve conflicts:
+For the reference airside AV stack's 4-8 LiDAR setup, cross-attention between LiDARs can resolve conflicts:
 
 ```
 Multi-LiDAR attention-based fusion:
@@ -2562,7 +2562,7 @@ def visualize_attention_weights(model, features, coords, point_idx=0):
 
 ### 11.6 ROS Noetic Integration Pattern
 
-For integrating attention-based perception into the Aurrigo ROS stack:
+For integrating attention-based perception into the reference airside AV stack ROS stack:
 
 ```python
 #!/usr/bin/env python3
@@ -2588,7 +2588,7 @@ class AttentionSegmentationNode:
         # Load TensorRT engine
         self.engine_path = rospy.get_param(
             '~engine_path',
-            '/home/aurrigo/models/flatformer_int8.engine'
+            '/home/airside_av/models/flatformer_int8.engine'
         )
         self.engine = self._load_engine(self.engine_path)
         self.context = self.engine.create_execution_context()
@@ -2598,7 +2598,7 @@ class AttentionSegmentationNode:
 
         # Subscribe to merged point cloud
         self.sub = rospy.Subscriber(
-            '/rslidar_points_merged',  # Aurrigo merged multi-LiDAR topic
+            '/rslidar_points_merged',  # reference airside AV stack merged multi-LiDAR topic
             PointCloud2,
             self.callback,
             queue_size=1,
@@ -2689,7 +2689,7 @@ if __name__ == '__main__':
 
 9. **Deformable attention is ideal for 3D detection**: Content-adaptive sampling with K=4-8 learned reference points provides object-size-adaptive receptive fields -- critical for airside where objects range from 0.02m FOD to 65m aircraft wingspan.
 
-10. **BEV transformers matter for multi-modal fusion**: BEVFormer-style spatial cross-attention is the standard approach for camera-to-BEV construction. Not needed for Aurrigo's current LiDAR-only stack but essential for camera fallback and future multi-modal integration.
+10. **BEV transformers matter for multi-modal fusion**: BEVFormer-style spatial cross-attention is the standard approach for camera-to-BEV construction. Not needed for the reference airside AV stack's current LiDAR-only stack but essential for camera fallback and future multi-modal integration.
 
 11. **Temporal attention via KV-cache is practical on Orin**: Caching 2-3 frames of K,V costs ~120 MB and avoids re-encoding previous frames. This enables temporal perception (tracking, occupancy flow) within the attention framework.
 

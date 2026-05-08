@@ -1,6 +1,6 @@
 # Robust State Estimation and Multi-Sensor Localization Fusion for Airside Autonomous Vehicles
 
-State estimation is the computational layer that transforms noisy, potentially degraded measurements from multiple sensors into a single coherent estimate of where the vehicle is, how fast it is moving, and how confident it is in those answers. For Aurrigo's airside autonomous GSE operating with 4-8 RoboSense LiDARs, a 500 Hz IMU, RTK-GPS, wheel encoders, and a GTSAM factor graph backend, the state estimation layer sits between raw sensor drivers and the SLAM/planning systems. It must produce a pose estimate at 200+ Hz (for control), handle sensor dropout gracefully (GPS multipath near aircraft, LiDAR blinding from de-icing spray), detect and reject faulty measurements (RTK false fixes from terminal reflections), maintain calibrated uncertainty (so the planning layer knows when to slow down), and do all of this within a 1-2 ms computational budget on NVIDIA Orin. The existing repository documents cover individual sensor modalities (RTK-GPS and IMU fundamentals in `10-knowledge-base/state-estimation/rtk-gps-imu-localization.md`), the GTSAM factor graph backend (`10-knowledge-base/state-estimation/gtsam-factor-graphs.md`), LiDAR odometry algorithms (`30-autonomy-stack/localization-mapping/overview/lidar-slam-algorithms.md`), place recognition for loop closure (`30-autonomy-stack/localization-mapping/overview/lidar-place-recognition-relocalization.md`), sensor health monitoring (`20-av-platform/sensors/sensor-degradation-health-monitoring.md`), and perception-level fusion (`30-autonomy-stack/perception/overview/sensor-fusion-architectures.md`). What is missing -- and what this document fills -- is the principled mathematical framework for combining all these sources into one robust ego-state estimate: the filter architectures (EKF, ESKF, UKF, IEKF), the sensor validation gates that catch faulty measurements before they corrupt the state, the multi-hypothesis tracking needed when the vehicle could be in multiple locations, the dead-reckoning budgets for GPS-denied operation, the covariance management that keeps uncertainty estimates honest, and the fleet-level consistency that ensures 20+ vehicles agree on where they are relative to each other and the airport map. The key finding: an Error-State Kalman Filter (ESKF) with quaternion error parameterization, chi-squared innovation gating, and adaptive noise estimation provides the optimal balance of robustness, computational efficiency (<0.5 ms per update on Orin), and certifiability for ISO 3691-4 compliance -- and it is what every major production AV system (Waymo, Apollo, Autoware) uses as its state estimation backbone.
+State estimation is the computational layer that transforms noisy, potentially degraded measurements from multiple sensors into a single coherent estimate of where the vehicle is, how fast it is moving, and how confident it is in those answers. For the reference airside AV stack's airside autonomous GSE operating with 4-8 RoboSense LiDARs, a 500 Hz IMU, RTK-GPS, wheel encoders, and a GTSAM factor graph backend, the state estimation layer sits between raw sensor drivers and the SLAM/planning systems. It must produce a pose estimate at 200+ Hz (for control), handle sensor dropout gracefully (GPS multipath near aircraft, LiDAR blinding from de-icing spray), detect and reject faulty measurements (RTK false fixes from terminal reflections), maintain calibrated uncertainty (so the planning layer knows when to slow down), and do all of this within a 1-2 ms computational budget on NVIDIA Orin. The existing repository documents cover individual sensor modalities (RTK-GPS and IMU fundamentals in `10-knowledge-base/state-estimation/rtk-gps-imu-localization.md`), the GTSAM factor graph backend (`10-knowledge-base/state-estimation/gtsam-factor-graphs.md`), LiDAR odometry algorithms (`30-autonomy-stack/localization-mapping/overview/lidar-slam-algorithms.md`), place recognition for loop closure (`30-autonomy-stack/localization-mapping/overview/lidar-place-recognition-relocalization.md`), sensor health monitoring (`20-av-platform/sensors/sensor-degradation-health-monitoring.md`), and perception-level fusion (`30-autonomy-stack/perception/overview/sensor-fusion-architectures.md`). What is missing -- and what this document fills -- is the principled mathematical framework for combining all these sources into one robust ego-state estimate: the filter architectures (EKF, ESKF, UKF, IEKF), the sensor validation gates that catch faulty measurements before they corrupt the state, the multi-hypothesis tracking needed when the vehicle could be in multiple locations, the dead-reckoning budgets for GPS-denied operation, the covariance management that keeps uncertainty estimates honest, and the fleet-level consistency that ensures 20+ vehicles agree on where they are relative to each other and the airport map. The key finding: an Error-State Kalman Filter (ESKF) with quaternion error parameterization, chi-squared innovation gating, and adaptive noise estimation provides the optimal balance of robustness, computational efficiency (<0.5 ms per update on Orin), and certifiability for ISO 3691-4 compliance -- and it is what every major production AV system (Waymo, Apollo, Autoware) uses as its state estimation backbone.
 
 ---
 
@@ -29,7 +29,7 @@ State estimation is the computational layer that transforms noisy, potentially d
 
 An autonomous vehicle must continuously answer three questions: Where am I? How am I moving? How certain am I? The state estimation problem formalizes this as recursive Bayesian estimation over a state vector that captures the vehicle's pose (position + orientation), velocity, and sensor biases.
 
-For Aurrigo's vehicles (ADT3, STL2, POD, ACA1) operating on airport aprons at 1-25 km/h:
+For the reference airside AV stack's vehicles (third-generation tug, small tug platform, POD, ACA1) operating on airport aprons at 1-25 km/h:
 
 ```
 Full state vector x ∈ R^16:
@@ -47,7 +47,7 @@ Total: 3 + 4 + 3 + 3 + 3 = 16 parameters
 Degrees of freedom: 15 (quaternion has 1 constraint: ||q|| = 1)
 ```
 
-For the ADT3 with crab steering, the state vector may be augmented:
+For the third-generation tug with crab steering, the state vector may be augmented:
 
 ```
 Extended state for crab-steer vehicles:
@@ -86,7 +86,7 @@ In standard Ackermann (δ_r = 0): reduces to classic bicycle model.
 | **Particle Filter** | Monte Carlo sampling | None (fully nonlinear) | O(N_particles * n) | 5-50 ms | Multi-modal, kidnapped robot |
 | **GTSAM/ISAM2** | Factor graph smoothing | Nonlinear least squares | Amortized incremental | 5-20 ms | Full trajectory optimization |
 
-**Recommendation for Aurrigo:** ESKF as the primary high-rate filter (200-500 Hz), feeding into GTSAM ISAM2 as the backend smoother (10 Hz). This is the architecture used by Apollo, Autoware, and most production AV stacks. The ESKF provides low-latency pose estimates for vehicle control, while GTSAM provides globally consistent, smoothed estimates for mapping and planning.
+**Recommendation for reference airside AV stack:** ESKF as the primary high-rate filter (200-500 Hz), feeding into GTSAM ISAM2 as the backend smoother (10 Hz). This is the architecture used by Apollo, Autoware, and most production AV stacks. The ESKF provides low-latency pose estimates for vehicle control, while GTSAM provides globally consistent, smoothed estimates for mapping and planning.
 
 ### 1.3 Why EKF Fails for IMU Fusion
 
@@ -158,7 +158,7 @@ def ukf_predict(x, P, f, Q, dt):
 - State lives on a Lie group (SO(3), SE(3)) where sigma point generation requires special handling
 - Production deployment where analytical Jacobians provide deterministic timing
 
-For Aurrigo: **ESKF wins**. The 500 Hz IMU rate makes UKF's sigma point propagation expensive, and the rotation state is naturally handled by ESKF's error parameterization. However, UKF is useful for initializing the filter from ambiguous sensor data (e.g., GPS multipath scenarios with large initial uncertainty).
+For reference airside AV stack: **ESKF wins**. The 500 Hz IMU rate makes UKF's sigma point propagation expensive, and the rotation state is naturally handled by ESKF's error parameterization. However, UKF is useful for initializing the filter from ambiguous sensor data (e.g., GPS multipath scenarios with large initial uncertainty).
 
 ### 1.5 Particle Filters
 
@@ -186,7 +186,7 @@ State estimate: x̂_k = Σ w^(i)_k * x^(i)_k
 | 6 (SE(3)) | 1,000-10,000 | 5-50 ms | 6-DoF kidnapped robot recovery |
 | 15 (full state) | 100,000+ | Infeasible | Not practical for full state |
 
-For Aurrigo, particle filters are useful only for specific sub-problems: global relocalization after kidnapped robot events and multi-hypothesis tracking when GPS gives ambiguous fixes. They should not replace the ESKF for continuous state estimation.
+For reference airside AV stack, particle filters are useful only for specific sub-problems: global relocalization after kidnapped robot events and multi-hypothesis tracking when GPS gives ambiguous fixes. They should not replace the ESKF for continuous state estimation.
 
 ### 1.6 Invariant Extended Kalman Filter (InEKF)
 
@@ -241,7 +241,7 @@ The nominal state handles all the nonlinearity through direct integration.
 
 ### 2.2 Nominal State Propagation (IMU Mechanization)
 
-At each IMU measurement (500 Hz for Aurrigo's Microstrain GX5), the nominal state is propagated:
+At each IMU measurement (500 Hz for the reference airside AV stack's Microstrain GX5), the nominal state is propagated:
 
 ```python
 def propagate_nominal(state, imu, dt):
@@ -447,11 +447,11 @@ Noise: From VGICP Hessian inversion (see gtsam-factor-graphs.md Section 6)
 ```
 Measurement: z_wheel = [v_left, v_right, δ_front, δ_rear]
 
-For standard Ackermann (STL2, POD):
+For standard Ackermann (small tug platform, POD):
   v = (v_left + v_right) / 2
   ω = (v_right - v_left) / track_width
 
-For crab steer (ADT3):
+For crab steer (third-generation tug):
   v_x = v * cos(β)
   v_y = v * sin(β)
   ω = v * (tan(δ_f) - tan(δ_r)) / L
@@ -549,7 +549,7 @@ TIGHTLY COUPLED:
   Con: More complex, harder to debug, single point of failure
   Risk: Bad measurement from one sensor can corrupt entire state
 
-RECOMMENDED FOR AURRIGO — Hybrid (Medium Coupling):
+RECOMMENDED FOR REFERENCE AIRSIDE AV STACK — Hybrid (Medium Coupling):
   IMU + Wheel → ESKF (500 Hz, tightly coupled)
   VGICP poses → ESKF correction (10 Hz, loosely coupled via pose)
   GPS → ESKF correction (2 Hz, loosely coupled via position)
@@ -617,7 +617,7 @@ def handle_delayed_measurement(eskf, z, t_measurement, t_current, sensor_type):
         log_warning(f"Measurement too old: {delay*1000:.0f}ms, discarding")
 ```
 
-For Aurrigo, the practical approach is to maintain a circular buffer of the last 500 ms of ESKF states (250 entries at 500 Hz, ~60 KB of memory). When a delayed measurement arrives, roll back, apply, and replay. This is how LIO-SAM and FAST-LIO2 handle delayed GNSS measurements.
+For reference airside AV stack, the practical approach is to maintain a circular buffer of the last 500 ms of ESKF states (250 entries at 500 Hz, ~60 KB of memory). When a delayed measurement arrives, roll back, apply, and replay. This is how LIO-SAM and FAST-LIO2 handle delayed GNSS measurements.
 
 ### 3.3 Full Fusion Architecture Diagram
 
@@ -694,7 +694,7 @@ The architecture must handle every combination of sensor availability:
 | Any | Any | FAULT | Any | EMERGENCY | 0s | STOP | Immediate safe stop (IMU is backbone) |
 | Any | Any | OK | FAULT | DEGRADED | 10-30s | 10 km/h | IMU-only propagation, inflate wheel cov |
 
-**IMU failure is catastrophic** — without the 500 Hz propagation backbone, no high-rate pose estimate is possible. This is why aerospace and automotive systems use dual-redundant IMUs. For Aurrigo, a second IMU ($3-5K) provides hardware fault tolerance. The ESKF can be extended to dual-IMU with cross-validation:
+**IMU failure is catastrophic** — without the 500 Hz propagation backbone, no high-rate pose estimate is possible. This is why aerospace and automotive systems use dual-redundant IMUs. For reference airside AV stack, a second IMU ($3-5K) provides hardware fault tolerance. The ESKF can be extended to dual-IMU with cross-validation:
 
 ```
 Dual IMU fusion:
@@ -826,7 +826,7 @@ Minimum sensors for:
   Detection: N >= 4 (for 3D position)
   Exclusion: N >= 5
   
-Aurrigo has: GPS + VGICP + IMU + Wheels = 4 (minimum for detection)
+reference airside AV stack has: GPS + VGICP + IMU + Wheels = 4 (minimum for detection)
 Adding: Place recognition = 5 (enables exclusion when available)
 ```
 
@@ -1574,7 +1574,7 @@ Noise: From LiDAR detection range and angle
 | Decentralized (DDF) | Pairwise between vehicles | 10-50 ms | Good (local) | No |
 | Hybrid | Local estimation + periodic sync | 10-50 ms local, 100-500 ms sync | Good | Partial |
 
-**Recommended for Aurrigo:** Hybrid approach.
+**Recommended for reference airside AV stack:** Hybrid approach.
 
 ```
 Fleet state consistency architecture:
@@ -1837,7 +1837,7 @@ Recommendation:
 ### 10.2 Configuration for robot_localization (Baseline)
 
 ```yaml
-# ekf_localization.yaml — Baseline configuration for Aurrigo
+# ekf_localization.yaml — Baseline configuration for reference airside AV stack
 
 ekf_localization_node:
   ros__parameters:
@@ -2078,7 +2078,7 @@ Mitigation: Pre-mapped de-icing zones → proactive speed reduction before enter
 
 ### 11.3 Comparison with Production AV Systems
 
-| Feature | Apollo MSF | Autoware EKF | LIO-SAM | Aurrigo Current | Aurrigo Proposed |
+| Feature | Apollo MSF | Autoware EKF | LIO-SAM | reference airside AV stack Current | reference airside AV stack Proposed |
 |---------|-----------|-------------|---------|----------------|-----------------|
 | Filter type | ESKF | EKF (robot_localization) | IEKF | GTSAM + EKF | ESKF + GTSAM |
 | IMU rate | 200 Hz | 100-200 Hz | 200-500 Hz | 500 Hz | 500 Hz |
@@ -2096,7 +2096,7 @@ Mitigation: Pre-mapped de-icing zones → proactive speed reduction before enter
 
 ## 12. Key Takeaways
 
-1. **The Error-State Kalman Filter (ESKF) is the correct choice for Aurrigo's state estimation backbone.** It handles quaternion orientation without singularities, maintains a minimal 15-dimensional error state with well-conditioned covariance, and runs in <0.3 ms at 500 Hz on Orin. Every production AV system (Apollo, Waymo, Autoware) uses ESKF or a close variant. The standard EKF and UKF are inferior for IMU-centric fusion.
+1. **The Error-State Kalman Filter (ESKF) is the correct choice for the reference airside AV stack's state estimation backbone.** It handles quaternion orientation without singularities, maintains a minimal 15-dimensional error state with well-conditioned covariance, and runs in <0.3 ms at 500 Hz on Orin. Every production AV system (Apollo, Waymo, Autoware) uses ESKF or a close variant. The standard EKF and UKF are inferior for IMU-centric fusion.
 
 2. **The two-layer architecture (ESKF at 500 Hz + GTSAM at 10 Hz) provides both real-time control and global consistency.** The ESKF gives low-latency poses for vehicle control, while GTSAM ISAM2 provides smoothed, loop-closure-corrected trajectories for mapping and planning. The two communicate through the TF tree: ESKF publishes odom-to-base_link, GTSAM publishes map-to-odom.
 
@@ -2108,7 +2108,7 @@ Mitigation: Pre-mapped de-icing zones → proactive speed reduction before enter
 
 6. **Dead reckoning with IMU + wheel odometry alone is safe for 10-30 seconds at airside speeds.** Position uncertainty grows quadratically with time (IMU accelerometer noise) and linearly with distance (wheel encoder scale error). At 10 km/h, 30 seconds of dead reckoning produces ~1.5 m of uncertainty — acceptable for slow-speed airside operation. Adding VGICP LiDAR odometry at 10 Hz extends this to minutes or hours, bounded by SLAM drift.
 
-7. **RAIM-inspired multi-sensor consistency checking requires at least 4 independent position sources for fault detection.** Aurrigo has exactly 4 (GPS, VGICP, IMU dead-reckoning, wheel odometry), enabling fault detection but not exclusion. Adding place recognition as a fifth source (when available) enables fault exclusion — automatically identifying and rejecting the faulty sensor.
+7. **RAIM-inspired multi-sensor consistency checking requires at least 4 independent position sources for fault detection.** reference airside AV stack has exactly 4 (GPS, VGICP, IMU dead-reckoning, wheel odometry), enabling fault detection but not exclusion. Adding place recognition as a fifth source (when available) enables fault exclusion — automatically identifying and rejecting the faulty sensor.
 
 8. **Wheel slip detection on wet tarmac is safety-critical and requires cross-sensor validation.** If the wheel encoder says the vehicle moved 2 m but the IMU says 0.5 m, the wheels are slipping. A simple velocity consistency check (|v_wheel - v_imu| > 3 sigma for >0.5 s) triggers noise inflation on wheel odometry. Airport tarmac is frequently wet from rain, de-icing, or fuel spills.
 

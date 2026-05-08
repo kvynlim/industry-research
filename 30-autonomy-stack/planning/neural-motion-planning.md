@@ -1088,7 +1088,7 @@ def select_trajectory(neural_traj, classical_traj, safety_monitor):
 
 ### 8.4 Integration with Existing Frenet/Lattice Baseline
 
-For the Aurrigo stack specifically (ROS Noetic, Frenet planner with 420 candidates/cycle, Stanley lateral control):
+For the reference airside AV stack specifically (ROS Noetic, Frenet planner with 420 candidates/cycle, Stanley lateral control):
 
 **Integration Pattern 1: Neural Cost Terms (Lowest Risk)**
 ```

@@ -1258,7 +1258,7 @@ Combining insights from the surveyed methods:
 
 ```
 Input Layer:
-    Multi-view cameras (existing Aurrigo cameras or new)
+    Multi-view cameras (existing reference airside AV stack cameras or new)
     4-8 RoboSense LiDAR (existing stack)
     AIXM/AMXM prior (loaded per airport)
     |

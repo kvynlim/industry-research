@@ -704,7 +704,7 @@ Safety:
 |---------|---------|----------|-----------|
 | **EasyMile** | EZTow, EZDolly | Dubai, Changi, Narita, DFW, Schiphol | LiDAR + camera, 400+ deployments globally |
 | **AeroVect** | AeroVect Driver | Multiple US airports | LiDAR + camera + RTK-GNSS, platform-agnostic |
-| **Aurrigo** | Auto-DollyTug | 6 airports (incl. Zurich, Changi, Schiphol) | LiDAR + 360-degree cameras, all-weather |
+| **reference airside AV stack** | autonomous baggage/cargo tug | 6 airports (incl. Zurich, Changi, Schiphol) | LiDAR + 360-degree cameras, all-weather |
 | **dnata** | EZTow (EasyMile) | Dubai World Central | L3 autonomy, upgrading to L4 in 2026 |
 
 ### 6.4 Regulatory Landscape
@@ -792,10 +792,8 @@ Safety:
 - [FAA: Autonomous Ground Vehicle Systems on Airports](https://www.faa.gov/airports/new_entrants/agvs_on_airports)
 - [EasyMile Airport Solutions](https://easymile.com/en/use-cases/freighter_cargo)
 - [AeroVect — AI-Powered Airside Automation](https://www.aerovect.com/)
-- [Aurrigo Auto-DollyTug](https://aurrigo.com/auto-dollytug/)
 - [ISO 26262 Certification for EasyMile](https://futuretransport-news.com/iso-26262-certification-for-easymile/)
 - [DO-178C Standards Overview](https://en.wikipedia.org/wiki/DO-178C)
 - [Operational Design Domain Definition](https://en.wikipedia.org/wiki/Operational_design_domain)
-- [Swissport and Aurrigo Zurich Airport Pilot](https://www.swissport.com/en/news/current-news/2025/swissport-and-aurrigo-launch-first-global-pilot-of-autonomous-ground-handling-solutions-at-zurich-airport)
 - [dnata Autonomous Vehicles in Airport Operations](https://www.aviationpros.com/ground-support-worldwide/ground-handling/press-release/55303819/dnata-rolls-out-autonomous-vehicles-in-airport-operations)
 - [DeepRoute.ai 40B VLA Foundation Model — GTC 2026](https://www.prnewswire.com/news-releases/deeprouteai-presents-40b-vision-language-action-foundation-model-at-nvidia-gtc-2026-accelerating-autonomous-driving-at-scale-302716046.html)

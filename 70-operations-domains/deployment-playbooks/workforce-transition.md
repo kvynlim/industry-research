@@ -212,7 +212,7 @@ Requires stronger technical aptitude. Best suited for drivers with existing mech
 | 5-8 | Sensor systems | LiDAR installation, alignment, and calibration; camera mounting and intrinsic/extrinsic calibration; radar tuning; GPS/RTK base station setup; IMU installation |
 | 9-12 | Compute and software | Edge compute platforms (NVIDIA Jetson/Orin); Linux fundamentals; ROS 2 basics; log retrieval and basic analysis; OTA update procedures; network troubleshooting |
 | 13-16 | Diagnostic and repair | Sensor health monitoring; degradation detection; component replacement procedures; systematic troubleshooting methodology; spare parts management |
-| 17-20 | Vehicle-specific training | Platform-specific training (UISEE, EasyMile, Aurrigo, or other deployed system); manufacturer certification programs; preventive maintenance schedules |
+| 17-20 | Vehicle-specific training | Platform-specific training (UISEE, EasyMile, reference airside AV stack, or other deployed system); manufacturer certification programs; preventive maintenance schedules |
 | 21-24 | Field practice | Supervised maintenance shifts; independent troubleshooting exercises; certification assessment |
 
 **Pathway 3: GSE Driver to ML Data Curator (12-16 weeks)**
@@ -262,7 +262,7 @@ Leverages the driver's understanding of what "normal" and "abnormal" look like o
 | Government grants | Aviation development funds; workforce transition subsidies | CAAS Aviation Development Fund (Singapore); FAA Airport Improvement Program |
 | Joint labor-management funds | Per-hour-worked contributions to training trust | UAW-GM joint training fund model |
 | Industry body programs | Shared curriculum development; certification standards | IATA, ACI training programs |
-| Technology vendor | Vendor provides training as part of deployment contract | UISEE, EasyMile, Aurrigo include operator training in their deployment packages |
+| Technology vendor | Vendor provides training as part of deployment contract | UISEE, EasyMile, reference airside AV stack include operator training in their deployment packages |
 | Tax incentives | Training cost tax deductions or credits | Varies by jurisdiction |
 
 ---
@@ -316,7 +316,7 @@ Leverages the driver's understanding of what "normal" and "abnormal" look like o
 
 **Required qualifications:**
 - Automotive/electrical technician certification or equivalent experience
-- Manufacturer-specific training on deployed autonomous platform (UISEE, EasyMile, Aurrigo, etc.)
+- Manufacturer-specific training on deployed autonomous platform (UISEE, EasyMile, reference airside AV stack, etc.)
 - Basic Linux/computing skills for system diagnostics
 - Airside driving permit
 - HV electrical safety certification (for electric GSE)
@@ -625,7 +625,7 @@ The pilot program is the most critical change management tool. It demonstrates f
 **Changi's pilot progression (a model to emulate):**
 - 2020: Closed-area testing at T4 (no live operations)
 - 2021: Live flight trials with safety driver
-- 2022-2023: Multi-year testing with Aurrigo, 5G testbed deployment
+- 2022-2023: Multi-year testing with reference airside AV stack, 5G testbed deployment
 - 2024-2025: Nearly a year of UISEE testing with safety driver (5,000+ trips, 20,000+ km, zero accidents)
 - November 2025: Safety driver removed
 - January 2026: Official driverless launch with only 2 vehicles

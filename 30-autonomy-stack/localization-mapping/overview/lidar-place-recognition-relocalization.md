@@ -29,9 +29,9 @@ Place recognition answers a deceptively simple question: "Have I been here befor
 
 ### 1.2 Loop Closure in SLAM
 
-All LiDAR odometry systems -- KISS-ICP, LIO-SAM, FAST-LIO2, or the Aurrigo stack's GTSAM + GPU VGICP pipeline (see [lidar-slam-algorithms.md](lidar-slam-algorithms.md)) -- accumulate drift over time. For a vehicle traversing a 2 km apron loop at 15 km/h, typical drift of 0.1-0.5% translational error produces 2-10 m of accumulated error by the time the vehicle returns to its starting point. Without loop closure detection, the map tears apart at the seam.
+All LiDAR odometry systems -- KISS-ICP, LIO-SAM, FAST-LIO2, or the reference airside AV stack's GTSAM + GPU VGICP pipeline (see [lidar-slam-algorithms.md](lidar-slam-algorithms.md)) -- accumulate drift over time. For a vehicle traversing a 2 km apron loop at 15 km/h, typical drift of 0.1-0.5% translational error produces 2-10 m of accumulated error by the time the vehicle returns to its starting point. Without loop closure detection, the map tears apart at the seam.
 
-Place recognition identifies the revisit, generating a **loop closure candidate** that the SLAM back-end (GTSAM ISAM2) incorporates as a constraint to correct the entire trajectory simultaneously. For the Aurrigo stack, this means:
+Place recognition identifies the revisit, generating a **loop closure candidate** that the SLAM back-end (GTSAM ISAM2) incorporates as a constraint to correct the entire trajectory simultaneously. For the reference airside AV stack, this means:
 
 - **Mission duration**: Vehicles operating 16-hour shifts accumulate significant drift without periodic loop closure
 - **Map quality**: The fleet-shared prior map degrades if individual vehicles cannot close loops
@@ -59,7 +59,7 @@ This is distinct from incremental mapping -- it requires recognizing the same ph
 
 ### 1.5 Cross-Vehicle Localization
 
-With a fleet of 20+ Aurrigo vehicles operating simultaneously, each vehicle builds its own local map segment. Cross-vehicle place recognition enables cooperative mapping by identifying when two vehicles observe the same location from different viewpoints. This feeds directly into the fleet SLAM architecture described in [../maps/hd-map-change-detection-maintenance.md](../maps/hd-map-change-detection-maintenance.md):
+With a fleet of 20+ reference airside vehicles operating simultaneously, each vehicle builds its own local map segment. Cross-vehicle place recognition enables cooperative mapping by identifying when two vehicles observe the same location from different viewpoints. This feeds directly into the fleet SLAM architecture described in [../maps/hd-map-change-detection-maintenance.md](../maps/hd-map-change-detection-maintenance.md):
 
 - Vehicle A's map segment at Stand 42 can be aligned with Vehicle B's observation
 - New structural changes (temporary barriers, construction) detected by one vehicle propagate to the fleet
@@ -516,7 +516,7 @@ This two-stage approach reduces GPU load by 80-90% compared to running the learn
 
 ### 5.3 ICP Refinement
 
-Once a place recognition match identifies a coarse correspondence, Iterative Closest Point (ICP) or Normal Distributions Transform (NDT) refines the alignment to centimeter accuracy. The Aurrigo stack's existing GPU VGICP (see [gtsam-factor-graphs.md](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)) is ideal for this step.
+Once a place recognition match identifies a coarse correspondence, Iterative Closest Point (ICP) or Normal Distributions Transform (NDT) refines the alignment to centimeter accuracy. The reference airside AV stack's existing GPU VGICP (see [gtsam-factor-graphs.md](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)) is ideal for this step.
 
 **Refinement workflow:**
 
@@ -647,7 +647,7 @@ Rather than storing a single descriptor per location, maintain a **temporal dist
 
 ### 7.1 Fleet-Scale Shared Descriptor Database
 
-With 20+ Aurrigo vehicles operating simultaneously, place recognition becomes a fleet resource. Each vehicle contributes descriptors to a shared database and queries against the collective memory.
+With 20+ reference airside vehicles operating simultaneously, place recognition becomes a fleet resource. Each vehicle contributes descriptors to a shared database and queries against the collective memory.
 
 **Architecture:**
 
@@ -1121,7 +1121,7 @@ Recommended approach: regeneration during weekly maintenance windows, with adapt
 
 ## 10. Integration with GTSAM Factor Graphs
 
-Place recognition's primary output is loop closure candidates that integrate into the GTSAM factor graph as between-pose factors. This section details the integration with the Aurrigo stack's GTSAM + ISAM2 back-end (see [gtsam-factor-graphs.md](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) for GTSAM fundamentals).
+Place recognition's primary output is loop closure candidates that integrate into the GTSAM factor graph as between-pose factors. This section details the integration with the reference airside AV stack's GTSAM + ISAM2 back-end (see [gtsam-factor-graphs.md](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) for GTSAM fundamentals).
 
 ### 10.1 Loop Closure Factor
 
@@ -1406,7 +1406,7 @@ For airside SLAM with place recognition loop closures, the ISAM2 parameters shou
 
 ### 11.1 Compute Budget
 
-The place recognition pipeline must fit within the overall Aurrigo perception budget. Based on the current stack's timing:
+The place recognition pipeline must fit within the overall reference airside AV stack perception budget. Based on the current stack's timing:
 
 | Component | Latency | GPU Memory | Notes |
 |---|---|---|---|
@@ -1450,7 +1450,7 @@ This is well within budget, even alongside the full perception stack.
 
 ### 11.4 Multi-LiDAR Descriptor Computation
 
-The Aurrigo stack runs 4-8 RoboSense LiDARs. For place recognition, the merged point cloud provides the most discriminative descriptor, but per-LiDAR descriptors offer redundancy:
+The reference airside AV stack runs 4-8 RoboSense LiDARs. For place recognition, the merged point cloud provides the most discriminative descriptor, but per-LiDAR descriptors offer redundancy:
 
 **Recommended approach:**
 1. **Merged descriptor**: Compute Scan Context and MinkLoc3D on the fused point cloud (all 4-8 LiDARs merged and ego-motion compensated). This is the primary descriptor for database matching
@@ -1476,13 +1476,13 @@ Place recognition integrates into the ROS Noetic stack as a node that subscribes
             - Publishes: /optimized_trajectory
 ```
 
-The existing GTSAM node in the Aurrigo stack already handles odometry and GPS factors; loop closure factors from place recognition integrate through the same factor graph interface.
+The existing GTSAM node in the reference airside AV stack already handles odometry and GPS factors; loop closure factors from place recognition integrate through the same factor graph interface.
 
 ---
 
 ## 12. Key Takeaways
 
-1. **Place recognition is the missing link in Aurrigo's localization stack.** The current GTSAM + VGICP pipeline handles odometry well but has no mechanism for loop closure, kidnapped robot recovery, or multi-session map alignment. Without it, long-duration missions accumulate unbounded drift.
+1. **Place recognition is the missing link in the reference airside AV stack's localization stack.** The current GTSAM + VGICP pipeline handles odometry well but has no mechanism for loop closure, kidnapped robot recovery, or multi-session map alignment. Without it, long-duration missions accumulate unbounded drift.
 
 2. **Two-stage descriptor matching is the optimal architecture for Orin.** Scan Context on CPU (always-on, <5 ms) pre-filters candidates, then MinkLoc3D on GPU (triggered, ~15 ms) verifies. This achieves 97%+ recall while consuming GPU only 10-20% of the time.
 

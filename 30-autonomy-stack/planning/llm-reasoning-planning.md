@@ -554,7 +554,7 @@ LLM-based explainability is a critical enabler for airside AV certification:
 |---------|-----------|--------|
 | **Moonware** | AI-powered Ground Traffic Control (HALO) | Operational at US hubs, testing at Tokyo |
 | **EVIE Autonomous** | Autonomous aircraft tugs and luggage pods | Development/testing phase |
-| **Aurrigo** | Auto-DollyTug and Auto-Sim autonomous baggage | Approved for wider use across 60+ airports (Royal Schiphol Group) |
+| **reference airside AV stack** | autonomous baggage/cargo tug and airside autonomy simulator autonomous baggage | Approved for wider use across 60+ airports (Royal Schiphol Group) |
 | **UVU / Academic** | Autonomous electric aircraft tug | Prototype demonstrated at Provo Airport |
 | **TaxiBot / WheelTug** | Semi-autonomous aircraft taxiing | Various stages of deployment |
 
@@ -697,7 +697,6 @@ LLM Applications in Autonomous Driving
 - [NASA: NLU Approach for Digitizing Aircraft Ground Taxi Instructions (AIAA 2024)](https://arc.aiaa.org/doi/10.2514/6.2024-4359)
 - [Automatic Control With Human-Like Reasoning: LLM Embodied Air Traffic Agents](https://arxiv.org/html/2409.09717v1)
 - [Moonware: AI-Powered Ground Traffic Control](https://moonware.com/)
-- [Aurrigo Auto-DollyTug Approved for 60+ Airports](https://airportindustry-news.com/aurrigo-and-aviation-solutions-to-deploy-autonomous-baggage-vehicles/)
 - [EVIE Autonomous Air Side Systems](https://evieautonomous.com/air-side/)
 
 ### Surveys and Taxonomies

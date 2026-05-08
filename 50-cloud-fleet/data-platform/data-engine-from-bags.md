@@ -422,7 +422,7 @@ def tag_scenario(scene_frames: List[Dict]) -> Dict[str, any]:
 | Sensor | Raw Rate | Compressed | Notes |
 |--------|----------|-----------|-------|
 | 4x LiDAR @ 10Hz | ~40 MB/s | ~20 MB/s | LZ4 compression |
-| 4x more LiDAR (8 total) | ~80 MB/s | ~40 MB/s | Full ADT3 config |
+| 4x more LiDAR (8 total) | ~80 MB/s | ~40 MB/s | Full third-generation tug config |
 | IMU @ 500Hz | ~0.1 MB/s | ~0.05 MB/s | Negligible |
 | GPS @ 2Hz | ~0.001 MB/s | Negligible | |
 | CAN @ 50Hz | ~0.01 MB/s | Negligible | |
@@ -469,7 +469,7 @@ def tag_scenario(scene_frames: List[Dict]) -> Dict[str, any]:
 
 ### 7.2 Multi-LiDAR Aggregation
 
-Your `aurrigo_pointcloud_aggregator` already handles this. For the data engine, extract the aggregated output (`/pointcloud_aggregator/output`) rather than individual LiDAR topics. This gives you:
+Your `airside_pointcloud_aggregator` already handles this. For the data engine, extract the aggregated output (`/pointcloud_aggregator/output`) rather than individual LiDAR topics. This gives you:
 - Motion-compensated (deskewed via IMU)
 - Transformed to vehicle frame (base_link)
 - All sensors fused into single cloud

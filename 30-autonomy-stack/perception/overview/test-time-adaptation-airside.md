@@ -4,7 +4,7 @@
 
 **Date:** 2026-04-11
 **Scope:** TTA, SFDA, continual learning, OOD detection, and active learning for deploying LiDAR-primary perception across multiple airports with heterogeneous conditions
-**Stack Context:** Aurrigo ROS Noetic, 4-8 RoboSense LiDAR, GTSAM localization, Frenet planner, Simplex safety architecture
+**Stack Context:** reference airside AV stack ROS Noetic, 4-8 RoboSense LiDAR, GTSAM localization, Frenet planner, Simplex safety architecture
 
 ---
 
@@ -20,7 +20,7 @@
 8. [LiDAR-Specific Adaptation](#8-lidar-specific-adaptation)
 9. [Practical Fleet-Scale Strategy](#9-practical-fleet-scale-strategy)
 10. [Cost and Timeline](#10-cost-and-timeline)
-11. [Recommended Pipeline for Aurrigo](#11-recommended-pipeline-for-aurrigo)
+11. [Recommended Pipeline for reference airside AV stack](#11-recommended-pipeline-for-airside_av)
 12. [References](#12-references)
 
 ---
@@ -31,7 +31,7 @@
 
 Every airport is a unique operating environment. A perception model trained at London Heathrow (temperate maritime climate, narrow taxiways, dense stand layouts) will degrade when deployed at Singapore Changi (equatorial, massive open aprons, tropical downpours) or Helsinki-Vantaa (arctic winter, de-icing operations, 4 hours of daylight in December). This is not a hypothetical concern — it is the primary barrier to scaling airside autonomous vehicle fleets beyond single-site deployments.
 
-The current Aurrigo stack avoids this problem by using hand-crafted RANSAC perception that detects only 3 object types (deck, ULD, trailer). But any learned perception model — PointPillars, CenterPoint, open-vocabulary detection, occupancy prediction — will exhibit domain shift when transferred between airports. The question is not whether degradation occurs, but how to detect, quantify, and correct it efficiently.
+The current reference airside AV stack avoids this problem by using hand-crafted RANSAC perception that detects only 3 object types (deck, ULD, trailer). But any learned perception model — PointPillars, CenterPoint, open-vocabulary detection, occupancy prediction — will exhibit domain shift when transferred between airports. The question is not whether degradation occurs, but how to detect, quantify, and correct it efficiently.
 
 ### 1.2 Scale of the Problem
 
@@ -39,7 +39,7 @@ The current Aurrigo stack avoids this problem by using hand-crafted RANSAC perce
 |--------|-------|
 | Major commercial airports worldwide | ~4,000+ |
 | Airports with active GSE automation programs | ~30-50 |
-| Expected Aurrigo target airports (3-year horizon) | 5-15 |
+| Expected reference airside AV stack target airports (3-year horizon) | 5-15 |
 | Typical performance drop on new airport (no adaptation) | 15-40% mAP |
 | Typical performance drop after 24h shadow mode + TTA | 3-8% mAP |
 | Cost of full manual labeling per airport | $50K-150K |
@@ -142,7 +142,7 @@ Airside lighting is fundamentally different from road lighting and varies dramat
 | Aircraft navigation lights | Strobing white/red/green | No | Yes — temporal aliasing |
 | Seasonal sun angle | 10° (Nordic winter) vs 80° (tropical noon) | No | Yes — shadow length varies 10x |
 
-**LiDAR advantage:** LiDAR is inherently lighting-invariant, which is a key reason the Aurrigo stack is LiDAR-primary. However, any future camera integration will face severe lighting shift between airports. TTA for camera-based perception must explicitly address lighting domain gaps.
+**LiDAR advantage:** LiDAR is inherently lighting-invariant, which is a key reason the reference airside AV stack is LiDAR-primary. However, any future camera integration will face severe lighting shift between airports. TTA for camera-based perception must explicitly address lighting domain gaps.
 
 ---
 
@@ -345,7 +345,7 @@ CloudFixer (Shin et al., ECCV 2024) is the first TTA method specifically designe
 - **No batch requirement** — works on individual point clouds
 - Handles occlusion, limited resolution, scale variation, and sensor noise
 
-**Airside application:** CloudFixer could preprocess incoming LiDAR scans to normalize them against sensor-specific artifacts before feeding to the detection pipeline. Particularly useful when deploying the same model on vehicles with different LiDAR configurations (e.g., Aurrigo ADT3 with 8 sensors vs STL2 with 4).
+**Airside application:** CloudFixer could preprocess incoming LiDAR scans to normalize them against sensor-specific artifacts before feeding to the detection pipeline. Particularly useful when deploying the same model on vehicles with different LiDAR configurations (e.g., reference airside AV stack third-generation tug with 8 sensors vs small tug platform with 4).
 
 #### MOS: Model Synergy (ICLR 2025): LiDAR-Specific TTA
 
@@ -364,7 +364,7 @@ MOS (Chen et al., ICLR 2025) is the first TTA method specifically targeting LiDA
 - Tested across 3 datasets (nuScenes, Waymo, KITTI) and 8 corruption types
 - Handles both cross-dataset shifts AND real-time weather corruptions
 
-**Airside relevance:** MOS is directly applicable to multi-airport deployment. The model bank effectively stores "airport-specialized" checkpoints. When deploying at a new airport, the synergy weights automatically select the most relevant checkpoints from previous airports. This is the closest existing method to what Aurrigo needs for fleet-scale adaptation.
+**Airside relevance:** MOS is directly applicable to multi-airport deployment. The model bank effectively stores "airport-specialized" checkpoints. When deploying at a new airport, the synergy weights automatically select the most relevant checkpoints from previous airports. This is the closest existing method to what reference airside AV stack needs for fleet-scale adaptation.
 
 #### ReservoirTTA (2025): Prolonged Adaptation for Recurring Domains
 
@@ -422,14 +422,14 @@ The TTT-E2E paradigm applies test-time training directly to end-to-end driving m
 
 ### 4.1 Why Source-Free Matters for Multi-Customer Deployment
 
-Source-free domain adaptation (SFDA) adapts a pre-trained model to a new domain without access to the original training data. This is critical for Aurrigo because:
+Source-free domain adaptation (SFDA) adapts a pre-trained model to a new domain without access to the original training data. This is critical for reference airside AV stack because:
 
 1. **Customer data privacy:** Airport A's operational data cannot be shared with Airport B (different operators, possibly different countries with different data regulations)
 2. **IP protection:** The source training dataset may contain proprietary annotations or airport-specific labels that cannot be redistributed
 3. **Storage and bandwidth:** Transferring terabytes of LiDAR data between sites is impractical
 4. **Regulatory compliance:** GDPR (EU), PDPA (Singapore), and airport security regulations restrict data movement
 
-In practice, Aurrigo will ship a pre-trained model to each new airport. The model must adapt using only local data, without phoning home to a central training server.
+In practice, reference airside AV stack will ship a pre-trained model to each new airport. The model must adapt using only local data, without phoning home to a central training server.
 
 ### 4.2 Key SFDA Methods
 
@@ -485,7 +485,7 @@ The latest theoretical analysis of SFDA (ICLR 2025) reveals that controlling pre
 ### 4.3 SFDA Pipeline for New Airport Deployment
 
 ```
-Pre-deployment (at Aurrigo HQ):
+Pre-deployment (at reference airside AV stack HQ):
   1. Train base model on all available labeled airport data
   2. Compute Fisher Information Matrix on source data → store with model
   3. Package model + Fisher matrix + reference checkpoint as deployment bundle
@@ -900,7 +900,7 @@ where:
 
 **Compute cost:** Fisher matrix computation requires one pass over a representative subset of source data (~1000 samples). Storage: O(p) where p = number of parameters.
 
-**Practical consideration for Aurrigo:** Compute Fisher matrix at each airport before moving to the next. Ship the Fisher matrix + optimal parameters as part of the "airport profile" alongside the model checkpoint.
+**Practical consideration for reference airside AV stack:** Compute Fisher matrix at each airport before moving to the next. Ship the Fisher matrix + optimal parameters as part of the "airport profile" alongside the model checkpoint.
 
 ### 7.3 PackNet: Parameter Isolation
 
@@ -971,9 +971,9 @@ Rollback time: < 30 seconds (load checkpoint into GPU memory)
 | **PackNet** | Perfect (isolation) | Limited (~4-10 tasks) | No data stored | Medium (pruning) | Small fleet (<5 airports) |
 | **Replay** | Very good | Unlimited | Requires data storage | Medium (replay training) | Large fleet (>5 airports) |
 | **Progressive Networks** | Perfect (separate columns) | Unlimited but expensive | No data stored | High (growing network) | Research/unlimited compute |
-| **LoRA per airport** | Perfect (separate adapters) | ~100 airports at 4MB each | No data stored | Low (merge adapters) | Recommended for Aurrigo |
+| **LoRA per airport** | Perfect (separate adapters) | ~100 airports at 4MB each | No data stored | Low (merge adapters) | Recommended for reference airside AV stack |
 
-**Recommended approach for Aurrigo:** LoRA adapters per airport. Train a base model, then fine-tune lightweight LoRA adapters (rank=32, ~4MB each) per airport. At deployment, load base model + airport-specific LoRA. Zero forgetting, minimal storage, fast switching between airports.
+**Recommended approach for reference airside AV stack:** LoRA adapters per airport. Train a base model, then fine-tune lightweight LoRA adapters (rank=32, ~4MB each) per airport. At deployment, load base model + airport-specific LoRA. Zero forgetting, minimal storage, fast switching between airports.
 
 ---
 
@@ -983,14 +983,14 @@ Rollback time: < 30 seconds (load checkpoint into GPU memory)
 
 Different LiDAR configurations produce different point cloud distributions:
 
-| Factor | Aurrigo ADT3 | Aurrigo STL2 | Aurrigo POD | Impact |
+| Factor | reference airside AV stack third-generation tug | reference airside AV stack small tug platform | reference airside AV stack POD | Impact |
 |--------|-------------|-------------|-------------|--------|
 | Number of LiDARs | 8 (RSHELIOS) | 4 (RSBP) | 4 (RSHELIOS) | 2x density difference |
 | Mounting height | ~2.5m | ~1.8m | ~2.0m | Ground plane distance changes |
 | FOV coverage | 360° x 3 layers | 360° x 2 layers | 360° full | Overlap zones vary |
 | Points per scan | ~300K-600K | ~150K-300K | ~200K-400K | Model sensitivity |
 
-**Domain gap from sensor config:** A model trained on ADT3's dense 600K point clouds will see 50% fewer points on STL2, causing:
+**Domain gap from sensor config:** A model trained on third-generation tug's dense 600K point clouds will see 50% fewer points on small tug platform, causing:
 - Small objects (cones, FOD) to drop below detection threshold
 - Range-dependent performance to shift (same object at 30m has half the points)
 - Ground plane fitting to change due to different mounting height
@@ -1051,7 +1051,7 @@ UADA3D handles large domain gaps in LiDAR 3D detection (e.g., Waymo → nuScenes
 
 ### 8.4 RoboSense-Specific Considerations
 
-Aurrigo uses RoboSense RSHELIOS (32-beam, 905nm) and RSBP (32-beam, 905nm) sensors. Specific adaptation concerns:
+reference airside AV stack uses RoboSense RSHELIOS (32-beam, 905nm) and RSBP (32-beam, 905nm) sensors. Specific adaptation concerns:
 
 | Issue | Cause | Adaptation Strategy |
 |-------|-------|-------------------|
@@ -1113,7 +1113,7 @@ Day 11-14: Integration testing
 ROS node for OOD-aware confidence monitoring during shadow mode.
 Publishes OOD scores, logs edge cases, triggers adaptation pipeline.
 
-For Aurrigo ROS Noetic stack.
+For reference airside AV stack ROS Noetic stack.
 """
 
 import rospy
@@ -1466,13 +1466,13 @@ Weekly cycle:
 
 ---
 
-## 11. Recommended Pipeline for Aurrigo
+## 11. Recommended Pipeline for reference airside AV stack
 
 ### 11.1 Architecture Overview
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│                    AURRIGO ADAPTATION PIPELINE                       │
+│                    REFERENCE AIRSIDE AV STACK ADAPTATION PIPELINE                       │
 │                                                                      │
 │  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐        │
 │  │  Base Model   │     │Airport LoRA  │     │  TTA Module  │        │

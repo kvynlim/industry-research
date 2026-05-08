@@ -69,7 +69,7 @@
 - Useful for suppressing dynamic points before GTSAM/VGICP map matching.
 - Helps detect whether GSE is parked or starting to move, but only if low-speed apron motion is represented in training.
 - Needs airport-specific labels for aircraft parts, belt loaders, dollies, cones, FOD, and crouched personnel.
-- Multi-LiDAR Aurrigo vehicles may need a fused range image or per-sensor MOS with late fusion.
+- Multi-LiDAR reference airside vehicles may need a fused range image or per-sensor MOS with late fusion.
 - Should be treated as advisory perception, with classical obstacle persistence and radar Doppler as independent checks.
 
 ## Implementation Notes

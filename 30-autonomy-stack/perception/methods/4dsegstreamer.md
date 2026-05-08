@@ -67,7 +67,7 @@
 
 - Strong fit for high-rate airside perception where a heavy segmentation model cannot process every scan synchronously.
 - Useful around stands where occlusion by aircraft, buses, and baggage trains creates stale-frame hazards.
-- The known-pose setting maps well to an Aurrigo stack with RTK, IMU, wheel odometry, and GTSAM poses.
+- The known-pose setting maps well to a reference airside AV stack with RTK, IMU, wheel odometry, and GTSAM poses.
 - Dynamic object alignment is relevant for tugs and dollies moving independently of ego motion.
 - Needs deterministic watchdogs because stale memory near aircraft can create unsafe clearance estimates.
 - Best suited as a perception accelerator, not as the only source of obstacle truth.

@@ -8,7 +8,7 @@ This section covers three clusters of recommendations from the v1 document:
 - **Geometric Methods** (#25-27): Reflectivity-Based Markings, L-Shape Fitting, Swept-Path Collision
 - **Data Association & Track Management** (#28-29): JPDA, Track Re-Identification
 
-Each recommendation has been verified against the actual Aurrigo perception source code to identify precise integration points, incompatibilities, and realistic implementation plans.
+Each recommendation has been verified against the actual reference airside AV stack perception source code to identify precise integration points, incompatibilities, and realistic implementation plans.
 
 ---
 
@@ -34,7 +34,7 @@ Key data structures:
 - `KalmanTracker`: 4-state `[x, y, vx, vy]` with OpenCV KalmanFilter, velocity measured from position diff
 - `MultiObjectKalmanTracker`: manages vector of `KalmanTracker`, uses Hungarian assignment with cascade matching
 - `UldEkf`: 3-state `[px, py, theta]` with diagonal covariance, static process model (no velocity states)
-- `aurrigo_perception_msgs::DetectedObjectArray` is the output message type
+- `airside_perception_msgs::DetectedObjectArray` is the output message type
 
 ---
 
@@ -48,12 +48,12 @@ Key data structures:
 
 #### Code Integration Points
 
-**1. New ROS Node: `aurrigo_thermal_detector`**
+**1. New ROS Node: `airside_thermal_detector`**
 
 This requires a standalone ROS node (NOT a nodelet in the perception pipeline) because thermal processing is independent of the LiDAR pipeline and should not block or be blocked by it.
 
 ```
-New package: aurrigo_thermal_detector/
+New package: airside_thermal_detector/
   src/ThermalDetector.cpp          -- blob detection, temperature thresholding
   src/ThermalFusion.cpp            -- BEV gated nearest-neighbor with LiDAR tracks
   src/ThermalDetectorNodelet.cpp   -- optional nodelet wrapper
@@ -65,7 +65,7 @@ New package: aurrigo_thermal_detector/
 **2. Fusion with existing PolygonDetector output**
 
 The fusion node subscribes to:
-- `/obstacle_detector/detected_objects_refined` (from PolygonDetector, `aurrigo_perception_msgs::DetectedObjectArray`)
+- `/obstacle_detector/detected_objects_refined` (from PolygonDetector, `airside_perception_msgs::DetectedObjectArray`)
 - `/thermal_detector/detections` (new topic, custom msg with BEV position + confidence)
 
 Integration point in the PolygonDetector node (`polygon_detector_node.cpp` line 812, `lidarPointsCallback`): The thermal fusion should NOT be embedded inside this callback. Instead, a separate fusion node receives both streams and publishes a merged `/perception/fused_objects` topic. This keeps the LiDAR pipeline's tight 10Hz loop unaffected.
@@ -79,9 +79,9 @@ The `PointcloudAggregator::update()` method (line 97-170) already implements sta
 Add to `perception.launch` (after line 87):
 ```xml
 <!-- THERMAL DETECTION (independent of LiDAR pipeline) -->
-<node name="thermal_detector" pkg="aurrigo_thermal_detector" type="thermal_detector_node"
+<node name="thermal_detector" pkg="airside_thermal_detector" type="thermal_detector_node"
       output="screen">
-    <rosparam command="load" file="$(find aurrigo_thermal_detector)/config/thermal_detector.yaml" />
+    <rosparam command="load" file="$(find airside_thermal_detector)/config/thermal_detector.yaml" />
 </node>
 ```
 
@@ -122,7 +122,7 @@ The Boson+ 640 weighs 7.5g per module, draws <1W, outputs 640x512 @ 60Hz via USB
 
 2. **Week 3-4**: ROS driver integration. The Boson outputs via USB -- use the `flir_boson_usb` ROS driver (available on GitHub) or write a thin V4L2 wrapper. Verify frame delivery at 30Hz on the vehicle compute. Write thermal-to-`sensor_msgs/Image` publisher.
 
-3. **Week 4-5**: Thermal-to-LiDAR extrinsic calibration. Use heated calibration targets (halogen lamps behind a board with holes) visible in both LiDAR intensity and thermal. Compute 6-DOF extrinsic transforms and add to the vehicle URDF/xacro (in `src/aurrigo_vehicle_description/urdf/`).
+3. **Week 4-5**: Thermal-to-LiDAR extrinsic calibration. Use heated calibration targets (halogen lamps behind a board with holes) visible in both LiDAR intensity and thermal. Compute 6-DOF extrinsic transforms and add to the vehicle URDF/xacro (in `src/airside_vehicle_description/urdf/`).
 
 4. **Week 5-6**: Blob detection + temperature thresholding node. Classical pipeline: NUC (on-module) -> AGC normalization -> binary threshold (T > ambient + 10C) -> morphological opening -> connected components -> filter by area (consistent with human-sized blob at known range). Publish detections as BEV positions using the calibrated extrinsic.
 
@@ -155,13 +155,13 @@ The Boson+ 640 weighs 7.5g per module, draws <1W, outputs 640x512 @ 60Hz via USB
 This would be a fully independent ROS node publishing to a new topic `/audio_alerts` consumed by the planner, not the perception stack.
 
 ```
-New package: aurrigo_audio_detector/
+New package: airside_audio_detector/
   src/AudioDetector.cpp       -- STFT, spectrogram analysis, pattern matching
   src/DoadEstimator.cpp       -- GCC-PHAT direction-of-arrival estimation
   config/audio_detector.yaml  -- frequency bands, threshold profiles
 ```
 
-No existing perception code needs modification. The output topic would be consumed by the behavior planner (`behavior_planner_nodelet` in `aurrigo_nav`).
+No existing perception code needs modification. The output topic would be consumed by the behavior planner (`behavior_planner_nodelet` in `airside_nav`).
 
 #### Hardware Requirements and Costs
 
@@ -238,11 +238,11 @@ The ARS548 outputs 4D point clouds (x, y, z, Doppler velocity) that can be publi
 
 **Integration approach A (simple):** Add radar topics to the `cloud_in` parameter array in the aggregator config. The radar points would be concatenated with LiDAR points. This is the simplest path but loses the Doppler velocity field during concatenation (standard PCL concatenation only preserves x,y,z,intensity).
 
-**Integration approach B (recommended):** Create a separate `aurrigo_radar_processor` node that:
+**Integration approach B (recommended):** Create a separate `airside_radar_processor` node that:
 - Subscribes to raw ARS548 radar point clouds (via the `ars548_ros` ROS driver -- an existing open-source ROS2 driver that can be ported to ROS1)
 - Filters by RCS (radar cross section) and Doppler SNR
 - Publishes processed radar detections on a parallel topic
-- A new `aurrigo_sensor_fusion` node fuses LiDAR tracks (from PolygonDetector) with radar detections using Mahalanobis gating
+- A new `airside_sensor_fusion` node fuses LiDAR tracks (from PolygonDetector) with radar detections using Mahalanobis gating
 
 **2. Doppler velocity integration with KalmanTracker**
 
@@ -313,7 +313,7 @@ The ARS548 provides:
 
 2. **Week 3-4**: Radar-to-LiDAR extrinsic calibration using trihedral corner reflectors. Add radar frames to vehicle URDF. Verify point cloud registration in RViz.
 
-3. **Week 4-6**: Implement `aurrigo_radar_processor` node: RCS filtering, ground clutter removal, Doppler noise rejection. Publish clean radar detections.
+3. **Week 4-6**: Implement `airside_radar_processor` node: RCS filtering, ground clutter removal, Doppler noise rejection. Publish clean radar detections.
 
 4. **Week 6-8**: Implement track-level fusion: Mahalanobis gating between PolygonDetector tracks and radar detections. Add `updateWithDoppler()` to `KalmanTracker`. Test velocity estimation accuracy improvement.
 
@@ -351,7 +351,7 @@ The current pipeline uses `pcl::PointXYZI` throughout (confirmed in DeckDetectio
 
 **2. Integration after GroundGrid**
 
-The GroundGrid nodelet (perception.launch line 48-52) outputs ground and non-ground point clouds. The ground points contain the apron surface with markings. A new `aurrigo_marking_detector` node subscribes to the ground points output:
+The GroundGrid nodelet (perception.launch line 48-52) outputs ground and non-ground point clouds. The ground points contain the apron surface with markings. A new `airside_marking_detector` node subscribes to the ground points output:
 
 ```
 GroundGrid -> ground points (PointXYZI) -> MarkingDetector
@@ -407,7 +407,7 @@ Without intensity calibration (Rec #5 from v1), reflectivity thresholding will p
 
 1. **Prerequisite**: Implement intensity calibration (Rec #5) first. Collect reference reflectivity measurements from known apron markings using a retroreflectometer. Build per-sensor range-intensity lookup tables.
 
-2. **Week 1-2**: Implement `aurrigo_marking_detector` node. Subscribe to GroundGrid ground points. Apply range normalization. Binary threshold with adaptive ambient reference (median ground intensity per scan).
+2. **Week 1-2**: Implement `airside_marking_detector` node. Subscribe to GroundGrid ground points. Apply range normalization. Binary threshold with adaptive ambient reference (median ground intensity per scan).
 
 3. **Week 2-3**: BEV projection and line fitting. Use Hough transform for straight line detection (taxi lines) and arc fitting for stand markings.
 
@@ -422,7 +422,7 @@ Without intensity calibration (Rec #5 from v1), reflectivity thresholding will p
 |------|--------|------------|
 | Intensity calibration quality | Threshold doesn't generalize across sensors | Per-sensor calibration tables; adaptive thresholding relative to local median |
 | Worn/dirty markings | Missed detections | Treat markings as a SUPPLEMENTARY localization input, not primary |
-| Wet apron reduces retroreflectivity | Markings undetectable in rain | Accept degradation; rain detection (existing `aurrigo_rain_detection`) can flag unreliable marking data |
+| Wet apron reduces retroreflectivity | Markings undetectable in rain | Accept degradation; rain detection (existing `airside_rain_detection`) can flag unreliable marking data |
 | RS32 intensity resolution | May be too coarse for fine marking discrimination | Test with actual RS32 data before committing; 8-bit intensity may suffice for binary marking/non-marking |
 
 ---
@@ -550,11 +550,11 @@ Integration point: `UldDetection::publishPoseAndVisualization()` where PCA eigen
 
 **1. Current collision checking**
 
-The current system publishes `aurrigo_perception_msgs::DetectedObjectArray` (from PolygonDetector) and optionally inflated polygons (polygon_detector_node.cpp line 738-741). The behavior planner in `aurrigo_nav` uses these for proximity-based collision avoidance. There is NO swept-path collision checking.
+The current system publishes `airside_perception_msgs::DetectedObjectArray` (from PolygonDetector) and optionally inflated polygons (polygon_detector_node.cpp line 738-741). The behavior planner in `airside_nav` uses these for proximity-based collision avoidance. There is NO swept-path collision checking.
 
 **2. Where SAT integrates**
 
-This is a PLANNER-SIDE feature, not a perception feature. The swept-path collision check belongs in the local planning nodelet (`local_planning_nodelet` in `aurrigo_nav/src/`) which generates Frenet trajectory candidates (175 per cycle). Each candidate trajectory should be checked against tracked obstacle polygons.
+This is a PLANNER-SIDE feature, not a perception feature. The swept-path collision check belongs in the local planning nodelet (`local_planning_nodelet` in `airside_nav/src/`) which generates Frenet trajectory candidates (175 per cycle). Each candidate trajectory should be checked against tracked obstacle polygons.
 
 However, the perception stack needs to provide the data in the right format. Currently, the PolygonDetector publishes `DetectedObjectArray` with polygon vertices. The planner needs:
 - Object polygons (already published)

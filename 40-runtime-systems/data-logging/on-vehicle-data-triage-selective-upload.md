@@ -26,7 +26,7 @@
 
 ### 1.1 The Vehicle-Side Gap
 
-The Aurrigo research repository documents what happens once data reaches the cloud (`50-cloud-fleet/data-platform/cloud-backend-infrastructure.md`) and how the closed-loop ML flywheel operates (`50-cloud-fleet/mlops/data-flywheel-airside.md`). What is missing is the complete vehicle-side data management system: the ring buffers that hold sensor streams, the trigger logic that decides what to keep, the edge classifiers that score clips for annotation priority, the compression and upload scheduling that respects bandwidth constraints, and the retention policies that balance legal requirements against storage limits.
+The reference airside AV stack research repository documents what happens once data reaches the cloud (`50-cloud-fleet/data-platform/cloud-backend-infrastructure.md`) and how the closed-loop ML flywheel operates (`50-cloud-fleet/mlops/data-flywheel-airside.md`). What is missing is the complete vehicle-side data management system: the ring buffers that hold sensor streams, the trigger logic that decides what to keep, the edge classifiers that score clips for annotation priority, the compression and upload scheduling that respects bandwidth constraints, and the retention policies that balance legal requirements against storage limits.
 
 This document fills that gap. It covers everything that happens to sensor data from the moment it is published on a ROS topic to the moment it either leaves the vehicle for cloud upload or is evicted from local storage.
 
@@ -454,7 +454,7 @@ struct TopicConfig {
     bool spill_to_nvme;       // Whether to write through to NVMe ring
 };
 
-// Default configurations for Aurrigo sensor suite.
+// Default configurations for reference airside AV stack sensor suite.
 const std::vector<TopicConfig> DEFAULT_TOPIC_CONFIGS = {
     // LiDAR: 4 GB total across aggregated cloud
     {"/pointcloud_aggregator/output",     4ULL * 1024 * 1024 * 1024,
@@ -2700,7 +2700,7 @@ Airports are semi-public spaces. Camera data may capture identifiable individual
 
 4. **Retention limits**: Camera clips with identifiable persons should have a maximum cloud retention of 90 days unless needed for safety investigation.
 
-5. **Data subject rights**: The airport operator (not Aurrigo) is typically the data controller. Aurrigo is the processor. A Data Processing Agreement (DPA) must be in place per airport.
+5. **Data subject rights**: The airport operator (not reference airside AV stack) is typically the data controller. reference airside AV stack is the processor. A Data Processing Agreement (DPA) must be in place per airport.
 
 ```python
 # gdpr_filter.py
@@ -2747,7 +2747,7 @@ def blur_faces_in_clip(bag_path: str, output_path: str,
 
 ### 7.1 Rosbag Recording with Topic Filtering
 
-The ring buffer system writes data in rosbag format for compatibility with the existing Aurrigo ROS Noetic toolchain. However, not all topics need to be recorded, and the recording configuration varies by context.
+The ring buffer system writes data in rosbag format for compatibility with the existing reference airside AV stack ROS Noetic toolchain. However, not all topics need to be recorded, and the recording configuration varies by context.
 
 ```yaml
 # data_triage_config.yaml
@@ -3894,7 +3894,7 @@ The data triage system pays for itself through:
 
 7. **Multipart upload with SQLite progress tracking handles connectivity loss**: Vehicles operating in 5G dead zones or during network outages resume uploads from the last completed 10 MB part. The 2 TB NVMe staging partition buffers 2-3 days of clips during extended outages.
 
-8. **GDPR compliance requires face blurring before camera upload**: Applied as a pre-upload filter using a lightweight face detector on GPU. LiDAR-only clips (current Aurrigo stack) require no GDPR filtering.
+8. **GDPR compliance requires face blurring before camera upload**: Applied as a pre-upload filter using a lightweight face detector on GPU. LiDAR-only clips (current reference airside AV stack) require no GDPR filtering.
 
 9. **The triage system is the mouth of the data flywheel**: Edge classification metadata travels with each clip to the cloud, enabling the active learning pipeline to prioritize annotation. Cloud feedback updates trigger thresholds and classifier weights via OTA, creating a closed loop that adapts data collection to model needs.
 

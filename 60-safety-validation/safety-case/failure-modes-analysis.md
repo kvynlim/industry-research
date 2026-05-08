@@ -277,7 +277,7 @@ Layer 2: SAFETY CONTROLLER
 
 Layer 3: SIMPLEX ARBITRATION
 ├── If Layer 1 or 2 fails → switch to fallback stack
-├── Fallback stack: proven Frenet planner (current Aurrigo stack)
+├── Fallback stack: proven Frenet planner (current reference airside AV stack)
 ├── Hysteresis prevents rapid switching
 └── All transitions logged
 

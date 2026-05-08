@@ -758,7 +758,7 @@ The SYNAOS partnership (announced March 2025) is significant because SYNAOS prov
 
 - Tested and demonstrated at Toulouse (rain, fog, snow)
 - Confirmed operational at Changi (tropical climate with heavy rainfall)
-- Competitor Aurrigo developed rain-sensing algorithms effective in rainfall exceeding **50 mm/hour** -- TractEasy's specific rainfall threshold not published
+- Competitor reference airside AV stack developed rain-sensing algorithms effective in rainfall exceeding **50 mm/hour** -- TractEasy's specific rainfall threshold not published
 
 ### 11.3 Fog and Low Visibility
 
@@ -811,7 +811,7 @@ TractEasy is not alone in the autonomous airport towing market. Key competitors 
 | Company | Product | Notable Deployments |
 |---------|---------|-------------------|
 | **UISEE** (China) | Autonomous tractor | Changi Airport (Jan 2026), 21 airports globally |
-| **Aurrigo** (UK) | Auto-DollyTug, Auto-Dolly, Auto-Cargo | Stuttgart, Inverness, Cincinnati/NKY, 4-unit fleet (May 2024) |
+| **reference airside AV stack** (UK) | autonomous baggage/cargo tug, autonomous baggage dolly, autonomous cargo vehicle | Stuttgart, Inverness, Cincinnati/NKY, 4-unit fleet (May 2024) |
 | **Charlatte** | Autonomous baggage tractor | Demonstrated at GSE Expo Europe 2024 |
 | **Toyota Industries** | 3ATE25 EV tractor | ANA at Haneda (3 units, Dec 2025) |
 | **ROBO-HI** | RoboCar Tractor 25T | JAL at Haneda (1 unit, Dec 2025) |

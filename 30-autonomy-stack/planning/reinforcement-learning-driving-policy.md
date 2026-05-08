@@ -1,6 +1,6 @@
 # Reinforcement Learning for Autonomous Driving Policy Learning
 
-> Comprehensive guide to model-free and offline reinforcement learning for learning driving policies — covering on-policy (PPO, IMPALA), off-policy (SAC, TD3, TQC, CrossQ), offline RL (CQL, IQL, EDAC, Decision Transformer), behavior cloning bootstrapping, constrained/safe RL (CPO, CMDP, Lagrangian), policy distillation for edge deployment, and offline-to-online fine-tuning. Focused on practical applicability to airport airside GSE operations with Aurrigo's ROS Noetic stack.
+> Comprehensive guide to model-free and offline reinforcement learning for learning driving policies — covering on-policy (PPO, IMPALA), off-policy (SAC, TD3, TQC, CrossQ), offline RL (CQL, IQL, EDAC, Decision Transformer), behavior cloning bootstrapping, constrained/safe RL (CPO, CMDP, Lagrangian), policy distillation for edge deployment, and offline-to-online fine-tuning. Focused on practical applicability to airport airside GSE operations with the reference ROS Noetic airside stack.
 >
 > **Relation to existing docs**: Complements `rl-with-world-models.md` (model-based RL with Dreamer/TD-MPC), `neural-motion-planning.md` (IL-based planning), `diffusion-trajectory-planning.md` (diffusion-based generation), `safety-critical-planning-cbf.md` (CBF safety filters), `causal-reasoning-counterfactual.md` (causal policy evaluation). This document focuses on *model-free and offline* RL policy learning — the algorithms that directly optimize a policy from environment interaction or fixed datasets, without requiring a learned dynamics model.
 
@@ -30,7 +30,7 @@
 
 ### 1.1 The Limitations of Current Approaches
 
-Aurrigo's current Frenet planner generates 420 trajectory candidates per cycle and selects the lowest-cost one via hand-crafted cost functions. This works well for structured, low-speed airside operations but has fundamental limitations:
+the reference airside AV stack's current Frenet planner generates 420 trajectory candidates per cycle and selects the lowest-cost one via hand-crafted cost functions. This works well for structured, low-speed airside operations but has fundamental limitations:
 
 | Limitation | Impact |
 |---|---|
@@ -106,7 +106,7 @@ The choice of action space profoundly affects learning:
 | **Trajectory index** | Discrete (K=420) | Matches Frenet candidates | Fixed set, no interpolation |
 | **Residual on planner** | Low-dim continuous | Refines existing planner | Coupled to planner quality |
 
-**Recommendation for Aurrigo**: Start with **lateral offset + longitudinal speed** in Frenet frame. This maps directly to the existing Frenet planner's output space, enables incremental deployment (RL as a "selector" over Frenet candidates), and keeps the action space low-dimensional.
+**Recommendation for reference airside AV stack**: Start with **lateral offset + longitudinal speed** in Frenet frame. This maps directly to the existing Frenet planner's output space, enables incremental deployment (RL as a "selector" over Frenet candidates), and keeps the action space low-dimensional.
 
 ### 2.3 State Representation
 
@@ -623,7 +623,7 @@ L_BC(θ) = E_{(s,a)~D_expert} [-log π_θ(a|s)]
 - BC provides a reasonable initial policy in ~10K gradient steps
 - Subsequent RL fine-tuning corrects BC's compounding errors
 
-**For Aurrigo**: The Frenet planner generates thousands of hours of (state, action) pairs. BC on this data produces a neural policy that mimics the Frenet planner, which RL then improves upon.
+**For reference airside AV stack**: The Frenet planner generates thousands of hours of (state, action) pairs. BC on this data produces a neural policy that mimics the Frenet planner, which RL then improves upon.
 
 ### 6.2 DAgger (Dataset Aggregation)
 
@@ -731,7 +731,7 @@ a_safe = argmin_a ||a - a_RL||²
          s.t. h(f(s) + g(s)a) ≥ -α(h(s))  (CBF constraint)
 ```
 
-**Architecture for Aurrigo**:
+**Architecture for reference airside AV stack**:
 ```
 RL Policy → proposed action → CBF-QP filter → safe action → vehicle
                                      ↑

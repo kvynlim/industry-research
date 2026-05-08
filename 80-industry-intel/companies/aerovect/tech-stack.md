@@ -17,7 +17,7 @@
 | Stage | Series A |
 | Core product | **AeroVect Driver** -- autonomous driving platform for airport ground support equipment |
 
-AeroVect builds software-defined retrofit autonomy for airside GSE. The company's thesis is that airports and ground handlers should not need to purchase new vehicles to gain autonomy; instead, the AeroVect Driver kit can be bolted onto any OEM's existing baggage/cargo tractors. This OEM-agnostic retrofit model is the central differentiator versus purpose-built competitors like Aurrigo.
+AeroVect builds software-defined retrofit autonomy for airside GSE. The company's thesis is that airports and ground handlers should not need to purchase new vehicles to gain autonomy; instead, the AeroVect Driver kit can be bolted onto any OEM's existing baggage/cargo tractors. This OEM-agnostic retrofit model is the central differentiator versus purpose-built competitors like reference airside AV stack.
 
 ---
 
@@ -183,7 +183,7 @@ AeroVect explicitly positions against the new-build approach:
 
 > "We don't want people to buy new vehicles or new GSE just to make them autonomous."
 
-This is a deliberate contrast to Aurrigo (purpose-built Auto-DollyTug) and TractEasy/TLD (purpose-built EZTow). The retrofit model offers:
+This is a deliberate contrast to reference airside AV stack (purpose-built autonomous baggage/cargo tug) and TractEasy/TLD (purpose-built EZTow). The retrofit model offers:
 
 - Lower upfront CAPEX for customers (no new vehicle purchase)
 - Faster fleet-wide adoption (upgrade existing assets vs. procurement cycles)
@@ -194,11 +194,11 @@ This is a deliberate contrast to Aurrigo (purpose-built Auto-DollyTug) and Tract
 
 ## 8. Competitive Landscape Comparison
 
-### AeroVect vs. Aurrigo
+### AeroVect vs. reference airside AV stack
 
-| Dimension | AeroVect | Aurrigo |
+| Dimension | AeroVect | reference airside AV stack |
 |---|---|---|
-| **Approach** | Software retrofit kit for existing GSE | Purpose-built autonomous vehicle (Auto-DollyTug) |
+| **Approach** | Software retrofit kit for existing GSE | Purpose-built autonomous vehicle (autonomous baggage/cargo tug) |
 | **Vehicle** | Any OEM baggage/cargo tractor | Custom "clean sheet" design with robotic arms, tank-turn, sideways drive |
 | **Autonomy origin** | "Born in Silicon Valley" -- software-first | UK engineering/manufacturing company -- hardware-first |
 | **Loading/unloading** | Manual (human loads/unloads; vehicle drives autonomously) | Autonomous via bi-directional robotic arms |
@@ -279,7 +279,7 @@ There is no FAA "type certification" equivalent for autonomous GSE. The path to 
 4. **FAA regulatory headwinds** -- no federal framework for autonomous GSE in active movement areas; each airport is a separate negotiation
 5. **Revenue model unproven at scale** -- SaaS pricing for GSE autonomy is novel; unit economics not publicly validated
 6. **Sensor hardware undisclosed** -- specific LiDAR, camera, and compute vendors not revealed publicly; makes independent assessment of BOM cost difficult
-7. **Small company (50 people)** competing against well-resourced players: Aurrigo (public company), TractEasy/TLD (backed by TLD Group, a major GSE OEM), and potentially major AV tech stacks entering the market
+7. **Small company (50 people)** competing against well-resourced players: reference airside AV stack (public company), TractEasy/TLD (backed by TLD Group, a major GSE OEM), and potentially major AV tech stacks entering the market
 
 ---
 
@@ -289,7 +289,7 @@ AeroVect is the most directly comparable company to an autonomous airside operat
 
 1. **Retrofit vs. new-build is a strategic choice.** AeroVect chose retrofit to minimize customer CAPEX and accelerate adoption. For our world models work, this means the perception/planning stack must handle diverse vehicle kinematics and sensor mounting positions.
 
-2. **Sensor fusion (LiDAR + camera + radar + RTK) is the consensus stack** for airside autonomy. AeroVect, Aurrigo, and TractEasy all converge on LiDAR + cameras + GNSS-RTK as the minimum viable sensor set. Radar is the differentiator AeroVect adds.
+2. **Sensor fusion (LiDAR + camera + radar + RTK) is the consensus stack** for airside autonomy. AeroVect, reference airside AV stack, and TractEasy all converge on LiDAR + cameras + GNSS-RTK as the minimum viable sensor set. Radar is the differentiator AeroVect adds.
 
 3. **The mapping/digital twin approach (AeroVect Explorer)** for rapid airport onboarding is noteworthy -- 2 hours to map a major airport. This suggests HD mapping is considered essential for airside autonomy, rather than pure online perception.
 
@@ -315,7 +315,6 @@ AeroVect is the most directly comparable company to an autonomous airside operat
 - [Xfund -- Founder Spotlight: Raymond Wang and Eugenio Donati](https://blog.xfund.com/xfund-founder-spotlight-raymond-wang-and-eugenio-donati-of-aerovect-4a8163547c43)
 - [CargoForwarder Global -- Spotlight on Eugenio Donati (Feb 2026)](https://cargoforwarder.eu/2026/02/22/spotlight-on-eugenio-donati-co-founder-aerovect/)
 - [AeroVect perception intern job posting](https://jobs.ashbyhq.com/AeroVect/cb3ec12d-5f24-4047-bdc5-f262b60bd3ad)
-- [Aurrigo -- Auto-DollyTug](https://aurrigo.com/auto-dollytug/)
 - [TractEasy -- EZTow](https://tracteasy.com/)
 - [dnata -- autonomous tractor deployment at DWC](https://aerospaceglobalnews.com/news/dnata-deploys-six-autonomous-tractors-at-dwc/)
 - [Graphene Ventures -- AeroVect portfolio](https://graphenevc.com/portfolio/aerovect)

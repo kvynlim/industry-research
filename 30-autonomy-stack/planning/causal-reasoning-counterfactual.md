@@ -113,9 +113,9 @@ Causal reasoning is not merely a research curiosity -- it is increasingly a regu
 **EU Product Liability Directive 2024/2853 (transposition by December 2026):**
 - Article 9: Claimant must prove "the defectiveness of the product and the causal link between the defectiveness and the damage."
 - Article 10: Establishes a "rebuttable presumption of causality" when the defendant fails to disclose relevant evidence about the AI system's decision-making process.
-- **This means:** If Aurrigo cannot provide causal explanations for driving decisions, courts may *presume* causal responsibility.
+- **This means:** If reference airside AV stack cannot provide causal explanations for driving decisions, courts may *presume* causal responsibility.
 
-**Practical implication for Aurrigo:** The ability to generate causal explanations ("the vehicle stopped because the crew member was predicted to cross the path, based on their heading and velocity, which would have caused a collision within 2.3 seconds") is not just good engineering -- it is approaching a legal requirement in the EU by 2026-2027.
+**Practical implication for reference airside AV stack:** The ability to generate causal explanations ("the vehicle stopped because the crew member was predicted to cross the path, based on their heading and velocity, which would have caused a collision within 2.3 seconds") is not just good engineering -- it is approaching a legal requirement in the EU by 2026-2027.
 
 ### 1.4 Safety Cases Require Causal Arguments
 
@@ -1450,7 +1450,7 @@ DiffuseVAE:       z ~ SCM      →  Diffusion  →  x
 
 ### 5.7 Learning Invariant Features for Cross-Airport Transfer
 
-The key application for Aurrigo: learn representations that transfer across airports by isolating causal (invariant) features from airport-specific (spurious) features.
+The key application for reference airside AV stack: learn representations that transfer across airports by isolating causal (invariant) features from airport-specific (spurious) features.
 
 ```python
 class InvariantRiskMinimization:
@@ -3075,8 +3075,8 @@ Publishes:
 
 Rate: 2 Hz (explanations don't need to run at full perception rate)
 
-NOTE: This runs inside the aurrigo-dev Docker container.
-      See: docker exec aurrigo-dev bash -c 'source /opt/ros/noetic/setup.bash && ...'
+NOTE: This runs inside the airside-dev Docker container.
+      See: docker exec airside-dev bash -c 'source /opt/ros/noetic/setup.bash && ...'
 """
 
 import rospy
@@ -3362,7 +3362,7 @@ Causal models provide specific types of evidence for safety certification:
 
 1. **Causal reasoning fills the critical gap between correlation-based ML and the causal arguments required by ISO 3691-4, the EU AI Act, and EU Product Liability Directive 2024/2853.** No production AV system currently reasons at Pearl's Level 3 (counterfactuals), yet this is what safety cases and legal liability analysis require.
 
-2. **The EU Product Liability Directive (transpose deadline December 2026) creates a "rebuttable presumption of causality"** -- if Aurrigo cannot provide causal explanations for driving decisions, courts may legally presume the AV caused the incident. This makes causal reasoning a near-term business necessity, not just research.
+2. **The EU Product Liability Directive (transpose deadline December 2026) creates a "rebuttable presumption of causality"** -- if reference airside AV stack cannot provide causal explanations for driving decisions, courts may legally presume the AV caused the incident. This makes causal reasoning a near-term business necessity, not just research.
 
 3. **Structural Causal Models (SCMs) with physics-based structural equations are implementable today for airside.** The airside environment has well-defined physical dynamics (braking, stopping distance, jet blast) that serve as structural equations, making the SCM practically grounded rather than abstract.
 

@@ -142,7 +142,7 @@ LiDAR foundation models and 3D point cloud pre-training have matured rapidly fro
 **Critical Data Efficiency Result:**
 - **Achieves comparable accuracy with only 20% of labeled Waymo data** -- the GD-MAE_0.2 variant demonstrates that pre-training on unlabeled data followed by fine-tuning on 20% of labels matches or approaches full-label performance.
 
-**Airside Relevance:** HIGH. This is directly applicable to the Aurrigo stack. GD-MAE works with the same voxel-based backbones used by CenterPoint (already documented in `openpcdet-centerpoint.md`). The 80% label reduction directly addresses the zero-airside-dataset problem -- pre-train on unlabeled airside LiDAR sweeps, fine-tune with minimal annotations.
+**Airside Relevance:** HIGH. This is directly applicable to the reference airside AV stack. GD-MAE works with the same voxel-based backbones used by CenterPoint (already documented in `openpcdet-centerpoint.md`). The 80% label reduction directly addresses the zero-airside-dataset problem -- pre-train on unlabeled airside LiDAR sweeps, fine-tune with minimal annotations.
 
 ---
 
@@ -210,7 +210,7 @@ LiDAR foundation models and 3D point cloud pre-training have matured rapidly fro
 | 100% pretrain, 20% finetune (Waymo) | mAP | +1.42 over baseline |
 | 100% pretrain, 20% finetune (Waymo) | APH | +1.34 over baseline |
 
-**Airside Relevance:** The BEV formulation is particularly relevant because the Aurrigo stack already uses BEV representations for planning. Pre-training in BEV space means the learned features are directly aligned with the downstream planning representation.
+**Airside Relevance:** The BEV formulation is particularly relevant because the reference airside AV stack already uses BEV representations for planning. Pre-training in BEV space means the learned features are directly aligned with the downstream planning representation.
 
 ---
 
@@ -256,7 +256,7 @@ LiDAR foundation models and 3D point cloud pre-training have matured rapidly fro
 | 5% labeled data | KITTI | +7.5% AP (55.2 -> 62.7) for PointRCNN |
 | Full data | KITTI/Waymo | Significant improvements across all detectors |
 
-**Airside Relevance:** VERY HIGH. The remarkable data efficiency -- outperforming full-dataset training with only 20% of labels -- is exactly what airside needs. However, requires camera-LiDAR pairs for pre-training (to provide color supervision). The Aurrigo stack has 360-degree cameras alongside LiDAR, making this directly applicable.
+**Airside Relevance:** VERY HIGH. The remarkable data efficiency -- outperforming full-dataset training with only 20% of labels -- is exactly what airside needs. However, requires camera-LiDAR pairs for pre-training (to provide color supervision). The reference airside AV stack has 360-degree cameras alongside LiDAR, making this directly applicable.
 
 ---
 
@@ -328,7 +328,7 @@ LiDAR foundation models and 3D point cloud pre-training have matured rapidly fro
 | Speedup vs SST | **4.6x** | 1x | - |
 | Speedup vs CenterPoint | **1.4x** | - | 1x |
 
-**Airside Relevance:** VERY HIGH for Orin deployment. FlatFormer explicitly targets edge GPU efficiency. Being faster than CenterPoint (the current Aurrigo detection backbone candidate) while achieving comparable or better accuracy makes it a direct upgrade path. Co-authored by NVIDIA, suggesting strong TensorRT compatibility.
+**Airside Relevance:** VERY HIGH for Orin deployment. FlatFormer explicitly targets edge GPU efficiency. Being faster than CenterPoint (the current reference airside AV stack detection backbone candidate) while achieving comparable or better accuracy makes it a direct upgrade path. Co-authored by NVIDIA, suggesting strong TensorRT compatibility.
 
 ---
 
@@ -351,7 +351,7 @@ LiDAR foundation models and 3D point cloud pre-training have matured rapidly fro
 | SemanticKITTI (val) | mIoU | 69.0% (TTA) | - |
 | Waymo (val) | mIoU | 70.8% (TTA) | 61.9% |
 
-**Airside Relevance:** HIGH. The distant point performance improvement (13.3% -> 30.4%) is critical for airside operations where detecting distant aircraft, moving GSE, and personnel at range is essential for safe planning. The plug-and-play design means it could augment the existing Aurrigo perception pipeline.
+**Airside Relevance:** HIGH. The distant point performance improvement (13.3% -> 30.4%) is critical for airside operations where detecting distant aircraft, moving GSE, and personnel at range is essential for safe planning. The plug-and-play design means it could augment the existing reference airside AV stack perception pipeline.
 
 ---
 
@@ -375,7 +375,7 @@ LiDAR foundation models and 3D point cloud pre-training have matured rapidly fro
 
 Ranked **1st on nuScenes LiDAR leaderboard** at time of publication.
 
-**Airside Relevance:** MODERATE. Improves 3D sparse CNN backbones that are already used in the Aurrigo stack. The large receptive field helps for detecting large objects (aircraft) at all distances. However, the CNN-based approach is being superseded by transformer methods (PTv3, DSVT).
+**Airside Relevance:** MODERATE. Improves 3D sparse CNN backbones that are already used in the reference airside AV stack. The large receptive field helps for detecting large objects (aircraft) at all distances. However, the CNN-based approach is being superseded by transformer methods (PTv3, DSVT).
 
 ---
 
@@ -420,7 +420,7 @@ Ranked **1st on nuScenes LiDAR leaderboard** at time of publication.
 | Waymo | Detection | mAPH L2 | 76.4 |
 | nuScenes | Detection | NDS | 74.3 |
 
-**Airside Relevance:** MODERATE. The multi-task capability (detection + segmentation) is useful for airside where you need both object detection and drivable area segmentation. The BEV-3D cross-attention could bridge different representation layers in the Aurrigo stack.
+**Airside Relevance:** MODERATE. The multi-task capability (detection + segmentation) is useful for airside where you need both object detection and drivable area segmentation. The BEV-3D cross-attention could bridge different representation layers in the reference airside AV stack.
 
 ---
 
@@ -496,7 +496,7 @@ ULIP-2 outperforms PointCLIP by 28.8% on zero-shot classification.
 
 **Airside Relevance:** HIGH. OpenScene's open-vocabulary 3D understanding is directly applicable to airside. You could query the 3D scene with text: "aircraft engine," "ground power unit," "person in hi-vis." The distillation approach means cameras are only needed during training -- at inference, only LiDAR is required. This aligns perfectly with a LiDAR-primary stack.
 
-**Critical Insight:** OpenScene's approach of distilling 2D foundation model knowledge into a 3D-only network is the ideal pattern for the Aurrigo stack: use cameras during pre-training/distillation, but deploy with LiDAR-only inference.
+**Critical Insight:** OpenScene's approach of distilling 2D foundation model knowledge into a 3D-only network is the ideal pattern for the reference airside AV stack: use cameras during pre-training/distillation, but deploy with LiDAR-only inference.
 
 ---
 
@@ -638,7 +638,7 @@ Pre-trained 3D Backbone (Frozen)
 | **SphereFormer** | Radial attention | ~50ms | >150ms (estimated) | Unknown | FUTURE |
 | **LargeKernel3D** | Sparse CNN | ~30ms | ~90ms (estimated) | Possible | FEASIBLE with optimization |
 
-**Orin Latency Estimates:** Roughly 3x A100 latency for well-optimized TensorRT models. The Aurrigo system runs perception at ~10 Hz (100ms budget), so models under ~80ms Orin latency are viable.
+**Orin Latency Estimates:** Roughly 3x A100 latency for well-optimized TensorRT models. The reference airside AV stack system runs perception at ~10 Hz (100ms budget), so models under ~80ms Orin latency are viable.
 
 ### 6.2 TensorRT Compatibility
 
@@ -673,7 +673,7 @@ Pre-trained Backbone (GD-MAE, AD-PT, BEV-MAE, Occupancy-MAE)
          - PV-RCNN head -- point-voxel fusion
 ```
 
-This means the pre-training methods from Section 2 (GD-MAE, AD-PT, Occupancy-MAE, BEV-MAE) can be used to initialize the same backbones already used for CenterPoint and PointPillars in the Aurrigo stack, with no architectural changes.
+This means the pre-training methods from Section 2 (GD-MAE, AD-PT, Occupancy-MAE, BEV-MAE) can be used to initialize the same backbones already used for CenterPoint and PointPillars in the reference airside AV stack, with no architectural changes.
 
 ### 6.4 Recommended Deployment Path
 
@@ -792,7 +792,7 @@ Part of NVIDIA Cosmos ecosystem:
 - 80.7% mIoU on ScanNet with full fine-tuning (new SOTA)
 - Variant for video-lifted point cloud spatial understanding
 
-**Airside Relevance:** VERY HIGH. The joint 2D-3D learning is ideal for the Aurrigo stack which has both cameras and LiDAR. The CLIP translator enables open-world airside perception without airside-specific labels. The 39M parameter small model is potentially Orin-viable.
+**Airside Relevance:** VERY HIGH. The joint 2D-3D learning is ideal for the reference airside AV stack which has both cameras and LiDAR. The CLIP translator enables open-world airside perception without airside-specific labels. The 39M parameter small model is potentially Orin-viable.
 
 ### 8.3 Utonia (March 2026)
 
@@ -847,7 +847,7 @@ Part of NVIDIA Cosmos ecosystem:
 - Superior 3D object detection performance
 - Sensor-agnostic features (important for cross-sensor transfer)
 
-**Airside Relevance:** VERY HIGH. The sensor-agnostic feature learning means pre-trained models can transfer between different LiDAR configurations (e.g., from 64-beam Waymo LiDAR to 4-8 RoboSense RSHELIOS/RSBP on Aurrigo vehicles). The 10x label reduction is the best in the field.
+**Airside Relevance:** VERY HIGH. The sensor-agnostic feature learning means pre-trained models can transfer between different LiDAR configurations (e.g., from 64-beam Waymo LiDAR to 4-8 RoboSense RSHELIOS/RSBP on reference airside vehicles). The 10x label reduction is the best in the field.
 
 ### 8.6 TREND (NeurIPS 2025)
 
@@ -869,7 +869,7 @@ Part of NVIDIA Cosmos ecosystem:
 | nuScenes | Detection | +2.11% mAP | **400% more improvement** |
 | SemanticKITTI | Segmentation | Consistent gains | - |
 
-**Airside Relevance:** HIGH. Temporal pre-training exploits the sequential nature of LiDAR data collection. Just driving the Aurrigo vehicle around the airside captures temporal LiDAR sequences that can be used for unsupervised pre-training with TREND. No labels needed, and the temporal context captures object dynamics (moving GSE, taxiing aircraft).
+**Airside Relevance:** HIGH. Temporal pre-training exploits the sequential nature of LiDAR data collection. Just driving the reference airside vehicle around the airside captures temporal LiDAR sequences that can be used for unsupervised pre-training with TREND. No labels needed, and the temporal context captures object dynamics (moving GSE, taxiing aircraft).
 
 ---
 
@@ -923,12 +923,12 @@ Part of NVIDIA Cosmos ecosystem:
    - Same TensorRT deployment path, same latency on Orin
 
 2. **Collect unlabeled airside LiDAR data:**
-   - Drive Aurrigo vehicles around the airside, recording LiDAR sweeps
+   - Drive reference airside vehicles around the airside, recording LiDAR sweeps
    - No annotation needed -- raw sweeps are used for self-supervised pre-training
    - Target: 10,000+ sweeps across multiple airports, times of day, weather conditions
 
 3. **Evaluate GPC if camera-LiDAR pairs are available:**
-   - If the Aurrigo stack records synchronized camera and LiDAR, GPC's colorization pre-training could yield 80-95% label savings
+   - If the reference airside AV stack records synchronized camera and LiDAR, GPC's colorization pre-training could yield 80-95% label savings
    - Outperforms full-dataset training from scratch with only 20% of labels
 
 ### 10.2 Medium-term (3-12 months)
@@ -936,7 +936,7 @@ Part of NVIDIA Cosmos ecosystem:
 4. **Implement ScaLR distillation pipeline:**
    - Distill DINOv2 features from cameras into LiDAR backbone
    - Produces strong frozen LiDAR features that transfer to airside
-   - Requires camera-LiDAR calibration (already available in Aurrigo stack)
+   - Requires camera-LiDAR calibration (already available in reference airside AV stack)
 
 5. **Add PointLoRA for parameter-efficient airside fine-tuning:**
    - Freeze pre-trained backbone, add LoRA adapters (rank 16-32)

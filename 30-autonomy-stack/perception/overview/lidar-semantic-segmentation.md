@@ -17,7 +17,7 @@
 7. [Training-Free Instance Segmentation](#7-training-free-instance-segmentation)
 8. [Airside-Specific Class Taxonomy](#8-airside-specific-class-taxonomy)
 9. [LiDAR Foundation Model Fine-Tuning Path](#9-lidar-foundation-model-fine-tuning-path)
-10. [Integration with Aurrigo ROS Stack](#10-integration-with-aurrigo-ros-stack)
+10. [Integration with reference airside AV stack ROS Stack](#10-integration-with-airside-ros-stack)
 11. [Deployment on NVIDIA Orin](#11-deployment-on-nvidia-orin)
 12. [Migration from RANSAC](#12-migration-from-ransac)
 13. [Benchmarks and Evaluation](#13-benchmarks-and-evaluation)
@@ -28,9 +28,9 @@
 
 ## 1. Why Neural Segmentation for Airside
 
-### 1.1 Current Aurrigo Perception Limitations
+### 1.1 Current reference airside AV stack Perception Limitations
 
-Aurrigo's production stack uses RANSAC-based edge fitting with **3 classes**: ground, obstacle, edge. This is sufficient for basic path following but cannot:
+the reference airside AV stack's production stack uses RANSAC-based edge fitting with **3 classes**: ground, obstacle, edge. This is sufficient for basic path following but cannot:
 
 - **Distinguish personnel from equipment** — a 70kg ground crew member and a 500kg cargo dolly are both "obstacle"
 - **Detect FOD** — foreign object debris (bolts, luggage fragments, tools) is too small for RANSAC clustering
@@ -328,7 +328,7 @@ PTV3_LITE_CONFIG = {
 | FlatFormer | 70% | 25-35 (INT8) | Yes (standard attention) | Medium |
 | PTv3-Lite | 76% | 10-15 | Hard (custom ops) | High |
 
-**Recommendation for Aurrigo**: Start with **FlatFormer** — best balance of accuracy, speed, and TensorRT compatibility. Fall back to SalsaNext if compute budget is too tight.
+**Recommendation for reference airside AV stack**: Start with **FlatFormer** — best balance of accuracy, speed, and TensorRT compatibility. Fall back to SalsaNext if compute budget is too tight.
 
 ---
 
@@ -650,16 +650,16 @@ Step 4: Fine-tune on 500-1000 labeled scans
 
 ---
 
-## 10. Integration with Aurrigo ROS Stack
+## 10. Integration with reference airside AV stack ROS Stack
 
 ### 10.1 ROS Node Architecture
 
 ```
                      ┌──────────────────┐
-                     │  pointcloud_agg  │ (existing Aurrigo node)
+                     │  pointcloud_agg  │ (existing reference airside AV stack node)
                      │  4-8 LiDAR merge │
                      └────────┬─────────┘
-                              │ /aurrigo/lidar/aggregated (sensor_msgs/PointCloud2)
+                              │ /airside_av/lidar/aggregated (sensor_msgs/PointCloud2)
                               ▼
                      ┌──────────────────┐
                      │  semantic_seg    │ (NEW nodelet)
@@ -721,7 +721,7 @@ public:
         // Load TensorRT engine
         std::string engine_path;
         nh.param<std::string>("engine_path", engine_path, 
-                              "/opt/aurrigo/models/flatformer_int8.engine");
+                              "/opt/airside_av/models/flatformer_int8.engine");
         loadEngine(engine_path);
         
         // Parameters
@@ -730,7 +730,7 @@ public:
         nh.param<bool>("enable_panoptic", enable_panoptic_, true);
         
         // Publishers and subscribers
-        sub_ = nh.subscribe("/aurrigo/lidar/aggregated", 1,
+        sub_ = nh.subscribe("/airside_av/lidar/aggregated", 1,
                             &SemanticSegNodelet::callback, this);
         pub_seg_ = nh.advertise<perception_msgs::SemanticPointCloud>(
                    "/perception/segmentation", 1);
@@ -923,7 +923,7 @@ Using SALT (Semi-Automatic Labeling Tool, 2025) with cross-scene adaptability co
 
 ## 14. Recommended Architecture
 
-### 14.1 Recommended Stack for Aurrigo
+### 14.1 Recommended Stack for reference airside AV stack
 
 ```
 ┌─────────────────────────────────────────────────┐

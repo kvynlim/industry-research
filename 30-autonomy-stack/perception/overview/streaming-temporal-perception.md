@@ -6,7 +6,7 @@
 
 ---
 
-**Summary:** Single-frame 3D detection ignores temporal information that is freely available from sequential sensor data. Streaming perception methods propagate object queries, BEV features, or latent states across frames to improve detection accuracy (+3-8% NDS), enable implicit tracking (AMOTA 65%+ without explicit association), and compensate for inference latency — all critical for airside operations where slow-moving objects (1-5 km/h carts) are easily missed in single frames. This document covers every major streaming perception architecture from dense BEV temporal fusion (BEVFormer, SOLOFusion) through sparse query propagation (StreamPETR, Sparse4D v3) to LiDAR temporal accumulation (CenterPoint-Temporal, TransFusion-L), with latency-aware methods (LASP, ASAP) that predict object positions during inference delay. The key finding: **StreamPETR's object-centric temporal mechanism adds only 2-3ms overhead while boosting NDS by 6-8% and providing free multi-object tracking — the highest value-per-FLOP temporal method for Orin deployment**. For Aurrigo's LiDAR-primary stack, simple multi-scan accumulation (3-5 frames, 0.5s window) combined with CenterPoint-Temporal provides most of the benefit at minimal engineering cost.
+**Summary:** Single-frame 3D detection ignores temporal information that is freely available from sequential sensor data. Streaming perception methods propagate object queries, BEV features, or latent states across frames to improve detection accuracy (+3-8% NDS), enable implicit tracking (AMOTA 65%+ without explicit association), and compensate for inference latency — all critical for airside operations where slow-moving objects (1-5 km/h carts) are easily missed in single frames. This document covers every major streaming perception architecture from dense BEV temporal fusion (BEVFormer, SOLOFusion) through sparse query propagation (StreamPETR, Sparse4D v3) to LiDAR temporal accumulation (CenterPoint-Temporal, TransFusion-L), with latency-aware methods (LASP, ASAP) that predict object positions during inference delay. The key finding: **StreamPETR's object-centric temporal mechanism adds only 2-3ms overhead while boosting NDS by 6-8% and providing free multi-object tracking — the highest value-per-FLOP temporal method for Orin deployment**. For the reference airside AV stack's LiDAR-primary stack, simple multi-scan accumulation (3-5 frames, 0.5s window) combined with CenterPoint-Temporal provides most of the benefit at minimal engineering cost.
 
 ---
 
@@ -154,7 +154,7 @@ class EgoMotionCompensator:
         return self.pose_history[-1][1]
 ```
 
-### 2.2 Temporal Data Sources for Aurrigo Stack
+### 2.2 Temporal Data Sources for reference airside AV stack Stack
 
 | Source | Rate | History Depth | Compensation | Value |
 |--------|------|--------------|--------------|-------|
@@ -269,7 +269,7 @@ SOLOFusion (ICLR 2023) demonstrates that **long temporal history dramatically im
 | 16 frames | 53.4% | 58.2% | Best performance |
 | 17+ frames | ~53.4% | ~58.2% | Saturates |
 
-**Limitation for airside:** SOLOFusion assumes sufficient ego-motion for stereo parallax. Aurrigo vehicles often move at 1-5 km/h — 16 frames at 10 Hz with 2 km/h motion gives only 0.9m baseline. This limits camera-based temporal benefits for slow-speed operations.
+**Limitation for airside:** SOLOFusion assumes sufficient ego-motion for stereo parallax. reference airside vehicles often move at 1-5 km/h — 16 frames at 10 Hz with 2 km/h motion gives only 0.9m baseline. This limits camera-based temporal benefits for slow-speed operations.
 
 ### 3.3 BEV Temporal Memory Management
 
@@ -584,7 +584,7 @@ Concatenate → (C=192) → Conv reduce to C=64 → Standard backbone
 | CenterPoint | 5 | 59.6% | 67.2% | 9.8ms |
 | CenterPoint | 10 | 60.3% | 67.5% | 14.1ms |
 
-**Recommendation for Aurrigo:** 3-sweep accumulation provides 80% of the temporal benefit at only 1.4ms additional cost. Beyond 5 sweeps, motion compensation errors from GTSAM pose uncertainty dominate.
+**Recommendation for reference airside AV stack:** 3-sweep accumulation provides 80% of the temporal benefit at only 1.4ms additional cost. Beyond 5 sweeps, motion compensation errors from GTSAM pose uncertainty dominate.
 
 ### 5.3 Temporal Point Cloud Features
 
@@ -726,7 +726,7 @@ Path 2 (light, 30ms):  YOLO on frame t → fast detections (less accurate)
 Fuse: Use heavy detections as prior, light detections for update
 ```
 
-**Not relevant for Aurrigo's LiDAR stack** where CenterPoint runs in 6.84ms, but useful if camera fallback is activated.
+**Not relevant for the reference airside AV stack's LiDAR stack** where CenterPoint runs in 6.84ms, but useful if camera fallback is activated.
 
 ---
 
@@ -877,7 +877,7 @@ Video backbones are valuable for:
 
 ### 9.1 Cross-Modal Temporal Alignment
 
-When fusing LiDAR and camera (future Aurrigo capability), temporal alignment is critical:
+When fusing LiDAR and camera (future reference airside AV stack capability), temporal alignment is critical:
 
 ```
 LiDAR sweep: 100ms capture window, single timestamp at scan end
@@ -951,7 +951,7 @@ BEV(t) + BEV(t-δ) → FlowNet → Flow(δ) → Warp(BEV(t-δ), Flow(δ)) → BE
 
 ### 10.1 Compute Budget for Temporal Methods
 
-Starting from Aurrigo's current pipeline and adding temporal capability:
+Starting from the reference airside AV stack's current pipeline and adding temporal capability:
 
 | Component | Current (ms) | + Temporal (ms) | Method |
 |-----------|-------------|-----------------|--------|
@@ -1141,7 +1141,7 @@ Temporal perception value: Predict next phase from current scene state
 
 ```python
 #!/usr/bin/env python
-"""Temporal perception ROS node for Aurrigo stack."""
+"""Temporal perception ROS node for reference airside AV stack."""
 
 import rospy
 from sensor_msgs.msg import PointCloud2

@@ -6,7 +6,7 @@
 
 ---
 
-> **Key Takeaway:** Sequential predict-then-plan architectures treat prediction and planning as independent stages, causing the "frozen robot" problem, self-fulfilling prophecies, and systematic overconservatism. Joint prediction-planning couples these stages so the planner reasons about how its actions influence others, and the predictor reasons about what matters for the downstream plan. On airport airside, where 10-30 agents negotiate unstructured right-of-way around aircraft, this coupling is the difference between a vehicle that inches forward one meter at a time and one that smoothly navigates turnaround congestion. This document covers the SOTA (2024-2026) in joint prediction-planning — from the embarrassingly effective PDM-Closed baseline through diffusion-based joint models, game-theoretic interaction, contingency planning, and conditional prediction — with concrete integration paths for Aurrigo's existing Frenet planner on NVIDIA Orin. The central finding: **augmenting the existing 420-candidate Frenet planner with prediction-conditioned cost terms and occupancy flow scoring provides 70-80% of the benefit of full joint prediction-planning at 10% of the implementation cost, achievable within the existing 50-100 ms budget on Orin.**
+> **Key Takeaway:** Sequential predict-then-plan architectures treat prediction and planning as independent stages, causing the "frozen robot" problem, self-fulfilling prophecies, and systematic overconservatism. Joint prediction-planning couples these stages so the planner reasons about how its actions influence others, and the predictor reasons about what matters for the downstream plan. On airport airside, where 10-30 agents negotiate unstructured right-of-way around aircraft, this coupling is the difference between a vehicle that inches forward one meter at a time and one that smoothly navigates turnaround congestion. This document covers the SOTA (2024-2026) in joint prediction-planning — from the embarrassingly effective PDM-Closed baseline through diffusion-based joint models, game-theoretic interaction, contingency planning, and conditional prediction — with concrete integration paths for the reference airside AV stack's existing Frenet planner on NVIDIA Orin. The central finding: **augmenting the existing 420-candidate Frenet planner with prediction-conditioned cost terms and occupancy flow scoring provides 70-80% of the benefit of full joint prediction-planning at 10% of the implementation cost, achievable within the existing 50-100 ms budget on Orin.**
 
 ---
 
@@ -238,7 +238,7 @@ Raw Sensor Data --> Shared Backbone --> Joint Prediction-Planning Head
 | Type 4: Joint Latent | +50-65% | Low-Medium | High | Low |
 | Type 5: Full E2E | +55-70% | Low | Very High | Very Low |
 
-**Practical recommendation for Aurrigo:** Start with Type 1 (prediction-informed costs on existing Frenet planner), advance to Type 2 (conditional prediction + Frenet scoring), and treat Type 3 (game-theoretic) as the medium-term target. Types 4-5 are research investments that depend on data availability and hardware progression to Thor.
+**Practical recommendation for reference airside AV stack:** Start with Type 1 (prediction-informed costs on existing Frenet planner), advance to Type 2 (conditional prediction + Frenet scoring), and treat Type 3 (game-theoretic) as the medium-term target. Types 4-5 are research investments that depend on data availability and hardware progression to Thor.
 
 ---
 
@@ -1133,9 +1133,9 @@ UnO is particularly relevant for airside because it requires NO labeled data -- 
 
 **Why UnO fits airside constraints:**
 - No public airside occupancy datasets exist
-- UnO trains on unlabeled LiDAR sweeps (Aurrigo can collect these immediately)
+- UnO trains on unlabeled LiDAR sweeps (reference airside AV stack can collect these immediately)
 - Won the Argoverse 2 LiDAR Forecasting Challenge
-- LiDAR-only input matches Aurrigo's sensor suite
+- LiDAR-only input matches the reference airside AV stack's sensor suite
 
 **UnO as occupancy predictor for Frenet scoring:**
 
@@ -1496,7 +1496,7 @@ def airside_interaction_cost(candidate, predictions, context):
 
 ### 11.1 Available Budget for Joint Prediction-Planning
 
-The total Orin budget (275 TOPS at 60W) must be shared across all modules. Based on the existing Aurrigo stack and the allocations established in other documents:
+The total Orin budget (275 TOPS at 60W) must be shared across all modules. Based on the existing reference airside AV stack and the allocations established in other documents:
 
 | Module | Allocated Budget | Allocated Time (100ms cycle) |
 |--------|-----------------|----------------------------|
@@ -1895,7 +1895,7 @@ Phases 1-3 provide ~80% of the value and can be completed in ~16 weeks for ~$30-
 
 1. **Sequential predict-then-plan fails in dense multi-agent scenarios** because it ignores the circular dependency: what others do depends on what ego does, and vice versa. On airport airside, where 15-30 agents negotiate during turnaround, this causes the "frozen robot" problem -- the vehicle stops unnecessarily 2-4x more often than needed.
 
-2. **PDM-Closed proves that simple prediction-informed scoring beats complex learned planners** on nuPlan closed-loop. The lesson: augmenting an existing sampling-based planner (like Aurrigo's Frenet planner) with prediction-based cost terms and re-planning at high frequency provides most of the benefit of joint planning.
+2. **PDM-Closed proves that simple prediction-informed scoring beats complex learned planners** on nuPlan closed-loop. The lesson: augmenting an existing sampling-based planner (like the reference airside AV stack's Frenet planner) with prediction-based cost terms and re-planning at high frequency provides most of the benefit of joint planning.
 
 3. **The 420-candidate Frenet planner is already an excellent proposal generator.** It generates more diverse candidates than PDM-Closed (420 vs. 15-30). What's missing is prediction-informed scoring, not better proposals.
 
@@ -1907,7 +1907,7 @@ Phases 1-3 provide ~80% of the value and can be completed in ~16 weeks for ~$30-
 
 7. **Occupancy flow prediction complements trajectory prediction.** Trajectory prediction handles identified agents with known dynamics. Occupancy flow handles the dense, unstructured remainder (personnel groups, unknown objects, FOD). Together they cover the full scene.
 
-8. **UnO self-supervised occupancy requires zero labeled data** and won the Argoverse 2 LiDAR Forecasting Challenge. This makes it the cheapest learned component to deploy for Aurrigo, since no public airside occupancy datasets exist.
+8. **UnO self-supervised occupancy requires zero labeled data** and won the Argoverse 2 LiDAR Forecasting Challenge. This makes it the cheapest learned component to deploy for reference airside AV stack, since no public airside occupancy datasets exist.
 
 9. **The computational budget on Orin is ~25ms for joint prediction-planning.** This accommodates marginal prediction (10-15ms) + Frenet scoring with prediction costs (5-8ms) + conditional refinement of top-10 candidates (5-8ms). Full game-theoretic or diffusion-based joint planning requires Thor.
 

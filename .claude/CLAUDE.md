@@ -36,15 +36,15 @@ industry-research/
 
 ## User Context
 
-The user builds **autonomous vehicles for airport airside operations** using an **Aurrigo ROS Noetic stack** (at `~/ubuntu_20-04/z-aurrigo-ws/`). They are researching how to integrate world models, VLAs, and modern AI into their existing stack.
+The user builds **autonomous vehicles for airport airside operations** using an **reference airside AV stack ROS Noetic stack** (at `~/ubuntu_20-04/z-airside-ws/`). They are researching how to integrate world models, VLAs, and modern AI into their existing stack.
 
-## Current Aurrigo Stack
+## Current reference airside AV stack Stack
 
 - **ROS Noetic**, 22 packages, C++ nodelets
 - **LiDAR-only**: 4-8 RoboSense (RSHELIOS/RSBP), RANSAC segmentation
 - **GTSAM localization**: GPU VGICP + IMU (500Hz) + RTK-GPS + wheel odometry
 - **Frenet planning**: 420 candidates/cycle, Stanley lateral control
-- **Vehicles**: ADT3 (Ackermann + crab), STL2, POD, ACA1
+- **Vehicles**: third-generation tug (Ackermann + crab), small tug platform, POD, ACA1
 
 ## Key Findings
 
@@ -62,7 +62,7 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 9. **UISEE**: 1,000+ vehicles deployed (50x more than nearest competitor), 101% revenue CAGR, filed HKEX IPO
 10. **Changi (Jan 2026)**: First fully driverless airside deployment (UISEE tractors, 20,000+ km accident-free)
 11. **TractEasy**: Zero accidents across 8 airports, >95% mission success, 1-6 years per approval
-12. **Aurrigo**: All deployments still require safety operator, no ML in core perception
+12. **reference airside AV stack**: All deployments still require safety operator, no ML in core perception
 13. **AeroVect**: $27.1M raised, retrofit approach, mapped half of top 10 US airports
 14. **Assaia**: 21 airports, 450K+ turnarounds, 25% delay reduction (vs Moonware's unverified 20%)
 
@@ -121,7 +121,7 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 50. **SparseDrive**: 0.06% collision rate, sparse representation, end-to-end trainable with planning
 51. **DiffusionDrive**: Diffusion-based trajectory generation, 45ms on Orin via truncated diffusion (5 steps)
 52. **GameFormer (NeurIPS 2023)**: Level-k game-theoretic interaction modeling, outperforms non-interactive planners by 30%+ on nuPlan
-53. **Simplex for neural planning**: Neural planner as AC (performance), classical Frenet as BC (safety) — matches Aurrigo architecture
+53. **Simplex for neural planning**: Neural planner as AC (performance), classical Frenet as BC (safety) — matches reference airside AV stack architecture
 
 ### LiDAR Semantic Segmentation
 54. **FlatFormer**: Best accuracy/speed tradeoff for Orin — 25-35 FPS INT8, ~70% mIoU, standard attention ops (TensorRT-friendly)
@@ -155,7 +155,7 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 72. **MISRA C:2012 for ROS**: Typical ROS callbacks violate 15-20 MISRA rules; safety-critical nodes need explicit remediation
 73. **ISO 26262 Part 6**: V-model maps to ROS development — unit testing needs MC/DC coverage for ASIL-B+ safety path
 74. **Static analysis pipeline**: cppcheck (free) → clang-tidy (CI gate) → Polyspace (certification evidence)
-75. **comma.ai Panda pattern**: STM32 safety MCU with MISRA C, 100% line coverage — applicable model for Aurrigo's safety controller
+75. **comma.ai Panda pattern**: STM32 safety MCU with MISRA C, 100% line coverage — applicable model for the reference airside AV stack's safety controller
 
 ### Fleet Data Pipeline
 76. **Data volume**: 4-8 RoboSense LiDAR at 10Hz = ~200GB/day/vehicle raw; 100-vehicle fleet = 20TB/day
@@ -286,7 +286,7 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 ### Occupancy Flow & 4D Scene Understanding
 168. **ZeroFlow**: 0.028m EPE3D via zero-shot distillation — no labels needed for scene flow
 169. **DeFlow (CVPR 2024)**: 0.023m EPE3D SOTA, 3.3x fewer parameters, TensorRT-friendly
-170. **UnO self-supervised**: Won Argoverse 2 LiDAR Forecasting Challenge — LiDAR-only, no labels, matches Aurrigo constraints
+170. **UnO self-supervised**: Won Argoverse 2 LiDAR Forecasting Challenge — LiDAR-only, no labels, matches reference airside AV stack constraints
 171. **Flow-aware safety margins**: Approaching cart at 20km/h needs 6.25m vs 3.25m for stationary — prevents both false positives and negatives
 172. **Orin pipeline**: 26-40ms FP16 for complete 4D occupancy flow — well within 50ms budget
 173. **K-Planes compression**: 10,900x memory reduction vs dense 4D grids (17GB → 1.5MB)
@@ -323,7 +323,7 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 198. **Total cost 50 airports**: $130K/year FL vs $1.3M/year centralized (10x reduction)
 
 ### Causal Reasoning & Counterfactual Planning
-199. **EU PLD 2024/2853 creates legal urgency**: "Rebuttable presumption of causality" — if Aurrigo can't provide causal explanations, courts may presume the AV caused the incident. Transpose deadline December 2026
+199. **EU PLD 2024/2853 creates legal urgency**: "Rebuttable presumption of causality" — if reference airside AV stack can't provide causal explanations, courts may presume the AV caused the incident. Transpose deadline December 2026
 200. **SCMs with physics-based equations**: Airside has well-defined dynamics (braking, stopping distance, jet blast) as structural equations — practically grounded, not abstract
 201. **Counterfactual trajectory analysis**: Binary search determines "braking 0.3s earlier would have prevented incident" — precise, actionable, impossible from correlation methods
 202. **Halpern-Pearl actual causation**: Formalizes root cause analysis, quantifies degree of responsibility (dr = 1/(1+k)) for multi-agent incidents
@@ -447,13 +447,13 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 298. **ICP template alignment**: +-1-2cm accuracy at docking range using existing RoboSense LiDARs. Templates per aircraft type ~50 KB each
 299. **AprilTag fiducials**: +-0.5cm at 2m, 50+ FPS on CPU. Highest-accuracy lowest-latency option if markers can be placed on docking interfaces
 300. **MPC docking control**: CasADi/IPOPT solves 15-step horizon in 2-5ms on Orin. Handles non-holonomic constraints, speed/steering limits, obstacle avoidance
-301. **ADT3 crab steering decisive advantage**: Decouples lateral correction from heading — slide sideways for alignment without multi-point turns. No competing platform has this
+301. **third-generation tug crab steering decisive advantage**: Decouples lateral correction from heading — slide sideways for alignment without multi-point turns. No competing platform has this
 302. **Pushback requires impedance control**: Position→force control transition at nose gear contact is most complex docking challenge. Requires force/torque sensing
 303. **Competitive gap**: UISEE stops short + manual coupling; TractEasy uses teleop for final meters. Autonomous full-tolerance docking is unsolved in production
 304. **Implementation**: $53-90K over 12-18 weeks, $2-5K additional hardware per vehicle (docking camera + ultrasonics + bumpers + safety scanner)
 
 ### LiDAR Place Recognition & Re-Localization
-305. **Missing link in Aurrigo stack**: GTSAM+VGICP has no loop closure, no kidnapped robot recovery, no multi-session map alignment. Long missions accumulate unbounded drift
+305. **Missing link in reference airside AV stack**: GTSAM+VGICP has no loop closure, no kidnapped robot recovery, no multi-session map alignment. Long missions accumulate unbounded drift
 306. **Two-stage pipeline optimal**: Scan Context on CPU (<5ms, always-on) pre-filters, MinkLoc3D on GPU (~15ms, triggered) verifies. 97%+ recall, GPU used only 10-20% of time
 307. **MinkLoc3D**: 97.5% recall@1, 256-byte descriptor, 15ms GPU — best accuracy/speed/maturity tradeoff for airside
 308. **Identical-stands problem**: Primary airside challenge — adjacent gates with same geometry cause perceptual aliasing. Odometry-constrained geographic search eliminates 80-90% false matches at zero cost
@@ -464,7 +464,7 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 313. **Implementation**: $33-57K over 12-16 weeks, phased from Scan Context+GTSAM ($8-12K) through fleet cooperative ($10-20K)
 
 ### Fleet Task Allocation & Scheduling
-314. **CP-SAT (OR-Tools) solves optimally for Aurrigo's scale**: 50 vehicles × 200 tasks in 10-60 seconds. CP-SAT's NoOverlap constraint makes it 5-10x faster than MILP for scheduling problems
+314. **CP-SAT (OR-Tools) solves optimally for the reference airside AV stack's scale**: 50 vehicles × 200 tasks in 10-60 seconds. CP-SAT's NoOverlap constraint makes it 5-10x faster than MILP for scheduling problems
 315. **Hybrid centralized + decentralized is optimal**: CP-SAT shift planning (2h) + CBBA medium-term (15 min) + SSI auction real-time (per-event). Each layer compensates for the others
 316. **A-CDM integration is highest-value**: ELDT gives 15-30 min advance notice. Pre-positioning GSE reduces arrival delay 60-75%, empty travel 30-40%
 317. **CBBA converges in O(n) iterations**: 50 vehicles converge in ~2.5 seconds over 5G. Achieves ~95% of centralized optimal with no single point of failure
@@ -499,7 +499,7 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 340. **Multi-resolution grid optimal**: 0.1m near vehicle (safety), 0.2m medium (planning), 0.8m far (awareness). Reduces memory 80%+ while preserving safety-critical detail
 341. **ESDF for planning**: Euclidean Signed Distance Field from occupancy enables gradient-based trajectory optimization. nvblox provides ESDF natively
 342. **Fleet-shared occupancy**: Compressed delta updates over 5G. Each vehicle contributes local observations; fleet manager merges into global map
-343. **Highest-value perception infrastructure upgrade**: Provides spatial backbone for neural occupancy, flow prediction, CBF safety filtering, cooperative perception. Currently missing from Aurrigo stack
+343. **Highest-value perception infrastructure upgrade**: Provides spatial backbone for neural occupancy, flow prediction, CBF safety filtering, cooperative perception. Currently missing from reference airside AV stack
 344. **Implementation**: $25-40K development, no additional hardware
 
 ### Imitation Learning & Behavioral Cloning

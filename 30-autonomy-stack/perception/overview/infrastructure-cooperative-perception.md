@@ -48,7 +48,7 @@
    - 7.1 Proposed System Design
    - 7.2 Phased Deployment Strategy
    - 7.3 Cost Model for Airport Deployment
-   - 7.4 Integration with Aurrigo Stack
+   - 7.4 Integration with reference airside AV stack Stack
 
 ---
 
@@ -371,7 +371,7 @@ First real-world cooperative dataset with 4D radar + LiDAR + camera. Covers rain
 | **Significance** | Makes cooperative perception deployable on edge hardware (NVIDIA Orin) |
 | **GitHub** | `ucla-mobility/QuantV2X` |
 
-**Airside relevance**: Running cooperative perception on NVIDIA Orin (Aurrigo's target compute platform) requires quantization. QuantV2X demonstrates this is achievable with minimal accuracy loss.
+**Airside relevance**: Running cooperative perception on NVIDIA Orin (the reference airside AV stack's target compute platform) requires quantization. QuantV2X demonstrates this is achievable with minimal accuracy loss.
 
 ### 2.5 Open-Source Frameworks and Repos
 
@@ -497,7 +497,7 @@ Aligning vehicle and infrastructure coordinate frames is a critical challenge:
 
 **Initial Calibration:**
 - Infrastructure sensors are surveyed to a fixed coordinate frame (airport grid / WGS84)
-- Vehicle pose is obtained via RTK-GPS + IMU (Aurrigo uses GTSAM with GPU VGICP)
+- Vehicle pose is obtained via RTK-GPS + IMU (reference airside AV stack uses GTSAM with GPU VGICP)
 - The transformation `T_infra->vehicle = T_vehicle_pose^{-1} * T_infra_pose` aligns the frames
 
 **Runtime Calibration Maintenance:**
@@ -509,7 +509,7 @@ Aligning vehicle and infrastructure coordinate frames is a critical challenge:
 | HD map grounding | FreeAlign | Use pre-mapped features (lane markings, curbs) as anchors |
 | Feature correlation | SCOPE | Multi-scale feature interaction to compensate for misalignment |
 
-**Airport advantage**: Airport aprons have many fixed reference points (stand markings, building corners, fixed equipment) that can serve as calibration anchors. The GTSAM localization already used by Aurrigo provides high-quality vehicle pose, making the calibration problem easier than on open roads.
+**Airport advantage**: Airport aprons have many fixed reference points (stand markings, building corners, fixed equipment) that can serve as calibration anchors. The GTSAM localization already used by reference airside AV stack provides high-quality vehicle pose, making the calibration problem easier than on open roads.
 
 ### 3.5 Costs of Infrastructure Sensor Installation
 
@@ -638,7 +638,7 @@ A-SMGCS Track Data (per target):
   └── Conflict alerts (if system detects conflict)
 ```
 
-**Integration approach for Aurrigo:**
+**Integration approach for reference airside AV stack:**
 
 1. **Data feed**: A-SMGCS outputs are available via ASTERIX Cat. 10/20/62 format over network
 2. **ROS bridge**: An `a_smgcs_bridge` ROS node subscribes to ASTERIX feed, publishes as custom `AircraftTrack` messages
@@ -755,7 +755,7 @@ Several airports have already deployed infrastructure LiDAR:
 ├──────────────────────────┬──────────────────────────────────────────┤
 │   INFRASTRUCTURE SIDE    │           VEHICLE SIDE                    │
 │                          │                                          │
-│  Stand RSPUs (per stand) │  Aurrigo AV Sensors                      │
+│  Stand RSPUs (per stand) │  reference airside AV stack AV Sensors                      │
 │  ├── LiDAR (64/128 beam) │  ├── 4-8x RoboSense LiDAR              │
 │  ├── Cameras (2-4x)     │  ├── Cameras (if added)                  │
 │  ├── 4D Radar            │  ├── 4D Radar (Continental ARS548)       │
@@ -780,7 +780,7 @@ Several airports have already deployed infrastructure LiDAR:
 │                          │                  │                        │
 │                          │                  ▼                        │
 │                          │           Frenet Planner                  │
-│                          │           (existing Aurrigo)              │
+│                          │           (existing reference airside AV stack)              │
 ├──────────────────────────┴──────────────────────────────────────────┤
 │                      LONG-RANGE AWARENESS                            │
 │  A-SMGCS tracks (ASTERIX) ──► Aircraft/Vehicle track overlay        │
@@ -1078,7 +1078,7 @@ The BEV representation is the standard solution -- both infrastructure and vehic
 
 ### 7.1 Proposed System Design
 
-For Aurrigo's airport autonomous vehicle operations, the recommended cooperative perception system has three tiers:
+For the reference airside AV stack's airport autonomous vehicle operations, the recommended cooperative perception system has three tiers:
 
 **Tier 1: Stand-Level Cooperative Perception (Highest Value)**
 - 1-2 RSPUs per aircraft stand
@@ -1139,9 +1139,9 @@ For Aurrigo's airport autonomous vehicle operations, the recommended cooperative
 - Aircraft damage prevention (average $250K per GSE-aircraft collision)
 - Data asset value (first airside cooperative perception dataset)
 
-### 7.4 Integration with Aurrigo Stack
+### 7.4 Integration with reference airside AV stack Stack
 
-**Current Aurrigo ROS Noetic architecture (from `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/`):**
+**Current reference airside AV stack ROS Noetic architecture (from `/home/kvyn/ubuntu_20-04/z-airside-ws/`):**
 
 The cooperative perception integration requires these new ROS nodes:
 
@@ -1178,7 +1178,7 @@ float64 capture_timestamp
 float32 confidence_threshold
 ```
 
-**Key constraint**: The Aurrigo stack currently uses GTSAM for localization (GPU VGICP + IMU + RTK-GPS + wheel odometry). This provides the vehicle pose needed for coordinate frame alignment with infrastructure. The accuracy of GTSAM localization (~5-10 cm) is well within the tolerance needed for cooperative BEV fusion.
+**Key constraint**: The reference airside AV stack currently uses GTSAM for localization (GPU VGICP + IMU + RTK-GPS + wheel odometry). This provides the vehicle pose needed for coordinate frame alignment with infrastructure. The accuracy of GTSAM localization (~5-10 cm) is well within the tolerance needed for cooperative BEV fusion.
 
 ---
 

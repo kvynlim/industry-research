@@ -910,7 +910,7 @@ kappa_max = tan(35 deg) / 2.7 = 0.700 / 2.7 = 0.259 m^-1
 R_min = 2.7 / tan(35 deg) = 2.7 / 0.700 = 3.86 m
 ```
 
-For an airport ground vehicle (e.g., Aurrigo-class) with L = 2.0 m and delta_max = 40 degrees:
+For an airport ground vehicle (e.g., reference airside AV stack-class) with L = 2.0 m and delta_max = 40 degrees:
 ```
 kappa_max = tan(40 deg) / 2.0 = 0.839 / 2.0 = 0.420 m^-1
 R_min = 2.0 / 0.839 = 2.38 m

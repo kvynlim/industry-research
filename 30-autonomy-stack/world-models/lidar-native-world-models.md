@@ -6,7 +6,7 @@
 
 ---
 
-> **Key Takeaway:** Camera-centric world models generate images or video -- representations that a LiDAR-primary stack cannot directly consume. LiDAR-native world models predict future point clouds, voxel occupancy, or range images in the same metric coordinate system the planner already operates in. For a LiDAR-primary airside AV like Aurrigo, this eliminates the modality translation problem entirely. Copilot4D proved LiDAR future prediction is viable (65% Chamfer distance reduction). UnO demonstrated that self-supervised LiDAR occupancy forecasting outperforms supervised baselines. The field is converging on voxel-tokenized discrete diffusion and continuous occupancy fields as the two dominant paradigms. Both are deployable on Orin within 50-100ms for 3-step prediction, and both train self-supervised -- critical when no public airside LiDAR datasets exist.
+> **Key Takeaway:** Camera-centric world models generate images or video -- representations that a LiDAR-primary stack cannot directly consume. LiDAR-native world models predict future point clouds, voxel occupancy, or range images in the same metric coordinate system the planner already operates in. For a LiDAR-primary airside AV like reference airside AV stack, this eliminates the modality translation problem entirely. Copilot4D proved LiDAR future prediction is viable (65% Chamfer distance reduction). UnO demonstrated that self-supervised LiDAR occupancy forecasting outperforms supervised baselines. The field is converging on voxel-tokenized discrete diffusion and continuous occupancy fields as the two dominant paradigms. Both are deployable on Orin within 50-100ms for 3-step prediction, and both train self-supervised -- critical when no public airside LiDAR datasets exist.
 
 ---
 
@@ -45,7 +45,7 @@ The dominant world model research (GAIA-1/2/3, Sora, Vista, DrivingWorld) genera
 | Appearance-based prediction | Geometry-based prediction |
 | Resolution: ~1280x720 pixels | Resolution: ~200K points/scan |
 
-The Aurrigo stack operates entirely in metric 3D coordinates: GTSAM localization produces metric poses, Frenet planning uses metric distances, and the safety controller checks metric clearances. A world model that predicts in pixel space requires an additional depth estimation stage to convert back to 3D -- introducing error, latency, and architectural complexity that is entirely avoidable.
+The reference airside AV stack operates entirely in metric 3D coordinates: GTSAM localization produces metric poses, Frenet planning uses metric distances, and the safety controller checks metric clearances. A world model that predicts in pixel space requires an additional depth estimation stage to convert back to 3D -- introducing error, latency, and architectural complexity that is entirely avoidable.
 
 ### 1.2 What LiDAR-Native World Models Predict
 
@@ -204,7 +204,7 @@ LiDAR Point Cloud Sequence
 
 1. **Not open-source:** Code and weights are not publicly released. Waabi (founded by Raquel Urtasun, previously of Uber ATG) treats this as proprietary technology.
 2. **BEV-only representation:** Copilot4D uses BEV pillars, collapsing height information. This limits prediction of objects at different vertical levels (e.g., aircraft wing tips above vehicle roof).
-3. **Single-sensor training:** Trained on individual LiDAR sweeps from nuScenes (32-beam) and Waymo (64-beam). Multi-LiDAR setups like Aurrigo's 4-8 sensors are not directly supported -- would need to merge point clouds before tokenization.
+3. **Single-sensor training:** Trained on individual LiDAR sweeps from nuScenes (32-beam) and Waymo (64-beam). Multi-LiDAR setups like the reference airside AV stack's 4-8 sensors are not directly supported -- would need to merge point clouds before tokenization.
 4. **No action conditioning:** Copilot4D predicts unconditional futures -- it does not condition on the ego vehicle's planned action. This means it cannot answer "what will happen IF I take this action?"
 5. **Inference speed:** The iterative MaskGIT decoding requires 10-20 steps per future frame. Estimated 80-150ms per 3-step prediction on A100. On Orin, this would need significant optimization.
 
@@ -231,7 +231,7 @@ The architecture is reproducible from the paper even without official code. The 
 **Venue:** CVPR 2024 Oral
 **arXiv:** [2406.08691](https://arxiv.org/abs/2406.08691)
 
-UnO learns a continuous 4D spatio-temporal occupancy field from raw LiDAR data with **zero semantic labels**. It is arguably the most relevant LiDAR-native world model for the Aurrigo stack because it is fully self-supervised, operates directly on LiDAR, and produces both occupancy and flow predictions.
+UnO learns a continuous 4D spatio-temporal occupancy field from raw LiDAR data with **zero semantic labels**. It is arguably the most relevant LiDAR-native world model for the reference airside AV stack because it is fully self-supervised, operates directly on LiDAR, and produces both occupancy and flow predictions.
 
 ### 3.2 Architecture
 
@@ -309,7 +309,7 @@ LiDAR Point Cloud Sequence: P_{t-T}, ..., P_t
 
 ### 3.5 Airside Relevance
 
-UnO is arguably the **highest-priority LiDAR world model for the Aurrigo stack** for several reasons:
+UnO is arguably the **highest-priority LiDAR world model for the reference airside AV stack** for several reasons:
 
 1. **Zero labels needed for pre-training.** Just drive the vehicle around the airside recording LiDAR sequences. UnO learns world dynamics from these raw recordings.
 2. **Continuous representation matches planner queries.** The Frenet planner can query arbitrary (x, y, z, t) points along candidate trajectories to check predicted occupancy and flow.
@@ -392,7 +392,7 @@ Pipeline:
 
 ### 4.5 Airside Application: Generating Training Data from AMDB Maps
 
-This is where LidarDM becomes uniquely valuable for the Aurrigo use case. The existing repository documents note that **no public airside LiDAR datasets exist** and that AMDB (Aerodrome Mapping Database) data is **available free from the FAA for 500+ US airports**.
+This is where LidarDM becomes uniquely valuable for the reference airside AV stack use case. The existing repository documents note that **no public airside LiDAR datasets exist** and that AMDB (Aerodrome Mapping Database) data is **available free from the FAA for 500+ US airports**.
 
 The pipeline:
 
@@ -520,7 +520,7 @@ Camera-based pipeline (published):
   Multi-view images → BEV encoder (LSS/BEVFormer) → BEV features
   → Occupancy forecasting model → Future occupancy grids
 
-LiDAR-based pipeline (for Aurrigo):
+LiDAR-based pipeline (for reference airside AV stack):
   Multi-LiDAR point clouds → Voxelization + 3D sparse CNN → BEV features
   → SAME occupancy forecasting model → Future occupancy grids
 
@@ -882,7 +882,7 @@ The fundamental challenge in multi-modal world models is aligning two fundamenta
 
 ### 8.4 Airside Relevance: LiDAR Primary + Camera Secondary
 
-For the Aurrigo stack evolution:
+For the reference airside AV stack evolution:
 
 **Phase 1 (Current):** LiDAR-only world model. Use methods from Sections 2-7 with the existing 4-8 RoboSense LiDAR.
 
@@ -976,7 +976,7 @@ No public airside point cloud sequences exist. This is simultaneously the bigges
 | Argoverse 2 | LiDAR + camera | ~1TB | No (urban road) | Free |
 | KITTI | LiDAR + camera | ~100GB | No (suburban road) | Free |
 | WOMD-LiDAR | LiDAR range images | 574h | No (road, motion) | Free |
-| Aurrigo fleet | LiDAR (4-8 sensors) | Growing | **Yes** | Collection cost |
+| reference airside fleet | LiDAR (4-8 sensors) | Growing | **Yes** | Collection cost |
 | LidarDM synthetic | LiDAR (generated) | Unlimited | Configurable | Compute cost |
 | LiDARCrafter synthetic | LiDAR (generated) | Unlimited | Configurable | Compute cost |
 
@@ -993,7 +993,7 @@ Phase 1: Self-supervised pre-training on road data
   Output: Pre-trained LiDAR encoder weights
 
 Phase 2: Self-supervised temporal pre-training on airside data
-  Dataset: 10-50 hours of Aurrigo airside LiDAR recordings
+  Dataset: 10-50 hours of reference airside AV stack airside LiDAR recordings
   Method: UnO-style self-supervised occupancy prediction
   Objective: Learn airside-specific dynamics (pushback patterns,
              GSE trajectories, personnel movement)
@@ -1186,7 +1186,7 @@ torch.onnx.export(
 # for overlap with other perception tasks (detection, segmentation)
 ```
 
-### 11.5 Use Cases on the Aurrigo Stack
+### 11.5 Use Cases on the reference airside AV stack Stack
 
 **1. Safety verification (check planned trajectory against predicted future):**
 
@@ -1205,7 +1205,7 @@ def verify_trajectory_safety(planned_trajectory, predicted_occupancy, clearance=
         first_conflict_time: float or None
         conflict_voxels: occupied voxels within clearance
     """
-    ego_footprint = get_vehicle_footprint()  # ADT3 dimensions + clearance buffer
+    ego_footprint = get_vehicle_footprint()  # third-generation tug dimensions + clearance buffer
     
     for k, (x, y, theta, t) in enumerate(planned_trajectory):
         if k >= len(predicted_occupancy):

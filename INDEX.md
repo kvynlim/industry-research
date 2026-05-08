@@ -10,7 +10,6 @@
 | **Waymo** | `80-industry-intel/companies/waymo/` (5 docs) | `30-autonomy-stack/end-to-end-driving/company-approaches.md`, `60-safety-validation/safety-case/safety-incidents-lessons.md`, `50-cloud-fleet/ota/ota-fleet-management.md`, `50-cloud-fleet/fleet-management/fleet-management-dispatch.md`, `30-autonomy-stack/perception/overview/production-perception-systems.md` |
 | **Tesla** | `80-industry-intel/companies/tesla/` (4 docs) | `30-autonomy-stack/end-to-end-driving/company-approaches.md`, `60-safety-validation/safety-case/safety-incidents-lessons.md`, `50-cloud-fleet/ota/ota-fleet-management.md`, `30-autonomy-stack/perception/overview/production-perception-systems.md` |
 | **comma.ai** | `80-industry-intel/companies/comma-ai/` (2 docs) | `30-autonomy-stack/world-models/opensource-implementations.md`, `60-safety-validation/verification-validation/shadow-mode.md`, `40-runtime-systems/ml-deployment/opensource-ecosystem.md` |
-| **Aurrigo** | `80-industry-intel/companies/aurrigo/` (3 docs) | `70-operations-domains/airside/operations/industry-overview.md`, `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md` |
 | **UISEE** | `80-industry-intel/companies/uisee/tech-stack.md` | `80-industry-intel/companies/changi-programme/`, `70-operations-domains/airside/operations/industry-overview.md` |
 | **TractEasy/EasyMile** | `80-industry-intel/companies/tracteasy/` (2 docs) | `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md`, `70-operations-domains/airside/operations/industry-overview.md` |
 | **Wayve** | `80-industry-intel/companies/wayve/` (4 docs) | `30-autonomy-stack/end-to-end-driving/company-approaches.md`, `30-autonomy-stack/world-models/overview.md` |
@@ -143,7 +142,7 @@
 | VLM scene understanding | `30-autonomy-stack/vla-vlm/vlm-scene-understanding.md` | DriveVLM, DriveLM, NOTAM interpretation, turnaround assessment, FOD classification, VLM as 1-2Hz co-pilot |
 | Spatial foundation models | `30-autonomy-stack/vla-vlm/spatial-foundation-models-airport.md` | 4M unified multimodal, SpatialVLM spatial reasoning, RT-2/RT-X robotics transformers, Octo open-source policy, pi0 flow matching, HPT cross-embodiment, precision docking with spatial VLMs, gate identification, FOD detection/characterization, two-tier deployment (cloud+edge), distillation for Orin, in-context learning for new airports, Simplex integration, $55-95K phased |
 | Neural motion planning | `30-autonomy-stack/planning/neural-motion-planning.md` | SparseDrive, DiffusionDrive, GameFormer, Simplex safety integration |
-| Frenet augmentation | `30-autonomy-stack/planning/frenet-planner-augmentation.md` | Augmenting Aurrigo's existing planner |
+| Frenet augmentation | `30-autonomy-stack/planning/frenet-planner-augmentation.md` | Augmenting a classical Frenet planner |
 | Motion prediction | `30-autonomy-stack/planning/motion-prediction.md` | Trajectory prediction, interaction modeling |
 | LLM reasoning for planning | `30-autonomy-stack/planning/llm-reasoning-planning.md` | Chain-of-thought, interpretable decisions |
 | Diffusion trajectory planning | `30-autonomy-stack/planning/diffusion-trajectory-planning.md` | Diffusion-based motion generation |
@@ -153,7 +152,7 @@
 | RL driving policy | `30-autonomy-stack/planning/reinforcement-learning-driving-policy.md` | CaRL (CoRL 2025 SOTA, PPO + simple rewards), IQL (best offline RL), SAC/TD3/TQC/CrossQ, BC→offline RL→online RL pipeline, safe RL (CPO, Lagrangian, CBF filter), privileged-to-sensor distillation, policy head <0.5ms Orin, $45-75K/32 weeks |
 | Imitation learning & behavioral cloning | `30-autonomy-stack/planning/imitation-learning-behavioral-cloning.md` | BC from teleop, MDN multimodal BC, Diffusion BC (DDIM 3-5 steps), DAgger with Frenet expert, MaxEnt IRL cost learning, GAIL, style-conditioned multi-operator BC, CBF safety filtering, Simplex integration, $35-55K/10-14 weeks |
 | Joint prediction-planning | `30-autonomy-stack/planning/joint-prediction-planning.md` | Predict-then-plan failure modes, PDM-Closed baseline, conditional prediction, game-theoretic (Stackelberg, level-K), contingency planning, occupancy flow scoring, NAVSIM/nuPlan benchmarks, Frenet planner augmentation with prediction costs, airside interaction modeling, 50-100ms on Orin |
-| Autonomous docking & precision positioning | `30-autonomy-stack/planning/autonomous-docking-precision-positioning.md` | Two-phase architecture (coarse Frenet → fine docking), visual servoing (IBVS/PBVS), LiDAR ICP template alignment (+-1-2cm), AprilTag fiducials (+-0.5cm at 2m), MPC docking controller (CasADi 2-5ms), impedance control for pushback contact, per-GSE tolerances (+-5cm belt loader to +-30cm fuel truck), ADT3 crab steering advantage, safety PLC + personnel exclusion zones, 20 key takeaways, $53-90K/12-18 weeks |
+| Autonomous docking & precision positioning | `30-autonomy-stack/planning/autonomous-docking-precision-positioning.md` | Two-phase architecture (coarse Frenet → fine docking), visual servoing (IBVS/PBVS), LiDAR ICP template alignment (+-1-2cm), AprilTag fiducials (+-0.5cm at 2m), MPC docking controller (CasADi 2-5ms), impedance control for pushback contact, per-GSE tolerances (+-5cm belt loader to +-30cm fuel truck), third-generation tug crab steering advantage, safety PLC + personnel exclusion zones, 20 key takeaways, $53-90K/12-18 weeks |
 
 #### Airport operations
 | Topic | Primary | Supporting |
@@ -322,8 +321,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Reader Markdown pages | 402 |
-| Core research documents | 394 |
+| Reader Markdown pages | 398 |
+| Core research documents | 390 |
 | Reader/research lines | 230k+ |
 | `00-start-here/` documents | 4 |
 | `10-knowledge-base/` documents | 19 |
@@ -333,9 +332,9 @@
 | `50-cloud-fleet/` documents | 20 |
 | `60-safety-validation/` documents | 24 |
 | `70-operations-domains/` documents | 24 |
-| `80-industry-intel/` documents | 56 |
+| `80-industry-intel/` documents | 52 |
 | `90-synthesis/` documents | 8 |
-| Companies covered | 21 |
+| Companies covered | 20 |
 | Technology domains | 9 |
 | Method-level SLAM library | 58 method files + overview |
 | Method-level perception files | 54 |

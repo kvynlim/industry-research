@@ -206,7 +206,7 @@ What UISEE does (from deployment reports):
 
 ```
 Layer 1: Point cloud rain filtering
-  - Statistical Outlier Removal (already in Aurrigo stack: aurrigo_rain_detection)
+  - Statistical Outlier Removal (already in reference airside AV stack: airside_rain_detection)
   - Intensity-based rejection (rain drops have characteristic low-intensity returns)
   - Multi-return analysis (rain hits first, ground hits second)
 
@@ -255,7 +255,7 @@ Thermal/LWIR: IMPROVED at night
 ### 6.2 Recommendation for Night
 
 ```
-LiDAR-primary stack (Aurrigo's current approach):
+LiDAR-primary stack (the reference airside AV stack's current approach):
   → Night operations are inherently supported
   → No additional hardware needed for basic night capability
 

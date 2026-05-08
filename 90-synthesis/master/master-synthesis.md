@@ -36,7 +36,7 @@ The autonomous driving field has undergone a paradigm shift from modular percept
 
 > **A world model pre-trained on road driving data, fine-tuned on airside data, and combined with occupancy-based planning can leapfrog traditional airside AV approaches that rely on hand-crafted rules and HD maps.**
 
-Key advantages over current airside AV solutions (TractEasy, Aurrigo, etc.):
+Key advantages over current airside AV solutions (TractEasy, reference airside AV stack, etc.):
 - **No per-class object detection needed** — occupancy prediction is class-agnostic, handling aircraft, GSE, personnel without per-type training
 - **Generalization across airports** — world models + VLAs can adapt to new layouts with minimal data, vs. re-mapping for each airport
 - **Language-grounded reasoning** — VLAs can process ground control instructions and provide explainable decisions for regulatory compliance
@@ -63,7 +63,7 @@ Key advantages over current airside AV solutions (TractEasy, Aurrigo, etc.):
 | Company | Product | Autonomy | Deployments | Tech Stack |
 |---------|---------|----------|-------------|------------|
 | **TractEasy** (TLD + EasyMile) | EZTow, EZDolly | L4 | Narita, Changi, Munich, Dubai | GPS + 3D LiDAR + fusion |
-| **Aurrigo** | Auto-DollyTug, Auto-Cargo | L4 | Zurich, Schiphol, Heathrow | LiDAR + 360 cam + GPS + IMU |
+| **reference airside AV stack** | autonomous baggage/cargo tug, autonomous cargo vehicle | L4 | Zurich, Schiphol, Heathrow | LiDAR + 360 cam + GPS + IMU |
 | **Charlatte Autonom** | AT135 | L4 | CDG (Air France), Frankfurt | V2X + sensor fusion |
 | **Fernride** | Teleoperation + autonomy | L4 tele | NVIDIA partnership | Progressive autonomy |
 | **Ohmio** | Autonomous shuttles | L4 | JFK, Schiphol, Brussels | Undisclosed |
@@ -80,7 +80,7 @@ Key advantages over current airside AV solutions (TractEasy, Aurrigo, etc.):
 | Standard | Status | Relevance |
 |----------|--------|-----------|
 | **FAA CertAlert 24-02** | Only formal US guidance (2024) | Acknowledges AGVS, standards in development |
-| **ISO 3691-4:2020** | Current certification path | Driverless industrial trucks — used by TractEasy/Aurrigo |
+| **ISO 3691-4:2020** | Current certification path | Driverless industrial trucks — used by TractEasy/reference airside AV stack |
 | **ISO/PAS 8800** | Published Dec 2024 | AI safety lifecycle for AV — bridges ISO 26262 gap |
 | **EASA AI Roadmap 2.0** | In progress, targeting 2028 | W-shaped development process for aviation AI |
 | **ISO 21448 (SOTIF)** | Active | Safety of intended functionality — key for ML models |

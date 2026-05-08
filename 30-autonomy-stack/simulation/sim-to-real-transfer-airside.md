@@ -20,7 +20,7 @@
 10. [Validation Methodology](#10-validation-methodology)
 11. [Practical Pipeline](#11-practical-pipeline)
 12. [Cost & Timeline](#12-cost--timeline)
-13. [Recommended Strategy for Aurrigo](#13-recommended-strategy)
+13. [Recommended Strategy for reference airside AV stack](#13-recommended-strategy)
 14. [References](#14-references)
 
 ---
@@ -217,7 +217,7 @@ class RealisticLidarSim:
 
 ### 3.3 RoboSense-Specific Simulation Parameters
 
-Since Aurrigo uses RoboSense RSHELIOS and RSBP, simulate their exact beam patterns:
+Since reference airside AV stack uses RoboSense RSHELIOS and RSBP, simulate their exact beam patterns:
 
 ```python
 RSHELIOS_CONFIG = {
@@ -644,7 +644,7 @@ This is achieved through:
 - Sensor-specific simulation (exact beam pattern, noise model)
 - Unlimited scenario variation at zero marginal cost
 
-**For Aurrigo**: Building a digital twin of 2-3 key airports would cost $50-100K but provide unlimited training data.
+**For reference airside AV stack**: Building a digital twin of 2-3 key airports would cost $50-100K but provide unlimited training data.
 
 ---
 
@@ -828,7 +828,7 @@ Define pass/fail criteria for airside-specific scenarios:
 
 ## 11. Practical Pipeline
 
-### 11.1 End-to-End Sim-to-Real Pipeline for Aurrigo
+### 11.1 End-to-End Sim-to-Real Pipeline for reference airside AV stack
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -922,7 +922,7 @@ Break-even: After 1st airport
 
 ---
 
-## 13. Recommended Strategy for Aurrigo {#13-recommended-strategy}
+## 13. Recommended Strategy for reference airside AV stack {#13-recommended-strategy}
 
 ### 13.1 Phased Approach
 

@@ -1,6 +1,6 @@
 # Bicycle Kinematic Model: First Principles
 
-## The Vehicle Dynamics Foundation for Aurrigo's Simulation and Control
+## The Vehicle Dynamics Foundation for the reference airside AV stack's Simulation and Control
 
 ---
 
@@ -20,7 +20,7 @@
             ↗
     ┌──────●──────┐  Front axle (steered)
     │      │      │
-    │      │ L    │  L = wheelbase = 3.15m (ADT3)
+    │      │ L    │  L = wheelbase = 3.15m (third-generation tug)
     │      │      │
     │      ●      │  Rear axle (reference point)
     └─────────────┘
@@ -56,7 +56,7 @@ The yaw rate is:
 
 ### 1.4 Discrete-Time Model (Euler Integration)
 
-Aurrigo's pysim uses dt = 0.02s (50Hz):
+the reference airside AV stack's pysim uses dt = 0.02s (50Hz):
 
 ```python
 def kinematic_step(x, y, theta, v, delta, L=3.15, dt=0.02):
@@ -95,11 +95,11 @@ def kinematic_step_rk4(x, y, theta, v, delta, L=3.15, dt=0.02):
 
 ---
 
-## 2. ADT3 Parameters
+## 2. third-generation tug Parameters
 
 ```python
-# From aurrigo_python_sim and av_comms config
-ADT3_PARAMS = {
+# From airside_python_sim and av_comms config
+third-generation tug_PARAMS = {
     'wheelbase': 3.15,              # meters (L_eff, validated from bag data)
     'max_steering_angle': 0.8762,   # radians (50.2 degrees)
     'max_speed': 6.67,              # m/s (24 km/h)
@@ -120,7 +120,7 @@ The kinematic bicycle model uses an "effective" wheelbase that may differ from t
 - Load distribution
 
 ```python
-# From fit_wheelbase.py — fitted to real ADT3 bag data
+# From fit_wheelbase.py — fitted to real third-generation tug bag data
 # Method: minimize error between model prediction and GPS/odometry trajectory
 # Result: L_eff = 3.15m
 # Validation error: mean 4.76m over 116m trajectory (4.1%)
@@ -165,13 +165,13 @@ Ideal Ackermann:
   More precisely: tan(δ) = L / R
 ```
 
-### 3.2 ADT3 Steering Conversion
+### 3.2 third-generation tug Steering Conversion
 
-From `aurrigo_av_comms`:
+From `airside_av_comms`:
 ```
 Steering command (ROS): angular.z in radians
   → Convert: angle_rad → sign-inverted percentage counts
-  → ADT3: ±95 counts = ±50.2° (0.8762 rad)
+  → third-generation tug: ±95 counts = ±50.2° (0.8762 rad)
   → Scale: counts = angle_rad * (95 / 0.8762) = angle_rad * 108.4
 
 Feedback: steering position sensor → percentage counts → radians
@@ -179,7 +179,7 @@ Feedback: steering position sensor → percentage counts → radians
 
 ---
 
-## 4. Crab Steering (ADT3 Side Drive)
+## 4. Crab Steering (third-generation tug Side Drive)
 
 ### 4.1 Crab Mode Kinematics
 
@@ -205,7 +205,7 @@ This is pure translation at angle δ_crab relative to heading.
 
 ### 4.2 Transition Mode
 
-ADT3 can transition between Ackermann and crab steering:
+third-generation tug can transition between Ackermann and crab steering:
 ```
 State machine: ACKERMANN → TRANSITION → CRAB → TRANSITION → ACKERMANN
 
@@ -285,10 +285,10 @@ def enforce_kinematic_feasibility(predicted_trajectory, dt=0.2):
             delta = 0
 
         # Check feasibility
-        if abs(v) > ADT3_PARAMS['max_speed']:
-            return False, f"Speed {v:.1f} exceeds max {ADT3_PARAMS['max_speed']}"
-        if abs(delta) > ADT3_PARAMS['max_steering_angle']:
-            return False, f"Steering {delta:.2f} exceeds max {ADT3_PARAMS['max_steering_angle']}"
+        if abs(v) > third-generation tug_PARAMS['max_speed']:
+            return False, f"Speed {v:.1f} exceeds max {third-generation tug_PARAMS['max_speed']}"
+        if abs(delta) > third-generation tug_PARAMS['max_steering_angle']:
+            return False, f"Steering {delta:.2f} exceeds max {third-generation tug_PARAMS['max_steering_angle']}"
 
     return True, "Feasible"
 ```
@@ -319,10 +319,10 @@ def kinematic_loss(predicted_ego_trajectory, dt=0.2, L=3.15):
 
 ---
 
-## 7. Validation: Aurrigo's 4.1% Error Result
+## 7. Validation: the reference airside AV stack's 4.1% Error Result
 
 ```
-Test: Replay real ADT3 bag data commands through kinematic bicycle model
+Test: Replay real third-generation tug bag data commands through kinematic bicycle model
   Input: Recorded steering and velocity commands from CAN
   Output: Predicted trajectory from bicycle model
   Ground truth: GPS/odometry trajectory from bag
@@ -357,5 +357,5 @@ Error sources:
 - Rajamani, R. "Vehicle Dynamics and Control." Springer, 2012
 - Kong et al. "Kinematic and Dynamic Vehicle Models for Autonomous Driving Control Design." IV, 2015
 - Werling et al. "Optimal Trajectory Generation for Dynamic Street Scenarios in a Frenet Frame." ICRA, 2010
-- Aurrigo aurrigo_python_sim source code (validated model)
-- Aurrigo fit_wheelbase.py (parameter identification)
+- reference airside AV stack airside_python_sim source code (validated model)
+- reference airside AV stack fit_wheelbase.py (parameter identification)

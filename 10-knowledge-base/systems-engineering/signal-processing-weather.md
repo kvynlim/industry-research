@@ -1,6 +1,6 @@
 # V2 Deep Dive: Signal Processing (#1-5) and Weather/Degraded Operation (#29-31)
 
-**Feasibility verification against Aurrigo source code and industry evidence**
+**Feasibility verification against reference airside AV stack source code and industry evidence**
 **Date: 2026-03-16**
 
 ---
@@ -8,7 +8,7 @@
 ## Methodology
 
 Each recommendation was verified by:
-1. Reading the actual Aurrigo source code to identify exact integration points
+1. Reading the actual reference airside AV stack source code to identify exact integration points
 2. Tracing data flow through the pipeline (rslidar_sdk -> Aggregator -> Preprocessor -> downstream)
 3. Cross-referencing with peer-reviewed research and deployed AV systems
 4. Identifying concrete blockers, incompatibilities, and prerequisites
@@ -34,7 +34,7 @@ Each recommendation was verified by:
 
 The RS32 decoder already supports dual-return at the packet level:
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/rslidar_sdk/src/rs_driver/src/rs_driver/driver/decoder/decoder_RS32.hpp`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/rslidar_sdk/src/rs_driver/src/rs_driver/driver/decoder/decoder_RS32.hpp`
   - Line 185-196: `getEchoMode()` maps return_mode byte 0x00 -> ECHO_DUAL
   - Line 219-229: `decodeMsopPkt()` switches between `SingleReturnBlockIterator` and `DualReturnBlockIterator`
   - In dual-return mode, odd blocks contain strongest return, even blocks contain last return (per RoboSense spec)
@@ -104,16 +104,16 @@ dual_return_filter:
 
 The existing SOR implementation is the exact insertion point:
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_preprocessor/src/PointcloudPreprocessor.cpp`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_pointcloud_preprocessor/src/PointcloudPreprocessor.cpp`
   - Lines 761-862: `applyStatisticalOutlierRemoval()` -- this is the function to modify
   - Line 833: `const double threshold = global_mean + std_dev_mul_thresh * global_stddev;` -- THIS IS THE LINE TO MAKE RANGE-ADAPTIVE
   - Lines 800-822: The per-point KNN loop already computes `mean_distances[i]`. The range `r` of each point is trivially available from `current_cloud->points[i].{x,y,z}`.
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_preprocessor/include/aurrigo_pointcloud_preprocessor/PointcloudPreprocessor.h`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_pointcloud_preprocessor/include/airside_pointcloud_preprocessor/PointcloudPreprocessor.h`
   - Line 62-63: `CropBoxConfig` struct -- add `bool enable_dsor` and `double dsor_range_scale` parameters
   - Line 105-107: `applyStatisticalOutlierRemoval()` signature -- add optional range-adaptive parameters
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_preprocessor/config/pointcloud_preprocessor.yaml`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_pointcloud_preprocessor/config/pointcloud_preprocessor.yaml`
   - Each region already has per-region SOR parameters. Add DSOR parameters alongside.
 
 **Concrete code change:**
@@ -191,11 +191,11 @@ dsor_max_range: 30.0       # Reference range for scaling (meters)
 
 **Key finding**: The preprocessor already has intensity filtering infrastructure that is largely dormant.
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_preprocessor/src/PointcloudPreprocessor.cpp`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_pointcloud_preprocessor/src/PointcloudPreprocessor.cpp`
   - Lines 697-733: `applyIntensityFilter()` -- exists but is a simple min/max threshold without range normalization
   - Lines 1023-1026: In `classifyPointsSinglePass()`, intensity filtering is applied inline during the single-pass cropbox classification
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_preprocessor/config/pointcloud_preprocessor.yaml`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_pointcloud_preprocessor/config/pointcloud_preprocessor.yaml`
   - No region currently sets `enable_intensity_filter: true`. The config template mentions it but all 13 regions omit it (default is `true` in code, but `min_intensity: 0.0` and `max_intensity: 255.0` make it a no-op).
 
 - **What needs to change**: The existing intensity filter is too crude for LIOR. LIOR requires range-normalized intensity, not raw intensity thresholding. A new filtering step is needed.
@@ -362,7 +362,7 @@ temporal_consistency:
 
 The most efficient insertion point is in the Preprocessor's conversion step:
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_preprocessor/src/PointcloudPreprocessor.cpp`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_pointcloud_preprocessor/src/PointcloudPreprocessor.cpp`
   - Lines 418-462: `applyConversionAndTransformation()` -- this is where the ROS message is converted to PCL. Range normalization should be applied here, immediately after conversion.
   - Line 422: `pcl::PointCloud<pcl::PointXYZI>::Ptr transformed_cloud` -- the intensity field of each point is accessible here.
 
@@ -451,11 +451,11 @@ pt.intensity = pt.intensity * scale / max_expected_intensity;
 
 **Critical finding**: The rain detection node already computes weather severity but its output is not consumed by anything.
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_rain_detection/src/RainDetection.cpp`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_rain_detection/src/RainDetection.cpp`
   - Lines 168-214: `calculateRainMetrics()` publishes `rain_state` (0=NO_RAIN through 4=MONSOON_RAIN) on `~rain_state` topic
   - The rain state is published as `std_msgs::Float32`, not consumed by any other node
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_rain_detection/config/rain_detection.yaml`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_rain_detection/config/rain_detection.yaml`
   - Timer rate is 0.2 Hz (checks every 5 seconds) -- too slow for rapid weather changes like driving through an exhaust plume
   - Uses a fixed 1m^3 cube at [6.5,7.5] x [-0.5,0.5] x [2.0,3.0] -- a small volume directly above the vehicle
 
@@ -502,7 +502,7 @@ float32 dual_return_divergence
 **Industry Reality Check:**
 
 - **Weather classification from LiDAR**: The Survey on LiDAR Perception in Adverse Weather (arXiv:2304.06312) identifies rain detection rate, mean free-path, and intensity statistics as the primary LiDAR-derived weather indicators. These are exactly what's proposed.
-- **Hesai IPE**: The commercial state-of-art. Hesai's Intelligent Point Cloud Engine classifies weather conditions and adapts filtering parameters in real-time, built into the sensor firmware. Aurrigo is essentially building a software version of this.
+- **Hesai IPE**: The commercial state-of-art. Hesai's Intelligent Point Cloud Engine classifies weather conditions and adapts filtering parameters in real-time, built into the sensor firmware. reference airside AV stack is essentially building a software version of this.
 - **Adaptive parameter tuning**: Aurora's velocity-based rain filtering (published 2024) adjusts filter aggressiveness based on estimated precipitation rate. Kodiak's IPE integration similarly adapts.
 - **Known failure modes**:
   - **Misclassification**: Fog and heavy exhaust have similar LiDAR signatures (short mean free-path, low intensity). Distinguishing them is important because the operational response differs (fog: slow down globally; exhaust: filter locally).
@@ -590,7 +590,7 @@ exhaust_zone_filter:
   - Temporally fluctuating (turbulent flow)
   - Spatially diffuse (no sharp edges)
   - Located in a cone behind the engine
-- **The practical question**: How often does the Aurrigo vehicle actually encounter jet exhaust? If it primarily operates on the cargo apron away from active aircraft engines, this may be a low-frequency event. If it routinely passes behind idling aircraft, it's critical.
+- **The practical question**: How often does the reference airside vehicle actually encounter jet exhaust? If it primarily operates on the cargo apron away from active aircraft engines, this may be a low-frequency event. If it routinely passes behind idling aircraft, it's critical.
 
 **Revised Implementation Plan:**
 
@@ -609,7 +609,7 @@ exhaust_zone_filter:
 **Risk Assessment:**
 - **Low risk for Phase 1**: Signal-level filtering is general-purpose and doesn't require airport-specific knowledge.
 - **Medium risk for Phase 2**: Static zone configuration requires accurate stand geometry and must be updated when airport layout changes. If the configuration is wrong, valid objects in the zone may be filtered.
-- **Operational question**: Need to confirm with Aurrigo operations team whether the vehicle routinely encounters jet exhaust. If not, this can be deprioritized.
+- **Operational question**: Need to confirm with reference airside AV stack operations team whether the vehicle routinely encounters jet exhaust. If not, this can be deprioritized.
 
 ---
 
@@ -623,7 +623,7 @@ exhaust_zone_filter:
 
 **Key finding**: The Aggregator already implements basic staleness detection but handles it suboptimally.
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_aggregator/src/PointcloudAggregator.cpp`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_pointcloud_aggregator/src/PointcloudAggregator.cpp`
   - Line 23 (header): `static constexpr double STALE_THRESHOLD = 0.2;` -- 200ms hardcoded constant
   - Lines 116-123: Staleness check in `update()`:
     ```cpp
@@ -636,7 +636,7 @@ exhaust_zone_filter:
     ```
   - **Problem**: The current behavior is binary -- either use the data as-is or skip it entirely. There is no intermediate "use with ego-motion compensation" mode.
 
-- **File**: `/home/kvyn/ubuntu_20-04/z-aurrigo-ws/src/aurrigo_perception/aurrigo_pointcloud_aggregator/include/aurrigo_pointcloud_aggregator/PointcloudAggregator.hpp`
+- **File**: `/home/kvyn/ubuntu_20-04/z-airside-ws/src/airside_perception/airside_pointcloud_aggregator/include/airside_pointcloud_aggregator/PointcloudAggregator.hpp`
   - Lines 49-59: `DiagStats` struct -- already tracks per-sensor stale counts, age sums, and TF failures. Good foundation.
 
 **What the current code gets right:**

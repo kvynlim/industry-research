@@ -458,7 +458,7 @@ Effective airside AV testing requires populating the digital twin with:
 
 **Multi-strategy cooperative scheduling:** Research at Chinese airports has modeled airport specialized vehicles using digital twin-based cooperative scheduling algorithms, optimizing dispatching of fuel trucks, catering vehicles, and baggage carts simultaneously to minimize turnaround time and reduce conflicts.
 
-**Aurrigo Auto-Sim:** Aurrigo (maker of autonomous GSE) developed Auto-Sim 3D digital twin software that specifically simulates how an airport operates with autonomous vehicles added to the existing mix of manual equipment and personnel, validating autonomous behavior before deployment.
+**reference airside AV stack airside autonomy simulator:** reference airside AV stack (maker of autonomous GSE) developed airside autonomy simulator 3D digital twin software that specifically simulates how an airport operates with autonomous vehicles added to the existing mix of manual equipment and personnel, validating autonomous behavior before deployment.
 
 ### 8.3 Scenario Generation for Edge Cases
 
@@ -633,7 +633,7 @@ For autonomous vehicle simulation on the airport ramp, the most relevant platfor
 - [Material-informed 3DGS for Digital Twins](https://arxiv.org/abs/2511.20348)
 - [NeRF and 3DGS for Autonomous Driving (Review)](https://www.sciencedirect.com/science/article/pii/S1000934525000975)
 - [Ansys-NVIDIA AV Sensor Simulation](https://www.ansys.com/blog/ansys-and-nvidia-collaborate-on-building-a-high-fidelity-av-sens)
-- [Aurrigo Autonomous GSE](https://www.airportsinternational.com/article/autonomous-gse-shape-things-come)
+- [reference airside AV stack Autonomous GSE](https://www.airportsinternational.com/article/autonomous-gse-shape-things-come)
 - [Digital Twin Implementation Costs](https://thecodework.com/blog/cost-of-implementing-digital-twin-solution/)
 - [Real-Time vs Offline Digital Twins](https://www.rtinsights.com/what-differentiates-real-time-digital-twins/)
 - [Amadeus AODB](https://amadeus.com/en/airports/products/airport-operational-data-base-aodb)

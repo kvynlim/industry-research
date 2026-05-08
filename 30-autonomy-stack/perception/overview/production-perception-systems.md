@@ -201,7 +201,7 @@ openpilot supports 300+ vehicle models, leveraging each vehicle's existing CAN b
 
 ---
 
-## 6. TractEasy / Aurrigo -- Production Airside Vehicles
+## 6. TractEasy / reference airside AV stack -- Production Airside Vehicles
 
 ### TractEasy (EasyMile)
 
@@ -227,9 +227,9 @@ TractEasy is the most widely deployed autonomous airside tow tractor, operating 
 
 **Operational approach**: TractEasy operates on pre-mapped routes with centimeter-level localization. The LiDAR and cameras provide obstacle detection, while GPS/IMU/encoders provide localization. V2X communication adds awareness of infrastructure signals (gates, traffic lights, aircraft movement areas).
 
-### Aurrigo (Auto-DollyTug, Auto-Cargo)
+### reference airside AV stack (autonomous baggage/cargo tug, autonomous cargo vehicle)
 
-Aurrigo is deploying autonomous baggage and cargo vehicles at airports including Heathrow, Schiphol, and multiple global trial sites.
+reference airside AV stack is deploying autonomous baggage and cargo vehicles at airports including Heathrow, Schiphol, and multiple global trial sites.
 
 | Sensor Type | Details |
 |---|---|
@@ -246,8 +246,8 @@ Aurrigo is deploying autonomous baggage and cargo vehicles at airports including
 
 ### Lessons from Airside Deployments
 
-1. **Pre-mapping is standard**: Both TractEasy and Aurrigo operate on pre-mapped routes, not in unknown environments. This dramatically simplifies the perception problem -- the vehicle knows what the world should look like and only needs to detect deviations (obstacles, vehicles, people).
-2. **Weather is the primary challenge**: Both companies have invested heavily in wet-weather algorithms. Aurrigo specifically developed new software to distinguish rain from obstacles in LiDAR data.
+1. **Pre-mapping is standard**: Both TractEasy and reference airside AV stack operate on pre-mapped routes, not in unknown environments. This dramatically simplifies the perception problem -- the vehicle knows what the world should look like and only needs to detect deviations (obstacles, vehicles, people).
+2. **Weather is the primary challenge**: Both companies have invested heavily in wet-weather algorithms. reference airside AV stack specifically developed new software to distinguish rain from obstacles in LiDAR data.
 3. **Lower speeds reduce sensor requirements**: Airside vehicles typically operate at 10-25 km/h, requiring much shorter perception ranges than highway vehicles. This means less expensive, shorter-range sensors can suffice.
 4. **V2X is critical for airside**: Unlike road vehicles, airside vehicles can leverage infrastructure communication for coordination at intersections, gate areas, and aircraft stands.
 5. **Testing has been extensive**: Hundreds of hours of testing across different weather conditions without weather-related failures, though extreme conditions remain challenging.
@@ -594,7 +594,7 @@ Based on every production L4 deployment analyzed, the minimum viable sensor suit
 
 | Sensor | Quantity | Purpose | Proven By |
 |---|---|---|---|
-| **LiDAR** | 2-4 units | Primary 3D perception, obstacle detection, localization | Waymo, Zoox, Cruise, TractEasy, Aurrigo, Baidu |
+| **LiDAR** | 2-4 units | Primary 3D perception, obstacle detection, localization | Waymo, Zoox, Cruise, TractEasy, reference airside AV stack, Baidu |
 | **Cameras** | 4-8 | Object classification, sign/marking reading, visual context | All production systems |
 | **Radar** | 2-4 (preferably 4D imaging) | All-weather perception, velocity measurement | Waymo, ZF/SAIC, Continental |
 | **GPS/GNSS + IMU** | 1 each | Localization, dead reckoning | All production systems |
@@ -605,7 +605,7 @@ Based on every production L4 deployment analyzed, the minimum viable sensor suit
 **Proven (low risk):**
 - LiDAR + camera + radar sensor fusion for L4 autonomy
 - Hesai and RoboSense LiDAR for production reliability
-- Pre-mapped route operation with obstacle detection (TractEasy/Aurrigo model)
+- Pre-mapped route operation with obstacle detection (TractEasy/reference airside AV stack model)
 - Active sensor cleaning systems (wipers, air jets, heaters)
 - 4D imaging radar as a weather-robust complement to LiDAR
 - GPS/IMU/encoder fusion for centimeter-level localization
@@ -625,7 +625,7 @@ Based on every production L4 deployment analyzed, the minimum viable sensor suit
 
 ### Airside-Specific Recommendations
 
-1. **Start with the TractEasy/Aurrigo model**: Pre-mapped routes, LiDAR + camera + radar + GPS/IMU. This is the most conservative, most proven approach for airside operations. Both companies have demonstrated successful airport deployments.
+1. **Start with the TractEasy/reference airside AV stack model**: Pre-mapped routes, LiDAR + camera + radar + GPS/IMU. This is the most conservative, most proven approach for airside operations. Both companies have demonstrated successful airport deployments.
 
 2. **Add 4D imaging radar early**: Continental ARS548 or ZF imaging radar at $200-500/unit adds robust all-weather capability. Rain is the most common sensor-degrading condition at airports, and 4D radar is the most weather-resistant perception sensor available.
 

@@ -19,7 +19,7 @@
 9. [ROS-Specific Safety Challenges](#9-ros-specific-safety-challenges)
 10. [Airside-Specific Requirements](#10-airside-specific-requirements)
 11. [comma.ai Panda Safety Layer Case Study](#11-commaai-panda-safety-layer-case-study)
-12. [Recommended Implementation for Aurrigo](#12-recommended-implementation-for-aurrigo)
+12. [Recommended Implementation for reference airside AV stack](#12-recommended-implementation-for-airside_av)
 13. [References](#13-references)
 
 ---
@@ -28,7 +28,7 @@
 
 ### 1.1 The Safety Gap in ROS-Based Autonomous Vehicles
 
-ROS Noetic was designed as a research middleware, not a safety-critical runtime. Its architecture -- single-process rosmaster, unreliable UDP-based topic transport, unbounded dynamic memory allocation, no built-in watchdog mechanisms -- sits at the opposite end of the spectrum from what standards like ISO 26262 and ISO 3691-4 demand for autonomous vehicle software. Yet ROS is the foundation of most autonomous vehicle development stacks, including the 22-package Aurrigo ADS stack running on airport airside.
+ROS Noetic was designed as a research middleware, not a safety-critical runtime. Its architecture -- single-process rosmaster, unreliable UDP-based topic transport, unbounded dynamic memory allocation, no built-in watchdog mechanisms -- sits at the opposite end of the spectrum from what standards like ISO 26262 and ISO 3691-4 demand for autonomous vehicle software. Yet ROS is the foundation of most autonomous vehicle development stacks, including the 22-package reference airside AV stack ADS stack running on airport airside.
 
 This gap is not academic. Airport airside autonomous vehicles operate within meters of aircraft worth $100M-$400M, alongside ground crew where 27,000 ramp accidents occur annually ($10B+ cost). The EU Machinery Regulation 2023/1230 (effective January 2027) now explicitly includes software as a safety-critical machine component, and the 2027 regulation mandates third-party conformity assessment for autonomous vehicles with AI control systems. ISO 3691-4:2023, harmonized with the Machinery Directive since May 2024, requires Performance Level d (PLd) for personnel detection and braking -- which implies structured software development processes at the code level.
 
@@ -51,7 +51,7 @@ Without code-level evidence, a safety case built on system-level arguments alone
 
 This document covers functional safety software practices applicable to:
 
-- **Primary target**: Aurrigo's ROS Noetic C++ nodelet stack (22 packages, GCC 9, Ubuntu 20.04)
+- **Primary target**: the reference airside AV stack's ROS Noetic C++ nodelet stack (22 packages, GCC 9, Ubuntu 20.04)
 - **Safety controller**: STM32-class microcontroller running CAN gateway firmware (bare-metal C)
 - **Deployment platform**: NVIDIA Jetson Orin (aarch64, L4T/JetPack)
 - **Standards context**: ISO 3691-4:2023, ISO 26262:2018 (applied by analogy), EU Machinery Regulation 2023/1230, ISO 13849-1
@@ -107,7 +107,7 @@ ISO 26262 assigns Automotive Safety Integrity Levels (ASIL A through D) to safet
 
 **Applying ASIL decomposition to the Simplex architecture:**
 
-The Aurrigo Simplex architecture (see [../runtime-assurance/simplex-safety-architecture.md](../runtime-assurance/simplex-safety-architecture.md)) is a natural candidate for ASIL decomposition:
+The reference airside AV stack Simplex architecture (see [../runtime-assurance/simplex-safety-architecture.md](../runtime-assurance/simplex-safety-architecture.md)) is a natural candidate for ASIL decomposition:
 
 - **Arbitrator node** + **Production stack (Baseline Controller)**: ASIL B -- these form the safety-certified path. The arbitrator selects commands and enforces safety constraints. The production stack's Frenet planner and RANSAC perception provide verified, deterministic behavior.
 - **Shadow/New stack (Advanced Controller)**: QM -- the world model stack, neural planner, and foundation model perception run as the high-performance path but are not trusted for safety. Their outputs are gated by the arbitrator.
@@ -137,7 +137,7 @@ ISO 26262-6, Clause 6 requires that each software safety requirement be:
 6. **Verifiable**: Can be tested or analyzed to confirm compliance
 7. **Traceable**: Linked to the technical safety concept and to implementation/test
 
-**Example safety requirements for Aurrigo's airside AV:**
+**Example safety requirements for the reference airside AV stack's airside AV:**
 
 ```
 SSR-001: The emergency braking node shall command maximum braking force 
@@ -166,7 +166,7 @@ ISO 26262-6, Clause 7 addresses the software architecture with emphasis on:
 
 **Modularity (Clause 7.4.1):** Each software component has a well-defined interface and limited coupling. In ROS, this maps naturally to nodes/nodelets with defined topic/service interfaces. The risk is that ROS makes it too easy to create hidden coupling through global parameters, shared tf trees, and implicit timing dependencies.
 
-**Hierarchical structure (Clause 7.4.2):** Software components organized in layers. For Aurrigo:
+**Hierarchical structure (Clause 7.4.2):** Software components organized in layers. For reference airside AV stack:
 
 ```
 Layer 4: Mission Management     (/mission_planner, /fleet_interface)
@@ -310,7 +310,7 @@ Each guideline has a category:
 
 ### 3.2 Most Relevant Rules for ROS C++ Nodelets
 
-Although Aurrigo's nodelets are C++, MISRA C:2012 rules remain relevant for the safety controller firmware (pure C) and for C-style patterns within C++ code. MISRA C++:2023 (Section 3.3) covers the C++ nodelets directly.
+Although the reference airside AV stack's nodelets are C++, MISRA C:2012 rules remain relevant for the safety controller firmware (pure C) and for C-style patterns within C++ code. MISRA C++:2023 (Section 3.3) covers the C++ nodelets directly.
 
 **Rule 1.3 (Mandatory) -- No undefined behavior:**
 The most critical rule. Undefined behavior in C/C++ means the compiler can assume the situation never occurs and optimize accordingly, potentially removing safety checks. Common UB in ROS code:
@@ -642,7 +642,7 @@ Coverity is an enterprise-grade static analysis tool with the lowest false-posit
 | clang-tidy | Free | Indirect (~35%) | Indirect (~35%) | No | No | Any (CLI) |
 | Coverity | $25K-$100K+ | Full | Full | TUV SUD (ASIL D) | No | Coverity Connect |
 
-**Recommended approach for Aurrigo (cost-effective):**
+**Recommended approach for reference airside AV stack (cost-effective):**
 
 1. **Immediate (free)**: cppcheck + clang-tidy in CI for all code
 2. **Phase 2 ($5K-$10K)**: PC-lint Plus for ASIL B nodelets and safety controller firmware
@@ -1027,7 +1027,7 @@ public:
 
 ### 6.4 Thread Safety: Lock-Free Patterns for Real-Time Callbacks
 
-ROS callback queues invoke callbacks from spinner threads. In a multi-threaded spinner configuration (which Aurrigo uses for performance), callbacks from different topics can execute concurrently. Mutexes are not suitable for safety-critical real-time code because they introduce priority inversion and unbounded blocking.
+ROS callback queues invoke callbacks from spinner threads. In a multi-threaded spinner configuration (which reference airside AV stack uses for performance), callbacks from different topics can execute concurrently. Mutexes are not suitable for safety-critical real-time code because they introduce priority inversion and unbounded blocking.
 
 **Lock-free SPSC (Single-Producer, Single-Consumer) ring buffer:**
 
@@ -1400,7 +1400,7 @@ int main(int argc, char** argv) {
 
 HiL testing validates that the safety software interacts correctly with the actual hardware interfaces (CAN bus, GPIO e-stop, safety controller MCU).
 
-**HiL test architecture for Aurrigo:**
+**HiL test architecture for reference airside AV stack:**
 
 ```
 ┌──────────────────┐     CAN Bus      ┌──────────────────────┐
@@ -1973,7 +1973,7 @@ roslaunch provides basic process management but lacks safety-critical features:
 | Multi-machine | Requires rosmaster | DDS discovery (no single point of failure) | Eliminates rosmaster SPOF |
 | Security | None built-in | SROS2 (DDS security) | Authenticated, encrypted communication |
 
-**Assessment for Aurrigo's current position:**
+**Assessment for the reference airside AV stack's current position:**
 
 Migrating from ROS 1 to ROS 2 is not required for ISO 3691-4 certification, and the cost/risk of migration is substantial (22 packages, extensive testing, vehicle downtime). The recommended approach is:
 
@@ -2100,9 +2100,9 @@ The panda safety firmware (in `opendbc/safety/`) follows these standards:
 - **Hardware-in-the-loop testing**: Physical panda units connected to CAN bus simulators validate message sending, receiving, and forwarding on all panda variants.
 - **Static analysis**: cppcheck runs on every commit. The codebase maintains zero warnings.
 
-### 11.3 Lessons Applicable to Aurrigo's Safety Controller
+### 11.3 Lessons Applicable to the reference airside AV stack's Safety Controller
 
-| Panda Design Choice | Aurrigo Equivalent | Implementation Notes |
+| Panda Design Choice | reference airside AV stack Equivalent | Implementation Notes |
 |---|---|---|
 | STM32H725 CAN gateway | STM32-class MCU on vehicle CAN bus | Same MCU family; can reuse panda's MISRA-compliant CAN library patterns |
 | `controls_allowed` boolean | `ops_allowed` flag in safety controller | Requires active confirmation from ground control, vehicle health, and operator acknowledgment |
@@ -2110,10 +2110,10 @@ The panda safety firmware (in `opendbc/safety/`) follows these standards:
 | 100% line coverage | Target 100% for safety controller firmware | Achievable for small, focused firmware (~2K-5K SLOC) |
 | Mutation testing | Custom mutation runner or mull | Validates test quality beyond coverage metrics |
 | Heartbeat from main computer | Heartbeat from Orin/ROS to STM32 over CAN | If heartbeats stop, safety controller activates brakes |
-| Vehicle-specific safety profiles | Airport-specific safety profiles | Speed limits per zone, geofence boundaries, allowed CAN messages per vehicle type (ADT3, STL2, POD, ACA1) |
+| Vehicle-specific safety profiles | Airport-specific safety profiles | Speed limits per zone, geofence boundaries, allowed CAN messages per vehicle type (third-generation tug, small tug platform, POD, ACA1) |
 | Default to silence (SAFETY_SILENT) | Default to brake (fail-safe) | Airside difference: silence is not safe (vehicle might roll on slopes). Default must be active braking + parking brake. |
 
-**Critical difference from comma.ai**: Comma's panda defaults to silence because openpilot is a Level 2 ADAS system -- the driver is always present and always able to retake control. Aurrigo's airside vehicles operate without a driver onboard (or with a safety operator who may not be able to physically reach controls quickly). The safety controller must default to **active braking and parking brake engagement**, not silence. Loss of communication with the ROS stack must result in a controlled stop, not coasting.
+**Critical difference from comma.ai**: Comma's panda defaults to silence because openpilot is a Level 2 ADAS system -- the driver is always present and always able to retake control. the reference airside AV stack's airside vehicles operate without a driver onboard (or with a safety operator who may not be able to physically reach controls quickly). The safety controller must default to **active braking and parking brake engagement**, not silence. Loss of communication with the ROS stack must result in a controlled stop, not coasting.
 
 ### 11.4 Panda Safety Code Structure
 
@@ -2138,11 +2138,11 @@ Each vehicle safety file implements a standard interface:
 - `tx()`: Validate outgoing CAN messages (check limits, enforce rate)
 - `fwd()`: Decide which messages to forward between buses
 
-This pattern -- a standard safety interface with vehicle-specific implementations -- maps directly to Aurrigo's need for platform-specific safety profiles (ADT3, STL2, POD, ACA1 each have different CAN interfaces and actuator characteristics).
+This pattern -- a standard safety interface with vehicle-specific implementations -- maps directly to the reference airside AV stack's need for platform-specific safety profiles (third-generation tug, small tug platform, POD, ACA1 each have different CAN interfaces and actuator characteristics).
 
 ---
 
-## 12. Recommended Implementation for Aurrigo
+## 12. Recommended Implementation for reference airside AV stack
 
 ### 12.1 Phased Approach
 
@@ -2198,7 +2198,7 @@ This pattern -- a standard safety interface with vehicle-specific implementation
 
 ### 12.2 Which Nodes Need ASIL B vs QM Treatment
 
-Based on Aurrigo's 22-package architecture and the Simplex safety design:
+Based on the reference airside AV stack's 22-package architecture and the Simplex safety design:
 
 **ASIL B (full safety treatment required):**
 

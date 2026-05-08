@@ -1,6 +1,6 @@
 # RTK-GPS, IMU, and Multi-Sensor Localization: First Principles
 
-## The Localization Foundation for Aurrigo's GTSAM Factor Graph
+## The Localization Foundation for the reference airside AV stack's GTSAM Factor Graph
 
 ---
 
@@ -86,7 +86,7 @@ Instead of a physical base station, use a network of stations:
   ├── Protocol: HTTP-based streaming
   └── Data: RTCM 3.x messages (corrections)
 
-Aurrigo uses: ntrip_client ROS package
+reference airside AV stack uses: ntrip_client ROS package
   - Connects to NTRIP caster via internet
   - Streams RTCM corrections to GNSS receiver
   - Receiver applies corrections in real-time
@@ -130,7 +130,7 @@ Gyroscope: Measures angular velocity
          n_g = noise
 ```
 
-### 3.2 Microstrain GX5/CV7 (Aurrigo's IMU)
+### 3.2 Microstrain GX5/CV7 (the reference airside AV stack's IMU)
 
 ```
 Microstrain 3DM-GX5-25 (typical):
@@ -138,7 +138,7 @@ Microstrain 3DM-GX5-25 (typical):
     Range: ±8g
     Bias stability: 0.04 mg
     Noise density: 80 µg/√Hz
-    Sample rate: up to 1000 Hz (Aurrigo uses 500Hz)
+    Sample rate: up to 1000 Hz (reference airside AV stack uses 500Hz)
 
   Gyroscope:
     Range: ±900°/s
@@ -228,7 +228,7 @@ graph.add(ImuFactor(pose_key_i, vel_key_i, pose_key_j, vel_key_j, bias_key, pim)
 
 ### 5.1 VGICP (Voxelized Generalized ICP)
 
-Aurrigo uses GPU-accelerated VGICP for scan-to-map matching:
+reference airside AV stack uses GPU-accelerated VGICP for scan-to-map matching:
 
 ```
 Standard ICP: Find closest point pairs, minimize distance
@@ -253,7 +253,7 @@ GPU acceleration (gtsam_points):
 ### 5.2 Map Format
 
 ```
-Aurrigo's maps:
+the reference airside AV stack's maps:
   Format: PCD (Point Cloud Data)
   Size: 166MB and 287MB (dense maps)
   Content: x, y, z, intensity
@@ -270,7 +270,7 @@ Aurrigo's maps:
 ```
 From wheel encoder ticks → displacement and heading change:
 
-For Ackermann steering (ADT3):
+For Ackermann steering (third-generation tug):
   v = (v_RL + v_RR) / 2          — average rear wheel speed
   ω = v · tan(δ) / L             — yaw rate from steering angle
 
@@ -278,12 +278,12 @@ For Ackermann steering (ADT3):
   dy = v · sin(θ) · dt
   dθ = ω · dt
 
-For crab steering (ADT3 crab mode):
+For crab steering (third-generation tug crab mode):
   v_x = v · cos(δ_crab)          — forward component
   v_y = v · sin(δ_crab)          — lateral component
   ω = 0                           — no rotation
 
-Aurrigo's implementation handles both modes.
+the reference airside AV stack's implementation handles both modes.
 ```
 
 ### 6.2 As GTSAM Factor
@@ -306,7 +306,7 @@ graph.add(BetweenFactorPose2(pose_key_i, pose_key_j, delta_pose, odom_noise))
 
 ## 7. GTSAM Factor Graph Fusion
 
-### 7.1 Aurrigo's Factor Graph
+### 7.1 the reference airside AV stack's Factor Graph
 
 ```
 Variable nodes:
@@ -345,7 +345,7 @@ Computational complexity:
   ISAM2: O(k³) for k affected variables → fast enough for real-time
   Typically k << n (new measurement affects ~10-50 variables, not all 1000+)
 
-Aurrigo's SensorFusionNodelet:
+the reference airside AV stack's SensorFusionNodelet:
   - Runs at 20Hz (50ms budget)
   - Maintains ~5-10s of history in the factor graph (fixed-lag)
   - Older variables are marginalized (absorbed into prior)
@@ -388,7 +388,7 @@ class LearnedOdometryFactor(gtsam.CustomFactor):
 
 ## 8. Coordinate Systems
 
-### 8.1 Frames in Aurrigo's Stack
+### 8.1 Frames in the reference airside AV stack's Stack
 
 ```
 WGS84 (lat, lon, alt)

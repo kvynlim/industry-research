@@ -65,7 +65,7 @@
 
 ## Airside AV Fit
 
-- High relevance for an Aurrigo-style LiDAR stack because it unifies semantics and motion without cameras.
+- High relevance for a reference airside LiDAR stack because it unifies semantics and motion without cameras.
 - Supports airside questions such as "static aircraft part" versus "moving tug" better than semantic segmentation alone.
 - Needs a custom airside label schema: aircraft fuselage, wing, engine, tail, GSE types, personnel, cone, FOD, lane marking.
 - Instance consistency is valuable around baggage trains and clustered dollies.

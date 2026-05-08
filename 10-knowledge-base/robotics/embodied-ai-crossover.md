@@ -292,7 +292,7 @@ For airside AV: This convergence is GOOD because:
 | Source Domain | Target Application | What Transfers | Effort |
 |--------------|-------------------|---------------|--------|
 | **pi0 flow matching** | Trajectory generation | Action head architecture | Medium |
-| **RT-X cross-embodiment** | Multi-vehicle-type driving | Shared backbone across ADT3/STL2/POD | High |
+| **RT-X cross-embodiment** | Multi-vehicle-type driving | Shared backbone across third-generation tug/small tug platform/POD | High |
 | **Diffusion Policy** | Multi-modal trajectory planning | DiffusionDrive for airside | Low |
 | **ACT chunking** | Smooth hydraulic control | Chunk predictions for steering | Low |
 | **LeRobot dataset format** | Standardize airside data | Data pipeline compatibility | Low |

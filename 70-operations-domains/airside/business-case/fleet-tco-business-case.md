@@ -72,7 +72,7 @@ Three market forces create urgency for TCO optimization:
 
 3. **AeroVect** raised $27.1M with a retrofit approach that avoids new vehicle CAPEX entirely. If retrofit autonomy reaches price parity with new autonomous vehicles, the greenfield vehicle market shrinks.
 
-For Aurrigo, the TCO question is existential: can a UK-based company with its own vehicle platform (ADT3, STL2, POD, ACA1) compete on unit economics against Chinese-manufactured competitors and retrofit-focused startups?
+For reference airside AV stack, the TCO question is existential: can a UK-based company with its own vehicle platform (third-generation tug, small tug platform, POD, ACA1) compete on unit economics against Chinese-manufactured competitors and retrofit-focused startups?
 
 ---
 
@@ -90,13 +90,13 @@ For Aurrigo, the TCO question is existential: can a UK-based company with its ow
 | **Power supply (12V/48V to Orin)** | $100-200 | $100-200 | Isolated DC-DC converter |
 | **Compute total** | **$2,150-3,400** | **$2,650-4,900** | |
 
-**Orin lifecycle note**: The Orin AGX is expected to remain available through 2030+ per NVIDIA's industrial product commitment. Thor-based vehicles are expected in early production from 2025 (Zeekr), but automotive-grade Thor modules for industrial use may not be broadly available until 2027-2028. The Orin is sufficient for the current Aurrigo stack (PointPillars at 6.84ms, Frenet planning at ~2ms) with substantial headroom for ML additions.
+**Orin lifecycle note**: The Orin AGX is expected to remain available through 2030+ per NVIDIA's industrial product commitment. Thor-based vehicles are expected in early production from 2025 (Zeekr), but automotive-grade Thor modules for industrial use may not be broadly available until 2027-2028. The Orin is sufficient for the current reference airside AV stack (PointPillars at 6.84ms, Frenet planning at ~2ms) with substantial headroom for ML additions.
 
 ### 2.2 Sensor Configurations
 
 Three sensor configurations are modeled, corresponding to deployment maturity:
 
-#### Configuration A: LiDAR-Only (Current Aurrigo Baseline)
+#### Configuration A: LiDAR-Only (Current reference airside AV stack Baseline)
 
 | Sensor | Quantity | Unit Cost | Subtotal | Notes |
 |---|---|---|---|---|
@@ -133,7 +133,7 @@ Three sensor configurations are modeled, corresponding to deployment maturity:
 
 | Activity | Cost Range | Notes |
 |---|---|---|
-| **Wiring harness design and fabrication** | $3,000-8,000 | Per vehicle type (ADT3 vs STL2 vs POD vs ACA1) |
+| **Wiring harness design and fabrication** | $3,000-8,000 | Per vehicle type (third-generation tug vs small tug platform vs POD vs ACA1) |
 | **Sensor mounting brackets/frames** | $2,000-5,000 | CNC/3D-printed mounts, vibration dampening |
 | **Drive-by-wire integration** | $5,000-15,000 | CAN bus interface, DBW retrofit for non-native vehicles |
 | **Sensor calibration (intrinsic + extrinsic)** | $2,000-5,000 | Multi-LiDAR, LiDAR-camera, radar alignment |
@@ -141,7 +141,7 @@ Three sensor configurations are modeled, corresponding to deployment maturity:
 | **E-stop and safety relay system** | $500-2,000 | Redundant emergency stop, per ISO 3691-4 |
 | **Vehicle integration total** | **$13,500-38,000** | First vehicle of type; subsequent vehicles ~60% of this |
 
-**NRE vs recurring**: The first vehicle of each type (ADT3, STL2, POD, ACA1) carries full NRE for wiring harness design, mounting bracket design, and calibration fixture development. Subsequent vehicles of the same type cost ~60% as much for integration because the design work is done.
+**NRE vs recurring**: The first vehicle of each type (third-generation tug, small tug platform, POD, ACA1) carries full NRE for wiring harness design, mounting bracket design, and calibration fixture development. Subsequent vehicles of the same type cost ~60% as much for integration because the design work is done.
 
 ### 2.4 Teleoperation Station
 
@@ -188,16 +188,16 @@ The above figures assume the base electric GSE vehicle (tug, tractor) already ex
 
 | Base Vehicle | Purchase Cost (Electric) | Notes |
 |---|---|---|
-| Electric baggage tractor (Aurrigo ADT3 class) | $60,000-120,000 | New build, Aurrigo platform |
+| Electric baggage tractor (reference airside AV stack third-generation tug class) | $60,000-120,000 | New build, reference airside AV stack platform |
 | Electric baggage tractor (TLD/Textron, third-party) | $35,000-90,000 | If retrofitting existing vehicles |
 | Electric pushback tractor (narrow-body) | $200,000-400,000 | Larger vehicle, higher power |
 | Electric cargo transporter | $80,000-150,000 | Heavier payload capacity |
 
 **Total vehicle + autonomy cost** (Config B, baggage tractor):
-- Aurrigo ADT3 + autonomy kit: $60K + $76K = **~$136K per vehicle**
+- reference airside AV stack third-generation tug + autonomy kit: $60K + $76K = **~$136K per vehicle**
 - Third-party retrofit + AeroVect-style kit: $50K + $40K = **~$90K per vehicle**
 
-This price difference highlights the challenge for full-stack OEMs (Aurrigo, UISEE) versus retrofit players (AeroVect). The OEM advantage is deeper integration and higher reliability; the retrofit advantage is lower CAPEX.
+This price difference highlights the challenge for full-stack OEMs (reference airside AV stack, UISEE) versus retrofit players (AeroVect). The OEM advantage is deeper integration and higher reliability; the retrofit advantage is lower CAPEX.
 
 ---
 
@@ -209,7 +209,7 @@ Software and R&D costs are amortized across the fleet. Unlike per-vehicle hardwa
 
 | Category | Cost Range | Amortization Period | Notes |
 |---|---|---|---|
-| **Core autonomy stack development** | $2,000,000-10,000,000 | 5-10 years | Perception, planning, localization, control (already spent for Aurrigo) |
+| **Core autonomy stack development** | $2,000,000-10,000,000 | 5-10 years | Perception, planning, localization, control (already spent for reference airside AV stack) |
 | **ML model development (initial)** | $50,000-150,000 | 2-3 years | Training infrastructure, initial model development beyond current RANSAC |
 | **Simulation infrastructure** | $50,000-100,000 | 3-5 years | Digital twin, scenario testing (see [airport digital twins](../../../30-autonomy-stack/simulation/airport-digital-twins.md)) |
 | **Teleoperation software** | $100,000-300,000 | 3-5 years | Video streaming, control interface, handoff protocol |
@@ -351,7 +351,7 @@ With 200 GB/day/vehicle, the raw data cost before tiering would be $72,000/year/
 
 **Insurance trajectory**: In the pilot phase, insurers treat autonomous GSE as novel risk and price aggressively ($20-30K/vehicle). As fleet operating hours accumulate without major incidents, premiums decline. TractEasy's zero-accident record across 8 airports is the kind of data that enables insurance rate reduction. Expect 30-50% premium reduction by Year 3-5 with clean safety record.
 
-**Liability framework change**: The EU Product Liability Directive 2024/2853 (transpose deadline December 2026) classifies software and AI as "products" subject to strict liability. This means Aurrigo bears product liability for autonomous driving decisions regardless of negligence --- increasing insurance costs but also increasing the value of formal safety methods (CBF, Simplex, STL monitoring) that can demonstrate due diligence. See [iso-3691-4-deep-dive.md](../../../60-safety-validation/standards-certification/iso-3691-4-deep-dive.md).
+**Liability framework change**: The EU Product Liability Directive 2024/2853 (transpose deadline December 2026) classifies software and AI as "products" subject to strict liability. This means reference airside AV stack bears product liability for autonomous driving decisions regardless of negligence --- increasing insurance costs but also increasing the value of formal safety methods (CBF, Simplex, STL monitoring) that can demonstrate due diligence. See [iso-3691-4-deep-dive.md](../../../60-safety-validation/standards-certification/iso-3691-4-deep-dive.md).
 
 ### 4.6 Annual OPEX Summary
 
@@ -779,11 +779,11 @@ The gap between theoretical 100% availability and actual 85-96% availability dir
 
 ### 9.4 Competitive Pressure Scenarios
 
-| Competitor Scenario | Probability | Impact on Aurrigo TCO | Response |
+| Competitor Scenario | Probability | Impact on reference airside AV stack TCO | Response |
 |---|---|---|---|
 | UISEE enters EU/US at 40% lower price | 30% | Must match or lose contracts | Focus on safety differentiation, EU cert advantage |
 | AeroVect retrofit reaches $30K/vehicle | 40% | Retrofit undercuts new-build economics | Offer retrofit option for existing GSE fleets |
-| TractEasy scales to 20+ airports | 50% | Price competition, established relationships | Emphasize multi-vehicle type advantage (ADT3, pushback, cargo) |
+| TractEasy scales to 20+ airports | 50% | Price competition, established relationships | Emphasize multi-vehicle type advantage (third-generation tug, pushback, cargo) |
 | Major OEM (Kalmar, TLD) builds in-house autonomy | 20% | Existential threat to autonomy kit suppliers | Deep integration with specific GSE platforms |
 
 ### 9.5 Risk-Adjusted NPV Impact
@@ -1388,7 +1388,7 @@ This appendix walks through a complete financial model for a concrete deployment
 |---|---|---|
 | Airport | Large European hub (e.g., Frankfurt, Schiphol, or Manchester) |  |
 | Ground handler | Swissport or Menzies | Typical contract handler |
-| Vehicle type | Electric baggage tractor (Aurrigo ADT3 class) | Highest autonomy suitability |
+| Vehicle type | Electric baggage tractor (reference airside AV stack third-generation tug class) | Highest autonomy suitability |
 | Fleet size | 20 autonomous vehicles | Replaces 20 manual tug driver positions |
 | Sensor config | Configuration B (LiDAR + camera + radar) | Balanced safety and cost |
 | Shifts | 3 shifts, 24/7 operations | Standard hub operation |
@@ -1401,7 +1401,7 @@ This appendix walks through a complete financial model for a concrete deployment
 
 | Line Item | Cost | Notes |
 |---|---|---|
-| 20x base electric tractors | $1,800,000 | $90K each, Aurrigo ADT3 |
+| 20x base electric tractors | $1,800,000 | $90K each, reference airside AV stack third-generation tug |
 | 20x autonomy kit (Config B) | $1,520,000 | $76K each |
 | R&D allocation (shared) | $400,000 | 50% of $800K total R&D, rest on other contracts |
 | Airport deployment (first EU airport) | $400,000 | HD map + perception adaptation + GNSS + shadow mode + operational setup |
@@ -1507,16 +1507,16 @@ Year  Net CF       Cumulative    Discounted Cumulative
 | **UISEE** (China) | $40-80K (est., Chinese manufacturing) | 1,000+ vehicles | Vehicle sales + services | $60-120K all-in |
 | **TractEasy** (EU) | $120-180K (est., TLD base + EasyMile autonomy) | <50 vehicles across 8 airports | Trial/pilot contracts, moving to commercial | $150-250K all-in |
 | **AeroVect** (US) | $25-50K retrofit kit | Unknown (mapped half of top 10 US airports) | SaaS subscription (est. $3-5K/month) | $80-130K (retrofit + subscription) |
-| **Aurrigo** (UK, current) | $130-200K (est., ADT3 + autonomy) | <20 vehicles | Pilot/trial contracts | $180-350K all-in (pilot phase) |
-| **Aurrigo** (UK, at scale) | $85-140K (target, with volume) | 200+ vehicles (target) | RaaS at $10-14K/month | $130-210K all-in |
+| **reference airside AV stack** (UK, current) | $130-200K (est., third-generation tug + autonomy) | <20 vehicles | Pilot/trial contracts | $180-350K all-in (pilot phase) |
+| **reference airside AV stack** (UK, at scale) | $85-140K (target, with volume) | 200+ vehicles (target) | RaaS at $10-14K/month | $130-210K all-in |
 
 **Key competitive observations:**
 
-1. UISEE's Chinese manufacturing advantage gives them roughly 40-60% lower per-vehicle hardware cost. Their 1,000+ deployed vehicles mean R&D is fully amortized. Aurrigo cannot compete on unit economics alone --- the differentiation must come from safety certification depth, customer trust in Western markets, and multi-vehicle platform flexibility.
+1. UISEE's Chinese manufacturing advantage gives them roughly 40-60% lower per-vehicle hardware cost. Their 1,000+ deployed vehicles mean R&D is fully amortized. reference airside AV stack cannot compete on unit economics alone --- the differentiation must come from safety certification depth, customer trust in Western markets, and multi-vehicle platform flexibility.
 
 2. AeroVect's retrofit model avoids base vehicle CAPEX entirely, making their initial pricing more attractive to handlers with existing GSE fleets. However, retrofit approaches typically have lower maximum autonomy rates (80-90% vs 95%+ for purpose-built) and more integration challenges, which affects long-term TCO through higher teleop costs.
 
-3. TractEasy benefits from TLD's existing GSE sales channel and EasyMile's autonomous shuttle experience, but their JV structure adds coordination overhead. Their zero-accident safety record across 8 airports is the strongest safety evidence in the market --- Aurrigo should target matching this record within the first 2 airports.
+3. TractEasy benefits from TLD's existing GSE sales channel and EasyMile's autonomous shuttle experience, but their JV structure adds coordination overhead. Their zero-accident safety record across 8 airports is the strongest safety evidence in the market --- reference airside AV stack should target matching this record within the first 2 airports.
 
 ---
 

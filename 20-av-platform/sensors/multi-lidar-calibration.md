@@ -8,7 +8,7 @@
 
 ## Summary
 
-Multi-LiDAR extrinsic calibration is the process of estimating the rigid SE(3) transformation between each LiDAR sensor's coordinate frame and the vehicle body frame, enabling fusion of 4-8 independent point clouds into a single coherent 3D representation. For Aurrigo's airside fleet (4-8 RoboSense RSHELIOS + RSBP per vehicle), calibration accuracy directly determines downstream perception, localization, and safety performance. A 0.1 degree angular error at the sensor produces 17 cm displacement at 100 m range — enough to shift an object between grid cells, create ghost detections at scan boundaries, or degrade GTSAM localization residuals. This document covers the full calibration lifecycle: target-based factory calibration, targetless field methods (ICP, feature-based, learning-based, motion-based), online/continuous calibration integrated with GTSAM, thermal drift compensation across the -10 C to +50 C airport tarmac range, temporal synchronization via PTP/PPS, overlap optimization for sensor placement, calibration quality metrics and health monitoring, and certification requirements under ISO 3691-4. Key finding: a combined approach — factory target-based initialization to <0.5 cm / <0.05 deg, followed by continuous GTSAM-integrated online refinement with thermal compensation lookup tables — achieves sustained sub-centimeter accuracy across operating conditions without manual intervention. For a fleet of 20+ vehicles, automated calibration management saves an estimated 400-800 hours of manual calibration labor per year while providing the traceability records required for safety certification.
+Multi-LiDAR extrinsic calibration is the process of estimating the rigid SE(3) transformation between each LiDAR sensor's coordinate frame and the vehicle body frame, enabling fusion of 4-8 independent point clouds into a single coherent 3D representation. For the reference airside AV stack's airside fleet (4-8 RoboSense RSHELIOS + RSBP per vehicle), calibration accuracy directly determines downstream perception, localization, and safety performance. A 0.1 degree angular error at the sensor produces 17 cm displacement at 100 m range — enough to shift an object between grid cells, create ghost detections at scan boundaries, or degrade GTSAM localization residuals. This document covers the full calibration lifecycle: target-based factory calibration, targetless field methods (ICP, feature-based, learning-based, motion-based), online/continuous calibration integrated with GTSAM, thermal drift compensation across the -10 C to +50 C airport tarmac range, temporal synchronization via PTP/PPS, overlap optimization for sensor placement, calibration quality metrics and health monitoring, and certification requirements under ISO 3691-4. Key finding: a combined approach — factory target-based initialization to <0.5 cm / <0.05 deg, followed by continuous GTSAM-integrated online refinement with thermal compensation lookup tables — achieves sustained sub-centimeter accuracy across operating conditions without manual intervention. For a fleet of 20+ vehicles, automated calibration management saves an estimated 400-800 hours of manual calibration labor per year while providing the traceability records required for safety certification.
 
 ---
 
@@ -33,12 +33,12 @@ Multi-LiDAR extrinsic calibration is the process of estimating the rigid SE(3) t
 
 ### 1.1 The Multi-LiDAR Imperative
 
-Aurrigo's airside vehicles deploy 4-8 RoboSense LiDARs per vehicle for comprehensive 360-degree perception. The specific sensor mix varies by platform:
+the reference airside AV stack's airside vehicles deploy 4-8 RoboSense LiDARs per vehicle for comprehensive 360-degree perception. The specific sensor mix varies by platform:
 
 | Platform | RSHELIOS Count | RSBP Count | Total LiDARs | Notes |
 |----------|---------------|------------|---------------|-------|
-| ADT3     | 4             | 4          | 8             | Full surround + near-field blind spot |
-| STL2     | 4             | 2          | 6             | Forward-biased for towing |
+| third-generation tug     | 4             | 4          | 8             | Full surround + near-field blind spot |
+| small tug platform     | 4             | 2          | 6             | Forward-biased for towing |
 | POD      | 2             | 2          | 4             | Compact platform |
 | ACA1     | 4             | 4          | 8             | Full coverage for passenger ops |
 
@@ -139,7 +139,7 @@ Where:
   Total: 6 degrees of freedom per sensor pair
 ```
 
-For a vehicle with N LiDAR sensors, we need N-1 independent transformations (or equivalently, N transformations to the vehicle body frame). For Aurrigo's 8-LiDAR ADT3, this means **48 parameters** (8 sensors x 6 DOF each, relative to body frame).
+For a vehicle with N LiDAR sensors, we need N-1 independent transformations (or equivalently, N transformations to the vehicle body frame). For the reference airside AV stack's 8-LiDAR third-generation tug, this means **48 parameters** (8 sensors x 6 DOF each, relative to body frame).
 
 **Rotation representations:**
 
@@ -175,7 +175,7 @@ GTSAM and ROS TF use different internal representations but both support SE(3). 
 
 **ROS TF convention:** Each LiDAR publishes its point cloud in its own frame (`rshelios_0`, `rsbp_0`, etc.). The calibration extrinsics define the static TF from each sensor frame to `base_link`. These are published as `static_transform_publisher` nodes or embedded in the URDF.
 
-**Frame definitions for Aurrigo vehicles:**
+**Frame definitions for reference airside vehicles:**
 
 | Frame | Origin | X-axis | Y-axis | Z-axis |
 |-------|--------|--------|--------|--------|
@@ -486,10 +486,10 @@ When covariances are set to:
 
 #### 4.1.4 Voxelized GICP (VGICP)
 
-VGICP (Koide et al., 2021) — the same algorithm used in Aurrigo's GTSAM localization pipeline — voxelizes the target cloud and computes Gaussian distributions per voxel, dramatically reducing computation:
+VGICP (Koide et al., 2021) — the same algorithm used in the reference airside AV stack's GTSAM localization pipeline — voxelizes the target cloud and computes Gaussian distributions per voxel, dramatically reducing computation:
 
 ```cpp
-// VGICP integration with gtsam_points (as used in Aurrigo's stack)
+// VGICP integration with gtsam_points (as used in the reference airside AV stack's stack)
 #include <gtsam_points/types/point_cloud.hpp>
 #include <gtsam_points/factors/integrated_vgicp_factor.hpp>
 
@@ -518,7 +518,7 @@ graph.add(factor);
 | GPU (Orin) | 300K | 1.0 m | 12-25 ms | < 1.5 cm |
 | GPU (Orin) | 500K | 1.0 m | 20-40 ms | < 2 cm |
 
-VGICP is the recommended ICP variant for Aurrigo's stack because it is already integrated with GTSAM and GPU-accelerated on Orin (see `10-knowledge-base/state-estimation/gtsam-factor-graphs.md` for GTSAM integration details).
+VGICP is the recommended ICP variant for the reference airside AV stack's stack because it is already integrated with GTSAM and GPU-accelerated on Orin (see `10-knowledge-base/state-estimation/gtsam-factor-graphs.md` for GTSAM integration details).
 
 ### 4.2 Feature-Based Registration
 
@@ -680,7 +680,7 @@ Target PC ──► KPConv Backbone ──► Superpoints ──┘   (cross-att
 
 #### 4.3.5 Practical Recommendation for Learning-Based Methods
 
-For Aurrigo's multi-LiDAR calibration, learning-based registration is most valuable as:
+For the reference airside AV stack's multi-LiDAR calibration, learning-based registration is most valuable as:
 1. **Coarse initializer** for ICP refinement (replaces FPFH+RANSAC)
 2. **Automatic recalibration trigger** (quickly detects miscalibration)
 3. **Not recommended as sole calibration** due to lower accuracy ceiling vs ICP
@@ -783,13 +783,13 @@ def hand_eye_calibration(motions_A, motions_B):
 | Point-to-Point ICP | 1-3 cm | 0.1-0.3 deg | < 30 deg, < 1 m | 50-100 ms | > 50% | Simple refinement |
 | Point-to-Plane ICP | 0.5-2 cm | 0.05-0.2 deg | < 30 deg, < 1 m | 30-70 ms | > 40% | Planar environments |
 | GICP | 0.3-1 cm | 0.03-0.1 deg | < 30 deg, < 1 m | 40-80 ms | > 30% | General purpose |
-| VGICP (GPU) | 0.3-1 cm | 0.03-0.1 deg | < 30 deg, < 1 m | 8-25 ms | > 30% | **Aurrigo primary** |
+| VGICP (GPU) | 0.3-1 cm | 0.03-0.1 deg | < 30 deg, < 1 m | 8-25 ms | > 30% | **reference airside AV stack primary** |
 | FPFH + RANSAC | 2-5 cm | 0.1-0.5 deg | None | 100-300 ms | > 20% | Coarse init |
 | GeoTransformer | 0.1-0.5 cm | 0.03-0.1 deg | None | 50-80 ms | > 10% | Low overlap, init |
 | Mutual Information | 1-3 cm | 0.1-0.3 deg | < 45 deg, < 2 m | 200-500 ms | > 20% (voxel) | Cross-sensor type |
 | Hand-Eye (motion) | 1-5 cm | 0.05-0.3 deg | None | N/A (offline) | 0% (no overlap) | Non-overlapping |
 
-**Recommended pipeline for Aurrigo:**
+**Recommended pipeline for reference airside AV stack:**
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -922,7 +922,7 @@ class CalibrationDriftMonitor:
 
 ### 5.3 Continuous Refinement from SLAM Residuals
 
-Aurrigo's GTSAM-based SLAM pipeline already computes scan-matching residuals between the fused point cloud and the map. These residuals contain calibration error information that can be extracted:
+the reference airside AV stack's GTSAM-based SLAM pipeline already computes scan-matching residuals between the fused point cloud and the map. These residuals contain calibration error information that can be extracted:
 
 **Insight:** If calibration is perfect, SLAM residuals are purely due to localization uncertainty. If calibration has drifted, SLAM residuals show systematic patterns — e.g., consistently higher residuals in regions covered by a specific sensor.
 
@@ -944,7 +944,7 @@ If T_lidarK_body has drifted by δT:
 
 ### 5.4 Joint Optimization with GTSAM
 
-The most principled approach: include calibration parameters as variables in the GTSAM factor graph, estimated jointly with vehicle poses. This is the recommended production approach for Aurrigo.
+The most principled approach: include calibration parameters as variables in the GTSAM factor graph, estimated jointly with vehicle poses. This is the recommended production approach for reference airside AV stack.
 
 ```
 Factor Graph with Calibration Variables:
@@ -1177,7 +1177,7 @@ The RoboSense RSHELIOS operates within -40 C to +60 C (see `20-av-platform/senso
 | Carbon fiber | 0.5 x 10^-6 /C | 0.025 mm | Premium mounts |
 | PEEK plastic | 47 x 10^-6 /C | 2.35 mm | Isolating spacers |
 
-**Practical mount geometry analysis (ADT3 roof-mounted RSHELIOS):**
+**Practical mount geometry analysis (third-generation tug roof-mounted RSHELIOS):**
 
 ```
 Sensor mount dimensions (typical):
@@ -1335,7 +1335,7 @@ Time    Sensor Temp    Drift from Cold Cal    Drift from Warm Cal
 
 ## 7. Multi-LiDAR Overlap Optimization
 
-### 7.1 Sensor Placement for Aurrigo Vehicles
+### 7.1 Sensor Placement for reference airside AV stack Vehicles
 
 Optimal sensor placement must satisfy multiple constraints simultaneously:
 - 360-degree horizontal coverage with no gaps
@@ -1343,7 +1343,7 @@ Optimal sensor placement must satisfy multiple constraints simultaneously:
 - Adequate overlap between adjacent sensors for calibration and fusion
 - Practical mounting locations on the vehicle
 
-**ADT3 sensor placement (8 LiDAR, top view):**
+**third-generation tug sensor placement (8 LiDAR, top view):**
 
 ```
                          FRONT
@@ -1559,7 +1559,7 @@ def identify_coverage_gaps(sensor_configs, resolution_deg=1.0,
     }
 ```
 
-**Typical ADT3 coverage analysis results:**
+**Typical third-generation tug coverage analysis results:**
 
 | Coverage Level | Percentage | Angular Region |
 |---------------|------------|---------------|
@@ -1797,7 +1797,7 @@ def deskew_point_cloud(points, point_timestamps, imu_data):
 
 **De-skewing is essential before calibration:** Running ICP on skewed point clouds from two sensors introduces systematic errors because the "ground truth" correspondences are themselves distorted. Always de-skew first, then calibrate.
 
-**Aurrigo-specific:** The GTSAM pipeline already integrates IMU at 500 Hz, providing high-quality ego-motion for de-skewing. The per-point timestamps from `rslidar_sdk` are derived from the firing sequence and rotation encoder, providing ~microsecond relative timing within each scan.
+**reference-stack-specific:** The GTSAM pipeline already integrates IMU at 500 Hz, providing high-quality ego-motion for de-skewing. The per-point timestamps from `rslidar_sdk` are derived from the firing sequence and rotation encoder, providing ~microsecond relative timing within each scan.
 
 ### 8.5 Synchronization Quality Requirements
 
@@ -1809,7 +1809,7 @@ def deskew_point_cloud(points, point_timestamps, imu_data):
 | Hardware PTP | PTP-capable switch | < 1 us | **Recommended production** |
 | Hardware PPS + PTP | GPS PPS + PTP | < 100 ns | Highest accuracy |
 
-**Recommendation for Aurrigo:** Hardware PTP via PTP-capable Ethernet switch. Cost: $200-500 per switch (one per vehicle). Combined with IMU-based de-skewing, this provides < 1 mm temporal synchronization error at airside speeds.
+**Recommendation for reference airside AV stack:** Hardware PTP via PTP-capable Ethernet switch. Cost: $200-500 per switch (one per vehicle). Combined with IMU-based de-skewing, this provides < 1 mm temporal synchronization error at airside speeds.
 
 ---
 
@@ -2023,7 +2023,7 @@ class CalibrationHealthScore:
 
 ### 10.1 ISO 3691-4 Implications
 
-ISO 3691-4 (Safety of industrial trucks — Driverless industrial trucks) applies to Aurrigo's airside vehicles and has implications for sensor calibration:
+ISO 3691-4 (Safety of industrial trucks — Driverless industrial trucks) applies to the reference airside AV stack's airside vehicles and has implications for sensor calibration:
 
 **Clause 4.10 — Sensor performance monitoring:**
 - The safety system shall monitor sensor performance during operation
@@ -2070,7 +2070,7 @@ Required records for each calibration event:
 ```
 Calibration Record Schema:
 {
-  "vehicle_id": "ADT3-001",
+  "vehicle_id": "third-generation tug-001",
   "event_id": "CAL-2026-04-11-001",
   "timestamp": "2026-04-11T08:30:00Z",
   "type": "automatic_online",        # factory / field_manual / automatic_online
@@ -2104,7 +2104,7 @@ Calibration Record Schema:
     "precipitation": "none"
   },
   "operator": "auto",                 # or operator name for manual
-  "software_version": "aurrigo-cal-1.2.3",
+  "software_version": "airside-cal-1.2.3",
   "approved_by": null,                # Required for manual calibrations
   "notes": ""
 }
@@ -2130,7 +2130,7 @@ Calibration Record Schema:
 **URDF sensor definitions:**
 
 ```xml
-<!-- URDF excerpt for ADT3 LiDAR mounting -->
+<!-- URDF excerpt for third-generation tug LiDAR mounting -->
 <robot name="adt3">
   <!-- Vehicle base -->
   <link name="base_link"/>
@@ -2186,7 +2186,7 @@ Calibration Record Schema:
         type="robot_state_publisher"/>
 
   <!-- Calibration monitoring node -->
-  <node name="calibration_monitor" pkg="aurrigo_calibration"
+  <node name="calibration_monitor" pkg="airside_calibration"
         type="calibration_monitor_node" output="screen">
     <param name="check_rate_hz" value="1.0"/>
     <param name="drift_warn_translation_m" value="0.01"/>
@@ -2195,7 +2195,7 @@ Calibration Record Schema:
     <param name="drift_alarm_rotation_deg" value="0.1"/>
     <param name="thermal_compensation_enabled" value="true"/>
     <param name="thermal_lut_file"
-           value="$(find adt3_calibration)/config/thermal_lut_ADT3-001.yaml"/>
+           value="$(find adt3_calibration)/config/thermal_lut_third-generation tug-001.yaml"/>
     <rosparam param="sensor_pairs">
       - [rshelios_0, rshelios_1]
       - [rshelios_0, rshelios_3]
@@ -2207,7 +2207,7 @@ Calibration Record Schema:
   </node>
 
   <!-- Online recalibration service -->
-  <node name="online_recalibration" pkg="aurrigo_calibration"
+  <node name="online_recalibration" pkg="airside_calibration"
         type="online_recalibration_node" output="screen">
     <param name="method" value="vgicp_joint"/>
     <param name="voxel_size" value="0.5"/>
@@ -2217,7 +2217,7 @@ Calibration Record Schema:
 </launch>
 ```
 
-**TF tree for 8-LiDAR ADT3:**
+**TF tree for 8-LiDAR third-generation tug:**
 
 ```
                               map
@@ -2243,14 +2243,14 @@ Calibration Record Schema:
 **YAML calibration file format:**
 
 ```yaml
-# calibration/ADT3-001/extrinsics_v12.yaml
-# Auto-generated by aurrigo_calibration. DO NOT EDIT MANUALLY.
-vehicle_id: ADT3-001
+# calibration/third-generation tug-001/extrinsics_v12.yaml
+# Auto-generated by airside_calibration. DO NOT EDIT MANUALLY.
+vehicle_id: third-generation tug-001
 calibration_version: 12
 calibration_timestamp: "2026-04-11T08:30:00Z"
 calibration_method: vgicp_joint_optimization
 reference_temperature_c: 22.5
-software_version: aurrigo-cal-1.2.3
+software_version: airside-cal-1.2.3
 validation_status: PASSED
 
 sensors:
@@ -2287,31 +2287,31 @@ sensors:
 
 thermal_compensation:
   enabled: true
-  lut_file: thermal_lut_ADT3-001.yaml
+  lut_file: thermal_lut_third-generation tug-001.yaml
   reference_temperature_c: 20.0
 ```
 
 **Version control strategy:**
 
 ```
-aurrigo-ws/src/adt3_calibration/
+airside-ws/src/adt3_calibration/
 ├── config/
 │   ├── factory/                      # Factory calibrations (gold standard)
-│   │   ├── ADT3-001_factory.yaml
-│   │   ├── ADT3-002_factory.yaml
+│   │   ├── third-generation tug-001_factory.yaml
+│   │   ├── third-generation tug-002_factory.yaml
 │   │   └── ...
 │   ├── active/                       # Currently active calibrations
-│   │   ├── ADT3-001_active.yaml      # Symlink → latest version
+│   │   ├── third-generation tug-001_active.yaml      # Symlink → latest version
 │   │   └── ...
 │   ├── history/                      # All calibration versions
-│   │   ├── ADT3-001/
+│   │   ├── third-generation tug-001/
 │   │   │   ├── extrinsics_v001.yaml  # Factory
 │   │   │   ├── extrinsics_v002.yaml  # First field refinement
 │   │   │   ├── ...
 │   │   │   └── extrinsics_v012.yaml  # Current
 │   │   └── ...
 │   └── thermal/                      # Thermal LUTs per vehicle
-│       ├── thermal_lut_ADT3-001.yaml
+│       ├── thermal_lut_third-generation tug-001.yaml
 │       └── ...
 ├── scripts/
 │   ├── run_target_calibration.py
@@ -2332,19 +2332,19 @@ Fleet Calibration Dashboard:
 
 Vehicle     Health  Last Cal    Temp    Status      Next Action
 ─────────   ──────  ──────────  ──────  ──────────  ───────────────────
-ADT3-001    0.95    2h ago      28 C    NOMINAL     Scheduled: 5 days
-ADT3-002    0.82    1d ago      32 C    GOOD        Monitor drift trend
-ADT3-003    0.61    3d ago      41 C    DEGRADED    Auto-recal queued
-ADT3-004    0.93    4h ago      25 C    NOMINAL     Scheduled: 6 days
-STL2-001    0.48    7d ago      38 C    CRITICAL    STOP - Manual req
-STL2-002    0.88    12h ago     29 C    GOOD        Scheduled: 4 days
+third-generation tug-001    0.95    2h ago      28 C    NOMINAL     Scheduled: 5 days
+third-generation tug-002    0.82    1d ago      32 C    GOOD        Monitor drift trend
+third-generation tug-003    0.61    3d ago      41 C    DEGRADED    Auto-recal queued
+third-generation tug-004    0.93    4h ago      25 C    NOMINAL     Scheduled: 6 days
+small tug platform-001    0.48    7d ago      38 C    CRITICAL    STOP - Manual req
+small tug platform-002    0.88    12h ago     29 C    GOOD        Scheduled: 4 days
 POD-001     0.91    6h ago      27 C    NOMINAL     Scheduled: 6 days
 ...
 
 Alerts:
-  [CRITICAL] STL2-001: rshelios_2 drift 4.2 cm - vehicle stopped
-  [WARNING]  ADT3-003: Overall health declining trend (0.82→0.61 in 2d)
-  [INFO]     ADT3-001: Auto-recalibration completed successfully
+  [CRITICAL] small tug platform-001: rshelios_2 drift 4.2 cm - vehicle stopped
+  [WARNING]  third-generation tug-003: Overall health declining trend (0.82→0.61 in 2d)
+  [INFO]     third-generation tug-001: Auto-recalibration completed successfully
 ```
 
 **Fleet management ROS service interface:**
@@ -2453,7 +2453,7 @@ Total: 16 weeks, $38,000-57,000
 
 2. **Use a layered calibration approach**: Factory target-based initialization (< 0.5 cm accuracy) followed by continuous GTSAM-integrated online refinement. Neither alone is sufficient — target-based cannot track drift, online cannot handle large misalignment.
 
-3. **VGICP is the recommended ICP variant**: Already integrated with Aurrigo's GTSAM pipeline and GPU-accelerated on Orin. Achieves 0.3-1 cm accuracy at 8-25 ms per pairwise registration — fast enough for real-time monitoring.
+3. **VGICP is the recommended ICP variant**: Already integrated with the reference airside AV stack's GTSAM pipeline and GPU-accelerated on Orin. Achieves 0.3-1 cm accuracy at 8-25 ms per pairwise registration — fast enough for real-time monitoring.
 
 4. **Thermal drift is the dominant drift source**: Aluminum sensor brackets can introduce 0.007 deg angular drift per 5 C temperature gradient, producing 12 mm displacement at 100 m. Carbon fiber mounts ($200-500 per bracket) reduce thermal drift by 97%, potentially eliminating the need for software thermal compensation.
 
@@ -2477,7 +2477,7 @@ Total: 16 weeks, $38,000-57,000
 
 14. **Fleet calibration management is essential at scale**: For 20+ vehicles with 8 sensors each, that is 160+ calibration states to track. Centralized management with automated reporting saves an estimated $36,000-72,000 per year in labor costs while providing the traceability records required for ISO 3691-4 certification.
 
-15. **ADT3 coverage analysis shows 5% gap regions**: Directly above (+60 to +90 deg elevation) is uncovered. This is acceptable for airside operations (no overhead obstacles in those angles during normal driving), but should be documented in the safety case.
+15. **third-generation tug coverage analysis shows 5% gap regions**: Directly above (+60 to +90 deg elevation) is uncovered. This is acceptable for airside operations (no overhead obstacles in those angles during normal driving), but should be documented in the safety case.
 
 16. **The automated calibration system pays for itself within 1-2 years**: Initial development cost of $38,000-57,000 (16 weeks) yields $92,000-156,000 savings over 3 years for a 20-vehicle fleet, primarily from reduced downtime and labor. The break-even point improves as fleet size increases.
 

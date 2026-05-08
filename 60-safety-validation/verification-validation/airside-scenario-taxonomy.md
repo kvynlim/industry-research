@@ -39,7 +39,7 @@ An autonomous vehicle entering this environment must demonstrate safety performa
 
 This taxonomy covers autonomous vehicles operating on airport airside surfaces including aprons, service roads, and designated taxiway crossings. It does not cover runway operations (autonomous vehicles should never operate on active runways) or public-road transit between airports.
 
-Vehicle types in scope: autonomous baggage tractors/dolly tugs (Aurrigo Auto-DollyTug, UISEE tractors, EasyMile/TLD TractEasy EZTow), autonomous cargo transporters, and autonomous tow tractors. The taxonomy is extensible to autonomous pushback tugs, autonomous refueling vehicles, and autonomous personnel movers if those vehicle types enter development.
+Vehicle types in scope: autonomous baggage tractors/dolly tugs (reference airside AV stack autonomous baggage/cargo tug, UISEE tractors, EasyMile/TLD TractEasy EZTow), autonomous cargo transporters, and autonomous tow tractors. The taxonomy is extensible to autonomous pushback tugs, autonomous refueling vehicles, and autonomous personnel movers if those vehicle types enter development.
 
 ### 1.3 Relationship to Other Documents
 
@@ -386,7 +386,7 @@ Emergency vehicles may travel at 60-80 km/h on apron during response -- far exce
 | Thermal | Excellent (night) | Cost; integration complexity; resolution lower than camera |
 
 **Mitigation:**
-- 360-degree LiDAR coverage (4-8 sensors, Aurrigo current config)
+- 360-degree LiDAR coverage (4-8 sensors, reference airside AV stack current config)
 - Thermal cameras for night operations (FLIR Boson 640, 640x512 @ 60 Hz)
 - Conservative speed limits near personnel: max 5 km/h within 5 m of any detected person
 - Emergency stop distance < 0.5 m at 5 km/h (requires <0.36 s total reaction time)
@@ -542,7 +542,7 @@ Emergency vehicles may travel at 60-80 km/h on apron during response -- far exce
 | ADS-B/MLAT (infrastructure) | Excellent | Provides aircraft positions; AV can check for conflict |
 
 **Mitigation:**
-- Multi-source localization: GPS + LiDAR SLAM + wheel odometry (GTSAM fusion, current Aurrigo approach)
+- Multi-source localization: GPS + LiDAR SLAM + wheel odometry (GTSAM fusion, current reference airside AV stack approach)
 - Geofence hard limits: AV physically cannot cross hold-short lines without explicit clearance signal from airport system
 - Hold-short line detection via camera and map cross-reference
 - ADS-B/MLAT aircraft position feed: AV checks for aircraft on taxiway before crossing

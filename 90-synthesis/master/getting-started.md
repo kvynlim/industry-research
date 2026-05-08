@@ -8,7 +8,7 @@
 
 | Item | Where | Time |
 |------|-------|------|
-| Access to Aurrigo ROS bags | Your vehicle/server storage | Available now |
+| Access to reference airside AV stack ROS bags | Your vehicle/server storage | Available now |
 | Python 3.8+ with PyTorch 2.0+ | Any dev machine | 30 min setup |
 | GPU access (A100 recommended) | Lambda Labs / RunPod / CoreWeave | Sign up in 5 min |
 | RTL-SDR ADS-B receiver | Amazon (~$30) | Order now, arrives in 2-3 days |
@@ -328,7 +328,7 @@ Based on Week 1 results, choose:
 
 **If occupancy generation worked well:** Start training VQ-VAE tokenizer → world model transformer (POC 1).
 
-**If jet blast/FOD worked well:** Integrate as ROS nodes into the Aurrigo stack for immediate value (POC 4, 5).
+**If jet blast/FOD worked well:** Integrate as ROS nodes into the reference airside AV stack for immediate value (POC 4, 5).
 
 ### 7.3 Where to read more
 
@@ -346,4 +346,4 @@ Based on Week 1 results, choose:
 
 ---
 
-*This guide distills actionable first steps from 155 research documents. Each code snippet is designed to run on your Aurrigo ROS bag data with minimal modification.*
+*This guide distills actionable first steps from 155 research documents. Each code snippet is designed to run on your reference airside AV stack ROS bag data with minimal modification.*

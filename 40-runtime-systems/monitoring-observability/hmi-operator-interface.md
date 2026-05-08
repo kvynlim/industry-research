@@ -14,7 +14,7 @@
 6. [Incident Reporting and ML Feedback](#6-incident-reporting-and-ml-feedback)
 7. [External Communication to Ground Crew](#7-external-communication-to-ground-crew)
 8. [Practical Implementation](#8-practical-implementation)
-9. [Aurrigo-Specific Integration](#9-aurrigo-specific-integration)
+9. [reference airside AV stack-Specific Integration](#9-airside-specific-integration)
 10. [Cost Estimates and Phased Rollout](#10-cost-estimates-and-phased-rollout)
 
 ---
@@ -158,7 +158,7 @@ SAE J3016 (Levels of Driving Automation) was written for on-road vehicles, but i
 | L4 | High automation | Autonomous within defined ODD (specific routes, weather, time) | Remote monitoring, exception handling | Fleet dashboard, incident escalation |
 | L5 | Full automation | Unrestricted autonomous airside operation | Fleet oversight only | KPI dashboard, strategic management |
 
-**Current Aurrigo Position:** All deployments require a safety operator, placing operations at roughly L2-L3. The HMI must support the transition from L3 (operator on vehicle or nearby) to L4 (remote monitoring of multiple vehicles).
+**Current reference airside AV stack Position:** All deployments require a safety operator, placing operations at roughly L2-L3. The HMI must support the transition from L3 (operator on vehicle or nearby) to L4 (remote monitoring of multiple vehicles).
 
 **Key J3016 Insight for HMI Design:** The most dangerous transition is from L2/L3 to L4 -- the so-called "automation gap." At L2/L3, the operator is engaged and building situational awareness. At L4, the operator monitors multiple vehicles and must rapidly re-engage when needed. The HMI must bridge this gap with effective attention management, takeover request design, and trust calibration.
 
@@ -331,7 +331,7 @@ When a single operator monitors multiple vehicles, the primary HMI challenge is 
 | Airport GSE (projected) | 1:100 | Fleet oversight | Airside apron | Projected with private 5G; intervention-on-demand. |
 | TractEasy deployments | 1:1 | Safety driver present | Airport airside | Current regulatory requirement at most airports. |
 
-**Recommended Progression for Aurrigo:**
+**Recommended Progression for reference airside AV stack:**
 
 | Phase | Ratio | Mode | Duration | Trigger to Next Phase |
 |---|---|---|---|---|
@@ -560,7 +560,7 @@ These metrics must be logged for every takeover event and reported in monthly sa
 
 | Competency Area | Knowledge Requirements | Skill Requirements | Assessment Method |
 |---|---|---|---|
-| Vehicle dynamics | Ackermann steering, turning radius, braking distance, crab mode (ADT3) | Predict vehicle behavior from display | Written exam + simulator |
+| Vehicle dynamics | Ackermann steering, turning radius, braking distance, crab mode (third-generation tug) | Predict vehicle behavior from display | Written exam + simulator |
 | Airport safety | Airside rules (Part 139), FOD awareness, jet blast zones, right-of-way | Navigate airport map, identify hazard zones | Written exam |
 | AV system capabilities | Perception range, weather limitations, ODD boundaries, known failure modes | Interpret confidence displays, identify OOD situations | Scenario-based assessment |
 | AV system limitations | Sensor blind spots, weather degradation, novel object detection gaps | Recognize when the system is uncertain | Simulator scenarios |
@@ -685,7 +685,7 @@ For events requiring formal documentation (safety events, near-misses, regulator
 ```
 INCIDENT REPORT  IR-2026-0417-003
 ══════════════════════════════════════════════════
-Date: 2026-04-17 14:32:07 UTC | Vehicle: ADT3-007 | Location: Gate B7
+Date: 2026-04-17 14:32:07 UTC | Vehicle: third-generation tug-007 | Location: Gate B7
 
 WHAT HAPPENED: Vehicle transiting at 12 km/h performed emergency stop.
 Ground crew member emerged from behind belt loader at ~4.5m, detected
@@ -870,7 +870,7 @@ Ground crew who will work near autonomous vehicles need familiarization (distinc
 
 ### 8.1 ROS Topic Architecture for HMI
 
-The HMI system subscribes to existing Aurrigo stack topics and publishes aggregated data for the dashboard:
+The HMI system subscribes to existing reference airside AV stack topics and publishes aggregated data for the dashboard:
 
 ```yaml
 # HMI-relevant ROS topics (published by existing stack)
@@ -1087,11 +1087,11 @@ rosbridge-websocket://edge-server:9090
 
 ---
 
-## 9. Aurrigo-Specific Integration
+## 9. reference airside AV stack-Specific Integration
 
 ### 9.1 Current Stack Integration Points
 
-The Aurrigo ROS Noetic stack (22 packages, C++ nodelets) provides the following integration points for HMI:
+The reference airside AV stack ROS Noetic stack (22 packages, C++ nodelets) provides the following integration points for HMI:
 
 | Stack Component | Relevant Topic | HMI Use |
 |---|---|---|
@@ -1133,8 +1133,8 @@ When the shadow stack disagrees with the production stack (trajectory divergence
 
 | Vehicle | Steering Type | HMI Consideration |
 |---|---|---|
-| ADT3 | Ackermann + crab mode | Crab mode = lateral movement; display steering mode, travel direction (may differ from heading), external LED must signal lateral movement intent |
-| STL2 | Standard | Standard HMI |
+| third-generation tug | Ackermann + crab mode | Crab mode = lateral movement; display steering mode, travel direction (may differ from heading), external LED must signal lateral movement intent |
+| small tug platform | Standard | Standard HMI |
 | POD | Bidirectional | Display which end is "front"; intent display on both ends |
 | ACA1 | Standard | Standard HMI |
 

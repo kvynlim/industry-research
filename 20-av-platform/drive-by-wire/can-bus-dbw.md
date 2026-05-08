@@ -1,6 +1,6 @@
 # CAN Bus Communication and Drive-by-Wire Interfaces for Autonomous Vehicles
 
-Deep technical reference covering CAN bus fundamentals, drive-by-wire architecture, Aurrigo vehicle interfaces, the ADT3 steering chain, safety mechanisms, SocketCAN, ROS integration, control strategies, functional safety, and testing tools.
+Deep technical reference covering CAN bus fundamentals, drive-by-wire architecture, reference airside vehicle interfaces, the third-generation tug steering chain, safety mechanisms, SocketCAN, ROS integration, control strategies, functional safety, and testing tools.
 
 ---
 
@@ -241,7 +241,7 @@ Several commercial DBW kits exist for autonomous vehicle development:
 | **PIX Moving PIXKIT** | PIX Moving | Purpose-built chassis | CAN + ROS2/Autoware | ~$30,000 |
 | **New Eagle DBW Kit** | New Eagle | Multiple | CAN + ROS | Custom |
 
-For purpose-built vehicles like the Aurrigo Auto-DollyTug, the DBW system is designed in-house as an integral part of the vehicle architecture rather than retrofitted.
+For purpose-built vehicles like the reference airside AV stack autonomous baggage/cargo tug, the DBW system is designed in-house as an integral part of the vehicle architecture rather than retrofitted.
 
 ### 2.4 DBW Control Loop
 
@@ -266,21 +266,21 @@ Each DBW axis runs its own closed-loop controller at 50-1000 Hz, depending on th
 
 ---
 
-## 3. Aurrigo Vehicle Interface
+## 3. reference airside AV stack Vehicle Interface
 
-### 3.1 Aurrigo Platform Overview
+### 3.1 reference airside AV stack Platform Overview
 
-Aurrigo International designs and manufactures purpose-built autonomous ground support equipment (GSE) for airport airside operations. Their product line includes:
+reference airside AV vendor designs and manufactures purpose-built autonomous ground support equipment (GSE) for airport airside operations. Their product line includes:
 
-- **Auto-DollyTug (ADT):** Autonomous baggage/ULD transport vehicle, now in 3rd generation. 4-wheel steering, 360-degree tank turn, sideways drive capability. All-electric, 88V lithium-ion powertrain.
-- **Auto-Cargo:** Heavy cargo transport, twin 18.4 kW motors, 4-wheel steering, 4,500 kg onboard payload, 25 km/h max speed.
-- **Auto-Shuttle:** Autonomous passenger/crew transport (Ford E-Transit chassis, Level 4 autonomy).
+- **autonomous baggage/cargo tug (ADT):** Autonomous baggage/ULD transport vehicle, now in 3rd generation. 4-wheel steering, 360-degree tank turn, sideways drive capability. All-electric, 88V lithium-ion powertrain.
+- **autonomous cargo vehicle:** Heavy cargo transport, twin 18.4 kW motors, 4-wheel steering, 4,500 kg onboard payload, 25 km/h max speed.
+- **autonomous shuttle:** Autonomous passenger/crew transport (Ford E-Transit chassis, Level 4 autonomy).
 
-The autonomous driving software is **Auto-Stack**, a proprietary in-house system controlling steering, braking, drive power, sensor fusion, mapping, localization, and navigation.
+The autonomous driving software is **autonomy stack**, a proprietary in-house system controlling steering, braking, drive power, sensor fusion, mapping, localization, and navigation.
 
 ### 3.2 CAN Bus Interface Architecture (Inferred)
 
-Based on the vehicle architecture of purpose-built autonomous GSE platforms like the Aurrigo vehicles, the CAN interface between the ADS and vehicle follows a dual-message paradigm:
+Based on the vehicle architecture of purpose-built autonomous GSE platforms like the reference airside vehicles, the CAN interface between the ADS and vehicle follows a dual-message paradigm:
 
 **ADS-to-Vehicle Messages (AdsToAv / AvCommand):**
 
@@ -315,7 +315,7 @@ These messages carry vehicle state feedback to the ADS:
 
 ### 3.3 Steering Conversion
 
-For vehicles with 4-wheel steering (like the Auto-DollyTug), steering angle conversion is more complex than standard Ackermann geometry. The ADS specifies a desired path curvature or steering angle, and the vehicle ECU converts this into individual wheel angles.
+For vehicles with 4-wheel steering (like the autonomous baggage/cargo tug), steering angle conversion is more complex than standard Ackermann geometry. The ADS specifies a desired path curvature or steering angle, and the vehicle ECU converts this into individual wheel angles.
 
 **Steering angle to CAN signal conversion:**
 
@@ -376,14 +376,14 @@ The velocity controller typically runs as a cascaded loop: the outer loop (ADS) 
 
 ---
 
-## 4. ADT3 Steering Chain
+## 4. third-generation tug Steering Chain
 
 ### 4.1 Architecture Overview
 
-The ADT3 (Auto-DollyTug 3rd generation) uses an electrohydraulic steering system. The steering chain from the ADS command to wheel movement:
+The third-generation tug (autonomous baggage/cargo tug 3rd generation) uses an electrohydraulic steering system. The steering chain from the ADS command to wheel movement:
 
 ```
-Auto-Stack ADS
+autonomy stack ADS
     | CAN command (steering angle setpoint)
     v
 Vehicle Control ECU
@@ -520,7 +520,7 @@ The hydraulic steering circuit:
                    +---------+
 ```
 
-For electric vehicles like the Auto-DollyTug, the hydraulic pump is electrically driven. The system pressure is typically 70-150 bar for off-highway steering applications.
+For electric vehicles like the autonomous baggage/cargo tug, the hydraulic pump is electrically driven. The system pressure is typically 70-150 bar for off-highway steering applications.
 
 ---
 
@@ -630,7 +630,7 @@ Modern DBW systems targeting ASIL D require fail-operational behavior for at lea
 
 ### 5.5 Driver Takeover Detection
 
-For vehicles with a safety operator (as in all current Aurrigo deployments):
+For vehicles with a safety operator (as in all current reference airside AV stack deployments):
 
 - Torque sensors on steering wheel detect human input
 - Pedal position sensors detect brake or throttle application
@@ -1111,7 +1111,7 @@ The `ros2_canopen` package provides hardware interfaces compatible with `ros2_co
 
 ### 8.4 Custom CAN Node Architecture
 
-For maximum flexibility (and for proprietary protocols like Aurrigo's), a custom ROS2 CAN node is often the best approach:
+For maximum flexibility (and for proprietary protocols like the reference airside AV stack's), a custom ROS2 CAN node is often the best approach:
 
 ```python
 #!/usr/bin/env python3
@@ -1373,7 +1373,7 @@ For airside vehicles operating at low speeds (< 25 km/h), slower response is acc
 
 ### 10.2 Regenerative Braking
 
-For electric vehicles like the Aurrigo fleet:
+For electric vehicles like the reference airside fleet:
 
 - **How it works:** The drive motor controller reverses the current flow, making the motor act as a generator. This produces a braking torque while charging the battery.
 - **CAN interface:** The ADS sends a negative velocity command or a dedicated regenerative brake command. The motor controller handles the current reversal.
@@ -1482,7 +1482,7 @@ def compute_odometry(v_left, v_right, wheelbase, dt, x, y, theta):
     return x, y, theta
 ```
 
-For 4-wheel-steering vehicles like the Auto-DollyTug, odometry is more complex -- all four wheel speeds and angles contribute to the velocity estimate.
+For 4-wheel-steering vehicles like the autonomous baggage/cargo tug, odometry is more complex -- all four wheel speeds and angles contribute to the velocity estimate.
 
 ### 11.3 IMU Integration via CAN
 
@@ -1578,7 +1578,7 @@ ISO 26262 imposes requirements across the entire development lifecycle:
 
 ### 12.5 Applicability to Airside Operations
 
-Aurrigo has not publicly cited specific ISO 26262 certification for their vehicles. The NUIC (No User in Charge) feasibility study with IAG is explicitly developing certification pathways. Current deployments operate under each airport's established safety governance with a safety operator onboard.
+reference airside AV stack has not publicly cited specific ISO 26262 certification for their vehicles. The NUIC (No User in Charge) feasibility study with IAG is explicitly developing certification pathways. Current deployments operate under each airport's established safety governance with a safety operator onboard.
 
 Relevant standards beyond ISO 26262 for airside autonomous vehicles:
 - **IEC 61508:** Generic functional safety standard (referenced by some DBW suppliers, e.g., Danfoss SIL 2)
@@ -1876,15 +1876,15 @@ For ROS2-based autonomous vehicles, `python-can` (for prototyping/testing) or a 
 
 ---
 
-## 15. Aurrigo ADT3 Integration Considerations
+## 15. reference airside AV stack third-generation tug Integration Considerations
 
 ### 15.1 CAN Bus Architecture for Airside Autonomous GSE
 
-Based on the vehicle architecture described in Aurrigo's public materials and the general architecture of purpose-built autonomous GSE, the ADT3's CAN network likely follows this topology:
+Based on the vehicle architecture described in the reference airside AV stack's public materials and the general architecture of purpose-built autonomous GSE, the third-generation tug's CAN network likely follows this topology:
 
 ```
 +------------------+
-|  Auto-Stack ADS  |  (Main compute: perception, planning, control)
+|  autonomy stack ADS  |  (Main compute: perception, planning, control)
 |  (Coventry stack)|
 +--------+---------+
          |
@@ -1917,7 +1917,7 @@ For the world models research initiative, the CAN interface provides several int
 
 ### 15.3 4-Wheel Steering Dynamics
 
-The Auto-DollyTug's 4-wheel steering with 360-degree tank turn and sideways drive presents unique challenges for world models:
+The autonomous baggage/cargo tug's 4-wheel steering with 360-degree tank turn and sideways drive presents unique challenges for world models:
 
 - The standard bicycle kinematic model does not apply
 - Each wheel's speed and angle are independent control variables
@@ -1952,11 +1952,7 @@ A world model for this vehicle must learn these multi-modal dynamics, which sign
 - [New Eagle Autonomous Machines](https://neweagle.net/autonomous-machines/)
 - [Sygnal Safety-Critical DBW](https://levelfivesupplies.com/product/sygnal-safety-critical-drive-by-wire/)
 
-### Aurrigo
-- [Aurrigo Auto-DollyTug](https://aurrigo.com/auto-dollytug/)
-- [Aurrigo Auto-Dolly](https://aurrigo.com/autodolly/)
-- [Aurrigo Autonomous Products](https://aurrigo.com/products_1/)
-- [Aurrigo Auto-Cargo Launch - The Engineer](https://www.theengineer.co.uk/content/news/aurrigo-unveils-autonomous-heavy-lift-vehicle)
+### reference airside AV stack
 
 ### Roboteq Motor Controllers
 - [Roboteq MDC1460 Product Page](https://www.roboteq.com/products/products-brushed-dc-motor-controllers/mdc1460-detail)

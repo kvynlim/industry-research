@@ -6,7 +6,7 @@
 
 ---
 
-> **Key Takeaway:** Static 3D occupancy grids tell the planner *where* obstacles are but not *where they are going*. Occupancy flow extends this by attaching a 3D velocity vector to every occupied voxel, transforming static spatial maps into dynamic spatiotemporal predictions. For airport airside operations -- where baggage carts, pushback tractors, ground crew, and taxiing aircraft all move in tight quarters at varying speeds -- this distinction is the difference between reactive braking and predictive planning. Scene flow estimation provides the per-point motion foundation (ZeroFlow achieves 0.028m EPE3D on Argoverse 2 with zero-shot distillation), 4D occupancy forecasting extrapolates these flows into the future (UnO won the Argoverse 2 LiDAR Forecasting Challenge at CVPR 2024), and dynamic scene reconstruction enables replay-based simulation for testing. For Aurrigo's LiDAR-primary Orin deployment, the practical pipeline is: sparse voxelization (0.2-0.4m) + scene flow head (~8ms) + temporal aggregation (~12ms) + flow-aware planning integration -- fitting within a 50ms budget on Orin AGX and providing the velocity-aware safety margins that ISO 3691-4 implicitly requires.
+> **Key Takeaway:** Static 3D occupancy grids tell the planner *where* obstacles are but not *where they are going*. Occupancy flow extends this by attaching a 3D velocity vector to every occupied voxel, transforming static spatial maps into dynamic spatiotemporal predictions. For airport airside operations -- where baggage carts, pushback tractors, ground crew, and taxiing aircraft all move in tight quarters at varying speeds -- this distinction is the difference between reactive braking and predictive planning. Scene flow estimation provides the per-point motion foundation (ZeroFlow achieves 0.028m EPE3D on Argoverse 2 with zero-shot distillation), 4D occupancy forecasting extrapolates these flows into the future (UnO won the Argoverse 2 LiDAR Forecasting Challenge at CVPR 2024), and dynamic scene reconstruction enables replay-based simulation for testing. For the reference airside AV stack's LiDAR-primary Orin deployment, the practical pipeline is: sparse voxelization (0.2-0.4m) + scene flow head (~8ms) + temporal aggregation (~12ms) + flow-aware planning integration -- fitting within a 50ms budget on Orin AGX and providing the velocity-aware safety margins that ISO 3691-4 implicitly requires.
 
 ---
 
@@ -118,7 +118,7 @@ Optical Flow    2D Scene  Scene Flow  Point   Occupancy    Occupancy
 | **Occupancy flow** | 3D voxel grid | Dense (per-voxel) | 3D (vx, vy, vz) | Voxelized scenes | Per-voxel velocity |
 | **4D occupancy** | 3D + time | Dense (spatiotemporal) | 4D volume | Temporal sequences | Future occupancy states |
 
-**For Aurrigo's LiDAR-primary stack**, scene flow and occupancy flow are the most relevant:
+**For the reference airside AV stack's LiDAR-primary stack**, scene flow and occupancy flow are the most relevant:
 - **Scene flow** operates directly on LiDAR point clouds -- no camera needed
 - **Occupancy flow** operates on voxelized LiDAR -- matches the occupancy representation already planned for the stack
 - Optical flow requires cameras and provides only 2D motion -- less useful for a LiDAR-primary system
@@ -347,7 +347,7 @@ These methods established the field but are now outperformed by self-supervised 
 
 ### 2.7 LiDAR-Native Flow Advantages
 
-For a LiDAR-primary stack like Aurrigo's, scene flow estimation has fundamental advantages over camera-based alternatives:
+For a LiDAR-primary stack like the reference airside AV stack's, scene flow estimation has fundamental advantages over camera-based alternatives:
 
 | Property | Camera-Based Flow | LiDAR-Based Flow |
 |----------|------------------|-----------------|
@@ -367,7 +367,7 @@ velocity_y = dy / dt  # m/s
 velocity_z = dz / dt  # m/s
 speed = sqrt(velocity_x**2 + velocity_y**2 + velocity_z**2)
 
-# For Aurrigo's RoboSense at 10Hz:
+# For the reference airside AV stack's RoboSense at 10Hz:
 # dt = 0.1s
 # A baggage cart moving at 20 km/h = 5.56 m/s
 # Scene flow magnitude: 5.56 * 0.1 = 0.556m per frame
@@ -534,7 +534,7 @@ L_smoothness = ||∇F_t||  (flow should be spatially smooth)
 
 **Full coverage in `lidar-native-world-models.md` -- summary here for context.**
 
-UnO (Unsupervised Occupancy Fields) is the most relevant 4D occupancy forecasting method for Aurrigo's stack:
+UnO (Unsupervised Occupancy Fields) is the most relevant 4D occupancy forecasting method for the reference airside AV stack's stack:
 
 | Feature | UnO |
 |---------|-----|
@@ -546,7 +546,7 @@ UnO (Unsupervised Occupancy Fields) is the most relevant 4D occupancy forecastin
 | Resolution | Continuous (queryable at arbitrary resolution) |
 
 **Why UnO is the top candidate for airside:**
-1. LiDAR-only input matches Aurrigo's sensor configuration
+1. LiDAR-only input matches the reference airside AV stack's sensor configuration
 2. Self-supervised training eliminates the annotation problem (no airside datasets exist)
 3. Continuous representation enables adaptive resolution (fine near ego, coarse at distance)
 4. Joint occupancy + flow output directly provides the velocity-aware grid the planner needs
@@ -657,7 +657,7 @@ After pre-training:
 - Depth reasoning (cameras must infer depth to predict LiDAR)
 - Scene dynamics (static vs dynamic scene elements)
 
-**Airside relevance for pre-training:** If Aurrigo adds cameras in the future, ViDAR-style pre-training on road driving data could provide a strong initialization before fine-tuning on airside data. The pre-trained features encode general 3D understanding that transfers across domains.
+**Airside relevance for pre-training:** If reference airside AV stack adds cameras in the future, ViDAR-style pre-training on road driving data could provide a strong initialization before fine-tuning on airside data. The pre-trained features encode general 3D understanding that transfers across domains.
 
 ### 3.8 Temporal Horizons: Short-Term vs Long-Term
 
@@ -1102,7 +1102,7 @@ Planning:
 
 ### 5.6 Integration with Frenet Planner
 
-Aurrigo's current Frenet planner generates 420 trajectory candidates per cycle and selects the best one via cost function evaluation. Occupancy flow integrates at the cost function level:
+the reference airside AV stack's current Frenet planner generates 420 trajectory candidates per cycle and selects the best one via cost function evaluation. Occupancy flow integrates at the cost function level:
 
 **Current Frenet cost function:**
 
@@ -1617,7 +1617,7 @@ Most modern methods (ZeroFlow, DeFlow) still report KITTI results for backward c
 
 | Parameter | Proposed Value | Rationale |
 |-----------|---------------|-----------|
-| LiDAR | 4-8 RoboSense (matching Aurrigo config) | Test with actual sensor configuration |
+| LiDAR | 4-8 RoboSense (matching reference airside AV stack config) | Test with actual sensor configuration |
 | Range | [-75m, 75m] x [-75m, 75m] x [-2m, 20m] | Cover aircraft height + full stand area |
 | Resolution | 0.2m (close), 0.4m (medium), 0.8m (far) | Multi-resolution for efficiency |
 | Classes | 18 (see `../perception/overview/lidar-semantic-segmentation.md`) | Airside-specific taxonomy |
@@ -1923,7 +1923,7 @@ The complete 4D occupancy flow pipeline for airside deployment:
 │                                                              │
 │  1. Per-sensor ego-motion compensation (GTSAM poses)        │
 │  2. Multi-sensor merge to unified point cloud               │
-│  3. Ground removal (RANSAC, existing Aurrigo pipeline)      │
+│  3. Ground removal (RANSAC, existing reference airside AV stack pipeline)      │
 │  4. Voxelization: point cloud → sparse voxel grid           │
 │     Multi-resolution: 0.2m / 0.4m / 0.8m per zone          │
 │  5. Per-voxel feature computation (mean xyz, intensity,     │
@@ -2332,7 +2332,7 @@ class BEVTemporalAttention(nn.Module):
 
 ### 9.3 ROS Integration: Occupancy Flow Publisher
 
-**ROS node architecture for Aurrigo's Noetic stack:**
+**ROS node architecture for the reference airside AV stack's Noetic stack:**
 
 ```
 ROS Node: /occupancy_flow_predictor
@@ -2397,7 +2397,7 @@ uint32 num_steps       # Number of future steps
 OccupancyGrid3D[] predictions  # List of future occupancy grids
 ```
 
-**ROS node skeleton (C++ nodelet for Aurrigo's architecture):**
+**ROS node skeleton (C++ nodelet for the reference airside AV stack's architecture):**
 
 ```cpp
 // occupancy_flow_nodelet.h
@@ -2407,7 +2407,7 @@ OccupancyGrid3D[] predictions  # List of future occupancy grids
 #include <geometry_msgs/PoseStamped.h>
 #include <NvInfer.h>  // TensorRT
 
-namespace aurrigo_perception {
+namespace airside_perception {
 
 class OccupancyFlowNodelet : public nodelet::Nodelet {
 public:
@@ -2466,7 +2466,7 @@ private:
     ros::Publisher occ_pub_, flow_pub_, future_pub_;
 };
 
-}  // namespace aurrigo_perception
+}  // namespace airside_perception
 ```
 
 ### 9.4 Sparse Voxel Representation for Efficient Storage and Transmission
@@ -2567,11 +2567,11 @@ Total estimated cost: $6-11K (annotation dominant)
 
 1. **Static occupancy is necessary but insufficient for planning.** A 3D occupancy grid tells the planner *where* obstacles are but not *where they will be*. Adding per-voxel flow vectors transforms static spatial maps into dynamic predictions -- essential for airside operations where GSE, aircraft, and crew all move simultaneously in tight quarters.
 
-2. **ZeroFlow achieves 0.028m EPE3D via zero-shot distillation** -- the student surpasses the teacher (NSFP) by 53% through distillation smoothing. This means Aurrigo can generate high-quality scene flow pseudo-labels on airside data using FastNSF offline, then distill into a real-time network without any human annotation.
+2. **ZeroFlow achieves 0.028m EPE3D via zero-shot distillation** -- the student surpasses the teacher (NSFP) by 53% through distillation smoothing. This means reference airside AV stack can generate high-quality scene flow pseudo-labels on airside data using FastNSF offline, then distill into a real-time network without any human annotation.
 
 3. **DeFlow (CVPR 2024) is the current SOTA for LiDAR scene flow**: 0.023m EPE3D with 3.3x fewer parameters than ZeroFlow-XL and 1.75x higher throughput. Its decoder-free architecture is more TensorRT-friendly for Orin deployment.
 
-4. **UnO won the Argoverse 2 LiDAR Forecasting Challenge** with a fully self-supervised, LiDAR-only approach. It predicts continuous occupancy + flow fields without any labels -- directly matching Aurrigo's constraints (LiDAR-primary, no airside labels available).
+4. **UnO won the Argoverse 2 LiDAR Forecasting Challenge** with a fully self-supervised, LiDAR-only approach. It predicts continuous occupancy + flow fields without any labels -- directly matching the reference airside AV stack's constraints (LiDAR-primary, no airside labels available).
 
 5. **Occupancy forecasting accuracy degrades ~50% per doubling of prediction horizon.** IoU drops from ~30% at 0.5s to ~14% at 3.0s on Cam4DOcc. For airside at 15 km/h, a 2m position error at 3s is still useful for conservative planning.
 
@@ -2587,7 +2587,7 @@ Total estimated cost: $6-11K (annotation dominant)
 
 11. **Sparse voxel representation achieves ~18x compression** over dense grids for ROS message transmission and rosbag storage. At 10 Hz, this is 5.6 MB/s vs 102 MB/s for dense -- critical for fleet data pipelines.
 
-12. **No public airside scene flow or occupancy forecasting benchmark exists.** This is both a gap and an opportunity. Aurrigo's fleet data could become the de facto benchmark for airside 4D understanding. Estimated creation cost: $30-50K.
+12. **No public airside scene flow or occupancy forecasting benchmark exists.** This is both a gap and an opportunity. the reference airside fleet data could become the de facto benchmark for airside 4D understanding. Estimated creation cost: $30-50K.
 
 13. **Flow-based motion prediction is class-agnostic** -- it predicts motion for unknown objects, articulated mechanisms, and crowd flow without per-class detectors. This is a fundamental advantage for airside, where 30+ GSE types, 100+ aircraft variants, and novel foreign objects must all be handled.
 
@@ -2595,7 +2595,7 @@ Total estimated cost: $6-11K (annotation dominant)
 
 15. **Self-supervised training eliminates the annotation bottleneck.** ZeroFlow (distillation), UnO (occupancy rendering loss), and SelfOccFlow (neural rendering) all train without labels. Combined with road data pre-training and airside adaptation, the total labeling cost for 4D occupancy flow is $5-10K vs $80K+ for fully supervised approaches.
 
-16. **Occupancy flow integrates with Aurrigo's Frenet planner at the cost function level.** Flow-augmented obstacle costs replace static proximity penalties, enabling predictive trajectory selection. Expected improvement: 60-70% collision rate reduction, 50-67% reduction in unnecessary stops.
+16. **Occupancy flow integrates with the reference airside AV stack's Frenet planner at the cost function level.** Flow-augmented obstacle costs replace static proximity penalties, enabling predictive trajectory selection. Expected improvement: 60-70% collision rate reduction, 50-67% reduction in unnecessary stops.
 
 17. **Mamba/SSM offers linear-complexity temporal modeling** (vs quadratic for attention), but requires custom CUDA kernels not yet supported by TensorRT on Orin. For near-term deployment, standard BEV temporal attention is more practical.
 

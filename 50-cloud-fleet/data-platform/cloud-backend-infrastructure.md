@@ -27,7 +27,7 @@
 
 ### 1.1 The Backend Gap
 
-The Aurrigo research repository covers what happens **on the vehicle** (perception, planning, control) and what happens **at the model level** (training, evaluation, deployment). What is missing is the **backend infrastructure** that connects them — the plumbing that moves data from live vehicles to cloud storage, processes it into training-ready datasets, orchestrates ML pipelines, and pushes updated models back to the fleet.
+The reference airside AV stack research repository covers what happens **on the vehicle** (perception, planning, control) and what happens **at the model level** (training, evaluation, deployment). What is missing is the **backend infrastructure** that connects them — the plumbing that moves data from live vehicles to cloud storage, processes it into training-ready datasets, orchestrates ML pipelines, and pushes updated models back to the fleet.
 
 Without documented backend infrastructure, each new airport deployment reinvents:
 - How to get rosbags off vehicles
@@ -740,10 +740,10 @@ Grafana Dashboard: Fleet Operations
 │                                                            │
 │  Map View (OpenStreetMap + vehicle positions)              │
 │  ┌──────────────────────────────────────────┐             │
-│  │    ○ ADT3-001 (autonomous, 15 km/h)      │             │
-│  │        ○ ADT3-003 (docking, stand 24)    │             │
-│  │  ■ ADT3-007 (charging, 78% SoC)         │             │
-│  │            ○ ADT3-012 (taxiway B)        │             │
+│  │    ○ third-generation tug-001 (autonomous, 15 km/h)      │             │
+│  │        ○ third-generation tug-003 (docking, stand 24)    │             │
+│  │  ■ third-generation tug-007 (charging, 78% SoC)         │             │
+│  │            ○ third-generation tug-012 (taxiway B)        │             │
 │  └──────────────────────────────────────────┘             │
 │                                                            │
 │  Fleet Health       │  Data Pipeline Status                │

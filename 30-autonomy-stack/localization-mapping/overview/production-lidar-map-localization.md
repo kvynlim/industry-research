@@ -1,6 +1,6 @@
 # Production LiDAR-to-Map Localization Pipeline for Airside Autonomous Vehicles
 
-LiDAR-to-map localization is the runtime process of determining a vehicle's precise pose by aligning live LiDAR scans against a pre-built reference map. This is distinct from SLAM (which builds the map) and from state estimation (which fuses multiple sensor sources into a coherent ego-state). For Aurrigo's airside GSE fleet running GTSAM + GPU VGICP on NVIDIA Orin with 4-8 RoboSense LiDARs, the scan-to-map matching module is the single largest contributor to localization accuracy during normal operation — it provides the position "anchor" that prevents dead-reckoning drift from accumulating. This document covers the complete production pipeline: reference map representation and management, scan preprocessing for matching, registration algorithms (ICP variants, NDT, feature-based, and learned methods), degenerate geometry detection and handling, multi-LiDAR fusion strategies for scan-to-map, GTSAM factor graph integration, fallback behaviors when matching degrades, and Orin deployment with real-time budgets. The existing repository covers offline map construction (`../maps/map-construction-pipeline.md`), SLAM algorithms for building maps (`lidar-slam-algorithms.md`), state estimation fusion (`robust-state-estimation-multi-sensor.md`), place recognition for re-localization (`lidar-place-recognition-relocalization.md`), and map change detection (`../maps/hd-map-change-detection-maintenance.md`). This document fills the gap between map construction and state estimation: the runtime scan-matching engine that converts a raw LiDAR sweep into a 6-DoF pose measurement with calibrated uncertainty, suitable for factor graph integration. The key finding: GPU-accelerated VGICP with multi-resolution coarse-to-fine matching, adaptive voxel sizing, and eigenvalue-based degeneracy detection achieves ±5-10 cm translational and ±0.1° rotational accuracy at 15-25 ms per scan on Orin — well within the 50 ms localization budget — while gracefully degrading through NDT fallback and eventually dead-reckoning when geometric structure is insufficient.
+LiDAR-to-map localization is the runtime process of determining a vehicle's precise pose by aligning live LiDAR scans against a pre-built reference map. This is distinct from SLAM (which builds the map) and from state estimation (which fuses multiple sensor sources into a coherent ego-state). For the reference airside AV stack's airside GSE fleet running GTSAM + GPU VGICP on NVIDIA Orin with 4-8 RoboSense LiDARs, the scan-to-map matching module is the single largest contributor to localization accuracy during normal operation — it provides the position "anchor" that prevents dead-reckoning drift from accumulating. This document covers the complete production pipeline: reference map representation and management, scan preprocessing for matching, registration algorithms (ICP variants, NDT, feature-based, and learned methods), degenerate geometry detection and handling, multi-LiDAR fusion strategies for scan-to-map, GTSAM factor graph integration, fallback behaviors when matching degrades, and Orin deployment with real-time budgets. The existing repository covers offline map construction (`../maps/map-construction-pipeline.md`), SLAM algorithms for building maps (`lidar-slam-algorithms.md`), state estimation fusion (`robust-state-estimation-multi-sensor.md`), place recognition for re-localization (`lidar-place-recognition-relocalization.md`), and map change detection (`../maps/hd-map-change-detection-maintenance.md`). This document fills the gap between map construction and state estimation: the runtime scan-matching engine that converts a raw LiDAR sweep into a 6-DoF pose measurement with calibrated uncertainty, suitable for factor graph integration. The key finding: GPU-accelerated VGICP with multi-resolution coarse-to-fine matching, adaptive voxel sizing, and eigenvalue-based degeneracy detection achieves ±5-10 cm translational and ±0.1° rotational accuracy at 15-25 ms per scan on Orin — well within the 50 ms localization budget — while gracefully degrading through NDT fallback and eventually dead-reckoning when geometric structure is insufficient.
 
 ---
 
@@ -316,7 +316,7 @@ def preprocess_reference_map(raw_map_points, voxel_size=0.3):
 
 ### 3.1 Multi-LiDAR Merge
 
-Aurrigo vehicles carry 4-8 RoboSense LiDARs (RSHELIOS 32-beam and RSBP 16-beam). Before scan-to-map matching, the multi-LiDAR data must be merged into a single scan in the vehicle body frame:
+reference airside vehicles carry 4-8 RoboSense LiDARs (RSHELIOS 32-beam and RSBP 16-beam). Before scan-to-map matching, the multi-LiDAR data must be merged into a single scan in the vehicle body frame:
 
 ```cpp
 class MultiLidarMerger {
@@ -493,7 +493,7 @@ Special cases:
 - More robust to noise than point-to-point or point-to-plane
 - Natural probabilistic formulation enables covariance estimation on the result
 
-**VGICP (Voxelized GICP)**: The variant used in Aurrigo's GTSAM stack. Instead of per-point covariances, uses voxel-level distributions from the reference map. This eliminates the per-query k-NN search for covariance estimation:
+**VGICP (Voxelized GICP)**: The variant used in the reference airside AV stack's GTSAM stack. Instead of per-point covariances, uses voxel-level distributions from the reference map. This eliminates the per-query k-NN search for covariance estimation:
 
 ```cpp
 // VGICP cost function for a single correspondence
@@ -679,11 +679,11 @@ Convergence basin       | ±2-3 m (4m cells)   | ±0.5-1 m
 Memory                  | 5-50 MB             | 150-300 MB
 Degenerate handling     | Hessian singularity  | Eigenvalue analysis
 Ground plane            | Handles well         | Can be degenerate
-Implementation maturity | Autoware production  | Aurrigo current stack
+Implementation maturity | Autoware production  | reference airside AV stack current stack
 Best for                | Backup/fast path     | Primary high-accuracy
 ```
 
-**Recommendation**: VGICP as primary (higher accuracy, already in Aurrigo stack), NDT as fast fallback when VGICP fails to converge or is too slow.
+**Recommendation**: VGICP as primary (higher accuracy, already in reference airside AV stack), NDT as fast fallback when VGICP fails to converge or is too slow.
 
 ### 5.4 Autoware NDT Implementation Reference
 
@@ -849,7 +849,7 @@ Performance:
   3DLoMatch (low overlap): 75.0% (vs 47.2% for FPFH+RANSAC)
   Speed: ~150 ms on A100, ~400 ms on Orin
 
-Use case for Aurrigo:
+Use case for reference airside AV stack:
   NOT for real-time scan-to-map (too slow)
   YES for: initial localization from cold start
            recovery after kidnapped robot scenario
@@ -1174,10 +1174,10 @@ class DegeneracyHandler:
 
 ### 10.1 Strategies for 4-8 LiDAR Fleet
 
-Aurrigo vehicles have 4-8 LiDARs. Three strategies for incorporating them into scan-to-map matching:
+reference airside vehicles have 4-8 LiDARs. Three strategies for incorporating them into scan-to-map matching:
 
 ```
-Strategy 1: MERGE THEN MATCH (Current Aurrigo approach)
+Strategy 1: MERGE THEN MATCH (Current reference airside AV stack approach)
   ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐
   │LiDAR1│ │LiDAR2│ │LiDAR3│ │LiDAR4│
   └──┬───┘ └──┬───┘ └──┬───┘ └──┬───┘
@@ -1826,7 +1826,7 @@ Compressed Features  | 3-10x             | 95-99% of raw   | End-to-end
 Hash-grid (InstantNGP)| 20-100x          | 90-95% of raw   | Scene-specific
 ```
 
-**Potential for Aurrigo**: Reduce map tile sizes from 15-25 MB to 1-5 MB, enabling faster OTA distribution (see `../maps/map-tile-versioning-distribution.md`). Research-stage; not recommended for initial deployment.
+**Potential for reference airside AV stack**: Reduce map tile sizes from 15-25 MB to 1-5 MB, enabling faster OTA distribution (see `../maps/map-tile-versioning-distribution.md`). Research-stage; not recommended for initial deployment.
 
 ### 16.4 Confidence-Aware Neural Registration
 
@@ -2133,7 +2133,7 @@ At 10 Hz, ~200 bytes per entry: **~7 MB/hour**, **~112 MB/16-hour shift**. Minim
 
 | Task | Effort | Cost |
 |------|--------|------|
-| Port Autoware NDT to Aurrigo stack | 1.5 weeks | $3-6K |
+| Port Autoware NDT to reference airside AV stack | 1.5 weeks | $3-6K |
 | Implement selective multi-LiDAR matching (Strategy 3) | 1 week | $2-4K |
 | Covariance intersection for multi-LiDAR fusion | 3 days | $1.5-3K |
 | Map tile manager with async loading | 1 week | $2-4K |
@@ -2169,7 +2169,7 @@ No additional hardware required — uses existing LiDARs, Orin, GPS, IMU.
 
 ## 20. Key Takeaways
 
-1. **VGICP is the right primary method**: GPU-accelerated VGICP on Orin achieves ±3-8 cm at 15-25 ms — the best accuracy/speed tradeoff for airside. It matches Aurrigo's existing stack investment
+1. **VGICP is the right primary method**: GPU-accelerated VGICP on Orin achieves ±3-8 cm at 15-25 ms — the best accuracy/speed tradeoff for airside. It matches the reference airside AV stack's existing stack investment
 
 2. **Multi-resolution coarse-to-fine is essential**: Single-resolution matching either has poor convergence basin or poor accuracy. Three-level NDT→NDT→VGICP provides both
 

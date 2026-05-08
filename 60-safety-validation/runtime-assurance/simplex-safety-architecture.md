@@ -17,7 +17,7 @@ rosmaster (shared)
 │   ├── /gps/fix
 │   └── /odom/fused (from shared localization)
 │
-├── /production/* (current Aurrigo stack)
+├── /production/* (current reference airside AV stack)
 │   ├── /production/perception/*
 │   ├── /production/nav/*
 │   └── /production/cmd_twist  (trajectory output)
@@ -43,8 +43,8 @@ rosmaster (shared)
 ```xml
 <!-- production_stack.launch -->
 <group ns="production">
-  <include file="$(find aurrigo_perception)/launch/perception.launch"/>
-  <include file="$(find aurrigo_nav)/launch/Navigation.launch"/>
+  <include file="$(find airside_perception)/launch/perception.launch"/>
+  <include file="$(find airside_nav)/launch/Navigation.launch"/>
   <!-- Output: /production/av_nav/cmd_twist -->
 </group>
 

@@ -16,7 +16,7 @@
 6. [nvblox: NVIDIA's Built-In Occupancy](#6-nvblox-nvidias-built-in-occupancy)
 7. [TensorRT Optimization Cookbook](#7-tensorrt-optimization-cookbook)
 8. [Resolution and Range Tradeoffs](#8-resolution-and-range-tradeoffs)
-9. [Integration with Aurrigo ROS Stack](#9-integration-with-aurrigo-ros-stack)
+9. [Integration with reference airside AV stack ROS Stack](#9-integration-with-airside-ros-stack)
 10. [Benchmarks on Orin](#10-benchmarks-on-orin)
 11. [Recommended Deployment Strategy](#11-recommended-deployment-strategy)
 12. [References](#12-references)
@@ -297,9 +297,9 @@ Accuracy: ~39.4 → ~34-36 mIoU (still significantly better than FlashOcc)
 
 ## 5. LiDAR-Based Occupancy on Orin
 
-### 5.1 The Aurrigo Case: LiDAR-First
+### 5.1 The reference airside AV stack Case: LiDAR-First
 
-The Aurrigo stack uses 4-8 RoboSense LiDARs with no cameras. Most occupancy methods are camera-only. LiDAR-based occupancy options:
+The reference airside AV stack uses 4-8 RoboSense LiDARs with no cameras. Most occupancy methods are camera-only. LiDAR-based occupancy options:
 
 ### 5.2 Point Cloud → Voxel Occupancy (Direct)
 
@@ -431,7 +431,7 @@ Training:
 
 Airside advantage:
   - No annotation cost
-  - Train on Aurrigo's existing ROS bag data
+  - Train on the reference airside AV stack's existing ROS bag data
   - Learns occupancy + forecasting simultaneously
 ```
 
@@ -504,9 +504,9 @@ Input: Depth image or point cloud + pose (from SLAM)
 
 **Recommendation:** Use nvblox as the **safety-critical baseline** (always running, fast, geometric) and neural occupancy (FlashOcc/SparseOcc) as the **high-level understanding layer** (semantic classes, prediction).
 
-### 6.5 nvblox + ROS 1 Bridge for Aurrigo
+### 6.5 nvblox + ROS 1 Bridge for reference airside AV stack
 
-The Aurrigo stack runs ROS Noetic (ROS 1). nvblox is natively ROS 2. Bridge options:
+The reference airside AV stack runs ROS Noetic (ROS 1). nvblox is natively ROS 2. Bridge options:
 
 ```bash
 # Option 1: ros1_bridge (standard, some latency)
@@ -648,9 +648,9 @@ Implementation:
 
 ---
 
-## 9. Integration with Aurrigo ROS Stack
+## 9. Integration with reference airside AV stack ROS Stack
 
-### 9.1 Current Aurrigo Perception Pipeline
+### 9.1 Current reference airside AV stack Perception Pipeline
 
 ```
 Current (no occupancy):
@@ -747,7 +747,7 @@ airside_msgs/Voxel:
 
 ### 10.2 Recommended Configuration for Each Deployment Phase
 
-**Phase 1: LiDAR-Only (Current Aurrigo Stack)**
+**Phase 1: LiDAR-Only (Current reference airside AV stack Stack)**
 
 ```
 nvblox occupancy (safety layer):

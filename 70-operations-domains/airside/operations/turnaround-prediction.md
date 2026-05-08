@@ -505,12 +505,12 @@ A centralized fleet management system for airside autonomous vehicles typically 
 - **Status Updates**: Task progress (en route, arrived, servicing, complete) for schedule tracking
 - **Emergency Stop**: Safety-critical broadcast for immediate halt of all vehicles in vicinity
 
-### 7.4 Moonware, EVIE, and Aurrigo Integration
+### 7.4 Moonware, EVIE, and reference airside AV stack Integration
 
 **Moonware HALO as Orchestration Layer:**
 HALO's centralized coordination engine is architecturally positioned to serve as the dispatch and orchestration layer for autonomous GSE fleets. Its real-time task allocation, schedule integration, and timestamped activity tracking provide the command interface that autonomous vehicles require. Moonware's Phase 2 roadmap explicitly targets autonomous ramp services, leveraging HALO data to inform where autonomy augments operations.
 
-**Aurrigo Auto-DollyTug:**
+**reference airside AV stack autonomous baggage/cargo tug:**
 - All-electric autonomous baggage/cargo tractor combining tractor and dolly functions
 - Unique sideways drive system enables rotation on the spot and lateral movement
 - Bi-directional robotic arms for autonomous ULD loading/unloading
@@ -556,7 +556,7 @@ HALO's centralized coordination engine is architecturally positioned to serve as
        │          │          │
        v          v          v
 ┌──────────┐ ┌──────────┐ ┌──────────┐
-│ Aurrigo  │ │  EVIE    │ │ Legacy   │
+│ reference airside AV stack  │ │  EVIE    │ │ Legacy   │
 │ Auto-    │ │ Airside  │ │ Human-   │
 │ DollyTug │ │ Pod      │ │ Driven   │
 │          │ │          │ │ GSE      │
@@ -593,7 +593,7 @@ Aircraft turnaround prediction and GSE fleet coordination represent a rich domai
 - Multi-agent path planning with temporal constraints (VRPTW) is the core optimization problem
 - Private 5G/CBRS networks provide the communication backbone for real-time fleet coordination
 - Moonware HALO provides a proven orchestration architecture that bridges the gap between flight operations and vehicle dispatch
-- The transition from human-driven to autonomous GSE (Aurrigo, EVIE) requires a software layer that can manage mixed fleets
+- The transition from human-driven to autonomous GSE (reference airside AV stack, EVIE) requires a software layer that can manage mixed fleets
 
 The convergence of turnaround prediction ML, fleet coordination algorithms, private 5G infrastructure, and autonomous GSE platforms creates a complete stack for intelligent airside operations — one where the autonomous vehicle's world model is informed not just by what it sees, but by the structured operational context of the airport it operates within.
 
@@ -656,9 +656,6 @@ The convergence of turnaround prediction ML, fleet coordination algorithms, priv
 - [GSE Pooling Blueprint (AiQ Consulting, 2025)](https://www.aiqconsulting.com/wp-content/uploads/2025/10/AiQ-Blueprint-for-Ground-Support-Equipment-Pooling-Oct-2025.pdf)
 
 ### Autonomous GSE Vehicles
-- [Aurrigo Auto-DollyTug](https://aurrigo.com/)
-- [Aurrigo at Changi Airport](https://www.ajot.com/news/changi-airport-group-collaborates-with-aurrigo-to-trial-new-autonomous-baggage-handling-vehicle)
-- [Aurrigo IAG Program at CVG](https://aurrigo.com/aurrigo-international-plc-commences-autonomous-baggage-handling-programme-with-international-airlines-group-iag-at-cincinnati-northern-kentucky-international-airport-cvg/)
 - [EVIE Autonomous Airside Pod](https://evieautonomous.com/air-side/)
 - [EVIE Technology](https://evieautonomous.com/technology/)
 - [Changi Airport Autonomous Tractor Deployment (FTE, 2026)](https://www.futuretravelexperience.com/2026/01/changi-airport-deploys-autonomous-tractors-in-major-step-towards-airside-automation/)

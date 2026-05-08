@@ -1,6 +1,6 @@
 # Imitation Learning and Behavioral Cloning for Airside Autonomous GSE
 
-Autonomous ground support equipment at airports currently relies on hand-crafted planning systems — Aurrigo's Frenet planner samples 420 trajectory candidates per cycle and scores them with manually tuned cost functions for lane centering, obstacle avoidance, speed compliance, and comfort. These cost functions capture explicit domain knowledge but miss the implicit expertise that human operators demonstrate daily: the nuanced way a tow operator approaches a busy stand, the timing of yielding to crossing pedestrians, the subtle speed adjustments when passing near aircraft engines, and the confidence with which experienced drivers navigate congested aprons. Imitation learning (IL) offers a systematic way to extract this expertise from demonstrations — either from teleoperation logs, from manually driven runs during supervised deployment, or from shadow-mode data where the human drove while the autonomous system recorded what it would have done. This document covers the three pillars of imitation learning for autonomous driving: behavioral cloning (BC) which directly maps observations to actions via supervised learning, inverse reinforcement learning (IRL) which recovers the implicit reward function behind expert behavior, and interactive imitation learning (DAgger and variants) which addresses the distribution shift problem that makes naive BC fragile. For each, we examine the mathematical foundations, SOTA methods (2024-2026), practical considerations for deployment on NVIDIA Orin with LiDAR-based perception, and airside-specific adaptations including multi-operator style handling, safety constraint enforcement, and integration with the existing Frenet planner as a safety fallback via the Simplex architecture. The core recommendation is a phased approach: start with BC from teleoperation logs to bootstrap a policy, refine with DAgger in simulation, extract cost functions via IRL for Frenet planner augmentation, and eventually deploy with Simplex safety guarantees.
+Autonomous ground support equipment at airports currently relies on hand-crafted planning systems — the reference airside AV stack's Frenet planner samples 420 trajectory candidates per cycle and scores them with manually tuned cost functions for lane centering, obstacle avoidance, speed compliance, and comfort. These cost functions capture explicit domain knowledge but miss the implicit expertise that human operators demonstrate daily: the nuanced way a tow operator approaches a busy stand, the timing of yielding to crossing pedestrians, the subtle speed adjustments when passing near aircraft engines, and the confidence with which experienced drivers navigate congested aprons. Imitation learning (IL) offers a systematic way to extract this expertise from demonstrations — either from teleoperation logs, from manually driven runs during supervised deployment, or from shadow-mode data where the human drove while the autonomous system recorded what it would have done. This document covers the three pillars of imitation learning for autonomous driving: behavioral cloning (BC) which directly maps observations to actions via supervised learning, inverse reinforcement learning (IRL) which recovers the implicit reward function behind expert behavior, and interactive imitation learning (DAgger and variants) which addresses the distribution shift problem that makes naive BC fragile. For each, we examine the mathematical foundations, SOTA methods (2024-2026), practical considerations for deployment on NVIDIA Orin with LiDAR-based perception, and airside-specific adaptations including multi-operator style handling, safety constraint enforcement, and integration with the existing Frenet planner as a safety fallback via the Simplex architecture. The core recommendation is a phased approach: start with BC from teleoperation logs to bootstrap a policy, refine with DAgger in simulation, extract cost functions via IRL for Frenet planner augmentation, and eventually deploy with Simplex safety guarantees.
 
 ---
 
@@ -25,7 +25,7 @@ Autonomous ground support equipment at airports currently relies on hand-crafted
 
 ### 1.1 The Expert Knowledge Gap
 
-Aurrigo's current autonomous pipeline is rule-based: the Frenet planner generates trajectories according to explicit mathematical cost functions. This works well for structured driving (follow lane, avoid obstacles, maintain speed) but struggles with the nuanced interactions that dominate airside operations:
+the reference airside AV stack's current autonomous pipeline is rule-based: the Frenet planner generates trajectories according to explicit mathematical cost functions. This works well for structured driving (follow lane, avoid obstacles, maintain speed) but struggles with the nuanced interactions that dominate airside operations:
 
 | Scenario | Rule-Based Response | Expert Operator Response |
 |----------|-------------------|------------------------|
@@ -221,11 +221,11 @@ def train_bc(model, dataloader, optimizer, num_epochs=100):
 |---------------|------|------|----------|
 | **Steering + speed** | Simple, direct control | Compounding errors, hard to evaluate | Simple vehicles |
 | **Trajectory waypoints** | Evaluable, plannable | Needs trajectory tracker | Most AV systems (recommended) |
-| **Frenet coefficients** | Matches existing planner | Planner-specific | Aurrigo integration |
+| **Frenet coefficients** | Matches existing planner | Planner-specific | reference airside AV stack integration |
 | **Cost function weights** | Interpretable, composable | Indirect mapping | IRL-based approaches |
 | **Occupancy predictions** | Rich representation | Very indirect | World model approaches |
 
-**Recommendation for Aurrigo**: Trajectory waypoints (3s horizon, 5 Hz, in ego-centric coordinates) — decouples learning from control, evaluable for safety.
+**Recommendation for reference airside AV stack**: Trajectory waypoints (3s horizon, 5 Hz, in ego-centric coordinates) — decouples learning from control, evaluable for safety.
 
 ---
 
@@ -473,7 +473,7 @@ class DAggerTrainer:
 | **ThriftyDAgger** (Hoque 2021) | Query-efficient: learn when to ask for help | Minimal expert annotation |
 | **LazyDAgger** (Hoque 2024) | Ask only when intervention leads to learning | Most efficient |
 
-**Recommended for Aurrigo**: HG-DAgger in simulation with Frenet planner as expert. The existing Frenet planner provides unlimited, deterministic expert labels at zero cost. DAgger iterations run in CARLA or Isaac Sim with airport environment.
+**Recommended for reference airside AV stack**: HG-DAgger in simulation with Frenet planner as expert. The existing Frenet planner provides unlimited, deterministic expert labels at zero cost. DAgger iterations run in CARLA or Isaac Sim with airport environment.
 
 ---
 
@@ -592,7 +592,7 @@ class MaxEntIRL:
 
 ### 5.3 IRL for Frenet Planner Augmentation
 
-The key insight for Aurrigo: **IRL learns cost function weights that directly plug into the existing Frenet planner**. No neural network replacement needed — the planner's cost function becomes:
+The key insight for reference airside AV stack: **IRL learns cost function weights that directly plug into the existing Frenet planner**. No neural network replacement needed — the planner's cost function becomes:
 
 ```
 cost(τ) = Σᵢ θᵢ * φᵢ(τ)

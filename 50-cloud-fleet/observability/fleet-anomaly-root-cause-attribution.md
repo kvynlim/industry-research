@@ -106,7 +106,7 @@ The problem compounds because unresolved anomalies cascade. A sensor degradation
 | Tesla | ~50,000 FSD vehicles (2023) | Fully automated fleet learning + regression system |
 | Motional | ~150 vehicles (2023) | ML-based root cause classifier |
 
-Aurrigo will hit this wall at 15-25 vehicles across 2+ airports. Building attribution infrastructure before that point is significantly cheaper than retrofitting under operational pressure.
+reference airside AV stack will hit this wall at 15-25 vehicles across 2+ airports. Building attribution infrastructure before that point is significantly cheaper than retrofitting under operational pressure.
 
 ### 1.4 The Multi-Cause Problem
 
@@ -2154,7 +2154,7 @@ FLEET ANOMALY ATTRIBUTION ARCHITECTURE
 ### 9.3 Integration Points
 
 ```
-INTEGRATION WITH EXISTING AURRIGO SYSTEMS
+INTEGRATION WITH EXISTING REFERENCE AIRSIDE AV STACK SYSTEMS
 
 ┌────────────────────────────────────────────────────────────────┐
 │ UPSTREAM (data sources)                                        │
@@ -2330,7 +2330,7 @@ reaches 20 vehicles (the manual triage scaling wall).
 
 9. **Seasonal baselines prevent misattribution.** Without seasonal adjustment, the first fog of autumn looks like a system failure. STL decomposition on 12+ months of data creates robust seasonal baselines. For new airports, borrow seasonal profiles from same-climate airports.
 
-10. **EU PLD 2024/2853 creates legal urgency for causal attribution.** The rebuttable presumption of causality means if Aurrigo cannot demonstrate what caused an incident, courts may presume the AV caused it. Automated causal attribution provides the evidence trail that regulatory defense requires.
+10. **EU PLD 2024/2853 creates legal urgency for causal attribution.** The rebuttable presumption of causality means if reference airside AV stack cannot demonstrate what caused an incident, courts may presume the AV caused it. Automated causal attribution provides the evidence trail that regulatory defense requires.
 
 11. **Implementation cost $55-95K, break-even at 10-15 vehicles.** The system pays for itself through MTTR reduction (8-48h to 15-90min), analyst headcount reduction (2-3 fewer for 50 vehicles), and avoided cascading failures ($30-60K/year).
 

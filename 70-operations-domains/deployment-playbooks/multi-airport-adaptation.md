@@ -1107,9 +1107,9 @@ def multi_airport_roi(num_airports, vehicles_per_airport=10):
 | **UISEE** | 4+ airports | Full custom per airport | 6-12 months | Manual map creation, airport-specific software |
 | **TractEasy** | 8 airports | Template-based, manual tuning | 1-6 years (including regulatory) | No ML adaptation, manual mapping |
 | **AeroVect** | 5+ airports | Retrofit + re-mapping | 2-4 months | Manual map of each airport, no perception adaptation |
-| **Aurrigo (target)** | 9 airports | AMDB bootstrap + PointLoRA + SLAM | 8-12 weeks | Building the pipeline (this document) |
+| **reference airside AV stack (target)** | 9 airports | AMDB bootstrap + PointLoRA + SLAM | 8-12 weeks | Building the pipeline (this document) |
 
-### 9.2 Aurrigo Competitive Advantage
+### 9.2 reference airside AV stack Competitive Advantage
 
 1. **AMDB bootstrap**: Free FAA data eliminates 60-70% of mapping cost vs competitors who survey from scratch
 2. **Foundation model + PointLoRA**: 200-500 labeled frames vs 10,000+ for full retraining

@@ -1,6 +1,6 @@
 # Autonomous Docking and Precision Positioning for Airside GSE
 
-Autonomous ground support equipment (GSE) on airport aprons must routinely position themselves within centimeter-level tolerances to interact with aircraft and other ground infrastructure. A belt loader must align its conveyor head to within +-5 cm of a cargo door sill, a pushback tug must center its nose-gear cradle to within +-10 cm for coupling, a fuel truck must park so the hydrant hose reaches the underwing fuel panel, and a catering truck's scissor lift must match the aircraft service door height and lateral offset. These precision docking maneuvers are fundamentally different from the open-road navigation problem addressed by Frenet-frame planners: the tolerances are 10-100x tighter, the environment is highly constrained by aircraft geometry, and physical contact is sometimes the success criterion rather than a failure mode. This document covers the two-phase approach (coarse navigation followed by fine docking), the sensor modalities and algorithms for final-approach precision (visual servoing, LiDAR ICP alignment, fiducial markers), docking-specific control architectures (MPC, impedance control, velocity profiling), aircraft-specific geometric constraints, safety mechanisms during close-proximity operations, and the advantages of Aurrigo's ADT3 crab-steering capability for lateral docking maneuvers. Implementation guidance targets the existing Aurrigo ROS Noetic stack with 4-8 RoboSense LiDARs running on NVIDIA Orin.
+Autonomous ground support equipment (GSE) on airport aprons must routinely position themselves within centimeter-level tolerances to interact with aircraft and other ground infrastructure. A belt loader must align its conveyor head to within +-5 cm of a cargo door sill, a pushback tug must center its nose-gear cradle to within +-10 cm for coupling, a fuel truck must park so the hydrant hose reaches the underwing fuel panel, and a catering truck's scissor lift must match the aircraft service door height and lateral offset. These precision docking maneuvers are fundamentally different from the open-road navigation problem addressed by Frenet-frame planners: the tolerances are 10-100x tighter, the environment is highly constrained by aircraft geometry, and physical contact is sometimes the success criterion rather than a failure mode. This document covers the two-phase approach (coarse navigation followed by fine docking), the sensor modalities and algorithms for final-approach precision (visual servoing, LiDAR ICP alignment, fiducial markers), docking-specific control architectures (MPC, impedance control, velocity profiling), aircraft-specific geometric constraints, safety mechanisms during close-proximity operations, and the advantages of the reference airside AV stack's third-generation tug crab-steering capability for lateral docking maneuvers. Implementation guidance targets the existing reference airside AV stack ROS Noetic stack with 4-8 RoboSense LiDARs running on NVIDIA Orin.
 
 ---
 
@@ -124,7 +124,7 @@ If any precondition fails during Phase 2, the controller reverts to Phase 1 for 
 
 ### 2.4 Relationship to Existing Frenet Planner
 
-Phase 1 uses the existing Aurrigo Frenet planner (see `30-autonomy-stack/planning/frenet-planner-augmentation.md`) with a modified terminal condition. Instead of following a lane indefinitely, the planner targets the DAP as a terminal state with specified position and heading. The 420-candidate sampling naturally handles obstacle avoidance during approach. The Frenet planner's lateral offset capability is particularly useful: the DAP may require a specific lateral offset from the reference path to position for a perpendicular docking approach.
+Phase 1 uses the existing reference airside AV stack Frenet planner (see `30-autonomy-stack/planning/frenet-planner-augmentation.md`) with a modified terminal condition. Instead of following a lane indefinitely, the planner targets the DAP as a terminal state with specified position and heading. The 420-candidate sampling naturally handles obstacle avoidance during approach. The Frenet planner's lateral offset capability is particularly useful: the DAP may require a specific lateral offset from the reference path to position for a perpendicular docking approach.
 
 ---
 
@@ -167,7 +167,7 @@ Two fundamental approaches:
 - Uncommon for GSE (would require cameras on aircraft or ground infrastructure).
 - However, CCTV cameras on stands or boarding bridges could serve this role for cooperative localization.
 
-**Practical setup for Aurrigo vehicles**: Mount a forward-facing docking camera (1080p, 90-degree FOV, global shutter) on the docking interface -- the conveyor head of a belt loader, the front face of a pushback tug below the NLG cradle, or the platform edge of a catering lift. This camera sees the target throughout the approach. A wider-angle secondary camera (120-150 degree FOV) provides situational awareness and target acquisition at greater range.
+**Practical setup for reference airside vehicles**: Mount a forward-facing docking camera (1080p, 90-degree FOV, global shutter) on the docking interface -- the conveyor head of a belt loader, the front face of a pushback tug below the NLG cradle, or the platform edge of a catering lift. This camera sees the target throughout the approach. A wider-angle secondary camera (120-150 degree FOV) provides situational awareness and target acquisition at greater range.
 
 ### 3.3 Visual Servoing Controller
 
@@ -302,7 +302,7 @@ class PBVSDockingController:
         """
         Convert (v, omega) to bicycle model (v, steering_angle).
         
-        For Aurrigo vehicles with Ackermann steering:
+        For reference airside vehicles with Ackermann steering:
           steering_angle = arctan(wheelbase * omega / v)
         """
         v, omega, docked = self.compute_command(target)
@@ -340,7 +340,7 @@ The most reliable approach combines a learned detector (for initial acquisition 
 
 ### 4.1 Why LiDAR for Docking
 
-Aurrigo vehicles already carry 4-8 RoboSense LiDARs (RSHELIOS and RSBP -- see `20-av-platform/sensors/robosense-lidar.md`). While primary LiDAR is used for GTSAM localization and obstacle detection, the dense point clouds from close-range LiDAR returns provide excellent geometric information for docking:
+reference airside vehicles already carry 4-8 RoboSense LiDARs (RSHELIOS and RSBP -- see `20-av-platform/sensors/robosense-lidar.md`). While primary LiDAR is used for GTSAM localization and obstacle detection, the dense point clouds from close-range LiDAR returns provide excellent geometric information for docking:
 
 - **Range accuracy**: RSHELIOS specifies +-2 cm range accuracy at distances under 30m. At 2-5m docking range, effective accuracy is +-1-2 cm.
 - **No lighting dependence**: LiDAR works identically in daylight, darkness, and artificial lighting (unlike cameras).
@@ -750,7 +750,7 @@ from dataclasses import dataclass
 class MPCDockingConfig:
     """MPC controller configuration."""
     # Model
-    wheelbase: float = 2.5        # Vehicle wheelbase (m) -- ADT3
+    wheelbase: float = 2.5        # Vehicle wheelbase (m) -- third-generation tug
     
     # Horizon
     N: int = 15                   # Prediction horizon (steps)
@@ -1177,9 +1177,9 @@ After abort, the vehicle reverses slowly (0.1 m/s) to the DAP. A human operator 
 
 ## 10. Ackermann and Crab Steering Advantages
 
-### 10.1 ADT3 Steering Modes
+### 10.1 third-generation tug Steering Modes
 
-The Aurrigo ADT3 features independent steering on all four wheels, enabling three steering modes (see `20-av-platform/drive-by-wire/can-bus-dbw.md` for the steering chain):
+The reference airside AV stack third-generation tug features independent steering on all four wheels, enabling three steering modes (see `20-av-platform/drive-by-wire/can-bus-dbw.md` for the steering chain):
 
 1. **Ackermann steering**: Front wheels steer, rear wheels fixed. Standard car-like turning. Used for normal driving.
 2. **Crab steering**: All four wheels steer to the same angle. The vehicle translates laterally without changing heading. Unique capability for docking.
@@ -1195,7 +1195,7 @@ Crab steering transforms the docking problem from a non-holonomic constraint pro
 - Minimum turning radius limits the correction achievable in a short distance.
 - Not possible to make fine lateral adjustments while maintaining heading.
 
-**With crab steering (ADT3)**:
+**With crab steering (third-generation tug)**:
 - Lateral correction is a single motion: steer all wheels to 90 degrees, drive sideways the required distance.
 - No heading change during lateral correction -- the vehicle remains perfectly aligned with the target.
 - Can approach perpendicular to the fuselage (normal Ackermann) then crab sideways for final alignment.
@@ -1760,7 +1760,7 @@ if __name__ == '__main__':
   <arg name="use_ultrasonics" default="true" />
   
   <!-- Docking state machine (master) -->
-  <node name="docking_master" pkg="aurrigo_docking" type="docking_state_machine.py"
+  <node name="docking_master" pkg="airside_docking" type="docking_state_machine.py"
         output="screen">
     <param name="gse_type" value="$(arg gse_type)" />
     <param name="crab_enabled" value="$(arg crab_enabled)" />
@@ -1768,17 +1768,17 @@ if __name__ == '__main__':
   </node>
   
   <!-- Target detector (LiDAR ICP + camera + fiducials) -->
-  <node name="docking_target_detector" pkg="aurrigo_docking" type="target_detector_node"
+  <node name="docking_target_detector" pkg="airside_docking" type="target_detector_node"
         output="screen">
     <param name="use_fiducials" value="$(arg use_fiducials)" />
     <param name="use_lidar_icp" value="$(arg use_lidar_icp)" />
-    <param name="template_dir" value="$(find aurrigo_docking)/templates/" />
+    <param name="template_dir" value="$(find airside_docking)/templates/" />
     <remap from="~pointcloud" to="/rslidar_points" />
     <remap from="~image" to="/docking_camera/image_raw" />
   </node>
   
   <!-- MPC docking controller -->
-  <node name="dock_mpc" pkg="aurrigo_docking" type="dock_mpc_node.py"
+  <node name="dock_mpc" pkg="airside_docking" type="dock_mpc_node.py"
         output="screen">
     <param name="wheelbase" value="$(arg wheelbase)" />
     <param name="control_rate" value="20.0" />
@@ -1787,7 +1787,7 @@ if __name__ == '__main__':
   </node>
   
   <!-- Docking safety monitor -->
-  <node name="docking_safety" pkg="aurrigo_docking" type="docking_safety_node"
+  <node name="docking_safety" pkg="airside_docking" type="docking_safety_node"
         output="screen">
     <param name="use_ultrasonics" value="$(arg use_ultrasonics)" />
     <param name="exclusion_zone_width" value="2.0" />
@@ -1797,7 +1797,7 @@ if __name__ == '__main__':
   
   <!-- Ultrasonic driver (if enabled) -->
   <group if="$(arg use_ultrasonics)">
-    <node name="ultrasonic_driver" pkg="aurrigo_drivers" type="ultrasonic_array_node"
+    <node name="ultrasonic_driver" pkg="airside_drivers" type="ultrasonic_array_node"
           output="screen">
       <param name="port" value="/dev/ttyUSB_ULTRA" />
       <param name="num_sensors" value="6" />
@@ -1811,7 +1811,7 @@ if __name__ == '__main__':
           output="screen">
       <remap from="image_rect" to="/docking_camera/image_rect" />
       <remap from="camera_info" to="/docking_camera/camera_info" />
-      <rosparam command="load" file="$(find aurrigo_docking)/config/apriltag.yaml" />
+      <rosparam command="load" file="$(find airside_docking)/config/apriltag.yaml" />
     </node>
   </group>
 </launch>
@@ -1819,7 +1819,7 @@ if __name__ == '__main__':
 
 ### 11.5 Integration with Existing Stack
 
-The docking system integrates with the existing Aurrigo stack at several points:
+The docking system integrates with the existing reference airside AV stack at several points:
 
 | Integration Point | Existing Component | Interface | Notes |
 |-------------------|-------------------|-----------|-------|
@@ -1852,7 +1852,7 @@ The key architectural decision is that docking is a **mode** of the existing veh
 
 8. **Aircraft geometry varies significantly across types**: cargo door sill heights range from 1.47m (B737 aft) to 2.64m (B777 fwd), nose gear track widths range from 0.61m (B737) to 0.92m (A380). The system must store per-type geometry and select the correct template based on aircraft identification.
 
-9. **ADT3's crab steering is a decisive advantage for docking**. It decouples lateral correction from heading, allowing the vehicle to slide sideways for alignment without changing orientation. This eliminates multi-point repositioning maneuvers required by Ackermann-only vehicles and is not available on any competing autonomous GSE platform.
+9. **third-generation tug's crab steering is a decisive advantage for docking**. It decouples lateral correction from heading, allowing the vehicle to slide sideways for alignment without changing orientation. This eliminates multi-point repositioning maneuvers required by Ackermann-only vehicles and is not available on any competing autonomous GSE platform.
 
 10. **Safety during docking requires defense-in-depth**: software e-stop, hardwired safety PLC monitoring contact bumpers and safety laser scanners, operator e-stop button, and watchdog timeout. At creep speed (0.05 m/s), kinetic energy is under 5 J -- insufficient to damage aircraft, but personnel risk remains and is addressed by exclusion zone enforcement.
 
@@ -1898,7 +1898,7 @@ The key architectural decision is that docking is a **mode** of the existing veh
 ### Internal Repository
 - `30-autonomy-stack/planning/frenet-planner-augmentation.md` -- Frenet planner architecture and sampling strategy
 - `20-av-platform/sensors/robosense-lidar.md` -- RoboSense RSHELIOS and RSBP specifications
-- `20-av-platform/drive-by-wire/can-bus-dbw.md` -- CAN bus interface and ADT3 steering chain
+- `20-av-platform/drive-by-wire/can-bus-dbw.md` -- CAN bus interface and third-generation tug steering chain
 - `70-operations-domains/airside/operations/pushback-systems.md` -- Pushback operations and tug types
 - `30-autonomy-stack/planning/safety-critical-planning-cbf.md` -- CBF safety filter architecture
 

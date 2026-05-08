@@ -1278,7 +1278,7 @@ jobs:
 | **FAST-LIO2** | Primary SLAM | GPL-2.0 | Production | Best LiDAR-inertial accuracy |
 | **LIO-SAM** | Alternative SLAM | BSD-3 | Production | Better loop closure support |
 | **KISS-ICP** | Validation SLAM | MIT | Production | No IMU needed — independent check |
-| **GTSAM** | Graph optimization | BSD | Production | Already in Aurrigo stack |
+| **GTSAM** | Graph optimization | BSD | Production | Already in reference airside AV stack |
 | **Open3D** | Point cloud processing | MIT | Production | Python API, GPU-accelerated |
 | **PCL** | Point cloud processing | BSD | Production | C++ native, ROS integration |
 | **CloudCompare** | Visualization + manual edit | GPL-2.0 | Production | Essential for QC |
@@ -1377,7 +1377,7 @@ The per-airport cost drops ~40% from airport 1 to airport 5, and ~50% by airport
 | **Apollo (Baidu)** | SLAM + crowdsourced + neural priors | Layered HD | $20-40K/area | 2-4 weeks |
 | **Autoware** | Open-source (Lanelet2 + manual JOSM editing) | Lanelet2 | $10-30K (labor) | 2-4 weeks |
 
-### 15.2 Key Differentiators for Aurrigo
+### 15.2 Key Differentiators for reference airside AV stack
 
 1. **AMDB bootstrap**: Free FAA data for 500+ US airports eliminates 60-70% of topology creation cost. No competitor publishes AMDB integration.
 

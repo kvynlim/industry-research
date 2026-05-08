@@ -100,7 +100,7 @@ The Netherlands implemented a dedicated spectrum framework allowing enterprises 
 
 Schiphol is running multiple parallel AV programs, each with different connectivity approaches:
 
-**1. Aurrigo Auto-DollyTug (with KLM)**
+**1. reference airside AV stack autonomous baggage/cargo tug (with KLM)**
 - **Started**: August 2024 (Phase 1); February 2025 (Phase 2, pier driving)
 - **Function**: Autonomous electric baggage tractor with robotic arms for fully autonomous ULD loading/unloading
 - **Sensors**: LiDAR, 360-degree cameras, 3D cameras for environment mapping
@@ -520,8 +520,6 @@ The SAS is the automated frequency coordinator mandated by the FCC to manage the
 - [DFW Airport ponders a decade-long private wireless contract -- Light Reading](https://www.lightreading.com/private-networks/dfw-airport-ponders-a-decade-long-private-wireless-contract)
 - [Ericsson Private 5G pilot takes off at Schiphol](https://www.ericsson.com/en/news/2024/10/ericsson-private-5g-pilot-takes-off-at-schiphol)
 - [Private 5G takes off at Schiphol airport -- Computer Weekly](https://www.computerweekly.com/news/366613034/Private-5G-takes-off-at-Schiphol-airport)
-- [Schiphol and KLM collaborate to test Aurrigo's Auto-DollyTug -- FTE](https://www.futuretravelexperience.com/2025/02/schiphol-and-klm-collaborate-to-test-aurrigos-auto-dollytug-self-driving-baggage-vehicle/)
-- [Auto-DollyTug aims to streamline baggage transfer with Schiphol -- Aurrigo](https://aurrigo.com/auto-dollytug-aims-to-streamline-baggage-transfer-with-schiphol/)
 - [Schiphol Airport's 2050 autonomous airside target -- Airside International](https://airsideint.com/schiphol-airports-2050-autonomous-airside-target/)
 - [5G Aviation Testbed Launched at Changi Airport Airside -- CAAS](https://www.caas.gov.sg/who-we-are/newsroom/Detail/5g-aviation-testbed-launched-at-changi-airport-airside)
 - [Changi Airport deploys autonomous tractors -- FTE](https://www.futuretravelexperience.com/2026/01/changi-airport-deploys-autonomous-tractors-in-major-step-towards-airside-automation/)

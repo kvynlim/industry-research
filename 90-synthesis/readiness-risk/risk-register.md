@@ -14,7 +14,7 @@
 | **R4** | FAA/airport authority blocks deployment | Medium | High | **High** | Start with shadow mode (no regulatory barrier), build safety case early, engage FAA proactively | Program Lead |
 | **R5** | RoboSense LiDAR data incompatible with pretrained models | Low | Medium | **Low** | Point cloud normalization pipeline, intensity/density matching, documented in data-engine guide | ML Lead |
 | **R6** | GPS multipath near terminals causes localization failure | Medium | Medium | **Medium** | LiDAR SLAM fallback already in GTSAM stack, UWB beacons as backup | Systems Lead |
-| **R7** | Integration disrupts production Aurrigo stack | Low | Critical | **High** | Simplex architecture: new stack runs in parallel, never touches production until validated | Systems Lead |
+| **R7** | Integration disrupts production reference airside AV stack | Low | Critical | **High** | Simplex architecture: new stack runs in parallel, never touches production until validated | Systems Lead |
 | **R8** | Key ML dependencies become unmaintained | Medium | Medium | **Medium** | Use established frameworks (OpenPCDet, PyTorch), avoid single-source dependencies (OccWorld mmdet3d risk) | ML Lead |
 | **R9** | Bag data is corrupted/incomplete | Low | Medium | **Low** | Index all bags first (Day 1), validate quality before training, keep originals | Data Lead |
 | **R10** | Camera hardware delays | Medium | Low | **Low** | Phase 1-3 are LiDAR-only, cameras only needed for Phase 2+ (POC 7) | Hardware Lead |

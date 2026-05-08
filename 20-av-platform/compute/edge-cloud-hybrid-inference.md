@@ -22,7 +22,7 @@
 7. [Graceful Degradation When Network Fails](#7-graceful-degradation-when-network-fails)
 8. [Security and Privacy](#8-security-and-privacy)
 9. [Cost-Benefit Analysis](#9-cost-benefit-analysis)
-10. [Integration with Existing Aurrigo Systems](#10-integration-with-existing-aurrigo-systems)
+10. [Integration with Existing reference airside AV stack Systems](#10-integration-with-existing-airside-systems)
 11. [Industry Approaches](#11-industry-approaches)
 12. [Implementation Roadmap](#12-implementation-roadmap)
 13. [Key Takeaways](#13-key-takeaways)
@@ -34,10 +34,10 @@
 
 ### 1.1 The On-Vehicle Compute Bottleneck
 
-The NVIDIA Jetson AGX Orin 64GB provides 275 TOPS (sparse INT8), 138 TFLOPS (FP16), and 64 GB unified LPDDR5 memory at 15-60W. For the current Aurrigo safety-critical perception and planning stack, this is sufficient with headroom:
+The NVIDIA Jetson AGX Orin 64GB provides 275 TOPS (sparse INT8), 138 TFLOPS (FP16), and 64 GB unified LPDDR5 memory at 15-60W. For the current reference airside AV stack safety-critical perception and planning stack, this is sufficient with headroom:
 
 ```
-Current Aurrigo Orin Compute Budget (from model-compression-edge-deployment.md):
+Current reference airside AV stack Orin Compute Budget (from model-compression-edge-deployment.md):
 ┌─────────────────────────────────┬──────────┬──────────┐
 │ Component                        │ Latency  │ Memory   │
 ├─────────────────────────────────┼──────────┼──────────┤
@@ -346,7 +346,7 @@ The cloud tier handles tasks where latency tolerance exceeds 1 second and comput
 
 ### 3.1 Latency Budget Taxonomy
 
-Every model in the Aurrigo stack falls into one of four latency categories. The category determines which tier(s) can host the model:
+Every model in the reference airside AV stack falls into one of four latency categories. The category determines which tier(s) can host the model:
 
 ```
 LATENCY CATEGORIES:
@@ -718,7 +718,7 @@ Total latency: 35-90ms
 Bandwidth: 4-16 Mbps UL per vehicle
 ```
 
-**This is the recommended primary pattern for Aurrigo.**
+**This is the recommended primary pattern for reference airside AV stack.**
 
 The vehicle runs its lightweight backbone (pillar/voxel encoding) and sends the resulting BEV feature map to the edge. The edge runs multiple heads on those features simultaneously: a high-accuracy detection head (PTv3 decoder), a VLM head for scene reasoning, and a world model head for future prediction.
 
@@ -1038,7 +1038,7 @@ The edge server must handle concurrent inference requests from all active vehicl
 | 50-100 | 70 | 2x DGX A100 or DGX H100 | DGX H100 (8x H100 80GB) | $200,000-400,000 |
 | 100-200 | 140 | DGX SuperPOD (partial) | 2-4x DGX H100 | $500,000-1,000,000 |
 
-**Detailed sizing for 20-vehicle fleet (Aurrigo near-term):**
+**Detailed sizing for 20-vehicle fleet (reference airside AV stack near-term):**
 
 ```
 Workload Analysis (20 vehicles, peak):
@@ -1334,7 +1334,7 @@ NETWORK STATE MACHINE:
 
 ### 7.4 The Simplex Analogy
 
-The edge-cloud architecture mirrors the Simplex fault-tolerance pattern already used in Aurrigo's planning stack:
+The edge-cloud architecture mirrors the Simplex fault-tolerance pattern already used in the reference airside AV stack's planning stack:
 
 ```
 Simplex Pattern for Planning:
@@ -1549,7 +1549,7 @@ Vehicle                          Edge Server
 └──────────┘                     └──────────┘
 
 Certificate management:
-- Fleet CA: Aurrigo-operated, issues certs to vehicles and edge servers
+- Fleet CA: reference airside AV stack-operated, issues certs to vehicles and edge servers
 - Vehicle cert: Stored in Orin's secure element (if available) or TPM
 - Rotation: Certificates rotate every 90 days via OTA
 - Revocation: Compromised vehicle cert revoked immediately; vehicle
@@ -1580,15 +1580,15 @@ Edge Server Multi-Tenancy:
 │                                                 │
 │  ┌──────────────┐   ┌──────────────┐           │
 │  │ Namespace:    │   │ Namespace:    │           │
-│  │ aurrigo       │   │ handler-b     │           │
+│  │ airside_av       │   │ handler-b     │           │
 │  │              │   │              │           │
 │  │ Triton (GPU0,│   │ Triton (GPU2,│           │
 │  │         GPU1)│   │         GPU3)│           │
 │  │              │   │              │           │
 │  │ Models: v2.3 │   │ Models: v1.8 │           │
 │  │ Vehicles:    │   │ Vehicles:    │           │
-│  │   ADT3-001   │   │   TRACTOR-X  │           │
-│  │   ADT3-002   │   │   TRACTOR-Y  │           │
+│  │   third-generation tug-001   │   │   TRACTOR-X  │           │
+│  │   third-generation tug-002   │   │   TRACTOR-Y  │           │
 │  │   ...        │   │   ...        │           │
 │  └──────────────┘   └──────────────┘           │
 │                                                 │
@@ -1743,11 +1743,11 @@ Edge software and model management is developed once and deployed to each airpor
 
 ---
 
-## 10. Integration with Existing Aurrigo Systems
+## 10. Integration with Existing reference airside AV stack Systems
 
 ### 10.1 ROS Noetic Integration Architecture
 
-The Aurrigo stack runs ROS Noetic. The edge server does not run ROS -- it runs NVIDIA Triton. The bridge between them uses a lightweight transport layer.
+The reference airside AV stack runs ROS Noetic. The edge server does not run ROS -- it runs NVIDIA Triton. The bridge between them uses a lightweight transport layer.
 
 ```
 ON-VEHICLE (ROS Noetic)                    EDGE SERVER (Non-ROS)
@@ -1819,7 +1819,7 @@ class EdgeInferenceClient:
         self.edge_url = rospy.get_param(
             '~edge_server_url', 'edge-server.local:8001'
         )
-        self.vehicle_id = rospy.get_param('~vehicle_id', 'ADT3-001')
+        self.vehicle_id = rospy.get_param('~vehicle_id', 'third-generation tug-001')
         self.enable_vlm = rospy.get_param('~enable_vlm', True)
         self.enable_world_model = rospy.get_param('~enable_world_model', True)
 
@@ -1957,16 +1957,16 @@ Every edge inference request is instrumented with timestamps at each stage. A Pr
 # Prometheus metrics exported by edge_inference_client
 
 # RTT histogram (ms)
-edge_inference_rtt_ms{vehicle="ADT3-001", model="ptv3_detection"}
+edge_inference_rtt_ms{vehicle="third-generation tug-001", model="ptv3_detection"}
 
 # Request rate (req/s)
-edge_inference_requests_total{vehicle="ADT3-001", model="ptv3_detection"}
+edge_inference_requests_total{vehicle="third-generation tug-001", model="ptv3_detection"}
 
 # Error rate
-edge_inference_errors_total{vehicle="ADT3-001", error_type="timeout"}
+edge_inference_errors_total{vehicle="third-generation tug-001", error_type="timeout"}
 
 # Network state
-edge_network_state{vehicle="ADT3-001"}  # 0=offline, 1=minimal, 2=degraded, 3=full
+edge_network_state{vehicle="third-generation tug-001"}  # 0=offline, 1=minimal, 2=degraded, 3=full
 
 # Queue depth at edge server
 edge_server_queue_depth{model="ptv3_detection"}
@@ -2035,9 +2035,9 @@ Mobileye has publicly described a dual-loop architecture where a fast, on-vehicl
 - **Slow loop (cloud/edge VLM):** Processes camera frames at ~1 Hz. Provides scene understanding, anomaly detection, and planning verification.
 - **Reconciliation:** If slow loop identifies a risk the fast loop missed (e.g., "construction zone ahead, workers on road"), it sends a constraint to the fast loop that tightens safety margins.
 
-**Relevance to Aurrigo:** This is precisely the Pattern D (speculative execution) architecture. Mobileye validates the approach for production: the vehicle always acts on the fast loop's output, and cloud/edge reasoning arrives asynchronously to refine behavior.
+**Relevance to reference airside AV stack:** This is precisely the Pattern D (speculative execution) architecture. Mobileye validates the approach for production: the vehicle always acts on the fast loop's output, and cloud/edge reasoning arrives asynchronously to refine behavior.
 
-**Key difference for airside:** Mobileye's slow loop runs in cloud (100+ ms RTT) because highway driving lacks local edge infrastructure. Aurrigo's edge server provides 20-90ms RTT, enabling the slow loop to contribute within the same or next planning cycle -- a significant advantage.
+**Key difference for airside:** Mobileye's slow loop runs in cloud (100+ ms RTT) because highway driving lacks local edge infrastructure. the reference airside AV stack's edge server provides 20-90ms RTT, enabling the slow loop to contribute within the same or next planning cycle -- a significant advantage.
 
 ### 11.2 Waymo Cloud-Based Perception Refinement
 
@@ -2050,7 +2050,7 @@ Waymo has documented (in public talks and patents) a cloud-based perception pipe
 
 Waymo's approach is batch/offline (minutes to hours latency), not real-time. It focuses on improving the on-vehicle model rather than augmenting it in real-time.
 
-**Relevance to Aurrigo:** Waymo's cloud pipeline corresponds to Tier 3 in our architecture. The auto-labeling and model improvement functions are directly applicable. The difference is that Waymo does not operate edge servers for real-time enhancement (highway AVs cannot rely on connectivity), while Aurrigo can.
+**Relevance to reference airside AV stack:** Waymo's cloud pipeline corresponds to Tier 3 in our architecture. The auto-labeling and model improvement functions are directly applicable. The difference is that Waymo does not operate edge servers for real-time enhancement (highway AVs cannot rely on connectivity), while reference airside AV stack can.
 
 ### 11.3 Apollo Cloud-Based HD Map Updates
 
@@ -2070,7 +2070,7 @@ Tesla takes the opposite approach: all inference runs on-vehicle (HW3/HW4), and 
 - Latency requirements are stringent at highway speeds
 - Custom silicon (FSD chip) is highly optimized for their models
 
-**Relevance to Aurrigo:** Tesla's constraint (no reliable connectivity) does not apply to airport operations. However, Tesla's principle of "the vehicle must work without the network" is critical and directly maps to our Simplex-based degradation strategy.
+**Relevance to reference airside AV stack:** Tesla's constraint (no reliable connectivity) does not apply to airport operations. However, Tesla's principle of "the vehicle must work without the network" is critical and directly maps to our Simplex-based degradation strategy.
 
 ### 11.5 Motional / Hyundai Edge Computing Approach
 
@@ -2097,7 +2097,7 @@ UISEE appears to use centralized fleet management (Tier 3 equivalent) but it is 
 
 | Company | On-Vehicle | Edge | Cloud | Connectivity |
 |---------|-----------|------|-------|-------------|
-| **Aurrigo (proposed)** | Safety stack (Orin) | VLM + world model + coop. fusion | Training + analytics | Private 5G |
+| **reference airside AV stack (proposed)** | Safety stack (Orin) | VLM + world model + coop. fusion | Training + analytics | Private 5G |
 | **Mobileye** | Fast perception (EyeQ) | N/A | Slow-think VLM | Public cellular |
 | **Waymo** | Full perception + planning | N/A | Auto-label + map + refinement | Public cellular |
 | **Apollo** | Full perception + planning | N/A | Map updates + training | Public cellular |
@@ -2105,7 +2105,7 @@ UISEE appears to use centralized fleet management (Tier 3 equivalent) but it is 
 | **Motional** | Full perception + planning | RSU perception fusion | Remote assistance | V2I + cellular |
 | **UISEE** | Perception + planning | Unknown | Fleet management | Private 5G |
 
-**Aurrigo's edge approach is differentiated** because the airport environment uniquely enables it. No highway AV company can rely on edge compute because connectivity is not guaranteed on public roads. This is a structural advantage of airport operations that should be exploited.
+**the reference airside AV stack's edge approach is differentiated** because the airport environment uniquely enables it. No highway AV company can rely on edge compute because connectivity is not guaranteed on public roads. This is a structural advantage of airport operations that should be exploited.
 
 ---
 
@@ -2197,7 +2197,7 @@ UISEE appears to use centralized fleet management (Tier 3 equivalent) but it is 
 | **Edge hardware (first airport)** | — | **$50K-150K** | |
 | **Grand total (first airport)** | **24 weeks** | **$110K-255K** | |
 
-This is comparable to the cost of a single vehicle (ADT3 production cost) but benefits the entire fleet.
+This is comparable to the cost of a single vehicle (third-generation tug production cost) but benefits the entire fleet.
 
 ---
 

@@ -271,7 +271,7 @@ Photo-SLAM focuses on **photorealistic quality** of the reconstructed Gaussian m
 
 ### 3.4 LiDAR-Gaussian SLAM
 
-For a LiDAR-primary stack like Aurrigo's, camera-based Gaussian SLAM can be augmented with LiDAR:
+For a LiDAR-primary stack like the reference airside AV stack's, camera-based Gaussian SLAM can be augmented with LiDAR:
 
 **LiDAR-GS SLAM Pipeline (Emerging, 2025):**
 
@@ -438,7 +438,7 @@ Key findings:
 
 ### 4.4 Relevance to Airside Operations
 
-This is particularly important for Aurrigo because:
+This is particularly important for reference airside AV stack because:
 
 1. **No airside occupancy labels exist** — self-supervised is the only option initially
 2. **Bootstrapping strategy**: Deploy GaussianOcc self-supervised → collect data → label a small set → fine-tune → iterate
@@ -580,7 +580,7 @@ def detect_map_changes(current_gaussians, map_gaussians, threshold=3.0):
 
 ### 6.1 LiDAR Points to Gaussians
 
-Converting LiDAR point clouds to Gaussians is the bridge between Aurrigo's existing LiDAR pipeline and Gaussian-based perception.
+Converting LiDAR point clouds to Gaussians is the bridge between the reference airside AV stack's existing LiDAR pipeline and Gaussian-based perception.
 
 **Direct Conversion (Per-Point):**
 ```python
@@ -658,7 +658,7 @@ class LiDARGaussianEncoder(nn.Module):
 
 ### 6.2 Multi-LiDAR Fusion via Gaussians
 
-Aurrigo uses 4-8 RoboSense LiDARs. Gaussian representations naturally handle multi-sensor fusion:
+reference airside AV stack uses 4-8 RoboSense LiDARs. Gaussian representations naturally handle multi-sensor fusion:
 
 ```python
 class MultiLiDARGaussianFusion:
@@ -716,7 +716,7 @@ class MultiLiDARGaussianFusion:
         return merged
 ```
 
-**Advantage for Aurrigo's 4-8 LiDAR setup:**
+**Advantage for the reference airside AV stack's 4-8 LiDAR setup:**
 - Each LiDAR produces Gaussians with sensor-appropriate uncertainty
 - Overlapping regions get tighter covariances (more confident)
 - Non-overlapping regions retain single-sensor uncertainty
@@ -724,7 +724,7 @@ class MultiLiDARGaussianFusion:
 
 ### 6.3 Gaussian-Enhanced PointPillars
 
-The existing Aurrigo stack uses PointPillars (6.84ms on Orin with TensorRT). Gaussians can augment this:
+The existing reference airside AV stack uses PointPillars (6.84ms on Orin with TensorRT). Gaussians can augment this:
 
 ```
 LiDAR Scan → PointPillars (fast detection)
@@ -1046,7 +1046,7 @@ Orin AGX has 32GB unified memory (or 64GB on industrial modules). Budget allocat
 
 ### 10.3 Hybrid Voxel-Gaussian Architecture
 
-The practical recommendation for Aurrigo is a **hybrid** approach:
+The practical recommendation for reference airside AV stack is a **hybrid** approach:
 
 ```
 LiDAR Scan ──→ PointPillars ──→ Fast 3D Detection (6.84ms)
@@ -1189,7 +1189,7 @@ Gaussians with semantic labels can monitor turnaround operations:
 
 ```python
 #!/usr/bin/env python3
-"""Gaussian perception node for Aurrigo ROS stack."""
+"""Gaussian perception node for reference airside AV stack ROS stack."""
 
 import rospy
 import torch
@@ -1288,10 +1288,10 @@ class GaussianPerceptionNode:
 | Training Phase | Data Needed | Source | Estimated Size |
 |---------------|-------------|--------|---------------|
 | Pre-training | nuScenes + Waymo Open | Public datasets | ~1TB |
-| Self-supervised fine-tune | Airport LiDAR+camera logs | Aurrigo fleet | 500-2000 hours |
+| Self-supervised fine-tune | Airport LiDAR+camera logs | reference airside fleet | 500-2000 hours |
 | Supervised fine-tune | Labeled airport frames | Manual annotation | 500-2000 frames |
 | Map construction | Full airport coverage | Mapping drives | 10-50 drives per airport |
-| Evaluation | Held-out airport data | Aurrigo fleet | 100+ hours |
+| Evaluation | Held-out airport data | reference airside fleet | 100+ hours |
 
 ---
 
@@ -1355,4 +1355,4 @@ class GaussianPerceptionNode:
 
 ---
 
-*Document generated for Aurrigo industry research, April 2026. Focuses on online/real-time Gaussian perception and mapping — for offline simulation/reconstruction, see `30-autonomy-stack/simulation/3dgs-digital-twin.md` and `30-autonomy-stack/simulation/neural-scene-reconstruction.md`.*
+*Document generated for reference airside AV stack industry research, April 2026. Focuses on online/real-time Gaussian perception and mapping — for offline simulation/reconstruction, see `30-autonomy-stack/simulation/3dgs-digital-twin.md` and `30-autonomy-stack/simulation/neural-scene-reconstruction.md`.*

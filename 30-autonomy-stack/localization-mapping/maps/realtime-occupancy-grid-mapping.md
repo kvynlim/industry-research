@@ -1,6 +1,6 @@
 # Real-Time Occupancy Grid Mapping for Airport Airside Autonomous Vehicles
 
-Occupancy grid mapping is the foundational spatial representation that sits between raw sensor data and motion planning. Unlike learned occupancy prediction (see `30-autonomy-stack/world-models/occupancy-deployment-orin.md`) which uses neural networks to hallucinate unseen space, classical occupancy grid mapping uses probabilistic raycasting to build a live, evidence-based map of what is free, what is occupied, and what is unknown -- directly from LiDAR measurements. For Aurrigo's 4-8 RoboSense LiDAR stack processing 400K-1.2M points every 100ms, this is the first line of spatial reasoning: a continuously-updated volumetric representation that feeds the Frenet planner's costmap, provides collision avoidance guarantees, and -- when shared across vehicles -- creates fleet-wide situational awareness of the airport apron. This document covers the theory (log-odds Bayesian update, inverse sensor models), the data structures (dense grids, octrees, voxel hashmaps, spatial hashing), GPU-accelerated implementation on NVIDIA Orin, multi-LiDAR fusion, dynamic object handling, multi-resolution strategies, TSDF/ESDF alternatives, costmap generation for path planning, fleet sharing protocols, and airside-specific adaptations for the unique geometry of aircraft stands, jet blast zones, and FOD detection. The existing Aurrigo stack has no explicit occupancy grid layer -- RANSAC segmentation feeds obstacle clusters directly to the Frenet planner. Adding a proper occupancy grid is the single highest-value perception infrastructure upgrade available today, costing approximately $25-40K in development while providing the spatial backbone for every downstream capability: neural occupancy, flow prediction, CBF safety filtering, and fleet cooperative perception.
+Occupancy grid mapping is the foundational spatial representation that sits between raw sensor data and motion planning. Unlike learned occupancy prediction (see `30-autonomy-stack/world-models/occupancy-deployment-orin.md`) which uses neural networks to hallucinate unseen space, classical occupancy grid mapping uses probabilistic raycasting to build a live, evidence-based map of what is free, what is occupied, and what is unknown -- directly from LiDAR measurements. For the reference airside AV stack's 4-8 RoboSense LiDAR stack processing 400K-1.2M points every 100ms, this is the first line of spatial reasoning: a continuously-updated volumetric representation that feeds the Frenet planner's costmap, provides collision avoidance guarantees, and -- when shared across vehicles -- creates fleet-wide situational awareness of the airport apron. This document covers the theory (log-odds Bayesian update, inverse sensor models), the data structures (dense grids, octrees, voxel hashmaps, spatial hashing), GPU-accelerated implementation on NVIDIA Orin, multi-LiDAR fusion, dynamic object handling, multi-resolution strategies, TSDF/ESDF alternatives, costmap generation for path planning, fleet sharing protocols, and airside-specific adaptations for the unique geometry of aircraft stands, jet blast zones, and FOD detection. The existing reference airside AV stack has no explicit occupancy grid layer -- RANSAC segmentation feeds obstacle clusters directly to the Frenet planner. Adding a proper occupancy grid is the single highest-value perception infrastructure upgrade available today, costing approximately $25-40K in development while providing the spatial backbone for every downstream capability: neural occupancy, flow prediction, CBF safety filtering, and fleet cooperative perception.
 
 ---
 
@@ -50,7 +50,7 @@ The occupancy grid, introduced by Moravec and Elfes (1985), discretizes space in
 | **Compute cost** | Trivial (<1ms) | Significant (5-50ms) |
 | **Standard message** | `nav_msgs/OccupancyGrid` | `octomap_msgs/Octomap` or custom |
 
-**For airside operations, 3D is mandatory.** Aircraft wings overhang at 4-6m above ground. A 2D grid that collapses height sees the wing shadow as "occupied" and blocks all paths under the wing. A 3D grid correctly marks the wing voxels as occupied at z=5m while showing the ground-level voxels as free. The ADT3's height is approximately 2.5m -- it can pass under most aircraft wings, but only a 3D representation can make that determination.
+**For airside operations, 3D is mandatory.** Aircraft wings overhang at 4-6m above ground. A 2D grid that collapses height sees the wing shadow as "occupied" and blocks all paths under the wing. A 3D grid correctly marks the wing voxels as occupied at z=5m while showing the ground-level voxels as free. The third-generation tug's height is approximately 2.5m -- it can pass under most aircraft wings, but only a 3D representation can make that determination.
 
 However, the **planner itself operates in 2D** (the Frenet planner generates lateral/longitudinal trajectories on a reference path). The architecture is therefore: maintain a 3D occupancy grid, project to a height-filtered 2D costmap for planning. Section 8 covers this projection in detail.
 
@@ -272,7 +272,7 @@ Memory: proportional to surface area, not volume
 - `octomap_server` ROS package provides full pipeline
 - Serialization for saving/loading maps
 
-**OctoMap weaknesses for Aurrigo:**
+**OctoMap weaknesses for reference airside AV stack:**
 - **CPU-only**: Tree traversal is inherently sequential, resists GPU parallelization
 - **Slow raycasting**: Each ray requires tree traversal for every cell it passes through
 - **Cache-unfriendly**: Pointer-chasing through the tree causes L1/L2 cache misses
@@ -288,7 +288,7 @@ Memory: proportional to surface area, not volume
 | 4 LiDARs merged, 400K pts | 0.1m | 1-3 Hz | ~400 MB |
 | 4 LiDARs merged, 400K pts | 0.2m | 3-6 Hz | ~150 MB |
 
-**Verdict:** OctoMap is a useful reference implementation and works for prototyping, but its CPU-bound nature makes it unsuitable for production multi-LiDAR operation at Aurrigo's data rates.
+**Verdict:** OctoMap is a useful reference implementation and works for prototyping, but its CPU-bound nature makes it unsuitable for production multi-LiDAR operation at the reference airside AV stack's data rates.
 
 ### 2.4 VDBFusion: OpenVDB Meets Robotics
 
@@ -398,7 +398,7 @@ Performance benefit:
 
 nvblox is covered in detail in `30-autonomy-stack/world-models/occupancy-deployment-orin.md` Section 6. This document focuses on the broader occupancy grid architecture, where nvblox is one implementation option.
 
-### 2.7 Representation Decision Matrix for Aurrigo
+### 2.7 Representation Decision Matrix for reference airside AV stack
 
 | Criterion | OctoMap | VDBFusion | Spatial Hash (Custom) | nvblox |
 |-----------|---------|-----------|----------------------|--------|
@@ -694,12 +694,12 @@ Instead of raycasting from sensor origin, start free-space marking 2-3m in front
 
 ## 4. Multi-LiDAR Occupancy Fusion
 
-### 4.1 The Aurrigo Multi-LiDAR Configuration
+### 4.1 The reference airside AV stack Multi-LiDAR Configuration
 
-Aurrigo vehicles use 4-8 RoboSense LiDARs (RSHELIOS, RSBP) mounted around the vehicle for 360-degree coverage. Each LiDAR runs at 10 Hz, producing 50K-150K points per scan.
+reference airside vehicles use 4-8 RoboSense LiDARs (RSHELIOS, RSBP) mounted around the vehicle for 360-degree coverage. Each LiDAR runs at 10 Hz, producing 50K-150K points per scan.
 
 ```
-Typical ADT3 configuration (8 LiDARs):
+Typical third-generation tug configuration (8 LiDARs):
   
   Front-left RSHELIOS  ────┐
   Front-right RSHELIOS ────┤
@@ -734,7 +734,7 @@ Cons:
 
 Mitigation:
   - Use per-LiDAR sensor origin during raycasting (array of origins)
-  - Ego-motion compensate each point using IMU (already done in Aurrigo stack)
+  - Ego-motion compensate each point using IMU (already done in reference airside AV stack)
 ```
 
 **Strategy 2: Per-LiDAR grids with probabilistic fusion**
@@ -815,7 +815,7 @@ def compensate_ego_motion(points, timestamps, pose_buffer):
 # The GTSAM 500 Hz pose buffer provides sub-millimeter interpolation accuracy
 ```
 
-**Integration with existing Aurrigo stack:** The GTSAM localization node already produces high-rate poses. The occupancy node subscribes to `/gtsam/pose` and uses it for ego-motion compensation. No new sensor fusion is needed.
+**Integration with existing reference airside AV stack:** The GTSAM localization node already produces high-rate poses. The occupancy node subscribes to `/gtsam/pose` and uses it for ego-motion compensation. No new sensor fusion is needed.
 
 ### 4.4 Temporal Consistency
 
@@ -845,7 +845,7 @@ Occupancy grids accumulate evidence over time. But when should old observations 
 | **Recency-weighted** | Weight observations by age: w = exp(-alpha * age) | Smooth forgetting | More complex update |
 | **Detection-gated** | Only forget cells associated with detected dynamic objects | Preserves static map | Requires object detection |
 
-**Recommended approach for Aurrigo:**
+**Recommended approach for reference airside AV stack:**
 
 ```
 Two-grid architecture:
@@ -1216,7 +1216,7 @@ class CircularOccupancyGrid {
 | **Gradient for optimization** | Not available | Surface only | Full gradient field |
 | **Memory per voxel** | 2 bytes (int16 log-odds) | 4 bytes (float16 distance + weight) | 2 bytes (float16 distance) |
 | **Update complexity** | O(rays * voxels_per_ray) | O(points) | O(changed_voxels * neighborhood) |
-| **Aurrigo Frenet planner** | Good (binary costmap) | Overkill | Excellent but not needed |
+| **reference airside AV stack Frenet planner** | Good (binary costmap) | Overkill | Excellent but not needed |
 
 ### 7.4 Recommended Architecture
 
@@ -1257,7 +1257,7 @@ Critical for airside: must filter by vehicle height to allow passage under wings
 
 def occupancy_3d_to_costmap_2d(
     grid_3d,              # 3D occupancy grid (nx, ny, nz)
-    vehicle_height=2.5,   # ADT3 height in meters
+    vehicle_height=2.5,   # third-generation tug height in meters
     ground_clearance=0.3, # Minimum ground clearance
     z_min=-0.5,           # Below ground (ramps, depressions)
     z_max=None,           # Will be set to vehicle_height + margin
@@ -1314,7 +1314,7 @@ Obstacle inflation for airside:
 Layer 1: LETHAL (0m from obstacle)
   Cost: 254 (impassable)
   
-Layer 2: INSCRIBED (vehicle inscribed radius, ~1.5m for ADT3)
+Layer 2: INSCRIBED (vehicle inscribed radius, ~1.5m for third-generation tug)
   Cost: 253 (collision guaranteed if center is here)
   
 Layer 3: INFLATION (variable, speed-dependent)
@@ -1386,7 +1386,7 @@ Band 1: VEHICLE BODY (0.3m to 2.8m)
   
 Band 2: OVERHEAD (2.8m to 6.0m)
   Captures: Aircraft wings, jet bridges, building overhangs
-  Use: Route planning for tall vehicles (POD is taller than ADT3)
+  Use: Route planning for tall vehicles (POD is taller than third-generation tug)
   
 Band 3: TALL (6.0m to 12.0m)
   Captures: Aircraft tail, control tower, light masts
@@ -1394,16 +1394,16 @@ Band 3: TALL (6.0m to 12.0m)
 
 Primary costmap = Band 1
 Vehicle-specific: each vehicle type uses its own height envelope
-  ADT3: 2.5m → Band 1 up to 2.8m (2.5 + 0.3 margin)
+  third-generation tug: 2.5m → Band 1 up to 2.8m (2.5 + 0.3 margin)
   POD:  3.0m → Band 1 up to 3.3m
 ```
 
 ### 8.5 Integration with Frenet Planner
 
-The current Aurrigo Frenet planner generates 420 candidate trajectories per cycle. Each candidate is evaluated against the costmap:
+The current reference airside AV stack Frenet planner generates 420 candidate trajectories per cycle. Each candidate is evaluated against the costmap:
 
 ```
-Current Aurrigo obstacle check:
+Current reference airside AV stack obstacle check:
   Point obstacles (from RANSAC clusters) → check if trajectory passes near
 
 Proposed occupancy-based check:
@@ -1817,7 +1817,7 @@ ROS Node Graph for Occupancy Grid:
 // CUDA headers
 #include <cuda_runtime.h>
 
-namespace aurrigo_occupancy {
+namespace airside_occupancy {
 
 class OccupancyGridNodelet : public nodelet::Nodelet {
 public:
@@ -1922,16 +1922,16 @@ private:
     double current_speed_;
 };
 
-} // namespace aurrigo_occupancy
+} // namespace airside_occupancy
 
 #include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS(aurrigo_occupancy::OccupancyGridNodelet, 
+PLUGINLIB_EXPORT_CLASS(airside_occupancy::OccupancyGridNodelet,
                        nodelet::Nodelet)
 ```
 
 ### 11.3 Existing ROS Packages
 
-| Package | Description | Suitability for Aurrigo |
+| Package | Description | Suitability for reference airside AV stack |
 |---------|------------|------------------------|
 | `octomap_server` | OctoMap-based 3D occupancy | Prototype only (CPU-bound, too slow for 4-8 LiDARs) |
 | `costmap_2d` | ROS Navigation stack 2D costmap | Good for 2D costmap layer management, inflation |
@@ -2174,7 +2174,7 @@ Even at 30W power mode, the occupancy grid runs within the 100ms budget. At 15W 
 
 6. **Two-grid architecture solves the static/dynamic problem.** A persistent static grid (slow decay) maintains infrastructure, while a fast-decay dynamic grid (1s half-life) tracks moving objects. Merge with max() for conservative planning.
 
-7. **Height-filtered costmap projection is critical for airside.** Aircraft wings overhang at 4-6m; the ADT3 at 2.5m can pass under. The 3D-to-2D projection must use the vehicle's height envelope, not a simple max-height projection.
+7. **Height-filtered costmap projection is critical for airside.** Aircraft wings overhang at 4-6m; the third-generation tug at 2.5m can pass under. The 3D-to-2D projection must use the vehicle's height envelope, not a simple max-height projection.
 
 8. **Fleet-shared occupancy overcomes aircraft occlusion.** A 60m aircraft fuselage blocks line-of-sight for a single vehicle. Sharing compressed BEV costmaps at 2 Hz (5-15 KB per update) over airport 5G fills blind spots with negligible bandwidth cost.
 
@@ -2190,7 +2190,7 @@ Even at 30W power mode, the occupancy grid runs within the 100ms budget. At 15W 
 
 14. **Conservative fusion is the only safe fleet merge strategy.** When two vehicles disagree on whether a cell is occupied, always assume occupied. A missed obstacle is catastrophic; a phantom obstacle merely causes a detour.
 
-15. **Occupancy grid adds the most value to the existing Aurrigo stack.** The current RANSAC-cluster-to-Frenet pipeline has no explicit spatial representation between raw points and planning. Adding an occupancy grid provides: continuous cost fields (not sparse clusters), implicit inflation, unknown-object detection, fleet sharing, and the spatial backbone for every future capability.
+15. **Occupancy grid adds the most value to the existing reference airside AV stack.** The current RANSAC-cluster-to-Frenet pipeline has no explicit spatial representation between raw points and planning. Adding an occupancy grid provides: continuous cost fields (not sparse clusters), implicit inflation, unknown-object detection, fleet sharing, and the spatial backbone for every future capability.
 
 16. **The occupancy grid is fully deterministic and inspectable.** Unlike neural perception, every cell value can be traced to specific LiDAR observations. This is a significant advantage for ISO 3691-4 certification and incident investigation.
 

@@ -165,7 +165,7 @@ For airside:
   - Camera-based loop closure detection
   - Map building from visual features
 
-Note: Aurrigo currently uses LiDAR VGICP for localization.
+Note: reference airside AV stack currently uses LiDAR VGICP for localization.
 cuVSLAM would ADD visual odometry as an additional GTSAM factor,
 not replace LiDAR localization.
 ```
@@ -272,13 +272,13 @@ colcon build --symlink-install
 | Gap | Description | Solution |
 |-----|-------------|----------|
 | **LiDAR-native packages** | No PointPillars/CenterPoint nodes | Use `isaac_ros_dnn_inference` with custom TensorRT engines |
-| **Multi-LiDAR fusion** | No built-in multi-LiDAR aggregation | Port Aurrigo's `pointcloud_aggregator` to ROS 2 |
-| **Lanelet2 support** | No zone/map management | Port Aurrigo's `zone_manager` or use Autoware's Lanelet2 loader |
+| **Multi-LiDAR fusion** | No built-in multi-LiDAR aggregation | Port the reference airside AV stack's `pointcloud_aggregator` to ROS 2 |
+| **Lanelet2 support** | No zone/map management | Port the reference airside AV stack's `zone_manager` or use Autoware's Lanelet2 loader |
 | **World model inference** | No occupancy prediction | Build custom NITROS node (Section 4.2) |
 | **4D radar support** | No radar processing packages | Use `continental_ars548` ROS 2 driver |
 | **ADS-B integration** | No aviation data packages | Build custom node (documented in `70-operations-domains/airside/operations/airport-data-integration.md`) |
-| **Frenet planning** | No trajectory planning | Port Aurrigo's `aurrigo_nav` or use Autoware's planner |
-| **CAN interface** | No vehicle-specific CAN | Port Aurrigo's `av_comms` to ROS 2 |
+| **Frenet planning** | No trajectory planning | Port the reference airside AV stack's `airside_nav` or use Autoware's planner |
+| **CAN interface** | No vehicle-specific CAN | Port the reference airside AV stack's `av_comms` to ROS 2 |
 
 ### 6.2 What to Reuse vs Build Custom
 
@@ -291,7 +291,7 @@ REUSE from Isaac ROS:
   ✓ isaac_ros_h264_encoder (teleoperation)
   ✓ isaac_ros_visual_slam (when cameras added)
 
-PORT from Aurrigo (Noetic → ROS 2):
+PORT from reference airside AV stack (Noetic → ROS 2):
   → pointcloud_aggregator (multi-LiDAR fusion)
   → zone_manager (Lanelet2 zones)
   → av_comms (CAN vehicle interface)

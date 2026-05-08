@@ -99,7 +99,7 @@ For each major architectural decision, this document provides:
 | **AIXM + online perception** | 1-2 weeks | ~$0 (AIXM free) | m-level global, cm local | Self-updating |
 | **Pure map-free** | Days | $0 | Perception-limited | N/A |
 
-**Decision:** **Keep HD maps for Phase 1** (proven, what Aurrigo does). Develop **AIXM + online perception in parallel** (Phase 2). Transition when **world model accuracy validated**. Keep HD map as fallback.
+**Decision:** **Keep HD maps for Phase 1** (proven, what reference airside AV stack does). Develop **AIXM + online perception in parallel** (Phase 2). Transition when **world model accuracy validated**. Keep HD map as fallback.
 
 **Read more:** `30-autonomy-stack/localization-mapping/maps/map-free-driving.md`, `10-knowledge-base/robotics/lanelet2-maps.md`, `30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md`
 
@@ -113,7 +113,7 @@ For each major architectural decision, this document provides:
 
 | Component | Approach | Rationale |
 |-----------|----------|-----------|
-| **Fallback controller** | Existing Aurrigo stack (unchanged) | Already production-tested |
+| **Fallback controller** | Existing reference airside AV stack (unchanged) | Already production-tested |
 | **Safety monitor** | Ensemble OOD + RSS envelope + occupancy collision | Multi-layer, any failure → fallback |
 | **RSS parameters** | Airside-specific (2m aircraft, 3m personnel, 1s response) | Conservative for airport |
 | **Arbitration** | State machine with 2s hysteresis | Prevents rapid switching |
@@ -145,7 +145,7 @@ For each major architectural decision, this document provides:
 
 **Question:** What standard to certify against?
 
-**Decision:** **ISO 3691-4:2020** (what TractEasy and Aurrigo already use). Supplement with **ISO/PAS 8800** (new AI safety lifecycle) and **SOTIF (ISO 21448)** for world model components.
+**Decision:** **ISO 3691-4:2020** (what TractEasy and reference airside AV stack already use). Supplement with **ISO/PAS 8800** (new AI safety lifecycle) and **SOTIF (ISO 21448)** for world model components.
 
 | Standard | What It Covers | Cost | Timeline |
 |----------|---------------|------|----------|

@@ -23,7 +23,7 @@
 13. [Runtime Safety Monitoring](#13-runtime-safety-monitoring)
 14. [Airside-Specific Considerations](#14-airside-specific-considerations)
 15. [Industry Implementations](#15-industry-implementations)
-16. [Aurrigo Integration Recommendations](#16-aurrigo-integration-recommendations)
+16. [reference airside AV stack Integration Recommendations](#16-airside-integration-recommendations)
 17. [Key Takeaways](#17-key-takeaways)
 18. [References](#18-references)
 
@@ -207,7 +207,7 @@ A critical design parameter is **how long** the system must remain operational a
 |----------|--------------|------------|
 | Highway L4 (Waymo, Aurora) | 10-30 seconds | Time to pull over at highway speed |
 | Urban L4 (Cruise, Zoox) | 30-120 seconds | Time to navigate to safe stop in city |
-| Airside GSE (Aurrigo) | 30-180 seconds | Time to clear active area, complete pushback |
+| Airside GSE (reference airside AV stack) | 30-180 seconds | Time to clear active area, complete pushback |
 | Pushback mid-operation | 60-300 seconds | Cannot abandon aircraft on taxiway |
 
 For airside operations, the **pushback scenario is the most demanding**: if a fault occurs while pushing back an aircraft from the gate, the vehicle must complete the pushback (or safely hand off to ground crew) before it can stop. Abandoning a connected aircraft on an active taxiway is not a safe state.
@@ -411,7 +411,7 @@ The monitor is simpler than the compute channel, making it easier to verify and 
 - **Simplex architecture**: BC (baseline controller) monitors AC (advanced controller)
 - **RSS checker**: Verifies that planned trajectory satisfies responsibility-sensitive safety constraints
 
-**For Aurrigo, the monitor-actuator pattern is already partially implemented** via the STM32 CAN safety gateway that validates commands before forwarding to the vehicle CAN bus. This document recommends extending it to a full fail-operational architecture.
+**For reference airside AV stack, the monitor-actuator pattern is already partially implemented** via the STM32 CAN safety gateway that validates commands before forwarding to the vehicle CAN bus. This document recommends extending it to a full fail-operational architecture.
 
 ### 4.4 Safety Bag / Runtime Monitor
 
@@ -622,7 +622,7 @@ The FSI provides an **on-chip safety monitor** — it watches the main compute c
 | Development cost | 1x (single implementation) | 2x+ (two implementations) |
 | ASIL coverage | Up to ASIL D (random only) | ASIL D (random + systematic) |
 
-**For Aurrigo:** The dual-compute architecture already provides diverse computation at the system level: neural perception+planning on Unit A vs classical perception+planning on Unit B. Within each unit, the Orin FSI provides lockstep monitoring. This combination — lockstep within each unit, diversity across units — covers both random and systematic faults.
+**For reference airside AV stack:** The dual-compute architecture already provides diverse computation at the system level: neural perception+planning on Unit A vs classical perception+planning on Unit B. Within each unit, the Orin FSI provides lockstep monitoring. This combination — lockstep within each unit, diversity across units — covers both random and systematic faults.
 
 ### 5.4 GPU-Specific Failure Modes
 
@@ -732,7 +732,7 @@ No single sensor modality is robust to all failure modes. Modality diversity is 
 | **IMU** | Angular rate, acceleration, high rate | Drift over time, vibration sensitivity | GPS, LiDAR odometry, wheel odometry |
 | **Wheel odometry** | Simple, reliable, independent | Wheel slip, calibration drift | IMU, GPS, LiDAR odometry |
 
-**Current Aurrigo sensor suite (LiDAR-only perception):**
+**Current reference airside AV stack sensor suite (LiDAR-only perception):**
 - 4-8x RoboSense (RSHELIOS/RSBP) LiDAR — provides spatial redundancy within one modality
 - RTK-GPS + IMU (500Hz) + wheel odometry — for localization
 - No cameras or radar in the perception pipeline
@@ -845,7 +845,7 @@ class SensorRedundancyManager:
 
 ### 7.1 Steering Redundancy
 
-For Ackermann-steered vehicles (ADT3, STL2), steering is the most critical actuator — loss of steering at any speed creates an uncontrolled trajectory.
+For Ackermann-steered vehicles (third-generation tug, small tug platform), steering is the most critical actuator — loss of steering at any speed creates an uncontrolled trajectory.
 
 **Electric Power Steering (EPS) redundancy patterns:**
 
@@ -857,7 +857,7 @@ For Ackermann-steered vehicles (ADT3, STL2), steering is the most critical actua
 | **Steer-by-wire + fallback EPS** | Primary SbW + backup traditional EPS | Full independence | Production SbW systems |
 | **Redundant steer-by-wire** | Dual SbW actuators, no mechanical link | Tolerates any single SbW failure | Future L4 platforms |
 
-**ADT3 crab steering advantage:** The ADT3 has both front Ackermann and crab steering capability. This provides inherent steering diversity — if the Ackermann steering fails, crab mode can still maneuver the vehicle to a stop (at reduced capability). This is a significant safety advantage unique to the ADT3 platform.
+**third-generation tug crab steering advantage:** The third-generation tug has both front Ackermann and crab steering capability. This provides inherent steering diversity — if the Ackermann steering fails, crab mode can still maneuver the vehicle to a stop (at reduced capability). This is a significant safety advantage unique to the third-generation tug platform.
 
 ### 7.2 Braking Redundancy
 
@@ -1123,7 +1123,7 @@ The notation ASIL X(Y) means "developed to ASIL X with independence requirements
 
 **Key constraint:** Decomposition requires demonstrated independence. Two elements sharing a common-cause failure path cannot claim independence, regardless of their individual ASIL ratings.
 
-### 10.2 Practical Decomposition for Aurrigo
+### 10.2 Practical Decomposition for reference airside AV stack
 
 **Safety Goal: "Vehicle shall not collide with persons" (ASIL D equivalent)**
 
@@ -1658,7 +1658,7 @@ The most elegant minimal fail-operational design:
 - **Independence**: Completely independent from main compute — different hardware, different software, different power
 - **Philosophy**: "If the safety MCU doesn't see valid commands for 1 second, it disengages and returns control to the stock car systems"
 
-**Key lesson for Aurrigo:** The Panda model — a simple, verified safety MCU that gates all actuator commands — is directly applicable. Aurrigo's existing STM32 CAN gateway is the foundation for this approach.
+**Key lesson for reference airside AV stack:** The Panda model — a simple, verified safety MCU that gates all actuator commands — is directly applicable. the reference airside AV stack's existing STM32 CAN gateway is the foundation for this approach.
 
 ### 15.4 UISEE (Airside Leader)
 
@@ -1674,7 +1674,7 @@ UISEE's 1,000+ deployed airside vehicles use:
 
 ---
 
-## 16. Aurrigo Integration Recommendations
+## 16. reference airside AV stack Integration Recommendations
 
 ### 16.1 Current State Assessment
 
@@ -1723,7 +1723,7 @@ UISEE's 1,000+ deployed airside vehicles use:
 - Deliverable: No single power or communication failure stops the vehicle
 
 **Phase 5: Actuator Redundancy (12-20 weeks, $40-70K)**
-- Vehicle-specific: depends on ADT3/STL2/POD platform
+- Vehicle-specific: depends on third-generation tug/small tug platform/POD platform
 - Dual EPS motor or backup steering actuator
 - Brake system enhancement (if needed beyond current)
 - Redundant drive motor controller
@@ -1757,7 +1757,7 @@ These can be implemented immediately with existing hardware:
 
 4. **The safety MCU is the most important component**: A simple, verified, independent safety monitor (STM32 or Orin FSI) that can stop the vehicle regardless of main compute state is the foundation of fail-operational design. comma.ai proved this with 120 lines of safety-critical C.
 
-5. **NVIDIA Orin FSI provides on-chip fail-operational capability**: The 4x DCLS R52 cores at ~10K ASIL D MIPS can run safety bag checks, watchdog monitoring, and geofencing independently of the GPU/CPU complex. This is available now on existing Aurrigo hardware.
+5. **NVIDIA Orin FSI provides on-chip fail-operational capability**: The 4x DCLS R52 cores at ~10K ASIL D MIPS can run safety bag checks, watchdog monitoring, and geofencing independently of the GPU/CPU complex. This is available now on existing reference airside AV stack hardware.
 
 6. **Sensor modality diversity is more important than sensor count**: 8 LiDARs provide excellent spatial redundancy but zero weather diversity. Adding even 2 radar units creates a qualitatively different safety argument.
 

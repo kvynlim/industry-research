@@ -336,8 +336,8 @@ from nav_msgs.msg import Odometry
 from std_msgs.msg import Header
 import sensor_msgs.point_cloud2 as pc2
 
-# Custom message (define in aurrigo_msgs)
-from aurrigo_perception_msgs.msg import OccupancyPrediction
+# Custom message (define in airside_msgs)
+from airside_perception_msgs.msg import OccupancyPrediction
 
 class OccWorldNode:
     def __init__(self):

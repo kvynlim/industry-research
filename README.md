@@ -10,10 +10,10 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 | Scope | Count |
 |-------|-------|
-| Reader pages | 402 |
-| Core research documents | 394 |
+| Reader pages | 398 |
+| Core research documents | 390 |
 | Corpus size | 230k+ lines |
-| Companies covered | 21 |
+| Companies covered | 20 |
 | Technology domains | 9 |
 | Method-level SLAM library | 58 method files + overview |
 | Method-level perception files | 54 |
@@ -75,7 +75,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | `50-cloud-fleet/` | 20 | [Cloud Backend Infrastructure](50-cloud-fleet/data-platform/cloud-backend-infrastructure.md) | Data engines, fleet data loops, MLOps, OTA/SUMS, observability, map operations, data governance, and fleet management. |
 | `60-safety-validation/` | 24 | [Certification Guide](60-safety-validation/standards-certification/certification-guide.md) | Safety case, standards, runtime assurance, verification, validation, robustness, cybersecurity, incident reporting, and evidence traceability. |
 | `70-operations-domains/` | 24 | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Airside, warehouse, yard, port, mining, agriculture, construction, road AV, delivery robot, deployment, business-case, and safety operations. |
-| `80-industry-intel/` | 56 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, autonomy company profiles, market intelligence, and regulations. |
+| `80-industry-intel/` | 52 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, autonomy company profiles, market intelligence, and regulations. |
 | `90-synthesis/` | 8 | [Master Synthesis](90-synthesis/master/master-synthesis.md) | Executive synthesis, POCs, readiness, risk, decision framework, architecture, and gap backlog. |
 
 ## Domain Snapshot

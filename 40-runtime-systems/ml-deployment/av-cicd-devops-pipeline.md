@@ -2,7 +2,7 @@
 
 ## End-to-End Pipeline from Code Commit to Fleet Deployment
 
-> This document covers the **end-to-end CI/CD workflow** that connects code, ML models, simulation, maps, and fleet deployment into a single integrated pipeline for safety-critical autonomous vehicle development. Existing documents cover individual pieces -- OTA delivery (`../../50-cloud-fleet/ota/ota-fleet-management.md`), TensorRT optimization (`production-ml-deployment.md`), MISRA/static analysis (`functional-safety-software.md`), V-model testing (`testing-validation-methodology.md`), shadow mode (`../../60-safety-validation/verification-validation/shadow-mode.md`), and data flywheel (`50-cloud-fleet/mlops/data-flywheel-airside.md`). This document fills the gap: the pipeline architecture that orchestrates all of these into a repeatable, auditable, and safety-certifiable workflow. Designed for Aurrigo's ROS Noetic stack (22 packages, C++ nodelets, NVIDIA Orin, 4-8 RoboSense LiDARs, airport airside operations, ISO 3691-4 certification target).
+> This document covers the **end-to-end CI/CD workflow** that connects code, ML models, simulation, maps, and fleet deployment into a single integrated pipeline for safety-critical autonomous vehicle development. Existing documents cover individual pieces -- OTA delivery (`../../50-cloud-fleet/ota/ota-fleet-management.md`), TensorRT optimization (`production-ml-deployment.md`), MISRA/static analysis (`functional-safety-software.md`), V-model testing (`testing-validation-methodology.md`), shadow mode (`../../60-safety-validation/verification-validation/shadow-mode.md`), and data flywheel (`50-cloud-fleet/mlops/data-flywheel-airside.md`). This document fills the gap: the pipeline architecture that orchestrates all of these into a repeatable, auditable, and safety-certifiable workflow. Designed for the reference ROS Noetic airside stack (22 packages, C++ nodelets, NVIDIA Orin, 4-8 RoboSense LiDARs, airport airside operations, ISO 3691-4 certification target).
 
 ---
 
@@ -92,7 +92,7 @@ ML models introduce fundamental non-determinism into CI/CD:
 
 **Evaluation non-determinism**: nuScenes mAP computation is deterministic, but custom metrics involving IoU thresholds on point clouds can vary by 0.01-0.05% due to floating-point order of operations.
 
-**Practical response**: Do not require exact reproducibility. Instead, require statistical reproducibility -- metrics must fall within confidence intervals across N evaluations. For Aurrigo: 3 evaluation runs, results must agree within 0.5% mAP for pass/fail decisions.
+**Practical response**: Do not require exact reproducibility. Instead, require statistical reproducibility -- metrics must fall within confidence intervals across N evaluations. For reference airside AV stack: 3 evaluation runs, results must agree within 0.5% mAP for pass/fail decisions.
 
 ### 1.4 The Hardware-in-the-Loop Dependency Problem
 
@@ -119,20 +119,20 @@ The repository structure fundamentally shapes the CI/CD pipeline. AV companies s
 | **Polyrepo** | Cruise (pre-pause), Motional, Nuro | Independent team velocity, smaller CI scope per repo | Dependency hell, cross-repo integration testing pain, version matrix explosion |
 | **Hybrid** | Zoox, Mobileye | Core platform monorepo + separate ML model repos | Best of both but requires careful interface contracts |
 
-**Recommendation for Aurrigo**: Hybrid approach.
+**Recommendation for reference airside AV stack**: Hybrid approach.
 
 ```
-aurrigo-ws/                          # Monorepo: ROS workspace (catkin)
+airside-ws/                          # Monorepo: ROS workspace (catkin)
 ├── src/
-│   ├── aurrigo_perception/          # LiDAR processing, segmentation
-│   ├── aurrigo_localization/        # GTSAM, VGICP, RTK fusion
-│   ├── aurrigo_planning/            # Frenet planner, trajectory generation
-│   ├── aurrigo_control/             # Stanley controller, CAN interface
-│   ├── aurrigo_safety/              # Safety monitor, arbitrator, e-stop
-│   ├── aurrigo_vehicle_interface/   # Vehicle-specific CAN DBW
-│   ├── aurrigo_teleoperation/       # Remote operation interface
-│   ├── aurrigo_fleet/               # Fleet management, task dispatch
-│   ├── aurrigo_common/              # Shared messages, utilities
+│   ├── airside_perception/          # LiDAR processing, segmentation
+│   ├── airside_localization/        # GTSAM, VGICP, RTK fusion
+│   ├── airside_planning/            # Frenet planner, trajectory generation
+│   ├── airside_control/             # Stanley controller, CAN interface
+│   ├── airside_safety/              # Safety monitor, arbitrator, e-stop
+│   ├── airside_vehicle_interface/   # Vehicle-specific CAN DBW
+│   ├── airside_teleoperation/       # Remote operation interface
+│   ├── airside_fleet/               # Fleet management, task dispatch
+│   ├── airside_common/              # Shared messages, utilities
 │   └── ... (22 packages total)
 ├── launch/                          # Top-level launch configurations
 ├── config/                          # Vehicle-specific YAML parameters
@@ -150,7 +150,7 @@ aurrigo-ws/                          # Monorepo: ROS workspace (catkin)
 ├── .pre-commit-config.yaml          # Pre-commit hooks
 └── CMakeLists.txt
 
-aurrigo-models/                      # Separate repo: ML models
+airside-models/                      # Separate repo: ML models
 ├── perception/
 │   ├── pointpillars/                # Detection model
 │   ├── centerpoint/                 # Detection model
@@ -168,7 +168,7 @@ aurrigo-models/                      # Separate repo: ML models
 ├── mlflow/                          # Experiment tracking config
 └── .gitlab-ci.yml
 
-aurrigo-maps/                        # Separate repo: HD maps
+airside-maps/                        # Separate repo: HD maps
 ├── airports/
 │   ├── airport_a/
 │   │   ├── lanelet2/                # Lanelet2 .osm files
@@ -188,9 +188,9 @@ The three repos have fundamentally different change cadences:
 
 | Repository | Change Cadence | Typical PR Size | Review Process | Deploy Frequency |
 |---|---|---|---|---|
-| `aurrigo-ws` (code) | Daily | 50-500 lines | Peer review + CI | Bi-weekly to monthly |
-| `aurrigo-models` (ML) | Weekly | Model weights (GB) | ML review + benchmark | Monthly |
-| `aurrigo-maps` (maps) | Per-airport/survey | Map files (100MB+) | Safety review + field verify | Per deployment |
+| `airside-ws` (code) | Daily | 50-500 lines | Peer review + CI | Bi-weekly to monthly |
+| `airside-models` (ML) | Weekly | Model weights (GB) | ML review + benchmark | Monthly |
+| `airside-maps` (maps) | Per-airport/survey | Map files (100MB+) | Safety review + field verify | Per deployment |
 
 Separating them prevents:
 - Multi-GB model weights bloating the code repo's git history
@@ -219,7 +219,7 @@ main ─────────────────────────
 - `release/*`: Cut from `main` when ready for fleet deployment. Additional safety gates.
 - `feature/*`: Developer branches. CI runs on every push. PRs into `main`.
 - `hotfix/*`: Emergency fixes. Abbreviated CI (safety tests only). Merges to `main` + cherry-pick to active release.
-- Safety-critical packages (`aurrigo_safety`, `aurrigo_vehicle_interface`): Require safety engineer approval on any PR.
+- Safety-critical packages (`airside_safety`, `airside_vehicle_interface`): Require safety engineer approval on any PR.
 
 ---
 
@@ -352,9 +352,9 @@ misra:
   rules:
     - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
       changes:
-        - src/aurrigo_safety/**/*
-        - src/aurrigo_vehicle_interface/**/*
-        - src/aurrigo_control/**/*
+        - src/airside_safety/**/*
+        - src/airside_vehicle_interface/**/*
+        - src/airside_control/**/*
 ```
 
 #### Stage 4: Unit Tests (5-10 minutes)
@@ -387,10 +387,10 @@ unit_tests:
 
 | Package Classification | Branch Coverage Minimum | MC/DC Required | Examples |
 |---|---|---|---|
-| Safety-critical | 95% | Yes (ASIL-B+) | `aurrigo_safety`, `aurrigo_vehicle_interface` |
-| Perception | 80% | No | `aurrigo_perception`, `aurrigo_localization` |
-| Planning | 85% | No | `aurrigo_planning`, `aurrigo_control` |
-| Infrastructure | 70% | No | `aurrigo_common`, `aurrigo_fleet` |
+| Safety-critical | 95% | Yes (ASIL-B+) | `airside_safety`, `airside_vehicle_interface` |
+| Perception | 80% | No | `airside_perception`, `airside_localization` |
+| Planning | 85% | No | `airside_planning`, `airside_control` |
+| Infrastructure | 70% | No | `airside_common`, `airside_fleet` |
 
 #### Stage 5: Integration Tests (10-20 minutes)
 
@@ -403,13 +403,13 @@ integration_tests:
   script:
     - source /opt/ros/noetic/setup.bash && source devel/setup.bash
     # Multi-node communication tests
-    - rostest aurrigo_perception perception_pipeline.test
-    - rostest aurrigo_planning planning_integration.test
+    - rostest airside_perception perception_pipeline.test
+    - rostest airside_planning planning_integration.test
     # Rosbag replay tests (DVC-tracked bags)
     - dvc pull test/bags/smoke_test.bag.dvc
-    - rostest aurrigo_integration bag_replay_smoke.test bag:=test/bags/smoke_test.bag
+    - rostest airside_integration bag_replay_smoke.test bag:=test/bags/smoke_test.bag
     # Timing budget verification
-    - rostest aurrigo_integration timing_budgets.test
+    - rostest airside_integration timing_budgets.test
   rules:
     - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
 ```
@@ -444,7 +444,7 @@ repos:
         name: safety-package-guard
         entry: python scripts/ci/safety_package_guard.py
         language: python
-        files: 'aurrigo_safety|aurrigo_vehicle_interface'
+        files: 'airside_safety|airside_vehicle_interface'
         description: "Warns when modifying safety-critical packages"
 ```
 
@@ -1119,14 +1119,14 @@ A fleet deployment must pin exact versions of all six artifact types. Ambiguity 
 release:
   version: "2.4.0"
   timestamp: "2026-04-10T14:30:00Z"
-  approved_by: "safety-engineer@aurrigo.com"
+  approved_by: "safety-engineer@airside-av.example"
   deployment_target: "airport_a"
 
 artifacts:
   code:
     git_commit: "a1b2c3d4e5f6"
     git_tag: "v2.4.0"
-    docker_image: "registry.aurrigo.com/ads:v2.4.0-aarch64"
+    docker_image: "registry.airside-av.example/ads:v2.4.0-aarch64"
     binary_sha256: "sha256:e3b0c44298fc..."
 
   models:
@@ -1153,14 +1153,14 @@ artifacts:
     semantic: "airports/airport_a/semantic@v1.5"
 
   config:
-    vehicle_type: "ADT3"
+    vehicle_type: "third-generation tug"
     config_commit: "b2c3d4e5f6a7"
     parameter_hash: "sha256:345678..."
 
   calibration:
-    lidar_extrinsics: "calibration/ADT3-007/lidar_extrinsics@2026-04-08"
-    imu_biases: "calibration/ADT3-007/imu_biases@2026-04-08"
-    thermal_drift_table: "calibration/ADT3-007/thermal_lut@v1.0"
+    lidar_extrinsics: "calibration/third-generation tug-007/lidar_extrinsics@2026-04-08"
+    imu_biases: "calibration/third-generation tug-007/imu_biases@2026-04-08"
+    thermal_drift_table: "calibration/third-generation tug-007/thermal_lut@v1.0"
 ```
 
 ### 7.2 DVC for Large Artifacts
@@ -1176,7 +1176,7 @@ Git repo (lightweight)              S3/MinIO (heavy storage)
 │   ├── airport_a.pcd.dvc ────────→│   └── ij/kl9012...  (point cloud)
 │   └── airport_a.osm.dvc ────────→│   └── mn/op3456...
 └── calibration/
-    └── ADT3-007.yaml.dvc ────────→│   └── qr/st7890...
+    └── third-generation tug-007.yaml.dvc ────────→│   └── qr/st7890...
 ```
 
 DVC commands in CI:
@@ -1201,19 +1201,19 @@ FROM nvcr.io/nvidia/l4t-jetpack:r36.4.0
 
 # ROS Noetic
 RUN apt-get update && apt-get install -y ros-noetic-ros-base
-COPY devel/ /opt/aurrigo/devel/
-COPY launch/ /opt/aurrigo/launch/
-COPY config/ /opt/aurrigo/config/
-COPY scripts/ /opt/aurrigo/scripts/
+COPY devel/ /opt/airside_av/devel/
+COPY launch/ /opt/airside_av/launch/
+COPY config/ /opt/airside_av/config/
+COPY scripts/ /opt/airside_av/scripts/
 
 # Entrypoint sources ROS and launches the stack
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Models and maps mounted at runtime:
-# -v /data/models:/opt/aurrigo/models
-# -v /data/maps:/opt/aurrigo/maps
-# -v /data/calibration:/opt/aurrigo/calibration
+# -v /data/models:/opt/airside_av/models
+# -v /data/maps:/opt/airside_av/maps
+# -v /data/calibration:/opt/airside_av/calibration
 ```
 
 ---
@@ -1750,7 +1750,7 @@ The EU Machinery Regulation 2023/1230 (effective January 2027) mandates third-pa
 | **Buildkite** | Excellent self-hosted runner support, fast, scales well | Smaller ecosystem, no built-in features | Several AV startups |
 | **Bazel + custom** | Hermetic builds, remote caching, massive monorepo support | Steep learning curve, poor ROS integration | Tesla, Waymo |
 
-**Recommendation for Aurrigo (current scale)**: GitLab CI/CD self-hosted.
+**Recommendation for reference airside AV stack (current scale)**: GitLab CI/CD self-hosted.
 
 Rationale:
 - Self-hosted runners are essential for Orin hardware and rosbag replay
@@ -1816,7 +1816,7 @@ ML experiment tracking is orthogonal to code CI but feeds into the ML CI pipelin
 | **Neptune.ai** | Good comparison features, metadata tracking | Smaller community, SaaS pricing | $49/user/month |
 | **ClearML** | Open source, full pipeline orchestration, data versioning | Complex setup, less mature | Free (self-hosted) |
 
-**Recommendation for Aurrigo**: MLflow (self-hosted) for production tracking + W&B (SaaS) for research experiments.
+**Recommendation for reference airside AV stack**: MLflow (self-hosted) for production tracking + W&B (SaaS) for research experiments.
 
 Rationale:
 - MLflow keeps production model metadata on-premise (important for airport data sovereignty)
@@ -1851,7 +1851,7 @@ Active Learning                    CI Pipeline
 Airport deployments operate under regulatory frameworks that web software does not face. The CI/CD pipeline must enforce:
 
 **No deployment without sign-off**: Unlike web apps where anyone can merge to main and deploy, airside AV deployments require documented approval from:
-1. Aurrigo safety engineer (internal)
+1. reference airside AV stack safety engineer (internal)
 2. Airport operations manager (external, per airport)
 3. Regulatory compliance (if change affects certified safety functions)
 
@@ -1887,7 +1887,7 @@ Each airport has unique characteristics that require custom test cases:
 
 ```yaml
 # config/airports/airport_a/vehicle_adt3.yaml
-# Airport-specific parameters for ADT3 vehicle at Airport A
+# Airport-specific parameters for third-generation tug vehicle at Airport A
 airport:
   code: "EGAA"
   name: "Airport A"
@@ -1895,7 +1895,7 @@ airport:
   coordinate_frame: "utm_zone_29n"
 
 vehicle:
-  type: "ADT3"
+  type: "third-generation tug"
   max_speed_kmh: 15.0  # Airport A limit: 15 km/h (lower than generic 25)
   steering_mode: "ackermann"  # Default mode for Airport A routes
 
@@ -1951,7 +1951,7 @@ comma.ai operates the fastest release cycle in the AV industry (bi-weekly OTA up
 - **Release process**: PR → CI → merge → nightly fleet rollout → automated monitoring → hotfix if needed
 - **Key insight**: Decouple safety from performance. The CI/CD for the performance stack can be fast and permissive because the safety layer is independently certified.
 
-**Applicability to Aurrigo**: The Simplex architecture (see `60-safety-validation/runtime-assurance/simplex-safety-architecture.md`) mirrors this pattern. The safety controller (BC) has a stringent CI pipeline with MISRA, MC/DC, and formal verification. The performance stack (AC) has a faster CI pipeline focused on ML regression and simulation. The two pipelines are independent.
+**Applicability to reference airside AV stack**: The Simplex architecture (see `60-safety-validation/runtime-assurance/simplex-safety-architecture.md`) mirrors this pattern. The safety controller (BC) has a stringent CI pipeline with MISRA, MC/DC, and formal verification. The performance stack (AC) has a faster CI pipeline focused on ML regression and simulation. The two pipelines are independent.
 
 ### 14.2 Waymo: Rigor at Scale
 
@@ -1965,7 +1965,7 @@ Waymo operates the most rigorous release process in the industry for a fully dri
 - **Foundation model evaluation**: Waymo evaluates its Foundation Model on hundreds of driving scenarios before any deployment
 - **Key insight**: At Waymo's scale, simulation IS the CI. Code CI is table stakes. The differentiator is the quality and coverage of simulation evaluation.
 
-**Applicability to Aurrigo**: Aurrigo cannot match Waymo's simulation scale, but the principle applies -- simulation regression testing on every PR to main is the highest-value CI investment after basic code CI.
+**Applicability to reference airside AV stack**: reference airside AV stack cannot match Waymo's simulation scale, but the principle applies -- simulation regression testing on every PR to main is the highest-value CI investment after basic code CI.
 
 ### 14.3 Aurora: The Safety Case Approach
 
@@ -1978,7 +1978,7 @@ Aurora builds its CI/CD around producing evidence for a safety case (based on UL
 - **CommonRoad integration**: Uses CommonRoad scenario format for planning validation
 - **Key insight**: The CI/CD pipeline IS the safety case production system. Certification evidence is not bolted on after the fact but is a first-class output of the pipeline.
 
-**Applicability to Aurrigo**: For ISO 3691-4 certification, adopting this approach -- where every CI run produces certification evidence artifacts -- saves months of post-hoc documentation effort.
+**Applicability to reference airside AV stack**: For ISO 3691-4 certification, adopting this approach -- where every CI run produces certification evidence artifacts -- saves months of post-hoc documentation effort.
 
 ### 14.4 Tesla: Data-Driven Velocity
 
@@ -1990,11 +1990,11 @@ Tesla's approach prioritizes iteration speed powered by data:
 - **Aggressive rollout**: Tesla deploys to a percentage of the fleet and monitors in production rather than running exhaustive pre-deployment testing.
 - **Key insight**: With enough fleet scale, production monitoring replaces pre-deployment testing for many scenarios. This does NOT apply to safety-critical functions.
 
-**Applicability to Aurrigo**: Limited. Tesla's approach requires millions of vehicles for statistical safety arguments. With a fleet of 5-100 vehicles, Aurrigo must rely on simulation and structured testing rather than fleet-scale statistical validation. However, the data engine integration with CI/CD is directly applicable (see `data-flywheel-airside.md`).
+**Applicability to reference airside AV stack**: Limited. Tesla's approach requires millions of vehicles for statistical safety arguments. With a fleet of 5-100 vehicles, reference airside AV stack must rely on simulation and structured testing rather than fleet-scale statistical validation. However, the data engine integration with CI/CD is directly applicable (see `data-flywheel-airside.md`).
 
 ### 14.5 Comparison Summary
 
-| Dimension | comma.ai | Waymo | Aurora | Tesla | Aurrigo (target) |
+| Dimension | comma.ai | Waymo | Aurora | Tesla | reference airside AV stack (target) |
 |---|---|---|---|---|---|
 | Release cadence | Bi-weekly | Monthly | Monthly | Bi-weekly | Monthly |
 | Primary validation | Fleet shadow | Simulation | Safety case | Fleet shadow | Sim + shadow |
@@ -2119,7 +2119,7 @@ Key:    ██ = Active development
 
 5. **TensorRT engines must be built on target hardware** -- an engine built on an A100 will not run on an Orin. CI requires dedicated Orin devices (~$2K each) as self-hosted runners. At minimum 2 devices for redundancy and parallel builds.
 
-6. **The Simplex architecture enables separate CI pipelines for safety and performance** -- comma.ai's insight: decouple safety from performance. The safety controller (BC, Frenet + e-stop) gets a slow, rigorous CI pipeline (MISRA, MC/DC, formal verification). The ML performance stack (AC) gets a faster pipeline focused on regression testing. This mirrors Aurrigo's Simplex architecture.
+6. **The Simplex architecture enables separate CI pipelines for safety and performance** -- comma.ai's insight: decouple safety from performance. The safety controller (BC, Frenet + e-stop) gets a slow, rigorous CI pipeline (MISRA, MC/DC, formal verification). The ML performance stack (AC) gets a faster pipeline focused on regression testing. This mirrors the reference airside AV stack's Simplex architecture.
 
 7. **Hybrid repo is optimal for AV teams under 50 engineers** -- monorepo for the ROS workspace (atomic cross-package changes), separate repos for ML models (GB-scale weights, different cadence) and maps (per-airport, safety-critical changes). DVC connects them.
 
@@ -2170,4 +2170,4 @@ Key:    ██ = Active development
 
 ---
 
-*Document generated for Aurrigo industry research, April 2026. This covers the end-to-end CI/CD pipeline orchestrating code, ML models, simulation, maps, and fleet deployment. For individual topics in depth: OTA delivery (`../../50-cloud-fleet/ota/ota-fleet-management.md`), TensorRT optimization (`production-ml-deployment.md`), MISRA/static analysis (`functional-safety-software.md`), V-model testing (`testing-validation-methodology.md`), shadow mode (`../../60-safety-validation/verification-validation/shadow-mode.md`), data flywheel (`50-cloud-fleet/mlops/data-flywheel-airside.md`).*
+*Document generated for reference airside AV stack industry research, April 2026. This covers the end-to-end CI/CD pipeline orchestrating code, ML models, simulation, maps, and fleet deployment. For individual topics in depth: OTA delivery (`../../50-cloud-fleet/ota/ota-fleet-management.md`), TensorRT optimization (`production-ml-deployment.md`), MISRA/static analysis (`functional-safety-software.md`), V-model testing (`testing-validation-methodology.md`), shadow mode (`../../60-safety-validation/verification-validation/shadow-mode.md`), data flywheel (`50-cloud-fleet/mlops/data-flywheel-airside.md`).*

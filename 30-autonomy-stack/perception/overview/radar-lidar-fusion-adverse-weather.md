@@ -6,7 +6,7 @@
 
 ---
 
-**Summary:** LiDAR provides centimeter-level 3D geometry but degrades significantly in rain (-30-50% point density), fog (-20-75% range), snow (-15-40% AP), de-icing spray (near-total blindness), and jet blast (range shimmer ±0.5m). 4D radar maintains stable performance across all weather conditions due to millimeter-wave physics — wavelengths (4mm at 77 GHz) are 100-1000x larger than weather particles. Fusing both sensors creates a perception system that maintains >85% of clear-weather performance in conditions where either sensor alone drops below 50%. This document covers the full radar-LiDAR fusion pipeline from early fusion (point cloud concatenation), through mid-level fusion (BEV feature alignment), to late fusion (detection-level merging), with specific architectures proven for adverse weather (L4DR achieving +20% mAP in dense fog, RLNet adaptive gating). For Aurrigo's airside stack, the recommendation is **asymmetric mid-level fusion: LiDAR-primary with radar weather augmentation** — using radar to denoise and densify LiDAR features when weather degrades, rather than treating both sensors equally. The Continental ARS548 4D radar already in the hardware roadmap provides the foundation; integration cost is $35-55K over 12 weeks.
+**Summary:** LiDAR provides centimeter-level 3D geometry but degrades significantly in rain (-30-50% point density), fog (-20-75% range), snow (-15-40% AP), de-icing spray (near-total blindness), and jet blast (range shimmer ±0.5m). 4D radar maintains stable performance across all weather conditions due to millimeter-wave physics — wavelengths (4mm at 77 GHz) are 100-1000x larger than weather particles. Fusing both sensors creates a perception system that maintains >85% of clear-weather performance in conditions where either sensor alone drops below 50%. This document covers the full radar-LiDAR fusion pipeline from early fusion (point cloud concatenation), through mid-level fusion (BEV feature alignment), to late fusion (detection-level merging), with specific architectures proven for adverse weather (L4DR achieving +20% mAP in dense fog, RLNet adaptive gating). For the reference airside AV stack's airside stack, the recommendation is **asymmetric mid-level fusion: LiDAR-primary with radar weather augmentation** — using radar to denoise and densify LiDAR features when weather degrades, rather than treating both sensors equally. The Continental ARS548 4D radar already in the hardware roadmap provides the foundation; integration cost is $35-55K over 12 weeks.
 
 ---
 
@@ -45,9 +45,9 @@ Airport airside operations face weather exposure that enclosed or urban AV appli
 | Dust/sand storm | 1-5 days/year (arid) | -40-60% density | <10% loss | Hours |
 | Standing water splash | Frequent in rain | Momentary blindness | Negligible | <1s |
 
-### 1.2 Current Aurrigo Gap
+### 1.2 Current reference airside AV stack Gap
 
-Aurrigo's stack is LiDAR-only with 4-8 RoboSense sensors. In adverse weather:
+the reference airside AV stack's stack is LiDAR-only with 4-8 RoboSense sensors. In adverse weather:
 - **No perception fallback** except speed reduction and eventual stop
 - De-icing spray causes 5-15s perception blackout — vehicle must halt
 - Fog at major hubs (LHR: 50+ days/year) reduces operational window
@@ -94,7 +94,7 @@ LiDAR (905nm / 1550nm):
 
 ### 2.3 Continental ARS548 Specifications
 
-The 4D radar recommended for Aurrigo integration:
+The 4D radar recommended for reference airside AV stack integration:
 
 ```
 Continental ARS548:
@@ -966,7 +966,7 @@ class RadarLiDARFusionNode:
 
 2. **L4DR achieves +20% mAP in dense fog**: Multi-modal Denoising Diffusion uses radar features to clean weather-corrupted LiDAR features — the SOTA for weather-robust fusion (AAAI 2025).
 
-3. **Asymmetric fusion is optimal for Aurrigo**: LiDAR-primary (better geometry) with radar augmentation (weather robustness, Doppler velocity). Not equal-weight fusion.
+3. **Asymmetric fusion is optimal for reference airside AV stack**: LiDAR-primary (better geometry) with radar augmentation (weather robustness, Doppler velocity). Not equal-weight fusion.
 
 4. **Adaptive gating switches based on weather severity**: Clear weather → 85% LiDAR / 15% radar. Dense fog → 30% LiDAR / 70% radar. De-icing spray → 10% LiDAR / 90% radar.
 

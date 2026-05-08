@@ -52,7 +52,7 @@ Despite lower traffic, night operations carry disproportionate safety risk:
 - **Lighting inconsistency**: Bright apron lights + deep shadows create extreme contrast
 - **Hi-vis failure**: The primary passive safety mechanism fails at night
 
-### 1.3 Current Aurrigo Night Capability
+### 1.3 Current reference airside AV stack Night Capability
 
 The current LiDAR-only stack is theoretically night-invariant (LiDAR is an active sensor). However:
 
@@ -796,7 +796,7 @@ No public dataset exists for nighttime airside perception. The closest alternati
 | **FLIR ADAS** | Yes (night driving) | Yes | No | No | Thermal models |
 | **KAIST Multispectral** | 50% night | Yes | No | No | Thermal-visible fusion |
 | **M3FD** | Challenging conditions | Yes | No | No | Multi-modal fusion |
-| **Aurrigo fleet** (internal) | Yes (night shifts) | No (no thermal yet) | Yes | Yes | LiDAR night only |
+| **reference airside fleet** (internal) | Yes (night shifts) | No (no thermal yet) | Yes | Yes | LiDAR night only |
 
 ### 11.2 Proposed Night Benchmarking Protocol
 
