@@ -77,7 +77,8 @@ function pathExists(root, rel) {
 }
 
 export function titleFromPath(relPath) {
-  const base = path.basename(relPath, path.extname(relPath))
+  const normalized = relPath.replace(/\\/g, '/')
+  const base = path.posix.basename(normalized, path.posix.extname(normalized))
 
   return base
     .split(/[-_]+/)
@@ -146,6 +147,13 @@ export function buildDirectoryItems(root, relDir) {
 }
 
 export function buildSidebar(root = repoRoot) {
+  for (const section of SECTION_ORDER) {
+    const absDir = path.join(root, section.dir)
+    if (!fs.existsSync(absDir) || !fs.statSync(absDir).isDirectory()) {
+      throw new Error(`Missing required documentation directory: ${section.dir}`)
+    }
+  }
+
   const startItems = START_FILES
     .filter((file) => pathExists(root, file.rel))
     .map((file) => ({

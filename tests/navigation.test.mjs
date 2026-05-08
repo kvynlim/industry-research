@@ -26,6 +26,10 @@ test('falls back to readable filename title when H1 is missing', () => {
   assert.equal(titleFromPath('iso-3691-4-deep-dive.md'), 'ISO 3691 4 Deep Dive')
 })
 
+test('normalizes windows-style paths before deriving readable titles', () => {
+  assert.equal(titleFromPath('technology\\world-models\\overview.md'), 'Overview')
+})
+
 test('converts markdown file paths into VitePress links', () => {
   assert.equal(linkForMarkdown('README.md'), '/')
   assert.equal(linkForMarkdown('INDEX.md'), '/INDEX')
@@ -79,4 +83,13 @@ test('required source directories exist before navigation is generated', () => {
   for (const dir of ['companies', 'technology', 'operations', 'hardware', 'foundations', 'cross-cutting', 'synthesis']) {
     assert.ok(fs.existsSync(path.join(repoRoot, dir)), `${dir} should exist`)
   }
+})
+
+test('throws when required source directories are missing', () => {
+  const missingRoot = path.join(repoRoot, 'not-a-real-root')
+
+  assert.throws(
+    () => buildSidebar(missingRoot),
+    /Missing required documentation directory: synthesis/
+  )
 })
