@@ -1235,7 +1235,7 @@ class SimulationInterventionEngine:
     For each scenario, create interventional variants by changing
     one variable at a time while holding all others fixed.
     
-    See also: operations/deployment/digital-twin-simulation.md
+    See also: 30-autonomy-stack/simulation/airport-digital-twins.md
     """
     
     def __init__(self, simulator):
@@ -1502,7 +1502,7 @@ class InvariantRiskMinimization:
         return total_loss + self.lambda_irm * total_penalty
 ```
 
-**Cross-reference:** See `operations/deployment/multi-airport-adaptation.md` for the operational framework for cross-airport transfer. IRM and causal representation learning provide the theoretical foundation for why PointLoRA fine-tuning with 500-1000 frames works: the base model has already learned causal features from pre-training, and only the airport-specific (non-causal) adaptation needs fine-tuning.
+**Cross-reference:** See `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md` for the operational framework for cross-airport transfer. IRM and causal representation learning provide the theoretical foundation for why PointLoRA fine-tuning with 500-1000 frames works: the base model has already learned causal features from pre-training, and only the airport-specific (non-causal) adaptation needs fine-tuning.
 
 ---
 
@@ -2029,7 +2029,7 @@ Beyond incident investigation, counterfactual reasoning enables **proactive safe
   - ...the safety system had failed?               (fault injection test)
 ```
 
-This is directly related to ISO 34502 scenario-based testing (see `operations/safety/airside-scenario-taxonomy.md`) but adds the causal dimension: instead of just testing "what happens in scenario X?", we ask "what *would* happen if we changed one factor in observed scenario Y?"
+This is directly related to ISO 34502 scenario-based testing (see `60-safety-validation/verification-validation/airside-scenario-taxonomy.md`) but adds the causal dimension: instead of just testing "what happens in scenario X?", we ask "what *would* happen if we changed one factor in observed scenario Y?"
 
 ```python
 class CounterfactualSafetyTester:
@@ -2151,7 +2151,7 @@ class AirsideIncidentReconstructor:
     4. Generate counterfactual explanations
     5. Produce certification-grade report
     
-    Cross-reference: operations/safety/safety-incidents-lessons.md
+    Cross-reference: 60-safety-validation/safety-case/safety-incidents-lessons.md
     """
     
     def reconstruct(self, rosbag_path):
@@ -2622,7 +2622,7 @@ class CounterfactualAugmentor:
 
 ### 9.5 Digital Twin + Causal Model for What-If Analysis
 
-Combining the airport digital twin (see `cross-cutting/digital-twin-simulation.md`) with causal models enables comprehensive what-if analysis:
+Combining the airport digital twin (see `30-autonomy-stack/simulation/airport-digital-twins.md`) with causal models enables comprehensive what-if analysis:
 
 ```python
 class DigitalTwinCausalAnalyzer:
@@ -3322,7 +3322,7 @@ Causal models provide specific types of evidence for safety certification:
 | Performance monitoring | Causal anomaly detection (deviation from expected causal structure) | ISO 3691-4 Cl. 6.3 |
 | Product liability defense | Formal causal analysis showing no defect-outcome link | EU PLD 2024/2853 |
 
-**Cross-reference:** See `operations/safety/safety-verification-certification.md` and `operations/safety/iso-3691-4-deep-dive.md` for the full certification framework.
+**Cross-reference:** See `60-safety-validation/standards-certification/safety-verification-certification.md` and `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md` for the full certification framework.
 
 ### 10.6 Implementation Cost and Timeline
 

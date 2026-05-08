@@ -881,7 +881,7 @@ For airside operations, PeriFlow's streaming approach enables building a live 4D
 - Continuously updates as the ego vehicle moves through the stand area
 - Tracks GSE and personnel as deforming Gaussian clusters
 - Predicts near-future Gaussian positions from learned flow
-- Provides a renderable 3D representation for operator HMI visualization (see `../../operations/deployment/hmi-operator-interface.md`)
+- Provides a renderable 3D representation for operator HMI visualization (see `../../40-runtime-systems/monitoring-observability/hmi-operator-interface.md`)
 
 ### 4.7 Applications: Replay-Based Simulation and What-If Scenarios
 
@@ -1627,7 +1627,7 @@ Most modern methods (ZeroFlow, DeFlow) still report KITTI results for backward c
 
 Cost estimate: $30-50K for initial benchmark creation (500-1000 annotated sequences from fleet data).
 
-Cross-reference: See `../../cross-cutting/evaluation-benchmarks.md` for general benchmark discussion and the finding that no public airside datasets exist (Key Finding #25).
+Cross-reference: See `../../60-safety-validation/verification-validation/evaluation-benchmarks.md` for general benchmark discussion and the finding that no public airside datasets exist (Key Finding #25).
 
 ---
 
@@ -2529,7 +2529,7 @@ But provides preprocessed, planning-ready representation
 
 1. **LidarDM** (see `lidar-native-world-models.md`): Generate synthetic LiDAR scans conditioned on airport maps. Can produce unlimited training data from a single map.
 
-2. **CARLA/LGSVL simulation with airport environments**: Existing airport map assets + LiDAR simulation plugin. Quality: moderate (sim-to-real gap ~15-20% AP, reducible to 2-3% with domain adaptation per `../../cross-cutting/synthetic-data.md`).
+2. **CARLA/LGSVL simulation with airport environments**: Existing airport map assets + LiDAR simulation plugin. Quality: moderate (sim-to-real gap ~15-20% AP, reducible to 2-3% with domain adaptation per `50-cloud-fleet/data-platform/synthetic-data-generation.md`).
 
 3. **Scene flow augmentation**: Apply random rigid transforms to detected object clusters (shift, rotate, rescale flow) to create synthetic training examples from real scans.
 
@@ -2678,6 +2678,6 @@ Total estimated cost: $6-11K (annotation dominant)
 - `../planning/safety-critical-planning-cbf.md` -- CBF safety filter integration
 - `../planning/neural-motion-planning.md` -- SparseDrive, DiffusionDrive
 - `../simulation/digital-twin-3dgs.md` -- 3DGS-based digital twin
-- `../../operations/deployment/hmi-operator-interface.md` -- Operator visualization
-- `../../cross-cutting/evaluation-benchmarks.md` -- Benchmark landscape
-- `../../cross-cutting/synthetic-data.md` -- Sim-to-real transfer
+- `../../40-runtime-systems/monitoring-observability/hmi-operator-interface.md` -- Operator visualization
+- `../../60-safety-validation/verification-validation/evaluation-benchmarks.md` -- Benchmark landscape
+- `50-cloud-fleet/data-platform/synthetic-data-generation.md` -- Sim-to-real transfer

@@ -41,7 +41,7 @@ Airport airside operations run 24/7. During night shifts, the critical perceptio
 
 ### 1.2 The Hi-Vis Paradox
 
-From `operations/safety/ground-crew-pedestrian-safety.md`:
+From `70-operations-domains/airside/safety/ground-crew-pedestrian-safety.md`:
 > Hi-vis clothing causes 84-88% failure rate in camera-based Automatic Emergency Braking at night due to retroreflective overexposure creating blooming artifacts.
 
 **Thermal cameras solve this completely.** They detect the human body's thermal signature (~37°C) against the ambient background, regardless of clothing. Hi-vis vest is invisible to thermal — the person is always detectable.
@@ -645,10 +645,10 @@ Adding thermal to the recommended airside sensor suite (from `synthesis/master-s
 | Topic | Document |
 |-------|----------|
 | 4D radar (all-weather primary) | `20-av-platform/sensors/4d-radar.md` |
-| Ground crew safety (hi-vis paradox) | `operations/safety/ground-crew-pedestrian-safety.md` |
+| Ground crew safety (hi-vis paradox) | `70-operations-domains/airside/safety/ground-crew-pedestrian-safety.md` |
 | Adverse conditions (de-icing, fog) | `60-safety-validation/verification-validation/robustness/airside-adverse-conditions.md` |
-| FOD and jet blast | `operations/airside/fod-and-jetblast.md` |
+| FOD and jet blast | `70-operations-domains/airside/operations/fod-and-jetblast.md` |
 | Production perception systems | `30-autonomy-stack/perception/overview/production-perception-systems.md` |
-| Sensor fusion architectures | `cross-cutting/sensor-fusion-architectures.md` |
+| Sensor fusion architectures | `30-autonomy-stack/perception/overview/sensor-fusion-architectures.md` |
 | NVIDIA Orin technical | `20-av-platform/compute/nvidia-orin-technical.md` |
 | Infrastructure cooperative perception | `30-autonomy-stack/perception/overview/infrastructure-cooperative-perception.md` |

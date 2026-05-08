@@ -958,6 +958,6 @@ New map nodes needed (ROS Noetic):
 | Online neural mapping | `30-autonomy-stack/localization-mapping/maps/neural-online-mapping-sota.md` |
 | Mapping and localization | `30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md` |
 | LiDAR SLAM algorithms | `30-autonomy-stack/localization-mapping/overview/lidar-slam-algorithms.md` |
-| AIXM for synthetic data | `cross-cutting/synthetic-data-generation.md` §4 |
-| Airport data integration | `operations/airside/airport-data-integration.md` |
+| AIXM for synthetic data | `50-cloud-fleet/data-platform/synthetic-data-generation.md` §4 |
+| Airport data integration | `70-operations-domains/airside/operations/airport-data-integration.md` |
 | Airport digital twins | `30-autonomy-stack/simulation/airport-digital-twins.md` |

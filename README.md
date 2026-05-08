@@ -49,10 +49,10 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Path | Best Entry Point | Why |
 |------|------------------|-----|
 | World models for autonomous driving | [World Models Overview](30-autonomy-stack/world-models/overview.md) | Frames diffusion, occupancy, tokenized, JEPA, RL, and LiDAR-native approaches. |
-| Airport airside operations | [Airside Industry Overview](operations/airside/industry-overview.md) | Connects the AV stack to pushback, turnaround, FOD, jet blast, airport data systems, and GSE. |
-| Safety case and certification | [Certification Guide](operations/safety/certification-guide.md) | Pulls together ISO 3691-4, UL 4600, SOTIF, runtime monitoring, fail-operational design, and validation. |
-| Production deployment | [Deployment Playbook](operations/deployment/deployment-playbook.md) | Turns research into staged rollout, shadow mode, OTA, fleet management, and operational procedures. |
-| Fleet economics | [Fleet TCO Business Case](operations/deployment/fleet-tco-business-case.md) | Tracks vehicle CAPEX, labor savings, certification costs, operator ratios, and break-even logic. |
+| Airport airside operations | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Connects the AV stack to pushback, turnaround, FOD, jet blast, airport data systems, and GSE. |
+| Safety case and certification | [Certification Guide](60-safety-validation/standards-certification/certification-guide.md) | Pulls together ISO 3691-4, UL 4600, SOTIF, runtime monitoring, fail-operational design, and validation. |
+| Production deployment | [Deployment Playbook](70-operations-domains/deployment-playbooks/deployment-playbook.md) | Turns research into staged rollout, shadow mode, OTA, fleet management, and operational procedures. |
+| Fleet economics | [Fleet TCO Business Case](70-operations-domains/airside/business-case/fleet-tco-business-case.md) | Tracks vehicle CAPEX, labor savings, certification costs, operator ratios, and break-even logic. |
 | Edge hardware choices | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Grounds model choices in compute, power, TensorRT, DLA, and sensor constraints. |
 | Perception stack | [Production Perception Systems](30-autonomy-stack/perception/overview/production-perception-systems.md) | Compares production AV approaches and the perception patterns that transfer to airside autonomy. |
 | Method-level perception | [Perception Method Library](30-autonomy-stack/perception/methods/overview.md) | Splits BEV, occupancy, LiDAR MOS, 4D radar, open-world, robust fusion, V2X, latency, and data-engine methods into single-technique research pages. |
@@ -68,10 +68,10 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | `synthesis/` | 8 | [Master Synthesis](synthesis/master-synthesis.md) | Executive synthesis, POCs, readiness, competitive landscape, risk, decision framework, and architecture. |
 | `companies/` | 53 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, and autonomy company profiles. |
 | `30-autonomy-stack/` | 195 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, E2E driving, and multi-agent systems. |
-| `operations/` | 42 | [Airside Industry Overview](operations/airside/industry-overview.md) | Airside operations, deployment, safety, certification, teleoperation, workforce, and fleet management. |
+| `70-operations-domains/` | 15 | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Airside operations, deployment playbooks, business case, and domain-specific safety. |
 | `hardware/` | 20 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, vehicle interfaces, power, and edge-cloud architecture. |
 | `foundations/` | 12 | [Theoretical Foundations](10-knowledge-base/systems-engineering/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, and more. |
-| `cross-cutting/` | 26 | [Sensor Fusion Architectures](cross-cutting/sensor-fusion-architectures.md) | Data engines, ROS 2, Autoware, synthetic data, evaluation, transfer learning, formal methods, and fleet data loops. |
+| `50-cloud-fleet/` | 16 | [Cloud Backend Infrastructure](50-cloud-fleet/data-platform/cloud-backend-infrastructure.md) | Data engines, fleet data loops, MLOps, OTA, observability, and fleet management. |
 
 ## Domain Snapshot
 

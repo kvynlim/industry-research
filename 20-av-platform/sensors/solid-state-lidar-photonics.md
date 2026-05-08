@@ -1066,4 +1066,4 @@ class DualStackPerception:
 - `20-av-platform/sensors/multi-lidar-calibration.md` — Multi-LiDAR calibration (applies to mixed ToF+FMCW fleet)
 - `30-autonomy-stack/perception/overview/active-perception-sensor-scheduling.md` — Adaptive resolution scheduling (OPA enables this)
 - `30-autonomy-stack/planning/autonomous-docking-precision-positioning.md` — Docking use case for flash LiDAR
-- `cross-cutting/radar-lidar-fusion-adverse-weather.md` — Weather resilience (FMCW LiDAR + 4D radar complementary)
+- `30-autonomy-stack/perception/overview/radar-lidar-fusion-adverse-weather.md` — Weather resilience (FMCW LiDAR + 4D radar complementary)

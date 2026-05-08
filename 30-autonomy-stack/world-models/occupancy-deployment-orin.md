@@ -445,7 +445,7 @@ NVIDIA's nvblox provides real-time 3D reconstruction and occupancy from depth da
 
 ### 6.1 Overview
 
-nvblox is NVIDIA's GPU-accelerated 3D reconstruction and occupancy mapping library, part of Isaac ROS (see `cross-cutting/isaac-ros-for-airside.md`).
+nvblox is NVIDIA's GPU-accelerated 3D reconstruction and occupancy mapping library, part of Isaac ROS (see `40-runtime-systems/ros-autoware/isaac-ros-for-airside.md`).
 
 **Key specs:**
 - **TSDF (Truncated Signed Distance Function)** + ESDF (Euclidean SDF) + occupancy
@@ -890,7 +890,7 @@ Occupancy validation for airside:
 | Occupancy world models | `30-autonomy-stack/world-models/occupancy-world-models.md` |
 | TensorRT deployment guide | `20-av-platform/compute/tensorrt-deployment-guide.md` |
 | NVIDIA Orin technical | `20-av-platform/compute/nvidia-orin-technical.md` |
-| Isaac ROS for airside | `cross-cutting/isaac-ros-for-airside.md` |
+| Isaac ROS for airside | `40-runtime-systems/ros-autoware/isaac-ros-for-airside.md` |
 | RoboSense LiDAR | `20-av-platform/sensors/robosense-lidar.md` |
 | PointPillars foundation | `10-knowledge-base/geometry-3d/pointpillars.md` |
 | LiDAR foundation models | `30-autonomy-stack/perception/overview/lidar-foundation-models.md` |

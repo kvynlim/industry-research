@@ -689,7 +689,7 @@ at the cost of potentially rejecting all samples.
 
 ### 7.4 Simplex Architecture Integration
 
-For safety-critical deployment, diffusion planners should operate within a **simplex safety architecture** (detailed in `../../operations/safety/simplex-safety-architecture.md`):
+For safety-critical deployment, diffusion planners should operate within a **simplex safety architecture** (detailed in `../../60-safety-validation/runtime-assurance/simplex-safety-architecture.md`):
 
 ```
                     ┌─────────────────┐

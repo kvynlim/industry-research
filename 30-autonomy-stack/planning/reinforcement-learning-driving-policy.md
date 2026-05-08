@@ -823,7 +823,7 @@ Phase 3 (Real Online): RLPD with fleet data (offline) + shadow mode data (online
                         Safety: Simplex architecture, Frenet fallback always available
 ```
 
-**Shadow mode integration** (see `operations/deployment/shadow-mode.md`):
+**Shadow mode integration** (see `60-safety-validation/verification-validation/shadow-mode.md`):
 - RL policy runs in shadow (no vehicle control)
 - Compares RL actions to Frenet planner actions
 - When RL would have performed better, adds to online replay buffer
@@ -1076,7 +1076,7 @@ Fleet Data → Offline RL Update (monthly)
         Fleet Data → ... (loop)
 ```
 
-This integrates with the data flywheel (see `cross-cutting/data-flywheel-airside.md`) and the federated learning pipeline (see `cross-cutting/federated-learning-fleet.md`) for multi-airport policy adaptation.
+This integrates with the data flywheel (see `50-cloud-fleet/mlops/data-flywheel-airside.md`) and the federated learning pipeline (see `50-cloud-fleet/mlops/federated-learning-fleet.md`) for multi-airport policy adaptation.
 
 ---
 

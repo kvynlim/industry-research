@@ -1400,6 +1400,6 @@ class MultiAirportMapModel:
 - `30-autonomy-stack/localization-mapping/maps/hd-map-standards-airside.md` — AMDB/AMXM/OpenDRIVE standards
 - `30-autonomy-stack/localization-mapping/maps/neural-online-mapping-sota.md` — MapTracker, StreamMapNet comparison
 - `30-autonomy-stack/localization-mapping/overview/lidar-slam-algorithms.md` — KISS-ICP for metric map layer
-- `operations/deployment/multi-airport-adaptation.md` — AMDB bootstrap, per-airport adaptation
+- `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md` — AMDB bootstrap, per-airport adaptation
 - `30-autonomy-stack/perception/overview/lidar-foundation-models.md` — PTv3 for BEV feature extraction
 - `30-autonomy-stack/perception/overview/test-time-adaptation-airside.md` — Domain adaptation for map models

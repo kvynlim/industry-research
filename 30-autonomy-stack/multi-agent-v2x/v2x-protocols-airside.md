@@ -2988,7 +2988,7 @@ V2X CONNECTIVITY STATE MACHINE
 
 ### 11.4 Predicted Standardization Timeline
 
-Based on current industry activity and regulatory trajectories (reference `operations/safety/regulatory-trajectory.md`):
+Based on current industry activity and regulatory trajectories (reference `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md`):
 
 ```
 AIRSIDE V2X STANDARDIZATION TIMELINE (PREDICTED)
@@ -3131,10 +3131,10 @@ ISO 3691-4 (Safety of industrial trucks --- Driverless industrial trucks) includ
 - `30-autonomy-stack/multi-agent-v2x/fleet-coordination.md` --- Multi-agent coordination overview
 - `30-autonomy-stack/perception/overview/collaborative-fleet-perception.md` --- V2V cooperative perception algorithms
 - `20-av-platform/networking-connectivity/airport-5g-cbrs.md` --- Airport 5G/CBRS infrastructure
-- `operations/airside/ground-control-instructions.md` --- A-CDM, A-SMGCS, ATC integration
-- `operations/safety/cybersecurity-airside-av.md` --- Cybersecurity for airside AVs
-- `operations/airside/turnaround-operations.md` --- Turnaround sequencing
-- `operations/safety/iso-3691-4-safety.md` --- ISO 3691-4 compliance
-- `operations/safety/scenario-taxonomy-validation.md` --- Test scenarios
+- `70-operations-domains/airside/operations/ground-control-instructions.md` --- A-CDM, A-SMGCS, ATC integration
+- `60-safety-validation/cybersecurity/cybersecurity-airside-av.md` --- Cybersecurity for airside AVs
+- `70-operations-domains/airside/operations/turnaround-prediction.md` --- Turnaround sequencing
+- `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md` --- ISO 3691-4 compliance
+- `60-safety-validation/verification-validation/airside-scenario-taxonomy.md` --- Test scenarios
 - `30-autonomy-stack/planning/safety-critical-planning-cbf.md` --- CBF safety filters
-- `cross-cutting/ros2-migration.md` --- ROS 2 migration (DDS native V2X integration)
+- `40-runtime-systems/ros-autoware/ros2-migration.md` --- ROS 2 migration (DDS native V2X integration)

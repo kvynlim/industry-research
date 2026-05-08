@@ -1227,7 +1227,7 @@ async def report_version(report: dict):
 
 ### 5.3 Edge CDN for Airport-Local Distribution
 
-Each airport has a local edge server (from `cross-cutting/cloud-backend-infrastructure.md`) that caches map tiles to avoid cloud roundtrips:
+Each airport has a local edge server (from `50-cloud-fleet/data-platform/cloud-backend-infrastructure.md`) that caches map tiles to avoid cloud roundtrips:
 
 ```
 Airport edge server map cache:
@@ -1274,7 +1274,7 @@ TOTAL: ~27 MB/vehicle/month
 
 ### 5.5 Pre-Staging During Charging
 
-From `operations/deployment/fleet-tco-business-case.md`: vehicles return to charging depots on predictable schedules. Map updates are pre-staged during charging windows:
+From `70-operations-domains/airside/business-case/fleet-tco-business-case.md`: vehicles return to charging depots on predictable schedules. Map updates are pre-staged during charging windows:
 
 ```
 Pre-staging strategy:
@@ -2624,7 +2624,7 @@ Recovery hierarchy:
 
 ### 10.3 Safety Case for Map Updates
 
-From `operations/safety/functional-safety-software.md` and `operations/safety/iso-3691-4-safety.md`, the map update process must be part of the safety case:
+From `60-safety-validation/standards-certification/functional-safety-software.md` and `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md`, the map update process must be part of the safety case:
 
 ```
 Safety analysis of map update process:
@@ -2650,7 +2650,7 @@ Hazard: Vehicle operates on incorrect/corrupt map
     Mitigation: Read-only factory-installed emergency map (minimal geofences)
     Residual risk: Vehicle can only navigate to nearest safe stop point
 
-ASIL decomposition (from operations/safety/fail-operational-architecture.md):
+ASIL decomposition (from 60-safety-validation/runtime-assurance/fail-operational-architecture.md):
   Map update process: ASIL B
   Map integrity verification: ASIL B
   Swap precondition checking: ASIL B
@@ -2670,7 +2670,7 @@ Compatibility rules:
 
 MAJOR version mismatch:
   - Vehicles on different MAJOR versions may have different topology
-  - Fleet coordination (from cross-cutting/fleet-task-allocation.md) must account for this
+  - Fleet coordination (from 30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md) must account for this
   - Route planning uses INTERSECTION of available routes across all fleet versions
   - Grace period: 4 hours after new MAJOR version available
   - After grace period: old-version vehicles grounded until updated
@@ -3452,9 +3452,9 @@ Value delivered:
 13. `30-autonomy-stack/localization-mapping/maps/map-construction-pipeline.md` -- Produces the initial map package that this system tiles and distributes.
 14. `30-autonomy-stack/localization-mapping/maps/hd-map-change-detection-maintenance.md` -- Detects changes that trigger the updates distributed by this system.
 15. `30-autonomy-stack/localization-mapping/maps/hd-map-standards-airside.md` -- Defines Lanelet2/AMDB formats used in tile layers.
-16. `cross-cutting/cloud-backend-infrastructure.md` -- Provides the S3 data lake and Airflow orchestration underlying the server-side repository.
-17. `operations/deployment/ota-fleet-management.md` -- Covers ML model OTA patterns; this document adapts them for map-specific requirements.
+16. `50-cloud-fleet/data-platform/cloud-backend-infrastructure.md` -- Provides the S3 data lake and Airflow orchestration underlying the server-side repository.
+17. `50-cloud-fleet/ota/ota-fleet-management.md` -- Covers ML model OTA patterns; this document adapts them for map-specific requirements.
 18. `30-autonomy-stack/localization-mapping/maps/semantic-mapping-learned-priors.md` -- Defines the 7-layer map architecture referenced in tile content design.
 19. `30-autonomy-stack/localization-mapping/overview/lidar-place-recognition-relocalization.md` -- Place recognition features stored in tile feature layer for relocalization.
-20. `operations/safety/fail-operational-architecture.md` -- ASIL decomposition applied to map update safety case.
-21. `operations/safety/runtime-verification-monitoring.md` -- STL monitors for map integrity at runtime.
+20. `60-safety-validation/runtime-assurance/fail-operational-architecture.md` -- ASIL decomposition applied to map update safety case.
+21. `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md` -- STL monitors for map integrity at runtime.

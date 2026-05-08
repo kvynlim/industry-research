@@ -340,7 +340,7 @@ Based on Week 1 results, choose:
 | Competitive landscape | `synthesis/competitive-landscape.md` |
 | BEV encoding details | `30-autonomy-stack/perception/overview/bev-encoding.md` |
 | OccWorld implementation | `30-autonomy-stack/world-models/occworld-implementation.md` |
-| Data pipeline from bags | `cross-cutting/data-engine-from-bags.md` |
+| Data pipeline from bags | `50-cloud-fleet/data-platform/data-engine-from-bags.md` |
 | TensorRT deployment | `20-av-platform/compute/tensorrt-deployment-guide.md` |
 | E2E pipeline (detailed) | `30-autonomy-stack/end-to-end-driving/e2e-world-model-pipeline.md` |
 

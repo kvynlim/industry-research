@@ -445,23 +445,23 @@ Given that airside AV falls between automotive and aviation domains:
 | 3DGS & NeRF | `30-autonomy-stack/simulation/neural-scene-reconstruction.md` | Street Gaussians 135 FPS, SplatAD |
 | Airport Digital Twins | `30-autonomy-stack/simulation/airport-digital-twins.md` | Autonoma, SITA, $50K-$4M |
 | Simulators for Airside | `30-autonomy-stack/simulation/simulators-for-airside.md` | CARLA/AWSIM/Isaac Sim comparison |
-| Datasets & Benchmarks | `cross-cutting/data-engines-datasets.md` | Zero airside datasets, 4-phase bootstrap plan |
-| Synthetic Data | `cross-cutting/synthetic-data-generation.md` | Cosmos +16.2% mAP foggy, 7-phase pipeline |
+| Datasets & Benchmarks | `50-cloud-fleet/data-platform/data-engines-datasets.md` | Zero airside datasets, 4-phase bootstrap plan |
+| Synthetic Data | `50-cloud-fleet/data-platform/synthetic-data-generation.md` | Cosmos +16.2% mAP foggy, 7-phase pipeline |
 
 ### Deployment & Safety
 | Report | File | Key Findings |
 |--------|------|-------------|
-| Safety & Certification | `operations/safety/certification-guide.md` | ISO/PAS 8800, EASA AI Roadmap, AMLAS |
-| ISO 3691-4 | `operations/safety/iso-3691-4-deep-dive.md` | $130K-380K, harmonized May 2024, 27 safety functions |
-| Regulatory Trajectory | `operations/safety/regulatory-trajectory-deep-dive.md` | FAA AC ~2028-2029, EASA ~2028 |
-| Ground Crew Safety | `operations/safety/ground-crew-pedestrian-safety.md` | 27K accidents/yr, hi-vis paradox |
-| Insurance & Liability | `operations/safety/insurance-liability-airside.md` | $35M per engine exposure |
+| Safety & Certification | `60-safety-validation/standards-certification/certification-guide.md` | ISO/PAS 8800, EASA AI Roadmap, AMLAS |
+| ISO 3691-4 | `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md` | $130K-380K, harmonized May 2024, 27 safety functions |
+| Regulatory Trajectory | `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md` | FAA AC ~2028-2029, EASA ~2028 |
+| Ground Crew Safety | `70-operations-domains/airside/safety/ground-crew-pedestrian-safety.md` | 27K accidents/yr, hi-vis paradox |
+| Insurance & Liability | `80-industry-intel/regulations/insurance-liability-airside.md` | $35M per engine exposure |
 | Compute & Hardware | `20-av-platform/compute/edge-platforms.md` | Orin 275 TOPS @ 60W, fleet cost model |
 | NVIDIA Orin | `20-av-platform/compute/nvidia-orin-technical.md` | 8 power modes, DLA 74% at 15W |
 | NVIDIA Thor | `20-av-platform/compute/nvidia-drive-thor.md` | ~1000 TOPS, FP8 native, 2025+ |
 | TensorRT Guide | `20-av-platform/compute/tensorrt-deployment-guide.md` | PointPillars 6.84ms, DLA deployment |
 | 4D Radar | `20-av-platform/sensors/4d-radar.md` | Continental ARS548, immune to all weather |
-| Airside Industry | `operations/airside/industry-overview.md` | 21 companies, FAA CertAlert 24-02 |
+| Airside Industry | `70-operations-domains/airside/operations/industry-overview.md` | 21 companies, FAA CertAlert 24-02 |
 | Multi-Agent & Fleet | `30-autonomy-stack/multi-agent-v2x/fleet-coordination.md` | V2X, Moonware, 5G/CBRS, A-CDM |
 | Mapping & Localization | `30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md` | Map-free driving, AIXM, NOTAM integration |
 | Robustness | `60-safety-validation/verification-validation/robustness/adverse-conditions.md` | De-icing, jet blast, FOD, 4D radar |

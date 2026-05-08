@@ -2416,7 +2416,7 @@ into provable safety.
 | Phase 4: Game theory integration | 4 engineer-months | Training compute ($5K) | $65-105K |
 | **Total** | **12 engineer-months** | **$7K** | **$187-307K** |
 
-This is significantly less than the $130K-$380K estimated for ISO 3691-4 certification (documented in `operations/safety/`), and the CBF framework directly provides the formal safety evidence that certification requires.
+This is significantly less than the $130K-$380K estimated for ISO 3691-4 certification (documented in `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md`), and the CBF framework directly provides the formal safety evidence that certification requires.
 
 ---
 

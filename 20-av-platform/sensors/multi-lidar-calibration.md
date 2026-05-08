@@ -2061,7 +2061,7 @@ This means:
 - The calibration health monitor (Section 9.4) must be developed to ASIL-B standards
 - It must run on the safety-critical compute path (not just the performance path)
 - It must have independent verification (not rely on the same GTSAM pipeline it monitors)
-- The comma.ai Panda pattern applies: safety monitoring on dedicated MCU (see `operations/safety/runtime-verification-monitoring.md`)
+- The comma.ai Panda pattern applies: safety monitoring on dedicated MCU (see `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md`)
 
 ### 10.3 Calibration Records and Traceability
 
@@ -2520,5 +2520,5 @@ Total: 16 weeks, $38,000-57,000
 - `20-av-platform/sensors/robosense-lidar.md` — RoboSense RSHELIOS and RSBP specifications
 - `10-knowledge-base/state-estimation/gtsam-factor-graphs.md` — GTSAM factor graph optimization, VGICP details
 - `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` — Uncertainty quantification and confidence calibration
-- `operations/safety/runtime-verification-monitoring.md` — Runtime monitoring, safety MCU pattern
-- `operations/safety/functional-safety-software.md` — MISRA C, ISO 26262, ASIL decomposition
+- `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md` — Runtime monitoring, safety MCU pattern
+- `60-safety-validation/standards-certification/functional-safety-software.md` — MISRA C, ISO 26262, ASIL decomposition

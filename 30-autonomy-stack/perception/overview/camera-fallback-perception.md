@@ -1582,8 +1582,8 @@ rosbag play test_scenario_001.bag \
 - **Thermal/IR cameras**: `20-av-platform/sensors/thermal-ir-cameras.md`
 - **4D radar as backup**: `20-av-platform/sensors/4d-radar.md`
 - **Simplex architecture**: `synthesis/design-spec.md`
-- **Functional safety software**: `operations/safety/functional-safety-software.md`
-- **Ground crew safety**: `operations/safety/ground-crew-pedestrian-safety.md`
+- **Functional safety software**: `60-safety-validation/standards-certification/functional-safety-software.md`
+- **Ground crew safety**: `70-operations-domains/airside/safety/ground-crew-pedestrian-safety.md`
 - **Orin compute platform**: `hardware/compute/orin-compute-platform.md`
 - **CenterPoint detection**: `30-autonomy-stack/perception/overview/openpcdet-centerpoint.md`
 - **Multi-object tracking**: `30-autonomy-stack/perception/overview/multi-object-tracking.md`

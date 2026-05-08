@@ -624,7 +624,7 @@ If vehicle does not enter zone within lifetime:
 
 ### 6.1 Priority Hierarchy
 
-From `v2x-protocols-airside.md` and `operations/airside/ground-control-instructions.md`, the right-of-way hierarchy:
+From `v2x-protocols-airside.md` and `70-operations-domains/airside/operations/ground-control-instructions.md`, the right-of-way hierarchy:
 
 ```
 Priority Level (highest first):
@@ -1282,7 +1282,7 @@ Phase 5: 50-vehicle stress test — 4-hour simulated shift
 - `30-autonomy-stack/multi-agent-v2x/v2x-protocols-airside.md` — V2X communication protocols
 - `30-autonomy-stack/planning/safety-critical-planning-cbf.md` — CBF safety filter
 - `30-autonomy-stack/planning/neuro-symbolic-scene-graphs.md` — Right-of-way knowledge graph
-- `operations/airside/ground-control-instructions.md` — Ground control hierarchy
+- `70-operations-domains/airside/operations/ground-control-instructions.md` — Ground control hierarchy
 - `30-autonomy-stack/localization-mapping/maps/map-construction-pipeline.md` — Lanelet2 map generation
-- `cross-cutting/cloud-backend-infrastructure.md` — Fleet server infrastructure
-- `operations/deployment/fleet-tco-business-case.md` — Fleet economics
+- `50-cloud-fleet/data-platform/cloud-backend-infrastructure.md` — Fleet server infrastructure
+- `70-operations-domains/airside/business-case/fleet-tco-business-case.md` — Fleet economics

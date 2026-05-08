@@ -154,4 +154,4 @@ This is the target position for a world-model-powered airside AV.
 | `companies/uisee/tech-stack.md` | Deep dive on the market leader (1,000+ vehicles) |
 | `companies/tracteasy/production-deployment.md` | Deep dive on the safety leader (zero accidents) |
 | `companies/aurrigo/tech-stack.md` | Your current stack — technology gaps identified |
-| `operations/airside/aviation-ground-ops-ecosystem.md` | Full market context and business case |
+| `70-operations-domains/airside/operations/aviation-ground-ops-ecosystem.md` | Full market context and business case |

@@ -1899,7 +1899,7 @@ The key architectural decision is that docking is a **mode** of the existing veh
 - `30-autonomy-stack/planning/frenet-planner-augmentation.md` -- Frenet planner architecture and sampling strategy
 - `20-av-platform/sensors/robosense-lidar.md` -- RoboSense RSHELIOS and RSBP specifications
 - `20-av-platform/drive-by-wire/can-bus-dbw.md` -- CAN bus interface and ADT3 steering chain
-- `operations/airside/pushback-systems.md` -- Pushback operations and tug types
+- `70-operations-domains/airside/operations/pushback-systems.md` -- Pushback operations and tug types
 - `30-autonomy-stack/planning/safety-critical-planning-cbf.md` -- CBF safety filter architecture
 
 ### External

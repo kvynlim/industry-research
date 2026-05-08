@@ -100,7 +100,7 @@ This document surveys the landscape of spatial foundation models and embodied fo
 - `30-autonomy-stack/vla-vlm/vla-for-driving.md` — VLA architectures for driving
 - `30-autonomy-stack/vla-vlm/vlm-scene-understanding.md` — VLM co-pilot for scene understanding
 - `30-autonomy-stack/vla-vlm/vla-distillation-scaling.md` — distilling large VLAs for Orin
-- `cross-cutting/embodied-ai-crossover.md` — robotics-to-driving transfer
+- `10-knowledge-base/robotics/embodied-ai-crossover.md` — robotics-to-driving transfer
 - `30-autonomy-stack/planning/autonomous-docking-precision-positioning.md` — docking algorithms
 - `30-autonomy-stack/perception/overview/open-vocab-detection.md` — open-vocabulary detection
 

@@ -1247,7 +1247,7 @@ class SimplexTTTDecisionModule:
 
 ### 7.1 Overview
 
-TTT compresses the unlabeled adaptation phase of airport onboarding. Combined with the existing 8-week playbook (see `operations/deployment/multi-airport-adaptation.md`), TTT provides actionable perception improvements within the first 72 hours.
+TTT compresses the unlabeled adaptation phase of airport onboarding. Combined with the existing 8-week playbook (see `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md`), TTT provides actionable perception improvements within the first 72 hours.
 
 ```
 Standard Onboarding (without TTT):
@@ -1835,6 +1835,6 @@ context.set_tensor_address("lora_b_layer1", updated_lora_b_ptr)
 
 - `30-autonomy-stack/perception/overview/test-time-adaptation-airside.md` -- TTA methods (TENT, CoTTA, SAR, SFDA); OOD detection; active learning; continual learning baselines
 - `30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md` -- MAE, contrastive, JEPA pre-training strategies; SSL curriculum
-- `operations/deployment/multi-airport-adaptation.md` -- 8-week onboarding playbook; PointLoRA fine-tuning budgets; cost model
+- `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md` -- 8-week onboarding playbook; PointLoRA fine-tuning budgets; cost model
 - `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` -- OOD detection methods; conformal prediction; uncertainty-driven decisions
 - `synthesis/design-spec.md` -- Simplex architecture; AC/BC framework; safety decomposition

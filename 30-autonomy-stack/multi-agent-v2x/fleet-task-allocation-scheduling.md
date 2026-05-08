@@ -1772,10 +1772,10 @@ class VehicleDispatchAgent:
 ### Internal Repository
 - `30-autonomy-stack/multi-agent-v2x/fleet-coordination.md` — Multi-agent coordination overview, MARL, game theory
 - `30-autonomy-stack/multi-agent-v2x/v2x-protocols-airside.md` — V2X communication for fleet messaging
-- `operations/deployment/fleet-management-dispatch.md` — Fleet management platforms (NVIDIA Fleet Command, AWS IoT)
-- `operations/airside/airport-data-integration.md` — A-CDM data sources, SWIM, AODB
-- `operations/airside/battery-charging-infrastructure.md` — Charging infrastructure, LiFePO4, autonomous self-charging
-- `operations/deployment/fleet-tco-business-case.md` — Fleet economics, break-even analysis
+- `50-cloud-fleet/fleet-management/fleet-management-dispatch.md` — Fleet management platforms (NVIDIA Fleet Command, AWS IoT)
+- `70-operations-domains/airside/operations/airport-data-integration.md` — A-CDM data sources, SWIM, AODB
+- `70-operations-domains/airside/operations/battery-charging-infrastructure.md` — Charging infrastructure, LiFePO4, autonomous self-charging
+- `70-operations-domains/airside/business-case/fleet-tco-business-case.md` — Fleet economics, break-even analysis
 - `30-autonomy-stack/planning/autonomous-docking-precision-positioning.md` — Precision docking for GSE tasks
 
 ### External

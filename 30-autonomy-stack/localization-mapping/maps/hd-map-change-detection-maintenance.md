@@ -584,7 +584,7 @@ def cluster_change_observations(observations, eps=3.0, min_samples=2):
 
 Some vehicles may consistently report false changes (sensor degradation, calibration drift):
 
-- **Byzantine filtering**: Inspired by FLTrust (from `cross-cutting/federated-learning-fleet.md`), maintain a trusted reference observation per feature from the last survey
+- **Byzantine filtering**: Inspired by FLTrust (from `50-cloud-fleet/mlops/federated-learning-fleet.md`), maintain a trusted reference observation per feature from the last survey
 - **Vehicle reputation scoring**: Track each vehicle's change detection accuracy over time; downweight consistently wrong vehicles
 - **Outlier rejection**: If one vehicle reports a change that 5 others don't, the lone report is likely faulty
 

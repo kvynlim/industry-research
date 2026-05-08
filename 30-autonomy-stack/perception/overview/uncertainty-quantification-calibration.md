@@ -1044,7 +1044,7 @@ def uncertainty_trigger(detections, threshold=0.5):
     return None
 ```
 
-This integrates with the data flywheel (see `cross-cutting/data-flywheel-airside.md`): uncertainty-triggered uploads ensure the training set grows precisely where the model is weakest.
+This integrates with the data flywheel (see `50-cloud-fleet/mlops/data-flywheel-airside.md`): uncertainty-triggered uploads ensure the training set grows precisely where the model is weakest.
 
 ### 10.3 Uncertainty for Planning
 
@@ -1295,4 +1295,4 @@ Uncertainty Assessment
 
 ---
 
-*Document generated for Aurrigo industry research, April 2026. Covers uncertainty quantification and calibration for perception — for runtime monitoring and OOD detection in the safety context, see `operations/safety/runtime-verification-monitoring.md`. For data flywheel integration, see `cross-cutting/data-flywheel-airside.md`.*
+*Document generated for Aurrigo industry research, April 2026. Covers uncertainty quantification and calibration for perception — for runtime monitoring and OOD detection in the safety context, see `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md`. For data flywheel integration, see `50-cloud-fleet/mlops/data-flywheel-airside.md`.*

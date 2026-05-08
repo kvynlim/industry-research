@@ -1062,7 +1062,7 @@ Part of NVIDIA Cosmos ecosystem:
 - **Open-vocabulary detection (Grounding DINO, YOLO-World):** `30-autonomy-stack/perception/overview/open-vocab-detection.md`
 - **DINOv2 for driving (LoRA integration):** `30-autonomy-stack/perception/overview/dinov2-foundation-models-driving.md`
 - **Occupancy world models:** `30-autonomy-stack/world-models/occupancy-world-models.md`
-- **Sensor fusion architectures:** `cross-cutting/sensor-fusion-architectures.md`
+- **Sensor fusion architectures:** `30-autonomy-stack/perception/overview/sensor-fusion-architectures.md`
 - **RoboSense LiDAR specs:** `20-av-platform/sensors/robosense-lidar.md`
 - **Master synthesis:** `synthesis/master-synthesis.md`
 - **POC proposals:** `synthesis/poc-proposals.md`

@@ -121,7 +121,7 @@ For each major architectural decision, this document provides:
 
 **Key finding:** comma.ai's panda safety layer (STM32H725, MISRA C, 100% line coverage + mutation testing) is the gold standard for hardware-independent safety. **Safety must NEVER depend on neural networks.**
 
-**Read more:** `operations/safety/simplex-safety-architecture.md`, `operations/safety/iso-3691-4-deep-dive.md`, `companies/comma-ai/openpilot-codebase-analysis.md`
+**Read more:** `60-safety-validation/runtime-assurance/simplex-safety-architecture.md`, `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md`, `companies/comma-ai/openpilot-codebase-analysis.md`
 
 ---
 
@@ -137,7 +137,7 @@ For each major architectural decision, this document provides:
 
 **Decision:** **Shadow mode first** (zero regulatory risk, builds data). Then **teleoperation for revenue** (Fernride model, operator ratio 1:4→1:10). Then **graduated autonomy** as world model matures.
 
-**Read more:** `operations/deployment/shadow-mode.md`, `companies/fernride/tech-stack.md`, `operations/safety/regulatory-trajectory-deep-dive.md`
+**Read more:** `60-safety-validation/verification-validation/shadow-mode.md`, `companies/fernride/tech-stack.md`, `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md`
 
 ---
 
@@ -156,7 +156,7 @@ For each major architectural decision, this document provides:
 
 **Key finding:** ISO 3691-4 was **harmonized with EU Machinery Directive in May 2024**. New EU Machinery Regulation 2023/1230 (effective **January 2027**) mandates third-party assessment for AI autonomous vehicles.
 
-**Read more:** `operations/safety/iso-3691-4-deep-dive.md`, `operations/safety/certification-guide.md`, `operations/safety/regulatory-trajectory-deep-dive.md`
+**Read more:** `60-safety-validation/standards-certification/iso-3691-4-deep-dive.md`, `60-safety-validation/standards-certification/certification-guide.md`, `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md`
 
 ---
 

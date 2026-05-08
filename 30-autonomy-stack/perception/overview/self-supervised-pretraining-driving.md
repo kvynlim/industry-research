@@ -1279,7 +1279,7 @@ The road-to-airside transfer pipeline involves four stages:
 
 **Total compute: ~42-168 GPU-hours (~$85-340 at cloud rates)**
 
-See `cross-cutting/transfer-learning.md` for detailed domain gap analysis and `operations/deployment/multi-airport-adaptation.md` for the 8-week onboarding pipeline.
+See `50-cloud-fleet/mlops/transfer-learning.md` for detailed domain gap analysis and `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md` for the 8-week onboarding pipeline.
 
 ### 7.4 PointLoRA: Parameter-Efficient LiDAR Adaptation (CVPR 2025)
 
@@ -1655,7 +1655,7 @@ Pre-training enables efficient scaling to additional airports:
 
 PointLoRA adapters can be swapped at deployment time based on airport configuration, maintaining a single base model with per-airport specialization.
 
-See `operations/deployment/multi-airport-adaptation.md` for the full 8-week per-airport onboarding pipeline.
+See `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md` for the full 8-week per-airport onboarding pipeline.
 
 ---
 
@@ -2030,9 +2030,9 @@ What modalities are available?
 - `30-autonomy-stack/perception/overview/dinov2-foundation-models-driving.md` -- Detailed DINOv2 architecture, BEV integration, LoRA results
 - `30-autonomy-stack/perception/overview/lidar-foundation-models.md` -- Comprehensive LiDAR foundation model survey (PTv3, Sonata, ScaLR, GPC)
 - `30-autonomy-stack/world-models/tokenized-and-jepa.md` -- JEPA paradigm, VQ-VAE tokenization, AD-L-JEPA details
-- `cross-cutting/transfer-learning.md` -- Road→airside domain gap analysis, transfer strategies, UDA methods
+- `50-cloud-fleet/mlops/transfer-learning.md` -- Road→airside domain gap analysis, transfer strategies, UDA methods
 - `30-autonomy-stack/perception/overview/lidar-semantic-segmentation.md` -- 18-class airside taxonomy, FlatFormer, ALPINE
 - `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` -- TensorRT optimization, INT8 quantization, multi-model orchestration
-- `operations/deployment/multi-airport-adaptation.md` -- 8-week onboarding, PointLoRA per-airport, scaling economics
+- `70-operations-domains/deployment-playbooks/multi-airport-adaptation.md` -- 8-week onboarding, PointLoRA per-airport, scaling economics
 - `hardware/compute/tensorrt-optimization-guide.md` -- Orin deployment pipeline, INT8 calibration
 - `30-autonomy-stack/perception/overview/camera-fallback-perception.md` -- Degraded mode with camera-only, BEVDistill

@@ -1032,9 +1032,9 @@ torch.onnx.export(model, dummy_input, 'bc_policy.onnx',
 - `30-autonomy-stack/planning/reinforcement-learning-driving-policy.md` — BC→offline RL→online RL pipeline, RL post-IL
 - `30-autonomy-stack/planning/frenet-planner-augmentation.md` — Frenet planner cost function structure
 - `30-autonomy-stack/planning/safety-critical-planning-cbf.md` — CBF safety filter for post-processing
-- `operations/safety/simplex-safety-architecture.md` — Simplex AC/BC architecture
-- `operations/teleoperation/teleoperation-systems.md` — Teleop data sources
-- `cross-cutting/data-flywheel-airside.md` — Data collection and labeling pipeline
+- `60-safety-validation/runtime-assurance/simplex-safety-architecture.md` — Simplex AC/BC architecture
+- `40-runtime-systems/monitoring-observability/teleoperation-systems.md` — Teleop data sources
+- `50-cloud-fleet/mlops/data-flywheel-airside.md` — Data collection and labeling pipeline
 - `30-autonomy-stack/planning/neural-motion-planning.md` — Learned planning approaches
 
 ### External

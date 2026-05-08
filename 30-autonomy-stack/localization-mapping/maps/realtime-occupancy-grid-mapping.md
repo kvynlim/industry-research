@@ -197,7 +197,7 @@ Where ε is a small tolerance (typically half a voxel size)
 | **Certifiable** | Yes (fully inspectable math) | Difficult (black box) |
 | **Use case** | Safety baseline, planning costmap | Scene understanding, prediction |
 
-**The two are complementary, not competing.** Classical occupancy provides the certifiable safety baseline (see `operations/safety/runtime-verification-monitoring.md` -- Simplex BC). Neural occupancy provides richer understanding. The architecture is:
+**The two are complementary, not competing.** Classical occupancy provides the certifiable safety baseline (see `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md` -- Simplex BC). Neural occupancy provides richer understanding. The architecture is:
 
 ```
 Classical occupancy grid (always running, 5-20ms, certifiable)
@@ -2276,9 +2276,9 @@ This MVP immediately improves planning by replacing sparse RANSAC clusters with 
 | Occupancy flow and 4D scene understanding | `30-autonomy-stack/world-models/occupancy-flow-4d-scenes.md` |
 | LiDAR SLAM algorithms | `30-autonomy-stack/localization-mapping/overview/lidar-slam-algorithms.md` |
 | 3DGS for perception and mapping | `30-autonomy-stack/perception/overview/gaussian-splatting-driving.md` |
-| Sensor fusion architectures | `cross-cutting/sensor-fusion-architectures.md` |
+| Sensor fusion architectures | `30-autonomy-stack/perception/overview/sensor-fusion-architectures.md` |
 | CBF safety-critical planning | `30-autonomy-stack/planning/safety-critical-planning-cbf.md` |
-| Runtime verification and monitoring | `operations/safety/runtime-verification-monitoring.md` |
+| Runtime verification and monitoring | `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md` |
 | Multi-LiDAR extrinsic calibration | `hardware/sensors/multi-lidar-extrinsic-calibration.md` |
 | HD map standards for airside | `30-autonomy-stack/localization-mapping/maps/hd-map-standards-airside.md` |
 | Fleet cooperative perception | `30-autonomy-stack/perception/overview/collaborative-fleet-perception.md` |

@@ -686,7 +686,7 @@ ADS-B is effectively a built-in cooperative perception system for aircraft. Ever
 - Velocity: Ground speed and heading from surface velocity messages
 - Identity: Callsign, ICAO hex, squawk -- correlatable with AODB flight data
 
-**Integration architecture** (detailed in `operations/airside/airport-data-integration.md`):
+**Integration architecture** (detailed in `70-operations-domains/airside/operations/airport-data-integration.md`):
 - RTL-SDR receiver ($20-25) or FlightAware Pro Stick on vehicle roof
 - `readsb` decoder outputting Beast binary protocol
 - Custom ROS node publishing `AircraftTrack` messages
@@ -1006,7 +1006,7 @@ These improvements are measured at road intersections. **Airport aprons likely s
 
 **Airport advantage**: The closed, controlled network environment of an airport private 5G significantly reduces the attack surface compared to public road V2X. Infrastructure nodes are physically secured, the network is isolated, and all participants are known and authenticated.
 
-**Recommendation**: See `operations/safety/cybersecurity-airside-av.md` for the comprehensive cybersecurity framework. For cooperative perception specifically:
+**Recommendation**: See `60-safety-validation/cybersecurity/cybersecurity-airside-av.md` for the comprehensive cybersecurity framework. For cooperative perception specifically:
 1. PKI-based mutual authentication between all infrastructure nodes and vehicles
 2. End-to-end encryption of transmitted features
 3. Cross-validation of infrastructure detections against onboard perception
