@@ -65,7 +65,7 @@
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
 | SLAM method library | `technology/localization/slam/overview.md` | 59 focused files covering classical, LiDAR, visual, RGB-D, neural, Gaussian, radar, and fusion SLAM |
-| SLAM coverage audit | `technology/localization/slam/coverage-audit-2026.md` | Source-backed backlog plus May 2026 latest-method sweep: LVI-SAM, FAST-LIVO/R3LIVE, KISS-SLAM, MOLA, robust global registration, radar RIO, OKVIS2-X, degeneracy-robust LIO, 4D radar, Gaussian/foundation SLAM, and current benchmarks |
+| SLAM coverage audit | `technology/localization/slam/coverage-audit-2026.md` | Source-backed backlog plus May 2026 discovery sweeps: LVI-SAM, FAST-LIVO/R3LIVE, KISS-SLAM, MOLA, robust/certifiable PGO, C-SLAM, degeneracy-robust LIO, event/thermal/multi-camera VIO, GPR/UWB/RF fallbacks, 4D radar, Gaussian/foundation SLAM, and current benchmarks |
 | AV / indoor / outdoor selection | `technology/localization/slam/av-indoor-outdoor-decision-matrix.md` | Method fit by GNSS availability, dynamics, map dependence, compute budget, and safety criticality |
 | Benchmarks and datasets | `technology/localization/slam/benchmarking-metrics-datasets.md` | ATE/RPE, KITTI drift, loop closure, map quality, dynamic-scene metrics, KITTI/KITTI-360, EuRoC, TUM, Oxford, Boreas, MulRan |
 | Open-source stacks | `technology/localization/slam/open-source-stack-comparison.md` | ORB-SLAM3, RTAB-Map, Cartographer, OpenVINS, Kimera, KISS-ICP, LIO-SAM, FAST-LIO2, GLIM, GTSAM, Open3D |
