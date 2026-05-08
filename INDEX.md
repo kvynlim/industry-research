@@ -42,6 +42,7 @@
 | DINOv2 for driving | `technology/perception/dinov2-foundation-models-driving.md` | LoRA, adapter integration |
 | CenterPoint/OpenPCDet | `technology/perception/openpcdet-centerpoint.md` | `hardware/compute/tensorrt-deployment-guide.md` |
 | Production systems | `technology/perception/production-perception-systems.md` | Waymo/Tesla/comma sensor suites |
+| Perception coverage audit | `technology/perception/coverage-audit-2026.md` | May 2026 multi-agent sweeps across camera BEV/occupancy, LiDAR MOS, 4D radar, open-world/OOD, V2X, robust fusion, deployment validation, and benchmarks |
 | Sensor fusion | `cross-cutting/sensor-fusion-architectures.md` | BEVFusion, masked modality training |
 | Infrastructure cooperative perception | `technology/perception/infrastructure-cooperative-perception.md` | V2I fusion, fixed sensors, DAIR-V2X, airport existing systems |
 | LiDAR foundation models | `technology/perception/lidar-foundation-models.md` | PTv3, Sonata, ScaLR, PointLoRA, 50-80% data savings |
