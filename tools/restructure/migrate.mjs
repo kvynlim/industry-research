@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { buildMoveMap, normalizeRelPath } from './path-map.mjs'
+import { buildMoveMap, isTargetPath, normalizeRelPath } from './path-map.mjs'
 
 const SKIP_PREFIXES = [
   'node_modules/',
@@ -71,6 +71,12 @@ function isMarkdown(relPath) {
 
 function listGitMarkdownFiles() {
   try {
+    execFileSync('git', ['rev-parse', '--is-inside-work-tree'], { stdio: 'ignore' })
+  } catch {
+    return []
+  }
+
+  try {
     const output = execFileSync('git', ['ls-files', '*.md'], { encoding: 'utf8' })
     return output
       .split(/\r?\n/)
@@ -119,8 +125,12 @@ function filterMoveMapForBatch(moveMap, batch) {
   )
 }
 
-function selectedMoveMap(batch) {
-  return filterMoveMapForBatch(buildMoveMap(candidateOldPaths()), batch)
+function moveMaps(batch) {
+  const fullMoveMap = buildMoveMap(candidateOldPaths())
+  return {
+    fullMoveMap,
+    batchMoveMap: filterMoveMapForBatch(fullMoveMap, batch)
+  }
 }
 
 function printMap(moveMap) {
@@ -214,7 +224,32 @@ function relativeLink(fromFilePath, targetPath) {
   return relative || path.posix.basename(targetPath)
 }
 
-function rewriteMarkdownLinks(content, currentPath, moveMap, inverseMoveMap) {
+function moveTargetIsAvailable(oldPath, batchMoveMap, fullMoveMap) {
+  const targetPath = fullMoveMap.get(oldPath)
+  return Boolean(targetPath && (batchMoveMap.has(oldPath) || fs.existsSync(targetPath)))
+}
+
+function finalTargetForLink(oldSourcePath, currentPath, linkedPath, batchMoveMap, fullMoveMap) {
+  const oldResolvedPath = resolveOldLinkTarget(oldSourcePath, linkedPath)
+  const currentResolvedPath = resolveOldLinkTarget(currentPath, linkedPath)
+
+  if (moveTargetIsAvailable(oldResolvedPath, batchMoveMap, fullMoveMap)) {
+    return fullMoveMap.get(oldResolvedPath)
+  }
+  if (moveTargetIsAvailable(currentResolvedPath, batchMoveMap, fullMoveMap)) {
+    return fullMoveMap.get(currentResolvedPath)
+  }
+  if (isTargetPath(oldResolvedPath)) {
+    return oldResolvedPath
+  }
+  if (isTargetPath(currentResolvedPath)) {
+    return currentResolvedPath
+  }
+
+  return undefined
+}
+
+function rewriteMarkdownLinks(content, currentPath, batchMoveMap, fullMoveMap, inverseMoveMap) {
   const oldSourcePath = inverseMoveMap.get(currentPath) ?? currentPath
 
   return content.replace(/(\]\()([^)]+)(\))/g, (match, open, rawDestination, close) => {
@@ -233,8 +268,7 @@ function rewriteMarkdownLinks(content, currentPath, moveMap, inverseMoveMap) {
       return match
     }
 
-    const oldTargetPath = resolveOldLinkTarget(oldSourcePath, pathPart)
-    const newTargetPath = moveMap.get(oldTargetPath)
+    const newTargetPath = finalTargetForLink(oldSourcePath, currentPath, pathPart, batchMoveMap, fullMoveMap)
     if (!newTargetPath) {
       return match
     }
@@ -245,25 +279,54 @@ function rewriteMarkdownLinks(content, currentPath, moveMap, inverseMoveMap) {
   })
 }
 
-function replaceInlineOldPaths(content, moveMap) {
-  const replacements = Array.from(moveMap.entries())
-    .sort(([left], [right]) => right.length - left.length)
-
+function replaceInlineSegment(content, replacements) {
   let rewritten = content
   for (const [oldPath, newPath] of replacements) {
-    rewritten = rewritten.split(oldPath).join(newPath)
+    const pattern = new RegExp(`(^|[^A-Za-z0-9_./-])${escapeRegExp(oldPath)}(?=$|[^A-Za-z0-9_./-])`, 'g')
+    rewritten = rewritten.replace(pattern, `$1${newPath}`)
   }
   return rewritten
 }
 
-function rewriteLinks(moveMap) {
-  const inverseMoveMap = new Map(Array.from(moveMap.entries()).map(([oldPath, newPath]) => [newPath, oldPath]))
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function replaceInlineOldPaths(content, moveMap) {
+  const replacements = Array.from(moveMap.entries())
+    .sort(([left], [right]) => right.length - left.length)
+
+  let rewritten = ''
+  let cursor = 0
+
+  for (const match of content.matchAll(/\]\([^)]+\)/g)) {
+    const destinationStart = match.index + 2
+    const destinationEnd = match.index + match[0].length - 1
+    rewritten += replaceInlineSegment(content.slice(cursor, destinationStart), replacements)
+    rewritten += content.slice(destinationStart, destinationEnd)
+    cursor = destinationEnd
+  }
+
+  rewritten += replaceInlineSegment(content.slice(cursor), replacements)
+  return rewritten
+}
+
+function availableMoveMap(batchMoveMap, fullMoveMap) {
+  return new Map(
+    Array.from(fullMoveMap.entries())
+      .filter(([oldPath, newPath]) => batchMoveMap.has(oldPath) || fs.existsSync(newPath))
+  )
+}
+
+function rewriteLinks(batchMoveMap, fullMoveMap) {
+  const inverseMoveMap = new Map(Array.from(fullMoveMap.entries()).map(([oldPath, newPath]) => [newPath, oldPath]))
+  const inlineMoveMap = availableMoveMap(batchMoveMap, fullMoveMap)
   let changed = 0
 
   for (const currentPath of listFilesystemMarkdownFiles().sort()) {
     const original = fs.readFileSync(currentPath, 'utf8')
-    let rewritten = rewriteMarkdownLinks(original, currentPath, moveMap, inverseMoveMap)
-    rewritten = replaceInlineOldPaths(rewritten, moveMap)
+    let rewritten = rewriteMarkdownLinks(original, currentPath, batchMoveMap, fullMoveMap, inverseMoveMap)
+    rewritten = replaceInlineOldPaths(rewritten, inlineMoveMap)
 
     if (rewritten !== original) {
       fs.writeFileSync(currentPath, rewritten)
@@ -301,16 +364,16 @@ function checkStale(moveMap) {
 
 try {
   const { mode, batch } = parseArgs(process.argv.slice(2))
-  const moveMap = selectedMoveMap(batch)
+  const { fullMoveMap, batchMoveMap } = moveMaps(batch)
 
   if (mode === '--print-map') {
-    printMap(moveMap)
+    printMap(batchMoveMap)
   } else if (mode === '--move') {
-    moveFiles(moveMap)
+    moveFiles(batchMoveMap)
   } else if (mode === '--rewrite-links') {
-    rewriteLinks(moveMap)
+    rewriteLinks(batchMoveMap, fullMoveMap)
   } else if (mode === '--check-stale') {
-    checkStale(moveMap)
+    checkStale(batchMoveMap)
   }
 } catch (error) {
   console.error(error.message)

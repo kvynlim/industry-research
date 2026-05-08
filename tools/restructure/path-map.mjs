@@ -145,6 +145,10 @@ const PREFIX_MOVES = [
   ['operations/airside/', '70-operations-domains/airside/operations/']
 ]
 
+const EXACT_TARGETS = new Map(Array.from(EXACT_MOVES.entries()).map(([source, target]) => [target, source]))
+
+const INVERSE_PREFIX_MOVES = PREFIX_MOVES.map(([oldPrefix, newPrefix]) => [newPrefix, oldPrefix])
+
 export function normalizeRelPath(relPath) {
   let normalized = String(relPath).replaceAll(path.win32.sep, path.posix.sep)
   while (normalized.startsWith('./')) {
@@ -160,6 +164,12 @@ export function shouldMove(relPath) {
   }
   const root = normalized.split('/')[0]
   return CONTENT_ROOTS.includes(root)
+}
+
+export function isTargetPath(relPath) {
+  const normalized = normalizeRelPath(relPath)
+  const root = normalized.split('/')[0]
+  return TARGET_ROOTS.includes(root)
 }
 
 export function targetPathFor(relPath) {
@@ -182,12 +192,34 @@ export function targetPathFor(relPath) {
   return normalized
 }
 
+export function sourcePathForTarget(relPath) {
+  const normalized = normalizeRelPath(relPath)
+  const exactSource = EXACT_TARGETS.get(normalized)
+  if (exactSource) {
+    return exactSource
+  }
+
+  for (const [newPrefix, oldPrefix] of INVERSE_PREFIX_MOVES) {
+    if (normalized.startsWith(newPrefix)) {
+      const sourcePath = `${oldPrefix}${normalized.slice(newPrefix.length)}`
+      return targetPathFor(sourcePath) === normalized ? sourcePath : undefined
+    }
+  }
+
+  return undefined
+}
+
 export function buildMoveMap(relPaths) {
   const moveMap = new Map()
   for (const relPath of relPaths) {
     const normalized = normalizeRelPath(relPath)
     if (shouldMove(normalized)) {
       moveMap.set(normalized, targetPathFor(normalized))
+    } else {
+      const sourcePath = sourcePathForTarget(normalized)
+      if (sourcePath) {
+        moveMap.set(sourcePath, targetPathFor(sourcePath))
+      }
     }
   }
   return moveMap

@@ -15,7 +15,7 @@
     "restructure:rewrite-links": "node tools/restructure/migrate.mjs --rewrite-links",
     "restructure:check-stale": "node tools/restructure/migrate.mjs --check-stale",
     "links:check": "node tools/restructure/check-links.mjs",
-    "test": "node --test tests/navigation.test.mjs tests/site-config.test.mjs tests/content-smoke.test.mjs tests/workflow.test.mjs",
+    "test": "node --test tests/navigation.test.mjs tests/site-config.test.mjs tests/content-smoke.test.mjs tests/workflow.test.mjs tests/restructure-map.test.mjs",
     "verify": "npm test && npm run docs:build"
   },
   "devDependencies": {
