@@ -23,6 +23,7 @@ test('disables markdown attrs so math braces in research notes render as text', 
 
 test('excludes non-public implementation and planning files from page generation', () => {
   assert.ok(config.srcExclude.includes('docs/superpowers/**'))
+  assert.ok(config.srcExclude.includes('tools/restructure/**'))
   assert.ok(config.srcExclude.includes('.claude/**'))
   assert.ok(config.srcExclude.includes('.superpowers/**'))
   assert.ok(config.srcExclude.includes('node_modules/**'))

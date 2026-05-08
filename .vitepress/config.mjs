@@ -13,6 +13,7 @@ export default defineConfig({
   },
   srcExclude: [
     'docs/superpowers/**',
+    'tools/restructure/**',
     '.claude/**',
     '.superpowers/**',
     'node_modules/**'
