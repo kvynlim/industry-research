@@ -6,9 +6,9 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 358-document research corpus, surfaced as 362 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 358-document research corpus, surfaced as 366 VitePress reader pages.
 
-The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, and browser-friendly reading.
+The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 225k+ lines of Markdown.
 
 ## Research Process
 
@@ -44,8 +44,8 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 - **Output:** 20 deep-dive reports
 
 ### Phase 7: Restructuring & Synthesis
-- **Method:** Reorganized from flat/topic-based to domain-organized directory structure
-- **Output:** INDEX.md, competitive landscape, technology readiness, getting-started guide, risk register, cross-references
+- **Method:** Reorganized from the early flat/topic-based corpus into the final numbered end-to-end knowledge architecture: `00-start-here/`, `10-knowledge-base/`, `20-av-platform/`, `30-autonomy-stack/`, `40-runtime-systems/`, `50-cloud-fleet/`, `60-safety-validation/`, `70-operations-domains/`, `80-industry-intel/`, and `90-synthesis/`.
+- **Output:** Root navigation, competitive landscape, technology readiness, getting-started guide, risk register, cross-references, and numbered reader paths
 
 ### Phase 8: Method-Level SLAM Expansion and Coverage Audit
 - **Method:** Parallel web-search agents audited LiDAR, visual, dense/RGB-D, LiDAR-visual-inertial, radar, registration, loop-closure, and backend SLAM coverage against the existing method library
@@ -82,11 +82,11 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 | Metric | Value |
 |--------|-------|
 | Core research documents | 358 |
-| Reader pages | 362 |
-| Total lines | ~227,000+ |
+| Reader pages | 366 |
+| Total lines | 225k+ |
 | Research agents spawned | 110+ |
 | Companies researched | 21 |
-| Method-level SLAM files | 59 |
+| Method-level SLAM library | 58 method files + overview |
 | Method-level perception files | 54 |
 | Papers referenced | 400+ |
 | GitHub repos evaluated | 50+ |
@@ -98,7 +98,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 ## How to Extend This Research
 
 1. **Add a new company:** Create `80-industry-intel/companies/<name>/tech-stack.md`, update `INDEX.md` and `README.md`
-2. **Add new autonomy-stack research:** Create it in the appropriate `30-autonomy-stack/<domain>/` directory, or use `60-safety-validation/` for safety validation and robustness material.
-3. **Update a finding:** Edit the document, run `rg` to find all references to the finding across the corpus, update all
-4. **Add a new POC:** Add to `90-synthesis/poc-roadmaps/poc-proposals.md` and `90-synthesis/readiness-risk/technology-readiness.md`
-5. **Track regulatory changes:** Update `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md`
+2. **Add new platform research:** Create it in the appropriate `20-av-platform/<domain>/` directory for compute, sensors, networking/connectivity, or drive-by-wire material.
+3. **Add new autonomy-stack research:** Create it in the appropriate `30-autonomy-stack/<domain>/` directory for world models, perception, planning, localization/mapping, simulation, VLA/VLM, E2E driving, or multi-agent/V2X material.
+4. **Add safety, validation, or robustness research:** Create it in the appropriate `60-safety-validation/<domain>/` directory.
+5. **Add operational or industry research:** Use `70-operations-domains/` for airside/deployment/business-case material and `80-industry-intel/` for companies, market intelligence, and regulations.
+6. **Update a finding:** Edit the document, run `rg` to find all references to the finding across the corpus, update all
+7. **Add a new POC:** Add to `90-synthesis/poc-roadmaps/poc-proposals.md` and `90-synthesis/readiness-risk/technology-readiness.md`
+8. **Track regulatory changes:** Update `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md`

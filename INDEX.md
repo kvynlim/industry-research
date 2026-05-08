@@ -66,7 +66,7 @@
 #### Method-level SLAM
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
-| SLAM method library | `30-autonomy-stack/localization-mapping/slam-methods/overview.md` | 59 focused files covering classical, LiDAR, visual, RGB-D, neural, Gaussian, radar, and fusion SLAM |
+| SLAM method library | `30-autonomy-stack/localization-mapping/slam-methods/overview.md` | 58 focused method files plus an overview page covering classical, LiDAR, visual, RGB-D, neural, Gaussian, radar, and fusion SLAM |
 | SLAM coverage audit | `30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md` | Source-backed backlog plus May 2026 discovery sweeps: LVI-SAM, FAST-LIVO/R3LIVE, KISS-SLAM, MOLA, robust/certifiable PGO, C-SLAM, degeneracy-robust LIO, event/thermal/multi-camera VIO, GPR/UWB/RF fallbacks, 4D radar, Gaussian/foundation SLAM, and current benchmarks |
 | AV / indoor / outdoor selection | `30-autonomy-stack/localization-mapping/slam-methods/av-indoor-outdoor-decision-matrix.md` | Method fit by GNSS availability, dynamics, map dependence, compute budget, and safety criticality |
 | Benchmarks and datasets | `30-autonomy-stack/localization-mapping/slam-methods/benchmarking-metrics-datasets.md` | ATE/RPE, KITTI drift, loop closure, map quality, dynamic-scene metrics, KITTI/KITTI-360, EuRoC, TUM, Oxford, Boreas, MulRan |
@@ -96,7 +96,7 @@
 | Production LiDAR-to-map localization | `30-autonomy-stack/localization-mapping/overview/production-lidar-map-localization.md` | Runtime scan-to-map matching pipeline: ICP/GICP/VGICP/NDT algorithm comparison, multi-resolution coarse-to-fine (NDT→VGICP), eigenvalue-based degeneracy detection and handling, airside-specific challenges (40-70% dynamic content at stands, jet blast shimmer, ground reflectivity), multi-LiDAR fusion strategies (merge-then-match, match-then-fuse, selective), GTSAM factor graph integration with adaptive noise models, 5-level fallback hierarchy (VGICP→NDT→GPS→dead reckoning→safe stop), learned registration (GeoTransformer for cold start), Orin GPU deployment (15-25ms typical), $30-53K/12 weeks |
 | Map tile versioning & distribution | `30-autonomy-stack/localization-mapping/maps/map-tile-versioning-distribution.md` | Map lifecycle from build to vehicle: spatial tiling (50-200m tiles), content-addressable versioning (SHA-256 Merkle tree), differential updates (bsdiff, 2-8% of full tile), distribution over airport 5G (<30s/tile), NVMe vehicle-side storage, atomic map swap protocol (zero perception gaps), AIRAC 28-day cycle integration, cryptographic signing (Ed25519), fleet version synchronization, in-flight consistency, <500 MB/month fleet updates, $40-65K/14 weeks |
 
-#### Hardware
+#### AV platform
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
 | NVIDIA Orin | `20-av-platform/compute/nvidia-orin-technical.md` | 275 TOPS, 8 power modes, benchmarks |
@@ -202,7 +202,7 @@
 | Architecture | `10-knowledge-base/systems-engineering/architecture-innovations.md` — MoE, DiT, flow matching, FSQ |
 | Sparse attention for 3D | `10-knowledge-base/machine-learning/sparse-attention-3d-perception.md` — PTv3 serialized attention (80.4% mIoU, 3x faster), FlatFormer flattened windows (4.6x faster than SST), LitePT (CVPR 2026, 3.6x fewer params), SparseOcc, deformable attention, FlashAttention on Orin, TensorRT custom ops, hybrid SpConv+attention, multi-LiDAR cross-attention, window size 256-512 optimal for Orin |
 
-#### Cross-cutting topics
+#### Runtime, fleet, and validation topics
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
 | Sensor fusion | `30-autonomy-stack/perception/overview/sensor-fusion-architectures.md` | |
@@ -319,21 +319,32 @@
 
 | Metric | Value |
 |--------|-------|
-| Total documents | 362 |
-| Total lines | ~227,000 |
+| Reader Markdown pages | 366 |
+| Core research documents | 358 |
+| Reader/research lines | 225k+ |
+| `00-start-here/` documents | 4 |
+| `10-knowledge-base/` documents | 14 |
+| `20-av-platform/` documents | 21 |
+| `30-autonomy-stack/` documents | 199 |
+| `40-runtime-systems/` documents | 9 |
+| `50-cloud-fleet/` documents | 16 |
+| `60-safety-validation/` documents | 21 |
+| `70-operations-domains/` documents | 15 |
+| `80-industry-intel/` documents | 56 |
+| `90-synthesis/` documents | 7 |
 | Companies covered | 21 |
 | Technology domains | 9 |
-| Method-level SLAM files | 59 |
+| Method-level SLAM library | 58 method files + overview |
 | Method-level perception files | 54 |
-| Safety documents | 18 |
-| Hardware specs | 20 |
-| Foundation theory | 12 |
-| Synthesis documents | 8 |
-| Cross-cutting | 26 |
-| Perception documents | 76 |
+| Safety and validation documents | 21 |
+| AV platform documents | 21 |
+| Knowledge base documents | 14 |
+| Synthesis documents | 7 |
+| Perception documents | 82 |
 | Localization/mapping | 72 |
 | Planning documents | 12 |
-| Multi-agent/fleet | 5 |
+| Multi-agent and V2X | 5 |
+| Robustness validation files | 2 |
 | Papers referenced | 400+ |
 | Open-source repos evaluated | 50+ |
 | Occupancy methods compared | 20 |
