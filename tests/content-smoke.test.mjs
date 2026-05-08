@@ -4,8 +4,6 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { sourcePathForTarget } from '../tools/restructure/path-map.mjs'
-
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
 const requiredDocs = [
@@ -45,28 +43,15 @@ function readMarkdownFiles(dir) {
   return files
 }
 
-function existingDocPath(relPath) {
-  const targetPath = path.join(repoRoot, relPath)
-  if (fs.existsSync(targetPath)) return targetPath
-
-  const sourcePath = sourcePathForTarget(relPath)
-  if (sourcePath) {
-    const stagedPath = path.join(repoRoot, sourcePath)
-    if (fs.existsSync(stagedPath)) return stagedPath
-  }
-
-  return targetPath
-}
-
 test('required top-level and representative nested docs exist', () => {
   for (const relPath of requiredDocs) {
-    assert.ok(fs.existsSync(existingDocPath(relPath)), `${relPath} should exist`)
+    assert.ok(fs.existsSync(path.join(repoRoot, relPath)), `${relPath} should exist`)
   }
 })
 
 test('required docs have H1 headings for page titles', () => {
   for (const relPath of requiredDocs) {
-    const markdown = fs.readFileSync(existingDocPath(relPath), 'utf8')
+    const markdown = fs.readFileSync(path.join(repoRoot, relPath), 'utf8')
     assert.match(markdown, /^#\s+.+$/m, `${relPath} should have an H1`)
   }
 })
