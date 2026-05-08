@@ -42,6 +42,7 @@
 | DINOv2 for driving | `technology/perception/dinov2-foundation-models-driving.md` | LoRA, adapter integration |
 | CenterPoint/OpenPCDet | `technology/perception/openpcdet-centerpoint.md` | `hardware/compute/tensorrt-deployment-guide.md` |
 | Production systems | `technology/perception/production-perception-systems.md` | Waymo/Tesla/comma sensor suites |
+| Perception method library | `technology/perception/methods/overview.md` | 54 atomic method files across camera BEV, occupancy, LiDAR MOS, 4D radar, event/FMCW, open-world/OOD, robust fusion, V2X, latency, and data-engine evaluation |
 | Perception coverage audit | `technology/perception/coverage-audit-2026.md` | May 2026 multi-agent sweeps across camera BEV/occupancy, LiDAR MOS, 4D radar, open-world/OOD, V2X, robust fusion, deployment validation, and benchmarks |
 | Sensor fusion | `cross-cutting/sensor-fusion-architectures.md` | BEVFusion, masked modality training |
 | Infrastructure cooperative perception | `technology/perception/infrastructure-cooperative-perception.md` | V2I fusion, fixed sensors, DAIR-V2X, airport existing systems |
@@ -138,13 +139,13 @@
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
 | VLA for driving | `technology/vla/vla-for-driving.md` | Alpamayo, RT-2, PaLM-E, teacher-student distillation |
-| Alpamayo setup | `technology/vla/alpamayo-camera-only.md` | Camera-only, non-commercial, 10B params |
+| Alpamayo setup | `technology/vla/alpamayo-setup.md` | Camera-only, non-commercial, 10B params |
 | VLM scene understanding | `technology/vla/vlm-scene-understanding.md` | DriveVLM, DriveLM, NOTAM interpretation, turnaround assessment, FOD classification, VLM as 1-2Hz co-pilot |
 | Spatial foundation models | `technology/vla/spatial-foundation-models-airport.md` | 4M unified multimodal, SpatialVLM spatial reasoning, RT-2/RT-X robotics transformers, Octo open-source policy, pi0 flow matching, HPT cross-embodiment, precision docking with spatial VLMs, gate identification, FOD detection/characterization, two-tier deployment (cloud+edge), distillation for Orin, in-context learning for new airports, Simplex integration, $55-95K phased |
 | Neural motion planning | `technology/planning/neural-motion-planning.md` | SparseDrive, DiffusionDrive, GameFormer, Simplex safety integration |
-| Frenet augmentation | `technology/planning/frenet-augmentation.md` | Augmenting Aurrigo's existing planner |
+| Frenet augmentation | `technology/planning/frenet-planner-augmentation.md` | Augmenting Aurrigo's existing planner |
 | Motion prediction | `technology/planning/motion-prediction.md` | Trajectory prediction, interaction modeling |
-| LLM reasoning for planning | `technology/planning/llm-reasoning-driving.md` | Chain-of-thought, interpretable decisions |
+| LLM reasoning for planning | `technology/planning/llm-reasoning-planning.md` | Chain-of-thought, interpretable decisions |
 | Diffusion trajectory planning | `technology/planning/diffusion-trajectory-planning.md` | Diffusion-based motion generation |
 | Safety-critical planning (CBF) | `technology/planning/safety-critical-planning-cbf.md` | Control Barrier Functions, CBF-QP safety filter, neural CBF synthesis, game-theoretic interaction (GameFormer, GIME), multi-agent CBFs (GCBF+), HJ reachability, CBF-Simplex integration, airside safety formulations |
 | Neuro-symbolic scene graphs | `technology/planning/neuro-symbolic-scene-graphs.md` | Driving scene graphs, GNN interaction (LaneGCN, HiVT, HDGT), knowledge graphs for traffic rules, STL-constrained planning, compositional reasoning, LLM-symbolic hybrid, airside right-of-way encoding, NOTAM rule injection, interpretable decisions |
@@ -202,21 +203,21 @@
 | Sparse attention for 3D | `foundations/sparse-attention-3d-perception.md` — PTv3 serialized attention (80.4% mIoU, 3x faster), FlatFormer flattened windows (4.6x faster than SST), LitePT (CVPR 2026, 3.6x fewer params), SparseOcc, deformable attention, FlashAttention on Orin, TensorRT custom ops, hybrid SpConv+attention, multi-LiDAR cross-attention, window size 256-512 optimal for Orin |
 
 #### Cross-cutting topics
-| Topic | Primary |
-|-------|---------|
-| Sensor fusion | `cross-cutting/sensor-fusion-architectures.md` |
-| Synthetic data | `cross-cutting/synthetic-data-generation.md` |
-| Evaluation benchmarks | `cross-cutting/evaluation-benchmarks.md` |
-| nuScenes/Waymo guide | `cross-cutting/nuscenes-waymo-practical-guide.md` |
-| Transfer learning | `cross-cutting/transfer-learning.md` |
-| ROS 2 migration | `cross-cutting/ros2-migration.md` |
-| Autoware Universe | `cross-cutting/autoware-universe-deep-dive.md` |
-| Open-source ecosystem | `cross-cutting/opensource-ecosystem.md` |
-| Embodied AI crossover | `cross-cutting/embodied-ai-crossover.md` |
-| Data engine from bags | `cross-cutting/data-engine-from-bags.md` |
-| Continual learning | `cross-cutting/continual-learning.md` |
-| 3D annotation tools | `cross-cutting/3d-annotation-tools.md` |
-| Isaac ROS for airside | `cross-cutting/isaac-ros-for-airside.md` |
+| Topic | Primary | Supporting |
+|-------|---------|-----------|
+| Sensor fusion | `cross-cutting/sensor-fusion-architectures.md` | |
+| Synthetic data | `cross-cutting/synthetic-data-generation.md` | |
+| Evaluation benchmarks | `cross-cutting/evaluation-benchmarks.md` | |
+| nuScenes/Waymo guide | `cross-cutting/nuscenes-waymo-practical-guide.md` | |
+| Transfer learning | `cross-cutting/transfer-learning.md` | |
+| ROS 2 migration | `cross-cutting/ros2-migration.md` | |
+| Autoware Universe | `cross-cutting/autoware-universe-deep-dive.md` | |
+| Open-source ecosystem | `cross-cutting/opensource-ecosystem.md` | |
+| Embodied AI crossover | `cross-cutting/embodied-ai-crossover.md` | |
+| Data engine from bags | `cross-cutting/data-engine-from-bags.md` | |
+| Continual learning | `cross-cutting/continual-learning.md` | |
+| 3D annotation tools | `cross-cutting/3d-annotation-tools.md` | |
+| Isaac ROS for airside | `cross-cutting/isaac-ros-for-airside.md` | |
 | Test-time adaptation | `technology/robustness/test-time-adaptation-airside.md` | TENT, CoTTA, SAR, SFDA, OOD detection, active learning, multi-airport deployment |
 | Test-time training for airport onboarding | `technology/robustness/test-time-training-airport-onboarding.md` | TTT vs TTA distinction (gradient-based auxiliary tasks), TTT++ multi-head, TTT-MAE, TTT layers as RNN, online LoRA with MAE loss, LiDAR-specific TTT (point cloud MAE), safety-bounded TTT on Orin (compute budget), catastrophic forgetting prevention (EWC, anchor loss), Simplex integration (TTT as AC, frozen as BC), airport onboarding protocol, comparison with PointLoRA, $25-45K/10-14 weeks |
 | Fleet data pipeline | `cross-cutting/fleet-data-pipeline.md` | RosBag management, DVC versioning, labeling workflows, fleet telemetry, storage costs |
@@ -318,16 +319,18 @@
 
 | Metric | Value |
 |--------|-------|
-| Total documents | 306 |
-| Total lines | ~221,000 |
+| Total documents | 362 |
+| Total lines | ~227,000 |
 | Companies covered | 21 |
 | Technology domains | 9 |
 | Method-level SLAM files | 59 |
+| Method-level perception files | 54 |
 | Safety documents | 18 |
 | Hardware specs | 20 |
 | Foundation theory | 12 |
 | Synthesis documents | 8 |
 | Cross-cutting | 26 |
+| Perception documents | 76 |
 | Localization/mapping | 72 |
 | Planning documents | 12 |
 | Multi-agent/fleet | 5 |

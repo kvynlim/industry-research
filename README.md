@@ -10,12 +10,13 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 | Scope | Count |
 |-------|-------|
-| Reader pages | 307 |
-| Core research documents | 303 |
-| Corpus size | 221k+ lines |
+| Reader pages | 362 |
+| Core research documents | 358 |
+| Corpus size | 227k+ lines |
 | Companies covered | 21 |
 | Technology domains | 9 |
 | Method-level SLAM files | 59 |
+| Method-level perception files | 54 |
 | Safety and certification docs | 18 |
 | Hardware docs | 20 |
 | Synthesis docs | 8 |
@@ -34,6 +35,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | Understand readiness and risk | [Technology Readiness](synthesis/technology-readiness.md) |
 | Compare the market | [Competitive Landscape](synthesis/competitive-landscape.md) |
 | Read the core system architecture | [Design Spec](synthesis/design-spec.md) |
+| Go deep on perception methods | [Method-Level Perception Library](technology/perception/methods/overview.md) |
 | Go deep on SLAM methods | [Method-Level SLAM Library](technology/localization/slam/overview.md) |
 | Check terms and abbreviations | [Glossary](GLOSSARY.md) |
 | Understand how the corpus was made | [Methodology](METHODOLOGY.md) |
@@ -49,6 +51,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | Fleet economics | [Fleet TCO Business Case](operations/deployment/fleet-tco-business-case.md) | Tracks vehicle CAPEX, labor savings, certification costs, operator ratios, and break-even logic. |
 | Edge hardware choices | [NVIDIA Orin Technical](hardware/compute/nvidia-orin-technical.md) | Grounds model choices in compute, power, TensorRT, DLA, and sensor constraints. |
 | Perception stack | [Production Perception Systems](technology/perception/production-perception-systems.md) | Compares production AV approaches and the perception patterns that transfer to airside autonomy. |
+| Method-level perception | [Perception Method Library](technology/perception/methods/overview.md) | Splits BEV, occupancy, LiDAR MOS, 4D radar, open-world, robust fusion, V2X, latency, and data-engine methods into single-technique research pages. |
 | Perception coverage gaps | [Perception Coverage Audit](technology/perception/coverage-audit-2026.md) | Tracks missing first-class perception pages across BEV, occupancy, LiDAR/radar/thermal, open-world/OOD, V2X, robustness, and benchmarks. |
 | Localization and mapping | [Mapping and Localization](technology/localization/mapping-and-localization.md) | Covers HD maps, LiDAR SLAM, map-free driving, map maintenance, localization, and occupancy grids. |
 | Method-level 3D SLAM | [SLAM Library Overview](technology/localization/slam/overview.md) | Breaks classical, LiDAR, visual, dense, neural, Gaussian, and radar SLAM into focused method files. |
@@ -60,7 +63,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 |---------|------|----------|---------------|
 | `synthesis/` | 8 | [Master Synthesis](synthesis/master-synthesis.md) | Executive synthesis, POCs, readiness, competitive landscape, risk, decision framework, and architecture. |
 | `companies/` | 53 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, and autonomy company profiles. |
-| `technology/` | 142 | [World Models Overview](technology/world-models/overview.md) | World models, perception, planning, localization, SLAM, simulation, VLA/VLM, robustness, E2E driving, and multi-agent systems. |
+| `technology/` | 197 | [World Models Overview](technology/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, robustness, E2E driving, and multi-agent systems. |
 | `operations/` | 42 | [Airside Industry Overview](operations/airside/industry-overview.md) | Airside operations, deployment, safety, certification, teleoperation, workforce, and fleet management. |
 | `hardware/` | 20 | [NVIDIA Orin Technical](hardware/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, vehicle interfaces, power, and edge-cloud architecture. |
 | `foundations/` | 12 | [Theoretical Foundations](foundations/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, and more. |
@@ -71,7 +74,8 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | Technology | Docs |
 |------------|------|
 | World models | 13 |
-| Perception | 21 |
+| Perception | 76 |
+| Method-level perception library | 54 |
 | Planning | 12 |
 | Localization and mapping | 72 |
 | Method-level SLAM library | 59 |

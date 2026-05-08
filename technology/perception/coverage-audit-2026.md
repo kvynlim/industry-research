@@ -6,16 +6,28 @@ The perception library is broad, but the May 2026 agent sweeps found several met
 
 | Item | Status |
 |---|---|
-| Dedicated perception files | 20 existing first-class files before this audit. |
-| Strongest existing coverage | Production sensor suites, CenterPoint/OpenPCDet, BEV basics, LiDAR semantic segmentation, open-vocabulary detection, foundation models, temporal perception, cooperative perception, model compression, uncertainty, and thermal fusion. |
-| Most severe structural gap | Camera occupancy, moving-object segmentation, 4D radar perception, open-world/OOD perception, robust fusion under sensor faults, cooperative tracking, and benchmark coverage are underrepresented as first-class files. |
-| How to use this audit | Promote P0 pages first, then P1 pages, then P2/watchlist aliases. Update this audit whenever a missing perception method becomes a dedicated file or a substantial section in an existing file. |
+| Dedicated perception files | 21 top-level perception synthesis/audit files plus 54 atomic method files in [Perception Method Library](methods/overview.md). |
+| Strongest existing coverage | Production sensor suites, CenterPoint/OpenPCDet, BEV basics, method-level camera BEV/occupancy, LiDAR MOS, radar/event/FMCW, open-world/OOD, robust fusion, V2X, latency, data engines, model compression, uncertainty, and thermal fusion. |
+| Most severe structural gap | Remaining P1/P2 items still need atomic pages: panoptic/open-vocabulary occupancy, sparse-query camera detection, radar-camera fusion, newer cooperative compression, airside FOD datasets, and long-tail adverse-weather datasets. |
+| How to use this audit | Use the method library for promoted atomic pages. Use the P0/P1/P2 rows below as discovery clusters and backlog for remaining splits. Update this audit whenever a missing perception method becomes a dedicated file. |
 
 ## Multi-Agent Discovery Sweep (2026-05-08)
 
 Six parallel research agents audited camera/BEV perception, LiDAR/radar/thermal perception, foundation/open-world perception, temporal tracking, cooperative/V2X perception, and deployment robustness. A second targeted sweep then checked 2025-2026 latest-method and benchmark gaps, followed by lightweight dataset scouts for adverse-weather, event, radar, FMCW LiDAR, V2X, OOD, and latency benchmarks.
 
-### P0 Dedicated Files
+## Method-Level Promotion Wave (2026-05-08)
+
+Five parallel writing agents converted the highest-value discovery clusters into atomic method pages under [methods/](methods/overview.md). Existing broad perception files should now link into this library rather than expanding into larger catch-all documents.
+
+| Cluster | Promoted method files |
+|---|---|
+| Camera BEV and occupancy | [BEVDet](methods/bevdet.md), [BEVDepth](methods/bevdepth.md), [BEVStereo](methods/bevstereo.md), [SOLOFusion](methods/solo-fusion.md), [TPVFormer](methods/tpvformer.md), [SurroundOcc](methods/surroundocc.md), [SparseOcc](methods/sparseocc.md), [FlashOcc](methods/flashocc.md), [SelfOcc](methods/selfocc.md), [RenderOcc](methods/renderocc.md) |
+| LiDAR motion, radar, event, and FMCW | [LiDAR-MOS](methods/lidar-mos.md), [4DMOS](methods/4dmos.md), [InsMOS](methods/insmos.md), [StreamMOS](methods/streammos.md), [4DSegStreamer](methods/4dsegstreamer.md), [SegNet4D](methods/segnet4d.md), [Mask4D](methods/mask4d.md), [Instantaneous Motion Perception](methods/instantaneous-motion-perception.md), [RadarPillars](methods/radarpillars.md), [K-Radar](methods/k-radar.md), [V2X-Radar](methods/v2x-radar.md), [Ev-3DOD](methods/ev-3dod.md), [AevaScenes](methods/aevascenes.md) |
+| Open-world and open-vocabulary | [OpenAD](methods/openad.md), [OP3Det](methods/op3det.md), [WildDet3D](methods/wilddet3d.md), [DetAny3D](methods/detany3d.md), [OW-OVD](methods/ow-ovd.md), [Clipomaly](methods/clipomaly.md), [S2M](methods/s2m.md), [SAM 3](methods/sam3.md), [3D-AVS](methods/3d-avs.md), [Mosaic3D](methods/mosaic3d.md), [OpenVox](methods/openvox.md) |
+| Robust fusion, calibration, and validation | [MoME](methods/mome.md), [GraphBEV](methods/graphbev.md), [SOAC](methods/soac.md), [RC-AutoCalib](methods/rc-autocalib.md), [ASF](methods/availability-aware-sensor-fusion.md), [MSC-Bench](methods/msc-bench.md), [MultiCorrupt](methods/multicorrupt.md), [S2R-Bench](methods/s2r-bench.md), [Occluded nuScenes](methods/occluded-nuscenes.md), [Conformal Boxes](methods/conformal-boxes.md) |
+| Cooperative, latency, closed-loop, and data engines | [RCooper](methods/rcooper.md), [HoloVIC](methods/holovic.md), [CoInfra](methods/coinfra.md), [V2X-ReaLO](methods/v2x-realo.md), [CoHFF](methods/cohff.md), [CoSDH](methods/cosdh.md), [CoopTrack](methods/cooptrack.md), [LASP](methods/lasp.md), [Fail2Drive](methods/fail2drive.md), [AIDE](methods/aide.md) |
+
+### P0 Discovery Clusters To Split Or Link
 
 | Suggested file | Method or technique | Category | Why it matters | Primary sources |
 |---|---|---|---|---|
@@ -45,7 +57,7 @@ Six parallel research agents audited camera/BEV perception, LiDAR/radar/thermal 
 | `cross-cutting/aide-automatic-data-engine.md` | AIDE automatic data engine | Long-tail detection data engine | Concrete loop for issue mining, auto-labeling, scenario generation, and open-world detection evaluation. | https://openaccess.thecvf.com/content/CVPR2024/html/Liang_AIDE_An_Automatic_Data_Engine_for_Object_Detection_in_Autonomous_CVPR_2024_paper.html, https://arxiv.org/abs/2403.17373 |
 | `cross-cutting/vespa-open-world-pointcloud-labeling.md` | VESPA and VLM-assisted 3D auto-labeling | Open-world point-cloud labeling | Multimodal pseudo-labeling without GT annotations or HD maps directly addresses airside 3D labeling bottlenecks. | https://arxiv.org/abs/2507.20397, https://www.sciencedirect.com/science/article/pii/S0968090X25004334 |
 
-### P1 Dedicated Files or Major Sections
+### P1 Remaining Atomic Pages or Major Sections
 
 | Suggested file | Method or technique | Category | Why it matters | Primary sources |
 |---|---|---|---|---|
@@ -174,7 +186,8 @@ Six parallel research agents audited camera/BEV perception, LiDAR/radar/thermal 
 When adding or revising perception research:
 
 1. Check whether the method is already a dedicated file, an existing section, or a backlog item in this audit.
-2. If it is P0, create a dedicated file or a substantial section in the closest existing file before expanding lower-priority coverage.
-3. If it is P1, either create a dedicated file or add aliases and cross-links from the closest existing method page.
+2. If it is P0, create one atomic file under `technology/perception/methods/` before expanding lower-priority coverage.
+3. If it is P1, either create one atomic method file or add aliases and cross-links from the closest existing method page.
 4. If it is P2/watchlist, add aliases only after primary sources, code, or dataset availability are confirmed.
-5. After every perception expansion, update this audit, [Research Index](../../INDEX.md), [README](../../README.md), and any related safety/data-engine docs.
+5. Keep family synthesis in top-level perception docs and detailed method evidence in `methods/`.
+6. After every perception expansion, update this audit, [Research Index](../../INDEX.md), [README](../../README.md), and any related safety/data-engine docs.

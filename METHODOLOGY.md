@@ -6,7 +6,7 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 303-document research corpus, surfaced as 307 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 358-document research corpus, surfaced as 362 VitePress reader pages.
 
 The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, and browser-friendly reading.
 
@@ -55,6 +55,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 - **Method:** Multiple rounds of parallel research agents audited camera BEV, occupancy, LiDAR/radar/thermal/event perception, open-world/OOD perception, temporal tracking, cooperative/V2X perception, robustness, deployment validation, and benchmarks
 - **Output:** [Perception Coverage Audit and Backlog](technology/perception/coverage-audit-2026.md), with P0/P1/P2 missing-method queues, benchmark gaps, discoverability fixes, and source links
 
+### Phase 10: Method-Level Perception Library
+- **Method:** Five parallel writing agents split the perception coverage audit into atomic, one-method research files across camera BEV/occupancy, LiDAR/radar/event/FMCW perception, open-world/open-vocabulary perception, robust fusion/validation, and cooperative/latency/data-engine methods
+- **Output:** [Perception Method Library](technology/perception/methods/overview.md), with 54 single-technique method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
+
 ## Quality Controls
 
 1. **Spec Review:** Design specification reviewed by automated spec-review agent with factual corrections
@@ -63,11 +67,12 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 4. **Source Attribution:** Each research document includes a Sources section with paper references, URLs, and datasets
 5. **Direct Verification:** Aurrigo tech stack analyzed from actual source code, not secondary sources
 6. **Coverage Audits:** Broad method libraries now include explicit backlog documents for missing first-class pages, starting with SLAM and perception
+7. **Atomic Method Pages:** SLAM and perception now separate overview synthesis from one-method research files, so individual techniques can be updated and compared without burying them inside family documents
 
 ## Limitations
 
 1. **Web search rate limits:** Some agents hit API rate limits during research. Affected topics were written from training knowledge rather than live web search.
-2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with a 2026-05-08 refresh for the SLAM and perception gap-discovery audits. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM, open-world perception, and 4D radar) may have newer developments.
+2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with a 2026-05-08 refresh for the SLAM and perception gap-discovery audits plus the first method-level perception expansion. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM, open-world perception, and 4D radar) may have newer developments.
 3. **Airside data gap:** No public airside driving datasets exist, so comparative analysis relies on published deployment reports rather than reproducible benchmarks.
 4. **Company information:** Some companies (UISEE, AeroVect) have limited public technical information. Claims are attributed but not all independently verified.
 5. **Regulatory predictions:** Timeline predictions for FAA/EASA standards are based on published roadmaps and industry trends, not official commitments.
@@ -76,12 +81,13 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 303 |
-| Reader pages | 307 |
-| Total lines | ~221,000+ |
-| Research agents spawned | 100+ |
+| Core research documents | 358 |
+| Reader pages | 362 |
+| Total lines | ~227,000+ |
+| Research agents spawned | 110+ |
 | Companies researched | 21 |
 | Method-level SLAM files | 59 |
+| Method-level perception files | 54 |
 | Papers referenced | 400+ |
 | GitHub repos evaluated | 50+ |
 | API endpoints documented | 15+ |
