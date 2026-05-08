@@ -32,7 +32,7 @@ test('normalizes windows-style paths before deriving readable titles', () => {
 
 test('converts markdown file paths into VitePress links', () => {
   assert.equal(linkForMarkdown('README.md'), '/')
-  assert.equal(linkForMarkdown('INDEX.md'), '/INDEX')
+  assert.equal(linkForMarkdown('INDEX.md'), '/INDEX/')
   assert.equal(
     linkForMarkdown('technology/world-models/overview.md'),
     '/technology/world-models/overview'
@@ -42,7 +42,7 @@ test('converts markdown file paths into VitePress links', () => {
 test('builds top navigation for the public portal', () => {
   assert.deepEqual(buildNav(), [
     { text: 'Home', link: '/' },
-    { text: 'Index', link: '/INDEX' },
+    { text: 'Index', link: '/INDEX/' },
     { text: 'Synthesis', link: '/synthesis/master-synthesis' },
     { text: 'GitHub', link: 'https://github.com/kvynlim/industry-research' }
   ])
@@ -65,7 +65,7 @@ test('builds sidebar groups from the existing repository folders', () => {
 
   const startHere = sidebar.find((section) => section.text === 'Start Here')
   assert.ok(startHere.items.some((item) => item.link === '/'))
-  assert.ok(startHere.items.some((item) => item.link === '/INDEX'))
+  assert.ok(startHere.items.some((item) => item.link === '/INDEX/'))
   assert.ok(startHere.items.some((item) => item.link === '/GLOSSARY'))
   assert.ok(startHere.items.some((item) => item.link === '/METHODOLOGY'))
 

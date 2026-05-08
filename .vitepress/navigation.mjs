@@ -103,6 +103,7 @@ export function titleForFile(root, relPath) {
 export function linkForMarkdown(relPath) {
   const normalized = relPath.replace(/\\/g, '/')
   if (normalized.toLowerCase() === 'readme.md') return '/'
+  if (normalized === 'INDEX.md') return '/INDEX/'
   return `/${normalized.replace(/\.md$/i, '')}`
 }
 
@@ -186,7 +187,7 @@ export function buildSidebar(root = repoRoot) {
 export function buildNav() {
   return [
     { text: 'Home', link: '/' },
-    { text: 'Index', link: '/INDEX' },
+    { text: 'Index', link: '/INDEX/' },
     { text: 'Synthesis', link: '/synthesis/master-synthesis' },
     { text: 'GitHub', link: 'https://github.com/kvynlim/industry-research' }
   ]
