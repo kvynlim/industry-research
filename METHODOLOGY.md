@@ -6,7 +6,9 @@
 
 ## Overview
 
-This research corpus was created over a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with 1M context window, augmented by parallel web-searching research agents. The corpus has been iteratively refined through multiple review cycles.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 243-document research corpus, surfaced as 247 VitePress reader pages.
+
+The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, and browser-friendly reading.
 
 ## Research Process
 
@@ -65,20 +67,22 @@ This research corpus was created over a 24-hour intensive research session on **
 
 | Metric | Value |
 |--------|-------|
-| Documents | 159+ |
-| Total lines | ~134,000+ |
+| Core research documents | 243 |
+| Reader pages | 247 |
+| Total lines | ~211,000+ |
 | Research agents spawned | 100+ |
 | Companies researched | 21 |
-| Papers referenced | 300+ |
-| GitHub repos evaluated | 21 |
+| Papers referenced | 400+ |
+| GitHub repos evaluated | 50+ |
 | API endpoints documented | 15+ |
 | Airport deployments documented | 15+ |
-| Time to create | ~24 hours |
+| Static reader | VitePress on GitHub Pages |
+| Initial research sprint | ~24 hours |
 
 ## How to Extend This Research
 
 1. **Add a new company:** Create `companies/<name>/tech-stack.md`, update `INDEX.md` and `README.md`
 2. **Add a new technology:** Create in appropriate `technology/<domain>/` directory
-3. **Update a finding:** Edit the document, run `grep` to find all references to the finding across the corpus, update all
+3. **Update a finding:** Edit the document, run `rg` to find all references to the finding across the corpus, update all
 4. **Add a new POC:** Add to `synthesis/poc-proposals.md` and `synthesis/technology-readiness.md`
 5. **Track regulatory changes:** Update `operations/safety/regulatory-trajectory-deep-dive.md`

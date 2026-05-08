@@ -302,14 +302,14 @@
 | Metric | Value |
 |--------|-------|
 | Total documents | 247 |
-| Total lines | ~271,000 |
+| Total lines | ~211,000 |
 | Companies covered | 21 |
 | Technology domains | 9 |
 | Safety documents | 18 |
 | Hardware specs | 20 |
 | Foundation theory | 12 |
-| Synthesis documents | 9 |
-| Cross-cutting | 25 |
+| Synthesis documents | 8 |
+| Cross-cutting | 26 |
 | Localization/mapping | 13 |
 | Planning documents | 12 |
 | Multi-agent/fleet | 5 |
