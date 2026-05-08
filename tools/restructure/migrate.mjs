@@ -279,35 +279,45 @@ function rewriteMarkdownLinks(content, currentPath, batchMoveMap, fullMoveMap, i
   })
 }
 
-function replaceInlineSegment(content, replacements) {
-  let rewritten = content
-  for (const [oldPath, newPath] of replacements) {
-    const pattern = new RegExp(`(^|[^A-Za-z0-9_./-])${escapeRegExp(oldPath)}(?=$|[^A-Za-z0-9_./-])`, 'g')
-    rewritten = rewritten.replace(pattern, `$1${newPath}`)
+function replaceInlineSegment(content, moveMap, currentPath, oldSourcePath) {
+  return content.replace(/[A-Za-z0-9_.-]+(?:\/[A-Za-z0-9_.-]+)*\.md/g, (pathToken) => {
+    const replacement = inlineReplacementForPathToken(pathToken, moveMap, currentPath, oldSourcePath)
+    return replacement ?? pathToken
+  })
+}
+
+function inlineReplacementForPathToken(pathToken, moveMap, currentPath, oldSourcePath) {
+  const normalizedToken = normalizeRelPath(pathToken)
+  const candidatePaths = [
+    normalizedToken,
+    resolveOldLinkTarget(oldSourcePath, normalizedToken),
+    resolveOldLinkTarget(currentPath, normalizedToken)
+  ]
+
+  for (const oldPath of new Set(candidatePaths)) {
+    const newPath = moveMap.get(oldPath)
+    if (newPath) {
+      return normalizedToken === oldPath ? newPath : relativeLink(currentPath, newPath)
+    }
   }
-  return rewritten
+
+  return undefined
 }
 
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-}
-
-function replaceInlineOldPaths(content, moveMap) {
-  const replacements = Array.from(moveMap.entries())
-    .sort(([left], [right]) => right.length - left.length)
-
+function replaceInlineOldPaths(content, moveMap, currentPath, inverseMoveMap) {
+  const oldSourcePath = inverseMoveMap.get(currentPath) ?? currentPath
   let rewritten = ''
   let cursor = 0
 
   for (const match of content.matchAll(/\]\([^)]+\)/g)) {
     const destinationStart = match.index + 2
     const destinationEnd = match.index + match[0].length - 1
-    rewritten += replaceInlineSegment(content.slice(cursor, destinationStart), replacements)
+    rewritten += replaceInlineSegment(content.slice(cursor, destinationStart), moveMap, currentPath, oldSourcePath)
     rewritten += content.slice(destinationStart, destinationEnd)
     cursor = destinationEnd
   }
 
-  rewritten += replaceInlineSegment(content.slice(cursor), replacements)
+  rewritten += replaceInlineSegment(content.slice(cursor), moveMap, currentPath, oldSourcePath)
   return rewritten
 }
 
@@ -326,7 +336,7 @@ function rewriteLinks(batchMoveMap, fullMoveMap) {
   for (const currentPath of listFilesystemMarkdownFiles().sort()) {
     const original = fs.readFileSync(currentPath, 'utf8')
     let rewritten = rewriteMarkdownLinks(original, currentPath, batchMoveMap, fullMoveMap, inverseMoveMap)
-    rewritten = replaceInlineOldPaths(rewritten, inlineMoveMap)
+    rewritten = replaceInlineOldPaths(rewritten, inlineMoveMap, currentPath, inverseMoveMap)
 
     if (rewritten !== original) {
       fs.writeFileSync(currentPath, rewritten)

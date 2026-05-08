@@ -164,6 +164,36 @@ test('does not double-rewrite company links inside already rewritten Markdown de
   execFileSync(process.execPath, [checkLinksScript], { cwd: fixtureDir })
 })
 
+test('rewrites relative stale old paths outside moved batches', () => {
+  const fixtureDir = makeFixture({
+    'hardware/compute/foo.md': '# Compute\n',
+    'hardware/connectivity/airport-5g-cbrs.md': '# Airport 5G\n',
+    'operations/deployment/ev-fleet-energy-co-optimization.md': [
+      '# EV fleet energy',
+      '',
+      '[../../hardware/connectivity/airport-5g-cbrs.md](../../hardware/connectivity/airport-5g-cbrs.md)',
+      '',
+      '`../../hardware/compute/foo.md`'
+    ].join('\n')
+  })
+
+  runMigrate(fixtureDir, '--move', 'knowledge-platform')
+  runMigrate(fixtureDir, '--rewrite-links', 'knowledge-platform')
+  runMigrate(fixtureDir, '--check-stale', 'knowledge-platform')
+
+  const sourcePath = path.join(fixtureDir, 'operations/deployment/ev-fleet-energy-co-optimization.md')
+  const content = fs.readFileSync(sourcePath, 'utf8')
+  assert.doesNotMatch(content, /hardware\/connectivity\/airport-5g-cbrs\.md/)
+  assert.doesNotMatch(content, /hardware\/compute\/foo\.md/)
+  assert.match(
+    content,
+    /\[\.\.\/\.\.\/20-av-platform\/networking-connectivity\/airport-5g-cbrs\.md\]\(\.\.\/\.\.\/20-av-platform\/networking-connectivity\/airport-5g-cbrs\.md\)/
+  )
+  assert.match(content, /`\.\.\/\.\.\/20-av-platform\/compute\/foo\.md`/)
+
+  execFileSync(process.execPath, [checkLinksScript], { cwd: fixtureDir })
+})
+
 function makeFixture(files) {
   const fixtureDir = fs.mkdtempSync(path.join(os.tmpdir(), 'restructure-map-'))
   for (const [relPath, content] of Object.entries(files)) {
