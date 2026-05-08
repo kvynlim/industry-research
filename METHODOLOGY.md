@@ -6,7 +6,7 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 358-document research corpus, surfaced as 366 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 359-document research corpus, surfaced as 367 VitePress reader pages.
 
 The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 225k+ lines of Markdown.
 
@@ -59,6 +59,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 - **Method:** Five parallel writing agents split the perception coverage audit into atomic, one-method research files across camera BEV/occupancy, LiDAR/radar/event/FMCW perception, open-world/open-vocabulary perception, robust fusion/validation, and cooperative/latency/data-engine methods
 - **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), with 54 single-technique method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
 
+### Phase 11: Cross-Architecture Knowledge Gap Audit
+- **Method:** Six parallel research agents audited the post-restructure architecture across foundations, AV platform, autonomy stack, runtime/cloud, safety/validation, and operations/industry. One autonomy agent was split into two narrower replacement agents after exceeding context, preserving coverage without overloading the review.
+- **Output:** [End-to-End AV Knowledge Gap Backlog](90-synthesis/readiness-risk/knowledge-gap-backlog.md), with P0/P1/P2 missing-file queues across reusable fundamentals, platform power/thermal/diagnostics, planning/control/V2X, runtime/cloud operations, safety evidence, and non-airside operations domains.
+
 ## Quality Controls
 
 1. **Spec Review:** Design specification reviewed by automated spec-review agent with factual corrections
@@ -68,6 +72,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 5. **Direct Verification:** Aurrigo tech stack analyzed from actual source code, not secondary sources
 6. **Coverage Audits:** Broad method libraries now include explicit backlog documents for missing first-class pages, starting with SLAM and perception
 7. **Atomic Method Pages:** SLAM and perception now separate overview synthesis from one-method research files, so individual techniques can be updated and compared without burying them inside family documents
+8. **Cross-Architecture Gap Tracking:** The synthesis layer now tracks P0/P1/P2 research gaps outside the dedicated SLAM and perception audits
 
 ## Limitations
 
@@ -81,10 +86,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 358 |
-| Reader pages | 366 |
+| Core research documents | 359 |
+| Reader pages | 367 |
 | Total lines | 225k+ |
-| Research agents spawned | 110+ |
+| Research agents spawned | 118+ |
 | Companies researched | 21 |
 | Method-level SLAM library | 58 method files + overview |
 | Method-level perception files | 54 |

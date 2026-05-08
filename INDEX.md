@@ -238,6 +238,7 @@
 | POC proposals | `90-synthesis/poc-roadmaps/poc-proposals.md` — 8 models with code and costs |
 | Competitive landscape | `80-industry-intel/market-competitive/competitive-landscape.md` — All players compared, strategic quadrant |
 | Technology readiness | `90-synthesis/readiness-risk/technology-readiness.md` — TRL per POC, go/no-go criteria |
+| Knowledge gap backlog | `90-synthesis/readiness-risk/knowledge-gap-backlog.md` — P0/P1/P2 missing research files across the end-to-end AV architecture |
 | Getting started | `90-synthesis/master/getting-started.md` — Day 1 guide with runnable code |
 
 ---
@@ -246,6 +247,7 @@
 
 | Document | Key Contribution |
 |----------|-----------------|
+| `90-synthesis/readiness-risk/knowledge-gap-backlog.md` | Cross-architecture gap backlog from parallel research agents: P0/P1/P2 missing files across foundations, platform, autonomy, runtime/cloud, safety, operations, and industry intelligence |
 | `30-autonomy-stack/localization-mapping/overview/production-lidar-map-localization.md` | Production scan-to-map matching: VGICP/NDT/ICP comparison, multi-resolution coarse-to-fine, eigenvalue degeneracy detection, multi-LiDAR fusion strategies, GTSAM adaptive noise, 5-level fallback, GeoTransformer cold start, 15-25ms Orin, $30-53K |
 | `40-runtime-systems/data-logging/on-vehicle-data-triage-selective-upload.md` | Vehicle-side data management: ring buffers (NVMe 1-4TB), event-triggered clips (safety/perception/localization), edge scenario classification, bandwidth-aware upload (50GB/day), compression, rosbag/mcap, fleet upload coordination, active learning integration |
 | `60-safety-validation/runtime-assurance/online-perception-monitoring-odd-enforcement.md` | ML silent degradation detection: input distribution monitoring, output consistency (CUSUM/EWMA), cross-modal agreement, OOD integration, ODD state machine with hysteresis, Perception Health Score, calibration drift, temporal anomaly, <5ms on Orin |
@@ -319,8 +321,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Reader Markdown pages | 366 |
-| Core research documents | 358 |
+| Reader Markdown pages | 367 |
+| Core research documents | 359 |
 | Reader/research lines | 225k+ |
 | `00-start-here/` documents | 4 |
 | `10-knowledge-base/` documents | 14 |
@@ -331,7 +333,7 @@
 | `60-safety-validation/` documents | 21 |
 | `70-operations-domains/` documents | 15 |
 | `80-industry-intel/` documents | 56 |
-| `90-synthesis/` documents | 7 |
+| `90-synthesis/` documents | 8 |
 | Companies covered | 21 |
 | Technology domains | 9 |
 | Method-level SLAM library | 58 method files + overview |
@@ -339,7 +341,7 @@
 | Safety and validation documents | 21 |
 | AV platform documents | 21 |
 | Knowledge base documents | 14 |
-| Synthesis documents | 7 |
+| Synthesis documents | 8 |
 | Perception documents | 82 |
 | Localization/mapping | 72 |
 | Planning documents | 12 |

@@ -10,8 +10,8 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 | Scope | Count |
 |-------|-------|
-| Reader pages | 366 |
-| Core research documents | 358 |
+| Reader pages | 367 |
+| Core research documents | 359 |
 | Corpus size | 225k+ lines |
 | Companies covered | 21 |
 | Technology domains | 9 |
@@ -19,7 +19,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | Method-level perception files | 54 |
 | Safety and validation docs | 21 |
 | AV platform docs | 21 |
-| Synthesis docs | 7 |
+| Synthesis docs | 8 |
 | Papers referenced | 400+ |
 | Open-source repos evaluated | 50+ |
 | Airport deployments documented | 15+ |
@@ -37,6 +37,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Start building from the research | [Getting Started](90-synthesis/master/getting-started.md) |
 | Pick concrete POCs | [POC Proposals](90-synthesis/poc-roadmaps/poc-proposals.md) |
 | Understand readiness and risk | [Technology Readiness](90-synthesis/readiness-risk/technology-readiness.md) |
+| Prioritize gap-filling research | [Knowledge Gap Backlog](90-synthesis/readiness-risk/knowledge-gap-backlog.md) |
 | Compare the market | [Competitive Landscape](80-industry-intel/market-competitive/competitive-landscape.md) |
 | Read the core system architecture | [Design Spec](90-synthesis/decisions/design-spec.md) |
 | Go deep on perception methods | [Method-Level Perception Library](30-autonomy-stack/perception/methods/overview.md) |
@@ -60,6 +61,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Localization and mapping | [Mapping and Localization](30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md) | Covers HD maps, LiDAR SLAM, map-free driving, map maintenance, localization, and occupancy grids. |
 | Method-level 3D SLAM | [SLAM Library Overview](30-autonomy-stack/localization-mapping/slam-methods/overview.md) | Breaks classical, LiDAR, visual, dense, neural, Gaussian, and radar SLAM into focused method files. |
 | SLAM coverage gaps | [SLAM Coverage Audit](30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md) | Tracks missing first-class SLAM pages, including May 2026 sweeps across LIO, LIVO, 4D radar, Gaussian/foundation SLAM, backends, collaborative SLAM, alternative sensors, and benchmarks. |
+| End-to-end architecture gaps | [Knowledge Gap Backlog](90-synthesis/readiness-risk/knowledge-gap-backlog.md) | Tracks P0/P1/P2 missing research files across fundamentals, platform, autonomy, runtime/cloud, safety, operations, and industry intelligence. |
 
 ## Corpus Map
 
@@ -74,7 +76,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | `60-safety-validation/` | 21 | [Certification Guide](60-safety-validation/standards-certification/certification-guide.md) | Safety case, standards, runtime assurance, verification, validation, robustness, and cybersecurity. |
 | `70-operations-domains/` | 15 | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Airside operations, deployment playbooks, business case, and domain-specific safety. |
 | `80-industry-intel/` | 56 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, autonomy company profiles, market intelligence, and regulations. |
-| `90-synthesis/` | 7 | [Master Synthesis](90-synthesis/master/master-synthesis.md) | Executive synthesis, POCs, readiness, risk, decision framework, and architecture. |
+| `90-synthesis/` | 8 | [Master Synthesis](90-synthesis/master/master-synthesis.md) | Executive synthesis, POCs, readiness, risk, decision framework, architecture, and gap backlog. |
 
 ## Domain Snapshot
 
