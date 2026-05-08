@@ -4,7 +4,7 @@
 
 ---
 
-**Key Takeaway**: Treating charging, routing, and task assignment as separate problems wastes 10-15% of fleet utilization and 8-12% of electricity budget through demand charge penalties and suboptimal SoC management. A joint co-optimization formulation --- modeled as a stochastic Electric Vehicle Routing Problem with Time Windows (EVRPTW) and solved via decomposed MILP + rolling-horizon MPC --- recovers $180-320K/year for a 50-vehicle autonomous GSE fleet. The dominant savings come not from cheaper electricity but from three sources: eliminating demand charge spikes ($60-120K/year), extending battery pack life by 1.5-2 years through degradation-aware C-rate selection ($90-150K/year amortized replacement cost avoidance), and increasing effective fleet utilization from 72% to 83-87% by converting dead charging time into productive opportunity windows ($45-90K/year in avoided additional vehicle purchases). Vehicle-to-grid (V2G) adds $30-80K/year in demand response revenue at airports with time-of-use pricing, but only when degradation cost is properly accounted --- naive V2G without cycle-aware dispatch actually destroys value. The co-optimization runs as a fleet-level service alongside the CP-SAT task scheduler described in `../../technology/multi-agent/fleet-task-allocation-scheduling.md`, consuming A-CDM flight predictions to pre-position vehicles and pre-schedule charging around demand troughs.
+**Key Takeaway**: Treating charging, routing, and task assignment as separate problems wastes 10-15% of fleet utilization and 8-12% of electricity budget through demand charge penalties and suboptimal SoC management. A joint co-optimization formulation --- modeled as a stochastic Electric Vehicle Routing Problem with Time Windows (EVRPTW) and solved via decomposed MILP + rolling-horizon MPC --- recovers $180-320K/year for a 50-vehicle autonomous GSE fleet. The dominant savings come not from cheaper electricity but from three sources: eliminating demand charge spikes ($60-120K/year), extending battery pack life by 1.5-2 years through degradation-aware C-rate selection ($90-150K/year amortized replacement cost avoidance), and increasing effective fleet utilization from 72% to 83-87% by converting dead charging time into productive opportunity windows ($45-90K/year in avoided additional vehicle purchases). Vehicle-to-grid (V2G) adds $30-80K/year in demand response revenue at airports with time-of-use pricing, but only when degradation cost is properly accounted --- naive V2G without cycle-aware dispatch actually destroys value. The co-optimization runs as a fleet-level service alongside the CP-SAT task scheduler described in `../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md`, consuming A-CDM flight predictions to pre-position vehicles and pre-schedule charging around demand troughs.
 
 ---
 
@@ -1266,7 +1266,7 @@ def solve_joint_evrp_milp(
 
 ### 8.3 CP-SAT Formulation (Practical, <100 Vehicles)
 
-CP-SAT from OR-Tools (the same solver used for task allocation in `../../technology/multi-agent/fleet-task-allocation-scheduling.md`) can handle the energy co-optimization with appropriate modeling:
+CP-SAT from OR-Tools (the same solver used for task allocation in `../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md`) can handle the energy co-optimization with appropriate modeling:
 
 ```python
 from ortools.sat.python import cp_model
@@ -1414,7 +1414,7 @@ Advantage: degrades gracefully if communication drops (vehicle keeps last plan)
 
 ### 8.6 RL-Based Dispatch (Complementary to Optimization)
 
-For real-time decision-making (<1ms latency requirement), a trained RL policy complements the MILP/CP-SAT planner. The fleet-task-allocation doc (`../../technology/multi-agent/fleet-task-allocation-scheduling.md`, Section 9) covers RL dispatch for task allocation; here we extend the state space with energy variables:
+For real-time decision-making (<1ms latency requirement), a trained RL policy complements the MILP/CP-SAT planner. The fleet-task-allocation doc (`../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md`, Section 9) covers RL dispatch for task allocation; here we extend the state space with energy variables:
 
 ```python
 class EnergyAwareDispatchEnv:
@@ -1464,7 +1464,7 @@ class EnergyAwareDispatchEnv:
         return self.get_obs(), reward, done, info
 ```
 
-Training approach: PPO with the same attention-based architecture described in `../../technology/multi-agent/fleet-task-allocation-scheduling.md`, Section 9. Adding 8 energy-related features per vehicle increases the observation space by ~12% with negligible inference overhead.
+Training approach: PPO with the same attention-based architecture described in `../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md`, Section 9. Adding 8 energy-related features per vehicle increases the observation space by ~12% with negligible inference overhead.
 
 ### 8.7 Algorithm Selection Guide
 
@@ -1746,7 +1746,7 @@ Charging LiFePO4 batteries near aircraft introduces specific fire safety require
 | Airport authority | Varies | Many airports require fire risk assessment per charger location |
 
 LiFePO4 is inherently safer than NMC (no thermal runaway), but airport authorities may still require:
-- Battery fire detection (thermal camera on charger, see `../../technology/perception/night-operations-thermal-fusion.md`)
+- Battery fire detection (thermal camera on charger, see `../../30-autonomy-stack/perception/overview/night-operations-thermal-fusion.md`)
 - Automatic charging disconnect on thermal anomaly
 - Minimum 3m clearance between charging vehicles
 - Fire extinguisher (Class D) at each charging station
@@ -2265,7 +2265,7 @@ Recommendation: implement Phase 1-2 (demand charge + basic optimization)
 
 10. **Implementation payback is 9-14 months at 50 vehicles.** Phase 1-2 (basic optimization + demand charge management) delivers 65% of total value at 35% of total implementation cost --- this is the recommended starting scope for Aurrigo's initial deployments.
 
-11. **The co-optimizer is additive to the existing CP-SAT task scheduler**, not a replacement. It runs as a parallel service that injects charging tasks and power constraints into the task allocation pipeline described in `../../technology/multi-agent/fleet-task-allocation-scheduling.md`, using the same CP-SAT modeling patterns.
+11. **The co-optimizer is additive to the existing CP-SAT task scheduler**, not a replacement. It runs as a parallel service that injects charging tasks and power constraints into the task allocation pipeline described in `../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md`, using the same CP-SAT modeling patterns.
 
 ---
 
@@ -2310,7 +2310,7 @@ Recommendation: implement Phase 1-2 (demand charge + basic optimization)
 ### Related Documents in This Repository
 
 25. `../../operations/airside/battery-charging-infrastructure.md` --- Battery specs, charging hardware, autonomous self-charging
-26. `../../technology/multi-agent/fleet-task-allocation-scheduling.md` --- CP-SAT scheduling, CBBA, charging-aware scheduling
+26. `../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md` --- CP-SAT scheduling, CBBA, charging-aware scheduling
 27. `../../operations/deployment/fleet-tco-business-case.md` --- Fleet economics, per-vehicle costs, scale dynamics
 28. `../../20-av-platform/compute/energy-efficient-inference-24-7.md` --- Orin power management, compute efficiency
 29. `../../operations/deployment/fleet-predictive-maintenance.md` --- Battery health monitoring, predictive replacement

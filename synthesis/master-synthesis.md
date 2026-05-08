@@ -418,33 +418,33 @@ Given that airside AV falls between automotive and aviation domains:
 ### Core World Models & Architecture
 | Report | File | Key Findings |
 |--------|------|-------------|
-| World Models for AV | `technology/world-models/overview.md` | 17+ architectures, readiness assessment |
-| End-to-End AV | `technology/e2e-driving/e2e-architectures.md` | SparseDrive SOTA (0.06% collision), recommended architecture |
-| Diffusion World Models | `technology/world-models/diffusion-world-models.md` | Sora, Genie 2/3, 13 driving-specific models |
-| RL with World Models | `technology/world-models/rl-with-world-models.md` | Dreamer v1-v4, TD-MPC2, SafeDreamer |
-| Tokenized & JEPA | `technology/world-models/tokenized-and-jepa.md` | VQ-VAE world models, JEPA ~15x faster planning |
-| 4D Occupancy | `technology/world-models/occupancy-world-models.md` | Class-agnostic prediction, jet blast as hazard occupancy |
-| Occupancy Comparison | `technology/world-models/occupancy-networks-comparison.md` | 20 methods compared, FlashOcc 197.6 FPS |
-| Open-Source Repos | `technology/world-models/opensource-implementations.md` | 21 repos rated, only 6 fully usable |
+| World Models for AV | `30-autonomy-stack/world-models/overview.md` | 17+ architectures, readiness assessment |
+| End-to-End AV | `30-autonomy-stack/end-to-end-driving/e2e-architectures.md` | SparseDrive SOTA (0.06% collision), recommended architecture |
+| Diffusion World Models | `30-autonomy-stack/world-models/diffusion-world-models.md` | Sora, Genie 2/3, 13 driving-specific models |
+| RL with World Models | `30-autonomy-stack/world-models/rl-with-world-models.md` | Dreamer v1-v4, TD-MPC2, SafeDreamer |
+| Tokenized & JEPA | `30-autonomy-stack/world-models/tokenized-and-jepa.md` | VQ-VAE world models, JEPA ~15x faster planning |
+| 4D Occupancy | `30-autonomy-stack/world-models/occupancy-world-models.md` | Class-agnostic prediction, jet blast as hazard occupancy |
+| Occupancy Comparison | `30-autonomy-stack/world-models/occupancy-networks-comparison.md` | 20 methods compared, FlashOcc 197.6 FPS |
+| Open-Source Repos | `30-autonomy-stack/world-models/opensource-implementations.md` | 21 repos rated, only 6 fully usable |
 
 ### Models & Approaches
 | Report | File | Key Findings |
 |--------|------|-------------|
-| VLAs | `technology/vla/vla-for-driving.md` | 15+ VLA models, LINGO-2, DriveVLM |
-| Alpamayo | `technology/vla/alpamayo-setup.md` | Camera-only, non-commercial, teacher model for distillation |
-| Company Deep Dives | `technology/e2e-driving/company-approaches.md` | Wayve/NVIDIA/Tesla/Waymo/Comma.ai strategies |
-| LLM Reasoning | `technology/planning/llm-reasoning-planning.md` | DriveReg 100% rule compliance, Moonware HALO |
-| Motion Prediction | `technology/planning/motion-prediction.md` | MotionLM, gate turnaround sequencing |
-| Foundation Models | `technology/perception/vision-foundation-models.md` | SAM, DINO, open-vocab detection |
-| DINOv2 | `technology/perception/dinov2-foundation-models-driving.md` | Adapter-mediated integration, LoRA rank 32 optimal |
+| VLAs | `30-autonomy-stack/vla-vlm/vla-for-driving.md` | 15+ VLA models, LINGO-2, DriveVLM |
+| Alpamayo | `30-autonomy-stack/vla-vlm/alpamayo-setup.md` | Camera-only, non-commercial, teacher model for distillation |
+| Company Deep Dives | `30-autonomy-stack/end-to-end-driving/company-approaches.md` | Wayve/NVIDIA/Tesla/Waymo/Comma.ai strategies |
+| LLM Reasoning | `30-autonomy-stack/planning/llm-reasoning-planning.md` | DriveReg 100% rule compliance, Moonware HALO |
+| Motion Prediction | `30-autonomy-stack/planning/motion-prediction.md` | MotionLM, gate turnaround sequencing |
+| Foundation Models | `30-autonomy-stack/perception/overview/vision-foundation-models.md` | SAM, DINO, open-vocab detection |
+| DINOv2 | `30-autonomy-stack/perception/overview/dinov2-foundation-models-driving.md` | Adapter-mediated integration, LoRA rank 32 optimal |
 
 ### Simulation & Data
 | Report | File | Key Findings |
 |--------|------|-------------|
-| Neural Simulation | `technology/simulation/neural-simulation-platforms.md` | Alpamayo, Cosmos, 12+ sim platforms |
-| 3DGS & NeRF | `technology/simulation/neural-scene-reconstruction.md` | Street Gaussians 135 FPS, SplatAD |
-| Airport Digital Twins | `technology/simulation/airport-digital-twins.md` | Autonoma, SITA, $50K-$4M |
-| Simulators for Airside | `technology/simulation/simulators-for-airside.md` | CARLA/AWSIM/Isaac Sim comparison |
+| Neural Simulation | `30-autonomy-stack/simulation/neural-simulation-platforms.md` | Alpamayo, Cosmos, 12+ sim platforms |
+| 3DGS & NeRF | `30-autonomy-stack/simulation/neural-scene-reconstruction.md` | Street Gaussians 135 FPS, SplatAD |
+| Airport Digital Twins | `30-autonomy-stack/simulation/airport-digital-twins.md` | Autonoma, SITA, $50K-$4M |
+| Simulators for Airside | `30-autonomy-stack/simulation/simulators-for-airside.md` | CARLA/AWSIM/Isaac Sim comparison |
 | Datasets & Benchmarks | `cross-cutting/data-engines-datasets.md` | Zero airside datasets, 4-phase bootstrap plan |
 | Synthetic Data | `cross-cutting/synthetic-data-generation.md` | Cosmos +16.2% mAP foggy, 7-phase pipeline |
 
@@ -462,9 +462,9 @@ Given that airside AV falls between automotive and aviation domains:
 | TensorRT Guide | `20-av-platform/compute/tensorrt-deployment-guide.md` | PointPillars 6.84ms, DLA deployment |
 | 4D Radar | `20-av-platform/sensors/4d-radar.md` | Continental ARS548, immune to all weather |
 | Airside Industry | `operations/airside/industry-overview.md` | 21 companies, FAA CertAlert 24-02 |
-| Multi-Agent & Fleet | `technology/multi-agent/fleet-coordination.md` | V2X, Moonware, 5G/CBRS, A-CDM |
-| Mapping & Localization | `technology/localization/mapping-and-localization.md` | Map-free driving, AIXM, NOTAM integration |
-| Robustness | `technology/robustness/adverse-conditions.md` | De-icing, jet blast, FOD, 4D radar |
+| Multi-Agent & Fleet | `30-autonomy-stack/multi-agent-v2x/fleet-coordination.md` | V2X, Moonware, 5G/CBRS, A-CDM |
+| Mapping & Localization | `30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md` | Map-free driving, AIXM, NOTAM integration |
+| Robustness | `60-safety-validation/verification-validation/robustness/adverse-conditions.md` | De-icing, jet blast, FOD, 4D radar |
 
 ---
 

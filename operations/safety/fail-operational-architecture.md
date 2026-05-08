@@ -1794,7 +1794,7 @@ These can be implemented immediately with existing hardware:
 - `cross-cutting/radar-lidar-fusion-adverse-weather.md` — Radar-LiDAR fusion for weather resilience
 - `20-av-platform/compute/nvidia-drive-thor.md` — Thor compute platform specs
 - `20-av-platform/drive-by-wire/can-bus-dbw.md` — CAN bus and drive-by-wire fundamentals
-- `technology/planning/safety-critical-planning-cbf.md` — Control barrier functions for safety
+- `30-autonomy-stack/planning/safety-critical-planning-cbf.md` — Control barrier functions for safety
 
 ### External
 - ISO 26262:2018 Parts 1-12, "Road vehicles — Functional safety"

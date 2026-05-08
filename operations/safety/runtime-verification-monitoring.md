@@ -497,7 +497,7 @@ rho < 0.0      →  VIOLATION (controlled stop, log incident, require operator c
 
 **Integration with Simplex:** The robustness degree from STL monitors feeds directly into the arbitrator node's decision logic (see [simplex-safety-architecture.md](simplex-safety-architecture.md)). When the minimum robustness across all active specs drops below the fallback threshold (e.g., 0.5m), the arbitrator switches from the neural AC stack to the classical BC stack. This provides a formally grounded trigger for Simplex transitions, replacing the ad-hoc OOD score thresholds currently in the arbitrator.
 
-**Integration with CBFs:** The STL robustness is complementary to CBF safety constraints (see [safety-critical-planning-cbf.md](../../technology/planning/safety-critical-planning-cbf.md)). CBFs enforce forward invariance of the safe set at the control level (100-200 Hz). STL monitors verify that the overall system behavior satisfies temporal properties at the monitoring level (10-50 Hz). CBFs prevent entering the unsafe region; STL monitors detect if the system is approaching the boundary.
+**Integration with CBFs:** The STL robustness is complementary to CBF safety constraints (see [safety-critical-planning-cbf.md](../../30-autonomy-stack/planning/safety-critical-planning-cbf.md)). CBFs enforce forward invariance of the safe set at the control level (100-200 Hz). STL monitors verify that the overall system behavior satisfies temporal properties at the monitoring level (10-50 Hz). CBFs prevent entering the unsafe region; STL monitors detect if the system is approaching the boundary.
 
 ```
 Temporal scope comparison:
@@ -2913,11 +2913,11 @@ class SafetyEvidenceLogger:
 |-------|----------|-----------|
 | Simplex architecture, arbitrator code | [simplex-safety-architecture.md](simplex-safety-architecture.md) | Runtime monitors feed into arbitrator decision logic |
 | Failure modes and SOTIF analysis | [failure-modes-analysis.md](failure-modes-analysis.md) | OOD triggers map to SOTIF triggering conditions |
-| CBF safety filter | [../../technology/planning/safety-critical-planning-cbf.md](../../technology/planning/safety-critical-planning-cbf.md) | CBF-QP sits downstream of shield enforcer |
+| CBF safety filter | [../../30-autonomy-stack/planning/safety-critical-planning-cbf.md](../../30-autonomy-stack/planning/safety-critical-planning-cbf.md) | CBF-QP sits downstream of shield enforcer |
 | Functional safety software (MISRA, ISO 26262 Pt 6) | [functional-safety-software.md](functional-safety-software.md) | Safety MCU firmware, static analysis pipeline |
 | Testing and validation methodology | [testing-validation-methodology.md](testing-validation-methodology.md) | Offline monitoring for regression testing |
 | Scenario taxonomy | [airside-scenario-taxonomy.md](airside-scenario-taxonomy.md) | STL specs map to scenario hazards |
-| Neuro-symbolic scene graphs | [../../technology/planning/neuro-symbolic-scene-graphs.md](../../technology/planning/neuro-symbolic-scene-graphs.md) | STL specs on scene graph predicates |
+| Neuro-symbolic scene graphs | [../../30-autonomy-stack/planning/neuro-symbolic-scene-graphs.md](../../30-autonomy-stack/planning/neuro-symbolic-scene-graphs.md) | STL specs on scene graph predicates |
 | FOD and jet blast | [../airside/fod-and-jetblast.md](../airside/fod-and-jetblast.md) | Jet blast zone geometry for STL specs |
 | Ground control instructions | [../airside/ground-control-instructions.md](../airside/ground-control-instructions.md) | NOTAM parsing for ODD monitor |
 | Multi-airport adaptation | [../deployment/multi-airport-adaptation.md](../deployment/multi-airport-adaptation.md) | Safe harbor positions, ODD parameters per airport |

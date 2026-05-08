@@ -1037,6 +1037,6 @@ TSN enables cleaner ASIL decomposition (see fail-operational-architecture.md):
 - `20-av-platform/networking-connectivity/airport-5g-cbrs.md` — Airport 5G infrastructure (TSN bridge endpoint)
 - `operations/safety/fail-operational-architecture.md` — Fail-operational architecture (TSN enables ASIL decomposition)
 - `operations/safety/cybersecurity-airside-av.md` — Cybersecurity (MACsec over TSN)
-- `technology/multi-agent/v2x-protocols-airside.md` — V2X protocols (transported over 5G TSN bridge)
+- `30-autonomy-stack/multi-agent-v2x/v2x-protocols-airside.md` — V2X protocols (transported over 5G TSN bridge)
 - `20-av-platform/sensors/multi-lidar-calibration.md` — Multi-LiDAR calibration (gPTP synchronization)
 - `hardware/vehicle/can-bus-drive-by-wire.md` — Current CAN architecture (migration source)

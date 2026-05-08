@@ -443,7 +443,7 @@ Building on PTv3's backbone:
 
 These represent the **current absolute state-of-the-art** for 3D point cloud perception.
 
-For detailed segmentation method comparisons, see `technology/perception/lidar-semantic-segmentation.md`.
+For detailed segmentation method comparisons, see `30-autonomy-stack/perception/overview/lidar-semantic-segmentation.md`.
 
 ### 2.5 Comparison: Point Transformer Lineage
 
@@ -602,7 +602,7 @@ Speed on A100:
 
 **Airside relevance:** FlatFormer's 2D flattening aligns with the fact that airside environments are largely **planar** -- most objects sit on the apron surface. The height information compressed into pillars is sufficient for distinguishing aircraft parts, GSE, and personnel.
 
-For FlatFormer's deployment characteristics on Orin, see `technology/perception/lidar-semantic-segmentation.md`.
+For FlatFormer's deployment characteristics on Orin, see `30-autonomy-stack/perception/overview/lidar-semantic-segmentation.md`.
 
 ### 3.5 DVT — Dynamic Voxel Transformer (2023)
 
@@ -633,7 +633,7 @@ Benefits:
 | **TensorRT** | Harder (custom ops) | Easier (standard 2D ops) |
 | **Best for** | Segmentation, fine-grained | Detection, real-time |
 
-**Recommendation for Aurrigo:** Use PTv3 for offline/training (best accuracy, especially segmentation). Use FlatFormer or PointPillars for real-time on Orin (faster, easier TensorRT). See the multi-head architecture in `technology/perception/multi-task-unified-perception.md` for combining both in a shared backbone.
+**Recommendation for Aurrigo:** Use PTv3 for offline/training (best accuracy, especially segmentation). Use FlatFormer or PointPillars for real-time on Orin (faster, easier TensorRT). See the multi-head architecture in `30-autonomy-stack/perception/overview/multi-task-unified-perception.md` for combining both in a shared backbone.
 
 ---
 
@@ -1089,7 +1089,7 @@ Given BEV features at times t-2, t-1, t:
 | TransFusion | LiDAR+Cam | LiDAR BEV + soft-association cross-attn | None | 71.7% | 95ms |
 
 For Aurrigo's LiDAR-only stack, CenterPoint-style pillar BEV (no attention) remains the fastest option. BEV attention becomes valuable when:
-1. Adding cameras (degraded-mode fallback -- see `technology/perception/camera-fallback-perception.md`)
+1. Adding cameras (degraded-mode fallback -- see `30-autonomy-stack/perception/overview/camera-fallback-perception.md`)
 2. Multi-LiDAR fusion beyond simple concatenation
 3. Temporal modeling for tracking/prediction
 
@@ -2007,7 +2007,7 @@ Strategy for hybrid DLA + GPU:
     GPU: 2-layer BEV self-attention (5ms INT8)
     Total: 11ms -- vs 13ms all-GPU
     Saves GPU for other concurrent models (see multi-model orchestration in
-    technology/perception/model-compression-edge-deployment.md)
+    30-autonomy-stack/perception/overview/model-compression-edge-deployment.md)
 ```
 
 ### 10.6 Memory Budget on Orin
@@ -2760,8 +2760,8 @@ if __name__ == '__main__':
 - `10-knowledge-base/machine-learning/transformer-world-models.md` -- Attention mechanism fundamentals
 - `10-knowledge-base/geometry-3d/pointpillars.md` -- PointPillars architecture (BEV baseline)
 - `10-knowledge-base/machine-learning/mamba-ssm-for-driving.md` -- Sub-quadratic alternative to attention
-- `technology/perception/lidar-semantic-segmentation.md` -- Segmentation methods including FlatFormer, SalsaNext
-- `technology/perception/model-compression-edge-deployment.md` -- Compression and Orin deployment
+- `30-autonomy-stack/perception/overview/lidar-semantic-segmentation.md` -- Segmentation methods including FlatFormer, SalsaNext
+- `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` -- Compression and Orin deployment
 - `20-av-platform/compute/tensorrt-deployment-guide.md` -- TensorRT conversion pipeline
-- `technology/perception/multi-task-unified-perception.md` -- Shared backbone multi-head architecture
+- `30-autonomy-stack/perception/overview/multi-task-unified-perception.md` -- Shared backbone multi-head architecture
 - `synthesis/design-spec.md` -- Simplex architecture (AC/BC pattern)

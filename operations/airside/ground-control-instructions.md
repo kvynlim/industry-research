@@ -1693,7 +1693,7 @@ Building full instruction understanding provides:
 ### Related Repository Documents
 - `operations/airside/airport-data-systems-detailed.md` — API endpoints for NOTAM, AIDX, ACRIS
 - `operations/airside/turnaround-prediction.md` — Turnaround phase model
-- `technology/localization/hd-map-standards-airside.md` — AMDB/Lanelet2 for route graphs
+- `30-autonomy-stack/localization-mapping/maps/hd-map-standards-airside.md` — AMDB/Lanelet2 for route graphs
 - `operations/safety/airside-scenario-taxonomy.md` — Scenario catalog including instruction failures
-- `technology/vla/vlm-scene-understanding.md` — VLM for NOTAM interpretation
+- `30-autonomy-stack/vla-vlm/vlm-scene-understanding.md` — VLM for NOTAM interpretation
 - `operations/deployment/fleet-management-dispatch.md` — Fleet dispatch architecture

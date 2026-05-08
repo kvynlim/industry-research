@@ -601,4 +601,4 @@ When all POCs are integrated, you have the Simplex high-performance controller f
 | `synthesis/risk-register.md` | 18 risks to POC execution with mitigations |
 | `synthesis/competitive-landscape.md` | Why world models differentiate from all competitors |
 | `synthesis/design-spec.md` | Full Simplex architecture these POCs build toward |
-| `technology/e2e-driving/e2e-world-model-pipeline.md` | Detailed 7-day quick start with tensor shapes |
+| `30-autonomy-stack/end-to-end-driving/e2e-world-model-pipeline.md` | Detailed 7-day quick start with tensor shapes |

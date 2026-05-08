@@ -49,15 +49,15 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 ### Phase 8: Method-Level SLAM Expansion and Coverage Audit
 - **Method:** Parallel web-search agents audited LiDAR, visual, dense/RGB-D, LiDAR-visual-inertial, radar, registration, loop-closure, and backend SLAM coverage against the existing method library
-- **Output:** Dedicated [GLIM](technology/localization/slam/glim.md) method file plus [SLAM Coverage Audit and Backlog](technology/localization/slam/coverage-audit-2026.md), with P0/P1/P2 missing-method queues, 2026-05-08 latest-method and gap-discovery sweeps, and source links
+- **Output:** Dedicated [GLIM](30-autonomy-stack/localization-mapping/slam-methods/glim.md) method file plus [SLAM Coverage Audit and Backlog](30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md), with P0/P1/P2 missing-method queues, 2026-05-08 latest-method and gap-discovery sweeps, and source links
 
 ### Phase 9: Perception Stack Coverage Audit
 - **Method:** Multiple rounds of parallel research agents audited camera BEV, occupancy, LiDAR/radar/thermal/event perception, open-world/OOD perception, temporal tracking, cooperative/V2X perception, robustness, deployment validation, and benchmarks
-- **Output:** [Perception Coverage Audit and Backlog](technology/perception/coverage-audit-2026.md), with P0/P1/P2 missing-method queues, benchmark gaps, discoverability fixes, and source links
+- **Output:** [Perception Coverage Audit and Backlog](30-autonomy-stack/perception/overview/coverage-audit-2026.md), with P0/P1/P2 missing-method queues, benchmark gaps, discoverability fixes, and source links
 
 ### Phase 10: Method-Level Perception Library
 - **Method:** Five parallel writing agents split the perception coverage audit into atomic, one-method research files across camera BEV/occupancy, LiDAR/radar/event/FMCW perception, open-world/open-vocabulary perception, robust fusion/validation, and cooperative/latency/data-engine methods
-- **Output:** [Perception Method Library](technology/perception/methods/overview.md), with 54 single-technique method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
+- **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), with 54 single-technique method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
 
 ## Quality Controls
 

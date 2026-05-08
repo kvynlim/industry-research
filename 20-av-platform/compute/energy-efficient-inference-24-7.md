@@ -2012,13 +2012,13 @@ alerts:
 
 - `20-av-platform/compute/nvidia-orin-technical.md` — Orin SoC architecture, power modes, thermal specs, inference benchmarks
 - `20-av-platform/compute/tensorrt-deployment-guide.md` — TensorRT engine builds, DLA targeting, quantization
-- `technology/perception/model-compression-edge-deployment.md` — DLA offloading strategy, multi-model orchestration, compressed model recipes
+- `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` — DLA offloading strategy, multi-model orchestration, compressed model recipes
 - `operations/airside/battery-charging-infrastructure.md` — Battery specs, charging strategies, fleet charging economics
 - `operations/deployment/fleet-management-dispatch.md` — Fleet routing, dispatch algorithms, NVIDIA Fleet Command
 - `technology/perception/infrastructure-cooperative-v2i.md` — V2I/V2V cooperative perception, Where2comm bandwidth
 - `hardware/sensors/robosense-lidar-products.md` — RoboSense RSHELIOS/RSBP power and interface specs
 - `operations/safety/functional-safety-software.md` — MISRA C, safety-critical node lifecycle
-- `technology/perception/night-operations-thermal-fusion.md` — YOLO-Thermal on DLA, thermal camera power
+- `30-autonomy-stack/perception/overview/night-operations-thermal-fusion.md` — YOLO-Thermal on DLA, thermal camera power
 
 ---
 

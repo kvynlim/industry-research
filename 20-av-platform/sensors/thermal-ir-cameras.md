@@ -646,9 +646,9 @@ Adding thermal to the recommended airside sensor suite (from `synthesis/master-s
 |-------|----------|
 | 4D radar (all-weather primary) | `20-av-platform/sensors/4d-radar.md` |
 | Ground crew safety (hi-vis paradox) | `operations/safety/ground-crew-pedestrian-safety.md` |
-| Adverse conditions (de-icing, fog) | `technology/robustness/airside-adverse-conditions.md` |
+| Adverse conditions (de-icing, fog) | `60-safety-validation/verification-validation/robustness/airside-adverse-conditions.md` |
 | FOD and jet blast | `operations/airside/fod-and-jetblast.md` |
-| Production perception systems | `technology/perception/production-perception-systems.md` |
+| Production perception systems | `30-autonomy-stack/perception/overview/production-perception-systems.md` |
 | Sensor fusion architectures | `cross-cutting/sensor-fusion-architectures.md` |
 | NVIDIA Orin technical | `20-av-platform/compute/nvidia-orin-technical.md` |
-| Infrastructure cooperative perception | `technology/perception/infrastructure-cooperative-perception.md` |
+| Infrastructure cooperative perception | `30-autonomy-stack/perception/overview/infrastructure-cooperative-perception.md` |

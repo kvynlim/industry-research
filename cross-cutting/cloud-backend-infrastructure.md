@@ -1263,5 +1263,5 @@ Each airport gets:
 - `operations/deployment/av-cicd-devops-pipeline.md` — CI/CD for code, models, and fleet deployment
 - `operations/deployment/ota-fleet-management.md` — OTA model and map deployment to vehicles
 - `operations/deployment/fleet-predictive-maintenance.md` — Maintenance data feeds from this pipeline
-- `technology/localization/hd-map-change-detection-maintenance.md` — Map update data flow
+- `30-autonomy-stack/localization-mapping/maps/hd-map-change-detection-maintenance.md` — Map update data flow
 - `20-av-platform/compute/edge-cloud-hybrid-inference.md` — Edge server architecture (complementary)

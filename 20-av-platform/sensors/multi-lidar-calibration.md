@@ -76,7 +76,7 @@ For angular_error = 0.1 deg:
 | 0.5 deg / 10 cm | Perception failure at boundaries | GTSAM divergence risk | Unsafe |
 | > 1.0 deg | Fused cloud unusable | Localization failure | Critical |
 
-For airside operations where personnel detection at close range is safety-critical, even 5 cm displacement can shift a ground crew member's foot between occupied and free voxels in the occupancy grid (see `technology/perception/uncertainty-quantification-calibration.md` for uncertainty propagation details).
+For airside operations where personnel detection at close range is safety-critical, even 5 cm displacement can shift a ground crew member's foot between occupied and free voxels in the occupancy grid (see `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` for uncertainty propagation details).
 
 ### 1.3 Calibration Challenges Specific to Airport Airside
 
@@ -2519,6 +2519,6 @@ Total: 16 weeks, $38,000-57,000
 **Related Documents in This Repository:**
 - `20-av-platform/sensors/robosense-lidar.md` — RoboSense RSHELIOS and RSBP specifications
 - `10-knowledge-base/state-estimation/gtsam-factor-graphs.md` — GTSAM factor graph optimization, VGICP details
-- `technology/perception/uncertainty-quantification-calibration.md` — Uncertainty quantification and confidence calibration
+- `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` — Uncertainty quantification and confidence calibration
 - `operations/safety/runtime-verification-monitoring.md` — Runtime monitoring, safety MCU pattern
 - `operations/safety/functional-safety-software.md` — MISRA C, ISO 26262, ASIL decomposition

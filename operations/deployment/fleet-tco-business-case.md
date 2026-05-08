@@ -211,7 +211,7 @@ Software and R&D costs are amortized across the fleet. Unlike per-vehicle hardwa
 |---|---|---|---|
 | **Core autonomy stack development** | $2,000,000-10,000,000 | 5-10 years | Perception, planning, localization, control (already spent for Aurrigo) |
 | **ML model development (initial)** | $50,000-150,000 | 2-3 years | Training infrastructure, initial model development beyond current RANSAC |
-| **Simulation infrastructure** | $50,000-100,000 | 3-5 years | Digital twin, scenario testing (see [airport digital twins](../../technology/simulation/airport-digital-twins.md)) |
+| **Simulation infrastructure** | $50,000-100,000 | 3-5 years | Digital twin, scenario testing (see [airport digital twins](../../30-autonomy-stack/simulation/airport-digital-twins.md)) |
 | **Teleoperation software** | $100,000-300,000 | 3-5 years | Video streaming, control interface, handoff protocol |
 | **Fleet management platform** | $100,000-250,000 | 3-5 years | Dispatch, monitoring, OTA updates (see [fleet-management-dispatch.md](fleet-management-dispatch.md)) |
 | **Data pipeline and labeling tools** | $50,000-150,000 | 3-5 years | Auto-labeling with SAM + CLIP, active learning (see data flywheel) |

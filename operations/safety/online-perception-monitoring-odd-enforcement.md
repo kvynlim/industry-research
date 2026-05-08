@@ -1095,7 +1095,7 @@ Calibrated during commissioning per airport:
 
 ### 6.1 Methods for Airside Perception
 
-Three complementary OOD detection methods, each with different strengths (see `technology/perception/uncertainty-quantification-calibration.md` for mathematical foundations):
+Three complementary OOD detection methods, each with different strengths (see `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` for mathematical foundations):
 
 **Method 1: Energy-based OOD Score**
 
@@ -3205,7 +3205,7 @@ class FaultInjectionTest:
 - `operations/safety/weather-adaptive-odd-management.md` -- Environmental ODD state machine, METAR integration
 - `operations/safety/simplex-safety-architecture.md` -- Dual-stack AC/BC architecture
 - `operations/safety/fail-operational-architecture.md` -- ASIL decomposition, redundancy patterns
-- `technology/perception/uncertainty-quantification-calibration.md` -- Epistemic/aleatoric decomposition, conformal prediction
+- `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` -- Epistemic/aleatoric decomposition, conformal prediction
 - `hardware/sensors/multi-lidar-extrinsic-calibration.md` -- Calibration procedures, thermal drift compensation
 - `technology/localization/mapping-localization.md` -- GTSAM factor graph, innovation sequences
 - `hardware/sensors/4d-imaging-radar.md` -- Continental ARS548 integration

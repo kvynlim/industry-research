@@ -1326,7 +1326,7 @@ For a 20-vehicle fleet with $48K initial inventory: **annual holding cost = $7,2
 
 ### 6.1 Joint Maintenance-Operations Scheduling
 
-Maintenance scheduling for autonomous GSE must integrate with the fleet task allocation system (see [fleet-task-allocation-scheduling.md](../../technology/multi-agent/fleet-task-allocation-scheduling.md)) and A-CDM-driven demand prediction. The key constraint: maintenance cannot be scheduled independently of operations because pulling a vehicle reduces fleet capacity.
+Maintenance scheduling for autonomous GSE must integrate with the fleet task allocation system (see [fleet-task-allocation-scheduling.md](../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md)) and A-CDM-driven demand prediction. The key constraint: maintenance cannot be scheduled independently of operations because pulling a vehicle reduces fleet capacity.
 
 ```
 MAINTENANCE SCHEDULING INPUTS AND CONSTRAINTS
@@ -1384,7 +1384,7 @@ where:
   H = maximum maintenance hours per time slot
 ```
 
-This MIP is solvable by CP-SAT (Google OR-Tools) for fleet sizes up to 100 vehicles with 20+ task types --- consistent with the fleet task allocation approach in [fleet-task-allocation-scheduling.md](../../technology/multi-agent/fleet-task-allocation-scheduling.md).
+This MIP is solvable by CP-SAT (Google OR-Tools) for fleet sizes up to 100 vehicles with 20+ task types --- consistent with the fleet task allocation approach in [fleet-task-allocation-scheduling.md](../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md).
 
 ### 6.3 Opportunity Maintenance
 
@@ -2283,7 +2283,7 @@ Each phase delivers standalone value. Phase 1 alone provides visibility into fle
 - [Sensor Degradation and Health Monitoring](../../20-av-platform/sensors/sensor-degradation-health-monitoring.md) --- Per-sensor diagnostics, cross-sensor consistency, Level 1 of PHM
 - [Fleet Management and Dispatch](fleet-management-dispatch.md) --- Fleet dispatch integration, health-aware vehicle assignment
 - [Fleet TCO and Business Case](fleet-tco-business-case.md) --- Maintenance cost context within total cost model
-- [Fleet Task Allocation and Scheduling](../../technology/multi-agent/fleet-task-allocation-scheduling.md) --- CP-SAT scheduling, disruption handling, maintenance vehicle routing
+- [Fleet Task Allocation and Scheduling](../../30-autonomy-stack/multi-agent-v2x/fleet-task-allocation-scheduling.md) --- CP-SAT scheduling, disruption handling, maintenance vehicle routing
 - [CAN Bus and Drive-by-Wire](../../20-av-platform/drive-by-wire/can-bus-dbw.md) --- CAN signal specifications, SocketCAN integration
 - [Multi-LiDAR Extrinsic Calibration](../../20-av-platform/sensors/multi-lidar-calibration.md) --- Post-swap recalibration procedures
 - [Multi-Airport Domain Adaptation](multi-airport-adaptation.md) --- Per-airport depot setup, 8-week onboarding timeline

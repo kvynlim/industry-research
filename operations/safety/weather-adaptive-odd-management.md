@@ -1617,8 +1617,8 @@ if __name__ == '__main__':
 ### Internal Repository
 - `operations/safety/airside-scenario-taxonomy.md` — SOTIF hazard catalog, scenario parameters including weather
 - `operations/safety/runtime-verification-monitoring.md` — STL monitors, METAR→ODD mentioned
-- `technology/robustness/airside-adverse-conditions.md` — Sensor performance in adverse weather
-- `technology/perception/night-operations-thermal-fusion.md` — Night perception, thermal cameras
+- `60-safety-validation/verification-validation/robustness/airside-adverse-conditions.md` — Sensor performance in adverse weather
+- `30-autonomy-stack/perception/overview/night-operations-thermal-fusion.md` — Night perception, thermal cameras
 - `cross-cutting/radar-lidar-fusion-adverse-weather.md` — Radar-LiDAR fusion, de-icing handling
 - `20-av-platform/sensors/sensor-degradation-health-monitoring.md` — Sensor health monitoring integration
 - `20-av-platform/compute/energy-efficient-inference-24-7.md` — Thermal throttling, power modes

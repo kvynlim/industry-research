@@ -636,7 +636,7 @@ This three-phase approach combines the data efficiency of centralized pre-traini
 
 ### 3.3 Federated BEV Perception
 
-If Aurrigo adds cameras and moves toward BEV perception (see `technology/perception/bev-encoding.md`), federated BEV training introduces additional challenges:
+If Aurrigo adds cameras and moves toward BEV perception (see `30-autonomy-stack/perception/overview/bev-encoding.md`), federated BEV training introduces additional challenges:
 
 **Camera intrinsic heterogeneity**: Different camera configurations across vehicle types produce different image resolutions, field-of-view, and distortion characteristics. BEV transformers use these intrinsics in the view transform, so models must handle heterogeneous inputs.
 
@@ -914,7 +914,7 @@ class FederatedLoRA:
 ```
 
 **LoRA FL is the recommended approach** for Aurrigo because:
-1. PointLoRA (CVPR 2025) already demonstrated effectiveness for LiDAR point cloud fine-tuning (see `technology/perception/lidar-foundation-models.md`)
+1. PointLoRA (CVPR 2025) already demonstrated effectiveness for LiDAR point cloud fine-tuning (see `30-autonomy-stack/perception/overview/lidar-foundation-models.md`)
 2. 500 labeled frames sufficient for same-cluster transfer with 1-3% mAP gap (see `operations/deployment/multi-airport-adaptation.md`)
 3. Communication overhead is negligible over airport 5G
 
@@ -1528,7 +1528,7 @@ Replay buffers store examples from previous tasks to prevent forgetting. In FL, 
 | **Feature replay** | Moderate risk | Moderate | Feature vectors | Good |
 | **Federated distillation replay** | Preserved | Public dataset | Soft labels | Good |
 
-**Generative replay for LiDAR**: Train a small LiDAR point cloud generator (e.g., a lightweight version of LidarDM, see `technology/world-models/lidar-native-world-models.md`) that can regenerate representative point cloud scenes from past airports. Only the generator weights are shared, not the generated data.
+**Generative replay for LiDAR**: Train a small LiDAR point cloud generator (e.g., a lightweight version of LidarDM, see `30-autonomy-stack/world-models/lidar-native-world-models.md`) that can regenerate representative point cloud scenes from past airports. Only the generator weights are shared, not the generated data.
 
 ```python
 class FederatedGenerativeReplay:
@@ -2714,8 +2714,8 @@ Fleet size 100+ vehicles, 10+ airports, multi-country:
 - `cross-cutting/continual-learning.md` -- Continual learning fundamentals and Section 9 on FL
 - `cross-cutting/collaborative-fleet-perception.md` -- V2V cooperative perception
 - `operations/deployment/multi-airport-adaptation.md` -- Multi-airport onboarding playbook
-- `technology/perception/lidar-foundation-models.md` -- PointLoRA and LiDAR pre-training
-- `technology/perception/bev-encoding.md` -- BEV perception architecture
+- `30-autonomy-stack/perception/overview/lidar-foundation-models.md` -- PointLoRA and LiDAR pre-training
+- `30-autonomy-stack/perception/overview/bev-encoding.md` -- BEV perception architecture
 - `20-av-platform/networking-connectivity/airport-5g-cbrs.md` -- Airport 5G infrastructure
 - `20-av-platform/compute/nvidia-orin-technical.md` -- Orin compute specifications
 - `foundations/pointpillars-technical.md` -- PointPillars architecture details

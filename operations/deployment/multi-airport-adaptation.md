@@ -1194,10 +1194,10 @@ All gates passed?
 - FAA AMDB Portal — Free AMDB data for 500+ US airports
 
 ### Related Repository Documents
-- `technology/localization/hd-map-standards-airside.md` — AMDB/AMXM conversion pipeline
-- `technology/localization/lidar-slam-algorithms.md` — KISS-ICP, LIO-SAM comparison
-- `technology/perception/lidar-foundation-models.md` — PTv3, PointLoRA
-- `technology/robustness/test-time-adaptation-airside.md` — TTA methods for domain shift
+- `30-autonomy-stack/localization-mapping/maps/hd-map-standards-airside.md` — AMDB/AMXM conversion pipeline
+- `30-autonomy-stack/localization-mapping/overview/lidar-slam-algorithms.md` — KISS-ICP, LIO-SAM comparison
+- `30-autonomy-stack/perception/overview/lidar-foundation-models.md` — PTv3, PointLoRA
+- `30-autonomy-stack/perception/overview/test-time-adaptation-airside.md` — TTA methods for domain shift
 - `cross-cutting/fleet-data-pipeline.md` — Data collection and labeling workflows
 - `operations/deployment/deployment-playbook.md` — General deployment methodology
-- `technology/perception/model-compression-edge-deployment.md` — Orin deployment recipes
+- `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` — Orin deployment recipes

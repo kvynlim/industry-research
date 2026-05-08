@@ -239,7 +239,7 @@ Verify: forall s in S_unsafe : f_simplex(s) = SWITCH_TO_BC
 
 This ensures the Simplex architecture never fails to switch to the safe baseline when the system state enters an unsafe region.
 
-**CBF approximator:** If a neural network approximates the CBF value function h(x) (see `technology/planning/safety-critical-planning-cbf.md`), verifying that h(x) >= 0 implies safety requires:
+**CBF approximator:** If a neural network approximates the CBF value function h(x) (see `30-autonomy-stack/planning/safety-critical-planning-cbf.md`), verifying that h(x) >= 0 implies safety requires:
 
 ```
 Verify: forall x in X_boundary : h_nn(x) >= h_true(x) - delta
@@ -635,7 +635,7 @@ Training networks with explicit Lipschitz constraints produces models that are b
 
 ### 6.4 From Lipschitz to CBF Safety Margins
 
-The connection between Lipschitz bounds and CBF safety filters (see `technology/planning/safety-critical-planning-cbf.md`) is direct:
+The connection between Lipschitz bounds and CBF safety filters (see `30-autonomy-stack/planning/safety-critical-planning-cbf.md`) is direct:
 
 If the CBF value function h(x) is approximated by a neural network h_nn(x) with Lipschitz constant L_h, and the state estimation error is bounded by ||x - x_hat|| <= delta_x, then:
 
@@ -649,7 +649,7 @@ where epsilon_approx is the maximum approximation error (from verification). The
 h_nn(x_hat) >= L_h * delta_x + epsilon_approx   (tightened constraint)
 ```
 
-This directly connects to measurement-robust CBFs described in `technology/planning/safety-critical-planning-cbf.md`, where GTSAM pose covariance provides delta_x.
+This directly connects to measurement-robust CBFs described in `30-autonomy-stack/planning/safety-critical-planning-cbf.md`, where GTSAM pose covariance provides delta_x.
 
 ---
 
@@ -884,7 +884,7 @@ The insufficient radii for crouching personnel and FOD at long range indicate th
 
 ### 9.2 Planning: Trajectory Safety Verification
 
-For neural motion planners (see `technology/planning/neural-motion-planning.md`), verify that generated trajectories satisfy kinematic and safety constraints:
+For neural motion planners (see `30-autonomy-stack/planning/neural-motion-planning.md`), verify that generated trajectories satisfy kinematic and safety constraints:
 
 **Property 1 -- Kinematic feasibility:**
 ```
@@ -940,7 +940,7 @@ where e_y is lateral error and e_psi is heading error. This guarantees convergen
 
 ### 9.4 Verification for Multi-Task Perception
 
-For the shared-backbone multi-head architecture described in `technology/perception/multi-task-unified-perception.md`, verification faces an additional challenge: task interference. A perturbation that preserves detection accuracy might degrade segmentation.
+For the shared-backbone multi-head architecture described in `30-autonomy-stack/perception/overview/multi-task-unified-perception.md`, verification faces an additional challenge: task interference. A perturbation that preserves detection accuracy might degrade segmentation.
 
 **Cross-task robustness:** Verify that for all perturbations within epsilon, ALL task heads maintain correct outputs:
 
@@ -1168,7 +1168,7 @@ to runtime safety parameters.
 
 Integrates with:
 - Simplex decision module (operations/safety/simplex-safety-architecture.md)
-- CBF safety filter (technology/planning/safety-critical-planning-cbf.md)
+- CBF safety filter (30-autonomy-stack/planning/safety-critical-planning-cbf.md)
 - STL runtime monitors (operations/safety/runtime-verification-monitoring.md)
 
 Publishes verified safety margins to /safety/verified_margins topic
@@ -1423,7 +1423,7 @@ Formal verification slots into Aurrigo's existing defense-in-depth architecture 
 │    - Anomaly detection and health monitoring                  │
 │                                                              │
 │  Layer 2: CBF Safety Filter (<500us)                          │
-│    [technology/planning/safety-critical-planning-cbf.md]      │
+│    [30-autonomy-stack/planning/safety-critical-planning-cbf.md]      │
 │    - CBF-QP with VERIFIED safety margins from Layer 0        │
 │    - Measurement-robust CBFs using GTSAM covariance          │
 │    - Margins TIGHTENED by Lipschitz * sensor_noise            │
@@ -1694,12 +1694,12 @@ Breakeven: verification pays for itself if it prevents even a single safety inci
 ### Related Repository Documents
 
 - `operations/safety/runtime-verification-monitoring.md` -- Runtime STL monitors, OOD detection, shield synthesis
-- `technology/planning/safety-critical-planning-cbf.md` -- CBF safety filters, measurement-robust CBFs
+- `30-autonomy-stack/planning/safety-critical-planning-cbf.md` -- CBF safety filters, measurement-robust CBFs
 - `operations/safety/simplex-safety-architecture.md` -- Simplex AC/BC architecture
 - `operations/safety/functional-safety-software.md` -- ISO 26262 Part 6, MISRA C
 - `operations/safety/testing-validation-methodology.md` -- Statistical safety testing, Zhao-Weng formula
-- `technology/planning/reinforcement-learning-driving-policy.md` -- Policy network architecture
+- `30-autonomy-stack/planning/reinforcement-learning-driving-policy.md` -- Policy network architecture
 - `20-av-platform/compute/nvidia-orin-technical.md` -- Deployment target specifications
-- `technology/perception/model-compression-edge-deployment.md` -- Model sizes and TensorRT optimization
-- `technology/perception/multi-task-unified-perception.md` -- Shared-backbone verification challenges
+- `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` -- Model sizes and TensorRT optimization
+- `30-autonomy-stack/perception/overview/multi-task-unified-perception.md` -- Shared-backbone verification challenges
 - `technology/planning/causal-reasoning-counterfactual-planning.md` -- EU PLD compliance context
