@@ -17,6 +17,7 @@ test('GitHub Pages workflow builds and deploys the VitePress artifact', () => {
   assert.match(workflow, /name: Deploy VitePress site to Pages/)
   assert.match(workflow, /branches: \[main\]/)
   assert.match(workflow, /workflow_dispatch:/)
+  assert.match(workflow, /FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true/)
   assert.match(workflow, /contents: read/)
   assert.match(workflow, /pages: write/)
   assert.match(workflow, /id-token: write/)
