@@ -112,7 +112,7 @@ For airside operations at 5-25 km/h, **linear alpha with gamma = 1.0-3.0** provi
 
 ### 1.3 CBF with the Bicycle Kinematic Model
 
-Aurrigo's ADT3 uses a bicycle kinematic model (documented in `hardware/vehicle/bicycle-kinematic-model.md`) with state `x = [px, py, theta, v]` and control `u = [a, delta]` where a is acceleration and delta is front steering angle.
+Aurrigo's ADT3 uses a bicycle kinematic model (documented in `20-av-platform/drive-by-wire/bicycle-kinematic-model.md`) with state `x = [px, py, theta, v]` and control `u = [a, delta]` where a is acceleration and delta is front steering angle.
 
 **System Dynamics (Control-Affine Form):**
 
@@ -152,7 +152,7 @@ This simplification is valid because:
 
 For the full 2D CBF with both acceleration and steering, see Section 1.5 (Higher-Order CBF).
 
-**ADT3 Parameters (from `hardware/vehicle/bicycle-kinematic-model.md`):**
+**ADT3 Parameters (from `20-av-platform/drive-by-wire/bicycle-kinematic-model.md`):**
 
 ```python
 ADT3_PARAMS = {

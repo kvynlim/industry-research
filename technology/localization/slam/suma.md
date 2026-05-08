@@ -4,7 +4,7 @@
 
 SuMa, short for Surfel-based Mapping, is a dense 3D LiDAR SLAM method by Behley and Stachniss. It builds a surfel map from rotating 3D laser scans, renders synthetic model views from that map, and performs projective point-to-plane alignment between the current scan and the rendered map. It also includes loop-closure detection and pose-graph optimization to produce globally consistent maps.
 
-SuMa is historically important because it brought dense surfel mapping ideas from RGB-D SLAM into large-scale outdoor LiDAR mapping and ran online on KITTI-scale data. It is less suitable as a modern production airside localization method because it assumes ordered rotating LiDAR scans, depends on GPU/OpenGL rendering, lacks tight IMU fusion, and predates current direct LIO front ends. Its surfel stability and semantic extension, SuMa++, are still useful ideas for map maintenance and dynamic-object filtering. For comparison with newer methods, see [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md).
+SuMa is historically important because it brought dense surfel mapping ideas from RGB-D SLAM into large-scale outdoor LiDAR mapping and ran online on KITTI-scale data. It is less suitable as a modern production airside localization method because it assumes ordered rotating LiDAR scans, depends on GPU/OpenGL rendering, lacks tight IMU fusion, and predates current direct LIO front ends. Its surfel stability and semantic extension, SuMa++, are still useful ideas for map maintenance and dynamic-object filtering. For comparison with newer methods, see [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Historical Context
 
@@ -80,7 +80,7 @@ min_{T_1...T_N}
   + sum loop_closure_constraints
 ```
 
-The graph optimization is conceptually aligned with the factor-graph material in [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md), though SuMa uses its own mapping pipeline around the graph.
+The graph optimization is conceptually aligned with the factor-graph material in [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md), though SuMa uses its own mapping pipeline around the graph.
 
 ## Failure Modes
 
@@ -166,4 +166,4 @@ For operational airside vehicles, prefer a modern LiDAR-inertial odometry front 
 - Semantic SuMa repository. https://github.com/PRBonn/semantic_suma
 - Local context: [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md)
 - Local context: [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
-- Local context: [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md)
+- Local context: [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)

@@ -167,7 +167,7 @@ Connecting roads define the actual geometry through the junction. Priority rules
 
 ## 3. Lanelet2 and OSM
 
-Lanelet2 is covered in detail in `foundations/lanelet2-maps.md`. Key points for airside:
+Lanelet2 is covered in detail in `10-knowledge-base/robotics/lanelet2-maps.md`. Key points for airside:
 
 ### 3.1 Advantages for Airside
 
@@ -179,7 +179,7 @@ Lanelet2 is covered in detail in `foundations/lanelet2-maps.md`. Key points for 
 
 ### 3.2 Airport Extensions Needed
 
-See `foundations/lanelet2-maps.md` Section 7 for the proposed airside extension schema. Key additions:
+See `10-knowledge-base/robotics/lanelet2-maps.md` Section 7 for the proposed airside extension schema. Key additions:
 
 | Extension | Purpose |
 |-----------|---------|
@@ -953,7 +953,7 @@ New map nodes needed (ROS Noetic):
 
 | Topic | Document |
 |-------|----------|
-| Lanelet2 deep dive | `foundations/lanelet2-maps.md` |
+| Lanelet2 deep dive | `10-knowledge-base/robotics/lanelet2-maps.md` |
 | Map-free driving | `technology/localization/map-free-driving.md` |
 | Online neural mapping | `technology/localization/neural-online-mapping-sota.md` |
 | Mapping and localization | `technology/localization/mapping-and-localization.md` |

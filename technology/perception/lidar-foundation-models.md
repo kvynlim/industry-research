@@ -1053,16 +1053,16 @@ Part of NVIDIA Cosmos ecosystem:
 
 ## Cross-References to Other Documents in This Repository
 
-- **PointPillars architecture details:** `foundations/pointpillars.md`
+- **PointPillars architecture details:** `10-knowledge-base/geometry-3d/pointpillars.md`
 - **CenterPoint + OpenPCDet setup:** `technology/perception/openpcdet-centerpoint.md`
-- **TensorRT deployment guide:** `hardware/compute/tensorrt-deployment-guide.md`
-- **NVIDIA Orin specs (275 TOPS):** `hardware/compute/nvidia-orin-technical.md`
-- **NVIDIA Thor specs (~1000 TOPS):** `hardware/compute/nvidia-drive-thor.md`
+- **TensorRT deployment guide:** `20-av-platform/compute/tensorrt-deployment-guide.md`
+- **NVIDIA Orin specs (275 TOPS):** `20-av-platform/compute/nvidia-orin-technical.md`
+- **NVIDIA Thor specs (~1000 TOPS):** `20-av-platform/compute/nvidia-drive-thor.md`
 - **Vision foundation models (SAM, DINOv2, CLIP):** `technology/perception/vision-foundation-models.md`
 - **Open-vocabulary detection (Grounding DINO, YOLO-World):** `technology/perception/open-vocab-detection.md`
 - **DINOv2 for driving (LoRA integration):** `technology/perception/dinov2-foundation-models-driving.md`
 - **Occupancy world models:** `technology/world-models/occupancy-world-models.md`
 - **Sensor fusion architectures:** `cross-cutting/sensor-fusion-architectures.md`
-- **RoboSense LiDAR specs:** `hardware/sensors/robosense-lidar.md`
+- **RoboSense LiDAR specs:** `20-av-platform/sensors/robosense-lidar.md`
 - **Master synthesis:** `synthesis/master-synthesis.md`
 - **POC proposals:** `synthesis/poc-proposals.md`

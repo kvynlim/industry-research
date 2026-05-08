@@ -291,11 +291,11 @@ For airside AVs:
 - Treat unknown conservatively near aircraft and restricted zones.
 - Rebuild or submap-align after major pose graph corrections.
 
-The detailed production design should follow [Real-Time Occupancy Grid Mapping](../realtime-occupancy-grid-mapping.md), with pose sources and uncertainty from [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md).
+The detailed production design should follow [Real-Time Occupancy Grid Mapping](../realtime-occupancy-grid-mapping.md), with pose sources and uncertainty from [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Related Repository Docs
 
-- [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md)
+- [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)
 - [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
 - [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md)
 - [Real-Time Occupancy Grid Mapping](../realtime-occupancy-grid-mapping.md)

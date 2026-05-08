@@ -1579,8 +1579,8 @@ rosbag play test_scenario_001.bag \
 - **BEV encoding details**: `technology/perception/bev-encoding.md`
 - **Model compression for Orin**: `technology/perception/model-compression-edge-deployment.md`
 - **Vision foundation models (DINOv2, SAM)**: `technology/perception/vision-foundation-models.md`
-- **Thermal/IR cameras**: `hardware/sensors/thermal-ir-cameras.md`
-- **4D radar as backup**: `hardware/sensors/4d-radar.md`
+- **Thermal/IR cameras**: `20-av-platform/sensors/thermal-ir-cameras.md`
+- **4D radar as backup**: `20-av-platform/sensors/4d-radar.md`
 - **Simplex architecture**: `synthesis/design-spec.md`
 - **Functional safety software**: `operations/safety/functional-safety-software.md`
 - **Ground crew safety**: `operations/safety/ground-crew-pedestrian-safety.md`

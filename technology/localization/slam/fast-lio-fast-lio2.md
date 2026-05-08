@@ -4,7 +4,7 @@
 
 FAST-LIO and FAST-LIO2 are tightly coupled LiDAR-inertial odometry systems from the HKU MARS Lab lineage. FAST-LIO introduced a fast iterated extended Kalman filter formulation for fusing LiDAR feature points and IMU data. FAST-LIO2 removed the feature extraction stage, directly registering raw LiDAR points to an incremental map maintained by an ikd-tree. The result is one of the most influential modern LIO baselines: fast, accurate, direct, and compatible with both spinning and solid-state LiDARs.
 
-For AV and airside autonomy, FAST-LIO2 is best understood as a high-performance local odometry front end. It is not a complete global SLAM or production localization system by itself because the base implementation lacks loop closure, GPS factor integration, wheel odometry, and map-version handling. It should be paired with a robust state estimator or factor graph. See [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md) for the surrounding stack.
+For AV and airside autonomy, FAST-LIO2 is best understood as a high-performance local odometry front end. It is not a complete global SLAM or production localization system by itself because the base implementation lacks loop closure, GPS factor integration, wheel odometry, and map-version handling. It should be paired with a robust state estimator or factor graph. See [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) for the surrounding stack.
 
 ## Historical Context
 
@@ -91,7 +91,7 @@ T(x): transform implied by the current state and LiDAR-IMU extrinsic
 
 The iterated EKF linearizes residuals around the current estimate, solves for an error-state correction, updates the state on the manifold, and repeats until convergence. FAST-LIO's efficiency contribution is the update algebra that avoids inverting matrices whose dimension grows with the number of LiDAR point residuals.
 
-Compared with factor-graph methods, this filter formulation is faster and lower latency, but less flexible for delayed, nonlocal, or loop-closure measurements. Those are better handled by a backend like the one described in [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md).
+Compared with factor-graph methods, this filter formulation is faster and lower latency, but less flexible for delayed, nonlocal, or loop-closure measurements. Those are better handled by a backend like the one described in [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Failure Modes
 
@@ -177,4 +177,4 @@ For a production airside stack, pair FAST-LIO2 with a backend that already handl
 - FAST-LIO2 author publication page. https://jiaronglin.com/publication/paper_fast_lio2/
 - Local context: [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md)
 - Local context: [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
-- Local context: [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md)
+- Local context: [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)

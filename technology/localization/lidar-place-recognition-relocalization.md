@@ -419,7 +419,7 @@ Point Cloud → Point Embedding → Adaptive Receptive Field Module → External
 
 ### 4.3 PTv3-Based Retrieval
 
-PointTransformerV3 (PTv3), detailed in the [sparse attention document](../../foundations/sparse-attention-3d-perception.md), achieves SOTA performance in 3D understanding tasks. While not originally designed for place recognition, its serialized attention mechanism and strong feature extraction make it an excellent backbone for retrieval:
+PointTransformerV3 (PTv3), detailed in the [sparse attention document](../../10-knowledge-base/machine-learning/sparse-attention-3d-perception.md), achieves SOTA performance in 3D understanding tasks. While not originally designed for place recognition, its serialized attention mechanism and strong feature extraction make it an excellent backbone for retrieval:
 
 **Approach:**
 
@@ -433,7 +433,7 @@ PointTransformerV3 (PTv3), detailed in the [sparse attention document](../../fou
 - 3x faster and 10x less memory than PTv2-based retrieval
 - Serialized attention naturally handles the 120K+ points from multi-LiDAR configurations
 
-**Practical note:** PTv3 requires PyTorch 2.0+ and flash-attn. On Orin, window size should be reduced from 1024 to 256-512 for real-time operation (see [sparse-attention-3d-perception.md](../../foundations/sparse-attention-3d-perception.md) for tuning guidance).
+**Practical note:** PTv3 requires PyTorch 2.0+ and flash-attn. On Orin, window size should be reduced from 1024 to 256-512 for real-time operation (see [sparse-attention-3d-perception.md](../../10-knowledge-base/machine-learning/sparse-attention-3d-perception.md) for tuning guidance).
 
 ### 4.4 BEVPlace and BEVPlace++
 
@@ -516,7 +516,7 @@ This two-stage approach reduces GPU load by 80-90% compared to running the learn
 
 ### 5.3 ICP Refinement
 
-Once a place recognition match identifies a coarse correspondence, Iterative Closest Point (ICP) or Normal Distributions Transform (NDT) refines the alignment to centimeter accuracy. The Aurrigo stack's existing GPU VGICP (see [gtsam-factor-graphs.md](../../foundations/gtsam-factor-graphs.md)) is ideal for this step.
+Once a place recognition match identifies a coarse correspondence, Iterative Closest Point (ICP) or Normal Distributions Transform (NDT) refines the alignment to centimeter accuracy. The Aurrigo stack's existing GPU VGICP (see [gtsam-factor-graphs.md](../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)) is ideal for this step.
 
 **Refinement workflow:**
 
@@ -669,7 +669,7 @@ Receive top-K candidates   ◄──────────────┘─�
 - **Scan retrieval for ICP**: Only when a match is found, retrieve the stored scan (~500 KB compressed)
 - **Total bandwidth per vehicle**: <2 MB/min steady state, <5 MB/min during active loop closure
 
-This is well within the airport 5G/CBRS infrastructure bandwidth (see [../../hardware/connectivity/airport-5g-cbrs.md](../../hardware/connectivity/airport-5g-cbrs.md)).
+This is well within the airport 5G/CBRS infrastructure bandwidth (see [../../20-av-platform/networking-connectivity/airport-5g-cbrs.md](../../20-av-platform/networking-connectivity/airport-5g-cbrs.md)).
 
 ### 7.2 Cross-Vehicle Viewpoint Challenge
 
@@ -1121,7 +1121,7 @@ Recommended approach: regeneration during weekly maintenance windows, with adapt
 
 ## 10. Integration with GTSAM Factor Graphs
 
-Place recognition's primary output is loop closure candidates that integrate into the GTSAM factor graph as between-pose factors. This section details the integration with the Aurrigo stack's GTSAM + ISAM2 back-end (see [gtsam-factor-graphs.md](../../foundations/gtsam-factor-graphs.md) for GTSAM fundamentals).
+Place recognition's primary output is loop closure candidates that integrate into the GTSAM factor graph as between-pose factors. This section details the integration with the Aurrigo stack's GTSAM + ISAM2 back-end (see [gtsam-factor-graphs.md](../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) for GTSAM fundamentals).
 
 ### 10.1 Loop Closure Factor
 
@@ -1553,9 +1553,9 @@ The existing GTSAM node in the Aurrigo stack already handles odometry and GPS fa
 ## Related Documents
 
 - [LiDAR SLAM Algorithms](lidar-slam-algorithms.md) -- SLAM front-end algorithms (KISS-ICP, LIO-SAM, FAST-LIO2) that produce the odometry factors place recognition complements with loop closures
-- [GTSAM Factor Graphs](../../foundations/gtsam-factor-graphs.md) -- Comprehensive GTSAM reference including ISAM2, noise models, and factor types used for loop closure integration
+- [GTSAM Factor Graphs](../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) -- Comprehensive GTSAM reference including ISAM2, noise models, and factor types used for loop closure integration
 - [Mapping and Localization](mapping-and-localization.md) -- Overview of mapping paradigms including place recognition's role in spatial memory
 - [Semantic Mapping and Learned Priors](semantic-mapping-learned-priors.md) -- Semantic features that could augment geometric descriptors for disambiguation
 - [HD Map Change Detection and Maintenance](hd-map-change-detection-maintenance.md) -- Fleet-based map maintenance that relies on cross-vehicle place recognition for multi-session alignment
-- [Multi-LiDAR Extrinsic Calibration](../../hardware/sensors/multi-lidar-calibration.md) -- Calibration accuracy directly impacts descriptor quality when fusing 4-8 LiDARs
-- [Sparse Attention for 3D Perception](../../foundations/sparse-attention-3d-perception.md) -- PTv3 architecture details relevant to transformer-based place recognition
+- [Multi-LiDAR Extrinsic Calibration](../../20-av-platform/sensors/multi-lidar-calibration.md) -- Calibration accuracy directly impacts descriptor quality when fusing 4-8 LiDARs
+- [Sparse Attention for 3D Perception](../../10-knowledge-base/machine-learning/sparse-attention-3d-perception.md) -- PTv3 architecture details relevant to transformer-based place recognition

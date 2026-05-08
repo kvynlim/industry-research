@@ -151,7 +151,7 @@ For a vehicle with N LiDAR sensors, we need N-1 independent transformations (or 
 | Quaternion | 4 (1 constraint) | None | SLERP | ROS TF, storage |
 | Rodrigues vector | 3 | At pi | Nontrivial | OpenCV convention |
 
-GTSAM and ROS TF use different internal representations but both support SE(3). The GTSAM `Pose3` class uses rotation matrix internally but accepts axis-angle for optimization on the Lie algebra (see `foundations/gtsam-factor-graphs.md`).
+GTSAM and ROS TF use different internal representations but both support SE(3). The GTSAM `Pose3` class uses rotation matrix internally but accepts axis-angle for optimization on the Lie algebra (see `10-knowledge-base/state-estimation/gtsam-factor-graphs.md`).
 
 ### 2.2 Reference Frames
 
@@ -518,7 +518,7 @@ graph.add(factor);
 | GPU (Orin) | 300K | 1.0 m | 12-25 ms | < 1.5 cm |
 | GPU (Orin) | 500K | 1.0 m | 20-40 ms | < 2 cm |
 
-VGICP is the recommended ICP variant for Aurrigo's stack because it is already integrated with GTSAM and GPU-accelerated on Orin (see `foundations/gtsam-factor-graphs.md` for GTSAM integration details).
+VGICP is the recommended ICP variant for Aurrigo's stack because it is already integrated with GTSAM and GPU-accelerated on Orin (see `10-knowledge-base/state-estimation/gtsam-factor-graphs.md` for GTSAM integration details).
 
 ### 4.2 Feature-Based Registration
 
@@ -1163,7 +1163,7 @@ Airport tarmac temperatures vary dramatically:
 | Summer afternoon | 35 C | 55 C | 45 C | +55 C |
 | Summer tarmac peak | 40 C | 65 C | 50 C | +60 C |
 
-The RoboSense RSHELIOS operates within -40 C to +60 C (see `hardware/sensors/robosense-lidar.md`), so thermal operation is within spec. However, the **sensor mount** undergoes thermal expansion that shifts the extrinsic calibration.
+The RoboSense RSHELIOS operates within -40 C to +60 C (see `20-av-platform/sensors/robosense-lidar.md`), so thermal operation is within spec. However, the **sensor mount** undergoes thermal expansion that shifts the extrinsic calibration.
 
 ### 6.2 Material Expansion Analysis
 
@@ -2517,8 +2517,8 @@ Total: 16 weeks, $38,000-57,000
 - IEEE 1588-2019. "IEEE Standard for a Precision Clock Synchronization Protocol for Networked Measurement and Control Systems."
 
 **Related Documents in This Repository:**
-- `hardware/sensors/robosense-lidar.md` — RoboSense RSHELIOS and RSBP specifications
-- `foundations/gtsam-factor-graphs.md` — GTSAM factor graph optimization, VGICP details
+- `20-av-platform/sensors/robosense-lidar.md` — RoboSense RSHELIOS and RSBP specifications
+- `10-knowledge-base/state-estimation/gtsam-factor-graphs.md` — GTSAM factor graph optimization, VGICP details
 - `technology/perception/uncertainty-quantification-calibration.md` — Uncertainty quantification and confidence calibration
 - `operations/safety/runtime-verification-monitoring.md` — Runtime monitoring, safety MCU pattern
 - `operations/safety/functional-safety-software.md` — MISRA C, ISO 26262, ASIL decomposition

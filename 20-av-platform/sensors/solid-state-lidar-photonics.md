@@ -1062,8 +1062,8 @@ class DualStackPerception:
 15. PatSnap, "LiDAR Sensor Technology Landscape for Autonomous 2026," Analysis, 2026
 
 ### Related Repository Documents
-- `hardware/sensors/sensor-degradation-health-monitoring.md` — Sensor health monitoring framework
-- `hardware/sensors/multi-lidar-calibration.md` — Multi-LiDAR calibration (applies to mixed ToF+FMCW fleet)
+- `20-av-platform/sensors/sensor-degradation-health-monitoring.md` — Sensor health monitoring framework
+- `20-av-platform/sensors/multi-lidar-calibration.md` — Multi-LiDAR calibration (applies to mixed ToF+FMCW fleet)
 - `technology/perception/active-perception-sensor-scheduling.md` — Adaptive resolution scheduling (OPA enables this)
 - `technology/planning/autonomous-docking-precision-positioning.md` — Docking use case for flash LiDAR
 - `cross-cutting/radar-lidar-fusion-adverse-weather.md` — Weather resilience (FMCW LiDAR + 4D radar complementary)

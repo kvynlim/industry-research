@@ -35,7 +35,7 @@
 
 ### 1.1 Why Perception Fails Without Sensor Faults
 
-Hardware sensor health monitoring (see `hardware/sensors/sensor-degradation-health-monitoring.md`) catches physical degradation: dirty lenses, reduced point counts, intensity drops, angular coverage loss. But perception can fail catastrophically even when every sensor is physically perfect:
+Hardware sensor health monitoring (see `20-av-platform/sensors/sensor-degradation-health-monitoring.md`) catches physical degradation: dirty lenses, reduced point counts, intensity drops, angular coverage loss. But perception can fail catastrophically even when every sensor is physically perfect:
 
 | Failure Mode | Sensor Status | ML Model Behavior | Consequence |
 |---|---|---|---|
@@ -3200,7 +3200,7 @@ class FaultInjectionTest:
 
 ### Repository Cross-References
 
-- `hardware/sensors/sensor-degradation-health-monitoring.md` -- Physical sensor health diagnostics
+- `20-av-platform/sensors/sensor-degradation-health-monitoring.md` -- Physical sensor health diagnostics
 - `operations/safety/runtime-verification-monitoring.md` -- STL temporal logic monitors, shield synthesis
 - `operations/safety/weather-adaptive-odd-management.md` -- Environmental ODD state machine, METAR integration
 - `operations/safety/simplex-safety-architecture.md` -- Dual-stack AC/BC architecture

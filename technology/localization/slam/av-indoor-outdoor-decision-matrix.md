@@ -11,7 +11,7 @@ This file is a practical selection matrix for choosing SLAM, odometry, and local
 | Loop closure and recovery | [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md) | Required when the matrix recommends loop closure, multi-session mapping, or kidnapped-robot recovery. |
 | Survey-to-map workflow | [Map Construction Pipeline](../map-construction-pipeline.md) | Use when choosing a stack for airport onboarding, map merging, or QA. |
 | Multi-sensor fusion | [Robust State Estimation Multi-Sensor](../robust-state-estimation-multi-sensor.md) | Use when the decision depends on RTK, IMU, wheel, covariance, and fallback behavior. |
-| Factor graph backend | [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md) | Use when a method needs IMU preintegration, scan-matching factors, loop closure, GCP factors, or smoothing. |
+| Factor graph backend | [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) | Use when a method needs IMU preintegration, scan-matching factors, loop closure, GCP factors, or smoothing. |
 | Dense/neural mapping | [Gaussian Splatting for Driving](../../perception/gaussian-splatting-driving.md) | Use for future dense maps, inspection, simulation, and semantic QA rather than primary safety pose. |
 
 ## Fast Selection Table

@@ -4,7 +4,7 @@
 
 Point-LIO is a high-bandwidth LiDAR-inertial odometry method that updates the state at individual LiDAR point timestamps instead of waiting for a full scan. Its main contribution is latency and motion bandwidth: the paper and repository report 4-8 kHz odometry output, robustness to severe vibration, and experiments with angular velocity around 75 rad/s. This makes Point-LIO important for aggressive UAVs, fast spinning robots, and control loops that need very fresh odometry.
 
-For airside autonomous ground vehicles, Point-LIO is usually more specialized than necessary. Ground support equipment moves slowly compared with racing drones, and a robust 10-100 Hz scan-level LIO front end is usually adequate. Point-LIO is still worth documenting because its point-by-point formulation removes artificial in-scan motion distortion and because its stochastic-process-augmented IMU model addresses saturation and vibration regimes that standard LIO can mishandle. Related stack context is in [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md).
+For airside autonomous ground vehicles, Point-LIO is usually more specialized than necessary. Ground support equipment moves slowly compared with racing drones, and a robust 10-100 Hz scan-level LIO front end is usually adequate. Point-LIO is still worth documenting because its point-by-point formulation removes artificial in-scan motion distortion and because its stochastic-process-augmented IMU model addresses saturation and vibration regimes that standard LIO can mishandle. Related stack context is in [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Historical Context
 
@@ -82,7 +82,7 @@ Point-LIO is still a local estimator. It does not solve:
 global pose graph + loop closure + map versioning + GNSS/wheel factors
 ```
 
-Those belong in a backend such as the graph stack described in [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md).
+Those belong in a backend such as the graph stack described in [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Failure Modes
 
@@ -160,4 +160,4 @@ Keep Point-LIO on the shortlist for aggressive-motion vehicles, UAVs, and vibrat
 - Original Point-LIO repository and README. https://github.com/hku-mars/Point-LIO
 - Local context: [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md)
 - Local context: [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
-- Local context: [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md)
+- Local context: [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)

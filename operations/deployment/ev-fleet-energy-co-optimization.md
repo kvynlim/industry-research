@@ -251,7 +251,7 @@ def energy_consumption_kwh(
         temp_factor = 1.0
     
     # Auxiliary load: Orin compute (35-60W avg), lights, HVAC if equipped
-    # See hardware/compute/energy-efficient-inference-24-7.md for Orin power profiles
+    # See 20-av-platform/compute/energy-efficient-inference-24-7.md for Orin power profiles
     aux_kwh = 0.06 * (distance_km / speed_kmh)  # ~60W average
     
     return (e_battery * temp_factor) + aux_kwh
@@ -266,7 +266,7 @@ def energy_consumption_kwh(
 | Belt loader | 20-40 | 0.10-0.15 | 130-400 | 15-25 | 1.2-2.4% |
 | Catering truck | 60-100 | 0.20-0.30 | 200-500 | 10-18 | 0.5-0.8% |
 
-As documented in `../../hardware/compute/energy-efficient-inference-24-7.md`, the Orin's 35-60W average draw is <2.5% of total energy budget even for the smallest battery packs. The co-optimization focuses on traction energy and charging strategy, not compute power management.
+As documented in `../../20-av-platform/compute/energy-efficient-inference-24-7.md`, the Orin's 35-60W average draw is <2.5% of total energy budget even for the smallest battery packs. The co-optimization focuses on traction energy and charging strategy, not compute power management.
 
 ---
 
@@ -1936,7 +1936,7 @@ class BatteryStatePublisher:
     """
     Publishes vehicle battery state at 1 Hz to fleet manager via MQTT bridge.
     
-    BMS data arrives via CAN bus (see hardware/vehicle/can-bus-dbw.md).
+    BMS data arrives via CAN bus (see 20-av-platform/drive-by-wire/can-bus-dbw.md).
     """
     def __init__(self):
         rospy.init_node('battery_state_publisher')
@@ -2312,6 +2312,6 @@ Recommendation: implement Phase 1-2 (demand charge + basic optimization)
 25. `../../operations/airside/battery-charging-infrastructure.md` --- Battery specs, charging hardware, autonomous self-charging
 26. `../../technology/multi-agent/fleet-task-allocation-scheduling.md` --- CP-SAT scheduling, CBBA, charging-aware scheduling
 27. `../../operations/deployment/fleet-tco-business-case.md` --- Fleet economics, per-vehicle costs, scale dynamics
-28. `../../hardware/compute/energy-efficient-inference-24-7.md` --- Orin power management, compute efficiency
+28. `../../20-av-platform/compute/energy-efficient-inference-24-7.md` --- Orin power management, compute efficiency
 29. `../../operations/deployment/fleet-predictive-maintenance.md` --- Battery health monitoring, predictive replacement
-30. `../../hardware/connectivity/airport-5g-cbrs.md` --- 5G infrastructure for vehicle-to-fleet telemetry
+30. `../../20-av-platform/networking-connectivity/airport-5g-cbrs.md` --- 5G infrastructure for vehicle-to-fleet telemetry

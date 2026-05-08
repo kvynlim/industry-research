@@ -261,7 +261,7 @@ Recommended pattern:
 
 ## Related Repository Docs
 
-- [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md)
+- [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)
 - [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
 - [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md)
 - [Real-Time Occupancy Grid Mapping](../realtime-occupancy-grid-mapping.md)

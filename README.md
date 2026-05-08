@@ -53,7 +53,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Safety case and certification | [Certification Guide](operations/safety/certification-guide.md) | Pulls together ISO 3691-4, UL 4600, SOTIF, runtime monitoring, fail-operational design, and validation. |
 | Production deployment | [Deployment Playbook](operations/deployment/deployment-playbook.md) | Turns research into staged rollout, shadow mode, OTA, fleet management, and operational procedures. |
 | Fleet economics | [Fleet TCO Business Case](operations/deployment/fleet-tco-business-case.md) | Tracks vehicle CAPEX, labor savings, certification costs, operator ratios, and break-even logic. |
-| Edge hardware choices | [NVIDIA Orin Technical](hardware/compute/nvidia-orin-technical.md) | Grounds model choices in compute, power, TensorRT, DLA, and sensor constraints. |
+| Edge hardware choices | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Grounds model choices in compute, power, TensorRT, DLA, and sensor constraints. |
 | Perception stack | [Production Perception Systems](technology/perception/production-perception-systems.md) | Compares production AV approaches and the perception patterns that transfer to airside autonomy. |
 | Method-level perception | [Perception Method Library](technology/perception/methods/overview.md) | Splits BEV, occupancy, LiDAR MOS, 4D radar, open-world, robust fusion, V2X, latency, and data-engine methods into single-technique research pages. |
 | Perception coverage gaps | [Perception Coverage Audit](technology/perception/coverage-audit-2026.md) | Tracks missing first-class perception pages across BEV, occupancy, LiDAR/radar/thermal, open-world/OOD, V2X, robustness, and benchmarks. |
@@ -69,8 +69,8 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | `companies/` | 53 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, and autonomy company profiles. |
 | `technology/` | 197 | [World Models Overview](technology/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, robustness, E2E driving, and multi-agent systems. |
 | `operations/` | 42 | [Airside Industry Overview](operations/airside/industry-overview.md) | Airside operations, deployment, safety, certification, teleoperation, workforce, and fleet management. |
-| `hardware/` | 20 | [NVIDIA Orin Technical](hardware/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, vehicle interfaces, power, and edge-cloud architecture. |
-| `foundations/` | 12 | [Theoretical Foundations](foundations/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, and more. |
+| `hardware/` | 20 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, vehicle interfaces, power, and edge-cloud architecture. |
+| `foundations/` | 12 | [Theoretical Foundations](10-knowledge-base/systems-engineering/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, and more. |
 | `cross-cutting/` | 26 | [Sensor Fusion Architectures](cross-cutting/sensor-fusion-architectures.md) | Data engines, ROS 2, Autoware, synthetic data, evaluation, transfer learning, formal methods, and fleet data loops. |
 
 ## Domain Snapshot

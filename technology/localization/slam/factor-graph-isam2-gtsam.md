@@ -6,7 +6,7 @@ Factor graph SLAM is the modern generalization of graph-based state estimation. 
 
 For AV and airside autonomous vehicles, this is the recommended backend architecture. It can fuse LiDAR odometry, loop closures, RTK/GPS, IMU preintegration, wheel odometry, fiducials, map priors, and calibration factors in one sparse optimization problem. Unlike EKF-SLAM, it does not force all uncertainty into one dense covariance matrix. Unlike simple pose graph optimization, it can represent heterogeneous variables and sensor factors naturally. Unlike batch-only solvers, iSAM2 updates only the affected part of the Bayes tree and supports real-time incremental operation.
 
-This page is a method-level SLAM reference. For implementation details, custom factor examples, noise-model tuning, and GTSAM API notes, see [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md).
+This page is a method-level SLAM reference. For implementation details, custom factor examples, noise-model tuning, and GTSAM API notes, see [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Historical Context
 
@@ -307,7 +307,7 @@ Avoid pushing every raw measurement into the graph. Use front ends to summarize 
 
 ## Related Repository Docs
 
-- [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md)
+- [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)
 - [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
 - [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md)
 - [Real-Time Occupancy Grid Mapping](../realtime-occupancy-grid-mapping.md)

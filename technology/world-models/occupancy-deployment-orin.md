@@ -888,9 +888,9 @@ Occupancy validation for airside:
 |-------|----------|
 | Occupancy networks comparison (20 methods) | `technology/world-models/occupancy-networks-comparison.md` |
 | Occupancy world models | `technology/world-models/occupancy-world-models.md` |
-| TensorRT deployment guide | `hardware/compute/tensorrt-deployment-guide.md` |
-| NVIDIA Orin technical | `hardware/compute/nvidia-orin-technical.md` |
+| TensorRT deployment guide | `20-av-platform/compute/tensorrt-deployment-guide.md` |
+| NVIDIA Orin technical | `20-av-platform/compute/nvidia-orin-technical.md` |
 | Isaac ROS for airside | `cross-cutting/isaac-ros-for-airside.md` |
-| RoboSense LiDAR | `hardware/sensors/robosense-lidar.md` |
-| PointPillars foundation | `foundations/pointpillars.md` |
+| RoboSense LiDAR | `20-av-platform/sensors/robosense-lidar.md` |
+| PointPillars foundation | `10-knowledge-base/geometry-3d/pointpillars.md` |
 | LiDAR foundation models | `technology/perception/lidar-foundation-models.md` |

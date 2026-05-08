@@ -497,7 +497,7 @@ rho < 0.0      →  VIOLATION (controlled stop, log incident, require operator c
 
 **Integration with Simplex:** The robustness degree from STL monitors feeds directly into the arbitrator node's decision logic (see [simplex-safety-architecture.md](simplex-safety-architecture.md)). When the minimum robustness across all active specs drops below the fallback threshold (e.g., 0.5m), the arbitrator switches from the neural AC stack to the classical BC stack. This provides a formally grounded trigger for Simplex transitions, replacing the ad-hoc OOD score thresholds currently in the arbitrator.
 
-**Integration with CBFs:** The STL robustness is complementary to CBF safety constraints (see [safety-critical-planning-cbf.md](../safety/../../technology/planning/safety-critical-planning-cbf.md)). CBFs enforce forward invariance of the safe set at the control level (100-200 Hz). STL monitors verify that the overall system behavior satisfies temporal properties at the monitoring level (10-50 Hz). CBFs prevent entering the unsafe region; STL monitors detect if the system is approaching the boundary.
+**Integration with CBFs:** The STL robustness is complementary to CBF safety constraints (see [safety-critical-planning-cbf.md](../../technology/planning/safety-critical-planning-cbf.md)). CBFs enforce forward invariance of the safe set at the control level (100-200 Hz). STL monitors verify that the overall system behavior satisfies temporal properties at the monitoring level (10-50 Hz). CBFs prevent entering the unsafe region; STL monitors detect if the system is approaching the boundary.
 
 ```
 Temporal scope comparison:

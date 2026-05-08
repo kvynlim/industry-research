@@ -4,7 +4,7 @@
 
 LIO-SAM is a tightly coupled LiDAR-inertial SLAM system built around factor-graph smoothing. It is important because it made a practical, open-source, GTSAM-based architecture for combining IMU preintegration, LiDAR scan-to-map constraints, GPS factors, and loop-closure factors in one online mapper. For autonomous vehicle work, its greatest value is not raw odometry speed; it is the clean demonstration of how a LiDAR odometry front end can be embedded in a smoothing backend that accepts other absolute and relative measurements.
 
-The method is a strong research and survey-mapping baseline when a mechanical spinning LiDAR, a good high-rate IMU, synchronized timestamps, and reliable extrinsic calibration are available. It is weaker as a direct production airside localization stack because it assumes LOAM-style ring-organized scans, extracts edge and planar features, and can degrade in open areas with few geometric constraints. For broader context, see the parent overview in [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), the production fusion discussion in [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and the backend math in [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md).
+The method is a strong research and survey-mapping baseline when a mechanical spinning LiDAR, a good high-rate IMU, synchronized timestamps, and reliable extrinsic calibration are available. It is weaker as a direct production airside localization stack because it assumes LOAM-style ring-organized scans, extracts edge and planar features, and can degrade in open areas with few geometric constraints. For broader context, see the parent overview in [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), the production fusion discussion in [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and the backend math in [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Historical Context
 
@@ -175,4 +175,4 @@ If the objective is pure high-rate odometry, FAST-LIO2 is usually a better front
 - GTSAM factor-graph reference used by LIO-SAM. https://gtsam.org/
 - Local context: [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md)
 - Local context: [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
-- Local context: [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md)
+- Local context: [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)

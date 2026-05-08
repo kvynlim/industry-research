@@ -456,11 +456,11 @@ Given that airside AV falls between automotive and aviation domains:
 | Regulatory Trajectory | `operations/safety/regulatory-trajectory-deep-dive.md` | FAA AC ~2028-2029, EASA ~2028 |
 | Ground Crew Safety | `operations/safety/ground-crew-pedestrian-safety.md` | 27K accidents/yr, hi-vis paradox |
 | Insurance & Liability | `operations/safety/insurance-liability-airside.md` | $35M per engine exposure |
-| Compute & Hardware | `hardware/compute/edge-platforms.md` | Orin 275 TOPS @ 60W, fleet cost model |
-| NVIDIA Orin | `hardware/compute/nvidia-orin-technical.md` | 8 power modes, DLA 74% at 15W |
-| NVIDIA Thor | `hardware/compute/nvidia-drive-thor.md` | ~1000 TOPS, FP8 native, 2025+ |
-| TensorRT Guide | `hardware/compute/tensorrt-deployment-guide.md` | PointPillars 6.84ms, DLA deployment |
-| 4D Radar | `hardware/sensors/4d-radar.md` | Continental ARS548, immune to all weather |
+| Compute & Hardware | `20-av-platform/compute/edge-platforms.md` | Orin 275 TOPS @ 60W, fleet cost model |
+| NVIDIA Orin | `20-av-platform/compute/nvidia-orin-technical.md` | 8 power modes, DLA 74% at 15W |
+| NVIDIA Thor | `20-av-platform/compute/nvidia-drive-thor.md` | ~1000 TOPS, FP8 native, 2025+ |
+| TensorRT Guide | `20-av-platform/compute/tensorrt-deployment-guide.md` | PointPillars 6.84ms, DLA deployment |
+| 4D Radar | `20-av-platform/sensors/4d-radar.md` | Continental ARS548, immune to all weather |
 | Airside Industry | `operations/airside/industry-overview.md` | 21 companies, FAA CertAlert 24-02 |
 | Multi-Agent & Fleet | `technology/multi-agent/fleet-coordination.md` | V2X, Moonware, 5G/CBRS, A-CDM |
 | Mapping & Localization | `technology/localization/mapping-and-localization.md` | Map-free driving, AIXM, NOTAM integration |

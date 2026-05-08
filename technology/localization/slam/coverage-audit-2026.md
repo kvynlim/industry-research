@@ -9,7 +9,7 @@ The current SLAM library is useful, but it is not complete. Treat the P0 backlog
 | Item | Status |
 |---|---|
 | Dedicated GLIM page | Added as [GLIM](glim.md). |
-| GTSAM coverage | Present in [Factor Graph SLAM with iSAM2 and GTSAM](factor-graph-isam2-gtsam.md) and [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md). |
+| GTSAM coverage | Present in [Factor Graph SLAM with iSAM2 and GTSAM](factor-graph-isam2-gtsam.md) and [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md). |
 | Most severe structural gap | LiDAR-visual-inertial, radar, robust registration, loop-closure backend, dataset, collaborative/lifelong, specialized visual/VIO, and alternative-sensor coverage are underrepresented as first-class files. |
 | How to use this audit | Add P0 files first, then P1, then P2 or mention-only aliases. Update this audit whenever a missing method is promoted into the library. |
 
@@ -238,7 +238,7 @@ This sweep deliberately looked outside the latest neural/Gaussian and LIO-heavy 
 | LINS and LIO-mapping | P2 historical transition from LOAM-style odometry to tightly coupled LiDAR-IMU filtering. | https://arxiv.org/abs/1907.02233, https://arxiv.org/abs/1904.06993, https://github.com/hyye/lio-mapping |
 | NeuralRecon, Atlas, SimpleRecon | P2 because these usually consume poses rather than solve SLAM, but they matter for learned dense mapping. | https://arxiv.org/abs/2104.00681, https://arxiv.org/abs/2003.10432, https://github.com/magicleap/Atlas, https://arxiv.org/abs/2208.14743 |
 | GROUNDED and learned GPR representations | Promote Localizing GPR and Ground Encoding through the third-sweep GPR pages; keep GROUNDED as a follow-on learned representation/watch item. | https://tisl.cs.toronto.edu/publication/202005-ral-lgpr/ral20-lgpr.pdf, https://journals.sagepub.com/doi/10.1177/02783649231183460 |
-| Optimization solver comparison: Ceres, g2o, GTSAM | P2, because [GTSAM](../../../foundations/gtsam-factor-graphs.md) already exists; add only if readers need solver selection. | https://ceres-solver.org/, https://github.com/RainerKuemmerle/g2o, https://gtsam.org/docs/ |
+| Optimization solver comparison: Ceres, g2o, GTSAM | P2, because [GTSAM](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) already exists; add only if readers need solver selection. | https://ceres-solver.org/, https://github.com/RainerKuemmerle/g2o, https://gtsam.org/docs/ |
 | Older submap-graph design patterns | Promote map-centric SLAM through Voxgraph, LT-mapper, Khronos, and related third-sweep pages; keep Cartographer 3D as the canonical classical implementation. | https://google-cartographer.readthedocs.io/ |
 | CPD, colored ICP, SegMatch, M2DP, ISC, OverlapNet | Mention under registration/place-recognition pages unless the repo expands those sublibraries. | https://arxiv.org/abs/0905.2635, https://www.open3d.org/docs/0.9.0/tutorial/Advanced/colored_pointcloud_registration.html, https://github.com/PRBonn/OverlapNet |
 | RMGS-SLAM, PINGS, MegaSaM, VGGT/SwiftVGGT/Reloc-VGGT, QLIO, Dy3DGS-SLAM, Super4DR | Track as 2024-2026 emerging methods; most should live in a survey page until code/adoption stabilizes. VIGS-SLAM and VGGT-SLAM++ were promoted in the 2026-05-08 latest-method sweep. | https://arxiv.org/abs/2604.12942, https://www.roboticsproceedings.org/rss21/p040.pdf, https://mega-sam.github.io/, https://arxiv.org/abs/2503.11651, https://arxiv.org/abs/2512.02293, https://arxiv.org/abs/2604.06830 |

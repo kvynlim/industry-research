@@ -47,7 +47,7 @@ For each major architectural decision, this document provides:
 
 **Key finding:** PointPillars INT8 PTQ loses only **0.80% mAP for 2.2x speedup**. QAT recovers to 0.17% loss.
 
-**Read more:** `foundations/pointpillars.md`, `technology/perception/openpcdet-centerpoint.md`, `hardware/compute/tensorrt-deployment-guide.md`
+**Read more:** `10-knowledge-base/geometry-3d/pointpillars.md`, `technology/perception/openpcdet-centerpoint.md`, `20-av-platform/compute/tensorrt-deployment-guide.md`
 
 ---
 
@@ -66,7 +66,7 @@ For each major architectural decision, this document provides:
 
 **Key finding:** 4D radar should be **PRIMARY, not backup** — it's the only sensor immune to all airside adverse conditions (rain, fog, de-icing, jet exhaust). Cost: $50-200 per unit.
 
-**Read more:** `hardware/sensors/4d-radar.md`, `technology/robustness/airside-adverse-conditions.md`, `hardware/sensors/robosense-lidar.md`
+**Read more:** `20-av-platform/sensors/4d-radar.md`, `technology/robustness/airside-adverse-conditions.md`, `20-av-platform/sensors/robosense-lidar.md`
 
 ---
 
@@ -85,7 +85,7 @@ For each major architectural decision, this document provides:
 
 **Key finding:** DLA contributes **74% of Orin compute at 15W**, 3-5x more power-efficient than GPU. Use DLA for PointPillars, GPU for world model.
 
-**Read more:** `hardware/compute/nvidia-orin-technical.md`, `hardware/compute/nvidia-drive-thor.md`, `hardware/compute/tensorrt-deployment-guide.md`
+**Read more:** `20-av-platform/compute/nvidia-orin-technical.md`, `20-av-platform/compute/nvidia-drive-thor.md`, `20-av-platform/compute/tensorrt-deployment-guide.md`
 
 ---
 
@@ -101,7 +101,7 @@ For each major architectural decision, this document provides:
 
 **Decision:** **Keep HD maps for Phase 1** (proven, what Aurrigo does). Develop **AIXM + online perception in parallel** (Phase 2). Transition when **world model accuracy validated**. Keep HD map as fallback.
 
-**Read more:** `technology/localization/map-free-driving.md`, `foundations/lanelet2-maps.md`, `technology/localization/mapping-and-localization.md`
+**Read more:** `technology/localization/map-free-driving.md`, `10-knowledge-base/robotics/lanelet2-maps.md`, `technology/localization/mapping-and-localization.md`
 
 ---
 

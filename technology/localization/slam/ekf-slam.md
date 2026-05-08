@@ -4,7 +4,7 @@
 
 Extended Kalman Filter SLAM is the classical recursive formulation of simultaneous localization and mapping. It keeps a single joint Gaussian belief over the robot pose and all mapped landmarks, propagates that belief through the motion model, and updates it whenever landmarks are observed. Its main historical importance is that it proved SLAM could be solved probabilistically and gave robotics a concrete implementation pattern: keep cross-correlations between robot pose and landmarks, because those correlations are the information that makes loop closure possible.
 
-EKF-SLAM is still useful as a teaching baseline, a small-landmark local mapper, and a fiducial or beacon-based estimator. It is not a good primary SLAM backend for large autonomous-vehicle maps. The dense covariance grows quadratically with landmark count, linearization creates consistency problems, and wrong data association can corrupt the whole map in one update. For airside autonomous ground support equipment, EKF-SLAM is best treated as a local precision module for deliberately placed landmarks, reflectors, docking aids, or small indoor work cells. The production global estimator should be a factor-graph or smoothing backend, as covered in [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md) and [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md).
+EKF-SLAM is still useful as a teaching baseline, a small-landmark local mapper, and a fiducial or beacon-based estimator. It is not a good primary SLAM backend for large autonomous-vehicle maps. The dense covariance grows quadratically with landmark count, linearization creates consistency problems, and wrong data association can corrupt the whole map in one update. For airside autonomous ground support equipment, EKF-SLAM is best treated as a local precision module for deliberately placed landmarks, reflectors, docking aids, or small indoor work cells. The production global estimator should be a factor-graph or smoothing backend, as covered in [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) and [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md).
 
 ## Historical Context
 
@@ -247,7 +247,7 @@ For map construction workflows, prefer the pipeline in [Map Construction Pipelin
 
 ## Related Repository Docs
 
-- [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md)
+- [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)
 - [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
 - [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md)
 - [Real-Time Occupancy Grid Mapping](../realtime-occupancy-grid-mapping.md)

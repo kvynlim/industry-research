@@ -4,7 +4,7 @@
 
 Cartographer is Google's real-time SLAM system for 2D and 3D mapping across multiple platforms and sensor configurations. Cartographer 3D combines local submap construction, scan-to-submap matching, IMU-aided pose extrapolation, and a global pose graph that searches for loop-closure constraints in background threads. It is historically important because it provided a production-quality open-source submap and loop-closure architecture, even though active development has largely stopped.
 
-For modern AV use, Cartographer 3D is better treated as a reference architecture or offline mapping tool than as the first-choice production odometry front end. Its 3D mode requires an IMU, needs careful tuning, and is heavier than modern LIO methods such as FAST-LIO2. Its strongest ideas are still relevant: local submaps, background constraint building, branch-and-bound scan matching, robust global optimization, and a serialized map state. Related local docs: [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md).
+For modern AV use, Cartographer 3D is better treated as a reference architecture or offline mapping tool than as the first-choice production odometry front end. Its 3D mode requires an IMU, needs careful tuning, and is heavier than modern LIO methods such as FAST-LIO2. Its strongest ideas are still relevant: local submaps, background constraint building, branch-and-bound scan matching, robust global optimization, and a serialized map state. Related local docs: [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md), [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), and [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Historical Context
 
@@ -44,7 +44,7 @@ The trajectory is represented as nodes with local poses and as submap poses in a
 
 The serialized map state is stored in Cartographer's `pbstream` format. ROS tools can publish submap lists, query submaps, write state, run final optimization, and convert serialized state into assets such as point clouds or occupancy grids.
 
-This is conceptually similar to a factor graph, although Cartographer uses Ceres and its own pose-graph machinery rather than GTSAM. For the common graph-optimization ideas, see [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md).
+This is conceptually similar to a factor graph, although Cartographer uses Ceres and its own pose-graph machinery rather than GTSAM. For the common graph-optimization ideas, see [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Algorithm Pipeline
 
@@ -173,4 +173,4 @@ For production, prefer a modern LIO front end such as FAST-LIO2, a robust fusion
 - Hess, W., Kohler, D., Rapp, H., and Andor, D. "Real-Time Loop Closure in 2D LIDAR SLAM." ICRA 2016. https://research.google/pubs/pub45466/
 - Local context: [Modern LiDAR SLAM and Odometry Algorithms](../lidar-slam-algorithms.md)
 - Local context: [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
-- Local context: [GTSAM Factor Graph Optimization](../../../foundations/gtsam-factor-graphs.md)
+- Local context: [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)

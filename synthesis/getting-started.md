@@ -341,7 +341,7 @@ Based on Week 1 results, choose:
 | BEV encoding details | `technology/perception/bev-encoding.md` |
 | OccWorld implementation | `technology/world-models/occworld-implementation.md` |
 | Data pipeline from bags | `cross-cutting/data-engine-from-bags.md` |
-| TensorRT deployment | `hardware/compute/tensorrt-deployment-guide.md` |
+| TensorRT deployment | `20-av-platform/compute/tensorrt-deployment-guide.md` |
 | E2E pipeline (detailed) | `technology/e2e-driving/e2e-world-model-pipeline.md` |
 
 ---

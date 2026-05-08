@@ -11,7 +11,7 @@ SLAM benchmarking is easy to do badly. A single ATE number can hide scale alignm
 | Loop/relocalization metrics | [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md) | Defines retrieval recall, precision, top-K verification, and kidnapped-robot recovery success. |
 | Survey map QA | [Map Construction Pipeline](../map-construction-pipeline.md) | Connects SLAM trajectory metrics to final HD map QA, GCP alignment, and packaging. |
 | Estimator consistency | [Robust State Estimation Multi-Sensor](../robust-state-estimation-multi-sensor.md) | Covers NEES/NIS, innovation gating, sensor dropout, and fallback validation. |
-| Factor graph residuals | [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md) | Explains how factors, covariances, robust kernels, and iSAM2 updates should be inspected. |
+| Factor graph residuals | [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) | Explains how factors, covariances, robust kernels, and iSAM2 updates should be inspected. |
 | Dense/neural map evaluation | [Gaussian Splatting for Driving](../../perception/gaussian-splatting-driving.md) | Adds reconstruction, rendering, semantic, and simulation-quality metrics for Gaussian/neural SLAM. |
 | Coverage audit | [SLAM Coverage Audit and Backlog](coverage-audit-2026.md) | Tracks benchmark/dataset gaps such as LaMAria, HeLiPR, FusionPortableV2, Oxford Spires, Hilti x Trimble 2026, ETH3D SLAM, VBR, M2DGR, NTU VIRAL, and UrbanLoco. |
 

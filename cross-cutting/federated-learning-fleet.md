@@ -54,7 +54,7 @@ Airports operate as independent entities with distinct commercial interests. An 
 
 #### Barrier 2: Bandwidth and Transfer Cost
 
-Airport 5G networks (see `hardware/connectivity/airport-5g-cbrs.md`) provide ~100 Mbps upload per vehicle. This sets a hard ceiling:
+Airport 5G networks (see `20-av-platform/networking-connectivity/airport-5g-cbrs.md`) provide ~100 Mbps upload per vehicle. This sets a hard ceiling:
 
 ```
 Upload capacity per vehicle:  100 Mbps = 12.5 MB/s = 45 GB/hour = 360 GB/8h shift
@@ -2716,6 +2716,6 @@ Fleet size 100+ vehicles, 10+ airports, multi-country:
 - `operations/deployment/multi-airport-adaptation.md` -- Multi-airport onboarding playbook
 - `technology/perception/lidar-foundation-models.md` -- PointLoRA and LiDAR pre-training
 - `technology/perception/bev-encoding.md` -- BEV perception architecture
-- `hardware/connectivity/airport-5g-cbrs.md` -- Airport 5G infrastructure
-- `hardware/compute/nvidia-orin-technical.md` -- Orin compute specifications
+- `20-av-platform/networking-connectivity/airport-5g-cbrs.md` -- Airport 5G infrastructure
+- `20-av-platform/compute/nvidia-orin-technical.md` -- Orin compute specifications
 - `foundations/pointpillars-technical.md` -- PointPillars architecture details

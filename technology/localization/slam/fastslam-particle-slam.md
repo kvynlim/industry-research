@@ -223,7 +223,7 @@ Operational cautions:
 - Do not use dynamic aircraft/GSE returns as stable map evidence.
 - Keep particle count adaptive and monitor `N_eff`.
 - Use semantic masks and temporal decay if integrating occupancy.
-- Hand off to the main [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md) backend after a recovery hypothesis is verified.
+- Hand off to the main [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) backend after a recovery hypothesis is verified.
 - Use place recognition from [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md) to seed hypotheses rather than relying only on random global particles.
 
 ## Datasets and Metrics
@@ -271,7 +271,7 @@ For airside deployment:
 
 ## Related Repository Docs
 
-- [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md)
+- [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)
 - [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
 - [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md)
 - [Real-Time Occupancy Grid Mapping](../realtime-occupancy-grid-mapping.md)

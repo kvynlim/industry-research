@@ -735,7 +735,7 @@ This is precisely the defense-in-depth philosophy described in `operations/safet
 
 ### 8.1 Model Inventory
 
-The Aurrigo stack deploys the following neural network components on NVIDIA Orin (see `hardware/compute/nvidia-orin-technical.md`):
+The Aurrigo stack deploys the following neural network components on NVIDIA Orin (see `20-av-platform/compute/nvidia-orin-technical.md`):
 
 | Component | Architecture | Parameters | Layers | ReLU Neurons | Verifiable? |
 |-----------|-------------|-----------|--------|-------------|-------------|
@@ -1699,7 +1699,7 @@ Breakeven: verification pays for itself if it prevents even a single safety inci
 - `operations/safety/functional-safety-software.md` -- ISO 26262 Part 6, MISRA C
 - `operations/safety/testing-validation-methodology.md` -- Statistical safety testing, Zhao-Weng formula
 - `technology/planning/reinforcement-learning-driving-policy.md` -- Policy network architecture
-- `hardware/compute/nvidia-orin-technical.md` -- Deployment target specifications
+- `20-av-platform/compute/nvidia-orin-technical.md` -- Deployment target specifications
 - `technology/perception/model-compression-edge-deployment.md` -- Model sizes and TensorRT optimization
 - `technology/perception/multi-task-unified-perception.md` -- Shared-backbone verification challenges
 - `technology/planning/causal-reasoning-counterfactual-planning.md` -- EU PLD compliance context

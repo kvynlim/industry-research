@@ -3130,7 +3130,7 @@ ISO 3691-4 (Safety of industrial trucks --- Driverless industrial trucks) includ
 ### Related Repository Documents
 - `technology/multi-agent/fleet-coordination.md` --- Multi-agent coordination overview
 - `technology/perception/collaborative-fleet-perception.md` --- V2V cooperative perception algorithms
-- `hardware/connectivity/airport-5g-cbrs.md` --- Airport 5G/CBRS infrastructure
+- `20-av-platform/networking-connectivity/airport-5g-cbrs.md` --- Airport 5G/CBRS infrastructure
 - `operations/airside/ground-control-instructions.md` --- A-CDM, A-SMGCS, ATC integration
 - `operations/safety/cybersecurity-airside-av.md` --- Cybersecurity for airside AVs
 - `operations/airside/turnaround-operations.md` --- Turnaround sequencing

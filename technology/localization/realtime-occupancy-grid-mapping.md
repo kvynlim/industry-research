@@ -2285,6 +2285,6 @@ This MVP immediately improves planning by replacing sparse RANSAC clusters with 
 | Active perception and sensor scheduling | `technology/perception/active-perception-sensor-scheduling.md` |
 | Autonomous docking and precision positioning | `technology/planning/autonomous-docking-precision.md` |
 | Night operations and thermal fusion | `technology/perception/night-operations-thermal.md` |
-| RoboSense LiDAR specifications | `hardware/sensors/robosense-lidar.md` |
-| NVIDIA Orin technical specifications | `hardware/compute/nvidia-orin-technical.md` |
-| TensorRT deployment guide | `hardware/compute/tensorrt-deployment-guide.md` |
+| RoboSense LiDAR specifications | `20-av-platform/sensors/robosense-lidar.md` |
+| NVIDIA Orin technical specifications | `20-av-platform/compute/nvidia-orin-technical.md` |
+| TensorRT deployment guide | `20-av-platform/compute/tensorrt-deployment-guide.md` |

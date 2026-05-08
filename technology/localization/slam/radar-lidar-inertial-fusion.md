@@ -1,6 +1,6 @@
 # Radar-LiDAR-Inertial Fusion for Robust Odometry and SLAM
 
-Related docs: [4D imaging radar](../../../hardware/sensors/4d-radar.md), [radar-inertial odometry](radar-inertial-odometry.md), [FAST-LIO2](fast-lio-fast-lio2.md), [LIO-SAM](lio-sam.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), and [robust multi-sensor localization](../robust-state-estimation-multi-sensor.md).
+Related docs: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md), [radar-inertial odometry](radar-inertial-odometry.md), [FAST-LIO2](fast-lio-fast-lio2.md), [LIO-SAM](lio-sam.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), and [robust multi-sensor localization](../robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary
 
@@ -238,5 +238,5 @@ Do not build a monolithic black-box fusion system without per-sensor diagnostics
 - GaRLIO repository. https://github.com/ChiyunNoh/GaRLIO
 - NTNU LiDAR degeneracy datasets. https://github.com/ntnu-arl/lidar_degeneracy_datasets
 - STEAM-ICP repository. https://github.com/utiasASRL/steam_icp
-- Local context: [4D imaging radar](../../../hardware/sensors/4d-radar.md)
+- Local context: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md)
 

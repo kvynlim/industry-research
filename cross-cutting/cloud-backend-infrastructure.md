@@ -1264,4 +1264,4 @@ Each airport gets:
 - `operations/deployment/ota-fleet-management.md` — OTA model and map deployment to vehicles
 - `operations/deployment/fleet-predictive-maintenance.md` — Maintenance data feeds from this pipeline
 - `technology/localization/hd-map-change-detection-maintenance.md` — Map update data flow
-- `hardware/compute/edge-cloud-hybrid-inference.md` — Edge server architecture (complementary)
+- `20-av-platform/compute/edge-cloud-hybrid-inference.md` — Edge server architecture (complementary)

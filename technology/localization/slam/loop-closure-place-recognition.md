@@ -6,7 +6,7 @@ Loop closure is the SLAM mechanism that recognizes a return to a previously visi
 
 Loop closure is essential for long missions and multi-session mapping, but it is also one of the most dangerous SLAM components. A missed loop closure leaves drift; a false loop closure can fold an entire map. Airside autonomy makes this harder because stands, markings, service roads, and terminal geometry repeat, while aircraft and GSE change the scene over time. The practical architecture is therefore multi-stage: conservative retrieval, context gating, geometric verification, robust backend insertion, and post-optimization monitoring.
 
-For the existing repo, this page is the method-level foundation. The more detailed LiDAR descriptor and relocalization survey is [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md). Backend integration is covered in [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md).
+For the existing repo, this page is the method-level foundation. The more detailed LiDAR descriptor and relocalization survey is [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md). Backend integration is covered in [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Historical Context
 
@@ -262,7 +262,7 @@ Never let place recognition alone reset the vehicle pose. It should propose hypo
 
 ## Related Repository Docs
 
-- [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md)
+- [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)
 - [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
 - [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md)
 - [Real-Time Occupancy Grid Mapping](../realtime-occupancy-grid-mapping.md)

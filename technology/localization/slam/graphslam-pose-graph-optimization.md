@@ -6,7 +6,7 @@ GraphSLAM reframes SLAM as sparse nonlinear optimization. Instead of recursively
 
 This method is the backbone of modern LiDAR SLAM, multi-session mapping, and offline HD map construction. It scales because most measurements connect only a few nearby variables, producing sparse Jacobians and sparse normal equations. It also handles loop closure naturally: a loop closure is just another edge between nonconsecutive poses. The price is that graph SLAM depends on a good front end. Bad scan matches, false loop closures, poor covariance estimates, or weak initialization can distort the whole map.
 
-For AV and airside deployment, pose graph optimization is a primary method, especially for offline map construction and medium-rate localization backends. GTSAM/iSAM2 is the factor-graph version used for incremental operation; see [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md). Pose graph optimization should be paired with robust state estimation, validated loop closure, and deterministic mapping layers described in [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md), and [Map Construction Pipeline](../map-construction-pipeline.md).
+For AV and airside deployment, pose graph optimization is a primary method, especially for offline map construction and medium-rate localization backends. GTSAM/iSAM2 is the factor-graph version used for incremental operation; see [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md). Pose graph optimization should be paired with robust state estimation, validated loop closure, and deterministic mapping layers described in [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md), [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md), and [Map Construction Pipeline](../map-construction-pipeline.md).
 
 ## Historical Context
 
@@ -258,7 +258,7 @@ For airside AVs:
 
 ## Related Repository Docs
 
-- [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md)
+- [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md)
 - [Robust State Estimation and Multi-Sensor Localization Fusion](../robust-state-estimation-multi-sensor.md)
 - [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md)
 - [Real-Time Occupancy Grid Mapping](../realtime-occupancy-grid-mapping.md)

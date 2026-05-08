@@ -340,7 +340,7 @@ The most reliable approach combines a learned detector (for initial acquisition 
 
 ### 4.1 Why LiDAR for Docking
 
-Aurrigo vehicles already carry 4-8 RoboSense LiDARs (RSHELIOS and RSBP -- see `hardware/sensors/robosense-lidar.md`). While primary LiDAR is used for GTSAM localization and obstacle detection, the dense point clouds from close-range LiDAR returns provide excellent geometric information for docking:
+Aurrigo vehicles already carry 4-8 RoboSense LiDARs (RSHELIOS and RSBP -- see `20-av-platform/sensors/robosense-lidar.md`). While primary LiDAR is used for GTSAM localization and obstacle detection, the dense point clouds from close-range LiDAR returns provide excellent geometric information for docking:
 
 - **Range accuracy**: RSHELIOS specifies +-2 cm range accuracy at distances under 30m. At 2-5m docking range, effective accuracy is +-1-2 cm.
 - **No lighting dependence**: LiDAR works identically in daylight, darkness, and artificial lighting (unlike cameras).
@@ -1179,7 +1179,7 @@ After abort, the vehicle reverses slowly (0.1 m/s) to the DAP. A human operator 
 
 ### 10.1 ADT3 Steering Modes
 
-The Aurrigo ADT3 features independent steering on all four wheels, enabling three steering modes (see `hardware/vehicle/can-bus-dbw.md` for the steering chain):
+The Aurrigo ADT3 features independent steering on all four wheels, enabling three steering modes (see `20-av-platform/drive-by-wire/can-bus-dbw.md` for the steering chain):
 
 1. **Ackermann steering**: Front wheels steer, rear wheels fixed. Standard car-like turning. Used for normal driving.
 2. **Crab steering**: All four wheels steer to the same angle. The vehicle translates laterally without changing heading. Unique capability for docking.
@@ -1897,8 +1897,8 @@ The key architectural decision is that docking is a **mode** of the existing veh
 
 ### Internal Repository
 - `technology/planning/frenet-planner-augmentation.md` -- Frenet planner architecture and sampling strategy
-- `hardware/sensors/robosense-lidar.md` -- RoboSense RSHELIOS and RSBP specifications
-- `hardware/vehicle/can-bus-dbw.md` -- CAN bus interface and ADT3 steering chain
+- `20-av-platform/sensors/robosense-lidar.md` -- RoboSense RSHELIOS and RSBP specifications
+- `20-av-platform/drive-by-wire/can-bus-dbw.md` -- CAN bus interface and ADT3 steering chain
 - `operations/airside/pushback-systems.md` -- Pushback operations and tug types
 - `technology/planning/safety-critical-planning-cbf.md` -- CBF safety filter architecture
 

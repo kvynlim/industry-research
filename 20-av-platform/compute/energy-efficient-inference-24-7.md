@@ -2010,8 +2010,8 @@ alerts:
 
 ## References
 
-- `hardware/compute/nvidia-orin-technical.md` — Orin SoC architecture, power modes, thermal specs, inference benchmarks
-- `hardware/compute/tensorrt-deployment-guide.md` — TensorRT engine builds, DLA targeting, quantization
+- `20-av-platform/compute/nvidia-orin-technical.md` — Orin SoC architecture, power modes, thermal specs, inference benchmarks
+- `20-av-platform/compute/tensorrt-deployment-guide.md` — TensorRT engine builds, DLA targeting, quantization
 - `technology/perception/model-compression-edge-deployment.md` — DLA offloading strategy, multi-model orchestration, compressed model recipes
 - `operations/airside/battery-charging-infrastructure.md` — Battery specs, charging strategies, fleet charging economics
 - `operations/deployment/fleet-management-dispatch.md` — Fleet routing, dispatch algorithms, NVIDIA Fleet Command

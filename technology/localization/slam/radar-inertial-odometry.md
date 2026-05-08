@@ -1,6 +1,6 @@
 # Radar-Inertial Odometry
 
-Related docs: [4D imaging radar](../../../hardware/sensors/4d-radar.md), [radar odometry and radar SLAM](radar-odometry-radar-slam.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), [EKF-SLAM](ekf-slam.md), and [robust multi-sensor localization](../robust-state-estimation-multi-sensor.md).
+Related docs: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md), [radar odometry and radar SLAM](radar-odometry-radar-slam.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), [EKF-SLAM](ekf-slam.md), and [robust multi-sensor localization](../robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary
 
@@ -250,5 +250,5 @@ Do not publish a safety pose from RIO alone unless the route has been specifical
 - Go-RIO repository. https://github.com/wooseongY/Go-RIO
 - EKF-RIO-TC repository. https://github.com/spearwin/ekf-rio-tc
 - 4D-Radar-Odom repository. https://github.com/robotics-upo/4D-Radar-Odom
-- Local context: [4D imaging radar](../../../hardware/sensors/4d-radar.md)
+- Local context: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md)
 

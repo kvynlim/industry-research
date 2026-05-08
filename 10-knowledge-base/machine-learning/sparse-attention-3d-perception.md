@@ -79,7 +79,7 @@ Why this matters for point clouds:
 4. **Permutation invariance**: Attention output is unchanged by point ordering (unlike 1D sequence models)
 5. **Density-adaptive**: Naturally handles varying point density -- sparse regions attend over larger areas
 
-For detailed transformer attention fundamentals (scaling, multi-head, positional encoding), see `foundations/transformer-world-models.md`.
+For detailed transformer attention fundamentals (scaling, multi-head, positional encoding), see `10-knowledge-base/machine-learning/transformer-world-models.md`.
 
 ### 1.3 The Quadratic Wall
 
@@ -891,7 +891,7 @@ Bird's Eye View (BEV) is the dominant representation for multi-modal 3D percepti
 - Direct compatibility with 2D CNN heads for detection, segmentation, prediction
 - Natural interface for planning (the planner already reasons in BEV)
 
-For LiDAR-only systems like Aurrigo's current stack, BEV can be constructed by simple pillar-pooling (as in PointPillars -- see `foundations/pointpillars.md`). But for camera-based or LiDAR-camera fusion, **attention-based BEV construction** is required.
+For LiDAR-only systems like Aurrigo's current stack, BEV can be constructed by simple pillar-pooling (as in PointPillars -- see `10-knowledge-base/geometry-3d/pointpillars.md`). But for camera-based or LiDAR-camera fusion, **attention-based BEV construction** is required.
 
 ### 5.2 BEVFormer (ECCV 2022)
 
@@ -1341,7 +1341,7 @@ TensorRT handles this automatically with:
   # Requires calibration dataset for per-tensor scales
 ```
 
-**Accuracy impact:** INT8 attention typically loses 0.3-0.8% mIoU on segmentation, 0.5-1.0 NDS on detection. Acceptable for the 1.8-2.2x speedup on Orin. See `hardware/compute/tensorrt-deployment-guide.md` for TensorRT INT8 calibration details.
+**Accuracy impact:** INT8 attention typically loses 0.3-0.8% mIoU on segmentation, 0.5-1.0 NDS on detection. Acceptable for the 1.8-2.2x speedup on Orin. See `20-av-platform/compute/tensorrt-deployment-guide.md` for TensorRT INT8 calibration details.
 
 ### 6.7 KV-Cache for Temporal Sequences
 
@@ -2757,11 +2757,11 @@ if __name__ == '__main__':
 - Scheibenreif et al., "RangeFormer: Range-View Transformers for LiDAR Semantic Segmentation," 2023
 
 ### Related Repository Documents
-- `foundations/transformer-world-models.md` -- Attention mechanism fundamentals
-- `foundations/pointpillars.md` -- PointPillars architecture (BEV baseline)
-- `foundations/mamba-ssm-for-driving.md` -- Sub-quadratic alternative to attention
+- `10-knowledge-base/machine-learning/transformer-world-models.md` -- Attention mechanism fundamentals
+- `10-knowledge-base/geometry-3d/pointpillars.md` -- PointPillars architecture (BEV baseline)
+- `10-knowledge-base/machine-learning/mamba-ssm-for-driving.md` -- Sub-quadratic alternative to attention
 - `technology/perception/lidar-semantic-segmentation.md` -- Segmentation methods including FlatFormer, SalsaNext
 - `technology/perception/model-compression-edge-deployment.md` -- Compression and Orin deployment
-- `hardware/compute/tensorrt-deployment-guide.md` -- TensorRT conversion pipeline
+- `20-av-platform/compute/tensorrt-deployment-guide.md` -- TensorRT conversion pipeline
 - `technology/perception/multi-task-unified-perception.md` -- Shared backbone multi-head architecture
 - `synthesis/design-spec.md` -- Simplex architecture (AC/BC pattern)

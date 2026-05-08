@@ -897,7 +897,7 @@ Edge computing is essential for cooperative perception -- sending raw data to th
 
 Private 5G/CBRS networks are being deployed at airports for broader operational purposes, and cooperative perception can ride on this infrastructure:
 
-**Key deployments** (detailed in `hardware/connectivity/airport-5g-cbrs.md`):
+**Key deployments** (detailed in `20-av-platform/networking-connectivity/airport-5g-cbrs.md`):
 
 | Airport | Network | Scale | Investment | Status |
 |---------|---------|-------|------------|--------|

@@ -11,7 +11,7 @@ This comparison is for engineering selection, not leaderboard admiration. A SLAM
 | Place recognition | [LiDAR Place Recognition and Re-Localization](../lidar-place-recognition-relocalization.md) | Most stacks need external loop/relocalization strengthening for production. |
 | Map construction | [Map Construction Pipeline](../map-construction-pipeline.md) | Stack output must be compatible with survey processing, GCP alignment, map QA, and OTA deployment. |
 | State estimation | [Robust State Estimation Multi-Sensor](../robust-state-estimation-multi-sensor.md) | Pose output quality is not enough; covariance, gating, dropout, and sensor health matter. |
-| Backend math | [GTSAM Factor Graphs](../../../foundations/gtsam-factor-graphs.md) | Essential for understanding LIO-SAM, GLIM, map optimization, and production factor insertion. |
+| Backend math | [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) | Essential for understanding LIO-SAM, GLIM, map optimization, and production factor insertion. |
 | Gaussian/neural maps | [Gaussian Splatting for Driving](../../perception/gaussian-splatting-driving.md) | Good future-facing map/QA representation, but not yet a primary certified pose stack. |
 | Coverage audit | [SLAM Coverage Audit and Backlog](coverage-audit-2026.md) | Tracks missing stack pages such as MOLA, KISS-SLAM, FAST-LIVO/R3LIVE, LOCUS/LAMP, DLIO/DLIOM, and cuVSLAM. |
 

@@ -31,7 +31,7 @@ Key assumptions:
 - Motion blur, rolling shutter, exposure shifts, and lens artifacts are not severe enough to defeat feature/depth priors.
 - Dynamic objects are not permanently stationary in the same place for most of the sequence.
 
-The method is not designed around adverse weather. Fog, rain, snow, water droplets, glare, and night lighting are camera-domain failures. For adverse-weather autonomy, compare against [4D imaging radar](../../../hardware/sensors/4d-radar.md) and radar/LiDAR-inertial fusion methods rather than treating camera-only Gaussian SLAM as a robust fallback.
+The method is not designed around adverse weather. Fog, rain, snow, water droplets, glare, and night lighting are camera-domain failures. For adverse-weather autonomy, compare against [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md) and radar/LiDAR-inertial fusion methods rather than treating camera-only Gaussian SLAM as a robust fallback.
 
 ## State/Map Representation
 

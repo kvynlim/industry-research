@@ -1,6 +1,6 @@
 # Radar Odometry and Radar SLAM
 
-Related docs: [4D imaging radar](../../../hardware/sensors/4d-radar.md), [SLAM benchmarking](benchmarking-metrics-datasets.md), [loop closure and place recognition](loop-closure-place-recognition.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), and [robust state estimation](../robust-state-estimation-multi-sensor.md).
+Related docs: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md), [SLAM benchmarking](benchmarking-metrics-datasets.md), [loop closure and place recognition](loop-closure-place-recognition.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), and [robust state estimation](../robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary
 
@@ -168,7 +168,7 @@ radar odometry / radar SLAM factor
 
 ## Airside Deployment Notes
 
-Radar is especially relevant airside because operations continue through darkness, rain, fog, mist, dust, and de-icing spray. See the hardware discussion in [4D imaging radar](../../../hardware/sensors/4d-radar.md).
+Radar is especially relevant airside because operations continue through darkness, rain, fog, mist, dust, and de-icing spray. See the hardware discussion in [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md).
 
 Airside deployment notes:
 
@@ -232,5 +232,5 @@ Do not deploy radar-only SLAM as the primary localization stack unless the route
 - MulRan Dataset. https://sites.google.com/view/mulran-pr/dataset
 - Boreas Dataset. https://www.boreas.utias.utoronto.ca/
 - RADIATE Dataset. https://pro.hw.ac.uk/radiate/
-- Local context: [4D imaging radar](../../../hardware/sensors/4d-radar.md)
+- Local context: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md)
 

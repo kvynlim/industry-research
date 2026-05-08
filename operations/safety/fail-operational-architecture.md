@@ -767,7 +767,7 @@ With 6-8 LiDARs, every point in the near field (0-30m) is covered by at least 2 
 
 ### 6.3 Sensor Health and Degraded Perception Modes
 
-See `hardware/sensors/sensor-degradation-health-monitoring.md` for detailed diagnostics. The fail-operational architecture must define degradation tiers:
+See `20-av-platform/sensors/sensor-degradation-health-monitoring.md` for detailed diagnostics. The fail-operational architecture must define degradation tiers:
 
 | Tier | Condition | Perception capability | Speed limit | Action |
 |------|-----------|----------------------|-------------|--------|
@@ -1790,10 +1790,10 @@ These can be implemented immediately with existing hardware:
 - `operations/safety/testing-validation-methodology.md` — V&V methodology, scenario testing
 - `operations/safety/certification-guide.md` — ISO 3691-4 certification process ($130K-380K)
 - `operations/safety/weather-adaptive-odd-management.md` — ODD management under weather conditions
-- `hardware/sensors/sensor-degradation-health-monitoring.md` — Per-sensor health diagnostics
+- `20-av-platform/sensors/sensor-degradation-health-monitoring.md` — Per-sensor health diagnostics
 - `cross-cutting/radar-lidar-fusion-adverse-weather.md` — Radar-LiDAR fusion for weather resilience
-- `hardware/compute/nvidia-drive-thor.md` — Thor compute platform specs
-- `hardware/vehicle/can-bus-dbw.md` — CAN bus and drive-by-wire fundamentals
+- `20-av-platform/compute/nvidia-drive-thor.md` — Thor compute platform specs
+- `20-av-platform/drive-by-wire/can-bus-dbw.md` — CAN bus and drive-by-wire fundamentals
 - `technology/planning/safety-critical-planning-cbf.md` — Control barrier functions for safety
 
 ### External

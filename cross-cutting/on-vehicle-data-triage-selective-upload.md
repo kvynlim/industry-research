@@ -94,10 +94,10 @@ Related documents:
 - `cross-cutting/data-flywheel-airside.md` - Closed-loop ML from collected data
 - `cross-cutting/data-engine-from-bags.md` - Rosbag batch processing for datasets
 - `cross-cutting/fleet-data-pipeline.md` - End-to-end pipeline overview, DVC versioning
-- `hardware/compute/nvidia-orin-technical.md` - Orin memory/compute constraints
-- `hardware/connectivity/airport-5g-cbrs.md` - Airport 5G bandwidth
+- `20-av-platform/compute/nvidia-orin-technical.md` - Orin memory/compute constraints
+- `20-av-platform/networking-connectivity/airport-5g-cbrs.md` - Airport 5G bandwidth
 - `operations/safety/runtime-verification-monitoring.md` - STL monitors that generate trigger events
-- `hardware/sensors/sensor-degradation-health-monitoring.md` - Sensor health signals as triggers
+- `20-av-platform/sensors/sensor-degradation-health-monitoring.md` - Sensor health signals as triggers
 
 ---
 
@@ -1930,7 +1930,7 @@ def export_to_trt_dla(model_path: str, output_path: str):
 
 ### 5.1 Airport Connectivity Model
 
-From `hardware/connectivity/airport-5g-cbrs.md`, airport 5G connectivity has these characteristics:
+From `20-av-platform/networking-connectivity/airport-5g-cbrs.md`, airport 5G connectivity has these characteristics:
 
 | Parameter | Value | Notes |
 |-----------|-------|-------|
@@ -3938,8 +3938,8 @@ The data triage system pays for itself through:
 23. `cross-cutting/data-flywheel-airside.md` - Closed-loop ML pipeline
 24. `cross-cutting/data-engine-from-bags.md` - Rosbag processing for datasets
 25. `cross-cutting/fleet-data-pipeline.md` - End-to-end pipeline overview
-26. `hardware/compute/nvidia-orin-technical.md` - Orin platform constraints
-27. `hardware/connectivity/airport-5g-cbrs.md` - Airport 5G bandwidth
+26. `20-av-platform/compute/nvidia-orin-technical.md` - Orin platform constraints
+27. `20-av-platform/networking-connectivity/airport-5g-cbrs.md` - Airport 5G bandwidth
 28. `operations/safety/runtime-verification-monitoring.md` - STL monitors as triggers
-29. `hardware/sensors/sensor-degradation-health-monitoring.md` - Sensor health triggers
+29. `20-av-platform/sensors/sensor-degradation-health-monitoring.md` - Sensor health triggers
 30. `operations/deployment/fleet-data-pipeline.md` - DVC versioning and fleet data management

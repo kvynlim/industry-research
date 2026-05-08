@@ -2299,6 +2299,6 @@ model-registry/
 37. `operations/deployment/ota-fleet-management.md` — OTA update architectures and fleet management platforms.
 38. `operations/deployment/shadow-mode.md` — Shadow mode architecture for progressive AI deployment.
 39. `operations/deployment/fleet-management-dispatch.md` — Fleet management and dispatch systems.
-40. `hardware/connectivity/airport-5g-cbrs.md` — Airport 5G/CBRS network deployment and costs.
+40. `20-av-platform/networking-connectivity/airport-5g-cbrs.md` — Airport 5G/CBRS network deployment and costs.
 41. `cross-cutting/nuscenes-waymo-practical-guide.md` — Working with standard AV datasets.
 42. `cross-cutting/transfer-learning.md` — Domain adaptation for airside from road datasets.

@@ -106,11 +106,11 @@ For a 20-vehicle fleet averaging 2-3 unplanned failures per vehicle per year, un
 
 The existing research repository covers individual pieces of the maintenance puzzle:
 
-- **Sensor health monitoring** ([sensor-degradation-health-monitoring.md](../../hardware/sensors/sensor-degradation-health-monitoring.md)): Per-sensor diagnostics, cross-sensor consistency, fleet degradation patterns --- but limited to sensors, and focused on real-time response rather than long-term prognostics
+- **Sensor health monitoring** ([sensor-degradation-health-monitoring.md](../../20-av-platform/sensors/sensor-degradation-health-monitoring.md)): Per-sensor diagnostics, cross-sensor consistency, fleet degradation patterns --- but limited to sensors, and focused on real-time response rather than long-term prognostics
 - **Fleet dispatch** ([fleet-management-dispatch.md](fleet-management-dispatch.md)): Task allocation and scheduling --- but does not incorporate vehicle health as a dispatch parameter
 - **Fleet TCO** ([fleet-tco-business-case.md](fleet-tco-business-case.md)): Maintenance cost estimates ($6,700-18,000/vehicle/year) --- but treats maintenance as a flat annual cost rather than an optimizable system
 - **CI/CD pipeline** ([av-cicd-devops-pipeline.md](av-cicd-devops-pipeline.md)): Software deployment --- but no integration with hardware maintenance lifecycle
-- **CAN bus/DBW** ([can-bus-dbw.md](../../hardware/vehicle/can-bus-dbw.md)): Vehicle interface --- rich CAN telemetry available but not yet mined for prognostics
+- **CAN bus/DBW** ([can-bus-dbw.md](../../20-av-platform/drive-by-wire/can-bus-dbw.md)): Vehicle interface --- rich CAN telemetry available but not yet mined for prognostics
 
 The gap: **no system-level framework connecting component health data to fleet-level maintenance optimization, spare parts planning, or maintenance-aware scheduling.** This document fills that gap.
 
@@ -335,7 +335,7 @@ class ComputeHealthDiagnostics:
 
 **Source 2: CAN Bus Signals**
 
-The CAN bus on Aurrigo vehicles (see [can-bus-dbw.md](../../hardware/vehicle/can-bus-dbw.md)) exposes real-time actuator telemetry. Key signals for prognostics:
+The CAN bus on Aurrigo vehicles (see [can-bus-dbw.md](../../20-av-platform/drive-by-wire/can-bus-dbw.md)) exposes real-time actuator telemetry. Key signals for prognostics:
 
 | CAN Signal | Message ID | Rate | Prognostic Value |
 |---|---|---|---|
@@ -353,7 +353,7 @@ The CAN bus on Aurrigo vehicles (see [can-bus-dbw.md](../../hardware/vehicle/can
 
 **Source 3: Sensor Health Metrics**
 
-Directly from the sensor health monitoring system described in [sensor-degradation-health-monitoring.md](../../hardware/sensors/sensor-degradation-health-monitoring.md):
+Directly from the sensor health monitoring system described in [sensor-degradation-health-monitoring.md](../../20-av-platform/sensors/sensor-degradation-health-monitoring.md):
 
 - Per-LiDAR health scores (7 checks, 1 Hz): point count, max range, angular coverage, intensity distribution, near-field saturation, beam uniformity, temporal consistency
 - Per-radar health (5 checks): detection count, range, SNR, noise floor, angular coverage
@@ -1522,7 +1522,7 @@ MTTR includes diagnosis, part retrieval, repair, verification, and return to ser
 | LiDAR cleaning (manual) | 0 min | 5 min | 10-15 min | 5 min | 20-25 min |
 | Software update + verify | 0 min | 0 min | 10-15 min | 15-20 min | 25-35 min |
 
-**Recalibration note:** After any sensor swap, the multi-LiDAR extrinsic calibration process must run (see [multi-lidar-calibration.md](../../hardware/sensors/multi-lidar-calibration.md)). With automated calibration targets at the depot, this takes 20-30 minutes rather than the 1-2 hours required for manual calibration. Designing the depot with permanent calibration targets is a one-time $2,000-5,000 investment that reduces every sensor-swap MTTR by 30-60 minutes.
+**Recalibration note:** After any sensor swap, the multi-LiDAR extrinsic calibration process must run (see [multi-lidar-calibration.md](../../20-av-platform/sensors/multi-lidar-calibration.md)). With automated calibration targets at the depot, this takes 20-30 minutes rather than the 1-2 hours required for manual calibration. Designing the depot with permanent calibration targets is a one-time $2,000-5,000 investment that reduces every sensor-swap MTTR by 30-60 minutes.
 
 ### 7.4 Monte Carlo Fleet Availability Simulation
 
@@ -2141,7 +2141,7 @@ At mid-range estimates: $67,500 implementation cost, $150,000/year savings, $12,
 | 3 | Vehicle Health Index | Level 3 composite VHI computation and /vehicle_health topic |
 | 4 | Fleet health dashboard v1 | Grafana dashboards showing per-vehicle VHI, subsystem breakdown, historical trending |
 
-**Dependencies:** Sensor health monitoring node (from [sensor-degradation-health-monitoring.md](../../hardware/sensors/sensor-degradation-health-monitoring.md)) must be operational. CAN DBC file for Aurrigo vehicles must be available.
+**Dependencies:** Sensor health monitoring node (from [sensor-degradation-health-monitoring.md](../../20-av-platform/sensors/sensor-degradation-health-monitoring.md)) must be operational. CAN DBC file for Aurrigo vehicles must be available.
 
 **Deliverables:**
 - CAN diagnostic bridge ROS node (Python, ~500 lines)
@@ -2280,14 +2280,14 @@ Each phase delivers standalone value. Phase 1 alone provides visibility into fle
 
 ### Cross-References Within Repository
 
-- [Sensor Degradation and Health Monitoring](../../hardware/sensors/sensor-degradation-health-monitoring.md) --- Per-sensor diagnostics, cross-sensor consistency, Level 1 of PHM
+- [Sensor Degradation and Health Monitoring](../../20-av-platform/sensors/sensor-degradation-health-monitoring.md) --- Per-sensor diagnostics, cross-sensor consistency, Level 1 of PHM
 - [Fleet Management and Dispatch](fleet-management-dispatch.md) --- Fleet dispatch integration, health-aware vehicle assignment
 - [Fleet TCO and Business Case](fleet-tco-business-case.md) --- Maintenance cost context within total cost model
 - [Fleet Task Allocation and Scheduling](../../technology/multi-agent/fleet-task-allocation-scheduling.md) --- CP-SAT scheduling, disruption handling, maintenance vehicle routing
-- [CAN Bus and Drive-by-Wire](../../hardware/vehicle/can-bus-dbw.md) --- CAN signal specifications, SocketCAN integration
-- [Multi-LiDAR Extrinsic Calibration](../../hardware/sensors/multi-lidar-calibration.md) --- Post-swap recalibration procedures
+- [CAN Bus and Drive-by-Wire](../../20-av-platform/drive-by-wire/can-bus-dbw.md) --- CAN signal specifications, SocketCAN integration
+- [Multi-LiDAR Extrinsic Calibration](../../20-av-platform/sensors/multi-lidar-calibration.md) --- Post-swap recalibration procedures
 - [Multi-Airport Domain Adaptation](multi-airport-adaptation.md) --- Per-airport depot setup, 8-week onboarding timeline
 - [CI/CD and DevOps Pipeline](av-cicd-devops-pipeline.md) --- Software deployment pipeline integration
-- [Runtime Verification and Monitoring](../../operations/safety/runtime-verification-monitoring.md) --- Predictive maintenance from operational data (Section 5.4)
-- [Weather-Adaptive ODD Management](../../operations/safety/weather-adaptive-odd-management.md) --- Environmental conditions affecting maintenance schedules
+- [Runtime Verification and Monitoring](../safety/runtime-verification-monitoring.md) --- Predictive maintenance from operational data (Section 5.4)
+- [Weather-Adaptive ODD Management](../safety/weather-adaptive-odd-management.md) --- Environmental conditions affecting maintenance schedules
 - [HMI and Operator Interface](hmi-operator-interface.md) --- Incident reporting pipeline feeding maintenance data

@@ -345,13 +345,13 @@ With 200 GB/day/vehicle, the raw data cost before tiering would be $72,000/year/
 |---|---|---|
 | **Product liability insurance** | $5,000-15,000 | For autonomous system manufacturer |
 | **Airport operator's liability** | $2,000-8,000 | Allocated per vehicle from airport master policy |
-| **Cyber insurance** | $1,000-5,000 | Connected vehicle, OTA update risk (see [cybersecurity](../../operations/safety/cybersecurity-airside-av.md)) |
+| **Cyber insurance** | $1,000-5,000 | Connected vehicle, OTA update risk (see [cybersecurity](../safety/cybersecurity-airside-av.md)) |
 | **Workers' comp (for ops staff)** | Included in staff cost | |
 | **Insurance total per vehicle** | **$8,000-28,000** | |
 
 **Insurance trajectory**: In the pilot phase, insurers treat autonomous GSE as novel risk and price aggressively ($20-30K/vehicle). As fleet operating hours accumulate without major incidents, premiums decline. TractEasy's zero-accident record across 8 airports is the kind of data that enables insurance rate reduction. Expect 30-50% premium reduction by Year 3-5 with clean safety record.
 
-**Liability framework change**: The EU Product Liability Directive 2024/2853 (transpose deadline December 2026) classifies software and AI as "products" subject to strict liability. This means Aurrigo bears product liability for autonomous driving decisions regardless of negligence --- increasing insurance costs but also increasing the value of formal safety methods (CBF, Simplex, STL monitoring) that can demonstrate due diligence. See [iso-3691-4-deep-dive.md](../../operations/safety/iso-3691-4-deep-dive.md).
+**Liability framework change**: The EU Product Liability Directive 2024/2853 (transpose deadline December 2026) classifies software and AI as "products" subject to strict liability. This means Aurrigo bears product liability for autonomous driving decisions regardless of negligence --- increasing insurance costs but also increasing the value of formal safety methods (CBF, Simplex, STL monitoring) that can demonstrate due diligence. See [iso-3691-4-deep-dive.md](../safety/iso-3691-4-deep-dive.md).
 
 ### 4.6 Annual OPEX Summary
 
@@ -687,7 +687,7 @@ Deploying to similar airports first maximizes reusability and minimizes adaptati
 | **UAE (GCAA)** | Case-by-case approval | $100,000-300,000 (est.) | 12-30 months | Unknown |
 | **Australia (CASA)** | Case-by-case, referencing ISO 3691-4 | $100,000-250,000 (est.) | 12-24 months | $15,000-40,000/year |
 
-**Cost detail for ISO 3691-4** (from [iso-3691-4-deep-dive.md](../../operations/safety/iso-3691-4-deep-dive.md)):
+**Cost detail for ISO 3691-4** (from [iso-3691-4-deep-dive.md](../safety/iso-3691-4-deep-dive.md)):
 
 | Item | Cost |
 |---|---|
@@ -1332,16 +1332,16 @@ Monthly_RaaS = RaaS_Price / 12
 | RoboSense RSBP price | $1,200-2,000 | Industry estimates |
 | FLIR Boson 640 price | $3,000-5,000 | FLIR/Teledyne published pricing |
 | Continental ARS548 price | $300-500 | Automotive volume pricing |
-| Electric baggage tractor cost | $35,000-120,000 | [electric-gse-market.md](../../operations/airside/electric-gse-market.md) |
+| Electric baggage tractor cost | $35,000-120,000 | [electric-gse-market.md](../airside/electric-gse-market.md) |
 | GSE driver salary (US) | $45,000-65,000 | BLS, ground handler job postings |
 | GSE driver salary (EU) | EUR 35,000-55,000 | Eurostat, Swissport wage data |
 | Ramp accidents/year | ~27,000 | IATA Ground Handling Council |
 | Average aircraft damage cost | $250,000 | Industry average, IATA GDDB |
-| ISO 3691-4 certification cost | $130,000-380,000 | [iso-3691-4-deep-dive.md](../../operations/safety/iso-3691-4-deep-dive.md) |
-| Airport 5G cost | $5-15M | [airport-5g-cbrs.md](../../hardware/connectivity/airport-5g-cbrs.md) (DFW $10M) |
+| ISO 3691-4 certification cost | $130,000-380,000 | [iso-3691-4-deep-dive.md](../safety/iso-3691-4-deep-dive.md) |
+| Airport 5G cost | $5-15M | [airport-5g-cbrs.md](../../20-av-platform/networking-connectivity/airport-5g-cbrs.md) (DFW $10M) |
 | Per-airport adaptation cost | $75-150K (additional) | [multi-airport-adaptation.md](multi-airport-adaptation.md) |
-| GSE market size (2025) | $8.32B | Market research, [electric-gse-market.md](../../operations/airside/electric-gse-market.md) |
-| Electric GSE premium | 30-75% over diesel | [electric-gse-market.md](../../operations/airside/electric-gse-market.md) |
+| GSE market size (2025) | $8.32B | Market research, [electric-gse-market.md](../airside/electric-gse-market.md) |
+| Electric GSE premium | 30-75% over diesel | [electric-gse-market.md](../airside/electric-gse-market.md) |
 | Electric operating cost savings | $3,000-11,000/year | Tiger GSE, Ground Team Red data |
 | Discount rate | 8% | Typical WACC for industrial/infrastructure |
 | Labor inflation | 3%/year | BLS, Eurostat long-term averages |
@@ -1357,9 +1357,9 @@ Monthly_RaaS = RaaS_Price / 12
 |---|---|---|
 | Multi-airport deployment costs | [multi-airport-adaptation.md](multi-airport-adaptation.md) | Per-airport cost breakdown, scaling economics |
 | Workforce transition | [workforce-transition.md](workforce-transition.md) | Labor displacement modeling, retraining costs |
-| Electric GSE market | [electric-gse-market.md](../../operations/airside/electric-gse-market.md) | Base vehicle costs, electrification trends |
-| ISO 3691-4 certification | [iso-3691-4-deep-dive.md](../../operations/safety/iso-3691-4-deep-dive.md) | Certification cost and timeline detail |
-| Airport 5G infrastructure | [airport-5g-cbrs.md](../../hardware/connectivity/airport-5g-cbrs.md) | Connectivity CAPEX, DFW case study |
+| Electric GSE market | [electric-gse-market.md](../airside/electric-gse-market.md) | Base vehicle costs, electrification trends |
+| ISO 3691-4 certification | [iso-3691-4-deep-dive.md](../safety/iso-3691-4-deep-dive.md) | Certification cost and timeline detail |
+| Airport 5G infrastructure | [airport-5g-cbrs.md](../../20-av-platform/networking-connectivity/airport-5g-cbrs.md) | Connectivity CAPEX, DFW case study |
 | Fleet dispatch | [fleet-management-dispatch.md](fleet-management-dispatch.md) | Operational efficiency gains from optimized dispatch |
 | Shadow mode | [shadow-mode.md](shadow-mode.md) | Validation cost and timeline |
 | OTA management | [ota-fleet-management.md](ota-fleet-management.md) | Software update infrastructure costs |
@@ -1367,14 +1367,14 @@ Monthly_RaaS = RaaS_Price / 12
 | HMI / operator interface | [hmi-operator-interface.md](hmi-operator-interface.md) | Operator workstation costs, staffing ratios |
 | Data flywheel | Cross-cutting data flywheel doc | Annotation cost reduction, retraining economics |
 | Runtime verification | Operations safety runtime verification doc | Safety monitoring costs, $115-200K implementation |
-| Cybersecurity | [cybersecurity-airside-av.md](../../operations/safety/cybersecurity-airside-av.md) | Cyber insurance, connectivity security costs |
+| Cybersecurity | [cybersecurity-airside-av.md](../safety/cybersecurity-airside-av.md) | Cyber insurance, connectivity security costs |
 | Teleoperation | Operations teleoperation doc | Teleop station costs, Fernride model |
 | Federated learning | Cross-cutting federated learning doc | Fleet-scale ML cost reduction at 10+ airports |
 | Regulatory trajectory | Operations safety regulatory doc | FAA, EASA, CAAS timeline predictions |
 | Insurance/liability | Operations safety insurance doc | Insurance cost modeling, EU PLD impact |
 | Scenario taxonomy | Operations safety scenario taxonomy doc | Validation test count, simulation cost basis |
-| Compute hardware | [hardware/compute/](../../hardware/compute/edge-platforms.md) | Orin specs, Thor roadmap, TensorRT optimization |
-| Sensor hardware | [hardware/sensors/](../../hardware/sensors/sensor-degradation-health-monitoring.md) | RoboSense, Hesai, FLIR, Continental specs and pricing |
+| Compute hardware | [hardware/compute/](../../20-av-platform/compute/edge-platforms.md) | Orin specs, Thor roadmap, TensorRT optimization |
+| Sensor hardware | [hardware/sensors/](../../20-av-platform/sensors/sensor-degradation-health-monitoring.md) | RoboSense, Hesai, FLIR, Continental specs and pricing |
 
 ---
 
