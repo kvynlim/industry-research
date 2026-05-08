@@ -2285,7 +2285,7 @@ Each phase delivers standalone value. Phase 1 alone provides visibility into fle
 - [Fleet TCO and Business Case](fleet-tco-business-case.md) --- Maintenance cost context within total cost model
 - [Fleet Task Allocation and Scheduling](../../technology/multi-agent/fleet-task-allocation-scheduling.md) --- CP-SAT scheduling, disruption handling, maintenance vehicle routing
 - [CAN Bus and Drive-by-Wire](../../hardware/vehicle/can-bus-dbw.md) --- CAN signal specifications, SocketCAN integration
-- [Multi-LiDAR Extrinsic Calibration](../../hardware/sensors/multi-lidar-extrinsic-calibration.md) --- Post-swap recalibration procedures
+- [Multi-LiDAR Extrinsic Calibration](../../hardware/sensors/multi-lidar-calibration.md) --- Post-swap recalibration procedures
 - [Multi-Airport Domain Adaptation](multi-airport-adaptation.md) --- Per-airport depot setup, 8-week onboarding timeline
 - [CI/CD and DevOps Pipeline](av-cicd-devops-pipeline.md) --- Software deployment pipeline integration
 - [Runtime Verification and Monitoring](../../operations/safety/runtime-verification-monitoring.md) --- Predictive maintenance from operational data (Section 5.4)

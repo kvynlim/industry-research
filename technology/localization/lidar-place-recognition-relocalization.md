@@ -1557,5 +1557,5 @@ The existing GTSAM node in the Aurrigo stack already handles odometry and GPS fa
 - [Mapping and Localization](mapping-and-localization.md) -- Overview of mapping paradigms including place recognition's role in spatial memory
 - [Semantic Mapping and Learned Priors](semantic-mapping-learned-priors.md) -- Semantic features that could augment geometric descriptors for disambiguation
 - [HD Map Change Detection and Maintenance](hd-map-change-detection-maintenance.md) -- Fleet-based map maintenance that relies on cross-vehicle place recognition for multi-session alignment
-- [Multi-LiDAR Extrinsic Calibration](../../hardware/sensors/multi-lidar-extrinsic-calibration.md) -- Calibration accuracy directly impacts descriptor quality when fusing 4-8 LiDARs
+- [Multi-LiDAR Extrinsic Calibration](../../hardware/sensors/multi-lidar-calibration.md) -- Calibration accuracy directly impacts descriptor quality when fusing 4-8 LiDARs
 - [Sparse Attention for 3D Perception](../../foundations/sparse-attention-3d-perception.md) -- PTv3 architecture details relevant to transformer-based place recognition

@@ -2410,5 +2410,5 @@ The test vehicle must be configured for both safe testing and comprehensive data
 34. **[../airside/fod-and-jetblast.md](../airside/fod-and-jetblast.md)** -- FOD detection and jet blast hazard analysis
 35. **[failure-modes-analysis.md](failure-modes-analysis.md)** -- Perception, world model, and planning failure taxonomy
 36. **[../../technology/simulation/simulators-for-airside.md](../../technology/simulation/simulators-for-airside.md)** -- CARLA, Isaac Sim, Gazebo evaluation for airside environments
-37. **[../../technology/simulation/digital-twin-airport.md](../../technology/simulation/digital-twin-airport.md)** -- Airport digital twin construction and validation
+37. **[../../technology/simulation/airport-digital-twins.md](../../technology/simulation/airport-digital-twins.md)** -- Airport digital twin construction and validation
 38. **[../../synthesis/design-spec.md](../../synthesis/design-spec.md)** -- 891-line Simplex architecture design specification

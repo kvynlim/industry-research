@@ -2,7 +2,7 @@
 
 *Last updated: March 2026*
 
-*Companion document to [motional-perception-deep-dive.md](motional-perception-deep-dive.md)*
+*Companion document to [perception.md](perception.md)*
 
 ---
 
