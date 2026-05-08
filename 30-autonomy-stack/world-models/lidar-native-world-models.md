@@ -415,7 +415,7 @@ AMDB (airport layout) → Convert to HD map format
 
 ### 4.6 Limitations
 
-- Requires HD map as input (AMDB provides this for airports, but conversion to HD map format is needed -- see the AMXM/Lanelet2 discussion in `technology/localization/`)
+- Requires HD map as input (AMDB provides this for airports, but conversion to HD map format is needed -- see the AMXM/Lanelet2 discussion in `30-autonomy-stack/localization-mapping/maps/hd-map-standards-airside.md`)
 - Range image representation limits to single-LiDAR viewpoint per generation step
 - 50-100 diffusion steps per frame: not real-time, only for offline data generation
 - Beam pattern specific to training data (nuScenes 32-beam vs. RoboSense 32-beam RSHELIOS -- close but not identical)

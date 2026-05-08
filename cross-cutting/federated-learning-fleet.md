@@ -2110,7 +2110,7 @@ Client: runs on Orin (per-vehicle) or airport edge server (per-airport)
 
 Integration:
   - Training data from fleet data pipeline (cross-cutting/fleet-data-pipeline.md)
-  - Model architecture from perception stack (technology/perception/)
+  - Model architecture from perception stack (30-autonomy-stack/perception/)
   - Deployment via OTA (operations/deployment/ota-fleet-management.md)
 """
 

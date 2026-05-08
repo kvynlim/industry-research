@@ -2003,4 +2003,4 @@ Phases 1-3 provide ~80% of the value and can be completed in ~16 weeks for ~$30-
 
 *Document compiled April 2026. Covers published research through early 2026.*
 *Related documents: neural-motion-planning.md, motion-prediction.md, safety-critical-planning-cbf.md, frenet-planner-augmentation.md, reinforcement-learning-driving-policy.md*
-*Cross-references: operations/airside/ (turnaround operations, right-of-way), technology/planning/ (all planning docs)*
+*Cross-references: operations/airside/ (turnaround operations, right-of-way), 30-autonomy-stack/planning/ (all planning docs)*

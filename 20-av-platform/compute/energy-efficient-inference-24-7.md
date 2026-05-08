@@ -1673,7 +1673,7 @@ For each pending mission M and available vehicle V:
 
 ### 10.3 Coordinated Compute Loads Across Fleet
 
-When multiple vehicles are in the same area (e.g., busy apron during turnaround), they can share perception results via V2X cooperative perception (see `technology/perception/infrastructure-cooperative-v2i.md`). This enables individual vehicles to reduce their local compute load:
+When multiple vehicles are in the same area (e.g., busy apron during turnaround), they can share perception results via V2X cooperative perception (see `30-autonomy-stack/perception/overview/infrastructure-cooperative-perception.md`). This enables individual vehicles to reduce their local compute load:
 
 ```
 Cooperative perception energy savings:
@@ -2015,7 +2015,7 @@ alerts:
 - `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` — DLA offloading strategy, multi-model orchestration, compressed model recipes
 - `operations/airside/battery-charging-infrastructure.md` — Battery specs, charging strategies, fleet charging economics
 - `operations/deployment/fleet-management-dispatch.md` — Fleet routing, dispatch algorithms, NVIDIA Fleet Command
-- `technology/perception/infrastructure-cooperative-v2i.md` — V2I/V2V cooperative perception, Where2comm bandwidth
+- `30-autonomy-stack/perception/overview/infrastructure-cooperative-perception.md` — V2I/V2V cooperative perception, Where2comm bandwidth
 - `hardware/sensors/robosense-lidar-products.md` — RoboSense RSHELIOS/RSBP power and interface specs
 - `operations/safety/functional-safety-software.md` — MISRA C, safety-critical node lifecycle
 - `30-autonomy-stack/perception/overview/night-operations-thermal-fusion.md` — YOLO-Thermal on DLA, thermal camera power

@@ -2184,7 +2184,7 @@ Even at 30W power mode, the occupancy grid runs within the 100ms budget. At 15W 
 
 11. **Reflective surfaces (wet tarmac, aircraft skin) cause phantom points.** Mitigate with ground plane filtering, intensity thresholding, multi-frame consistency requirements, and known-reflector maps.
 
-12. **ESDF (Euclidean Signed Distance Field) is the optimal representation for future CBF integration.** While log-odds occupancy is sufficient for the current Frenet planner, the ESDF gradient field is required for CBF-QP safety filters (see `technology/planning/cbf-safety-critical.md`). nvblox computes ESDF from TSDF automatically.
+12. **ESDF (Euclidean Signed Distance Field) is the optimal representation for future CBF integration.** While log-odds occupancy is sufficient for the current Frenet planner, the ESDF gradient field is required for CBF-QP safety filters (see `30-autonomy-stack/planning/safety-critical-planning-cbf.md`). nvblox computes ESDF from TSDF automatically.
 
 13. **The `spatio_temporal_voxel_layer` ROS package provides a viable Phase 1 prototype** in 2-3 weeks, but its CPU-based OpenVDB backend will not sustain 10 Hz with 4-8 LiDARs in production.
 
@@ -2277,14 +2277,14 @@ This MVP immediately improves planning by replacing sparse RANSAC clusters with 
 | LiDAR SLAM algorithms | `30-autonomy-stack/localization-mapping/overview/lidar-slam-algorithms.md` |
 | 3DGS for perception and mapping | `30-autonomy-stack/perception/overview/gaussian-splatting-driving.md` |
 | Sensor fusion architectures | `cross-cutting/sensor-fusion-architectures.md` |
-| CBF safety-critical planning | `technology/planning/cbf-safety-critical.md` |
+| CBF safety-critical planning | `30-autonomy-stack/planning/safety-critical-planning-cbf.md` |
 | Runtime verification and monitoring | `operations/safety/runtime-verification-monitoring.md` |
 | Multi-LiDAR extrinsic calibration | `hardware/sensors/multi-lidar-extrinsic-calibration.md` |
 | HD map standards for airside | `30-autonomy-stack/localization-mapping/maps/hd-map-standards-airside.md` |
-| Fleet cooperative perception | `technology/perception/v2v-fleet-perception.md` |
+| Fleet cooperative perception | `30-autonomy-stack/perception/overview/collaborative-fleet-perception.md` |
 | Active perception and sensor scheduling | `30-autonomy-stack/perception/overview/active-perception-sensor-scheduling.md` |
-| Autonomous docking and precision positioning | `technology/planning/autonomous-docking-precision.md` |
-| Night operations and thermal fusion | `technology/perception/night-operations-thermal.md` |
+| Autonomous docking and precision positioning | `30-autonomy-stack/planning/autonomous-docking-precision-positioning.md` |
+| Night operations and thermal fusion | `30-autonomy-stack/perception/overview/night-operations-thermal-fusion.md` |
 | RoboSense LiDAR specifications | `20-av-platform/sensors/robosense-lidar.md` |
 | NVIDIA Orin technical specifications | `20-av-platform/compute/nvidia-orin-technical.md` |
 | TensorRT deployment guide | `20-av-platform/compute/tensorrt-deployment-guide.md` |

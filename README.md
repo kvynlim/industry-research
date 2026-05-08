@@ -67,7 +67,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 |---------|------|----------|---------------|
 | `synthesis/` | 8 | [Master Synthesis](synthesis/master-synthesis.md) | Executive synthesis, POCs, readiness, competitive landscape, risk, decision framework, and architecture. |
 | `companies/` | 53 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, and autonomy company profiles. |
-| `technology/` | 197 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, robustness, E2E driving, and multi-agent systems. |
+| `30-autonomy-stack/` | 195 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, E2E driving, and multi-agent systems. |
 | `operations/` | 42 | [Airside Industry Overview](operations/airside/industry-overview.md) | Airside operations, deployment, safety, certification, teleoperation, workforce, and fleet management. |
 | `hardware/` | 20 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, vehicle interfaces, power, and edge-cloud architecture. |
 | `foundations/` | 12 | [Theoretical Foundations](10-knowledge-base/systems-engineering/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, and more. |

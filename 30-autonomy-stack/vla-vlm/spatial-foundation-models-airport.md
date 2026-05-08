@@ -690,7 +690,7 @@ GR-2 significantly outperforms both RT-2 (despite being 20x smaller) and Octo-Ba
 
 #### 3.4.3 Relevance to Airside
 
-GR-2's video generation approach connects to NVIDIA Cosmos world models (documented in `technology/world-models/`). The insight: **a model that can predict what the airport apron will look like after the vehicle moves has learned airport physics**. This is exactly what world models provide for driving — GR-2 shows the same approach works for robotics tasks.
+GR-2's video generation approach connects to NVIDIA Cosmos world models (documented in `30-autonomy-stack/world-models/`). The insight: **a model that can predict what the airport apron will look like after the vehicle moves has learned airport physics**. This is exactly what world models provide for driving — GR-2 shows the same approach works for robotics tasks.
 
 **Potential integration:** Pre-train a video prediction model on airport driving data (available from existing rosbag fleet data), then fine-tune for task-specific action prediction (docking, alignment). The video generation capability doubles as a simulation tool for testing.
 

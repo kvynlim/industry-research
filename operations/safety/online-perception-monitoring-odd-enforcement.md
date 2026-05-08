@@ -833,7 +833,7 @@ struct TrackConsistencyMonitor {
 
 ### 4.6 Occupancy Grid Fill Ratio
 
-For occupancy-based perception (see `technology/perception/realtime-occupancy-grid-mapping.md`), the fill ratio -- fraction of occupied voxels -- should be stable for a given scene type. Sudden changes indicate perception anomalies.
+For occupancy-based perception (see `30-autonomy-stack/localization-mapping/maps/realtime-occupancy-grid-mapping.md`), the fill ratio -- fraction of occupied voxels -- should be stable for a given scene type. Sudden changes indicate perception anomalies.
 
 ```cpp
 struct OccupancyFillMonitor {
@@ -988,7 +988,7 @@ struct MultiLidarOverlapMonitor {
 
 ### 5.4 GTSAM Innovation Sequence Monitoring
 
-The GTSAM factor graph optimizer (see `technology/localization/mapping-localization.md`) produces innovation sequences -- the difference between predicted and observed measurements. Under nominal conditions, innovations should be zero-mean Gaussian with covariance matching the measurement noise model. Departure from this indicates either localization failure or sensor/perception degradation.
+The GTSAM factor graph optimizer (see `30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md`) produces innovation sequences -- the difference between predicted and observed measurements. Under nominal conditions, innovations should be zero-mean Gaussian with covariance matching the measurement noise model. Departure from this indicates either localization failure or sensor/perception degradation.
 
 ```cpp
 struct GTSAMInnovationMonitor {
@@ -3207,10 +3207,10 @@ class FaultInjectionTest:
 - `operations/safety/fail-operational-architecture.md` -- ASIL decomposition, redundancy patterns
 - `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` -- Epistemic/aleatoric decomposition, conformal prediction
 - `hardware/sensors/multi-lidar-extrinsic-calibration.md` -- Calibration procedures, thermal drift compensation
-- `technology/localization/mapping-localization.md` -- GTSAM factor graph, innovation sequences
+- `30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md` -- GTSAM factor graph, innovation sequences
 - `hardware/sensors/4d-imaging-radar.md` -- Continental ARS548 integration
 - `operations/safety/functional-safety-software.md` -- MISRA C, ISO 26262 Part 6 development
 - `operations/safety/airside-scenario-taxonomy.md` -- ISO 34502 scenario classification
 - `operations/deployment/fleet-anomaly-root-cause.md` -- Fleet-level anomaly attribution
-- `technology/perception/realtime-occupancy-grid-mapping.md` -- Occupancy grid monitoring context
+- `30-autonomy-stack/localization-mapping/maps/realtime-occupancy-grid-mapping.md` -- Occupancy grid monitoring context
 - `operations/safety/testing-validation-methodology.md` -- Validation protocol, fault injection

@@ -2032,7 +2032,7 @@ What modalities are available?
 - `30-autonomy-stack/world-models/tokenized-and-jepa.md` -- JEPA paradigm, VQ-VAE tokenization, AD-L-JEPA details
 - `cross-cutting/transfer-learning.md` -- Road→airside domain gap analysis, transfer strategies, UDA methods
 - `30-autonomy-stack/perception/overview/lidar-semantic-segmentation.md` -- 18-class airside taxonomy, FlatFormer, ALPINE
-- `technology/perception/model-compression-edge.md` -- TensorRT optimization, INT8 quantization, multi-model orchestration
+- `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` -- TensorRT optimization, INT8 quantization, multi-model orchestration
 - `operations/deployment/multi-airport-adaptation.md` -- 8-week onboarding, PointLoRA per-airport, scaling economics
 - `hardware/compute/tensorrt-optimization-guide.md` -- Orin deployment pipeline, INT8 calibration
 - `30-autonomy-stack/perception/overview/camera-fallback-perception.md` -- Degraded mode with camera-only, BEVDistill

@@ -1702,4 +1702,4 @@ Breakeven: verification pays for itself if it prevents even a single safety inci
 - `20-av-platform/compute/nvidia-orin-technical.md` -- Deployment target specifications
 - `30-autonomy-stack/perception/overview/model-compression-edge-deployment.md` -- Model sizes and TensorRT optimization
 - `30-autonomy-stack/perception/overview/multi-task-unified-perception.md` -- Shared-backbone verification challenges
-- `technology/planning/causal-reasoning-counterfactual-planning.md` -- EU PLD compliance context
+- `30-autonomy-stack/planning/causal-reasoning-counterfactual.md` -- EU PLD compliance context

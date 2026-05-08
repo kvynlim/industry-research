@@ -9,16 +9,16 @@ Comprehensive autonomous vehicle technology research repository — **247 docume
 ```
 industry-research/
 ├── companies/          # 21 companies, 52 docs
-├── technology/         # 9 domains, 33 docs
-│   ├── world-models/   # Overview, diffusion, occupancy (20 methods compared), tokenized/JEPA, RL, Dreamer, OccWorld, open-source repos (21 rated), LiDAR-native world models, occupancy flow & 4D scenes
-│   ├── vla/            # VLA for driving, Alpamayo setup (camera-only, non-commercial), VLM scene understanding (DriveVLM, co-pilot architecture), spatial foundation models for airport robotics (4M, SpatialVLM, RT-2/Octo/pi0)
-│   ├── perception/     # BEV encoding, open-vocab, DINOv2, CenterPoint, production, infra-cooperative V2I, LiDAR foundation models, segmentation, compression, MOT, V2V fleet perception, SSL pre-training, 3DGS for perception & mapping, uncertainty quantification, multi-task unified perception, night operations & thermal fusion, streaming temporal perception, active perception & sensor scheduling
-│   ├── planning/       # Frenet augmentation, motion prediction, LLM reasoning, diffusion trajectory, neural motion planning, CBF safety-critical planning, neuro-symbolic scene graphs, causal reasoning & counterfactuals, RL driving policy, autonomous docking & precision positioning, imitation learning & behavioral cloning, joint prediction-planning
-│   ├── simulation/     # Neural sim, 3DGS digital twin, Cosmos, airport digital twins, simulators comparison
-│   ├── localization/   # Mapping/localization, map-free driving, HD map standards (AMDB/OpenDRIVE), neural online mapping SOTA, LiDAR SLAM, semantic mapping & learned priors, HD map change detection & maintenance, LiDAR place recognition & re-localization, robust state estimation & multi-sensor fusion, real-time occupancy grid mapping, HD map construction pipeline (end-to-end survey→deploy), production LiDAR-to-map localization (runtime scan matching), map tile versioning & differential distribution
-│   ├── e2e-driving/    # E2E architectures, company approaches, E2E pipeline (7-day quick start)
-│   ├── multi-agent/    # Fleet coordination, V2X protocols & airside message standards, fleet task allocation & scheduling, ramp traffic conflict & deadlock prevention
-│   └── robustness/     # Adverse conditions, test-time adaptation, test-time training for airport onboarding
+├── 30-autonomy-stack/  # 195 autonomy docs
+│   ├── world-models/   # Overview, diffusion, occupancy, tokenized/JEPA, RL, Dreamer, OccWorld, open-source repos, LiDAR-native world models, occupancy flow & 4D scenes
+│   ├── vla-vlm/        # VLA for driving, Alpamayo setup, VLM scene understanding, spatial foundation models for airport robotics
+│   ├── perception/     # Overview docs plus method-level perception library
+│   ├── planning/       # Frenet augmentation, prediction, neural planning, CBF safety filters, causal reasoning, RL, docking, imitation learning, joint prediction-planning
+│   ├── simulation/     # Neural simulation, 3DGS digital twins, Cosmos, airport digital twins, simulators comparison
+│   ├── localization-mapping/ # Mapping/localization, maps, LiDAR SLAM methods, occupancy grids, map distribution
+│   ├── end-to-end-driving/   # E2E architectures, company approaches, E2E pipeline
+│   └── multi-agent-v2x/      # Fleet coordination, V2X protocols, task allocation, conflict and deadlock prevention
+├── 60-safety-validation/ # Safety validation, verification, and robustness material
 ├── operations/         # 30 docs
 │   ├── airside/        # Industry overview, turnaround, FOD/jet blast, airport APIs (real endpoints), pushback systems, electric GSE market, aviation ecosystem, ground control instructions (A-CDM/A-SMGCS/marshaller)
 │   ├── deployment/     # Playbook (4,500 lines), shadow mode, OTA fleet mgmt, production ML, fleet dispatch, multi-airport adaptation (8-week onboarding), HMI operator interface, workforce transition, fleet TCO & business case, CI/CD & DevOps pipeline, fleet predictive maintenance & spare parts, EV fleet energy co-optimization, fleet anomaly root-cause attribution
@@ -653,7 +653,7 @@ The user builds **autonomous vehicles for airport airside operations** using an 
 - **Design**: `synthesis/design-spec.md` (891-line Simplex architecture)
 - **Quick start**: `30-autonomy-stack/end-to-end-driving/e2e-world-model-pipeline.md` (7-day plan)
 - **Company research**: `companies/<name>/`
-- **Any technology**: `technology/<domain>/`
+- **Autonomy stack**: `30-autonomy-stack/<domain>/`
 - **Safety/certification**: `operations/safety/`
 - **Hardware specs**: `hardware/`
 - **Math foundations**: `foundations/`

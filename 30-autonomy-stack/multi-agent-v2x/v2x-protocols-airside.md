@@ -3136,5 +3136,5 @@ ISO 3691-4 (Safety of industrial trucks --- Driverless industrial trucks) includ
 - `operations/airside/turnaround-operations.md` --- Turnaround sequencing
 - `operations/safety/iso-3691-4-safety.md` --- ISO 3691-4 compliance
 - `operations/safety/scenario-taxonomy-validation.md` --- Test scenarios
-- `technology/planning/cbf-safety-critical-planning.md` --- CBF safety filters
+- `30-autonomy-stack/planning/safety-critical-planning-cbf.md` --- CBF safety filters
 - `cross-cutting/ros2-migration.md` --- ROS 2 migration (DDS native V2X integration)

@@ -186,7 +186,7 @@ Five parallel writing agents converted the highest-value discovery clusters into
 When adding or revising perception research:
 
 1. Check whether the method is already a dedicated file, an existing section, or a backlog item in this audit.
-2. If it is P0, create one atomic file under `technology/perception/methods/` before expanding lower-priority coverage.
+2. If it is P0, create one atomic file under `30-autonomy-stack/perception/methods/` before expanding lower-priority coverage.
 3. If it is P1, either create one atomic method file or add aliases and cross-links from the closest existing method page.
 4. If it is P2/watchlist, add aliases only after primary sources, code, or dataset availability are confirmed.
 5. Keep family synthesis in top-level perception docs and detailed method evidence in `methods/`.
