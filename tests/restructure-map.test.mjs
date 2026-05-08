@@ -232,6 +232,43 @@ test('recalculates moved source links to unmoved content and root targets', () =
   assert.match(content, /\[Compute\]\(\.\.\/\.\.\/\.\.\/20-av-platform\/compute\/foo\.md\)/)
 })
 
+test('does not flag valid final company target paths as stale', () => {
+  const fixtureDir = makeFixture({
+    'companies/foo/tech-stack.md': [
+      '# Foo tech stack',
+      '',
+      'Final path: 80-industry-intel/companies/foo/tech-stack.md'
+    ].join('\n')
+  })
+
+  runMigrate(fixtureDir, '--move', 'industry-synthesis')
+  runMigrate(fixtureDir, '--rewrite-links', 'industry-synthesis')
+  runMigrate(fixtureDir, '--check-stale', 'industry-synthesis')
+
+  const movedCompany = path.join(fixtureDir, '80-industry-intel/companies/foo/tech-stack.md')
+  assert.match(
+    fs.readFileSync(movedCompany, 'utf8'),
+    /Final path: 80-industry-intel\/companies\/foo\/tech-stack\.md/
+  )
+})
+
+test('path-aware stale checks still catch exact and relative old paths', () => {
+  const fixtureDir = makeFixture({
+    'companies/foo/tech-stack.md': '# Foo\n',
+    'hardware/compute/foo.md': '# Compute\n',
+    'operations/deployment/deployment-playbook.md': [
+      '# Deployment',
+      '',
+      'Exact old company path: companies/foo/tech-stack.md',
+      '[../../hardware/compute/foo.md](../../hardware/compute/foo.md)',
+      '`../../hardware/compute/foo.md`'
+    ].join('\n')
+  })
+
+  assertCommandFails(fixtureDir, '--check-stale', 'industry-synthesis', /companies\/foo\/tech-stack\.md/)
+  assertCommandFails(fixtureDir, '--check-stale', 'knowledge-platform', /hardware\/compute\/foo\.md/)
+})
+
 function makeFixture(files) {
   const fixtureDir = fs.mkdtempSync(path.join(os.tmpdir(), 'restructure-map-'))
   for (const [relPath, content] of Object.entries(files)) {
@@ -243,5 +280,12 @@ function makeFixture(files) {
 }
 
 function runMigrate(cwd, mode, batch) {
-  execFileSync(process.execPath, [migrateScript, mode, '--batch', batch], { cwd })
+  execFileSync(process.execPath, [migrateScript, mode, '--batch', batch], { cwd, stdio: 'pipe' })
+}
+
+function assertCommandFails(cwd, mode, batch, stderrPattern) {
+  assert.throws(
+    () => runMigrate(cwd, mode, batch),
+    (error) => stderrPattern.test(String(error.stderr))
+  )
 }

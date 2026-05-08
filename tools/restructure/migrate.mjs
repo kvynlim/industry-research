@@ -23,6 +23,8 @@ const BATCHES = new Map([
 
 const MODES = new Set(['--print-map', '--move', '--rewrite-links', '--check-stale'])
 
+const MARKDOWN_PATH_TOKEN = /[A-Za-z0-9_.-]+(?:\/[A-Za-z0-9_.-]+)*\.md/g
+
 function usage() {
   console.error('Usage: node tools/restructure/migrate.mjs (--print-map|--move|--rewrite-links|--check-stale) [--batch <name>]')
   console.error(`Supported batches: ${Array.from(BATCHES.keys()).join(', ')}`)
@@ -286,7 +288,7 @@ function rewriteMarkdownLinks(content, currentPath, batchMoveMap, fullMoveMap, i
 }
 
 function replaceInlineSegment(content, moveMap, currentPath, oldSourcePath) {
-  return content.replace(/[A-Za-z0-9_.-]+(?:\/[A-Za-z0-9_.-]+)*\.md/g, (pathToken) => {
+  return content.replace(MARKDOWN_PATH_TOKEN, (pathToken) => {
     const replacement = inlineReplacementForPathToken(pathToken, moveMap, currentPath, oldSourcePath)
     return replacement ?? pathToken
   })
@@ -356,14 +358,12 @@ function rewriteLinks(batchMoveMap, fullMoveMap) {
 
 function checkStale(moveMap) {
   const stale = []
-  const oldPaths = Array.from(moveMap.keys()).sort((left, right) => right.length - left.length)
+  const oldPaths = new Set(moveMap.keys())
 
   for (const currentPath of listFilesystemMarkdownFiles().sort()) {
     const content = fs.readFileSync(currentPath, 'utf8')
-    for (const oldPath of oldPaths) {
-      if (content.includes(oldPath)) {
-        stale.push(`${currentPath}: ${oldPath}`)
-      }
+    for (const oldPath of stalePathsInContent(content, currentPath, oldPaths)) {
+      stale.push(`${currentPath}: ${oldPath}`)
     }
   }
 
@@ -376,6 +376,26 @@ function checkStale(moveMap) {
   } else {
     console.log('No stale restructure paths found.')
   }
+}
+
+function stalePathsInContent(content, currentPath, oldPaths) {
+  const stale = new Set()
+
+  for (const match of content.matchAll(MARKDOWN_PATH_TOKEN)) {
+    const pathToken = normalizeRelPath(match[0])
+    const candidates = [
+      pathToken,
+      resolveOldLinkTarget(currentPath, pathToken)
+    ]
+
+    for (const candidate of candidates) {
+      if (oldPaths.has(candidate)) {
+        stale.add(candidate)
+      }
+    }
+  }
+
+  return Array.from(stale).sort((left, right) => left.localeCompare(right))
 }
 
 try {
