@@ -239,10 +239,16 @@ function finalTargetForLink(oldSourcePath, currentPath, linkedPath, batchMoveMap
   if (moveTargetIsAvailable(currentResolvedPath, batchMoveMap, fullMoveMap)) {
     return fullMoveMap.get(currentResolvedPath)
   }
-  if (isTargetPath(oldResolvedPath)) {
+  if (isTargetPath(oldResolvedPath) && fs.existsSync(oldResolvedPath)) {
     return oldResolvedPath
   }
-  if (isTargetPath(currentResolvedPath)) {
+  if (isTargetPath(currentResolvedPath) && fs.existsSync(currentResolvedPath)) {
+    return currentResolvedPath
+  }
+  if (fs.existsSync(oldResolvedPath)) {
+    return oldResolvedPath
+  }
+  if (fs.existsSync(currentResolvedPath)) {
     return currentResolvedPath
   }
 

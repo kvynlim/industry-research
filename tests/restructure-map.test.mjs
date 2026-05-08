@@ -194,6 +194,44 @@ test('rewrites relative stale old paths outside moved batches', () => {
   execFileSync(process.execPath, [checkLinksScript], { cwd: fixtureDir })
 })
 
+test('recalculates moved source links to unmoved content and root targets', () => {
+  const fixtureDir = makeFixture({
+    'README.md': '# Readme\n',
+    'INDEX.md': '# Index\n',
+    'hardware/compute/foo.md': '# Compute\n',
+    'cross-cutting/sensor-fusion-architectures.md': '# Sensor fusion\n',
+    'operations/safety/runtime-verification-monitoring.md': '# Runtime verification\n',
+    'technology/localization/robust-state-estimation-multi-sensor.md': [
+      '# Robust state estimation',
+      '',
+      '[Sensor fusion](../../cross-cutting/sensor-fusion-architectures.md)',
+      '[Runtime verification](../../operations/safety/runtime-verification-monitoring.md)',
+      '[Readme](../../README.md)',
+      '[Index](../../INDEX.md)',
+      '[Compute](../../hardware/compute/foo.md)'
+    ].join('\n')
+  })
+
+  runMigrate(fixtureDir, '--move', 'knowledge-platform')
+  runMigrate(fixtureDir, '--rewrite-links', 'knowledge-platform')
+  runMigrate(fixtureDir, '--check-stale', 'knowledge-platform')
+  runMigrate(fixtureDir, '--move', 'autonomy')
+  runMigrate(fixtureDir, '--rewrite-links', 'autonomy')
+
+  execFileSync(process.execPath, [checkLinksScript], { cwd: fixtureDir })
+
+  const movedSource = path.join(
+    fixtureDir,
+    '30-autonomy-stack/localization-mapping/overview/robust-state-estimation-multi-sensor.md'
+  )
+  const content = fs.readFileSync(movedSource, 'utf8')
+  assert.match(content, /\[Sensor fusion\]\(\.\.\/\.\.\/\.\.\/cross-cutting\/sensor-fusion-architectures\.md\)/)
+  assert.match(content, /\[Runtime verification\]\(\.\.\/\.\.\/\.\.\/operations\/safety\/runtime-verification-monitoring\.md\)/)
+  assert.match(content, /\[Readme\]\(\.\.\/\.\.\/\.\.\/README\.md\)/)
+  assert.match(content, /\[Index\]\(\.\.\/\.\.\/\.\.\/INDEX\.md\)/)
+  assert.match(content, /\[Compute\]\(\.\.\/\.\.\/\.\.\/20-av-platform\/compute\/foo\.md\)/)
+})
+
 function makeFixture(files) {
   const fixtureDir = fs.mkdtempSync(path.join(os.tmpdir(), 'restructure-map-'))
   for (const [relPath, content] of Object.entries(files)) {
