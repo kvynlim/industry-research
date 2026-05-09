@@ -15,7 +15,7 @@ This page turns the repo's gap audits into a repeatable research loop. It exists
 
 ## Current Promotion Waves
 
-The 2026-05-09 loops promoted eight high-value gap clusters into first-class pages.
+The 2026-05-09 loops promoted twelve high-value gap clusters into first-class pages.
 
 | Track | Promoted coverage |
 |---|---|
@@ -27,19 +27,23 @@ The 2026-05-09 loops promoted eight high-value gap clusters into first-class pag
 | ML foundations for autonomy | Perceptrons, logistic/softmax cross-entropy, MLPs, backprop/autodiff, optimization dynamics, initialization/normalization/regularization, CNNs, RNN/LSTM/GRU, attention/transformers, vision transformers, SSL, sequence models, foundation training, JEPA, and world-model first principles. |
 | Dynamic/static object removal | MapCleaner, ERASOR++, 4dNDF, FreeDOM, STATIC-LIO dynamic-point removal, MotionSeg3D, MambaMOS, neural scene-flow priors, moving/static separation datasets, moved-object map-change datasets, scene-flow benchmarks, 4D occupancy benchmarks, and airside dynamic-map cleaning validation. |
 | ML objective and evaluation foundations | Autoencoders/VAEs, contrastive InfoNCE, masked modeling, EBMs, tokenization/discretization, positional encodings, S4/Mamba first principles, diffusion-score-flow samplers, multi-task losses, calibration/leakage, and world-model evaluation objectives. |
+| Latest perception/radar/neural-field gaps | CVFusion, 4D radar-camera occupancy, POD/FMCW LiDAR predictive detection, DrivingGaussian, HUGS, SplatFlow, DistillNeRF, TrackOcc, cross-domain LiDAR scene flow, self-supervised occupancy flow, and UniScene occupancy-centric generation. |
+| Latest SLAM robust/lifelong gaps | Robust PGO/GNC/riSAM, certifiable pose-graph optimization, Kimera-RPGO/PCM, distributed multi-robot PGO, LT-mapper/Khronos, RTMap/DUFOMap, GPR localization, radar teach-repeat, and MOVES. |
+| KB probability/control foundations | Probabilistic graphical models and message passing, information theory for perception/ML, uncertainty quantification/calibration/conformal prediction, constrained optimization/MPC/iLQR, and MDP/POMDP/belief-space/RL foundations. |
+| Dataset and validation gaps | MUSES, sensor-corruption robustness benchmarks, open-world/OOD anomaly segmentation benchmarks, FOD and airport apron detection datasets, FOD perception validation, and knowledge-base evaluation protocol. |
 
 ## Active Next Queue
 
 | Priority | Queue | Next atomic files to consider |
 |---|---|---|
-| P0 | Perception occupancy and radar | UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, 4DRC-OCC, CVFusion, RobuRCDet. |
+| P0 | Perception occupancy and radar | UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, RobuRCDet, SAMFusion, DepthOcc, and LinkOcc. |
 | P0 | Sparse and end-to-end perception | SparseBEV, DETR4D, ForeSight, SparseDrive, DiffusionDrive, SAM4D, DriveBench. |
-| P0 | Removal validation and adverse-weather datasets | Airside dust, de-icing mist, steam, glycol film, wet apron multipath, retroreflector bloom, do-not-delete hazard labels, DR-REMOVER, MOVES, RTMap, and ExelMap. |
-| P0 | SLAM robustness and backends | Robust PGO/GNC/riSAM, certifiable pose-graph optimization, Kimera-RPGO/PCM, Scan Context family, LiDAR bundle-adjustment factors. |
+| P0 | Removal validation and adverse-weather datasets | Airside dust, de-icing mist, steam, glycol film, wet apron multipath, retroreflector bloom, do-not-delete hazard labels, DR-REMOVER, ExelMap, and FOD synthetic data generation. |
+| P0 | SLAM robustness and backends | Scan Context family, LiDAR bundle-adjustment factors, Kimera-Multi/COVINS/D2SLAM collaborative SLAM systems, and benchmark pages for SNAIL Radar, HeRCULES, GEODE, and COSMO-Bench. |
 | P0 | Sensor and calibration fundamentals | Ultrasonic proximity models, thermal IR radiometry as a standalone file, fleet calibration operations, calibration-bay fixtures, and online calibration drift response. |
-| P0 | First-principles extensions | Continuous-time estimation, spline/GP trajectory representations, certifiable robust PGO, optimal experiment design for calibration, covariance consistency under robust losses, and RL/control foundations for learned autonomy. |
+| P0 | First-principles extensions | Continuous-time estimation, spline/GP trajectory representations, optimal experiment design for calibration, covariance consistency under robust losses, robust-loss uncertainty, and dataset-evaluation fundamentals. |
 | P1 | Collaborative and infrastructure perception | V2XScenes, UrbanIng-V2X, QuantV2X, RCP-Bench, TruckV2X, collaborative Gaussian occupancy. |
-| P1 | Alternative localization sensors | UWB/range-only SLAM, GPR localization, event-camera VIO, thermal RGBT VIO, wheel/LiDAR/IMU factor graphs. |
+| P1 | Alternative localization sensors | UWB/range-only SLAM, event-camera VIO, thermal RGBT VIO, wheel/LiDAR/IMU factor graphs, and infrastructure-aided localization. |
 
 ## Promotion Rules
 
