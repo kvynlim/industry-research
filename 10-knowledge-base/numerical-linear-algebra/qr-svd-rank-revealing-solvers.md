@@ -1,9 +1,9 @@
 # QR, SVD, and Rank-Revealing Solvers
 
 <!-- kb-figure:start -->
-![Rank-revealing solver choices](../_assets/figures/numerical-linear-algebra-qr-svd-rank-revealing-solvers.svg)
+![QR and SVD rank-revealing least-squares solver choices](../_assets/figures/numerical-linear-algebra-qr-svd-rank-revealing-solvers.svg)
 
-*Figure: how QR and SVD expose rank and solve least-squares problems without relying only on normal equations.*
+*Figure: QR and SVD solve least-squares problems while exposing rank and nullspace structure that normal equations can hide.*
 <!-- kb-figure:end -->
 
 ## Related docs

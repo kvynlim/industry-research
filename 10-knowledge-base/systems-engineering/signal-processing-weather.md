@@ -6,9 +6,9 @@
 ---
 
 <!-- kb-figure:start -->
-![Weather-robust signal-processing chain](../_assets/figures/systems-engineering-signal-processing-weather.svg)
+![Weather processing chain from evidence to degraded response](../_assets/figures/systems-engineering-signal-processing-weather.svg)
 
-*Figure: how adverse-weather filtering chains combine signal cleanup, temporal consistency, and sensor health evidence.*
+*Figure: The weather-processing recommendations form a chain from dual-return evidence through DSOR and LIOR cleanup, temporal filtering, severity classification, and degraded-mode response.*
 <!-- kb-figure:end -->
 
 ## Methodology

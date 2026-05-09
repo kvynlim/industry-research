@@ -1,9 +1,9 @@
 # PointPillars: First Principles
 
 <!-- kb-figure:start -->
-![PointPillars tensor path](../_assets/figures/geometry-3d-pointpillars.svg)
+![PointPillars tensor path from points to BEV outputs](../_assets/figures/geometry-3d-pointpillars.svg)
 
-*Figure: how unordered points become pillar features, a BEV feature map, and final 3D detections.*
+*Figure: PointPillars converts raw point clouds into bounded pillar tensors, pooled pillar features, a BEV pseudo-image, and detector or world-model outputs.*
 <!-- kb-figure:end -->
 
 ## From Point Cloud to BEV Features — Every Step with Tensor Shapes

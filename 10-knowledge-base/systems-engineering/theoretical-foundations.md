@@ -1,9 +1,9 @@
 # Theoretical Foundations of World Models for Autonomous Driving
 
 <!-- kb-figure:start -->
-![World-model theory dependency graph](../_assets/figures/systems-engineering-theoretical-foundations.svg)
+![World-model formalism connected to theoretical foundations](../_assets/figures/systems-engineering-theoretical-foundations.svg)
 
-*Figure: how theoretical views connect prediction, representation learning, control, causality, and safety.*
+*Figure: The theoretical foundations page connects world-model formalism to predictive coding, representation theory, causality, control, games, and safety-critical ML evidence.*
 <!-- kb-figure:end -->
 
 ## Mathematical Frameworks, Formal Results, and Theoretical Analysis

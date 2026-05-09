@@ -1,9 +1,9 @@
 # Schur Complement, Marginalization, and PCG
 
 <!-- kb-figure:start -->
-![Schur complement elimination](../_assets/figures/numerical-linear-algebra-schur-complement-marginalization-pcg.svg)
+![Schur complement eliminating nuisance states into a reduced system](../_assets/figures/numerical-linear-algebra-schur-complement-marginalization-pcg.svg)
 
-*Figure: how landmark or nuisance-state elimination creates a smaller reduced system for iterative solving.*
+*Figure: The Schur complement removes landmarks or nuisance states to produce a smaller reduced system for pose solving, marginalization, or PCG.*
 <!-- kb-figure:end -->
 
 ## Related docs

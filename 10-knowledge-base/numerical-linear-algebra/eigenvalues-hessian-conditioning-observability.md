@@ -1,9 +1,9 @@
 # Eigenvalues, Hessian Conditioning, and Observability
 
 <!-- kb-figure:start -->
-![Hessian spectrum and observability](../_assets/figures/numerical-linear-algebra-eigenvalues-hessian-conditioning-observability.svg)
+![Hessian spectrum separating constrained directions and nullspaces](../_assets/figures/numerical-linear-algebra-eigenvalues-hessian-conditioning-observability.svg)
 
-*Figure: how Hessian eigenvalues reveal well-constrained, weakly constrained, and unobservable directions.*
+*Figure: The Hessian spectrum separates well-constrained directions, weakly constrained directions, and nullspaces that require damping, priors, or better excitation.*
 <!-- kb-figure:end -->
 
 ## Related docs

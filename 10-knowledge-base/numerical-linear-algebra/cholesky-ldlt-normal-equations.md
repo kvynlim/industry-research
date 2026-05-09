@@ -1,9 +1,9 @@
 # Cholesky, LDLT, and Normal Equations
 
 <!-- kb-figure:start -->
-![Normal-equation factorization path](../_assets/figures/numerical-linear-algebra-cholesky-ldlt-normal-equations.svg)
+![Normal equations with SPD checks and Cholesky or LDLT factorization](../_assets/figures/numerical-linear-algebra-cholesky-ldlt-normal-equations.svg)
 
-*Figure: how least-squares systems become factored matrices and why conditioning matters before back-substitution.*
+*Figure: Normal equations turn residual Jacobians into an SPD system only when the problem is well constrained; Cholesky and LDLT expose conditioning and indefiniteness.*
 <!-- kb-figure:end -->
 
 ## Related docs

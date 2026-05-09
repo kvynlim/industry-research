@@ -1,9 +1,9 @@
 # Sparse Matrices, Fill-In, and Ordering
 
 <!-- kb-figure:start -->
-![Sparse factor fill-in](../_assets/figures/numerical-linear-algebra-sparse-matrices-fill-in-ordering.svg)
+![Sparse matrix ordering changes fill-in during factorization](../_assets/figures/numerical-linear-algebra-sparse-matrices-fill-in-ordering.svg)
 
-*Figure: how variable ordering changes fill-in and therefore runtime and memory for sparse factorization.*
+*Figure: Variable ordering changes fill-in during sparse factorization, directly affecting memory, runtime, and whether real-time SLAM remains feasible.*
 <!-- kb-figure:end -->
 
 ## Related docs

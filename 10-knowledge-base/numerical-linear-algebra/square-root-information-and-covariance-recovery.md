@@ -1,9 +1,9 @@
 # Square-Root Information and Covariance Recovery
 
 <!-- kb-figure:start -->
-![Square-root information workflow](../_assets/figures/numerical-linear-algebra-square-root-information-and-covariance-recovery.svg)
+![Square-root information factors and selected covariance recovery](../_assets/figures/numerical-linear-algebra-square-root-information-and-covariance-recovery.svg)
 
-*Figure: how square-root forms improve numerical stability and support covariance recovery.*
+*Figure: Square-root information methods preserve numerical stability by carrying factored information matrices and recovering selected marginal covariances only when needed.*
 <!-- kb-figure:end -->
 
 ## Related docs
