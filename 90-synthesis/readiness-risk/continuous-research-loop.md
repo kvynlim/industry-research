@@ -15,7 +15,7 @@ This page turns the repo's gap audits into a repeatable research loop. It exists
 
 ## Current Promotion Waves
 
-The 2026-05-09 loops promoted thirteen high-value gap clusters into first-class pages.
+The 2026-05-09 loops promoted thirteen high-value gap clusters into first-class pages. The follow-up [Perception and SLAM Gap Fill](perception-slam-gap-fill-2026-05-09.md) and [Cross-Architecture Knowledge Base Gap Fill](knowledge-base-gap-fill-2026-05-09.md) record the next source-backed queues discovered by the latest scout and research-agent passes; the cross-architecture follow-up also promoted 30 additional atomic pages.
 
 | Track | Promoted coverage |
 |---|---|
@@ -32,6 +32,7 @@ The 2026-05-09 loops promoted thirteen high-value gap clusters into first-class 
 | KB probability/control foundations | Probabilistic graphical models and message passing, information theory for perception/ML, uncertainty quantification/calibration/conformal prediction, constrained optimization/MPC/iLQR, and MDP/POMDP/belief-space/RL foundations. |
 | Dataset and validation gaps | MUSES, sensor-corruption robustness benchmarks, open-world/OOD anomaly segmentation benchmarks, FOD and airport apron detection datasets, FOD perception validation, and knowledge-base evaluation protocol. |
 | Perception/SLAM reliability gap wave | LiDAR-camera occupancy fusion, dynamic occupancy/free-space, radar-LiDAR adverse-weather detection, RobuRCDet, SAMFusion, STU, synthetic multimodal FOD benchmarks, OVAD/OVODA, open-vocabulary panoptic occupancy, RCP-Bench, V2X sequential datasets, Scan Context, LiDAR BA factors, Kimera-Multi, COVINS/COVINS-G, D2SLAM, UWB/range SLAM, OKVIS2-X, MM-LINS, event/thermal/4D-radar localization, continuous-time and volumetric-map foundations, detection/tracking foundations, fleet-data contracts, and perception/SLAM/map validation protocols. |
+| Cross-architecture KB gap fill | 30 pages across safety standards, runtime/data governance, platform integration, closed-loop autonomy evaluation, regulatory/deployment maps, and company deployment evidence. |
 
 ## Active Next Queue
 
@@ -62,3 +63,4 @@ The 2026-05-09 loops promoted thirteen high-value gap clusters into first-class 
 | [Perception Coverage Audit](../../30-autonomy-stack/perception/overview/coverage-audit-2026.md) | Tracks perception methods, benchmarks, datasets, and robustness gaps. |
 | [SLAM Coverage Audit](../../30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md) | Tracks SLAM, odometry, localization, backend, sensor-fusion, and benchmark gaps. |
 | [Knowledge Gap Backlog](knowledge-gap-backlog.md) | Tracks cross-architecture gaps outside the dedicated perception and SLAM audits. |
+| [Cross-Architecture Knowledge Base Gap Fill](knowledge-base-gap-fill-2026-05-09.md) | Turns the latest broad KB web sweep into source-backed promotion queues for safety, runtime, platform, foundations, autonomy evaluation, and deployment intelligence. |

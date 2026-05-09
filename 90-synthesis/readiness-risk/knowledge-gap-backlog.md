@@ -51,6 +51,19 @@ A follow-up loop focused specifically on method-level perception, method-level S
 
 The next active queue is no longer just P1 cross-architecture work. It also includes method-library loops for temporal occupancy, radar-camera/4D-radar perception, robust SLAM backends, alternative localization sensors, and sensor calibration operations.
 
+## Cross-Architecture Gap Fill (2026-05-09)
+
+A second broad web sweep and fill-in research wave re-audited the non-perception/SLAM knowledge base. The source-backed results are tracked in [Cross-Architecture Knowledge Base Gap Fill](knowledge-base-gap-fill-2026-05-09.md). A follow-up writing wave promoted 30 atomic pages across safety, runtime/data, platform, autonomy evaluation, regulation/deployment, and company evidence.
+
+| Priority | Queue | Promoted files |
+|---|---|---|
+| P0 | Safety standards and evidence | `airside-agvs-regulatory-approval-playbook.md`, `safety-functions-pld-sil-validation.md`, `ml-assurance-data-governance.md`, `iso-ts-5083-ads-safety-vv.md`, `iata-ahm-908-autonomous-gse-standards.md`, and `safety-critical-scenario-libraries.md`. |
+| P0 | Runtime data and release governance | `model-governance-release-evidence.md`, `data-catalog-lineage-quality-ops.md`, `replay-scenario-mining-ops.md`, `edge-runtime-supervision-config-management.md`, and `active-labeling-budget-ops.md`. |
+| P0 | Platform integration | `zonal-ee-harness-connectors.md`, `vehicle-middleware-dds-someip-zenoh.md`, `safety-certified-runtime-compute.md`, `vehicle-thermal-management.md`, and `av-data-recorder-dssad-hardware.md`. |
+| P0 | Autonomy evaluation | `closed-loop-vlm-vla-evaluation.md`, `risk-forecasting-long-tail.md`, `real-to-sim-closed-loop-benchmarks.md`, and `natural-language-cooperative-autonomy.md`. |
+| P0 | Regulation, deployment, and company evidence | `2024-2026-autonomy-deployment-index.md`, `cross-domain-autonomy-regulatory-map.md`, `airside-agvs-faa-caas-regulatory-map.md`, `us-road-ads-approval-reporting-nhtsa.md`, `eu-ads-type-approval-2022-1426-2026-481.md`, plus five company deployment pages. |
+| P1 | Remaining foundations | `real-time-scheduling-wcet-mixed-criticality.md`, `rare-event-statistics-safety-validation.md`, `fault-trees-stpa-hazard-analysis.md`, and `odd-scenario-ontology-coverage.md` remain queued because `10-knowledge-base` pages require visual assets and taxonomy assignments in the same change. |
+
 ## First-Principles Foundations Loop (2026-05-09)
 
 Five web/discovery rounds audited probability/statistics, nonlinear optimization, numerical linear algebra, data association, geometry, mapping, sensors, signal processing, and statistical validation. Five writing agents then promoted the highest-priority gaps into 33 atomic knowledge-base files.
