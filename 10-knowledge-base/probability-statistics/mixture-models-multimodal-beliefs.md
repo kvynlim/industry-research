@@ -1,5 +1,11 @@
 # Mixture Models and Multimodal Beliefs
 
+<!-- kb-visual:start -->
+![Mixture Models and Multimodal Beliefs curated visual](../_assets/visuals/probability-statistics-mixture-models-multimodal-beliefs.svg)
+
+*Visual: multimodal density with mixture components, responsibilities, hypothesis weights, mean-collapse warning, and tracking/localization examples.*
+<!-- kb-visual:end -->
+
 A single Gaussian belief says there is one local explanation with elliptical
 uncertainty. AV perception and SLAM often need more: multiple possible object
 associations, multiple lanes, ambiguous localization hypotheses, unknown target

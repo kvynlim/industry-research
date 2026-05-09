@@ -1,5 +1,11 @@
 # Event and Thermal Camera Models
 
+<!-- kb-visual:start -->
+![Event and Thermal Camera Models curated visual](../_assets/visuals/geometry-3d-event-thermal-camera-models.svg)
+
+*Visual: dual-sensor timing diagram contrasting asynchronous event threshold crossings with slower thermal frames, NUC/calibration, sync, and fusion.*
+<!-- kb-visual:end -->
+
 Event cameras and thermal cameras are both useful when ordinary RGB cameras are
 weak, but their measurements are fundamentally different. Event cameras report
 asynchronous brightness changes. Thermal cameras report infrared radiance,

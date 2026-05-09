@@ -1,5 +1,11 @@
 # Theoretical Foundations of World Models for Autonomous Driving
 
+<!-- kb-visual:start -->
+![Theoretical Foundations of World Models for Autonomous Driving curated visual](../_assets/visuals/systems-engineering-theoretical-foundations.svg)
+
+*Visual: world-model theory dependency map connecting formal dynamics, predictive coding, representation learning, causality, control/game theory, safety ML, and scaling/generalization.*
+<!-- kb-visual:end -->
+
 ## Mathematical Frameworks, Formal Results, and Theoretical Analysis
 
 ---

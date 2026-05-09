@@ -1,5 +1,11 @@
 # Detection Theory, ROC/PR Curves, and Operating Points
 
+<!-- kb-visual:start -->
+![Detection Theory, ROC/PR Curves, and Operating Points curated visual](../_assets/visuals/probability-statistics-detection-theory-roc-pr-operating-points.svg)
+
+*Visual: detection-score distributions with threshold slider connected to confusion matrix, ROC curve, PR curve, operating point, and calibration.*
+<!-- kb-visual:end -->
+
 A detector turns uncertain evidence into an action. The first-principles problem
 is not "maximize accuracy"; it is deciding when evidence is strong enough to
 declare a hypothesis under asymmetric costs, class imbalance, and downstream

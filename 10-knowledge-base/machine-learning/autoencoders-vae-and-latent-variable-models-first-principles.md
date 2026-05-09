@@ -1,5 +1,11 @@
 # Autoencoders, VAE, and Latent Variable Models: First Principles
 
+<!-- kb-visual:start -->
+![Autoencoders, VAE, and Latent Variable Models: First Principles curated visual](../_assets/visuals/machine-learning-autoencoders-vae-and-latent-variable-models-first-principles.svg)
+
+*Visual: encoder-latent-decoder path contrasting deterministic autoencoder bottleneck with VAE mean/variance, sampling, KL term, and reconstruction loss.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 Autoencoders learn compressed representations by reconstructing inputs.

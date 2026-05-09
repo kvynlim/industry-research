@@ -1,5 +1,11 @@
 # Particle Filters and Hypothesis Management
 
+<!-- kb-visual:start -->
+![Particle Filters and Hypothesis Management curated visual](../_assets/visuals/state-estimation-particle-filters-and-hypothesis-management.svg)
+
+*Visual: particle-filter cycle showing proposal, weighting, resampling, multimodal posterior, hypothesis management, and degeneracy diagnostics.*
+<!-- kb-visual:end -->
+
 Particle filters represent belief with weighted samples instead of one
 Gaussian. Hypothesis management is the discipline of keeping enough alternative
 explanations alive without letting compute explode. The first-principles

@@ -1,5 +1,11 @@
 # Correspondence Search Data Structures
 
+<!-- kb-visual:start -->
+![Correspondence Search Data Structures curated visual](../_assets/visuals/geometry-3d-correspondence-search-data-structures.svg)
+
+*Visual: correspondence-search comparison showing query point, KD-tree partition, voxel hash buckets, candidate gating, residual construction, and rejected matches.*
+<!-- kb-visual:end -->
+
 Most geometric perception problems need to answer the same question many times:
 which map point, voxel, feature, surface patch, or track is compatible with this
 measurement? Correspondence search is the data-structure layer behind ICP,

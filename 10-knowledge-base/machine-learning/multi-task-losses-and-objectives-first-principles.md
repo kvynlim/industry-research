@@ -1,5 +1,11 @@
 # Multi-Task Losses and Objectives: First Principles
 
+<!-- kb-visual:start -->
+![Multi-Task Losses and Objectives: First Principles curated visual](../_assets/visuals/machine-learning-multi-task-losses-and-objectives-first-principles.svg)
+
+*Visual: shared-trunk multi-head network with classification, regression, occupancy/segmentation, flow/trajectory losses, weighting, and gradient-conflict vectors.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 AV models often train many heads together: detection, classification, box regression, velocity, segmentation, occupancy, depth, flow, tracking, trajectory prediction, map elements, and uncertainty. The architecture may be modern, but training behavior is dominated by the objective.

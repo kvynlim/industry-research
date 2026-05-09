@@ -1,5 +1,11 @@
 # Wheel Odometry and Encoder Models
 
+<!-- kb-visual:start -->
+![Wheel Odometry and Encoder Models curated visual](../_assets/visuals/state-estimation-wheel-odometry-encoder-models.svg)
+
+*Visual: encoder-to-pose-increment diagram showing ticks, wheel radius, baseline, Ackermann/differential/skid/crab kinematics, slip, calibration, and covariance.*
+<!-- kb-visual:end -->
+
 Wheel odometry is the lowest-latency motion source on many ground vehicles. It
 does not depend on lighting, texture, map features, or GNSS visibility, but it
 is also the easiest source to over-trust. Its errors are systematic under

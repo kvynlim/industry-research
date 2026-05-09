@@ -1,5 +1,11 @@
 # MDP, POMDP, Belief Space, and RL: First Principles
 
+<!-- kb-visual:start -->
+![MDP, POMDP, Belief Space, and RL: First Principles curated visual](../_assets/visuals/controls-mdp-pomdp-belief-space-rl-first-principles.svg)
+
+*Visual: POMDP belief-update loop connecting hidden state, action, observation, Bayes belief update, policy, value, and uncertainty.*
+<!-- kb-visual:end -->
+
 Markov decision processes formalize sequential decision-making under
 uncertainty. Partially observable MDPs add the reality that robots do not see
 the true state directly. Belief-space planning treats a probability distribution

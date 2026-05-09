@@ -1,5 +1,11 @@
 # Camera Imaging, Noise, and Calibration
 
+<!-- kb-visual:start -->
+![Camera Imaging, Noise, and Calibration curated visual](../_assets/visuals/geometry-3d-camera-imaging-noise-calibration.svg)
+
+*Visual: camera measurement chain from scene radiance through lens projection, distortion, rolling-shutter timing, sensor noise, calibration residual, and estimator covariance.*
+<!-- kb-visual:end -->
+
 Cameras measure irradiance projected through optics onto a pixel array. The
 output image is shaped by perspective geometry, lens distortion, exposure,
 sensor noise, rolling shutter, ISP processing, and calibration. For autonomy,

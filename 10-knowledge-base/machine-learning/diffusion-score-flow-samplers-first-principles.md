@@ -1,5 +1,11 @@
 # Diffusion, Score Models, Flow Matching, and Samplers
 
+<!-- kb-visual:start -->
+![Diffusion, Score Models, Flow Matching, and Samplers curated visual](../_assets/visuals/machine-learning-diffusion-score-flow-samplers-first-principles.svg)
+
+*Visual: score SDE, probability-flow ODE, DDIM/EDM sampler, and flow-matching vector-field comparison from noise to data manifold.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 This page isolates the sampler and objective mechanics behind diffusion-style models. The existing [Diffusion Models](diffusion-models.md) page explains the broader generative framework and driving applications. This page focuses on the first principles needed to review AV world models, trajectory generators, occupancy forecasters, and denoising models.

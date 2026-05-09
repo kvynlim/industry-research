@@ -1,5 +1,11 @@
 # Eigenvalues, Hessian Conditioning, and Observability
 
+<!-- kb-visual:start -->
+![Eigenvalues, Hessian Conditioning, and Observability curated visual](../_assets/visuals/numerical-linear-algebra-eigenvalues-hessian-conditioning-observability.svg)
+
+*Visual: Hessian eigen-spectrum separating well-constrained modes, weak modes, nullspace/gauge freedom, damping, priors, and excitation.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

@@ -1,5 +1,11 @@
 # Camera Projective Geometry, PnP, and Triangulation
 
+<!-- kb-visual:start -->
+![Camera Projective Geometry, PnP, and Triangulation curated visual](../_assets/visuals/geometry-3d-camera-projective-geometry-pnp-triangulation.svg)
+
+*Visual: camera-pose and landmark geometry showing projection rays, PnP pose constraints, triangulation intersection, reprojection residuals, and degeneracy cases.*
+<!-- kb-visual:end -->
+
 Cameras measure rays, not depth. Projective geometry is the bookkeeping that
 connects 3D points, camera intrinsics, camera extrinsics, image measurements,
 and multi-view constraints. PnP estimates a camera pose from 3D-to-2D

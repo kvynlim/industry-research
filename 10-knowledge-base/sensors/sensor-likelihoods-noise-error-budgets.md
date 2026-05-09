@@ -1,5 +1,11 @@
 # Sensor Likelihoods, Noise, and Error Budgets
 
+<!-- kb-visual:start -->
+![Sensor Likelihoods, Noise, and Error Budgets curated visual](../_assets/visuals/sensors-sensor-likelihoods-noise-error-budgets.svg)
+
+*Visual: sensor likelihood/error-budget pipeline showing physical noise, covariance allocation, measurement model, gating/fusion, and diagnostics.*
+<!-- kb-visual:end -->
+
 A sensor model is a probabilistic statement about what measurements should look
 like if a hypothesized state is true. An error budget is the accounting system
 that separates random noise, bias, calibration error, timing error, quantization,

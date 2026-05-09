@@ -1,5 +1,11 @@
 # V2 Deep Dive: Signal Processing (#1-5) and Weather/Degraded Operation (#29-31)
 
+<!-- kb-visual:start -->
+![V2 Deep Dive: Signal Processing (#1-5) and Weather/Degraded Operation (#29-31) curated visual](../_assets/visuals/systems-engineering-signal-processing-weather.svg)
+
+*Visual: weather/degraded-operation chain from multi-return evidence through DSOR/LIOR, temporal filtering, severity state, jet-exhaust model, and planner/health response.*
+<!-- kb-visual:end -->
+
 **Feasibility verification against reference airside AV stack source code and industry evidence**
 **Date: 2026-03-16**
 

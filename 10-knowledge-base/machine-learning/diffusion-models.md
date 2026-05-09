@@ -1,5 +1,11 @@
 # Diffusion Models: First Principles
 
+<!-- kb-visual:start -->
+![Diffusion Models: First Principles curated visual](../_assets/visuals/machine-learning-diffusion-models.svg)
+
+*Visual: forward noising and reverse denoising trajectory with score model, sampler steps, conditioning, and trajectory/video/occupancy use cases.*
+<!-- kb-visual:end -->
+
 ## The Generative Framework Behind World Model Video Generation and Trajectory Planning
 
 ---

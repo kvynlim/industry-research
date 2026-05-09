@@ -1,5 +1,11 @@
 # Nonlinear Least Squares from First Principles
 
+<!-- kb-visual:start -->
+![Nonlinear Least Squares from First Principles curated visual](../_assets/visuals/optimization-nonlinear-least-squares-first-principles.svg)
+
+*Visual: nonlinear least-squares iteration loop from residual construction to linearization, normal equations/solver, state update, convergence test, and diagnostics.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Gauss-Newton, Levenberg-Marquardt, and Dogleg](./gauss-newton-levenberg-marquardt-dogleg.md)

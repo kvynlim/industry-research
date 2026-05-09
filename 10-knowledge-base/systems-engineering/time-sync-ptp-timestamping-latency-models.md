@@ -1,5 +1,11 @@
 # Time Sync, PTP, Timestamping, and Latency Models
 
+<!-- kb-visual:start -->
+![Time Sync, PTP, Timestamping, and Latency Models curated visual](../_assets/visuals/systems-engineering-time-sync-ptp-timestamping-latency-models.svg)
+
+*Visual: PTP timestamp exchange and latency model showing grandmaster, sync/follow-up, hardware timestamp, path delay, offset correction, and fusion impact.*
+<!-- kb-visual:end -->
+
 Time synchronization is a state-estimation input, not an infrastructure detail.
 Every fused measurement asks: what physical event happened, in which frame, and
 at what acquisition time? PTP, hardware timestamping, sensor clocks, middleware

@@ -1,5 +1,11 @@
 # Attention and Transformers: First Principles
 
+<!-- kb-visual:start -->
+![Attention and Transformers: First Principles curated visual](../_assets/visuals/machine-learning-attention-transformers-first-principles.svg)
+
+*Visual: Q/K/V attention matrix with scaled scores, mask, softmax weights, value mixing, multi-head split/merge, and transformer block context.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 This note explains attention and transformer blocks from first principles for readers building AV perception, SLAM, mapping, and world-model systems. It is intentionally a foundation layer. For driving world-model transformer recipes, see [transformer-world-models.md](transformer-world-models.md). For point-cloud sparse attention, PTv3, BEVFormer, and Orin deployment detail, see [sparse-attention-3d-perception.md](sparse-attention-3d-perception.md). For sequence alternatives, see [sequence-models-rnn-ssm-attention-first-principles.md](sequence-models-rnn-ssm-attention-first-principles.md) and [mamba-ssm-for-driving.md](mamba-ssm-for-driving.md).

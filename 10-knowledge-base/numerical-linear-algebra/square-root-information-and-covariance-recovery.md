@@ -1,5 +1,11 @@
 # Square-Root Information and Covariance Recovery
 
+<!-- kb-visual:start -->
+![Square-Root Information and Covariance Recovery curated visual](../_assets/visuals/numerical-linear-algebra-square-root-information-and-covariance-recovery.svg)
+
+*Visual: square-root information workflow showing whitened residuals, QR factor, information matrix, selected marginal covariance recovery, and dense inverse avoidance.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

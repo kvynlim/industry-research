@@ -1,5 +1,11 @@
 # Foundation Model Training: First Principles
 
+<!-- kb-visual:start -->
+![Foundation Model Training: First Principles curated visual](../_assets/visuals/machine-learning-foundation-model-training-first-principles.svg)
+
+*Visual: foundation-model lifecycle from data mixture through tokenization, pretraining objective, optimizer stability, adaptation, evaluation, and contamination control.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 This note explains the training principles behind modern foundation models and adapts them to AV perception, SLAM, mapping, and world models. It covers data, tokens, scaling laws, optimization, evaluation, and adaptation. It is not a replacement for implementation-specific MLOps docs. It links to [self-supervised-learning-first-principles.md](self-supervised-learning-first-principles.md), [vqvae-tokenization.md](vqvae-tokenization.md), [transformer-world-models.md](transformer-world-models.md), and [world-models-first-principles.md](world-models-first-principles.md).

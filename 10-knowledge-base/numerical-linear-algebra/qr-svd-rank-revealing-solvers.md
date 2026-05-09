@@ -1,5 +1,11 @@
 # QR, SVD, and Rank-Revealing Solvers
 
+<!-- kb-visual:start -->
+![QR, SVD, and Rank-Revealing Solvers curated visual](../_assets/visuals/numerical-linear-algebra-qr-svd-rank-revealing-solvers.svg)
+
+*Visual: QR and SVD least-squares factorization comparison showing rank threshold, singular values, nullspace, and why normal equations hide rank.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

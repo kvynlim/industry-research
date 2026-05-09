@@ -1,5 +1,11 @@
 # IMU Error Models and Preintegration
 
+<!-- kb-visual:start -->
+![IMU Error Models and Preintegration curated visual](../_assets/visuals/state-estimation-imu-error-models-preintegration.svg)
+
+*Visual: IMU preintegration timeline from high-rate samples through bias/noise model to preintegrated factor between keyframes, plus Allan variance cue.*
+<!-- kb-visual:end -->
+
 An IMU is the short-term motion backbone for localization. It measures angular
 rate and specific force at high rate, but its errors integrate quickly into
 attitude, velocity, and position drift. Correct IMU modeling is the difference

@@ -1,5 +1,11 @@
 # Backpropagation, Computational Graphs, and Autodiff: First Principles
 
+<!-- kb-visual:start -->
+![Backpropagation, Computational Graphs, and Autodiff: First Principles curated visual](../_assets/visuals/machine-learning-backprop-computational-graphs-autodiff.svg)
+
+*Visual: computational graph with forward values and reverse-mode vector-Jacobian products flowing back to parameters, including detach/graph-break warning points.*
+<!-- kb-visual:end -->
+
 ## The Accounting System Behind Deep Learning
 
 Backpropagation is not a neural-network trick. It is reverse-mode automatic

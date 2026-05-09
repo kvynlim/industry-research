@@ -1,5 +1,11 @@
 # Sparse Matrices, Fill-In, and Ordering
 
+<!-- kb-visual:start -->
+![Sparse Matrices, Fill-In, and Ordering curated visual](../_assets/visuals/numerical-linear-algebra-sparse-matrices-fill-in-ordering.svg)
+
+*Visual: sparse matrix before/after permutation showing fill-in, elimination graph, ordering choices, memory/runtime impact, and real-time feasibility.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

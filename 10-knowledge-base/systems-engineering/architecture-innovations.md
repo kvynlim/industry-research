@@ -1,5 +1,11 @@
 # Neural Architecture Innovations for World Models
 
+<!-- kb-visual:start -->
+![Neural Architecture Innovations for World Models curated visual](../_assets/visuals/systems-engineering-architecture-innovations.svg)
+
+*Visual: architecture decision matrix for world models comparing SSM/Mamba, MoE, DiT, flow matching, tokenization, efficient attention, GNNs, retrieval, and test-time compute.*
+<!-- kb-visual:end -->
+
 ## Beyond Standard Transformers — Architectures That Could Give an Edge
 
 ---

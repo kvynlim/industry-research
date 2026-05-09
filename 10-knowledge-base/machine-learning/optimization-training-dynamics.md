@@ -1,5 +1,11 @@
 # Optimization and Training Dynamics: First Principles
 
+<!-- kb-visual:start -->
+![Optimization and Training Dynamics: First Principles curated visual](../_assets/visuals/machine-learning-optimization-training-dynamics.svg)
+
+*Visual: loss-landscape trajectory comparing SGD, momentum, Adam/AdamW, learning-rate schedule, gradient clipping, and mixed-precision instability.*
+<!-- kb-visual:end -->
+
 ## Training Is A Noisy Numerical Process
 
 A neural network is trained by choosing parameters `theta` that minimize an

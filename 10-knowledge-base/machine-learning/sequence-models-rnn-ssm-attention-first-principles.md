@@ -1,5 +1,11 @@
 # Sequence Models: RNNs, SSMs, Attention, and Mamba
 
+<!-- kb-visual:start -->
+![Sequence Models: RNNs, SSMs, Attention, and Mamba curated visual](../_assets/visuals/machine-learning-sequence-models-rnn-ssm-attention-first-principles.svg)
+
+*Visual: side-by-side memory mechanisms for RNN, gated RNN, SSM/S4, Mamba selective scan, and attention.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 This note explains sequence modeling from first principles, from RNNs through S4, Mamba, Mamba-2, Mamba-3, and attention. It is intended for AV temporal perception, SLAM, mapping, tracking, and world-model readers. For driving-specific Mamba papers and deployment detail, see [mamba-ssm-for-driving.md](mamba-ssm-for-driving.md). For attention math, see [attention-transformers-first-principles.md](attention-transformers-first-principles.md).

@@ -1,5 +1,11 @@
 # Recurrent Neural Networks, LSTM, and GRU: First Principles
 
+<!-- kb-visual:start -->
+![Recurrent Neural Networks, LSTM, and GRU: First Principles curated visual](../_assets/visuals/machine-learning-recurrent-neural-networks-lstm-gru.svg)
+
+*Visual: unfolded sequence showing hidden-state recurrence, BPTT, LSTM/GRU gates, online inference reset, and memory failure modes.*
+<!-- kb-visual:end -->
+
 ## Sequence Modeling With Shared State
 
 Autonomous driving is temporal. A single frame may show where an actor is, but

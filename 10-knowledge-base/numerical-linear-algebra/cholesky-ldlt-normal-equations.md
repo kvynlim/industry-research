@@ -1,5 +1,11 @@
 # Cholesky, LDLT, and Normal Equations
 
+<!-- kb-visual:start -->
+![Cholesky, LDLT, and Normal Equations curated visual](../_assets/visuals/numerical-linear-algebra-cholesky-ldlt-normal-equations.svg)
+
+*Visual: residual Jacobian to normal equations to SPD check, Cholesky/LDLT factorization, conditioning warning, and solve/back-substitution path.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [QR, SVD, and Rank-Revealing Solvers](qr-svd-rank-revealing-solvers.md)

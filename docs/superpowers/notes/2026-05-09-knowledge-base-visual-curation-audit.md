@@ -4,6 +4,8 @@ Date: 2026-05-09
 
 Scope: `10-knowledge-base` only. This pass covers 99 Markdown research files across 12 topic folders.
 
+Superseding note: this audit counted the current one-figure-per-page coverage as baseline visual coverage. If those generated figures are removed, use `docs/superpowers/notes/2026-05-09-knowledge-base-visual-reassessment-generated-removed.md`; under that assumption all 99 files need purpose-built replacement visuals.
+
 ## Procedure
 
 Each file is reviewed as its own research note:

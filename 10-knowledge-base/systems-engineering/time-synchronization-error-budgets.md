@@ -1,5 +1,11 @@
 # Time Synchronization Error Budgets for Multi-Sensor Autonomy
 
+<!-- kb-visual:start -->
+![Time Synchronization Error Budgets for Multi-Sensor Autonomy curated visual](../_assets/visuals/systems-engineering-time-synchronization-error-budgets.svg)
+
+*Visual: timing-error-to-spatial-error budget stack showing clock offset, exposure delay, transport latency, fusion timestamp, vehicle speed, and sensor-specific effects.*
+<!-- kb-visual:end -->
+
 Time synchronization is a measurement model, not a logging convenience. A
 camera frame, LiDAR point, radar detection, IMU sample, wheel tick, and GNSS
 fix are only comparable if the stack knows when the physical measurement was

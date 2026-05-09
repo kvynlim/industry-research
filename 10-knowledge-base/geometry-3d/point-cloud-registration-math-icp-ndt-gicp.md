@@ -1,5 +1,11 @@
 # Point Cloud Registration Math: ICP, GICP, VGICP, and NDT
 
+<!-- kb-visual:start -->
+![Point Cloud Registration Math: ICP, GICP, VGICP, and NDT curated visual](../_assets/visuals/geometry-3d-point-cloud-registration-math-icp-ndt-gicp.svg)
+
+*Visual: registration iteration loop comparing ICP correspondences, GICP covariances, NDT grid cells, residual model, solve step, and local-minimum failure.*
+<!-- kb-visual:end -->
+
 Point cloud registration estimates the rigid transform that aligns one scan or
 submap to another. The core problem is geometric maximum likelihood under
 uncertain correspondences. ICP assigns nearest-neighbor correspondences and

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">Information Theory for Perception and Machine Learning</title>
+  <desc id="desc">relationship map for entropy, cross-entropy, KL, mutual information, compression, prediction error, and active sensing value.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
+  <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">Information Theory for Perception and Machine Learning</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">relationship map for entropy, cross-entropy, KL, mutual information, compression, prediction error, and active sensing value.</text>
+  <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
+
+<rect x="112" y="190" width="270" height="82" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="247" y="237" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">relationship map for</text>
+<text x="247" y="258" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">entropy</text>
+
+<rect x="112" y="316" width="270" height="82" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="247" y="363" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">cross-entropy</text>
+
+<rect x="112" y="442" width="270" height="82" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="247" y="489" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">mutual information</text>
+
+<line x1="386" y1="232" x2="552" y2="256" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="386" y1="358" x2="552" y2="326" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="386" y1="484" x2="552" y2="402" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="552" y="174" width="312" height="312" rx="14" fill="url(#grid)" stroke="#0f172a" stroke-width="2"/>
+<rect x="568" y="190" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="610" y="190" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="652" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="694" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="736" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="778" y="190" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="820" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="568" y="232" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="610" y="232" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="652" y="232" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="694" y="232" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="736" y="232" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="778" y="232" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="820" y="232" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="568" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="610" y="274" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="652" y="274" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="694" y="274" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="736" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="778" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="820" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="568" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="610" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="652" y="316" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="694" y="316" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="736" y="316" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="778" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="820" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="568" y="358" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="610" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="652" y="358" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="694" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="736" y="358" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="778" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="820" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="568" y="400" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="610" y="400" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="652" y="400" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="694" y="400" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="736" y="400" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="778" y="400" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="820" y="400" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="568" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="610" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="652" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="694" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="736" y="442" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="778" y="442" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="820" y="442" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+
+<line x1="866" y1="256" x2="1014" y2="232" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="866" y1="326" x2="1014" y2="358" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="866" y1="402" x2="1014" y2="484" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="1018" y="190" width="270" height="82" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+<text x="1153" y="237" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">compression</text>
+
+<rect x="1018" y="316" width="270" height="82" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1153" y="363" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">prediction error</text>
+
+<rect x="1018" y="442" width="270" height="82" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
+<text x="1153" y="489" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">and active sensing value</text>
+
+<text x="700" y="558" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">matrix, graph, or score structure exposes hidden numerical behavior</text>
+
+</svg>

@@ -1,5 +1,11 @@
 # Factor Graph Solver Patterns: Ceres, GTSAM, and g2o
 
+<!-- kb-visual:start -->
+![Factor Graph Solver Patterns: Ceres, GTSAM, and g2o curated visual](../_assets/visuals/optimization-factor-graph-solver-patterns-ceres-gtsam-g2o.svg)
+
+*Visual: unified factor-graph solver loop showing variables, factors, linearization, sparse solve, update, and Ceres/GTSAM/g2o API differences.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Nonlinear Least Squares from First Principles](./nonlinear-least-squares-first-principles.md)

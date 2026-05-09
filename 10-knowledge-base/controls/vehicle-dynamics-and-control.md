@@ -1,5 +1,11 @@
 # Vehicle Dynamics and Control Fundamentals
 
+<!-- kb-visual:start -->
+![Vehicle Dynamics and Control Fundamentals curated visual](../_assets/visuals/controls-vehicle-dynamics-and-control.svg)
+
+*Visual: model-fidelity ladder from kinematic bicycle to dynamic bicycle, tire force/slip, actuator delay, controller output, and failure diagnostics.*
+<!-- kb-visual:end -->
+
 Planning decides where the vehicle should go. Control makes that motion happen
 through tires, motors, brakes, steering actuators, hydraulics, and software
 limits. The planner-controller boundary is where latency, saturation, slip,

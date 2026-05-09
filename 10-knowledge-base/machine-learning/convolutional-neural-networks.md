@@ -1,5 +1,11 @@
 # Convolutional Neural Networks: First Principles
 
+<!-- kb-visual:start -->
+![Convolutional Neural Networks: First Principles curated visual](../_assets/visuals/machine-learning-convolutional-neural-networks.svg)
+
+*Visual: grid convolution diagram showing shared kernel, stride, padding, dilation, receptive-field growth, feature pyramid, and aliasing tradeoff.*
+<!-- kb-visual:end -->
+
 ## Locality, Weight Sharing, and Translation Structure
 
 A fully connected layer treats every input position as unrelated:

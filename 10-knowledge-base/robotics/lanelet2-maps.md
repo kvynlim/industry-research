@@ -1,5 +1,11 @@
 # Lanelet2 Map Representation for Autonomous Driving
 
+<!-- kb-visual:start -->
+![Lanelet2 Map Representation for Autonomous Driving curated visual](../_assets/visuals/robotics-lanelet2-maps.svg)
+
+*Visual: Lanelet2 map primitive diagram showing lanelets, left/right bounds, regulatory elements, routing graph, airport extensions, and dynamic zones.*
+<!-- kb-visual:end -->
+
 ## Overview
 
 Lanelet2 is an open-source C++ library developed at FZI Forschungszentrum Informatik (Karlsruhe Institute of Technology) for handling high-definition map data in autonomous driving. Released under a BSD 3-Clause license, it provides a complete framework -- not just a format -- encompassing map primitives, traffic rules interpretation, routing, coordinate projection, validation, and I/O. It uses the OpenStreetMap (OSM) XML format for persistence and benefits from OSM's mature tooling ecosystem.

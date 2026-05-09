@@ -1,5 +1,11 @@
 # VQ-VAE and Discrete Tokenization: First Principles
 
+<!-- kb-visual:start -->
+![VQ-VAE and Discrete Tokenization: First Principles curated visual](../_assets/visuals/machine-learning-vqvae-tokenization.svg)
+
+*Visual: VQ-VAE encoder to nearest-code lookup, straight-through gradient path, codebook update, loss decomposition, and collapse diagnostics.*
+<!-- kb-visual:end -->
+
 ## The Foundation for Converting Sensor Data into World Model Tokens
 
 ---

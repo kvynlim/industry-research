@@ -1,5 +1,11 @@
 # Volume Rendering, Radiance Fields, and Gaussian Splatting
 
+<!-- kb-visual:start -->
+![Volume Rendering, Radiance Fields, and Gaussian Splatting curated visual](../_assets/visuals/geometry-3d-volume-rendering-radiance-fields-gaussian-splatting.svg)
+
+*Visual: rendering pipeline comparing NeRF ray sampling/alpha compositing with Gaussian splat projection/rasterization and robotics-map constraints.*
+<!-- kb-visual:end -->
+
 Classical mapping often asks for surfaces: points, planes, meshes, occupancy, or
 signed distance. Neural and differentiable rendering methods ask a different
 question: what color would a camera ray see if the scene were represented as a

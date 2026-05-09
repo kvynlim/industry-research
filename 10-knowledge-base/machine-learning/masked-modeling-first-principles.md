@@ -1,5 +1,11 @@
 # Masked Modeling: First Principles
 
+<!-- kb-visual:start -->
+![Masked Modeling: First Principles curated visual](../_assets/visuals/machine-learning-masked-modeling-first-principles.svg)
+
+*Visual: masked modeling pipeline showing visible tokens, mask policy, encoder, target design, reconstruction/prediction head, and leakage pitfalls.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 Masked modeling trains a model to infer hidden parts of an input from visible

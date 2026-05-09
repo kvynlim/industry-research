@@ -1,5 +1,11 @@
 # Multi-Sensor Calibration Observability
 
+<!-- kb-visual:start -->
+![Multi-Sensor Calibration Observability curated visual](../_assets/visuals/geometry-3d-multi-sensor-calibration-observability.svg)
+
+*Visual: calibration factor graph linking camera, LiDAR, IMU, targetless constraints, time offset, motion excitation, and observability rank.*
+<!-- kb-visual:end -->
+
 Calibration is an estimation problem over geometry, time, and uncertainty. A
 calibration value is only meaningful if the data made the parameter observable,
 the residual model matched the sensor physics, and the resulting covariance is

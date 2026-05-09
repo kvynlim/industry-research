@@ -1,5 +1,11 @@
 # GTSAM Factor Graph Optimization: Comprehensive Technical Reference
 
+<!-- kb-visual:start -->
+![GTSAM Factor Graph Optimization: Comprehensive Technical Reference curated visual](../_assets/visuals/state-estimation-gtsam-factor-graphs.svg)
+
+*Visual: GTSAM factor graph and Bayes tree showing pose variables, IMU/GNSS/LiDAR factors, linearization, incremental update, marginal, and custom factor lifecycle.*
+<!-- kb-visual:end -->
+
 ## Table of Contents
 
 1. [Factor Graph Fundamentals](#1-factor-graph-fundamentals)

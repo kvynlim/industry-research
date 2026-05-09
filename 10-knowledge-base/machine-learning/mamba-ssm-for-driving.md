@@ -1,5 +1,11 @@
 # Mamba & State Space Models for Autonomous Driving
 
+<!-- kb-visual:start -->
+![Mamba & State Space Models for Autonomous Driving curated visual](../_assets/visuals/machine-learning-mamba-ssm-for-driving.svg)
+
+*Visual: selective state-space scan for driving sequences, contrasting recurrent state update with quadratic attention and highlighting long-context deployment.*
+<!-- kb-visual:end -->
+
 ## The O(n) Alternative to Transformers for AV World Models
 
 **Last updated:** 2026-03-22

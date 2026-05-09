@@ -1,5 +1,11 @@
 # Jacobians, Autodiff, and Manifold Linearization
 
+<!-- kb-visual:start -->
+![Jacobians, Autodiff, and Manifold Linearization curated visual](../_assets/visuals/optimization-jacobians-autodiff-manifold-linearization.svg)
+
+*Visual: Jacobian-source comparison showing analytic, numeric, autodiff, manifold retraction, perturbation convention, and residual linearization.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Nonlinear Least Squares from First Principles](./nonlinear-least-squares-first-principles.md)

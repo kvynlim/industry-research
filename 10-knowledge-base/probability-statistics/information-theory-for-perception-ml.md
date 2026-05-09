@@ -1,5 +1,11 @@
 # Information Theory for Perception and Machine Learning
 
+<!-- kb-visual:start -->
+![Information Theory for Perception and Machine Learning curated visual](../_assets/visuals/probability-statistics-information-theory-for-perception-ml.svg)
+
+*Visual: relationship map for entropy, cross-entropy, KL, mutual information, compression, prediction error, and active sensing value.*
+<!-- kb-visual:end -->
+
 Information theory gives a quantitative language for uncertainty, compression,
 prediction, sensing, and representation learning. For autonomy, it explains why
 some measurements reduce pose uncertainty, why some features are sufficient for

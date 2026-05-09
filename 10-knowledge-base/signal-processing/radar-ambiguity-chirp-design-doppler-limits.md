@@ -1,5 +1,11 @@
 # Radar Ambiguity, Chirp Design, and Doppler Limits
 
+<!-- kb-visual:start -->
+![Radar Ambiguity, Chirp Design, and Doppler Limits curated visual](../_assets/visuals/signal-processing-radar-ambiguity-chirp-design-doppler-limits.svg)
+
+*Visual: range-Doppler ambiguity diagram linking chirp slope, bandwidth, sampling rate, PRI, unambiguous range, and velocity limits.*
+<!-- kb-visual:end -->
+
 Radar waveform design is a tradeoff between range resolution, maximum range,
 Doppler resolution, unambiguous velocity, sidelobes, hardware limits, and
 regulatory constraints. The ambiguity function is the first-principles tool:

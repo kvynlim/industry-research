@@ -1,5 +1,11 @@
 # Transformer Architecture for World Models: First Principles
 
+<!-- kb-visual:start -->
+![Transformer Architecture for World Models: First Principles curated visual](../_assets/visuals/machine-learning-transformer-world-models.svg)
+
+*Visual: autoregressive scene-token rollout with causal mask, positional encoding, action conditioning, KV cache, future prediction, and planner-cost interface.*
+<!-- kb-visual:end -->
+
 ## The Prediction Engine — From Attention to Autoregressive Scene Forecasting
 
 ---

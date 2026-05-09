@@ -1,5 +1,11 @@
 # Frenet-Frame Trajectory Planning: Complete Mathematical Foundations
 
+<!-- kb-visual:start -->
+![Frenet-Frame Trajectory Planning: Complete Mathematical Foundations curated visual](../_assets/visuals/controls-frenet-trajectory-math.svg)
+
+*Visual: road centerline with Frenet `s` and `d` axes, sampled lateral offsets, jerk-optimal profile, vehicle envelope, and collision-check corridor.*
+<!-- kb-visual:end -->
+
 ## 1. The Frenet-Serret Frame
 
 ### 1.1 Definition

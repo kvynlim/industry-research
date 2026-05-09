@@ -1,5 +1,11 @@
 # Tokenization and Discretization: First Principles
 
+<!-- kb-visual:start -->
+![Tokenization and Discretization: First Principles curated visual](../_assets/visuals/machine-learning-tokenization-and-discretization-first-principles.svg)
+
+*Visual: sensor-to-token conversion map covering text, image/video patches, BEV/voxel/point tokens, quantization, FSQ, and rate-distortion artifacts.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 Tokenization turns continuous or structured data into discrete units that a model can index, embed, compress, and predict. In language this means subword tokens. In AV systems it can mean image patches, BEV cells, point tokens, occupancy codes, trajectory tokens, map tokens, or VQ-VAE codebook indices.

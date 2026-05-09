@@ -1,5 +1,11 @@
 # Lie Groups SE(3), SO(3), Adjoints, and Jacobians
 
+<!-- kb-visual:start -->
+![Lie Groups SE(3), SO(3), Adjoints, and Jacobians curated visual](../_assets/visuals/geometry-3d-lie-groups-se3-so3-jacobians.svg)
+
+*Visual: manifold/tangent-space diagram showing SO(3)/SE(3), Exp/log maps, left/right perturbations, adjoint transform, and residual Jacobian linearization.*
+<!-- kb-visual:end -->
+
 Rigid body state is not a vector space. Rotations live on SO(3), poses live on
 SE(3), and the local 3-vector or 6-vector used by an optimizer is only a
 tangent-space perturbation. Treating pose parameters as ordinary Euclidean

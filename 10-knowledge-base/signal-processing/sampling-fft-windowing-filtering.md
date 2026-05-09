@@ -1,5 +1,11 @@
 # Sampling, FFT, Windowing, and Filtering
 
+<!-- kb-visual:start -->
+![Sampling, FFT, Windowing, and Filtering curated visual](../_assets/visuals/signal-processing-sampling-fft-windowing-filtering.svg)
+
+*Visual: sampling and frequency-domain diagram showing aliasing, FFT bins, spectral leakage, windowing, filter response, and implementation diagnostics.*
+<!-- kb-visual:end -->
+
 Sampling turns continuous sensor signals into discrete data. FFTs expose
 frequency structure. Windowing controls spectral leakage. Filtering shapes
 signal bandwidth, delay, and noise. The first-principles question is always:

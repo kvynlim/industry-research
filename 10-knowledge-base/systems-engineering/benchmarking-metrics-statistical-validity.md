@@ -1,5 +1,11 @@
 # Benchmarking, Metrics, and Statistical Validity
 
+<!-- kb-visual:start -->
+![Benchmarking, Metrics, and Statistical Validity curated visual](../_assets/visuals/systems-engineering-benchmarking-metrics-statistical-validity.svg)
+
+*Visual: benchmark evidence pipeline from scenario sampling and split design to metrics, confidence intervals, statistical test, and release decision.*
+<!-- kb-visual:end -->
+
 Benchmarks turn system behavior into evidence. Metrics turn evidence into
 numbers. Statistical validity decides whether those numbers support the claim
 being made. The first-principles rule is that a benchmark is only useful if its

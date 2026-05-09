@@ -1,5 +1,11 @@
 # Mahalanobis Distance, Chi-Square Gates, NIS, and NEES
 
+<!-- kb-visual:start -->
+![Mahalanobis Distance, Chi-Square Gates, NIS, and NEES curated visual](../_assets/visuals/probability-statistics-mahalanobis-chi-square-gating.svg)
+
+*Visual: innovation covariance ellipse with Mahalanobis distance, chi-square gate, NIS/NEES consistency, accepted/rejected measurements, and threshold tuning.*
+<!-- kb-visual:end -->
+
 Mahalanobis distance is the distance that matters when residual dimensions have
 different units, scales, and correlations. Chi-square gating turns that distance
 into a statistically interpretable pass/fail test. In AV systems, this is the

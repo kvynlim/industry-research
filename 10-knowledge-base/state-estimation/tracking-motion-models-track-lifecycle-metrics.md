@@ -1,5 +1,11 @@
 # Tracking Motion Models, Track Lifecycle, and Metrics
 
+<!-- kb-visual:start -->
+![Tracking Motion Models, Track Lifecycle, and Metrics curated visual](../_assets/visuals/state-estimation-tracking-motion-models-track-lifecycle-metrics.svg)
+
+*Visual: track lifecycle state machine with birth, tentative, confirmed, coasting, deletion, motion model choice, gating, and metric outputs.*
+<!-- kb-visual:end -->
+
 Tracking turns detections into persistent object hypotheses. A detector answers
 "what is visible now?" A tracker answers "which physical object is this over
 time, where is it going, and how uncertain am I?" The hard parts are not only

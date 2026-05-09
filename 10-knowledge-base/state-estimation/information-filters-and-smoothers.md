@@ -1,5 +1,11 @@
 # Information Filters and Smoothers
 
+<!-- kb-visual:start -->
+![Information Filters and Smoothers curated visual](../_assets/visuals/state-estimation-information-filters-and-smoothers.svg)
+
+*Visual: covariance-form versus information-form update and smoother graph showing precision accumulation, sparse structure, and marginal recovery.*
+<!-- kb-visual:end -->
+
 Information filters and smoothers express state estimation in terms of
 precision, constraints, and factorized evidence. The first-principles shift is
 from "what is the covariance of the state?" to "what information has each

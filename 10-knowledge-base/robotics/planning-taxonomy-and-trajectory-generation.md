@@ -1,5 +1,11 @@
 # Planning Taxonomy and Trajectory Generation
 
+<!-- kb-visual:start -->
+![Planning Taxonomy and Trajectory Generation curated visual](../_assets/visuals/robotics-planning-taxonomy-and-trajectory-generation.svg)
+
+*Visual: layered planning stack from route to behavior to motion to trajectory validation to controller/runtime assurance.*
+<!-- kb-visual:end -->
+
 Autonomous planning is a layered decision pipeline. Different stacks use
 different names, but the same responsibilities keep appearing: choose a route,
 choose a maneuver, generate feasible motion, assign speed over time, validate

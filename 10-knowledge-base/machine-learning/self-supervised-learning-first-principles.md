@@ -1,5 +1,11 @@
 # Self-Supervised Learning: First Principles
 
+<!-- kb-visual:start -->
+![Self-Supervised Learning: First Principles curated visual](../_assets/visuals/machine-learning-self-supervised-learning-first-principles.svg)
+
+*Visual: SSL objective decision map covering contrastive, bootstrap/DINO, masked autoencoding, and JEPA with AV evaluation handoff.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 Self-supervised learning (SSL) trains useful representations from unlabeled data by creating supervision from the data itself. This note covers the main SSL families behind modern vision and AV perception: contrastive learning, bootstrap/Siamese learning, self-distillation, masked autoencoding, and JEPA-style latent prediction. It complements the driving-specific survey in [30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md](../../30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md) and the JEPA-focused note [jepa-latent-predictive-learning.md](jepa-latent-predictive-learning.md).

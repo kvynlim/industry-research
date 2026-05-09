@@ -1,5 +1,11 @@
 # Machine Learning Foundations for AV Perception
 
+<!-- kb-visual:start -->
+![Machine Learning Foundations for AV Perception curated visual](../_assets/visuals/machine-learning-overview.svg)
+
+*Visual: actual reading-dependency ladder from linear models to CNN/RNN, transformers, SSL/tokenization, world models, and AV review usage.*
+<!-- kb-visual:end -->
+
 ## Why This Ladder Exists
 
 Autonomous-vehicle perception stacks are often described through the current

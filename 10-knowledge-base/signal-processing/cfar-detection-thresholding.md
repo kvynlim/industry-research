@@ -1,5 +1,11 @@
 # CFAR Detection and Thresholding
 
+<!-- kb-visual:start -->
+![CFAR Detection and Thresholding curated visual](../_assets/visuals/signal-processing-cfar-detection-thresholding.svg)
+
+*Visual: CFAR sliding window with cell-under-test, guard cells, training cells, clutter estimate, adaptive threshold, and detection output.*
+<!-- kb-visual:end -->
+
 Constant false alarm rate (CFAR) detection adapts a threshold to the local noise
 or clutter floor. The first-principles reason is that a fixed threshold cannot
 work across all ranges, angles, weather, terrain, interference, and antenna

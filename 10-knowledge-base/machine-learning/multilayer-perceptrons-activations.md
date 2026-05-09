@@ -1,5 +1,11 @@
 # Multilayer Perceptrons and Activations: First Principles
 
+<!-- kb-visual:start -->
+![Multilayer Perceptrons and Activations: First Principles curated visual](../_assets/visuals/machine-learning-multilayer-perceptrons-activations.svg)
+
+*Visual: half-space features transformed by stacked linear layers and nonlinear activations into piecewise decision regions.*
+<!-- kb-visual:end -->
+
 ## Why A Stack Of Linear Layers Needs Nonlinearity
 
 A multilayer perceptron (MLP) is a composition of affine maps and elementwise

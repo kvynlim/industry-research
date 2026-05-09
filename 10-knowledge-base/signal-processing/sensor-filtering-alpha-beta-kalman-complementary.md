@@ -1,5 +1,11 @@
 # Sensor Filtering: Alpha-Beta, Kalman, and Complementary
 
+<!-- kb-visual:start -->
+![Sensor Filtering: Alpha-Beta, Kalman, and Complementary curated visual](../_assets/visuals/signal-processing-sensor-filtering-alpha-beta-kalman-complementary.svg)
+
+*Visual: predict-correct filtering loop comparing alpha-beta, Kalman covariance gain, and complementary high/low-frequency split.*
+<!-- kb-visual:end -->
+
 Simple filters are often the right tool when the state, noise, and latency
 requirements are clear. Alpha-beta filters, Kalman filters, and complementary
 filters all combine prediction with measurement correction, but they make

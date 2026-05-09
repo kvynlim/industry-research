@@ -1,5 +1,11 @@
 # Probabilistic Multi-Object Association
 
+<!-- kb-visual:start -->
+![Probabilistic Multi-Object Association curated visual](../_assets/visuals/state-estimation-probabilistic-multi-object-association.svg)
+
+*Visual: association probability matrix and hypothesis tree for JPDA/MHT showing ambiguous detections, track weights, and pruning.*
+<!-- kb-visual:end -->
+
 Probabilistic multi-object association handles the case where the correct
 measurement-to-track assignment is uncertain. Instead of committing immediately
 to one pairing, it represents ambiguity in the posterior. This is the right

@@ -1,5 +1,11 @@
 # Probabilistic Graphical Models and Message Passing
 
+<!-- kb-visual:start -->
+![Probabilistic Graphical Models and Message Passing curated visual](../_assets/visuals/probability-statistics-probabilistic-graphical-models-message-passing.svg)
+
+*Visual: factor graph or Bayesian network with local messages, variable elimination, belief/marginal computation, and AV factor examples.*
+<!-- kb-visual:end -->
+
 Probabilistic graphical models turn high-dimensional inference into local
 structure. Instead of writing one opaque joint distribution over every pose,
 landmark, object, map cell, latent token, and action, we represent how variables

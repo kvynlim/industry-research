@@ -1,5 +1,11 @@
 # Perceptron and Linear Classifiers: First Principles
 
+<!-- kb-visual:start -->
+![Perceptron and Linear Classifiers: First Principles curated visual](../_assets/visuals/machine-learning-perceptron-linear-classifiers.svg)
+
+*Visual: feature-space hyperplane with margin, misclassified point, perceptron update vector, multiclass score geometry, and regularization effect.*
+<!-- kb-visual:end -->
+
 ## The Smallest Useful Perception Model
 
 A linear classifier is the first model worth understanding deeply because many

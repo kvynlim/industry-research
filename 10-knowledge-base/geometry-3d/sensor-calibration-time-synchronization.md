@@ -1,5 +1,11 @@
 # Sensor Calibration and Time Synchronization Fundamentals
 
+<!-- kb-visual:start -->
+![Sensor Calibration and Time Synchronization Fundamentals curated visual](../_assets/visuals/geometry-3d-sensor-calibration-time-synchronization.svg)
+
+*Visual: calibration contract diagram linking intrinsics, extrinsics, trigger source, timestamp semantics, clock alignment, validation logs, and fusion failure modes.*
+<!-- kb-visual:end -->
+
 Multi-sensor autonomy depends on two promises: every sensor is placed correctly
 in space, and every measurement is placed correctly in time. Calibration and
 time synchronization failures often look like model errors, perception false

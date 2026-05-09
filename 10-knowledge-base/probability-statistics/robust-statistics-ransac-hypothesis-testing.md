@@ -1,5 +1,11 @@
 # Robust Statistics, RANSAC, and Hypothesis Testing
 
+<!-- kb-visual:start -->
+![Robust Statistics, RANSAC, and Hypothesis Testing curated visual](../_assets/visuals/probability-statistics-robust-statistics-ransac-hypothesis-testing.svg)
+
+*Visual: inlier/outlier scatter with RANSAC hypotheses, consensus set, robust loss curve, hypothesis-test threshold, and failure diagnostics.*
+<!-- kb-visual:end -->
+
 Robust estimation is what keeps a perception or mapping stack from treating bad
 data as merely surprising good data. Gaussian least squares is powerful when the
 model is right and residuals are light-tailed. Real AV data contains clutter,

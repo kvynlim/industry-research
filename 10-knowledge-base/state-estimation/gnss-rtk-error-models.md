@@ -1,5 +1,11 @@
 # GNSS and RTK Error Models
 
+<!-- kb-visual:start -->
+![GNSS and RTK Error Models curated visual](../_assets/visuals/state-estimation-gnss-rtk-error-models.svg)
+
+*Visual: satellite/base/rover RTK geometry with carrier phase, integer ambiguity, atmospheric/multipath errors, corrections, covariance, and outage behavior.*
+<!-- kb-visual:end -->
+
 GNSS provides global position and time. RTK turns carrier-phase measurements and
 base-station corrections into centimeter-class relative positioning when the
 integer ambiguities are correctly resolved. In autonomy, GNSS is both a sensor

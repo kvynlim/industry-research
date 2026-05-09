@@ -1,5 +1,11 @@
 # Gauss-Newton, Levenberg-Marquardt, and Dogleg
 
+<!-- kb-visual:start -->
+![Gauss-Newton, Levenberg-Marquardt, and Dogleg curated visual](../_assets/visuals/optimization-gauss-newton-levenberg-marquardt-dogleg.svg)
+
+*Visual: nonlinear step geometry comparing Gauss-Newton, LM damping, trust-region radius, dogleg path, accept/reject ratio, and failure modes.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Nonlinear Least Squares from First Principles](./nonlinear-least-squares-first-principles.md)

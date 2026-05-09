@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">particle-filter cycle</title>
+  <desc id="desc">particle-filter cycle showing proposal, weighting, resampling, multimodal posterior, hypothesis management, and degeneracy diagnostics.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
+  <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">particle-filter cycle</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">particle-filter cycle showing proposal, weighting, resampling, multimodal posterior, hypothesis management, and degeneracy diagnostics.</text>
+  <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
+
+<line x1="112" y1="356" x2="1288" y2="356" stroke="#0f172a" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="150" y1="356" x2="150" y2="242" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 8"/>
+<circle cx="150" cy="356" r="14" fill="#2563eb"/>
+<rect x="58" y="202" width="184" height="80" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="150" y="248" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">proposal</text>
+
+<line x1="370" y1="356" x2="370" y2="496" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 8"/>
+<circle cx="370" cy="356" r="14" fill="#2563eb"/>
+<rect x="278" y="456" width="184" height="80" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="370" y="502" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">weighting</text>
+
+<line x1="590" y1="356" x2="590" y2="242" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 8"/>
+<circle cx="590" cy="356" r="14" fill="#2563eb"/>
+<rect x="498" y="202" width="184" height="80" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="590" y="248" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">resampling</text>
+
+<line x1="810" y1="356" x2="810" y2="496" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 8"/>
+<circle cx="810" cy="356" r="14" fill="#2563eb"/>
+<rect x="718" y="456" width="184" height="80" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+<text x="810" y="502" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">multimodal</text>
+<text x="810" y="520" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">posterior</text>
+
+<line x1="1030" y1="356" x2="1030" y2="242" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 8"/>
+<circle cx="1030" cy="356" r="14" fill="#2563eb"/>
+<rect x="938" y="202" width="184" height="80" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1030" y="248" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">hypothesis</text>
+<text x="1030" y="266" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">management</text>
+
+<line x1="1250" y1="356" x2="1250" y2="496" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 8"/>
+<circle cx="1250" cy="356" r="14" fill="#2563eb"/>
+<rect x="1158" y="456" width="184" height="80" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
+<text x="1250" y="502" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">and degeneracy</text>
+<text x="1250" y="520" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">diagnostics</text>
+
+<text x="700" y="620" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">ordered state changes explain memory, synchronization, and update</text>
+<text x="700" y="637" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">timing</text>
+
+</svg>

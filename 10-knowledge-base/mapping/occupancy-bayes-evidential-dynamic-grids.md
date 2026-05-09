@@ -1,5 +1,11 @@
 # Occupancy Bayes, Evidential, and Dynamic Grids
 
+<!-- kb-visual:start -->
+![Occupancy Bayes, Evidential, and Dynamic Grids curated visual](../_assets/visuals/mapping-occupancy-bayes-evidential-dynamic-grids.svg)
+
+*Visual: ray-based occupancy update showing prior cell state, inverse sensor model, log-odds/evidential mass, dynamic occupancy, and diagnostic failure cases.*
+<!-- kb-visual:end -->
+
 Occupancy grids turn noisy range, radar, camera, and map evidence into a spatial
 belief about free, occupied, unknown, and sometimes moving space. The key idea
 is to estimate the state of small cells instead of explicitly modeling every

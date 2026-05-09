@@ -1,5 +1,11 @@
 # LiDAR Working Principles and Noise Models
 
+<!-- kb-visual:start -->
+![LiDAR Working Principles and Noise Models curated visual](../_assets/visuals/geometry-3d-lidar-working-principles-noise-models.svg)
+
+*Visual: LiDAR point formation diagram showing emitted pulse or chirp, time-of-flight/FMCW measurement, beam angle, reflectance, incidence angle, weather dropout, and range noise.*
+<!-- kb-visual:end -->
+
 LiDAR turns emitted light into range, bearing, and sometimes reflectance or
 velocity measurements. For perception it is a geometric sensor. For SLAM and
 mapping it is a source of dense surface constraints. The useful model is not

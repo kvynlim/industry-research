@@ -1,5 +1,11 @@
 # FMCW, MIMO, and Doppler Radar Fundamentals
 
+<!-- kb-visual:start -->
+![FMCW, MIMO, and Doppler Radar Fundamentals curated visual](../_assets/visuals/signal-processing-radar-fmcw-mimo-doppler.svg)
+
+*Visual: FMCW/MIMO radar pipeline from chirps to beat frequency, range FFT, Doppler FFT, virtual array angle, CFAR, and ghost/multipath artifacts.*
+<!-- kb-visual:end -->
+
 Automotive and autonomy radars are active RF sensors. They measure range,
 angle, radial velocity, and reflected power through a signal-processing chain,
 not through direct geometric projection. Radar point clouds are sparse and

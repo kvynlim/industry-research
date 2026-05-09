@@ -1,5 +1,11 @@
 # Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses
 
+<!-- kb-visual:start -->
+![Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses curated visual](../_assets/visuals/probability-statistics-gaussian-noise-covariance-information.svg)
+
+*Visual: Gaussian covariance ellipse, whitening transform, information matrix dual, residual normalization, and estimator uncertainty interpretation.*
+<!-- kb-visual:end -->
+
 Gaussian noise is the default local error model in AV perception, SLAM,
 tracking, calibration, and mapping because it turns uncertainty into linear
 algebra. The model is not "the world is Gaussian." The model is: near a current

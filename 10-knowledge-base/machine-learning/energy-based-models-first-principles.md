@@ -1,5 +1,11 @@
 # Energy-Based Models: First Principles
 
+<!-- kb-visual:start -->
+![Energy-Based Models: First Principles curated visual](../_assets/visuals/machine-learning-energy-based-models-first-principles.svg)
+
+*Visual: energy landscape with low-energy data, high-energy negatives, partition-function bottleneck, Langevin sampling loop, and OOD monitoring.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 Energy-based models (EBMs) assign a scalar energy to a candidate state, label,

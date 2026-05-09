@@ -1,5 +1,11 @@
 # Evaluation, Calibration, and Data Leakage: First Principles
 
+<!-- kb-visual:start -->
+![Evaluation, Calibration, and Data Leakage: First Principles curated visual](../_assets/visuals/machine-learning-evaluation-calibration-and-data-leakage-first-principles.svg)
+
+*Visual: evaluation split firewall showing train/validation/test/calibration partitions, leakage paths, reliability diagram, and uncertainty interval.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 ML evaluation turns model behavior into evidence. Calibration decides whether a

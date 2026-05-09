@@ -1,5 +1,11 @@
 # Logistic, Softmax, and Cross-Entropy: First Principles
 
+<!-- kb-visual:start -->
+![Logistic, Softmax, and Cross-Entropy: First Principles curated visual](../_assets/visuals/machine-learning-logistic-softmax-cross-entropy.svg)
+
+*Visual: logits-to-probabilities-to-loss flow showing sigmoid/softmax, thresholds, odds, class imbalance, cross-entropy, and calibration curve.*
+<!-- kb-visual:end -->
+
 ## From Scores To Probabilities
 
 A linear classifier produces scores:

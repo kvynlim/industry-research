@@ -1,5 +1,11 @@
 # Schur Complement, Marginalization, and PCG
 
+<!-- kb-visual:start -->
+![Schur Complement, Marginalization, and PCG curated visual](../_assets/visuals/numerical-linear-algebra-schur-complement-marginalization-pcg.svg)
+
+*Visual: block matrix and factor graph showing landmark/nuisance elimination, Schur complement, reduced pose system, marginalization prior, and PCG.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

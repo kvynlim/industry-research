@@ -1,5 +1,11 @@
 # Sparse Attention Mechanisms and Transformer Architectures for 3D Point Cloud Perception
 
+<!-- kb-visual:start -->
+![Sparse Attention Mechanisms and Transformer Architectures for 3D Point Cloud Perception curated visual](../_assets/visuals/machine-learning-sparse-attention-3d-perception.svg)
+
+*Visual: sparse 3D attention layout showing points/voxels, windowing or serialization, neighbor attention, BEV aggregation, memory/latency budget, and Orin deployment path.*
+<!-- kb-visual:end -->
+
 ## From O(n^2) Dense Attention to Real-Time Sparse Transformers on NVIDIA Orin
 
 **Last updated:** 2026-04-11

@@ -1,5 +1,11 @@
 # Contrastive Learning and InfoNCE: First Principles
 
+<!-- kb-visual:start -->
+![Contrastive Learning and InfoNCE: First Principles curated visual](../_assets/visuals/machine-learning-contrastive-learning-infonsce-first-principles.svg)
+
+*Visual: anchor-positive-negative embedding geometry plus batch similarity matrix showing InfoNCE temperature, positives, negatives, and leakage risks.*
+<!-- kb-visual:end -->
+
 ## Scope
 
 Contrastive learning trains representations by making related views close and

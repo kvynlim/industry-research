@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">shared-trunk multi-head network</title>
+  <desc id="desc">shared-trunk multi-head network with classification, regression, occupancy/segmentation, flow/trajectory losses, weighting, and gradient-conflict vectors.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
+  <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">shared-trunk multi-head network</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">shared-trunk multi-head network with classification, regression, occupancy/segmentation, flow/trajectory losses, weighting, and gradient-conflict v...</text>
+  <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
+
+<rect x="170" y="442" width="230" height="72" rx="16" fill="#1e293b"/>
+<circle cx="224" cy="522" r="24" fill="#0f172a"/>
+<circle cx="350" cy="522" r="24" fill="#0f172a"/>
+<polygon points="400,454 980,208 980,520" fill="#dbeafe" opacity="0.45" stroke="#2563eb" stroke-width="3"/>
+<line x1="400" y1="454" x2="1045" y2="350" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+<circle cx="1045" cy="350" r="17" fill="#ef4444"/>
+<line x1="286" y1="442" x2="286" y2="300" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow)"/>
+<line x1="286" y1="442" x2="445" y2="442" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="96" y="202" width="220" height="78" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="206" y="247" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">shared-trunk</text>
+<text x="206" y="265" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">multi-head network</text>
+
+<rect x="360" y="176" width="220" height="78" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="470" y="221" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">classification</text>
+
+<rect x="706" y="170" width="220" height="78" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="816" y="215" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">regression</text>
+
+<rect x="1010" y="222" width="220" height="78" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+<text x="1120" y="267" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">occupancy/segmentation</text>
+
+<rect x="322" y="500" width="220" height="78" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="432" y="545" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">flow/trajectory</text>
+<text x="432" y="563" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">losses</text>
+
+<rect x="888" y="506" width="220" height="78" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
+<text x="998" y="551" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">weighting</text>
+
+<text x="700" y="606" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">geometry makes frames, rays, timing, and residuals inspectable</text>
+
+</svg>

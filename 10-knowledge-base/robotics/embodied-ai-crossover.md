@@ -1,5 +1,11 @@
 # Embodied AI and Robotics Crossover for Autonomous Vehicles
 
+<!-- kb-visual:start -->
+![Embodied AI and Robotics Crossover for Autonomous Vehicles curated visual](../_assets/visuals/robotics-embodied-ai-crossover.svg)
+
+*Visual: transfer map from robotics foundation models, diffusion policy, action tokenization, and embodied priors into constrained vehicle autonomy.*
+<!-- kb-visual:end -->
+
 ## How Robotics Foundation Models Transfer to Driving
 
 ---

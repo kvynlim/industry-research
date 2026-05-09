@@ -1,5 +1,11 @@
 # World-Model Evaluation and Planning Objectives
 
+<!-- kb-visual:start -->
+![World-Model Evaluation and Planning Objectives curated visual](../_assets/visuals/machine-learning-world-model-evaluation-and-planning-objectives-first-principles.svg)
+
+*Visual: open-loop versus closed-loop evaluation grid linking action conditioning, planning objective, occupancy/latent costs, uncertainty, and dataset split rules.*
+<!-- kb-visual:end -->
+
 ## Why This Page Exists
 
 World models are useful only if their predictions improve decisions. A model can generate plausible videos, accurate short-horizon occupancy, or strong open-loop metrics and still fail when a planner uses it.

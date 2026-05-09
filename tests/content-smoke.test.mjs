@@ -86,3 +86,101 @@ test('knowledge-base pages do not include generated figure placeholders', () => 
 
   assert.deepEqual(generated, [])
 })
+
+test('knowledge-base pages include one curated replacement visual', () => {
+  const knowledgeBaseDir = path.join(repoRoot, '10-knowledge-base')
+  const markdownFiles = readMarkdownFiles(knowledgeBaseDir)
+  const failures = []
+
+  for (const absPath of markdownFiles) {
+    const relPath = path.relative(repoRoot, absPath).replace(/\\/g, '/')
+    const markdown = fs.readFileSync(absPath, 'utf8')
+    const blocks = [...markdown.matchAll(/<!-- kb-visual:start -->[\s\S]*?<!-- kb-visual:end -->/g)]
+
+    if (blocks.length !== 1) {
+      failures.push(`${relPath}: expected exactly one curated kb-visual block`)
+      continue
+    }
+
+    const block = blocks[0][0]
+    const imageMatch = block.match(/!\[[^\]]+\]\((\.\.\/_assets\/visuals\/[^)]+\.svg)\)/)
+    const hasCaption = /\*Visual: .+\*/.test(block)
+
+    if (!imageMatch) {
+      failures.push(`${relPath}: curated visual must reference ../_assets/visuals/*.svg`)
+    }
+
+    if (!hasCaption) {
+      failures.push(`${relPath}: curated visual must include a Visual caption`)
+    }
+
+    if (/generic|placeholder|auto-generated/i.test(block)) {
+      failures.push(`${relPath}: curated visual block still uses generic placeholder wording`)
+    }
+  }
+
+  assert.deepEqual(failures, [])
+})
+
+test('curated knowledge-base visual assets keep accessible metadata', () => {
+  const knowledgeBaseDir = path.join(repoRoot, '10-knowledge-base')
+  const markdownFiles = readMarkdownFiles(knowledgeBaseDir)
+  const failures = []
+  const rawAmpersandPattern = /&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[0-9a-fA-F]+;)/
+
+  for (const absPath of markdownFiles) {
+    const relPath = path.relative(repoRoot, absPath).replace(/\\/g, '/')
+    const markdown = fs.readFileSync(absPath, 'utf8')
+    const visualBlock = markdown.match(/<!-- kb-visual:start -->[\s\S]*?<!-- kb-visual:end -->/)?.[0]
+
+    if (!visualBlock) {
+      failures.push(`${relPath}: missing curated visual block`)
+      continue
+    }
+
+    const imageRel = visualBlock.match(/!\[[^\]]+\]\((\.\.\/_assets\/visuals\/[^)]+\.svg)\)/)?.[1]
+    const caption = visualBlock.match(/\*Visual: ([^\r\n]+)\*/)?.[1]
+
+    if (!imageRel || !caption) {
+      failures.push(`${relPath}: curated visual block is missing image or caption`)
+      continue
+    }
+
+    const imagePath = path.resolve(path.dirname(absPath), imageRel)
+    if (!fs.existsSync(imagePath)) {
+      failures.push(`${relPath}: curated visual asset does not exist at ${path.relative(repoRoot, imagePath)}`)
+      continue
+    }
+
+    const svg = fs.readFileSync(imagePath, 'utf8')
+    const svgRootCount = (svg.match(/<svg\b/g) ?? []).length
+    const titleCount = (svg.match(/<title\b/g) ?? []).length
+    const descMatches = [...svg.matchAll(/<desc\b[^>]*>([\s\S]*?)<\/desc>/g)]
+
+    if (svgRootCount !== 1 || !svg.trimEnd().endsWith('</svg>')) {
+      failures.push(`${relPath}: expected one complete root SVG element`)
+    }
+
+    if (titleCount !== 1) {
+      failures.push(`${relPath}: expected one title element`)
+    }
+
+    if (descMatches.length !== 1) {
+      failures.push(`${relPath}: expected one desc element`)
+    }
+
+    if (!descMatches.some((match) => match[1].includes(caption))) {
+      failures.push(`${relPath}: SVG desc should include the curated Visual caption`)
+    }
+
+    if (/generic|placeholder|auto-generated/i.test(svg)) {
+      failures.push(`${relPath}: SVG still uses generic placeholder wording`)
+    }
+
+    if (rawAmpersandPattern.test(svg)) {
+      failures.push(`${relPath}: SVG contains an unescaped ampersand`)
+    }
+  }
+
+  assert.deepEqual(failures, [])
+})

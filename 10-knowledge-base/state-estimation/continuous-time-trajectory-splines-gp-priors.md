@@ -1,5 +1,11 @@
 # Continuous-Time Trajectory Splines and Gaussian Process Priors
 
+<!-- kb-visual:start -->
+![Continuous-Time Trajectory Splines and Gaussian Process Priors curated visual](../_assets/visuals/state-estimation-continuous-time-trajectory-splines-gp-priors.svg)
+
+*Visual: continuous trajectory with spline knots, interpolated measurement times, GP prior factors, manifold state, and observability pitfalls.*
+<!-- kb-visual:end -->
+
 Most estimators pretend the robot state exists only at discrete keyframes. Real
 sensors do not. A rolling-shutter camera exposes rows at different times, a
 spinning LiDAR collects each point at a different azimuth time, an IMU samples at

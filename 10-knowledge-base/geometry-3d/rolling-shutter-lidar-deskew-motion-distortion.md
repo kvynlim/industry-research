@@ -1,5 +1,11 @@
 # Rolling Shutter, LiDAR Deskew, and Motion Distortion
 
+<!-- kb-visual:start -->
+![Rolling Shutter, LiDAR Deskew, and Motion Distortion curated visual](../_assets/visuals/geometry-3d-rolling-shutter-lidar-deskew-motion-distortion.svg)
+
+*Visual: time-sweep diagram showing camera rows and LiDAR points captured at different poses, ego-motion interpolation, deskew transform, and object-motion caveat.*
+<!-- kb-visual:end -->
+
 Motion distortion happens when a sensor frame is treated as instantaneous even
 though its samples were acquired over time. A rolling-shutter image is not one
 camera pose; each row has a different exposure time. A spinning or scanning

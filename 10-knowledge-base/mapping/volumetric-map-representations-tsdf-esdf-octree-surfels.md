@@ -1,5 +1,11 @@
 # Volumetric Map Representations: TSDF, ESDF, Octrees, and Surfels
 
+<!-- kb-visual:start -->
+![Volumetric Map Representations: TSDF, ESDF, Octrees, and Surfels curated visual](../_assets/visuals/mapping-volumetric-map-representations-tsdf-esdf-octree-surfels.svg)
+
+*Visual: representation comparison showing occupancy, TSDF, ESDF, octree sparsity, surfels, and planner/collision/rendering tradeoffs.*
+<!-- kb-visual:end -->
+
 A map is not just storage. It is an answer to a query. Planners ask, "How far
 am I from collision?" Localizers ask, "Where should this scan align?" Perception
 asks, "Is this space occupied, free, unknown, or changed?" Dense reconstruction

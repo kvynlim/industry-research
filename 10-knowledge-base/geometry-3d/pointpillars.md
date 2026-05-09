@@ -1,5 +1,11 @@
 # PointPillars: First Principles
 
+<!-- kb-visual:start -->
+![PointPillars: First Principles curated visual](../_assets/visuals/geometry-3d-pointpillars.svg)
+
+*Visual: PointPillars tensor pipeline from raw points to pillar grid/tensor, PFN pooling, BEV scatter, 2D backbone, and detector/world-model outputs.*
+<!-- kb-visual:end -->
+
 ## From Point Cloud to BEV Features — Every Step with Tensor Shapes
 
 ---

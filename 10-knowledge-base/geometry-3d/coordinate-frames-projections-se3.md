@@ -1,5 +1,11 @@
 # Coordinate Frames, Projections, and SE(3) for Autonomous Systems
 
+<!-- kb-visual:start -->
+![Coordinate Frames, Projections, and SE(3) for Autonomous Systems curated visual](../_assets/visuals/geometry-3d-coordinate-frames-projections-se3.svg)
+
+*Visual: transform tree from map to odom to base to sensors to image plane, with SE(3) composition, projection, and common frame-error points.*
+<!-- kb-visual:end -->
+
 Coordinate conventions are not bookkeeping. They define what every position,
 velocity, covariance, detection, map feature, and control command means. A
 stack can have strong perception and planning models and still fail if one

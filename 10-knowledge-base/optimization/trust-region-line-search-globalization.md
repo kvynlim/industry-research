@@ -1,5 +1,11 @@
 # Trust Region and Line Search Globalization
 
+<!-- kb-visual:start -->
+![Trust Region and Line Search Globalization curated visual](../_assets/visuals/optimization-trust-region-line-search-globalization.svg)
+
+*Visual: trust-region versus line-search decision geometry showing local model, step candidate, ratio test, backtracking, radius update, and instability prevention.*
+<!-- kb-visual:end -->
+
 ## Related docs
 
 - [Nonlinear Least Squares from First Principles](./nonlinear-least-squares-first-principles.md)

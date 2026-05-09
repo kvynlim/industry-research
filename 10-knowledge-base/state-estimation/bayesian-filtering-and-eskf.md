@@ -1,5 +1,11 @@
 # Bayesian Filtering and Error-State Kalman Filters
 
+<!-- kb-visual:start -->
+![Bayesian Filtering and Error-State Kalman Filters curated visual](../_assets/visuals/state-estimation-bayesian-filtering-and-eskf.svg)
+
+*Visual: Bayesian/ESKF cycle showing nominal propagation, error-state covariance, measurement residual, Kalman correction, reset, and consistency checks.*
+<!-- kb-visual:end -->
+
 Recursive state estimation is the machinery that turns noisy, asynchronous
 measurements into the state used by localization, tracking, control, prediction,
 runtime monitors, and safety fallback. The core problem is always the same:

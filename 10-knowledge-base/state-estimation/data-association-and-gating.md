@@ -1,5 +1,11 @@
 # Data Association and Gating
 
+<!-- kb-visual:start -->
+![Data Association and Gating curated visual](../_assets/visuals/state-estimation-data-association-and-gating.svg)
+
+*Visual: track-to-detection gating geometry with covariance ellipses, cost/assignment matrix, accepted/rejected pairs, and ambiguity cases.*
+<!-- kb-visual:end -->
+
 Data association decides which measurement, if any, should update which
 predicted state. Gating decides which candidate pairings are physically and
 statistically plausible before the assignment problem is solved. The first

@@ -1,5 +1,11 @@
 # RTK-GPS, IMU, and Multi-Sensor Localization: First Principles
 
+<!-- kb-visual:start -->
+![RTK-GPS, IMU, and Multi-Sensor Localization: First Principles curated visual](../_assets/visuals/state-estimation-rtk-gps-imu-localization.svg)
+
+*Visual: multi-sensor localization factor graph connecting GNSS/RTK, IMU preintegration, wheel odometry, LiDAR localization, frames, and GPS-denied fallback.*
+<!-- kb-visual:end -->
+
 ## The Localization Foundation for the reference airside AV stack's GTSAM Factor Graph
 
 ---

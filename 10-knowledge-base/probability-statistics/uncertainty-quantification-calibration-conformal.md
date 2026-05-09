@@ -1,5 +1,11 @@
 # Uncertainty Quantification, Calibration, and Conformal Prediction
 
+<!-- kb-visual:start -->
+![Uncertainty Quantification, Calibration, and Conformal Prediction curated visual](../_assets/visuals/probability-statistics-uncertainty-quantification-calibration-conformal.svg)
+
+*Visual: reliability diagram plus conformal prediction-set construction showing calibration data, coverage guarantee, uncertainty type, and AV decision use.*
+<!-- kb-visual:end -->
+
 Uncertainty quantification is the practice of making model uncertainty explicit
 enough to support decisions. Calibration asks whether predicted probabilities
 match empirical frequencies. Conformal prediction wraps a predictor with

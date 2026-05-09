@@ -1,5 +1,11 @@
 # Likelihood, MAP, MLE, and Least Squares
 
+<!-- kb-visual:start -->
+![Likelihood, MAP, MLE, and Least Squares curated visual](../_assets/visuals/probability-statistics-likelihood-map-mle-least-squares.svg)
+
+*Visual: likelihood-prior-posterior flow showing MLE versus MAP, Gaussian residual to least squares, and objective surface.*
+<!-- kb-visual:end -->
+
 Likelihood connects probabilistic modeling to optimization. Maximum likelihood
 estimation (MLE) chooses parameters that make the observed data most probable.
 Maximum a posteriori (MAP) estimation adds a prior. Under Gaussian residual

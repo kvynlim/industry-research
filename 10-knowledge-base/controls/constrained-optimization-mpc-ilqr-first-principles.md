@@ -1,5 +1,11 @@
 # Constrained Optimization, MPC, and iLQR: First Principles
 
+<!-- kb-visual:start -->
+![Constrained Optimization, MPC, and iLQR: First Principles curated visual](../_assets/visuals/controls-constrained-optimization-mpc-ilqr-first-principles.svg)
+
+*Visual: receding-horizon control loop showing state estimate, prediction model, constraints, cost, QP/NLP solve, first-control application, and warm-start feedback.*
+<!-- kb-visual:end -->
+
 Control and planning become engineering systems when objectives meet
 constraints. Model predictive control (MPC) repeatedly solves a constrained
 finite-horizon optimal control problem. Iterative LQR (iLQR) solves a local

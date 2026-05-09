@@ -1,5 +1,11 @@
 # Initialization, Normalization, and Regularization: First Principles
 
+<!-- kb-visual:start -->
+![Initialization, Normalization, and Regularization: First Principles curated visual](../_assets/visuals/machine-learning-initialization-normalization-regularization.svg)
+
+*Visual: signal/gradient variance through depth showing Xavier/He initialization, normalization layers, dropout/weight decay, and unstable training failure.*
+<!-- kb-visual:end -->
+
 ## Making Deep Networks Trainable And Less Brittle
 
 Deep networks are compositions of many transformations. If activations or

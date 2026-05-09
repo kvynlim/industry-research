@@ -1,5 +1,11 @@
 # Geodesy, Map Projections, Datums, and Map Frames
 
+<!-- kb-visual:start -->
+![Geodesy, Map Projections, Datums, and Map Frames curated visual](../_assets/visuals/geometry-3d-geodesy-map-projections-datums.svg)
+
+*Visual: WGS84 to ECEF to ENU to projected local-map chain with datum/projection distortion and localization error budget.*
+<!-- kb-visual:end -->
+
 Autonomy systems need local metric coordinates, but GNSS, surveyed assets, road
 maps, and aviation data are tied to Earth. Geodesy supplies the chain from
 latitude, longitude, and height to ECEF, ENU, NED, UTM, local map frames, and
