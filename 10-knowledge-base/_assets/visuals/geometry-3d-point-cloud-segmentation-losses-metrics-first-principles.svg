@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="tensor-pipeline">
+  <title id="title">Point Cloud Segmentation Losses and Metrics</title>
+  <desc id="desc">raw points/range image/voxel neighborhoods to per-point logits, class weighting, Dice/Lovasz/focal losses, confusion matrix, and mIoU aggregation.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
+  <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">Point Cloud Segmentation Losses and Metrics</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">raw points/range image/voxel neighborhoods to per-point logits, class weighting, Dice/Lovasz/focal losses, confusion matrix, and mIoU aggregation.</text>
+  <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
+
+<!-- layout:tensor-pipeline -->
+<rect x="152" y="224" width="384" height="250" rx="16" fill="#f8fafc" stroke="#2563eb" stroke-width="3"/>
+<rect x="174" y="246" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="218" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="262" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="306" y="246" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="350" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="394" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="438" y="246" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="482" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="174" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="218" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="262" y="290" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="306" y="290" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="350" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="394" y="290" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="438" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="482" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="174" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="218" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="262" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="306" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="350" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="394" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="438" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="482" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="174" y="378" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="218" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="262" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="306" y="378" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="350" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="394" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="438" y="378" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="482" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="174" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="218" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="262" y="422" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="306" y="422" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="350" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="394" y="422" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="438" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="482" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+
+<line x1="550" y1="350" x2="704" y2="350" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="720" y="266" width="210" height="82" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+<text x="825" y="313" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">raw points/range</text>
+<text x="825" y="334" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">image/voxel</text>
+
+<rect x="720" y="420" width="210" height="82" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="825" y="467" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">per-point logits</text>
+
+<line x1="824" y1="352" x2="824" y2="416" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M932 307 C1050 230 1150 272 1178 362" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1054" y="382" width="210" height="82" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="1159" y="429" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">class weighting</text>
+
+<text x="700" y="604" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">tensor stages reshape features into task outputs</text>
+
+</svg>

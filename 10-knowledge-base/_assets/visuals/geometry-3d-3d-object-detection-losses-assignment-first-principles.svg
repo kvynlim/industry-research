@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="search-and-gating">
+  <title id="title">anchor/center/query assignment matrix</title>
+  <desc id="desc">anchor/center/query assignment matrix showing positives, negatives, IoU thresholds, Hungarian matching, heading/box/class losses, and NMS/postprocessing.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
+  <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">anchor/center/query assignment matrix</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">anchor/center/query assignment matrix showing positives, negatives, IoU thresholds, Hungarian matching, heading/box/class losses, and NMS/postproce...</text>
+  <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
+
+<!-- layout:search-and-gating -->
+<rect x="142" y="210" width="500" height="360" rx="16" fill="url(#grid)" stroke="#94a3b8" stroke-width="2"/>
+<ellipse cx="388" cy="386" rx="170" ry="96" fill="#dbeafe" stroke="#2563eb" stroke-width="4" opacity="0.72"/>
+<circle cx="330" cy="378" r="9" fill="#2563eb" opacity="0.82"/>
+<circle cx="398" cy="354" r="9" fill="#16a34a" opacity="0.82"/>
+<circle cx="470" cy="410" r="9" fill="#2563eb" opacity="0.82"/>
+<circle cx="232" cy="260" r="8" fill="#e11d48" opacity="0.82"/>
+<circle cx="570" cy="520" r="8" fill="#e11d48" opacity="0.82"/>
+<rect x="784" y="252" width="250" height="82" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="909" y="299" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">positives</text>
+
+<rect x="910" y="436" width="250" height="82" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="1035" y="483" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">negatives</text>
+
+<line x1="642" y1="388" x2="780" y2="294" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="1034" y1="334" x2="1000" y2="432" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+</svg>

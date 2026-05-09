@@ -2,7 +2,7 @@
 
 Date: 2026-05-09
 
-Scope: `10-knowledge-base` only. This reassessment covers all 103 live Markdown research files.
+Scope: `10-knowledge-base` only. This reassessment covers all 109 live Markdown research files.
 
 ## Assumption Change
 
@@ -22,8 +22,8 @@ Each file was reassessed as its own research note:
 
 ## Summary
 
-- Live knowledge-base Markdown files: 103.
-- Files requiring a replacement visual if generated figures are removed: 103.
+- Live knowledge-base Markdown files: 109.
+- Files requiring a replacement visual if generated figures are removed: 109.
 - Files that can safely lose the generated visual without replacement: 0.
 - Recommended default: one carefully designed replacement diagram per file.
 - Multi-diagram expansion should be reserved for later deepening passes; the current goal is baseline replacement coverage.
@@ -39,6 +39,7 @@ Each file was reassessed as its own research note:
 
 ### Geometry 3D
 
+- `10-knowledge-base/geometry-3d/3d-object-detection-losses-assignment-first-principles.md` - Visual needed: yes. Replacement visual: anchor/center/query assignment matrix showing positives, negatives, IoU thresholds, Hungarian matching, heading/box/class losses, and NMS/postprocessing.
 - `10-knowledge-base/geometry-3d/camera-imaging-noise-calibration.md` - Visual needed: yes. Replacement visual: camera measurement chain from scene radiance through lens projection, distortion, rolling-shutter timing, sensor noise, calibration residual, and estimator covariance.
 - `10-knowledge-base/geometry-3d/camera-projective-geometry-pnp-triangulation.md` - Visual needed: yes. Replacement visual: camera-pose and landmark geometry showing projection rays, PnP pose constraints, triangulation intersection, reprojection residuals, and degeneracy cases.
 - `10-knowledge-base/geometry-3d/coordinate-frames-projections-se3.md` - Visual needed: yes. Replacement visual: transform tree from map to odom to base to sensors to image plane, with SE(3) composition, projection, and common frame-error points.
@@ -49,6 +50,7 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/geometry-3d/lie-groups-se3-so3-jacobians.md` - Visual needed: yes. Replacement visual: manifold/tangent-space diagram showing SO(3)/SE(3), Exp/log maps, left/right perturbations, adjoint transform, and residual Jacobian linearization.
 - `10-knowledge-base/geometry-3d/multi-sensor-calibration-observability.md` - Visual needed: yes. Replacement visual: calibration factor graph linking camera, LiDAR, IMU, targetless constraints, time offset, motion excitation, and observability rank.
 - `10-knowledge-base/geometry-3d/point-cloud-registration-math-icp-ndt-gicp.md` - Visual needed: yes. Replacement visual: registration iteration loop comparing ICP correspondences, GICP covariances, NDT grid cells, residual model, solve step, and local-minimum failure.
+- `10-knowledge-base/geometry-3d/point-cloud-segmentation-losses-metrics-first-principles.md` - Visual needed: yes. Replacement visual: raw points/range image/voxel neighborhoods to per-point logits, class weighting, Dice/Lovasz/focal losses, confusion matrix, and mIoU aggregation.
 - `10-knowledge-base/geometry-3d/pointpillars.md` - Visual needed: yes. Replacement visual: PointPillars tensor pipeline from raw points to pillar grid/tensor, PFN pooling, BEV scatter, 2D backbone, and detector/world-model outputs.
 - `10-knowledge-base/geometry-3d/rolling-shutter-lidar-deskew-motion-distortion.md` - Visual needed: yes. Replacement visual: time-sweep diagram showing camera rows and LiDAR points captured at different poses, ego-motion interpolation, deskew transform, and object-motion caveat.
 - `10-knowledge-base/geometry-3d/sensor-calibration-time-synchronization.md` - Visual needed: yes. Replacement visual: calibration contract diagram linking intrinsics, extrinsics, trigger source, timestamp semantics, clock alignment, validation logs, and fusion failure modes.
@@ -91,7 +93,9 @@ Each file was reassessed as its own research note:
 
 ### Mapping
 
+- `10-knowledge-base/mapping/neural-implicit-slam-differentiable-mapping-first-principles.md` - Visual needed: yes. Replacement visual: keyframes, pose variables, sampled camera rays, implicit field parameters, photometric/depth/SDF losses, optimization loop, and map validation.
 - `10-knowledge-base/mapping/occupancy-bayes-evidential-dynamic-grids.md` - Visual needed: yes. Replacement visual: ray-based occupancy update showing prior cell state, inverse sensor model, log-odds/evidential mass, dynamic occupancy, and diagnostic failure cases.
+- `10-knowledge-base/mapping/semantic-mapping-and-map-fusion-first-principles.md` - Visual needed: yes. Replacement visual: geometric occupancy, semantic class probabilities, instance IDs, dynamic/static flags, temporal fusion, provenance, and planner-facing map layers.
 - `10-knowledge-base/mapping/volumetric-map-representations-tsdf-esdf-octree-surfels.md` - Visual needed: yes. Replacement visual: representation comparison showing occupancy, TSDF, ESDF, octree sparsity, surfels, and planner/collision/rendering tradeoffs.
 
 ### Numerical Linear Algebra
@@ -152,6 +156,8 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/state-estimation/imu-error-models-preintegration.md` - Visual needed: yes. Replacement visual: IMU preintegration timeline from high-rate samples through bias/noise model to preintegrated factor between keyframes, plus Allan variance cue.
 - `10-knowledge-base/state-estimation/information-filters-and-smoothers.md` - Visual needed: yes. Replacement visual: covariance-form versus information-form update and smoother graph showing precision accumulation, sparse structure, and marginal recovery.
 - `10-knowledge-base/state-estimation/localization-integrity-protection-levels-raim.md` - Visual needed: yes. Replacement visual: localization error distribution with alert limit, protection level, integrity risk, fault monitor, and hazardous misleading localization region.
+- `10-knowledge-base/state-estimation/loop-closure-place-recognition-first-principles.md` - Visual needed: yes. Replacement visual: descriptor retrieval, candidate gating, geometric verification, false-loop rejection, accepted pose-graph factor, and safety monitor.
+- `10-knowledge-base/state-estimation/multi-sensor-fusion-measurement-models-first-principles.md` - Visual needed: yes. Replacement visual: camera/LiDAR/radar/GNSS/IMU measurements through frames/time alignment, likelihoods, feature/object/track fusion, covariance, and correlation warnings.
 - `10-knowledge-base/state-estimation/out-of-sequence-measurements-fixed-lag-smoothing.md` - Visual needed: yes. Replacement visual: measurement timeline showing acquisition time, arrival time, fixed-lag smoother window, retrodiction update, stale rejection, and replay policy.
 - `10-knowledge-base/state-estimation/particle-filters-and-hypothesis-management.md` - Visual needed: yes. Replacement visual: particle-filter cycle showing proposal, weighting, resampling, multimodal posterior, hypothesis management, and degeneracy diagnostics.
 - `10-knowledge-base/state-estimation/probabilistic-multi-object-association.md` - Visual needed: yes. Replacement visual: association probability matrix and hypothesis tree for JPDA/MHT showing ambiguous detections, track weights, and pruning.
@@ -171,7 +177,7 @@ Each file was reassessed as its own research note:
 
 ## Implementation Implication
 
-If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 99 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
+If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 109 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
 
 Suggested replacement order:
 

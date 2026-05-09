@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="map-and-planning-stack">
+  <title id="title">Semantic Mapping and Map Fusion</title>
+  <desc id="desc">geometric occupancy, semantic class probabilities, instance IDs, dynamic/static flags, temporal fusion, provenance, and planner-facing map layers.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
+  <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">Semantic Mapping and Map Fusion</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">geometric occupancy, semantic class probabilities, instance IDs, dynamic/static flags, temporal fusion, provenance, and planner-facing map layers.</text>
+  <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
+
+<!-- layout:map-and-planning-stack -->
+<rect x="320" y="188" width="760" height="58" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="700" y="223" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">geometric occupancy</text>
+
+<line x1="700" y1="248" x2="700" y2="262" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="349" y="266" width="702" height="58" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="700" y="301" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">semantic class probabilities</text>
+
+<line x1="700" y1="326" x2="700" y2="340" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="378" y="344" width="644" height="58" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="700" y="379" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">instance IDs</text>
+
+<line x1="700" y1="404" x2="700" y2="418" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="407" y="422" width="586" height="58" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+<text x="700" y="457" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">dynamic/static flags</text>
+
+<line x1="700" y1="482" x2="700" y2="496" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="436" y="500" width="528" height="58" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="700" y="535" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">temporal fusion</text>
+
+
+
+</svg>
