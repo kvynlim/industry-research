@@ -2,7 +2,7 @@
 
 Date: 2026-05-09
 
-Scope: `10-knowledge-base` only. This reassessment covers all 99 live Markdown research files.
+Scope: `10-knowledge-base` only. This reassessment covers all 103 live Markdown research files.
 
 ## Assumption Change
 
@@ -22,8 +22,8 @@ Each file was reassessed as its own research note:
 
 ## Summary
 
-- Live knowledge-base Markdown files: 99.
-- Files requiring a replacement visual if generated figures are removed: 99.
+- Live knowledge-base Markdown files: 103.
+- Files requiring a replacement visual if generated figures are removed: 103.
 - Files that can safely lose the generated visual without replacement: 0.
 - Recommended default: one carefully designed replacement diagram per file.
 - Multi-diagram expansion should be reserved for later deepening passes; the current goal is baseline replacement coverage.
@@ -146,13 +146,17 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/state-estimation/bayesian-filtering-and-eskf.md` - Visual needed: yes. Replacement visual: Bayesian/ESKF cycle showing nominal propagation, error-state covariance, measurement residual, Kalman correction, reset, and consistency checks.
 - `10-knowledge-base/state-estimation/continuous-time-trajectory-splines-gp-priors.md` - Visual needed: yes. Replacement visual: continuous trajectory with spline knots, interpolated measurement times, GP prior factors, manifold state, and observability pitfalls.
 - `10-knowledge-base/state-estimation/data-association-and-gating.md` - Visual needed: yes. Replacement visual: track-to-detection gating geometry with covariance ellipses, cost/assignment matrix, accepted/rejected pairs, and ambiguity cases.
+- `10-knowledge-base/state-estimation/fusion-unknown-correlations-covariance-intersection.md` - Visual needed: yes. Replacement visual: two estimates with unknown cross-correlation flowing into covariance intersection, information weights, conservative covariance ellipse, and double-counting warning.
 - `10-knowledge-base/state-estimation/gnss-rtk-error-models.md` - Visual needed: yes. Replacement visual: satellite/base/rover RTK geometry with carrier phase, integer ambiguity, atmospheric/multipath errors, corrections, covariance, and outage behavior.
 - `10-knowledge-base/state-estimation/gtsam-factor-graphs.md` - Visual needed: yes. Replacement visual: GTSAM factor graph and Bayes tree showing pose variables, IMU/GNSS/LiDAR factors, linearization, incremental update, marginal, and custom factor lifecycle.
 - `10-knowledge-base/state-estimation/imu-error-models-preintegration.md` - Visual needed: yes. Replacement visual: IMU preintegration timeline from high-rate samples through bias/noise model to preintegrated factor between keyframes, plus Allan variance cue.
 - `10-knowledge-base/state-estimation/information-filters-and-smoothers.md` - Visual needed: yes. Replacement visual: covariance-form versus information-form update and smoother graph showing precision accumulation, sparse structure, and marginal recovery.
+- `10-knowledge-base/state-estimation/localization-integrity-protection-levels-raim.md` - Visual needed: yes. Replacement visual: localization error distribution with alert limit, protection level, integrity risk, fault monitor, and hazardous misleading localization region.
+- `10-knowledge-base/state-estimation/out-of-sequence-measurements-fixed-lag-smoothing.md` - Visual needed: yes. Replacement visual: measurement timeline showing acquisition time, arrival time, fixed-lag smoother window, retrodiction update, stale rejection, and replay policy.
 - `10-knowledge-base/state-estimation/particle-filters-and-hypothesis-management.md` - Visual needed: yes. Replacement visual: particle-filter cycle showing proposal, weighting, resampling, multimodal posterior, hypothesis management, and degeneracy diagnostics.
 - `10-knowledge-base/state-estimation/probabilistic-multi-object-association.md` - Visual needed: yes. Replacement visual: association probability matrix and hypothesis tree for JPDA/MHT showing ambiguous detections, track weights, and pruning.
 - `10-knowledge-base/state-estimation/rtk-gps-imu-localization.md` - Visual needed: yes. Replacement visual: multi-sensor localization factor graph connecting GNSS/RTK, IMU preintegration, wheel odometry, LiDAR localization, frames, and GPS-denied fallback.
+- `10-knowledge-base/state-estimation/slam-vio-observability-fej-nullspace-consistency.md` - Visual needed: yes. Replacement visual: SLAM/VIO factor graph and observability matrix showing gauge freedoms, nullspace, FEJ anchoring, rank diagnostics, and consistency checks.
 - `10-knowledge-base/state-estimation/tracking-motion-models-track-lifecycle-metrics.md` - Visual needed: yes. Replacement visual: track lifecycle state machine with birth, tentative, confirmed, coasting, deletion, motion model choice, gating, and metric outputs.
 - `10-knowledge-base/state-estimation/wheel-odometry-encoder-models.md` - Visual needed: yes. Replacement visual: encoder-to-pose-increment diagram showing ticks, wheel radius, baseline, Ackermann/differential/skid/crab kinematics, slip, calibration, and covariance.
 

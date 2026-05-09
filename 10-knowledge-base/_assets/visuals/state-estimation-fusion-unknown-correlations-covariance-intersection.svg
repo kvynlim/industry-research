@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="uncertainty-geometry">
+  <title id="title">two estimates</title>
+  <desc id="desc">two estimates with unknown cross-correlation flowing into covariance intersection, information weights, conservative covariance ellipse, and double-counting warning.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
+  <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">two estimates</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">two estimates with unknown cross-correlation flowing into covariance intersection, information weights, conservative covariance ellipse, and double...</text>
+  <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
+
+<!-- layout:uncertainty-geometry -->
+<rect x="156" y="204" width="600" height="380" rx="16" fill="url(#grid)" stroke="#94a3b8" stroke-width="2"/>
+<ellipse cx="418" cy="386" rx="190" ry="86" transform="rotate(-22 418 386)" fill="#dbeafe" stroke="#2563eb" stroke-width="4" opacity="0.74"/>
+<ellipse cx="418" cy="386" rx="96" ry="44" transform="rotate(-22 418 386)" fill="none" stroke="#1d4ed8" stroke-width="3"/>
+<line x1="418" y1="386" x2="588" y2="314" stroke="#e11d48" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="418" y1="386" x2="482" y2="510" stroke="#16a34a" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="860" y="270" width="250" height="86" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="985" y="319" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">two estimates</text>
+
+<rect x="982" y="446" width="250" height="86" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="1107" y="495" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">information weights</text>
+
+<line x1="756" y1="386" x2="856" y2="314" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="1010" y1="358" x2="1080" y2="442" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+</svg>

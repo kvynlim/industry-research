@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="state-estimation-chain">
+  <title id="title">measurement timeline</title>
+  <desc id="desc">measurement timeline showing acquisition time, arrival time, fixed-lag smoother window, retrodiction update, stale rejection, and replay policy.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
+  <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">measurement timeline</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">measurement timeline showing acquisition time, arrival time, fixed-lag smoother window, retrodiction update, stale rejection, and replay policy.</text>
+  <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
+
+<!-- layout:state-estimation-chain -->
+<rect x="138" y="286" width="188" height="92" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="232" y="338" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">acquisition time</text>
+
+<line x1="330" y1="332" x2="364" y2="332" stroke="#64748b" stroke-width="2.6" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="372" y="286" width="188" height="92" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="466" y="338" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">arrival time</text>
+
+<line x1="564" y1="332" x2="598" y2="332" stroke="#64748b" stroke-width="2.6" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="606" y="286" width="188" height="92" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="700" y="338" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">fixed-lag smoother</text>
+<text x="700" y="356" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">window</text>
+
+<line x1="798" y1="332" x2="832" y2="332" stroke="#64748b" stroke-width="2.6" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="840" y="286" width="188" height="92" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+<text x="934" y="338" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">retrodiction</text>
+<text x="934" y="356" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">update</text>
+
+<line x1="1032" y1="332" x2="1066" y2="332" stroke="#64748b" stroke-width="2.6" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="1074" y="286" width="188" height="92" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1168" y="338" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">stale rejection</text>
+
+
+<line x1="315" y1="270" x2="366" y2="306" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="438" y1="334" x2="486" y2="376" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="565" y1="374" x2="616" y2="334" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="688" y1="306" x2="738" y2="270" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="826" y1="270" x2="876" y2="306" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="948" y1="334" x2="1000" y2="376" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="270" cy="254" r="58" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+<text x="270" y="259" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">acquisition</text>
+<text x="270" y="276" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">time</text>
+<circle cx="520" cy="390" r="58" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+<text x="520" y="395" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">arrival time</text>
+<circle cx="780" cy="254" r="58" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+<text x="780" y="259" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">fixed-lag</text>
+<text x="780" y="276" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">smoother</text>
+<circle cx="1034" cy="390" r="58" fill="#ecfeff" stroke="#0891b2" stroke-width="3"/>
+<text x="1034" y="395" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">retrodiction</text>
+<text x="1034" y="412" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">update</text>
+<rect x="363" y="281" width="74" height="74" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+<text x="400" y="323" text-anchor="middle" font-size="13" font-weight="800" fill="#172033">stale</text>
+<text x="400" y="339" text-anchor="middle" font-size="13" font-weight="800" fill="#172033">rejection</text>
+<rect x="613" y="281" width="74" height="74" rx="8" fill="#ecfeff" stroke="#0891b2" stroke-width="3"/>
+<text x="650" y="323" text-anchor="middle" font-size="13" font-weight="800" fill="#172033">update</text>
+<rect x="873" y="281" width="74" height="74" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="3"/>
+<text x="910" y="323" text-anchor="middle" font-size="13" font-weight="800" fill="#172033">and replay</text>
+<text x="910" y="339" text-anchor="middle" font-size="13" font-weight="800" fill="#172033">policy</text>
+<text x="700" y="566" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">state estimates connect measurements, priors, and smoothing</text>
+
+</svg>
