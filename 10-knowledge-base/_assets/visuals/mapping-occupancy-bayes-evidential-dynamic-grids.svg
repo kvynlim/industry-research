@@ -18,34 +18,80 @@
   <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">ray-based occupancy update showing prior cell state, inverse sensor model, log-odds/evidential mass, dynamic occupancy, and diagnostic failure cases.</text>
   <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
 
-<rect x="170" y="442" width="230" height="72" rx="16" fill="#1e293b"/>
-<circle cx="224" cy="522" r="24" fill="#0f172a"/>
-<circle cx="350" cy="522" r="24" fill="#0f172a"/>
-<polygon points="400,454 980,208 980,520" fill="#dbeafe" opacity="0.45" stroke="#2563eb" stroke-width="3"/>
-<line x1="400" y1="454" x2="1045" y2="350" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
-<circle cx="1045" cy="350" r="17" fill="#ef4444"/>
-<line x1="286" y1="442" x2="286" y2="300" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow)"/>
-<line x1="286" y1="442" x2="445" y2="442" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow)"/>
-<rect x="96" y="202" width="220" height="78" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="206" y="247" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">prior cell state</text>
+<!-- layout:occupancy-map-update -->
+<rect x="158" y="196" width="416" height="416" rx="16" fill="url(#grid)" stroke="#0f172a" stroke-width="3"/>
+<rect x="190" y="228" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="236" y="228" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="282" y="228" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="328" y="228" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="374" y="228" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="420" y="228" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="466" y="228" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="512" y="228" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="190" y="274" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="236" y="274" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="282" y="274" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="328" y="274" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="374" y="274" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="420" y="274" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="466" y="274" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="512" y="274" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="190" y="320" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="236" y="320" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="282" y="320" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="328" y="320" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="374" y="320" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="420" y="320" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="466" y="320" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="512" y="320" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="190" y="366" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="236" y="366" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="282" y="366" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="328" y="366" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="374" y="366" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="420" y="366" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="466" y="366" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="512" y="366" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="190" y="412" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="236" y="412" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="282" y="412" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="328" y="412" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="374" y="412" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="420" y="412" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="466" y="412" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="512" y="412" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="190" y="458" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="236" y="458" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="282" y="458" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="328" y="458" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="374" y="458" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="420" y="458" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="466" y="458" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="512" y="458" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="190" y="504" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="236" y="504" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="282" y="504" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="328" y="504" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="374" y="504" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="420" y="504" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="466" y="504" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="512" y="504" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="190" y="550" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="236" y="550" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="282" y="550" width="41" height="41" rx="5" fill="#bbf7d0" stroke="#cbd5e1"/>
+<rect x="328" y="550" width="41" height="41" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="374" y="550" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="420" y="550" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="466" y="550" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="512" y="550" width="41" height="41" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
 
-<rect x="360" y="176" width="220" height="78" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-<text x="470" y="221" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">inverse sensor model</text>
+<rect x="750" y="244" width="240" height="86" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="870" y="293" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">prior cell state</text>
 
-<rect x="706" y="170" width="220" height="78" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-<text x="816" y="215" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">log-odds/evidential</text>
-<text x="816" y="233" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">mass</text>
+<rect x="890" y="438" width="240" height="86" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="1010" y="487" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">inverse sensor model</text>
 
-<rect x="1010" y="222" width="220" height="78" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
-<text x="1120" y="267" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">dynamic occupancy</text>
-
-<rect x="322" y="500" width="220" height="78" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
-<text x="432" y="545" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">and diagnostic</text>
-<text x="432" y="563" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">failure cases</text>
-
-<rect x="888" y="506" width="220" height="78" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
-<text x="998" y="551" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">Occupancy Bayes</text>
-
-<text x="700" y="606" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">geometry makes frames, rays, timing, and residuals inspectable</text>
+<line x1="578" y1="360" x2="746" y2="288" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="990" y1="332" x2="1010" y2="434" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
 
 </svg>

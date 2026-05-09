@@ -18,83 +18,25 @@
   <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">detection-score distributions with threshold slider connected to confusion matrix, ROC curve, PR curve, operating point, and calibration.</text>
   <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
 
-<rect x="112" y="190" width="270" height="82" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="247" y="237" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">detection-score</text>
-<text x="247" y="258" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">distributions</text>
-
-<rect x="112" y="316" width="270" height="82" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-<text x="247" y="363" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">threshold slider</text>
-<text x="247" y="384" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">connected</text>
-
-<rect x="112" y="442" width="270" height="82" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-<text x="247" y="489" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">confusion matrix</text>
-
-<line x1="386" y1="232" x2="552" y2="256" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="386" y1="358" x2="552" y2="326" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="386" y1="484" x2="552" y2="402" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="552" y="174" width="312" height="312" rx="14" fill="url(#grid)" stroke="#0f172a" stroke-width="2"/>
-<rect x="568" y="190" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="610" y="190" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="652" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="694" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="736" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="778" y="190" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="820" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="568" y="232" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="610" y="232" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="652" y="232" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="694" y="232" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="736" y="232" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="778" y="232" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="820" y="232" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="568" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="610" y="274" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="652" y="274" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="694" y="274" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="736" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="778" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="820" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="568" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="610" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="652" y="316" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="694" y="316" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="736" y="316" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="778" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="820" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="568" y="358" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="610" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="652" y="358" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="694" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="736" y="358" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="778" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="820" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="568" y="400" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="610" y="400" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="652" y="400" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="694" y="400" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="736" y="400" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="778" y="400" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="820" y="400" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="568" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="610" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="652" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="694" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="736" y="442" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="778" y="442" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="820" y="442" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-
-<line x1="866" y1="256" x2="1014" y2="232" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="866" y1="326" x2="1014" y2="358" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="866" y1="402" x2="1014" y2="484" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1018" y="190" width="270" height="82" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
-<text x="1153" y="237" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">ROC curve</text>
-
-<rect x="1018" y="316" width="270" height="82" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
-<text x="1153" y="363" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">PR curve</text>
-
-<rect x="1018" y="442" width="270" height="82" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
-<text x="1153" y="489" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">operating point</text>
-
-<text x="700" y="558" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">matrix, graph, or score structure exposes hidden numerical behavior</text>
+<!-- layout:probability-thresholds -->
+<line x1="140" y1="506" x2="604" y2="506" stroke="#0f172a" stroke-width="3"/>
+<rect x="186" y="442" width="38" height="60" rx="8" fill="#e2e8f0"/>
+<rect x="244" y="406" width="38" height="96" rx="8" fill="#e2e8f0"/>
+<rect x="302" y="350" width="38" height="152" rx="8" fill="#e2e8f0"/>
+<rect x="360" y="282" width="38" height="220" rx="8" fill="#bfdbfe"/>
+<rect x="418" y="332" width="38" height="170" rx="8" fill="#bfdbfe"/>
+<rect x="476" y="392" width="38" height="110" rx="8" fill="#bfdbfe"/>
+<rect x="534" y="434" width="38" height="68" rx="8" fill="#bfdbfe"/>
+<line x1="392" y1="222" x2="392" y2="512" stroke="#e11d48" stroke-width="4" stroke-dasharray="12 10"/>
+<text x="392" y="194" text-anchor="middle" font-size="14" font-weight="600" fill="#e11d48">decision threshold</text>
+<path d="M730 470 C790 260 916 242 976 470" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M850 470 C910 304 1038 292 1108 470" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="864" cy="330" r="50" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+<text x="864" y="335" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">detection-score</text>
+<text x="864" y="352" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">distributions</text>
+<circle cx="1050" cy="366" r="50" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+<text x="1050" y="371" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">threshold</text>
+<text x="1050" y="388" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">slider</text>
+<text x="760" y="606" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">probability mass, gates, and thresholds define operating points</text>
 
 </svg>

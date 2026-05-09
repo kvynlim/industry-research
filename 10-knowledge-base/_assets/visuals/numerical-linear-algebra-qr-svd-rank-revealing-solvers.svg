@@ -18,82 +18,90 @@
   <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">QR and SVD least-squares factorization comparison showing rank threshold, singular values, nullspace, and why normal equations hide rank.</text>
   <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
 
-<rect x="112" y="190" width="270" height="82" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="247" y="237" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">rank threshold</text>
+<!-- layout:numerical-factorization -->
+<rect x="160" y="250" width="210" height="210" rx="14" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+<rect x="184" y="274" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="220" y="274" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="256" y="274" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="292" y="274" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="328" y="274" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="184" y="310" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="220" y="310" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="256" y="310" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="292" y="310" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="328" y="310" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="184" y="346" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="220" y="346" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="256" y="346" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="292" y="346" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="328" y="346" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="184" y="382" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="220" y="382" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="256" y="382" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="292" y="382" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="328" y="382" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="184" y="418" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="220" y="418" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="256" y="418" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="292" y="418" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="328" y="418" width="31" height="31" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
 
-<rect x="112" y="316" width="270" height="82" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-<text x="247" y="363" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">singular values</text>
+<line x1="386" y1="356" x2="512" y2="356" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="532" y="250" width="210" height="210" rx="14" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+<rect x="556" y="274" width="31" height="31" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="592" y="274" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="628" y="274" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="664" y="274" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="700" y="274" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="556" y="310" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="592" y="310" width="31" height="31" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="628" y="310" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="664" y="310" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="700" y="310" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="556" y="346" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="592" y="346" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="628" y="346" width="31" height="31" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="664" y="346" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="700" y="346" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="556" y="382" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="592" y="382" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="628" y="382" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="664" y="382" width="31" height="31" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="700" y="382" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="556" y="418" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="592" y="418" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="628" y="418" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="664" y="418" width="31" height="31" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
+<rect x="700" y="418" width="31" height="31" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
 
-<rect x="112" y="442" width="270" height="82" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-<text x="247" y="489" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">nullspace</text>
+<line x1="758" y1="356" x2="884" y2="356" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="904" y="250" width="210" height="210" rx="14" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+<rect x="928" y="274" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="964" y="274" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1000" y="274" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1036" y="274" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1072" y="274" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="928" y="310" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="964" y="310" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1000" y="310" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1036" y="310" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1072" y="310" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="928" y="346" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="964" y="346" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1000" y="346" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1036" y="346" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1072" y="346" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="928" y="382" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="964" y="382" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1000" y="382" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1036" y="382" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1072" y="382" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="928" y="418" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="964" y="418" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1000" y="418" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1036" y="418" width="31" height="31" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1072" y="418" width="31" height="31" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
 
-<line x1="386" y1="232" x2="552" y2="256" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="386" y1="358" x2="552" y2="326" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="386" y1="484" x2="552" y2="402" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="552" y="174" width="312" height="312" rx="14" fill="url(#grid)" stroke="#0f172a" stroke-width="2"/>
-<rect x="568" y="190" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="610" y="190" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="652" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="694" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="736" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="778" y="190" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="820" y="190" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="568" y="232" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="610" y="232" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="652" y="232" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="694" y="232" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="736" y="232" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="778" y="232" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="820" y="232" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="568" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="610" y="274" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="652" y="274" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="694" y="274" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="736" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="778" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="820" y="274" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="568" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="610" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="652" y="316" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="694" y="316" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="736" y="316" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="778" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="820" y="316" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="568" y="358" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="610" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="652" y="358" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="694" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="736" y="358" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="778" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="820" y="358" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="568" y="400" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="610" y="400" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="652" y="400" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="694" y="400" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="736" y="400" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="778" y="400" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="820" y="400" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="568" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="610" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="652" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="694" y="442" width="37" height="37" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="736" y="442" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="778" y="442" width="37" height="37" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="820" y="442" width="37" height="37" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-
-<line x1="866" y1="256" x2="1014" y2="232" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="866" y1="326" x2="1014" y2="358" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="866" y1="402" x2="1014" y2="484" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1018" y="190" width="270" height="82" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
-<text x="1153" y="237" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">and why normal equations</text>
-<text x="1153" y="258" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">hide rank</text>
-
-<rect x="1018" y="316" width="270" height="82" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
-<text x="1153" y="363" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">SVD</text>
-
-<rect x="1018" y="442" width="270" height="82" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
-<text x="1153" y="489" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">Rank-Revealing Solvers</text>
-
-<text x="700" y="558" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">matrix, graph, or score structure exposes hidden numerical behavior</text>
+<text x="642" y="552" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">rank threshold</text>
 
 </svg>

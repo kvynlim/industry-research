@@ -17,32 +17,27 @@
   <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">Lanelet2 map primitive diagram</text>
   <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">Lanelet2 map primitive diagram showing lanelets, left/right bounds, regulatory elements, routing graph, airport extensions, and dynamic zones.</text>
   <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
-<rect x="88" y="286" width="180" height="108" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="178" y="346" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">lanelets</text>
 
-<line x1="271" y1="340" x2="295" y2="340" stroke="#2563eb" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="302" y="286" width="180" height="108" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-<text x="392" y="346" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">left/right bounds</text>
+<!-- layout:map-and-planning-stack -->
+<rect x="320" y="188" width="760" height="58" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="700" y="223" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">lanelets</text>
 
-<line x1="485" y1="340" x2="509" y2="340" stroke="#2563eb" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="516" y="286" width="180" height="108" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-<text x="606" y="346" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">regulatory</text>
-<text x="606" y="367" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">elements</text>
+<line x1="700" y1="248" x2="700" y2="262" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="349" y="266" width="702" height="58" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="700" y="301" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">left/right bounds</text>
 
-<line x1="699" y1="340" x2="723" y2="340" stroke="#2563eb" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="730" y="286" width="180" height="108" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
-<text x="820" y="346" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">routing graph</text>
+<line x1="700" y1="326" x2="700" y2="340" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="378" y="344" width="644" height="58" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="700" y="379" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">regulatory elements</text>
 
-<line x1="913" y1="340" x2="937" y2="340" stroke="#2563eb" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="944" y="286" width="180" height="108" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
-<text x="1034" y="346" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">airport</text>
-<text x="1034" y="367" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">extensions</text>
+<line x1="700" y1="404" x2="700" y2="418" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="407" y="422" width="586" height="58" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+<text x="700" y="457" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">routing graph</text>
 
-<line x1="1127" y1="340" x2="1151" y2="340" stroke="#2563eb" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1158" y="286" width="180" height="108" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
-<text x="1248" y="346" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">and dynamic zones</text>
+<line x1="700" y1="482" x2="700" y2="496" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="436" y="500" width="528" height="58" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="700" y="535" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">airport extensions</text>
 
 
-<path d="M1248 420 C738 560 298 560 178 420" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<text x="700" y="586" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">validation and diagnostics feed the next pass</text>
+
 </svg>

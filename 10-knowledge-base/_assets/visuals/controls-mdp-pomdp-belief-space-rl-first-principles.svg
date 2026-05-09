@@ -17,28 +17,30 @@
   <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">POMDP belief-update loop</text>
   <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">POMDP belief-update loop connecting hidden state, action, observation, Bayes belief update, policy, value, and uncertainty.</text>
   <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
-<rect x="560" y="278" width="280" height="118" rx="14" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
-<text x="700" y="343" text-anchor="middle" font-size="18" font-weight="700" fill="#172033">hidden state</text>
 
-<line x1="700" y1="337" x2="235" y2="232" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="140" y="190" width="190" height="86" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="235" y="239" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">action</text>
+<!-- layout:belief-update-loop -->
+<rect x="154" y="278" width="210" height="90" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="259" y="329" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">hidden state</text>
 
-<line x1="700" y1="337" x2="515" y2="220" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="420" y="178" width="190" height="86" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-<text x="515" y="227" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">observation</text>
+<rect x="430" y="210" width="210" height="90" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="535" y="261" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">action</text>
 
-<line x1="700" y1="337" x2="995" y2="220" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="900" y="178" width="190" height="86" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-<text x="995" y="227" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">Bayes belief</text>
-<text x="995" y="245" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">update</text>
+<rect x="760" y="210" width="210" height="90" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="865" y="261" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">observation</text>
 
-<line x1="700" y1="337" x2="1255" y2="262" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1160" y="220" width="190" height="86" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
-<text x="1255" y="269" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">policy</text>
+<rect x="1036" y="278" width="210" height="90" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+<text x="1141" y="329" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">Bayes belief</text>
+<text x="1141" y="350" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">update</text>
 
-<line x1="700" y1="337" x2="285" y2="528" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="190" y="486" width="190" height="86" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
-<text x="285" y="535" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">value</text>
+<rect x="595" y="460" width="210" height="90" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="700" y="511" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">policy</text>
+
+<line x1="366" y1="323" x2="426" y2="266" stroke="#2563eb" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="642" y1="255" x2="756" y2="255" stroke="#2563eb" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="972" y1="266" x2="1032" y2="323" stroke="#2563eb" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M1138 374 C1072 560 846 614 704 552" fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M596 506 C360 590 170 516 244 372" fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M746 462 C878 378 922 330 924 302" fill="none" stroke="#16a34a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="700" y="618" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">belief updates cycle prediction, evidence, and policy choice</text>
 
 </svg>

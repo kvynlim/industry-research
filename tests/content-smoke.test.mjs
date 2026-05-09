@@ -182,6 +182,34 @@ test('visual taxonomy helper normalizes expected knowledge-base paths', () => {
   )
 })
 
+test('curated visual generator provides real renderer functions for taxonomy kinds', () => {
+  const generatorPath = path.join(repoRoot, 'tools/knowledge-base/curated-visuals.mjs')
+  const source = fs.readFileSync(generatorPath, 'utf8')
+  const broadTemplateNames = ['Pipeline', 'ConceptMap', 'Matrix', 'Geometry', 'Timeline']
+  const failures = []
+
+  for (const kind of DIAGRAM_KINDS) {
+    const rendererName = `render${kind
+      .split('-')
+      .map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
+      .join('')}`
+    const functionPattern = new RegExp(`function\\s+${rendererName}\\s*\\(`)
+
+    if (!functionPattern.test(source)) {
+      failures.push(`${kind}: missing ${rendererName} function declaration`)
+    }
+
+    for (const templateName of broadTemplateNames) {
+      const aliasPattern = new RegExp(`const\\s+${rendererName}\\s*=\\s*render${templateName}\\b`)
+      if (aliasPattern.test(source)) {
+        failures.push(`${kind}: ${rendererName} still aliases render${templateName}`)
+      }
+    }
+  }
+
+  assert.deepEqual(failures, [])
+})
+
 test('curated knowledge-base visual assets keep accessible metadata', () => {
   const knowledgeBaseDir = path.join(repoRoot, '10-knowledge-base')
   const markdownFiles = readMarkdownFiles(knowledgeBaseDir)
@@ -246,6 +274,10 @@ test('curated knowledge-base visual assets keep accessible metadata', () => {
 
     if (diagramKind !== expectedKind) {
       failures.push(`${relPath}: SVG diagram kind ${diagramKind ?? 'missing'} should match ${expectedKind}`)
+    }
+
+    if (expectedKind && !svg.includes(`<!-- layout:${expectedKind} -->`)) {
+      failures.push(`${relPath}: SVG should include layout marker for ${expectedKind}`)
     }
 
     if (/generic|placeholder|auto-generated/i.test(svg)) {
