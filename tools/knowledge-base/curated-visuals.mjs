@@ -146,51 +146,6 @@ function palette(index) {
   return { fill: fills[index % fills.length], stroke: strokes[index % strokes.length] }
 }
 
-function renderPipeline(spec) {
-  const nodes = spec.nodes.slice(0, 6)
-  const width = 180
-  const gap = 34
-  const x0 = 88
-  const y = 286
-  const content = nodes.map((node, index) => {
-    const x = x0 + index * (width + gap)
-    const colors = palette(index)
-    const link = index < nodes.length - 1 ? arrow(x + width + 3, y + 54, x + width + gap - 7, y + 54) : ''
-    return `${box(x, y, width, 108, node, { ...colors, titleChars: 17 })}\n${link}`
-  }).join('\n')
-
-  const feedback = nodes.length > 3
-    ? `${pathArrow(`M${x0 + (nodes.length - 1) * (width + gap) + 90} 420 C${x0 + 650} 560 ${x0 + 210} 560 ${x0 + 90} 420`, '#64748b', 2.5)}
-${label('validation and diagnostics feed the next pass', 700, 586, { maxChars: 54 })}`
-    : ''
-
-  return frame(spec, `${content}\n${feedback}`)
-}
-
-function renderConceptMap(spec) {
-  const nodes = spec.nodes.slice(0, 7)
-  const center = box(560, 278, 280, 118, nodes[0] ?? spec.title, {
-    fill: '#eef2ff',
-    stroke: '#4f46e5',
-    titleChars: 23,
-    titleSize: 18
-  })
-  const positions = [
-    [140, 190], [420, 178], [900, 178], [1160, 220],
-    [190, 486], [590, 512], [980, 486]
-  ]
-  const satellites = nodes.slice(1).map((node, index) => {
-    const [x, y] = positions[index]
-    const colors = palette(index)
-    const cx = 700
-    const cy = 337
-    return `${arrow(cx, cy, x + 95, y + 42, '#64748b', 2.4)}
-${box(x, y, 190, 86, node, { ...colors, titleChars: 18, titleSize: 15 })}`
-  }).join('\n')
-
-  return frame(spec, `${center}\n${satellites}`)
-}
-
 function matrixGrid(x, y, rows, cols, cell, active, options = {}) {
   let output = ''
   for (let row = 0; row < rows; row += 1) {
@@ -201,82 +156,6 @@ function matrixGrid(x, y, rows, cols, cell, active, options = {}) {
     }
   }
   return output
-}
-
-function renderMatrix(spec) {
-  const nodes = spec.nodes.slice(0, 6)
-  const matrix = matrixGrid(568, 190, 7, 7, 42, (row, col) => {
-    if (row === col) return 2
-    if (Math.abs(row - col) === 1) return 1
-    if ((row + col) % 5 === 0) return 1
-    return 0
-  })
-  const left = nodes.slice(0, 3).map((node, index) => {
-    const colors = palette(index)
-    return box(112, 190 + index * 126, 270, 82, node, { ...colors, titleChars: 24 })
-  }).join('\n')
-  const right = nodes.slice(3, 6).map((node, index) => {
-    const colors = palette(index + 3)
-    return box(1018, 190 + index * 126, 270, 82, node, { ...colors, titleChars: 24 })
-  }).join('\n')
-
-  return frame(spec, `
-${left}
-${arrow(386, 232, 552, 256, '#64748b', 2.5)}
-${arrow(386, 358, 552, 326, '#64748b', 2.5)}
-${arrow(386, 484, 552, 402, '#64748b', 2.5)}
-<rect x="552" y="174" width="312" height="312" rx="14" fill="url(#grid)" stroke="#0f172a" stroke-width="2"/>
-${matrix}
-${arrow(866, 256, 1014, 232, '#64748b', 2.5)}
-${arrow(866, 326, 1014, 358, '#64748b', 2.5)}
-${arrow(866, 402, 1014, 484, '#64748b', 2.5)}
-${right}
-${label('matrix, graph, or score structure exposes hidden numerical behavior', 700, 558, { maxChars: 68 })}
-`)
-}
-
-function renderGeometry(spec) {
-  const nodes = spec.nodes.slice(0, 6)
-  const callouts = nodes.map((node, index) => {
-    const positions = [[96, 202], [360, 176], [706, 170], [1010, 222], [322, 500], [888, 506]]
-    const [x, y] = positions[index]
-    const colors = palette(index)
-    return box(x, y, 220, 78, node, { ...colors, titleChars: 20, titleSize: 15 })
-  }).join('\n')
-
-  return frame(spec, `
-<rect x="170" y="442" width="230" height="72" rx="16" fill="#1e293b"/>
-<circle cx="224" cy="522" r="24" fill="#0f172a"/>
-<circle cx="350" cy="522" r="24" fill="#0f172a"/>
-<polygon points="400,454 980,208 980,520" fill="#dbeafe" opacity="0.45" stroke="#2563eb" stroke-width="3"/>
-<line x1="400" y1="454" x2="1045" y2="350" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
-<circle cx="1045" cy="350" r="17" fill="#ef4444"/>
-<line x1="286" y1="442" x2="286" y2="300" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow)"/>
-<line x1="286" y1="442" x2="445" y2="442" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow)"/>
-${callouts}
-${label('geometry makes frames, rays, timing, and residuals inspectable', 700, 606, { maxChars: 62 })}
-`)
-}
-
-function renderTimeline(spec) {
-  const nodes = spec.nodes.slice(0, 6)
-  const startX = 150
-  const gap = 220
-  const y = 356
-  const events = nodes.map((node, index) => {
-    const x = startX + index * gap
-    const boxY = index % 2 === 0 ? 202 : 456
-    const colors = palette(index)
-    return `<line x1="${x}" y1="${y}" x2="${x}" y2="${boxY + 40}" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 8"/>
-<circle cx="${x}" cy="${y}" r="14" fill="#2563eb"/>
-${box(x - 92, boxY, 184, 80, node, { ...colors, titleChars: 18, titleSize: 15 })}`
-  }).join('\n')
-
-  return frame(spec, `
-<line x1="112" y1="${y}" x2="1288" y2="${y}" stroke="#0f172a" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
-${events}
-${label('ordered state changes explain memory, synchronization, and update timing', 700, 620, { maxChars: 70 })}
-`)
 }
 
 function nodeName(spec, index, fallback) {

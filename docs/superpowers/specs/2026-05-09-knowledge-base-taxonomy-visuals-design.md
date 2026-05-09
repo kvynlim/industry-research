@@ -95,4 +95,3 @@ The rebuilt visual set is acceptable when:
 - representative samples from different topic folders visibly differ in structure,
 - pages with different teaching burdens use different visual forms,
 - the generator remains deterministic and can be rerun safely.
-
