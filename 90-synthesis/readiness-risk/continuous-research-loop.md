@@ -15,7 +15,7 @@ This page turns the repo's gap audits into a repeatable research loop. It exists
 
 ## Current Promotion Waves
 
-The 2026-05-09 loops promoted twelve high-value gap clusters into first-class pages.
+The 2026-05-09 loops promoted thirteen high-value gap clusters into first-class pages.
 
 | Track | Promoted coverage |
 |---|---|
@@ -31,19 +31,20 @@ The 2026-05-09 loops promoted twelve high-value gap clusters into first-class pa
 | Latest SLAM robust/lifelong gaps | Robust PGO/GNC/riSAM, certifiable pose-graph optimization, Kimera-RPGO/PCM, distributed multi-robot PGO, LT-mapper/Khronos, RTMap/DUFOMap, GPR localization, radar teach-repeat, and MOVES. |
 | KB probability/control foundations | Probabilistic graphical models and message passing, information theory for perception/ML, uncertainty quantification/calibration/conformal prediction, constrained optimization/MPC/iLQR, and MDP/POMDP/belief-space/RL foundations. |
 | Dataset and validation gaps | MUSES, sensor-corruption robustness benchmarks, open-world/OOD anomaly segmentation benchmarks, FOD and airport apron detection datasets, FOD perception validation, and knowledge-base evaluation protocol. |
+| Perception/SLAM reliability gap wave | LiDAR-camera occupancy fusion, dynamic occupancy/free-space, radar-LiDAR adverse-weather detection, RobuRCDet, SAMFusion, STU, synthetic multimodal FOD benchmarks, OVAD/OVODA, open-vocabulary panoptic occupancy, RCP-Bench, V2X sequential datasets, Scan Context, LiDAR BA factors, Kimera-Multi, COVINS/COVINS-G, D2SLAM, UWB/range SLAM, OKVIS2-X, MM-LINS, event/thermal/4D-radar localization, continuous-time and volumetric-map foundations, detection/tracking foundations, fleet-data contracts, and perception/SLAM/map validation protocols. |
 
 ## Active Next Queue
 
 | Priority | Queue | Next atomic files to consider |
 |---|---|---|
-| P0 | Perception occupancy and radar | UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, RobuRCDet, SAMFusion, DepthOcc, and LinkOcc. |
-| P0 | Sparse and end-to-end perception | SparseBEV, DETR4D, ForeSight, SparseDrive, DiffusionDrive, SAM4D, DriveBench. |
-| P0 | Removal validation and adverse-weather datasets | Airside dust, de-icing mist, steam, glycol film, wet apron multipath, retroreflector bloom, do-not-delete hazard labels, DR-REMOVER, ExelMap, and FOD synthetic data generation. |
-| P0 | SLAM robustness and backends | Scan Context family, LiDAR bundle-adjustment factors, Kimera-Multi/COVINS/D2SLAM collaborative SLAM systems, and benchmark pages for SNAIL Radar, HeRCULES, GEODE, and COSMO-Bench. |
-| P0 | Sensor and calibration fundamentals | Ultrasonic proximity models, thermal IR radiometry as a standalone file, fleet calibration operations, calibration-bay fixtures, and online calibration drift response. |
-| P0 | First-principles extensions | Continuous-time estimation, spline/GP trajectory representations, optimal experiment design for calibration, covariance consistency under robust losses, robust-loss uncertainty, and dataset-evaluation fundamentals. |
-| P1 | Collaborative and infrastructure perception | V2XScenes, UrbanIng-V2X, QuantV2X, RCP-Bench, TruckV2X, collaborative Gaussian occupancy. |
-| P1 | Alternative localization sensors | UWB/range-only SLAM, event-camera VIO, thermal RGBT VIO, wheel/LiDAR/IMU factor graphs, and infrastructure-aided localization. |
+| P0 | Perception occupancy and radar | EvOcc, DepthOcc, LinkOcc, missing-view resilient occupancy, Gaussian-rendered occupancy, 4D radar road-boundary/freespace, and Drive-OccWorld/DFIT-OccWorld where separate world-model coverage is needed. |
+| P0 | Sparse and end-to-end perception | SparseBEV, DETR4D, ForeSight, SparseDrive, DiffusionDrive, SAM4D, DriveBench, and Open3DTrack. |
+| P0 | Removal validation and adverse-weather datasets | Airside dust, de-icing mist, steam, glycol film, wet apron multipath, retroreflector bloom, do-not-delete hazard labels, DR-REMOVER, ExelMap, and Airport-FOD3S data-engine coverage. |
+| P0 | SLAM robustness and benchmarks | DR-REMOVER, ExelMap, NDT variants, SLAM Toolbox, PIN-SLAM, ROMAN, and benchmark pages for SNAIL Radar, HeRCULES, GEODE, and COSMO-Bench. |
+| P0 | Sensor and calibration fundamentals | Ultrasonic proximity models, thermal IR radiometry as a standalone file, fleet calibration operations, calibration-bay fixtures, online calibration drift response, and fiducial/corner localization. |
+| P0 | First-principles extensions | Optimal experiment design for calibration, covariance consistency under robust losses, robust-loss uncertainty, epipolar/homography foundations, optical/scene flow math, constrained KKT/QP/SQP, and dataset-evaluation fundamentals. |
+| P1 | Collaborative and infrastructure perception | SparseCoop, CoDS, JigsawComm, QuantV2X, TruckV2X, collaborative Gaussian occupancy, indoor open-vocabulary 3D instance segmentation, and embodied robotics 3D perception benchmarks. |
+| P1 | Alternative localization sensors | Wheel/LiDAR/IMU factor graphs, infrastructure-aided localization, PG-LIO, LIR-LIVO, semantic LiDAR-inertial-wheel odometry, and newer radar/Gaussian/foundation SLAM variants. |
 
 ## Promotion Rules
 

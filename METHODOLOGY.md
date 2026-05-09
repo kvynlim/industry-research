@@ -6,9 +6,9 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 559-document research corpus, surfaced as 563 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 595-document research corpus, surfaced as 599 VitePress reader pages.
 
-The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 327k+ lines of Markdown.
+The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 334k+ lines of Markdown.
 
 ## Research Process
 
@@ -57,7 +57,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 ### Phase 10: Method-Level Perception Library
 - **Method:** Five parallel writing agents split the perception coverage audit into atomic, one-method research files across camera BEV/occupancy, LiDAR/radar/event/FMCW perception, open-world/open-vocabulary perception, robust fusion/validation, and cooperative/latency/data-engine methods
-- **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), initially with 54 single-technique method files and now expanded to 85 atomic method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
+- **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), initially with 54 single-technique method files and now expanded to 93 atomic method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
 
 ### Phase 11: Cross-Architecture Knowledge Gap Audit
 - **Method:** Six parallel research agents audited the post-restructure architecture across foundations, AV platform, autonomy stack, runtime/cloud, safety/validation, and operations/industry. One autonomy agent was split into two narrower replacement agents after exceeding context, preserving coverage without overloading the review.
@@ -87,6 +87,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 - **Method:** Five web-search scout agents re-audited perception, SLAM, world-model/neural-field, dataset/validation, and knowledge-base gaps, then six writing agents promoted the highest-value gaps with disjoint ownership.
 - **Output:** 31 source-backed files: 9 perception method pages, 2 world-model pages, 9 SLAM/localization pages, 5 knowledge-base probability/control foundation notes, 4 perception dataset/benchmark pages, and 2 validation protocol pages. The wave added CVFusion, 4D radar-camera occupancy, FMCW LiDAR predictive detection, cross-domain scene flow, TrackOcc, DrivingGaussian, HUGS, SplatFlow, DistillNeRF, self-supervised occupancy flow, UniScene, robust/certifiable PGO, Kimera-RPGO/PCM, distributed multi-robot PGO, LT-mapper/Khronos, RTMap/DUFOMap, GPR localization, radar teach-repeat, MOVES, probabilistic graphical models, information theory, calibration/conformal uncertainty, constrained MPC/iLQR, MDP/POMDP foundations, MUSES, corruption/OOD/FOD benchmarks, FOD validation, and knowledge-base evaluation.
 
+### Phase 18: Perception, SLAM, First-Principles, and Reliability Gap Loop
+- **Method:** Six web-search scouts compared the repo against 2024-2026 perception, SLAM, knowledge-base, dataset, and validation sources. Six writing agents then promoted disjoint file sets directly into the main tree.
+- **Output:** 36 source-backed files: 12 perception method/dataset pages, 12 SLAM/localization pages, 6 first-principles knowledge-base pages, 5 safety-validation protocols, and 1 fleet-data contract. The wave added LiDAR-camera occupancy fusion, dynamic occupancy/free-space, radar-LiDAR adverse-weather detection, RobuRCDet, SAMFusion, spatiotemporal occupancy flow, STU 3D anomaly segmentation, synthetic multimodal FOD benchmarks, OVAD/OVODA, open-vocabulary panoptic occupancy, RCP-Bench, V2X large-range sequential datasets, Scan Context, LiDAR bundle-adjustment factors, Kimera-Multi, COVINS/COVINS-G, D2SLAM, UWB/range SLAM, OKVIS2-X, MM-LINS, event-camera VIO/SLAM, thermal-inertial SLAM, 4D imaging-radar RIO, radar-to-LiDAR map localization, continuous-time trajectory priors, motion distortion, volumetric map representations, volume rendering/3DGS foundations, detection operating points, tracking lifecycle metrics, perception/SLAM/map evidence cases, statistical-validity protocols, uncertainty calibration release gates, corruption fault injection, SLAM/map benchmark protocols, and the perception/SLAM fleet-data contract.
+
 ## Quality Controls
 
 1. **Spec Review:** Design specification reviewed by automated spec-review agent with factual corrections
@@ -105,7 +109,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 ## Limitations
 
 1. **Web search rate limits:** Some agents hit API rate limits during research. Affected topics were written from training knowledge rather than live web search.
-2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with 2026-05-08 and 2026-05-09 refreshes for SLAM, perception, Gaussian/3DGS methods, sensor fundamentals, first-principles estimator math, LIORNet/adverse-weather LiDAR removal, dynamic/static object removal, scene-flow/MOS benchmarks, moved-object map-change datasets, weather datasets, machine-learning foundations, radar-camera/FMCW perception, robust SLAM backends, lifelong localization, adverse/OOD/FOD benchmarks, and KB probability/control foundations. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM, open-world perception, dynamic map cleaning, adverse-weather denoising, and 4D radar) may have newer developments.
+2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with 2026-05-08 and 2026-05-09 refreshes for SLAM, perception, Gaussian/3DGS methods, sensor fundamentals, first-principles estimator math, LIORNet/adverse-weather LiDAR removal, dynamic/static object removal, scene-flow/MOS benchmarks, moved-object map-change datasets, weather datasets, machine-learning foundations, radar-camera/FMCW perception, robust SLAM backends, collaborative and alternative-sensor SLAM, lifelong localization, adverse/OOD/FOD/V2X benchmarks, and perception/SLAM reliability protocols. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM, open-world perception, dynamic map cleaning, adverse-weather denoising, and 4D radar) may have newer developments.
 3. **Airside data gap:** No public airside driving datasets exist, so comparative analysis relies on published deployment reports rather than reproducible benchmarks.
 4. **Company information:** Some companies (UISEE, AeroVect) have limited public technical information. Claims are attributed but not all independently verified.
 5. **Regulatory predictions:** Timeline predictions for FAA/EASA standards are based on published roadmaps and industry trends, not official commitments.
@@ -114,15 +118,15 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 559 |
-| Reader pages | 563 |
-| Total lines | 327k+ |
-| Research agents spawned | 180+ |
+| Core research documents | 595 |
+| Reader pages | 599 |
+| Total lines | 334k+ |
+| Research agents spawned | 190+ |
 | Companies researched | 20 |
-| Method-level SLAM library | 88 method files + overview/audit |
-| Method-level perception files | 85 |
-| Papers referenced | 650+ |
-| GitHub repos evaluated | 80+ |
+| Method-level SLAM library | 100 method files + overview/audit |
+| Method-level perception files | 93 |
+| Papers referenced | 700+ |
+| GitHub repos evaluated | 90+ |
 | API endpoints documented | 15+ |
 | Airport deployments documented | 15+ |
 | Static reader | VitePress on GitHub Pages |

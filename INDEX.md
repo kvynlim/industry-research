@@ -59,12 +59,12 @@
 | DINOv2 for driving | `30-autonomy-stack/perception/overview/dinov2-foundation-models-driving.md` | LoRA, adapter integration |
 | CenterPoint/OpenPCDet | `30-autonomy-stack/perception/overview/openpcdet-centerpoint.md` | `20-av-platform/compute/tensorrt-deployment-guide.md` |
 | Production systems | `30-autonomy-stack/perception/overview/production-perception-systems.md` | Waymo/Tesla/comma sensor suites |
-| Perception method library | `30-autonomy-stack/perception/methods/overview.md` | 85 atomic method files across camera BEV, occupancy, dynamic Gaussian/3DGS/4DGS, LiDAR MOS, scene flow, LiDAR denoising/removal, radar-camera/4D radar, event/FMCW, open-world/OOD, robust fusion, V2X, latency, and data-engine evaluation |
+| Perception method library | `30-autonomy-stack/perception/methods/overview.md` | 93 atomic method files across camera BEV, occupancy/free-space, LiDAR-camera/radar-camera fusion, dynamic Gaussian/3DGS/4DGS, LiDAR MOS, scene flow, LiDAR denoising/removal, radar/4D radar, event/FMCW, open-world/OOD, open-vocabulary attributes, robust fusion, V2X, latency, and data-engine evaluation |
 | LiDAR artifact removal | `30-autonomy-stack/perception/overview/lidar-artifact-removal-techniques.md` | LIORNet, LiSnowNet, SLiDE, TripleMixer, classical filters, weather artifacts, ghost/multipath behavior, dynamic-map cleaning, and validation |
 | Weather robustness datasets | `30-autonomy-stack/perception/datasets-benchmarks/weather-robustness-datasets.md` | WADS, CADC/CADC+, SemanticSTF, REHEARSE-3D, RainSense, SemanticSpray, RADIATE, and Seeing Through Fog/DENSE |
 | Moving/static separation datasets | `30-autonomy-stack/perception/datasets-benchmarks/moving-static-separation-mos-datasets.md` | SemanticKITTI-MOS, HeLiMOS, 4DMOS-style labels, moving/static taxonomy, and map-cleaning evaluation fit |
 | Occupancy-flow benchmarks | `30-autonomy-stack/perception/datasets-benchmarks/occupancy-flow-and-4d-occupancy-benchmarks.md` | Cam4DOcc, OpenOccupancy, Occ3D/OpenScene, UniOcc, nuCraft, and 4D occupancy metrics for flow/removal systems |
-| Adverse/OOD/FOD benchmarks | `30-autonomy-stack/perception/datasets-benchmarks/muses-multisensor-adverse-semantic-perception.md`, `30-autonomy-stack/perception/datasets-benchmarks/sensor-corruption-robustness-benchmarks.md`, `30-autonomy-stack/perception/datasets-benchmarks/open-world-ood-anomaly-segmentation-benchmarks.md`, `30-autonomy-stack/perception/datasets-benchmarks/fod-and-airport-apron-detection-datasets.md` | MUSES, Robo3D/MultiCorrupt-style corruption tests, SegmentMeIfYouCan/OpenAD-style anomaly segmentation, and airport FOD benchmark framing |
+| Adverse/OOD/FOD/V2X benchmarks | `30-autonomy-stack/perception/datasets-benchmarks/muses-multisensor-adverse-semantic-perception.md`, `30-autonomy-stack/perception/datasets-benchmarks/sensor-corruption-robustness-benchmarks.md`, `30-autonomy-stack/perception/datasets-benchmarks/open-world-ood-anomaly-segmentation-benchmarks.md`, `30-autonomy-stack/perception/datasets-benchmarks/stu-3d-lidar-anomaly-segmentation.md`, `30-autonomy-stack/perception/datasets-benchmarks/fod-and-airport-apron-detection-datasets.md`, `30-autonomy-stack/perception/datasets-benchmarks/airside-fod-synthetic-multimodal-benchmarks.md`, `30-autonomy-stack/perception/datasets-benchmarks/rcp-bench-cooperative-corruption-robustness.md`, `30-autonomy-stack/perception/datasets-benchmarks/v2x-large-range-sequential-datasets.md` | MUSES, Robo3D/MultiCorrupt-style corruption tests, STU 3D anomaly segmentation, SegmentMeIfYouCan/OpenAD-style anomaly segmentation, airport FOD and synthetic multimodal FOD benchmark framing, cooperative corruption robustness, and large-range V2X datasets |
 | Perception coverage audit | `30-autonomy-stack/perception/overview/coverage-audit-2026.md` | May 2026 multi-agent sweeps across camera BEV/occupancy, LiDAR MOS, 4D radar, open-world/OOD, V2X, robust fusion, deployment validation, and benchmarks |
 | Sensor fusion | `30-autonomy-stack/perception/overview/sensor-fusion-architectures.md` | BEVFusion, masked modality training |
 | Infrastructure cooperative perception | `30-autonomy-stack/perception/overview/infrastructure-cooperative-perception.md` | V2I fusion, fixed sensors, DAIR-V2X, airport existing systems |
@@ -80,7 +80,8 @@
 | Self-supervised pre-training | `30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md` | Contrastive (SLidR, ScaLR), MAE (Voxel-MAE, GD-MAE, BEV-MAE), JEPA (AD-L-JEPA, V-JEPA 2), DINOv2, multi-modal pre-training, LoRA fine-tuning, 50-80% label reduction, airside curriculum strategy |
 | 3DGS for perception & mapping | `30-autonomy-stack/perception/overview/gaussian-splatting-driving.md` | GaussianFormer/GaussianOcc, SplatAD, streaming Gaussian occupancy, SplaTAM/MonoGS/Splat-SLAM/S3PO-GS, LiDAR-Gaussian fusion, dynamic object tracking, semantic Gaussians, FOD detection, aircraft proximity, Orin deployment notes |
 | Dynamic Gaussian/neural-field perception | `30-autonomy-stack/perception/methods/drivinggaussian.md`, `30-autonomy-stack/perception/methods/hugs-urban-gaussians.md`, `30-autonomy-stack/perception/methods/splatflow.md`, `30-autonomy-stack/perception/methods/distillnerf.md` | Dynamic 3DGS/4DGS, holistic urban Gaussians, self-supervised Gaussian motion flow, and NeRF-to-occupancy distillation for perception and simulation reuse |
-| 4D radar-camera and FMCW perception | `30-autonomy-stack/perception/methods/cvfusion.md`, `30-autonomy-stack/perception/methods/4d-radar-camera-occupancy.md`, `30-autonomy-stack/perception/methods/pod-fmcw-lidar-predictive-detection.md` | Cross-view radar-camera detection, radar-camera semantic occupancy, RadarOcc context, and FMCW LiDAR velocity-aware predictive detection |
+| 4D radar-camera, radar-LiDAR, and FMCW perception | `30-autonomy-stack/perception/methods/cvfusion.md`, `30-autonomy-stack/perception/methods/4d-radar-camera-occupancy.md`, `30-autonomy-stack/perception/methods/adverse-weather-radar-lidar-3d-detection.md`, `30-autonomy-stack/perception/methods/robucdet.md`, `30-autonomy-stack/perception/methods/samfusion.md`, `30-autonomy-stack/perception/methods/pod-fmcw-lidar-predictive-detection.md` | Cross-view radar-camera detection, radar-camera semantic occupancy, radar-LiDAR adverse-weather detection, robust radar-camera BEV, sensor-adaptive multimodal fusion, and FMCW LiDAR velocity-aware predictive detection |
+| Occupancy fusion and open-world occupancy | `30-autonomy-stack/perception/methods/lidar-camera-occupancy-fusion.md`, `30-autonomy-stack/perception/methods/dynamic-occupancy-freespace.md`, `30-autonomy-stack/perception/methods/spatiotemporal-memory-occupancy-flow.md`, `30-autonomy-stack/perception/methods/open-vocabulary-panoptic-occupancy.md`, `30-autonomy-stack/perception/methods/ovad-ovoda-open-vocab-3d-attributes.md` | LiDAR-camera semantic occupancy fusion, dynamic/free-space occupancy, temporal occupancy memory, language/panoptic occupancy, and open-vocabulary 3D attributes for state-rich object semantics |
 | Uncertainty quantification | `30-autonomy-stack/perception/overview/uncertainty-quantification-calibration.md` | Epistemic/aleatoric decomposition, MC-Dropout (T=3, 21.5ms), deep ensembles (M=5, 0.93 AUROC), evidential deep learning (single pass, 7.5ms), conformal prediction (99% coverage guarantee), temperature scaling (ECE 0.03), LiDAR range-dependent uncertainty, multi-LiDAR fusion (65% reduction), teleop trigger criteria |
 | Multi-task unified perception | `30-autonomy-stack/perception/overview/multi-task-unified-perception.md` | UniAD (CVPR 2023 Best Paper), SparseDrive (3x faster), VAD-Tiny (80ms Orin), StreamPETR, shared-backbone multi-head (14.8ms on Orin, 56% savings), task interference/PCGrad, uncertainty-weighted loss, incremental deployment, 14-class airside segmentation |
 | Night operations & thermal fusion | `30-autonomy-stack/perception/overview/night-operations-thermal-fusion.md` | LiDAR-primary + thermal-augmented architecture, YOLO-Thermal INT8 (6-8ms Orin), asymmetric late fusion (+8-10ms), hi-vis paradox solved (84-88% camera AEB failure → 85-92% thermal AP), heated-target calibration (<0.5deg), jet blast/fuel spill thermal detection, night ODD (subset of daytime), DINOv2 LoRA thermal adapter, 22.8-25.8ms total pipeline (38-44 Hz), $6,700-22,600/vehicle |
@@ -90,19 +91,19 @@
 #### Method-level SLAM
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
-| SLAM method library | `30-autonomy-stack/localization-mapping/slam-methods/overview.md` | 88 focused method files plus overview/audit pages covering classical, LiDAR, LIVO, visual, RGB-D, neural, Gaussian, radar, fusion SLAM, robust backends, lifelong localization, and map cleaning |
-| SLAM coverage audit | `30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md` | Source-backed backlog plus May 2026 discovery sweeps: LVI-SAM, FAST-LIVO/R3LIVE, KISS-SLAM, MOLA, robust/certifiable PGO, C-SLAM, degeneracy-robust LIO, event/thermal/multi-camera VIO, GPR/UWB/RF fallbacks, 4D radar, Gaussian/foundation SLAM, and current benchmarks |
+| SLAM method library | `30-autonomy-stack/localization-mapping/slam-methods/overview.md` | 100 focused method files plus overview/audit pages covering classical, LiDAR, LIVO, visual, RGB-D, neural, Gaussian, radar, fusion SLAM, robust backends, collaborative SLAM, alternative sensors, lifelong localization, and map cleaning |
+| SLAM coverage audit | `30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md` | Source-backed backlog plus May 2026 discovery sweeps: LVI-SAM, FAST-LIVO/R3LIVE, KISS-SLAM, MOLA, robust/certifiable PGO, C-SLAM systems, degeneracy-robust LIO, event/thermal/UWB VIO and localization, radar-to-LiDAR map matching, 4D radar, Gaussian/foundation SLAM, and current benchmarks |
 | AV / indoor / outdoor selection | `30-autonomy-stack/localization-mapping/slam-methods/av-indoor-outdoor-decision-matrix.md` | Method fit by GNSS availability, dynamics, map dependence, compute budget, and safety criticality |
 | Benchmarks and datasets | `30-autonomy-stack/localization-mapping/slam-methods/benchmarking-metrics-datasets.md` | ATE/RPE, KITTI drift, loop closure, map quality, dynamic-scene metrics, KITTI/KITTI-360, EuRoC, TUM, Oxford, Boreas, MulRan |
 | Open-source stacks | `30-autonomy-stack/localization-mapping/slam-methods/open-source-stack-comparison.md` | ORB-SLAM3, RTAB-Map, Cartographer, OpenVINS, Kimera, KISS-ICP, LIO-SAM, FAST-LIO2, GLIM, GTSAM, Open3D |
-| Robust SLAM backends | `30-autonomy-stack/localization-mapping/slam-methods/robust-pgo-gnc-risam.md`, `30-autonomy-stack/localization-mapping/slam-methods/certifiable-pose-graph-optimization.md`, `30-autonomy-stack/localization-mapping/slam-methods/kimera-rpgo-pcm.md`, `30-autonomy-stack/localization-mapping/slam-methods/distributed-multi-robot-pgo.md` | GNC/Black-Rangarajan/riSAM, SE-Sync/Shonan-style certifiable PGO, pairwise consistency loop verification, and distributed multi-robot pose-graph optimization |
-| Classical SLAM foundations | `30-autonomy-stack/localization-mapping/slam-methods/graphslam-pose-graph-optimization.md` | `ekf-slam.md`, `fastslam-particle-slam.md`, `bundle-adjustment-slam.md`, `factor-graph-isam2-gtsam.md`, `loop-closure-place-recognition.md`, `occupancy-grid-tsdf-esdf-mapping.md` |
+| Robust and collaborative SLAM backends | `30-autonomy-stack/localization-mapping/slam-methods/robust-pgo-gnc-risam.md`, `30-autonomy-stack/localization-mapping/slam-methods/certifiable-pose-graph-optimization.md`, `30-autonomy-stack/localization-mapping/slam-methods/kimera-rpgo-pcm.md`, `30-autonomy-stack/localization-mapping/slam-methods/distributed-multi-robot-pgo.md`, `30-autonomy-stack/localization-mapping/slam-methods/kimera-multi.md`, `30-autonomy-stack/localization-mapping/slam-methods/covins-covins-g.md`, `30-autonomy-stack/localization-mapping/slam-methods/d2slam.md` | GNC/Black-Rangarajan/riSAM, SE-Sync/Shonan-style certifiable PGO, pairwise consistency loop verification, distributed PGO, and full collaborative SLAM systems |
+| Classical SLAM foundations | `30-autonomy-stack/localization-mapping/slam-methods/graphslam-pose-graph-optimization.md` | `ekf-slam.md`, `fastslam-particle-slam.md`, `bundle-adjustment-slam.md`, `factor-graph-isam2-gtsam.md`, `lidar-bundle-adjustment-factors.md`, `scan-context-family.md`, `loop-closure-place-recognition.md`, `occupancy-grid-tsdf-esdf-mapping.md` |
 | Point-cloud registration | `30-autonomy-stack/localization-mapping/slam-methods/gicp-vgicp.md` | `icp.md`, `point-to-plane-icp.md`, `ndt.md`, `continuous-time-registration.md` |
 | 3D LiDAR SLAM | `30-autonomy-stack/localization-mapping/slam-methods/kiss-icp.md` | `loam.md`, `lego-loam.md`, `hdl-graph-slam.md`, `ct-icp.md`, `lio-sam.md`, `fast-lio-fast-lio2.md`, `point-lio.md`, `glim.md`, `cartographer-3d.md`, `suma.md` |
-| Visual and visual-inertial SLAM | `30-autonomy-stack/localization-mapping/slam-methods/orb-slam2-orb-slam3.md` | `lsd-slam-dso.md`, `svo.md`, `vins-mono-vins-fusion.md`, `openvins.md`, `kimera-vio.md`, `droid-slam.md`, `dpvo.md`, `mast3r-slam.md` |
+| Visual and visual-inertial SLAM | `30-autonomy-stack/localization-mapping/slam-methods/orb-slam2-orb-slam3.md` | `lsd-slam-dso.md`, `svo.md`, `vins-mono-vins-fusion.md`, `openvins.md`, `okvis2-x.md`, `kimera-vio.md`, `event-camera-vio-slam.md`, `thermal-inertial-slam.md`, `droid-slam.md`, `dpvo.md`, `mast3r-slam.md` |
 | Indoor and dense SLAM | `30-autonomy-stack/localization-mapping/slam-methods/rtab-map.md` | `kinectfusion.md`, `elasticfusion.md`, `bundlefusion.md`, `imap.md`, `nice-slam.md`, `co-slam-eslam.md`, `nerf-slam.md` |
 | Learned, semantic, and Gaussian SLAM | `30-autonomy-stack/localization-mapping/slam-methods/splatam.md` | `lo-net-learned-lidar-odometry.md`, `regformer-learned-registration.md`, `semantic-slam.md`, `dynamic-object-aware-slam.md`, `object-level-slam.md`, `gs-slam-monogs.md`, `photo-slam.md` |
-| Outdoor Gaussian and radar SLAM | `30-autonomy-stack/localization-mapping/slam-methods/splat-loam.md` | `gigaslam.md`, `wildgs-slam.md`, `splat-slam.md`, `s3po-gs.md`, `gaussian-lic.md`, `gs-livm.md`, `vigs-slam.md`, `dynamic-4d-gaussian-slam.md`, `radarsplat-rio.md`, `radar-odometry-radar-slam.md`, `radar-inertial-odometry.md`, `radar-lidar-inertial-fusion.md` |
+| Outdoor Gaussian, radar, and degraded-sensor SLAM | `30-autonomy-stack/localization-mapping/slam-methods/splat-loam.md` | `gigaslam.md`, `wildgs-slam.md`, `splat-slam.md`, `s3po-gs.md`, `gaussian-lic.md`, `gs-livm.md`, `vigs-slam.md`, `dynamic-4d-gaussian-slam.md`, `radarsplat-rio.md`, `4d-imaging-radar-rio-slam.md`, `radar-to-lidar-map-localization.md`, `radar-odometry-radar-slam.md`, `radar-inertial-odometry.md`, `radar-lidar-inertial-fusion.md`, `uwb-radio-ranging-slam.md`, `mm-lins.md` |
 | Dynamic map cleaning | `30-autonomy-stack/localization-mapping/slam-methods/lidar-map-cleaning-dynamic-removal.md` | `erasor.md`, `removert.md`, `mapcleaner.md`, `erasor-plus-plus.md`, `4dndf.md`, `freedom-dynamic-object-removal.md`, `static-lio-dynamic-points-removal.md`, `moves-and-label-free-map-cleaning.md`, benchmark coverage, static-map preservation, and dynamic-object removal risks |
 | Lifelong and alternative localization | `30-autonomy-stack/localization-mapping/slam-methods/lt-mapper-khronos-lifelong-mapping.md`, `30-autonomy-stack/localization-mapping/slam-methods/rtmap-dufomap-recursive-maintenance.md`, `30-autonomy-stack/localization-mapping/slam-methods/gpr-localization-ground-encoding.md`, `30-autonomy-stack/localization-mapping/slam-methods/radar-teach-repeat-localization.md` | Long-term metric-semantic mapping, recursive map maintenance, ground-penetrating radar localization, and radar teach-and-repeat fallbacks for adverse weather or changed scenes |
 
@@ -294,6 +295,7 @@
 | Document | Key Contribution |
 |----------|-----------------|
 | Web gap expansion wave | 31 source-backed files covering 4D radar-camera occupancy, CVFusion, FMCW LiDAR predictive detection, cross-domain scene flow, TrackOcc, dynamic 3DGS/4DGS, DistillNeRF, self-supervised occupancy flow, UniScene, robust/certifiable SLAM backends, lifelong map maintenance, GPR/radar localization, probability/control foundations, adverse/OOD/FOD datasets, and validation protocols |
+| Perception/SLAM reliability gap wave | 36 source-backed files covering occupancy fusion, dynamic/free-space occupancy, radar-LiDAR adverse-weather detection, RobuRCDet, SAMFusion, STU, synthetic FOD, OVAD/OVODA, open-vocabulary panoptic occupancy, RCP-Bench, V2X sequential datasets, Scan Context, LiDAR BA factors, Kimera-Multi, COVINS/COVINS-G, D2SLAM, UWB/range SLAM, OKVIS2-X, MM-LINS, event/thermal/radar localization, continuous-time and volumetric-map foundations, detection/tracking foundations, fleet-data contracts, and perception/SLAM/map validation protocols |
 | First-principles foundations wave | 33 source-backed KB files covering Gaussian noise, Mahalanobis/chi-square gating, MAP/MLE, robust statistics, mixtures, Gauss-Newton, LM, dogleg, Jacobians, Ceres/GTSAM/g2o, Cholesky/LDLT, QR/SVD, sparse solvers, square-root information, Schur/PCG, Lie groups, projective geometry, ICP/GICP/NDT, occupancy grids, geodesy, assignment, JPDA/MHT/RFS, filters, sensor likelihoods, signal processing, radar ambiguity, CFAR, timestamping, and statistical benchmarking |
 | `90-synthesis/readiness-risk/continuous-research-loop.md` | Continuous research loop for discovery, triage, atomic-file promotion, cross-linking, verification, and next-queue selection across perception, SLAM, sensors, and mapping |
 | Perception/SLAM/sensor deep-dive wave | 33 source-backed files covering SplatAD and Gaussian/4DGS perception, latest sparse/radar-camera perception, production LIVO/SLAM, Gaussian/radar SLAM, and sensor measurement/noise fundamentals |
@@ -372,34 +374,34 @@
 
 | Metric | Value |
 |--------|-------|
-| Reader Markdown pages | 563 |
-| Core research documents | 559 |
-| Reader/research lines | 327k+ |
+| Reader Markdown pages | 599 |
+| Core research documents | 595 |
+| Reader/research lines | 334k+ |
 | `00-start-here/` documents | 4 |
-| `10-knowledge-base/` documents | 93 |
+| `10-knowledge-base/` documents | 99 |
 | `20-av-platform/` documents | 28 |
-| `30-autonomy-stack/` documents | 291 |
+| `30-autonomy-stack/` documents | 315 |
 | `40-runtime-systems/` documents | 10 |
-| `50-cloud-fleet/` documents | 20 |
-| `60-safety-validation/` documents | 28 |
+| `50-cloud-fleet/` documents | 21 |
+| `60-safety-validation/` documents | 33 |
 | `70-operations-domains/` documents | 24 |
 | `80-industry-intel/` documents | 52 |
 | `90-synthesis/` documents | 9 |
 | Companies covered | 20 |
 | Technology domains | 9 |
-| Method-level SLAM library | 88 method files + overview/audit |
-| Method-level perception files | 85 |
-| Safety and validation documents | 28 |
+| Method-level SLAM library | 100 method files + overview/audit |
+| Method-level perception files | 93 |
+| Safety and validation documents | 33 |
 | AV platform documents | 28 |
-| Knowledge base documents | 93 |
+| Knowledge base documents | 99 |
 | Synthesis documents | 9 |
-| Perception documents | 129 |
-| Localization/mapping | 104 |
+| Perception documents | 141 |
+| Localization/mapping | 116 |
 | Planning documents | 15 |
 | Multi-agent and V2X | 6 |
 | Robustness validation files | 4 |
-| Papers referenced | 650+ |
-| Open-source repos evaluated | 80+ |
+| Papers referenced | 700+ |
+| Open-source repos evaluated | 90+ |
 | Occupancy methods compared | 20 |
 | Online mapping methods compared | 16 |
 | Cooperative perception methods | 10+ |
