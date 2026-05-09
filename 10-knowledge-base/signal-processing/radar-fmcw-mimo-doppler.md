@@ -8,6 +8,12 @@ critical perception and localization sensor.
 
 ---
 
+<!-- kb-figure:start -->
+![FMCW MIMO radar processing chain](../_assets/figures/signal-processing-radar-fmcw-mimo-doppler.svg)
+
+*Figure: how FMCW radar turns beat frequencies and antenna phase into range, velocity, and angle.*
+<!-- kb-figure:end -->
+
 ## 1. FMCW Range Measurement
 
 Frequency-modulated continuous-wave (FMCW) radar transmits chirps whose

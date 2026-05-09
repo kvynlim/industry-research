@@ -13,6 +13,12 @@ planning usefulness.
 
 ---
 
+<!-- kb-figure:start -->
+![Volumetric map representation ladder](../_assets/figures/mapping-volumetric-map-representations-tsdf-esdf-octree-surfels.svg)
+
+*Figure: how different volumetric maps trade surface accuracy, free-space distance, sparsity, and rendering detail.*
+<!-- kb-figure:end -->
+
 ## 1. Related Docs
 
 - [Occupancy Bayes, Evidential, and Dynamic Grids](occupancy-bayes-evidential-dynamic-grids.md)

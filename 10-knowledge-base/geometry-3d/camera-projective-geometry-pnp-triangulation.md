@@ -9,6 +9,12 @@ localization, visual SLAM, and map validation.
 
 ---
 
+<!-- kb-figure:start -->
+![Projection, PnP, and triangulation geometry](../_assets/figures/geometry-3d-camera-projective-geometry-pnp-triangulation.svg)
+
+*Figure: how 3D points, camera poses, and image rays form the core constraints behind PnP and triangulation.*
+<!-- kb-figure:end -->
+
 ## 1. Related Docs
 
 - [Camera Imaging, Noise, and Calibration](camera-imaging-noise-calibration.md)

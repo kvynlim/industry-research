@@ -1,5 +1,11 @@
 # Transformer Architecture for World Models: First Principles
 
+<!-- kb-figure:start -->
+![Autoregressive world-model rollout](../_assets/figures/machine-learning-transformer-world-models.svg)
+
+*Figure: how transformer world models condition on past scene tokens and actions to forecast futures for planning.*
+<!-- kb-figure:end -->
+
 ## The Prediction Engine — From Attention to Autoregressive Scene Forecasting
 
 ---

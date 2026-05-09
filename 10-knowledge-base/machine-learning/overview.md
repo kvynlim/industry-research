@@ -1,5 +1,11 @@
 # Machine Learning Foundations for AV Perception
 
+<!-- kb-figure:start -->
+![Machine-learning foundations ladder](../_assets/figures/machine-learning-overview.svg)
+
+*Figure: how the machine-learning knowledge base builds from simple classifiers toward AV world models.*
+<!-- kb-figure:end -->
+
 ## Why This Ladder Exists
 
 Autonomous-vehicle perception stacks are often described through the current

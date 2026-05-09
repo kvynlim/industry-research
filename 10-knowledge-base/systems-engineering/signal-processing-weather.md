@@ -5,6 +5,12 @@
 
 ---
 
+<!-- kb-figure:start -->
+![Weather-robust signal-processing chain](../_assets/figures/systems-engineering-signal-processing-weather.svg)
+
+*Figure: how adverse-weather filtering chains combine signal cleanup, temporal consistency, and sensor health evidence.*
+<!-- kb-figure:end -->
+
 ## Methodology
 
 Each recommendation was verified by:

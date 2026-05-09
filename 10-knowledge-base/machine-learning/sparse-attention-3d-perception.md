@@ -1,5 +1,11 @@
 # Sparse Attention Mechanisms and Transformer Architectures for 3D Point Cloud Perception
 
+<!-- kb-figure:start -->
+![Sparse 3D attention pattern](../_assets/figures/machine-learning-sparse-attention-3d-perception.svg)
+
+*Figure: how point or voxel sparsity limits attention to useful neighborhoods for real-time 3D perception.*
+<!-- kb-figure:end -->
+
 ## From O(n^2) Dense Attention to Real-Time Sparse Transformers on NVIDIA Orin
 
 **Last updated:** 2026-04-11

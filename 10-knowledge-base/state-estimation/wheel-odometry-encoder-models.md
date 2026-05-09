@@ -12,6 +12,12 @@ mapping, and validation.
 
 ---
 
+<!-- kb-figure:start -->
+![Wheel encoder odometry model](../_assets/figures/state-estimation-wheel-odometry-encoder-models.svg)
+
+*Figure: how encoder ticks, vehicle geometry, slip, and covariance produce a local odometry constraint.*
+<!-- kb-figure:end -->
+
 ## 1. Encoder Measurement Model
 
 For an incremental rotary encoder:

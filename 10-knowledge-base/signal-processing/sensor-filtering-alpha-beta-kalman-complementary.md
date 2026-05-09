@@ -7,6 +7,12 @@ different assumptions about dynamics, uncertainty, and frequency content.
 
 ---
 
+<!-- kb-figure:start -->
+![Filtering predict-correct loop](../_assets/figures/signal-processing-sensor-filtering-alpha-beta-kalman-complementary.svg)
+
+*Figure: how alpha-beta, Kalman, and complementary filters blend prediction and measurement updates.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Bayesian Filtering and Error-State Kalman Filters](../state-estimation/bayesian-filtering-and-eskf.md)

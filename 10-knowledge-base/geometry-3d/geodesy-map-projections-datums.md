@@ -9,6 +9,12 @@ axis order, units, and frame authority at every interface.
 
 ---
 
+<!-- kb-figure:start -->
+![Global-to-local map frame conversion](../_assets/figures/geometry-3d-geodesy-map-projections-datums.svg)
+
+*Figure: how satellite coordinates become a local metric frame that localization, mapping, and planning can share.*
+<!-- kb-figure:end -->
+
 ## 1. Related Docs
 
 - [Coordinate Frames, Projections, and SE(3)](coordinate-frames-projections-se3.md)

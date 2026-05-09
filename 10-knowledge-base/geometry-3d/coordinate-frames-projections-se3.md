@@ -12,6 +12,12 @@ outdoor industrial, and airport airside deployments.
 
 ---
 
+<!-- kb-figure:start -->
+![SE(3) frame chain](../_assets/figures/geometry-3d-coordinate-frames-projections-se3.svg)
+
+*Figure: how autonomy stacks compose map, odometry, vehicle, sensor, and image frames through SE(3) transforms.*
+<!-- kb-figure:end -->
+
 ## 1. AV, Indoor, Outdoor, and Airside Relevance
 
 | Domain | Why frames matter | Typical failure to prevent |

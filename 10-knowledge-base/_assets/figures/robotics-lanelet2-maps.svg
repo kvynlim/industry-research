@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Lanelet2 routing primitives</title>
+  <desc id="desc">how lanelets, boundaries, regulatory elements, and routing graphs encode drivable structure.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="620" fill="#f8fafc"/>
+  <rect x="36" y="34" width="1128" height="552" rx="28" fill="#ffffff" stroke="#d8dee9" filter="url(#shadow)"/>
+  <text x="70" y="88" font-size="32" font-weight="800" fill="#0f172a">Lanelet2 routing primitives</text>
+  <rect x="70" y="108" width="1060" height="2" fill="#dbeafe"/>
+  <rect x="205" y="145" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="263" y="145" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="321" y="145" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="379" y="145" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="437" y="145" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="495" y="145" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="553" y="145" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="611" y="145" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="669" y="145" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="727" y="145" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="205" y="203" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="263" y="203" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="321" y="203" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="379" y="203" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="437" y="203" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="495" y="203" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="553" y="203" width="54" height="54" rx="8" fill="#fecaca" stroke="#cbd5e1"/>
+<rect x="611" y="203" width="54" height="54" rx="8" fill="#fecaca" stroke="#cbd5e1"/>
+<rect x="669" y="203" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="727" y="203" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="205" y="261" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="263" y="261" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="321" y="261" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="379" y="261" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="437" y="261" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="495" y="261" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="553" y="261" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="611" y="261" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="669" y="261" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="727" y="261" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="205" y="319" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="263" y="319" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="321" y="319" width="54" height="54" rx="8" fill="#fecaca" stroke="#cbd5e1"/>
+<rect x="379" y="319" width="54" height="54" rx="8" fill="#fecaca" stroke="#cbd5e1"/>
+<rect x="437" y="319" width="54" height="54" rx="8" fill="#fecaca" stroke="#cbd5e1"/>
+<rect x="495" y="319" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="553" y="319" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="611" y="319" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="669" y="319" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="727" y="319" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="205" y="377" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="263" y="377" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="321" y="377" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="379" y="377" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="437" y="377" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="495" y="377" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="553" y="377" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="611" y="377" width="54" height="54" rx="8" fill="#fecaca" stroke="#cbd5e1"/>
+<rect x="669" y="377" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="727" y="377" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="205" y="435" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="263" y="435" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="321" y="435" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="379" y="435" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="437" y="435" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="495" y="435" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="553" y="435" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="611" y="435" width="54" height="54" rx="8" fill="#e0f2fe" stroke="#cbd5e1"/>
+<rect x="669" y="435" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="727" y="435" width="54" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+
+<path d="M235 430 C345 350 430 365 520 300 C630 220 725 260 870 180" fill="none" stroke="#0f766e" stroke-width="8" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="197" y="137" width="584" height="352" rx="16" fill="none" stroke="#334155" stroke-width="3"/>
+<rect x="65" y="501" width="170" height="68" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="150" y="529" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">lanelet</text>
+<rect x="245" y="501" width="170" height="68" rx="18" fill="#dcfce7" stroke="#2563eb" stroke-width="2"/>
+<text x="330" y="529" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">boundary</text>
+<rect x="460" y="501" width="170" height="68" rx="18" fill="#fef3c7" stroke="#2563eb" stroke-width="2"/>
+<text x="545" y="529" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">regulatory</text>
+<text x="545" y="552" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">element</text>
+<rect x="680" y="501" width="170" height="68" rx="18" fill="#ede9fe" stroke="#2563eb" stroke-width="2"/>
+<text x="765" y="529" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">routing graph</text>
+<rect x="900" y="501" width="170" height="68" rx="18" fill="#fee2e2" stroke="#2563eb" stroke-width="2"/>
+<text x="985" y="529" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">airport</text>
+<text x="985" y="552" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">extension</text>
+</svg>

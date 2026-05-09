@@ -1,5 +1,11 @@
 # Schur Complement, Marginalization, and PCG
 
+<!-- kb-figure:start -->
+![Schur complement elimination](../_assets/figures/numerical-linear-algebra-schur-complement-marginalization-pcg.svg)
+
+*Figure: how landmark or nuisance-state elimination creates a smaller reduced system for iterative solving.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

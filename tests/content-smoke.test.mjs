@@ -65,3 +65,33 @@ test('repository corpus contains acceptance search terms', () => {
     assert.ok(corpus.toLowerCase().includes(term.toLowerCase()), `corpus should contain ${term}`)
   }
 })
+
+test('knowledge-base pages include local explanatory figures', () => {
+  const knowledgeBaseDir = path.join(repoRoot, '10-knowledge-base')
+  const markdownFiles = readMarkdownFiles(knowledgeBaseDir)
+  const missing = []
+
+  for (const absPath of markdownFiles) {
+    const relPath = path.relative(repoRoot, absPath).replace(/\\/g, '/')
+    const markdown = fs.readFileSync(absPath, 'utf8')
+    const imageMatch = markdown.match(/!\[[^\]]+\]\((\.\.\/_assets\/figures\/[^)]+\.svg)\)/)
+    const hasCaption = /\*Figure: .+\*/.test(markdown)
+
+    if (!imageMatch) {
+      missing.push(`${relPath}: missing local SVG figure`)
+      continue
+    }
+
+    if (!hasCaption) {
+      missing.push(`${relPath}: missing figure caption`)
+      continue
+    }
+
+    const imagePath = path.resolve(path.dirname(absPath), imageMatch[1])
+    if (!fs.existsSync(imagePath)) {
+      missing.push(`${relPath}: figure asset does not exist at ${path.relative(repoRoot, imagePath)}`)
+    }
+  }
+
+  assert.deepEqual(missing, [])
+})

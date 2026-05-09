@@ -1,5 +1,11 @@
 # Multi-Task Losses and Objectives: First Principles
 
+<!-- kb-figure:start -->
+![Shared trunk and task losses](../_assets/figures/machine-learning-multi-task-losses-and-objectives-first-principles.svg)
+
+*Figure: how multiple task heads compete or cooperate through a shared feature extractor and weighted objective.*
+<!-- kb-figure:end -->
+
 ## Scope
 
 AV models often train many heads together: detection, classification, box regression, velocity, segmentation, occupancy, depth, flow, tracking, trajectory prediction, map elements, and uncertainty. The architecture may be modern, but training behavior is dominated by the objective.

@@ -8,6 +8,12 @@ classification, or fusion sees it.
 
 ---
 
+<!-- kb-figure:start -->
+![CFAR threshold window](../_assets/figures/signal-processing-cfar-detection-thresholding.svg)
+
+*Figure: how CFAR estimates local clutter statistics and sets an adaptive detection threshold.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [FMCW, MIMO, and Doppler Radar Fundamentals](radar-fmcw-mimo-doppler.md)

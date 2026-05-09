@@ -14,6 +14,12 @@ answers.
 
 ---
 
+<!-- kb-figure:start -->
+![Continuous-time trajectory interpolation](../_assets/figures/state-estimation-continuous-time-trajectory-splines-gp-priors.svg)
+
+*Figure: how splines and Gaussian-process priors support measurements arriving between discrete keyframes.*
+<!-- kb-figure:end -->
+
 ## 1. Related Docs
 
 - [Lie Groups, SE(3), SO(3), and Jacobians](../geometry-3d/lie-groups-se3-so3-jacobians.md)

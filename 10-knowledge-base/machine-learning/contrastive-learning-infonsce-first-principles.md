@@ -1,5 +1,11 @@
 # Contrastive Learning and InfoNCE: First Principles
 
+<!-- kb-figure:start -->
+![InfoNCE embedding geometry](../_assets/figures/machine-learning-contrastive-learning-infonsce-first-principles.svg)
+
+*Figure: how contrastive learning pulls paired views together while pushing competing negatives apart.*
+<!-- kb-figure:end -->
+
 ## Scope
 
 Contrastive learning trains representations by making related views close and

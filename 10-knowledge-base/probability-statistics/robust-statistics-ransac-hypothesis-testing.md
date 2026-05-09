@@ -7,6 +7,12 @@ occlusion, multipath, dynamic objects, annotation errors, calibration drift, and
 wrong associations. Robust statistics, RANSAC, and hypothesis testing are
 different ways to prevent those failures from dominating the estimate.
 
+<!-- kb-figure:start -->
+![Robust estimation with outliers](../_assets/figures/probability-statistics-robust-statistics-ransac-hypothesis-testing.svg)
+
+*Figure: how RANSAC and robust losses protect estimates from outlier-dominated residuals.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Likelihood, MAP, MLE, and Least Squares](likelihood-map-mle-least-squares.md)

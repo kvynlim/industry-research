@@ -12,6 +12,12 @@ localization stacks.
 
 ---
 
+<!-- kb-figure:start -->
+![Bayesian ESKF cycle](../_assets/figures/state-estimation-bayesian-filtering-and-eskf.svg)
+
+*Figure: how filters propagate nominal state, estimate error-state corrections, and reset after measurement updates.*
+<!-- kb-figure:end -->
+
 ## 1. AV, Indoor, Outdoor, and Airside Relevance
 
 | Domain | Estimation role | Typical state |

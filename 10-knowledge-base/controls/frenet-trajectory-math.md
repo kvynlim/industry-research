@@ -1,5 +1,11 @@
 # Frenet-Frame Trajectory Planning: Complete Mathematical Foundations
 
+<!-- kb-figure:start -->
+![Frenet trajectory frame](../_assets/figures/controls-frenet-trajectory-math.svg)
+
+*Figure: how road-aligned s-d coordinates turn a curved operating corridor into a tractable trajectory optimization space.*
+<!-- kb-figure:end -->
+
 ## 1. The Frenet-Serret Frame
 
 ### 1.1 Definition

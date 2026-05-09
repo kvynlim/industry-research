@@ -9,6 +9,12 @@ hiding them inside detection scores.
 
 ---
 
+<!-- kb-figure:start -->
+![Track lifecycle timeline](../_assets/figures/state-estimation-tracking-motion-models-track-lifecycle-metrics.svg)
+
+*Figure: how a tracker manages object existence from birth through confirmation, missed detections, and deletion.*
+<!-- kb-figure:end -->
+
 ## 1. Related Docs
 
 - [Bayesian Filtering and Error-State Kalman Filters](bayesian-filtering-and-eskf.md)

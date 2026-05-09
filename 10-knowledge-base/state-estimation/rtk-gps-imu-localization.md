@@ -1,5 +1,11 @@
 # RTK-GPS, IMU, and Multi-Sensor Localization: First Principles
 
+<!-- kb-figure:start -->
+![Multi-sensor localization fusion](../_assets/figures/state-estimation-rtk-gps-imu-localization.svg)
+
+*Figure: how GNSS, inertial, wheel, and LiDAR evidence combine into a fused localization estimate.*
+<!-- kb-figure:end -->
+
 ## The Localization Foundation for the reference airside AV stack's GTSAM Factor Graph
 
 ---

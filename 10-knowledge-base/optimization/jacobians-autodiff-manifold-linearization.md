@@ -1,5 +1,11 @@
 # Jacobians, Autodiff, and Manifold Linearization
 
+<!-- kb-figure:start -->
+![Jacobian construction choices](../_assets/figures/optimization-jacobians-autodiff-manifold-linearization.svg)
+
+*Figure: how derivative source and manifold update convention affect the linearized residual used by solvers.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Nonlinear Least Squares from First Principles](./nonlinear-least-squares-first-principles.md)

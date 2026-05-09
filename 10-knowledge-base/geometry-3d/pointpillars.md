@@ -1,5 +1,11 @@
 # PointPillars: First Principles
 
+<!-- kb-figure:start -->
+![PointPillars tensor path](../_assets/figures/geometry-3d-pointpillars.svg)
+
+*Figure: how unordered points become pillar features, a BEV feature map, and final 3D detections.*
+<!-- kb-figure:end -->
+
 ## From Point Cloud to BEV Features — Every Step with Tensor Shapes
 
 ---

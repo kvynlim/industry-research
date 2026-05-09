@@ -9,6 +9,12 @@ closure.
 
 ---
 
+<!-- kb-figure:start -->
+![Lie-group residual linearization](../_assets/figures/geometry-3d-lie-groups-se3-so3-jacobians.svg)
+
+*Figure: how small tangent-space updates become pose updates and Jacobians on SO(3) and SE(3).*
+<!-- kb-figure:end -->
+
 ## 1. Related Docs
 
 - [Coordinate Frames, Projections, and SE(3)](coordinate-frames-projections-se3.md)

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Score and flow sampler paths</title>
+  <desc id="desc">how score models and flow matching define vector fields that guide samples back toward the data distribution.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="620" fill="#f8fafc"/>
+  <rect x="36" y="34" width="1128" height="552" rx="28" fill="#ffffff" stroke="#d8dee9" filter="url(#shadow)"/>
+  <text x="70" y="88" font-size="32" font-weight="800" fill="#0f172a">Score and flow sampler paths</text>
+  <rect x="70" y="108" width="1060" height="2" fill="#dbeafe"/>
+  <line x1="150" y1="220" x2="1040" y2="220" stroke="#e2e8f0" stroke-width="2"/>
+<line x1="150" y1="290" x2="1040" y2="290" stroke="#e2e8f0" stroke-width="2"/>
+<line x1="150" y1="360" x2="1040" y2="360" stroke="#e2e8f0" stroke-width="2"/>
+<line x1="150" y1="430" x2="1040" y2="430" stroke="#e2e8f0" stroke-width="2"/>
+<line x1="150" y1="470" x2="1040" y2="470" stroke="#0f172a" stroke-width="4" marker-end="url(#arrow)"/>
+<line x1="150" y1="470" x2="150" y2="145" stroke="#0f172a" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M170 430 C280 350 350 250 470 230 C590 210 700 320 830 210 C920 150 980 190 1030 165" fill="none" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+<path d="M170 455 C310 440 410 390 530 330 C650 270 800 250 1030 240" fill="none" stroke="#0f766e" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 10"/>
+<rect x="168" y="126" width="164" height="68" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="250" y="154" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">data manifold</text>
+<rect x="308" y="371" width="164" height="68" rx="18" fill="#dcfce7" stroke="#2563eb" stroke-width="2"/>
+<text x="390" y="399" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">noisy state</text>
+<rect x="503" y="136" width="164" height="68" rx="18" fill="#fef3c7" stroke="#2563eb" stroke-width="2"/>
+<text x="585" y="164" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">score field</text>
+<rect x="698" y="371" width="164" height="68" rx="18" fill="#ede9fe" stroke="#2563eb" stroke-width="2"/>
+<text x="780" y="399" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">ODE path</text>
+<rect x="878" y="126" width="164" height="68" rx="18" fill="#fee2e2" stroke="#2563eb" stroke-width="2"/>
+<text x="960" y="154" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">SDE path</text>
+</svg>

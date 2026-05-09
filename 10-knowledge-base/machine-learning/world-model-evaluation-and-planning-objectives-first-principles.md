@@ -1,5 +1,11 @@
 # World-Model Evaluation and Planning Objectives
 
+<!-- kb-figure:start -->
+![World-model evaluation modes](../_assets/figures/machine-learning-world-model-evaluation-and-planning-objectives-first-principles.svg)
+
+*Figure: how predictive quality, closed-loop behavior, planner costs, and uncertainty must be evaluated together.*
+<!-- kb-figure:end -->
+
 ## Why This Page Exists
 
 World models are useful only if their predictions improve decisions. A model can generate plausible videos, accurate short-horizon occupancy, or strong open-loop metrics and still fail when a planner uses it.

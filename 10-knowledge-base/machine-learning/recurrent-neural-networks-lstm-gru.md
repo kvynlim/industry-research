@@ -1,5 +1,11 @@
 # Recurrent Neural Networks, LSTM, and GRU: First Principles
 
+<!-- kb-figure:start -->
+![Recurrent hidden-state flow](../_assets/figures/machine-learning-recurrent-neural-networks-lstm-gru.svg)
+
+*Figure: how RNN, LSTM, and GRU models carry temporal memory across a sequence.*
+<!-- kb-figure:end -->
+
 ## Sequence Modeling With Shared State
 
 Autonomous driving is temporal. A single frame may show where an actor is, but

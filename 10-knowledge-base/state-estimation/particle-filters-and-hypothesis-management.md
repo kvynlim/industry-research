@@ -9,6 +9,12 @@ object associations, or motion modes.
 
 ---
 
+<!-- kb-figure:start -->
+![Particle posterior update](../_assets/figures/state-estimation-particle-filters-and-hypothesis-management.svg)
+
+*Figure: how sample sets approximate multimodal beliefs and manage competing hypotheses.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Bayesian Filtering and Error-State Kalman Filters](bayesian-filtering-and-eskf.md)

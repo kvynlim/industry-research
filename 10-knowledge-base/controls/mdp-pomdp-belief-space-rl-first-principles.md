@@ -6,6 +6,12 @@ the true state directly. Belief-space planning treats a probability distribution
 over states as the planner state. Reinforcement learning estimates policies,
 values, or models from interaction data.
 
+<!-- kb-figure:start -->
+![Belief-space decision model](../_assets/figures/controls-mdp-pomdp-belief-space-rl-first-principles.svg)
+
+*Figure: how an agent updates hidden-state belief from observations before choosing actions under uncertainty.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Planning Taxonomy and Trajectory Generation](../robotics/planning-taxonomy-and-trajectory-generation.md)

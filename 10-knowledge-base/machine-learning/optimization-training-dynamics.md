@@ -1,5 +1,11 @@
 # Optimization and Training Dynamics: First Principles
 
+<!-- kb-figure:start -->
+![Training trajectory dynamics](../_assets/figures/machine-learning-optimization-training-dynamics.svg)
+
+*Figure: how optimizer state, learning rate, and noisy gradients shape the route through the loss landscape.*
+<!-- kb-figure:end -->
+
 ## Training Is A Noisy Numerical Process
 
 A neural network is trained by choosing parameters `theta` that minimize an

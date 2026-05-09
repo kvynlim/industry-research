@@ -6,6 +6,12 @@ algebra. The model is not "the world is Gaussian." The model is: near a current
 linearization point, residual errors can often be summarized by a mean, a
 covariance, and a quadratic penalty that is fast to optimize and easy to audit.
 
+<!-- kb-figure:start -->
+![Gaussian covariance and whitening](../_assets/figures/probability-statistics-gaussian-noise-covariance-information.svg)
+
+*Figure: how covariance shape, information form, and whitening change the geometry of Gaussian uncertainty.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Bayesian Filtering and Error-State Kalman Filters](../state-estimation/bayesian-filtering-and-eskf.md)

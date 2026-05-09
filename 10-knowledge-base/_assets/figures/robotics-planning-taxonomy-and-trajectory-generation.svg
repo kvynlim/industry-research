@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Planning stack taxonomy</title>
+  <desc id="desc">how route, behavior, motion, trajectory, and control layers divide planning responsibilities.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="620" fill="#f8fafc"/>
+  <rect x="36" y="34" width="1128" height="552" rx="28" fill="#ffffff" stroke="#d8dee9" filter="url(#shadow)"/>
+  <text x="70" y="88" font-size="32" font-weight="800" fill="#0f172a">Planning stack taxonomy</text>
+  <rect x="70" y="108" width="1060" height="2" fill="#dbeafe"/>
+  <rect x="455" y="112" width="290" height="92" rx="18" fill="#eef2ff" stroke="#2563eb" stroke-width="2"/>
+<text x="600" y="152" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">Planning</text>
+<text x="600" y="175" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">stack</text>
+<text x="600" y="198" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">taxonomy</text>
+<line x1="600" y1="210" x2="150" y2="296" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="68" y="306" width="164" height="88" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="150" y="344" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">route</text>
+<line x1="600" y1="210" x2="375" y2="296" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="293" y="306" width="164" height="88" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="375" y="344" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">behavior</text>
+<line x1="600" y1="210" x2="600" y2="296" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="518" y="306" width="164" height="88" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="600" y="344" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">motion</text>
+<line x1="600" y1="210" x2="825" y2="296" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="743" y="306" width="164" height="88" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="825" y="344" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">trajectory</text>
+<line x1="600" y1="210" x2="1050" y2="296" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="968" y="306" width="164" height="88" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="1050" y="344" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">control</text>
+</svg>

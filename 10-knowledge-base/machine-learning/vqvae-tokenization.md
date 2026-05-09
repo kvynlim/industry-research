@@ -1,5 +1,11 @@
 # VQ-VAE and Discrete Tokenization: First Principles
 
+<!-- kb-figure:start -->
+![VQ-VAE discrete bottleneck](../_assets/figures/machine-learning-vqvae-tokenization.svg)
+
+*Figure: how vector quantization turns continuous features into reusable discrete tokens while preserving gradient flow.*
+<!-- kb-figure:end -->
+
 ## The Foundation for Converting Sensor Data into World Model Tokens
 
 ---

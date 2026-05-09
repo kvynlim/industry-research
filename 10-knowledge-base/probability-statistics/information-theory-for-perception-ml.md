@@ -6,6 +6,12 @@ some measurements reduce pose uncertainty, why some features are sufficient for
 planning, why calibration matters, and why lossy learned representations can be
 useful or dangerous.
 
+<!-- kb-figure:start -->
+![Information-theory quantities](../_assets/figures/probability-statistics-information-theory-for-perception-ml.svg)
+
+*Figure: how information measures quantify uncertainty, compression, prediction error, and sensor value.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](gaussian-noise-covariance-information.md)

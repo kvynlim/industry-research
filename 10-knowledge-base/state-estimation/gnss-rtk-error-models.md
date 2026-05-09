@@ -8,6 +8,12 @@ dependent, and often non-Gaussian.
 
 ---
 
+<!-- kb-figure:start -->
+![RTK-GNSS correction geometry](../_assets/figures/state-estimation-gnss-rtk-error-models.svg)
+
+*Figure: how RTK uses carrier phase, base corrections, and ambiguity resolution to improve GNSS localization.*
+<!-- kb-figure:end -->
+
 ## 1. Sensor Model Impact
 
 | Task | Why the model matters |

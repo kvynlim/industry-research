@@ -10,6 +10,12 @@ identified by the data, and when an optimizer merely returns a plausible number.
 
 ---
 
+<!-- kb-figure:start -->
+![Calibration observability graph](../_assets/figures/geometry-3d-multi-sensor-calibration-observability.svg)
+
+*Figure: how extrinsics, time offsets, targets, and motion excitation determine whether calibration states are observable.*
+<!-- kb-figure:end -->
+
 ## 1. Calibration Unknowns
 
 Typical autonomy calibration states include:

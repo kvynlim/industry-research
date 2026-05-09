@@ -1,5 +1,11 @@
 # Logistic, Softmax, and Cross-Entropy: First Principles
 
+<!-- kb-figure:start -->
+![Scores to probabilities to loss](../_assets/figures/machine-learning-logistic-softmax-cross-entropy.svg)
+
+*Figure: how classifier scores become probabilities, decisions, and calibration-sensitive losses.*
+<!-- kb-figure:end -->
+
 ## From Scores To Probabilities
 
 A linear classifier produces scores:

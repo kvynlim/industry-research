@@ -10,6 +10,12 @@ distributions.
 
 ---
 
+<!-- kb-figure:start -->
+![Point-cloud registration loop](../_assets/figures/geometry-3d-point-cloud-registration-math-icp-ndt-gicp.svg)
+
+*Figure: how ICP, GICP, VGICP, and NDT iterate between matching, residual construction, and pose update.*
+<!-- kb-figure:end -->
+
 ## 1. Related Docs
 
 - [LiDAR Working Principles and Noise Models](lidar-working-principles-noise-models.md)

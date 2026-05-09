@@ -10,6 +10,12 @@ airside replay, and validation.
 
 ---
 
+<!-- kb-figure:start -->
+![Time error to spatial error budget](../_assets/figures/systems-engineering-time-synchronization-error-budgets.svg)
+
+*Figure: how timing errors become spatial misalignment in moving multi-sensor autonomy systems.*
+<!-- kb-figure:end -->
+
 ## 1. Why Time Error Becomes Spatial Error
 
 The first-order spatial error from a timestamp error is:

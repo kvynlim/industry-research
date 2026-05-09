@@ -1,5 +1,11 @@
 # Eigenvalues, Hessian Conditioning, and Observability
 
+<!-- kb-figure:start -->
+![Hessian spectrum and observability](../_assets/figures/numerical-linear-algebra-eigenvalues-hessian-conditioning-observability.svg)
+
+*Figure: how Hessian eigenvalues reveal well-constrained, weakly constrained, and unobservable directions.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

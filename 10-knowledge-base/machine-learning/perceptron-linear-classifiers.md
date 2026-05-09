@@ -1,5 +1,11 @@
 # Perceptron and Linear Classifiers: First Principles
 
+<!-- kb-figure:start -->
+![Linear decision boundary](../_assets/figures/machine-learning-perceptron-linear-classifiers.svg)
+
+*Figure: how perceptrons and linear classifiers separate feature space and update after mistakes.*
+<!-- kb-figure:end -->
+
 ## The Smallest Useful Perception Model
 
 A linear classifier is the first model worth understanding deeply because many

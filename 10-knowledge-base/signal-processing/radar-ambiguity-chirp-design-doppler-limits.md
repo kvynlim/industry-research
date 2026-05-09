@@ -8,6 +8,12 @@ delays and Doppler shifts.
 
 ---
 
+<!-- kb-figure:start -->
+![Radar range-Doppler ambiguity](../_assets/figures/signal-processing-radar-ambiguity-chirp-design-doppler-limits.svg)
+
+*Figure: how chirp design and sampling choices bound unambiguous radar range and velocity.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [FMCW, MIMO, and Doppler Radar Fundamentals](radar-fmcw-mimo-doppler.md)

@@ -1,5 +1,11 @@
 # Self-Supervised Learning: First Principles
 
+<!-- kb-figure:start -->
+![Self-supervised two-view training](../_assets/figures/machine-learning-self-supervised-learning-first-principles.svg)
+
+*Figure: how unlabeled data creates paired prediction or contrastive tasks for representation learning.*
+<!-- kb-figure:end -->
+
 ## Scope
 
 Self-supervised learning (SSL) trains useful representations from unlabeled data by creating supervision from the data itself. This note covers the main SSL families behind modern vision and AV perception: contrastive learning, bootstrap/Siamese learning, self-distillation, masked autoencoding, and JEPA-style latent prediction. It complements the driving-specific survey in [30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md](../../30-autonomy-stack/perception/overview/self-supervised-pretraining-driving.md) and the JEPA-focused note [jepa-latent-predictive-learning.md](jepa-latent-predictive-learning.md).

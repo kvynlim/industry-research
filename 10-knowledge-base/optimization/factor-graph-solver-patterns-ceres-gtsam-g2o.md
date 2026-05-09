@@ -1,5 +1,11 @@
 # Factor Graph Solver Patterns: Ceres, GTSAM, and g2o
 
+<!-- kb-figure:start -->
+![Factor-graph solver workflow](../_assets/figures/optimization-factor-graph-solver-patterns-ceres-gtsam-g2o.svg)
+
+*Figure: how Ceres, GTSAM, and g2o share the same factor-graph optimization skeleton.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Nonlinear Least Squares from First Principles](./nonlinear-least-squares-first-principles.md)

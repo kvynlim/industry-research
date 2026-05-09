@@ -8,6 +8,12 @@ for perception, SLAM, mapping, and control.
 
 ---
 
+<!-- kb-figure:start -->
+![PTP timestamp exchange](../_assets/figures/systems-engineering-time-sync-ptp-timestamping-latency-models.svg)
+
+*Figure: how PTP-style exchanges and hardware timestamps estimate and correct sensor clock offsets.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Sensor Calibration and Time Synchronization](../geometry-3d/sensor-calibration-time-synchronization.md)

@@ -1,5 +1,11 @@
 # Theoretical Foundations of World Models for Autonomous Driving
 
+<!-- kb-figure:start -->
+![World-model theory dependency graph](../_assets/figures/systems-engineering-theoretical-foundations.svg)
+
+*Figure: how theoretical views connect prediction, representation learning, control, causality, and safety.*
+<!-- kb-figure:end -->
+
 ## Mathematical Frameworks, Formal Results, and Theoretical Analysis
 
 ---

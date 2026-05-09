@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">LiDAR point formation</title>
+  <desc id="desc">how timing, beam geometry, reflectance, and range noise produce each point in a LiDAR scan.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="620" fill="#f8fafc"/>
+  <rect x="36" y="34" width="1128" height="552" rx="28" fill="#ffffff" stroke="#d8dee9" filter="url(#shadow)"/>
+  <text x="70" y="88" font-size="32" font-weight="800" fill="#0f172a">LiDAR point formation</text>
+  <rect x="70" y="108" width="1060" height="2" fill="#dbeafe"/>
+  <rect x="150" y="405" width="190" height="78" rx="18" fill="#1e293b"/>
+<circle cx="195" cy="492" r="24" fill="#0f172a"/>
+<circle cx="295" cy="492" r="24" fill="#0f172a"/>
+<polygon points="340,420 790,210 790,465" fill="#dbeafe" opacity="0.55" stroke="#2563eb" stroke-width="3"/>
+<line x1="340" y1="420" x2="820" y2="340" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+<circle cx="820" cy="340" r="16" fill="#ef4444"/>
+<line x1="220" y1="405" x2="220" y2="300" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow)"/>
+<line x1="220" y1="405" x2="340" y2="405" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="80" y="185" width="180" height="82" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="170" y="220" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">laser pulse</text>
+<rect x="372" y="145" width="180" height="82" rx="18" fill="#dcfce7" stroke="#2563eb" stroke-width="2"/>
+<text x="462" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">time of</text>
+<text x="462" y="203" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">flight</text>
+<rect x="680" y="145" width="180" height="82" rx="18" fill="#fef3c7" stroke="#2563eb" stroke-width="2"/>
+<text x="770" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">scan angle</text>
+<rect x="870" y="310" width="180" height="82" rx="18" fill="#ede9fe" stroke="#2563eb" stroke-width="2"/>
+<text x="960" y="345" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">intensity</text>
+<rect x="720" y="470" width="220" height="82" rx="18" fill="#fee2e2" stroke="#2563eb" stroke-width="2"/>
+<text x="830" y="505" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">range noise</text>
+</svg>

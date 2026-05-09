@@ -1,5 +1,11 @@
 # QR, SVD, and Rank-Revealing Solvers
 
+<!-- kb-figure:start -->
+![Rank-revealing solver choices](../_assets/figures/numerical-linear-algebra-qr-svd-rank-revealing-solvers.svg)
+
+*Figure: how QR and SVD expose rank and solve least-squares problems without relying only on normal equations.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

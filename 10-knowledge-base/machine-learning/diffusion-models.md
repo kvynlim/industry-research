@@ -1,5 +1,11 @@
 # Diffusion Models: First Principles
 
+<!-- kb-figure:start -->
+![Diffusion forward and reverse processes](../_assets/figures/machine-learning-diffusion-models.svg)
+
+*Figure: how diffusion models destroy structure with noise and learn the reverse denoising trajectory.*
+<!-- kb-figure:end -->
+
 ## The Generative Framework Behind World Model Video Generation and Trajectory Planning
 
 ---

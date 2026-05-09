@@ -1,5 +1,11 @@
 # Cholesky, LDLT, and Normal Equations
 
+<!-- kb-figure:start -->
+![Normal-equation factorization path](../_assets/figures/numerical-linear-algebra-cholesky-ldlt-normal-equations.svg)
+
+*Figure: how least-squares systems become factored matrices and why conditioning matters before back-substitution.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [QR, SVD, and Rank-Revealing Solvers](qr-svd-rank-revealing-solvers.md)

@@ -7,6 +7,12 @@ dataset, protocol, metric, and uncertainty match the operational decision.
 
 ---
 
+<!-- kb-figure:start -->
+![Benchmark evidence pipeline](../_assets/figures/systems-engineering-benchmarking-metrics-statistical-validity.svg)
+
+*Figure: how benchmark design turns scenario samples into statistically defensible release evidence.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Data Association and Gating](../state-estimation/data-association-and-gating.md)

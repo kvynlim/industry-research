@@ -1,5 +1,11 @@
 # Sparse Matrices, Fill-In, and Ordering
 
+<!-- kb-figure:start -->
+![Sparse factor fill-in](../_assets/figures/numerical-linear-algebra-sparse-matrices-fill-in-ordering.svg)
+
+*Figure: how variable ordering changes fill-in and therefore runtime and memory for sparse factorization.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

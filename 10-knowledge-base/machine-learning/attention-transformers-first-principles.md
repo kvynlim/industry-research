@@ -1,5 +1,11 @@
 # Attention and Transformers: First Principles
 
+<!-- kb-figure:start -->
+![Attention score matrix](../_assets/figures/machine-learning-attention-transformers-first-principles.svg)
+
+*Figure: how token-to-token scores become normalized attention weights and multi-head feature mixing.*
+<!-- kb-figure:end -->
+
 ## Scope
 
 This note explains attention and transformer blocks from first principles for readers building AV perception, SLAM, mapping, and world-model systems. It is intentionally a foundation layer. For driving world-model transformer recipes, see [transformer-world-models.md](transformer-world-models.md). For point-cloud sparse attention, PTv3, BEVFormer, and Orin deployment detail, see [sparse-attention-3d-perception.md](sparse-attention-3d-perception.md). For sequence alternatives, see [sequence-models-rnn-ssm-attention-first-principles.md](sequence-models-rnn-ssm-attention-first-principles.md) and [mamba-ssm-for-driving.md](mamba-ssm-for-driving.md).

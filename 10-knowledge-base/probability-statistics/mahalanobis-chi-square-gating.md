@@ -6,6 +6,12 @@ into a statistically interpretable pass/fail test. In AV systems, this is the
 foundation for rejecting unlikely sensor associations, monitoring estimator
 consistency, and detecting covariance tuning errors.
 
+<!-- kb-figure:start -->
+![Mahalanobis gating ellipse](../_assets/figures/probability-statistics-mahalanobis-chi-square-gating.svg)
+
+*Figure: how covariance-normalized distance decides whether a measurement is statistically plausible.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](gaussian-noise-covariance-information.md)

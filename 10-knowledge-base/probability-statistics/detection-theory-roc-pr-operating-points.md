@@ -12,6 +12,12 @@ detection, and gating of track associations.
 
 ---
 
+<!-- kb-figure:start -->
+![Detection operating point tradeoff](../_assets/figures/probability-statistics-detection-theory-roc-pr-operating-points.svg)
+
+*Figure: how thresholds move between misses, false alarms, ROC behavior, and precision-recall behavior.*
+<!-- kb-figure:end -->
+
 ## 1. Related Docs
 
 - [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](gaussian-noise-covariance-information.md)

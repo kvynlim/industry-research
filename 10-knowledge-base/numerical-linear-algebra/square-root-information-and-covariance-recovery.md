@@ -1,5 +1,11 @@
 # Square-Root Information and Covariance Recovery
 
+<!-- kb-figure:start -->
+![Square-root information workflow](../_assets/figures/numerical-linear-algebra-square-root-information-and-covariance-recovery.svg)
+
+*Figure: how square-root forms improve numerical stability and support covariance recovery.*
+<!-- kb-figure:end -->
+
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)
