@@ -6,9 +6,9 @@ The perception library is broad, but the May 2026 agent sweeps found several met
 
 | Item | Status |
 |---|---|
-| Dedicated perception files | 27 top-level perception synthesis/audit files, 10 dataset/benchmark pages, and 73 atomic method files in [Perception Method Library](../methods/overview.md). |
-| Strongest existing coverage | Production sensor suites, CenterPoint/OpenPCDet, BEV basics, method-level camera BEV/occupancy, Gaussian/3DGS occupancy, LiDAR MOS, LiDAR artifact removal, learned denoising, adverse-weather datasets, radar-camera fusion, radar/event/FMCW, open-world/OOD, robust fusion, V2X, latency, data engines, model compression, uncertainty, and thermal fusion. |
-| Most severe structural gap | Remaining P0/P1 items still need atomic pages: panoptic/open-vocabulary occupancy, temporal occupancy uncertainty, radar-camera/4D-radar follow-ons, newer cooperative compression, airside FOD datasets, and public-data gaps for dust, de-icing mist, steam, glycol film, and wet-apron multipath. |
+| Dedicated perception files | 27 top-level perception synthesis/audit files, 12 dataset/benchmark pages, and 76 atomic method files in [Perception Method Library](../methods/overview.md). |
+| Strongest existing coverage | Production sensor suites, CenterPoint/OpenPCDet, BEV basics, method-level camera BEV/occupancy, Gaussian/3DGS occupancy, LiDAR MOS, scene flow, LiDAR artifact removal, learned denoising, adverse-weather datasets, motion/static separation benchmarks, radar-camera fusion, radar/event/FMCW, open-world/OOD, robust fusion, V2X, latency, data engines, model compression, uncertainty, and thermal fusion. |
+| Most severe structural gap | Remaining P0/P1 items still need atomic pages: panoptic/open-vocabulary occupancy, temporal occupancy uncertainty, DR-REMOVER/MOVES/RTMap/ExelMap-style map-change methods, newer cooperative compression, airside FOD datasets, and public-data gaps for dust, de-icing mist, steam, glycol film, and wet-apron multipath. |
 | How to use this audit | Use the method library for promoted atomic pages. Use the P0/P1/P2 rows below as discovery clusters and backlog for remaining splits. Update this audit whenever a missing perception method becomes a dedicated file. |
 
 ## Multi-Agent Discovery Sweep (2026-05-08)
@@ -48,7 +48,17 @@ The next loop broadened the LIORNet question from one snow-removal method into a
 | Weather robustness datasets | [Weather Robustness Datasets](../datasets-benchmarks/weather-robustness-datasets.md), [WADS](../datasets-benchmarks/wads-winter-adverse-driving-dataset.md), [CADC/CADC+](../datasets-benchmarks/cadc-cadc-plus.md), [SemanticSTF](../datasets-benchmarks/semanticstf.md), [REHEARSE-3D](../datasets-benchmarks/rehearse-3d.md), [RainSense](../datasets-benchmarks/rainsense.md), [SemanticSpray](../datasets-benchmarks/semantic-spray.md), [RADIATE](../datasets-benchmarks/radiate.md), [Seeing Through Fog/DENSE](../datasets-benchmarks/seeing-through-fog-dense.md) |
 | Safety and map-cleaning bridge | [LiDAR Artifact Removal Validation](../../../60-safety-validation/verification-validation/robustness/lidar-artifact-removal-validation.md), [ERASOR](../../localization-mapping/slam-methods/erasor.md), [Removert](../../localization-mapping/slam-methods/removert.md), [LiDAR Map Cleaning and Dynamic Removal](../../localization-mapping/slam-methods/lidar-map-cleaning-dynamic-removal.md) |
 
-Next perception promotion queue: UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, CVFusion, RobuRCDet, 4DRC-OCC, SparseBEV, DETR4D, ForeSight, DriveBench, SAM4D, airside FOD benchmarks, and airside-specific dust/de-icing/steam validation datasets.
+## Dynamic/Static Removal and Flow Benchmark Wave (2026-05-09)
+
+The latest loop broadened removal from "delete noisy LiDAR points" into map hygiene: dynamic objects, static objects that do not belong in the persistent map, moved objects, scene flow, moving/static separation, and validation against false deletion.
+
+| Cluster | Promoted files |
+|---|---|
+| MOS and scene-flow methods | [MotionSeg3D](../methods/motionseg3d.md), [MambaMOS](../methods/mambamos.md), [Neural Scene Flow Priors](../methods/neural-scene-flow-priors.md), [Scene Flow for Dynamic Object Removal](../../world-models/scene-flow-for-dynamic-object-removal.md) |
+| Motion/static and 4D occupancy benchmarks | [Moving/Static Separation MOS Datasets](../datasets-benchmarks/moving-static-separation-mos-datasets.md), [Occupancy-Flow and 4D Occupancy Benchmarks](../datasets-benchmarks/occupancy-flow-and-4d-occupancy-benchmarks.md), [Scene-Flow Datasets and Benchmarks](../../world-models/scene-flow-datasets-benchmarks.md) |
+| Map-cleaning validation bridge | [Dynamic Map Cleaning Benchmarks](../../localization-mapping/slam-methods/dynamic-map-cleaning-benchmarks.md), [Moved-Object and Map-Change Datasets](../../localization-mapping/maps/moved-object-and-map-change-datasets.md), [Airside Dynamic Map-Cleaning Benchmark](../../../60-safety-validation/verification-validation/airside-dynamic-map-cleaning-benchmark.md) |
+
+Next perception promotion queue: UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, DR-REMOVER, MOVES, RTMap, ExelMap, CVFusion, RobuRCDet, 4DRC-OCC, SparseBEV, DETR4D, ForeSight, DriveBench, SAM4D, airside FOD benchmarks, and airside-specific dust/de-icing/steam validation datasets.
 
 ### P0 Discovery Clusters To Split Or Link
 
@@ -192,9 +202,9 @@ Next perception promotion queue: UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, CVF
 | [Open-Vocabulary and Zero-Shot Detection](open-vocab-detection.md) | Split open-vocabulary known-class detection from open-world unknown-object discovery; add OW-OVD, SAM 3, OP3Det, 3D-AVS, Clipomaly, S2M, T-Rex2. |
 | [Vision Foundation Models](vision-foundation-models.md) | Florence-2, CAT-Seg, ProxyCLIP, AutoSeg/AVS, SAM 3, data-engine use cases, and OOD segmentation. |
 | [LiDAR Foundation Models](lidar-foundation-models.md) | 3D-AVS, OpenAD, OP3Det, open-world objectness, and auto-vocabulary point-cloud segmentation. |
-| [LiDAR Semantic Segmentation](lidar-semantic-segmentation.md) | LiDAR-MOS, 4DMOS, SegNet4D, Mask4D, ALPINE, HeLiMOS, moving/static labels, 4D panoptic outputs. |
+| [LiDAR Semantic Segmentation](lidar-semantic-segmentation.md) | LiDAR-MOS, 4DMOS, MotionSeg3D, MambaMOS, SegNet4D, Mask4D, ALPINE, HeLiMOS, moving/static labels, scene-flow signals, and 4D panoptic outputs. |
 | [OpenPCDet and CenterPoint](openpcdet-centerpoint.md) | VoxelNeXt, DSVT, fully sparse detectors, RadarPillars, and camera-LiDAR/radar fusion interfaces. |
-| [Streaming Temporal Perception](streaming-temporal-perception.md) | StreamMOS, 4DSegStreamer, Cam4DOcc, UnO, DFIT-OccWorld, Drive-OccWorld, LASP, Transtreaming, acquisition-vs-inference latency. |
+| [Streaming Temporal Perception](streaming-temporal-perception.md) | StreamMOS, 4DSegStreamer, MotionSeg3D, MambaMOS, Neural Scene Flow Priors, Cam4DOcc, UnO, DFIT-OccWorld, Drive-OccWorld, LASP, Transtreaming, acquisition-vs-inference latency. |
 | [Multi-Object Tracking](multi-object-tracking.md) | S2-Track, GRAE-3DMOT, CoopTrack, uncertainty/existence output contracts, occlusion age, source modality, track history quality. |
 | [Infrastructure Cooperative Perception](infrastructure-cooperative-perception.md) | RCooper, HoloVIC, CoInfra, V2X-ReaLO, V2XScenes, UrbanIng-V2X, V2X-Radar, online realism and latency traces. |
 | [Collaborative Fleet Perception](collaborative-fleet-perception.md) | CoSDH, mmCooper, CoST, CoopDETR, CoopTrack, CoHFF, V2Xverse, privacy/adaptation for unknown collaborators. |

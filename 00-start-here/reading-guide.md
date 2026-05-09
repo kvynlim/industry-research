@@ -11,6 +11,7 @@ This repository is an end-to-end autonomous-vehicle research knowledge base. Sta
 | Select hardware and sensors | `20-av-platform/` |
 | Study autonomy methods | `30-autonomy-stack/` |
 | Study LiDAR artifact/removal techniques | `30-autonomy-stack/perception/overview/lidar-artifact-removal-techniques.md` |
+| Study dynamic/static object removal | `30-autonomy-stack/localization-mapping/slam-methods/lidar-map-cleaning-dynamic-removal.md` |
 | Deploy on vehicle | `40-runtime-systems/` |
 | Build fleet and cloud systems | `50-cloud-fleet/` |
 | Build the safety case | `60-safety-validation/` |

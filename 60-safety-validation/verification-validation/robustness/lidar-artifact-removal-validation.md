@@ -13,7 +13,7 @@ For SOTIF-style safety argumentation, the central claim should be narrow: artifa
 | Classical filtering | SOR, ROR, DROR, DSOR, LIOR, DDIOR, D-LIOR, IDSOR, DVIOR, SDOR, LIDSOR | Unvalidated transfer to new LiDARs or cover materials. |
 | Learned weather removal | LIORNet-style learned denoising where evaluated | Using learned confidence as safety truth without independent checks. |
 | Sensor artifacts | Ghosts, multipath, retroreflector bloom, saturation, blockage, dust | Hardware faults covered by a separate diagnostic case. |
-| Dynamic map cleaning | ERASOR, Removert, MapCleaner, ERASOR++, 4dNDF | Runtime deletion of obstacles from the planning world without tracking/fusion. |
+| Dynamic map cleaning | ERASOR, Removert, MapCleaner, ERASOR++, 4dNDF, FreeDOM, STATIC-LIO-style dynamic-point removal | Runtime deletion of obstacles from the planning world without tracking/fusion. |
 | Airside ODD | Rain, snow, fog, dust, road spray, de-icing mist, wet apron, reflective equipment | Public-road-only results as final airport evidence. |
 
 ## Hazard and Failure Taxonomy
@@ -104,6 +104,8 @@ For ISO 21448/SOTIF alignment, connect artifact removal to:
 
 The claim should remain bounded. Artifact removal can support safe perception; it cannot prove that LiDAR alone is sufficient in all adverse conditions.
 
+For static objects that do not belong in the persistent map, pair this validation file with the [Airside Dynamic Map-Cleaning Benchmark](../airside-dynamic-map-cleaning-benchmark.md). The benchmark separates false retention of transient clutter from false deletion of valid structure, which is the core safety tradeoff in dynamic/static map cleaning.
+
 ## Sources
 
 - ISO 21448:2022 SOTIF: https://www.iso.org/standard/77490.html
@@ -119,5 +121,7 @@ The claim should remain bounded. Artifact removal can support safe perception; i
 - ERASOR: https://arxiv.org/abs/2103.04316
 - Removert: https://github.com/gisbi-kim/removert
 - 4dNDF: https://arxiv.org/abs/2405.03388
+- MapCleaner: https://www.mdpi.com/2072-4292/14/18/4496
+- ERASOR++: https://arxiv.org/abs/2403.05019
 - HeLiMOS dataset: https://sites.google.com/view/helimos/dataset
 - HeLiMOS toolbox: https://github.com/url-kaist/HeLiMOS-PointCloud-Toolbox

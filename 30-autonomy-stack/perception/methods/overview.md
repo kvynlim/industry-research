@@ -8,7 +8,7 @@ This directory is the method-level perception library. Each page should represen
 |---|---|
 | Camera BEV and camera occupancy | [BEVDet](bevdet.md), [BEVDepth](bevdepth.md), [BEVStereo](bevstereo.md), [SOLOFusion](solo-fusion.md), [Sparse4D](sparse4d.md), [TPVFormer](tpvformer.md), [SurroundOcc](surroundocc.md), [SparseOcc](sparseocc.md), [FlashOcc](flashocc.md), [SelfOcc](selfocc.md), [RenderOcc](renderocc.md) |
 | Gaussian, 3DGS, and 4D occupancy | [SplatAD](splatad.md), [GaussianFormer](gaussianformer.md), [GaussianOcc](gaussianocc.md), [Streaming Gaussian Occupancy](streaming-gaussian-occupancy.md), [Cam4DOcc](cam4docc.md), [StreamingFlow](streamingflow.md) |
-| LiDAR motion and temporal segmentation | [LiDAR-MOS](lidar-mos.md), [4DMOS](4dmos.md), [InsMOS](insmos.md), [StreamMOS](streammos.md), [4DSegStreamer](4dsegstreamer.md), [SegNet4D](segnet4d.md), [Mask4D](mask4d.md), [Instantaneous Motion Perception](instantaneous-motion-perception.md) |
+| LiDAR motion, scene flow, and temporal segmentation | [LiDAR-MOS](lidar-mos.md), [4DMOS](4dmos.md), [InsMOS](insmos.md), [StreamMOS](streammos.md), [4DSegStreamer](4dsegstreamer.md), [SegNet4D](segnet4d.md), [Mask4D](mask4d.md), [Instantaneous Motion Perception](instantaneous-motion-perception.md), [MotionSeg3D](motionseg3d.md), [MambaMOS](mambamos.md), [Neural Scene Flow Priors](neural-scene-flow-priors.md) |
 | LiDAR denoising, removal, and adverse weather | [LIORNet](liornet.md), [LiSnowNet](lisnownet.md), [SLiDE](slide-lidar-desnowing.md), [TripleMixer](triplemixer.md), [3D-KNN Blind-Spot Desnowing](3d-knn-blind-spot-desnowing.md), [3D-OutDet](3d-outdet.md), [AdverseNet](adversenet.md), [DenoiseCP-Net](denoisecp-net.md), [Classical LiDAR Outlier Removal](classical-lidar-outlier-removal.md), [LiDAR Weather Artifact Removal](lidar-weather-artifact-removal.md) |
 | Radar, 4D radar, and event perception | [RadarPillars](radarpillars.md), [K-Radar](k-radar.md), [V2X-Radar](v2x-radar.md), [TacoDepth](tacodepth.md), [RaCFormer](racformer.md), [Ev-3DOD](ev-3dod.md), [AevaScenes](aevascenes.md) |
 | Open-world and open-vocabulary perception | [OpenAD](openad.md), [OP3Det](op3det.md), [WildDet3D](wilddet3d.md), [DetAny3D](detany3d.md), [OW-OVD](ow-ovd.md), [Clipomaly](clipomaly.md), [S2M](s2m.md), [SAM 3](sam3.md), [3D-AVS](3d-avs.md), [Mosaic3D](mosaic3d.md), [OpenVox](openvox.md) |
@@ -46,19 +46,19 @@ Each method page should include:
 |---|---|
 | [BEV Encoding Architectures](../overview/bev-encoding.md) | Explains the BEV design space, then links to BEVDet/BEVDepth/BEVStereo/SOLOFusion and camera occupancy methods. |
 | [Camera-Only Degraded Perception](../overview/camera-fallback-perception.md) | Uses camera BEV, occupancy, depth, and open-vocabulary method pages to define fallback modes. |
-| [LiDAR Semantic Segmentation](../overview/lidar-semantic-segmentation.md) | Summarizes segmentation architecture choices, then links to LiDAR-MOS, 4DMOS, SegNet4D, Mask4D, and HeLiMOS-style evaluation. |
+| [LiDAR Semantic Segmentation](../overview/lidar-semantic-segmentation.md) | Summarizes segmentation architecture choices, then links to LiDAR-MOS, 4DMOS, SegNet4D, Mask4D, MotionSeg3D, MambaMOS, neural scene-flow priors, and HeLiMOS-style evaluation. |
 | [LiDAR Artifact Removal Techniques](../overview/lidar-artifact-removal-techniques.md) | Synthesizes learned denoisers, classical filters, weather artifact handling, ghost/multipath failures, validation, datasets, and map-cleaning links. |
-| [Streaming Temporal Perception](../overview/streaming-temporal-perception.md) | Connects StreamMOS, 4DSegStreamer, LASP, sparse-query detection, and temporal occupancy into a runtime stack. |
+| [Streaming Temporal Perception](../overview/streaming-temporal-perception.md) | Connects StreamMOS, 4DSegStreamer, MotionSeg3D, MambaMOS, LASP, sparse-query detection, scene flow, and temporal occupancy into a runtime stack. |
 | [Open-Vocabulary and Zero-Shot Detection](../overview/open-vocab-detection.md) | Stays as the broad open-vocabulary primer; OpenAD, OP3Det, WildDet3D, DetAny3D, OW-OVD, Clipomaly, S2M, and SAM 3 get individual pages here. |
 | [Infrastructure Cooperative Perception](../overview/infrastructure-cooperative-perception.md) | Synthesizes V2X deployment tradeoffs; RCooper, HoloVIC, CoInfra, V2X-ReaLO, CoHFF, CoSDH, and CoopTrack live here as atomic references. |
 | [Production Perception Systems](../overview/production-perception-systems.md) | Uses this library as the evidence base for validation matrices, degradation policies, and sensor-suite decisions. |
 
 ## Expansion Backlog
 
-The first waves focused on methods already identified as P0/P1 in the [Perception Coverage Audit](../overview/coverage-audit-2026.md). The 2026-05-09 loops promoted SplatAD, GaussianFormer, GaussianOcc, streaming Gaussian occupancy, Cam4DOcc, StreamingFlow, Sparse4D, TacoDepth, RaCFormer, LIORNet, learned LiDAR desnowing/denoising, broad artifact removal, and classical outlier filtering into atomic files. Future waves should split remaining grouped rows into atomic pages, especially:
+The first waves focused on methods already identified as P0/P1 in the [Perception Coverage Audit](../overview/coverage-audit-2026.md). The 2026-05-09 loops promoted SplatAD, GaussianFormer, GaussianOcc, streaming Gaussian occupancy, Cam4DOcc, StreamingFlow, Sparse4D, TacoDepth, RaCFormer, LIORNet, learned LiDAR desnowing/denoising, broad artifact removal, classical outlier filtering, MotionSeg3D, MambaMOS, and neural scene-flow priors into atomic files. Future waves should split remaining grouped rows into atomic pages, especially:
 
 - PanoOcc, LangOcc, VEON, and OpenOcc.
-- UnO, DFIT-OccWorld, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, ProOOD, and SA-Occ.
+- UnO, DFIT-OccWorld, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, ProOOD, SA-Occ, DR-REMOVER, MOVES, RTMap, and ExelMap.
 - SparseBEV, DETR4D, DySS, and ForeSight.
 - CVFusion, RobuRCDet, 4DRC-OCC, and SAMFusion.
 - SparseCoop, CoDS, JigsawComm, QuantV2X, TruckV2X, V2XScenes, and UrbanIng-V2X.

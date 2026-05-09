@@ -15,13 +15,16 @@ principles:
   and multi-task losses?
 - Are convolutions, recurrence, attention, and state-space layers being used
   for the invariances they actually encode?
+- Are representation objectives, tokenization choices, calibration procedures,
+  and leakage checks aligned with the downstream safety claim?
 
 This folder is organized as a ladder. The early notes build the classical
 machinery: linear decision functions, probabilistic classification, multilayer
 perceptrons, backpropagation, optimization, initialization, normalization,
 regularization, convolutions, and recurrent networks. The later notes connect
 those foundations to tokenization, transformers, diffusion, Mamba-style state
-space models, and sparse 3D perception.
+space models, contrastive and masked objectives, energy-based modeling,
+world-model evaluation, and sparse 3D perception.
 
 The intended reader is an AV engineer or researcher who needs to debug model
 behavior, not just call a library. The notes emphasize math, implementation
@@ -128,6 +131,52 @@ interfaces, failure modes, and perception relevance.
     - Covers score-based denoising and its role in video generation, trajectory
       sampling, occupancy forecasting, and planning.
 
+### 6. Objective, Tokenization, and Evaluation Companions
+
+21. [Autoencoders, VAEs, and Latent Variable Models](autoencoders-vae-and-latent-variable-models-first-principles.md)
+    - Connects reconstruction, latent bottlenecks, amortized inference, and
+      generative likelihoods to perception and world-model representations.
+
+22. [Contrastive Learning and InfoNCE](contrastive-learning-infonsce-first-principles.md)
+    - Derives pairwise and instance-discrimination objectives, batch negatives,
+      temperature, and common shortcut failures in AV self-supervision.
+
+23. [Masked Modeling](masked-modeling-first-principles.md)
+    - Covers MAE/BERT-style masking, reconstruction targets, mask ratios, and
+      transfer differences across images, voxels, LiDAR, BEV tokens, and motion.
+
+24. [Energy-Based Models](energy-based-models-first-principles.md)
+    - Frames scoring, normalization, contrastive divergence, score matching,
+      and anomaly/OOD use without treating energy scores as magic confidence.
+
+25. [Tokenization and Discretization](tokenization-and-discretization-first-principles.md)
+    - Generalizes beyond VQ-VAE into text tokens, image patches, BEV grids,
+      point/voxel tokens, motion tokens, and quantization artifacts.
+
+26. [Positional Encodings and Coordinate Tokenization](positional-encodings-and-coordinate-tokenization-first-principles.md)
+    - Explains sinusoidal, learned, relative, rotary, Fourier, and 3D coordinate
+      encodings for spatial-temporal driving models.
+
+27. [State-Space Models, S4, and Mamba](state-space-models-s4-mamba-first-principles.md)
+    - Gives the mathematical foundation beneath selective state-space sequence
+      models before applying Mamba to AV temporal perception.
+
+28. [Diffusion, Score, Flow, and Samplers](diffusion-score-flow-samplers-first-principles.md)
+    - Unifies denoising diffusion, score-based SDEs, probability-flow ODEs,
+      consistency/flow matching, and sampler tradeoffs.
+
+29. [Multi-Task Losses and Objectives](multi-task-losses-and-objectives-first-principles.md)
+    - Covers task weighting, gradient conflict, uncertainty weighting, PCGrad,
+      and deployment implications for unified perception stacks.
+
+30. [Evaluation, Calibration, and Data Leakage](evaluation-calibration-and-data-leakage-first-principles.md)
+    - Covers train/val/test hygiene, calibration metrics, statistical testing,
+      leakage modes, and safety-relevant model comparison.
+
+31. [World-Model Evaluation and Planning Objectives](world-model-evaluation-and-planning-objectives-first-principles.md)
+    - Separates prediction loss, latent quality, rollout stability, closed-loop
+      planning utility, and safety monitorability.
+
 ---
 
 ## Dependency Map
@@ -141,6 +190,8 @@ linear scores
   -> init / norm / regularization
   -> CNNs and RNNs
   -> tokenization, attention, SSMs, diffusion
+  -> contrastive / masked / energy / latent objectives
+  -> calibration, leakage checks, and multi-task objective design
   -> AV perception, prediction, planning, and world modeling
 ```
 
@@ -165,6 +216,12 @@ Use the early notes as a diagnostic checklist:
   coordinate transforms, and padding before changing the architecture family.
 - For a temporal failure, check state reset policy, sequence length, latency,
   BPTT truncation, hidden-state leakage, and timestamp alignment.
+- For a representation failure, check the pretext objective, token definition,
+  positional encoding, negative sampling, masking policy, and whether the
+  learned invariance deletes safety-relevant evidence.
+- For a model-comparison failure, check leakage, calibration, confidence
+  intervals, statistical power, and whether the metric matches the operational
+  risk being claimed.
 - For a deployment failure, check train/inference mode, dtype, normalization,
   deterministic kernels, batching, and memory layout.
 

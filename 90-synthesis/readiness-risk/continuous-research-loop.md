@@ -15,7 +15,7 @@ This page turns the repo's gap audits into a repeatable research loop. It exists
 
 ## Current Promotion Waves
 
-The 2026-05-09 loops promoted six high-value gap clusters into first-class pages.
+The 2026-05-09 loops promoted eight high-value gap clusters into first-class pages.
 
 | Track | Promoted coverage |
 |---|---|
@@ -25,6 +25,8 @@ The 2026-05-09 loops promoted six high-value gap clusters into first-class pages
 | First-principles foundations | Gaussian noise, Mahalanobis gating, MAP/MLE, robust statistics, mixtures, Gauss-Newton, LM, dogleg, Cholesky, QR/SVD, sparse solvers, Lie groups, PnP, ICP/GICP/NDT, occupancy grids, data association, JPDA/MHT/RFS, filters, sensor likelihoods, signal processing, radar ambiguity, CFAR, timestamping, and statistical benchmarking. |
 | LiDAR artifact removal and map cleaning | LIORNet, LiSnowNet, SLiDE, TripleMixer, 3D-KNN blind-spot de-snowing, 3D-OutDet, AdverseNet, DenoiseCP-Net, classical outlier filters, broad weather artifact removal, LiDAR ghost/multipath artifacts, ERASOR, Removert, dynamic map cleaning, and artifact-removal validation. |
 | ML foundations for autonomy | Perceptrons, logistic/softmax cross-entropy, MLPs, backprop/autodiff, optimization dynamics, initialization/normalization/regularization, CNNs, RNN/LSTM/GRU, attention/transformers, vision transformers, SSL, sequence models, foundation training, JEPA, and world-model first principles. |
+| Dynamic/static object removal | MapCleaner, ERASOR++, 4dNDF, FreeDOM, STATIC-LIO dynamic-point removal, MotionSeg3D, MambaMOS, neural scene-flow priors, moving/static separation datasets, moved-object map-change datasets, scene-flow benchmarks, 4D occupancy benchmarks, and airside dynamic-map cleaning validation. |
+| ML objective and evaluation foundations | Autoencoders/VAEs, contrastive InfoNCE, masked modeling, EBMs, tokenization/discretization, positional encodings, S4/Mamba first principles, diffusion-score-flow samplers, multi-task losses, calibration/leakage, and world-model evaluation objectives. |
 
 ## Active Next Queue
 
@@ -32,7 +34,7 @@ The 2026-05-09 loops promoted six high-value gap clusters into first-class pages
 |---|---|---|
 | P0 | Perception occupancy and radar | UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, 4DRC-OCC, CVFusion, RobuRCDet. |
 | P0 | Sparse and end-to-end perception | SparseBEV, DETR4D, ForeSight, SparseDrive, DiffusionDrive, SAM4D, DriveBench. |
-| P0 | Removal validation and adverse-weather datasets | Airside dust, de-icing mist, steam, glycol film, wet apron multipath, retroreflector bloom, and do-not-delete hazard labels. |
+| P0 | Removal validation and adverse-weather datasets | Airside dust, de-icing mist, steam, glycol film, wet apron multipath, retroreflector bloom, do-not-delete hazard labels, DR-REMOVER, MOVES, RTMap, and ExelMap. |
 | P0 | SLAM robustness and backends | Robust PGO/GNC/riSAM, certifiable pose-graph optimization, Kimera-RPGO/PCM, Scan Context family, LiDAR bundle-adjustment factors. |
 | P0 | Sensor and calibration fundamentals | Ultrasonic proximity models, thermal IR radiometry as a standalone file, fleet calibration operations, calibration-bay fixtures, and online calibration drift response. |
 | P0 | First-principles extensions | Continuous-time estimation, spline/GP trajectory representations, certifiable robust PGO, optimal experiment design for calibration, covariance consistency under robust losses, and RL/control foundations for learned autonomy. |
