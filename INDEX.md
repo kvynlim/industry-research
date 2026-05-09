@@ -195,6 +195,12 @@
 | Transformers | `10-knowledge-base/machine-learning/transformer-world-models.md` — causal attention, KV-cache, scaling laws |
 | Diffusion models | `10-knowledge-base/machine-learning/diffusion-models.md` — DDPM, DiT, flow matching |
 | GTSAM | `10-knowledge-base/state-estimation/gtsam-factor-graphs.md` — ISAM2, VGICP, neural factors |
+| Probability and uncertainty | `10-knowledge-base/probability-statistics/gaussian-noise-covariance-information.md`, `10-knowledge-base/probability-statistics/mahalanobis-chi-square-gating.md`, `10-knowledge-base/probability-statistics/likelihood-map-mle-least-squares.md` — Gaussian noise, covariance/information matrices, whitening, Mahalanobis gates, chi-square thresholds, NIS/NEES, likelihoods, MLE, MAP, and least-squares foundations |
+| Robust statistics and multimodal beliefs | `10-knowledge-base/probability-statistics/robust-statistics-ransac-hypothesis-testing.md`, `10-knowledge-base/probability-statistics/mixture-models-multimodal-beliefs.md` — M-estimators, RANSAC, hypothesis tests, Gaussian mixtures, mixture reduction, and multi-hypothesis localization/tracking |
+| Nonlinear optimization | `10-knowledge-base/optimization/nonlinear-least-squares-first-principles.md`, `10-knowledge-base/optimization/gauss-newton-levenberg-marquardt-dogleg.md`, `10-knowledge-base/optimization/trust-region-line-search-globalization.md`, `10-knowledge-base/optimization/jacobians-autodiff-manifold-linearization.md`, `10-knowledge-base/optimization/factor-graph-solver-patterns-ceres-gtsam-g2o.md` — residuals, whitening, Gauss-Newton, LM, dogleg, globalization, autodiff, manifold linearization, and solver-library tradeoffs |
+| Numerical linear algebra | `10-knowledge-base/numerical-linear-algebra/cholesky-ldlt-normal-equations.md`, `10-knowledge-base/numerical-linear-algebra/qr-svd-rank-revealing-solvers.md`, `10-knowledge-base/numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md`, `10-knowledge-base/numerical-linear-algebra/sparse-matrices-fill-in-ordering.md`, `10-knowledge-base/numerical-linear-algebra/square-root-information-and-covariance-recovery.md`, `10-knowledge-base/numerical-linear-algebra/schur-complement-marginalization-pcg.md` — Cholesky/LDLT, QR/SVD, rank, nullspaces, sparse fill-in, orderings, square-root information, Schur complements, marginalization, and PCG |
+| Geometry and mapping foundations | `10-knowledge-base/geometry-3d/lie-groups-se3-so3-jacobians.md`, `10-knowledge-base/geometry-3d/camera-projective-geometry-pnp-triangulation.md`, `10-knowledge-base/geometry-3d/point-cloud-registration-math-icp-ndt-gicp.md`, `10-knowledge-base/geometry-3d/correspondence-search-data-structures.md`, `10-knowledge-base/mapping/occupancy-bayes-evidential-dynamic-grids.md`, `10-knowledge-base/geometry-3d/geodesy-map-projections-datums.md` — Lie groups, projective geometry, PnP, triangulation, ICP/GICP/NDT, correspondence search, occupancy Bayes updates, and geodesy |
+| Association, filters, and signals | `10-knowledge-base/state-estimation/data-association-and-gating.md`, `10-knowledge-base/state-estimation/probabilistic-multi-object-association.md`, `10-knowledge-base/state-estimation/information-filters-and-smoothers.md`, `10-knowledge-base/state-estimation/particle-filters-and-hypothesis-management.md`, `10-knowledge-base/sensors/sensor-likelihoods-noise-error-budgets.md`, `10-knowledge-base/signal-processing/sampling-fft-windowing-filtering.md`, `10-knowledge-base/signal-processing/radar-ambiguity-chirp-design-doppler-limits.md`, `10-knowledge-base/signal-processing/cfar-detection-thresholding.md`, `10-knowledge-base/signal-processing/sensor-filtering-alpha-beta-kalman-complementary.md`, `10-knowledge-base/systems-engineering/time-sync-ptp-timestamping-latency-models.md`, `10-knowledge-base/systems-engineering/benchmarking-metrics-statistical-validity.md` — assignment, JPDA/MHT/RFS, information filters, particle filters, sensor likelihoods, FFT/filtering, radar ambiguity, CFAR, simple filters, timestamping, and statistical validity |
 | Sensor measurement models | `10-knowledge-base/geometry-3d/lidar-working-principles-noise-models.md`, `10-knowledge-base/geometry-3d/camera-imaging-noise-calibration.md`, `10-knowledge-base/signal-processing/radar-fmcw-mimo-doppler.md` — LiDAR, camera, and radar physics, noise, covariance, and calibration implications |
 | IMU, GNSS, and wheel odometry | `10-knowledge-base/state-estimation/imu-error-models-preintegration.md`, `10-knowledge-base/state-estimation/gnss-rtk-error-models.md`, `10-knowledge-base/state-estimation/wheel-odometry-encoder-models.md` — propagation, preintegration, RTK factors, dead reckoning, covariance, and outage behavior |
 | Timing and calibration observability | `10-knowledge-base/systems-engineering/time-synchronization-error-budgets.md`, `10-knowledge-base/geometry-3d/multi-sensor-calibration-observability.md` — timestamp error budgets, PTP/PPS, hand-eye calibration, observability motions, and online health checks |
@@ -252,6 +258,7 @@
 
 | Document | Key Contribution |
 |----------|-----------------|
+| First-principles foundations wave | 33 source-backed KB files covering Gaussian noise, Mahalanobis/chi-square gating, MAP/MLE, robust statistics, mixtures, Gauss-Newton, LM, dogleg, Jacobians, Ceres/GTSAM/g2o, Cholesky/LDLT, QR/SVD, sparse solvers, square-root information, Schur/PCG, Lie groups, projective geometry, ICP/GICP/NDT, occupancy grids, geodesy, assignment, JPDA/MHT/RFS, filters, sensor likelihoods, signal processing, radar ambiguity, CFAR, timestamping, and statistical benchmarking |
 | `90-synthesis/readiness-risk/continuous-research-loop.md` | Continuous research loop for discovery, triage, atomic-file promotion, cross-linking, verification, and next-queue selection across perception, SLAM, sensors, and mapping |
 | Perception/SLAM/sensor deep-dive wave | 33 source-backed files covering SplatAD and Gaussian/4DGS perception, latest sparse/radar-camera perception, production LIVO/SLAM, Gaussian/radar SLAM, and sensor measurement/noise fundamentals |
 | `10-knowledge-base/`, `20-av-platform/`, `30-autonomy-stack/`, `40-runtime-systems/`, `50-cloud-fleet/`, `60-safety-validation/`, `70-operations-domains/` P0 gap wave | 35 source-backed P0 gap files covering foundations, platform power/diagnostics/ruggedization, planning/control/V2X, E2E/VLA/world models, runtime/cloud operations, safety evidence, and non-airside operations domains |
@@ -329,11 +336,11 @@
 
 | Metric | Value |
 |--------|-------|
-| Reader Markdown pages | 432 |
-| Core research documents | 424 |
-| Reader/research lines | 233k+ |
+| Reader Markdown pages | 465 |
+| Core research documents | 457 |
+| Reader/research lines | 307k+ |
 | `00-start-here/` documents | 4 |
-| `10-knowledge-base/` documents | 28 |
+| `10-knowledge-base/` documents | 61 |
 | `20-av-platform/` documents | 27 |
 | `30-autonomy-stack/` documents | 230 |
 | `40-runtime-systems/` documents | 10 |
@@ -348,7 +355,7 @@
 | Method-level perception files | 63 |
 | Safety and validation documents | 24 |
 | AV platform documents | 27 |
-| Knowledge base documents | 28 |
+| Knowledge base documents | 61 |
 | Synthesis documents | 9 |
 | Perception documents | 91 |
 | Localization/mapping | 85 |

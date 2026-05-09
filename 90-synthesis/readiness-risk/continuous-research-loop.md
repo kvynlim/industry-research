@@ -13,15 +13,16 @@ This page turns the repo's gap audits into a repeatable research loop. It exists
 | Verify | Link checks, tests, build, stale-path scan | The corpus remains navigable and deployable through VitePress. |
 | Repeat | Next queue | Remaining backlog items are smaller, better prioritized, and ready for the next agent wave. |
 
-## Current Promotion Wave
+## Current Promotion Waves
 
-The 2026-05-09 loop promoted three high-value gaps into first-class pages.
+The 2026-05-09 loops promoted four high-value gap clusters into first-class pages.
 
 | Track | Promoted coverage |
 |---|---|
 | Gaussian and 4D perception | SplatAD, GaussianFormer, GaussianOcc, streaming Gaussian occupancy, Cam4DOcc, StreamingFlow, Sparse4D, TacoDepth, and RaCFormer. |
 | SLAM and mapping methods | MOLA, KISS-SLAM, KISS-Matcher, LVI-SAM, FAST-LIVO/FAST-LIVO2, R2LIVE/R3LIVE, Splat-SLAM, S3PO-GS, Gaussian-LIC, GS-LIVM, VIGS-SLAM, dynamic 4D Gaussian SLAM, and RadarSplat-RIO. |
 | Sensor and estimation fundamentals | LiDAR, camera, IMU, GNSS/RTK, radar, event/thermal, time synchronization, multi-sensor calibration observability, wheel odometry, visible-camera hardware, and IMU/GNSS/RTK hardware. |
+| First-principles foundations | Gaussian noise, Mahalanobis gating, MAP/MLE, robust statistics, mixtures, Gauss-Newton, LM, dogleg, Cholesky, QR/SVD, sparse solvers, Lie groups, PnP, ICP/GICP/NDT, occupancy grids, data association, JPDA/MHT/RFS, filters, sensor likelihoods, signal processing, radar ambiguity, CFAR, timestamping, and statistical benchmarking. |
 
 ## Active Next Queue
 
@@ -30,7 +31,8 @@ The 2026-05-09 loop promoted three high-value gaps into first-class pages.
 | P0 | Perception occupancy and radar | UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, 4DRC-OCC, CVFusion, RobuRCDet. |
 | P0 | Sparse and end-to-end perception | SparseBEV, DETR4D, ForeSight, SparseDrive, DiffusionDrive, SAM4D, DriveBench. |
 | P0 | SLAM robustness and backends | Robust PGO/GNC/riSAM, certifiable pose-graph optimization, Kimera-RPGO/PCM, Scan Context family, LiDAR bundle-adjustment factors. |
-| P0 | Sensor and calibration fundamentals | Ultrasonic proximity models, thermal IR radiometry as a standalone file, general sensor noise characterization, fleet calibration operations. |
+| P0 | Sensor and calibration fundamentals | Ultrasonic proximity models, thermal IR radiometry as a standalone file, fleet calibration operations, calibration-bay fixtures, and online calibration drift response. |
+| P0 | First-principles extensions | Continuous-time estimation, spline/GP trajectory representations, certifiable robust PGO, optimal experiment design for calibration, and advanced covariance consistency under robust losses. |
 | P1 | Collaborative and infrastructure perception | V2XScenes, UrbanIng-V2X, QuantV2X, RCP-Bench, TruckV2X, collaborative Gaussian occupancy. |
 | P1 | Alternative localization sensors | UWB/range-only SLAM, GPR localization, event-camera VIO, thermal RGBT VIO, wheel/LiDAR/IMU factor graphs. |
 

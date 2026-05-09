@@ -3,7 +3,7 @@
 | Directory | Purpose |
 |---|---|
 | `00-start-here/` | Orientation pages: reading guide, repository map, methodology pointer, and glossary pointer. |
-| `10-knowledge-base/` | Reusable fundamentals: robotics, estimation, controls, ML, geometry, signal processing, sensor models, and systems. |
+| `10-knowledge-base/` | Reusable fundamentals: probability/statistics, optimization, numerical linear algebra, geometry, mapping, state estimation, sensors, signal processing, controls, robotics, ML, calibration, and systems. |
 | `20-av-platform/` | Vehicle hardware, sensors, compute, networking, DBW, power, and thermal systems. |
 | `30-autonomy-stack/` | Perception, localization, mapping, planning, control, world models, VLA/VLM, simulation, and multi-agent autonomy. |
 | `40-runtime-systems/` | ROS, Autoware, middleware, edge inference, deployment, monitoring, and data logging. |

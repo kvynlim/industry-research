@@ -51,6 +51,18 @@ A follow-up loop focused specifically on method-level perception, method-level S
 
 The next active queue is no longer just P1 cross-architecture work. It also includes method-library loops for temporal occupancy, radar-camera/4D-radar perception, robust SLAM backends, alternative localization sensors, and sensor calibration operations.
 
+## First-Principles Foundations Loop (2026-05-09)
+
+Five web/discovery rounds audited probability/statistics, nonlinear optimization, numerical linear algebra, data association, geometry, mapping, sensors, signal processing, and statistical validation. Five writing agents then promoted the highest-priority gaps into 33 atomic knowledge-base files.
+
+| Track | Files promoted |
+|---|---|
+| Probability and statistics | Gaussian noise/covariance/information, Mahalanobis and chi-square gating, likelihood/MAP/MLE, robust statistics/RANSAC, and mixture models. |
+| Optimization and solvers | Nonlinear least squares, Gauss-Newton/Levenberg-Marquardt/dogleg, trust regions and line search, Jacobians/autodiff/manifold linearization, and Ceres/GTSAM/g2o solver patterns. |
+| Numerical linear algebra | Cholesky/LDLT, QR/SVD, Hessian conditioning, sparse fill-in/orderings, square-root information/covariance recovery, and Schur/marginalization/PCG. |
+| Geometry, mapping, and geodesy | Lie groups, projective geometry/PnP/triangulation, ICP/GICP/NDT registration, correspondence search structures, occupancy Bayes/evidential/dynamic grids, and map projections/datums. |
+| Association, filters, sensors, and validation | Data association, JPDA/MHT/RFS, information filters/smoothers, particle filters, sensor likelihoods, FFT/filtering, radar ambiguity, CFAR, timestamping, and benchmarking statistical validity. |
+
 ## P0 Backlog
 
 | Domain | Proposed file | Topic | Why it matters | Source anchors |
@@ -96,8 +108,8 @@ The next active queue is no longer just P1 cross-architecture work. It also incl
 
 | Domain | Proposed file or update | Topic |
 |---|---|---|
-| Foundations | `10-knowledge-base/state-estimation/multi-object-tracking-data-association.md` | Kalman/Hungarian/JPDA/MHT, track lifecycle, data association fundamentals. |
-| Foundations | `10-knowledge-base/robotics/occupancy-grids-costmaps.md` | Log-odds occupancy, inverse sensor models, inflation, dynamic occupancy, costmap semantics. |
+| Foundations | Promoted: `10-knowledge-base/state-estimation/data-association-and-gating.md`, `10-knowledge-base/state-estimation/probabilistic-multi-object-association.md` | Kalman/Hungarian/JPDA/MHT, track lifecycle, data association fundamentals. |
+| Foundations | Promoted: `10-knowledge-base/mapping/occupancy-bayes-evidential-dynamic-grids.md` | Log-odds occupancy, inverse sensor models, inflation, dynamic occupancy, costmap semantics. |
 | Foundations | `10-knowledge-base/systems-engineering/robotics-middleware-real-time.md` | ROS 2/DDS QoS, executors, deadlines, jitter, lifecycle, deterministic messaging. |
 | Foundations | `10-knowledge-base/systems-engineering/odd-scenario-based-assurance.md` | ODD, OpenSCENARIO, ISO 34502, ISO/PAS 8800, safety-case fundamentals. |
 | Platform | `20-av-platform/networking-connectivity/zonal-ee-harness-connectors.md` | Zonal E/E, automotive Ethernet PHYs, sensor SerDes, harnessing, serviceability. |

@@ -10,9 +10,9 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 | Scope | Count |
 |-------|-------|
-| Reader pages | 432 |
-| Core research documents | 424 |
-| Corpus size | 233k+ lines |
+| Reader pages | 465 |
+| Core research documents | 457 |
+| Corpus size | 307k+ lines |
 | Companies covered | 20 |
 | Technology domains | 9 |
 | Method-level SLAM library | 71 method files + overview |
@@ -20,6 +20,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | Safety and validation docs | 24 |
 | AV platform docs | 27 |
 | Synthesis docs | 9 |
+| Knowledge base docs | 61 |
 | Papers referenced | 400+ |
 | Open-source repos evaluated | 50+ |
 | Airport deployments documented | 15+ |
@@ -62,6 +63,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Localization and mapping | [Mapping and Localization](30-autonomy-stack/localization-mapping/overview/mapping-and-localization.md) | Covers HD maps, LiDAR SLAM, map-free driving, map maintenance, localization, and occupancy grids. |
 | Method-level 3D SLAM | [SLAM Library Overview](30-autonomy-stack/localization-mapping/slam-methods/overview.md) | Breaks classical, LiDAR, LIVO, visual, dense, neural, Gaussian, radar, and multi-sensor SLAM into focused method files. |
 | SLAM coverage gaps | [SLAM Coverage Audit](30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md) | Tracks missing first-class SLAM pages, including May 2026 sweeps across LIO, LIVO, 4D radar, Gaussian/foundation SLAM, backends, collaborative SLAM, alternative sensors, and benchmarks. |
+| First-principles estimator math | [Gaussian Noise and Covariance](10-knowledge-base/probability-statistics/gaussian-noise-covariance-information.md) | Starts the foundations path for Gaussian noise, Mahalanobis gating, MAP/MLE, Gauss-Newton, LM, Cholesky, QR/SVD, sparse solvers, association, filters, and uncertainty diagnostics. |
 | Sensor and estimation fundamentals | [LiDAR Noise Models](10-knowledge-base/geometry-3d/lidar-working-principles-noise-models.md) | Starts the sensor-model foundation path: LiDAR, camera, IMU, GNSS/RTK, radar, event/thermal, timing, calibration, and wheel odometry. |
 | End-to-end architecture gaps | [Knowledge Gap Backlog](90-synthesis/readiness-risk/knowledge-gap-backlog.md) | Tracks P0/P1/P2 missing research files across fundamentals, platform, autonomy, runtime/cloud, safety, operations, and industry intelligence. |
 
@@ -70,7 +72,7 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 | Section | Docs | Start At | What It Holds |
 |---------|------|----------|---------------|
 | `00-start-here/` | 4 | [Reading Guide](00-start-here/reading-guide.md) | Reader entry points and orientation material. |
-| `10-knowledge-base/` | 28 | [Theoretical Foundations](10-knowledge-base/systems-engineering/theoretical-foundations.md) | First-principles technical notes: diffusion, transformers, GTSAM, Frenet math, Lanelet2, Mamba, PointPillars, coordinate frames, filtering, vehicle dynamics, planning taxonomy, calibration, sensor models, and timing. |
+| `10-knowledge-base/` | 61 | [Gaussian Noise and Covariance](10-knowledge-base/probability-statistics/gaussian-noise-covariance-information.md) | First-principles technical notes: probability/statistics, optimization, numerical linear algebra, geometry, mapping, state estimation, sensor likelihoods, signal processing, controls, robotics, ML, calibration, and timing. |
 | `20-av-platform/` | 27 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, drive-by-wire, power, diagnostics, ruggedization, and edge-cloud architecture. |
 | `30-autonomy-stack/` | 230 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, E2E driving, and multi-agent systems. |
 | `40-runtime-systems/` | 10 | [Production ML Deployment](40-runtime-systems/ml-deployment/production-ml-deployment.md) | ML deployment, ROS/Autoware, observability, teleoperation, software operations, and vehicle-side data logging. |

@@ -6,6 +6,7 @@ This repository is an end-to-end autonomous-vehicle research knowledge base. Sta
 |---|---|
 | Understand the whole architecture | `90-synthesis/master/master-synthesis.md` |
 | Review fundamentals | `10-knowledge-base/` |
+| Learn estimator first principles | `10-knowledge-base/probability-statistics/gaussian-noise-covariance-information.md` |
 | Select hardware and sensors | `20-av-platform/` |
 | Study autonomy methods | `30-autonomy-stack/` |
 | Deploy on vehicle | `40-runtime-systems/` |
