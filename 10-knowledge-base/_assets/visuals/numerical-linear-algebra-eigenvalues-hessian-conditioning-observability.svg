@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="matrix-structure">
   <title id="title">Eigenvalues, Hessian Conditioning, and Observability</title>
   <desc id="desc">Hessian eigen-spectrum separating well-constrained modes, weak modes, nullspace/gauge freedom, damping, priors, and excitation.</desc>
   <defs>

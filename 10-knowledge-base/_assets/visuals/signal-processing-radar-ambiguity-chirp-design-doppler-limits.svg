@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="radar-map">
   <title id="title">range-Doppler ambiguity diagram</title>
   <desc id="desc">range-Doppler ambiguity diagram linking chirp slope, bandwidth, sampling rate, PRI, unambiguous range, and velocity limits.</desc>
   <defs>

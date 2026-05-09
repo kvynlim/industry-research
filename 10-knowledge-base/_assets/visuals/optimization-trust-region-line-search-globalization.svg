@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="optimization-step-geometry">
   <title id="title">trust-region versus line-search decision geometry</title>
   <desc id="desc">trust-region versus line-search decision geometry showing local model, step candidate, ratio test, backtracking, radius update, and instability prevention.</desc>
   <defs>

@@ -3,6 +3,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { visualKindForFile } from './visual-taxonomy.mjs'
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..')
 const knowledgeBaseRoot = path.join(repoRoot, '10-knowledge-base')
@@ -115,7 +116,7 @@ function pathArrow(d, color = '#2563eb', width = 3) {
 }
 
 function frame(spec, inner) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="${escapeXml(spec.diagramKind)}">
   <title id="title">${escapeXml(spec.title)}</title>
   <desc id="desc">${escapeXml(spec.caption)}</desc>
   <defs>
@@ -278,13 +279,116 @@ ${label('ordered state changes explain memory, synchronization, and update timin
 `)
 }
 
+const renderArchitectureComparison = renderConceptMap
+const renderAttentionMatrix = renderMatrix
+const renderBeamNoiseModel = renderGeometry
+const renderBeliefUpdateLoop = renderConceptMap
+const renderBenchmarkSplitFirewall = renderPipeline
+const renderClosedLoopControl = renderPipeline
+const renderComputationalGraph = renderConceptMap
+const renderDecisionBoundary = renderGeometry
+const renderDensityMixture = renderGeometry
+const renderDynamicsModelLadder = renderPipeline
+const renderEmbeddingSpace = renderGeometry
+const renderErrorBudget = renderPipeline
+const renderEvaluationFirewall = renderPipeline
+const renderFactorGraph = renderConceptMap
+const renderFilterUpdateLoop = renderConceptMap
+const renderGenerativeTrajectory = renderTimeline
+const renderGeodesyChain = renderGeometry
+const renderInformationMap = renderConceptMap
+const renderLatentArchitecture = renderPipeline
+const renderLearningRoadmap = renderPipeline
+const renderManifoldLinearization = renderGeometry
+const renderMapAndPlanningStack = renderPipeline
+const renderMatrixStructure = renderMatrix
+const renderMeasurementChain = renderPipeline
+const renderNumericalFactorization = renderMatrix
+const renderObjectiveLandscape = renderGeometry
+const renderOccupancyMapUpdate = renderGeometry
+const renderOptimizationStepGeometry = renderGeometry
+const renderProbabilityThresholds = renderMatrix
+const renderProjectionRays = renderGeometry
+const renderRadarMap = renderMatrix
+const renderReceptiveField = renderMatrix
+const renderRegistrationComparison = renderGeometry
+const renderRenderingComparison = renderGeometry
+const renderRepresentationComparison = renderConceptMap
+const renderRoadCorridorGeometry = renderGeometry
+const renderSearchAndGating = renderGeometry
+const renderSequenceMemory = renderTimeline
+const renderSignalFlowDepth = renderPipeline
+const renderSignalProcessingChain = renderPipeline
+const renderSolverLoop = renderPipeline
+const renderSparseAttentionMap = renderMatrix
+const renderStateEstimationChain = renderPipeline
+const renderSystemsMap = renderConceptMap
+const renderTensorPipeline = renderPipeline
+const renderTimingSync = renderTimeline
+const renderTokenGrid = renderMatrix
+const renderTrainingLifecycle = renderPipeline
+const renderTransformTree = renderConceptMap
+const renderUncertaintyGeometry = renderGeometry
+const renderWorldModelRollout = renderTimeline
+
+const KIND_RENDERER = {
+  'architecture-comparison': renderArchitectureComparison,
+  'attention-matrix': renderAttentionMatrix,
+  'beam-noise-model': renderBeamNoiseModel,
+  'belief-update-loop': renderBeliefUpdateLoop,
+  'benchmark-split-firewall': renderBenchmarkSplitFirewall,
+  'closed-loop-control': renderClosedLoopControl,
+  'computational-graph': renderComputationalGraph,
+  'decision-boundary': renderDecisionBoundary,
+  'density-mixture': renderDensityMixture,
+  'dynamics-model-ladder': renderDynamicsModelLadder,
+  'embedding-space': renderEmbeddingSpace,
+  'error-budget': renderErrorBudget,
+  'evaluation-firewall': renderEvaluationFirewall,
+  'factor-graph': renderFactorGraph,
+  'filter-update-loop': renderFilterUpdateLoop,
+  'generative-trajectory': renderGenerativeTrajectory,
+  'geodesy-chain': renderGeodesyChain,
+  'information-map': renderInformationMap,
+  'latent-architecture': renderLatentArchitecture,
+  'learning-roadmap': renderLearningRoadmap,
+  'manifold-linearization': renderManifoldLinearization,
+  'map-and-planning-stack': renderMapAndPlanningStack,
+  'matrix-structure': renderMatrixStructure,
+  'measurement-chain': renderMeasurementChain,
+  'numerical-factorization': renderNumericalFactorization,
+  'objective-landscape': renderObjectiveLandscape,
+  'occupancy-map-update': renderOccupancyMapUpdate,
+  'optimization-step-geometry': renderOptimizationStepGeometry,
+  'probability-thresholds': renderProbabilityThresholds,
+  'projection-rays': renderProjectionRays,
+  'radar-map': renderRadarMap,
+  'receptive-field': renderReceptiveField,
+  'registration-comparison': renderRegistrationComparison,
+  'rendering-comparison': renderRenderingComparison,
+  'representation-comparison': renderRepresentationComparison,
+  'road-corridor-geometry': renderRoadCorridorGeometry,
+  'search-and-gating': renderSearchAndGating,
+  'sequence-memory': renderSequenceMemory,
+  'signal-flow-depth': renderSignalFlowDepth,
+  'signal-processing-chain': renderSignalProcessingChain,
+  'solver-loop': renderSolverLoop,
+  'sparse-attention-map': renderSparseAttentionMap,
+  'state-estimation-chain': renderStateEstimationChain,
+  'systems-map': renderSystemsMap,
+  'tensor-pipeline': renderTensorPipeline,
+  'timing-sync': renderTimingSync,
+  'token-grid': renderTokenGrid,
+  'training-lifecycle': renderTrainingLifecycle,
+  'transform-tree': renderTransformTree,
+  'uncertainty-geometry': renderUncertaintyGeometry,
+  'world-model-rollout': renderWorldModelRollout
+}
+
 function chooseRenderer(spec) {
-  const text = `${spec.file} ${spec.caption}`.toLowerCase()
-  if (/matrix|hessian|eigen|qr|svd|cholesky|ldlt|schur|sparse|covariance|information|attention matrix|confusion|assignment|roc|pr curve|score/.test(text)) return renderMatrix
-  if (/geometry|coordinate|frame|projection|ray|camera|lidar|gnss|rtk|ellipse|map|lanelet|trajectory|wheel|frenet|point cloud/.test(text)) return renderGeometry
-  if (/timeline|sequence|time|temporal|sync|preintegration|recurrent|bptt|rollout|diffusion|sampling|scan/.test(text)) return renderTimeline
-  if (/theory|dependency|graph|belief|message|factor|causal|architecture|objective|decision/.test(text)) return renderConceptMap
-  return renderPipeline
+  const renderer = KIND_RENDERER[spec.diagramKind]
+  if (!renderer) throw new Error(`${spec.file}: missing renderer for ${spec.diagramKind}`)
+  return renderer
 }
 
 function listMarkdownFiles(dir, files = []) {
@@ -330,6 +434,7 @@ function parseReassessment() {
       title: visualTitle(h1, caption),
       alt: `${h1} curated visual`,
       caption,
+      diagramKind: visualKindForFile(file),
       emphasis: emphasisFromCaption(caption),
       nodes
     }

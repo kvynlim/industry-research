@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="occupancy-map-update">
   <title id="title">ray-based occupancy update</title>
   <desc id="desc">ray-based occupancy update showing prior cell state, inverse sensor model, log-odds/evidential mass, dynamic occupancy, and diagnostic failure cases.</desc>
   <defs>

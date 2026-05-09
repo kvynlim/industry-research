@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="factor-graph">
   <title id="title">factor graph or Bayesian network</title>
   <desc id="desc">factor graph or Bayesian network with local messages, variable elimination, belief/marginal computation, and AV factor examples.</desc>
   <defs>

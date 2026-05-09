@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="sequence-memory">
   <title id="title">Mamba &amp; State Space Models for Autonomous Driving</title>
   <desc id="desc">selective state-space scan for driving sequences, contrasting recurrent state update with quadratic attention and highlighting long-context deployment.</desc>
   <defs>

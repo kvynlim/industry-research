@@ -3,8 +3,11 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { DIAGRAM_KINDS, PAGE_DIAGRAM_KIND, visualKindForFile } from '../tools/knowledge-base/visual-taxonomy.mjs'
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+const minKnowledgeBaseDiagramKinds = 30
+const maxKnowledgeBasePagesPerDiagramKind = 7
 
 const requiredDocs = [
   'README.md',
@@ -122,6 +125,63 @@ test('knowledge-base pages include one curated replacement visual', () => {
   assert.deepEqual(failures, [])
 })
 
+test('knowledge-base pages have explicit taxonomy visual assignments', () => {
+  const knowledgeBaseDir = path.join(repoRoot, '10-knowledge-base')
+  const markdownFiles = readMarkdownFiles(knowledgeBaseDir)
+    .map((file) => path.relative(repoRoot, file).replace(/\\/g, '/'))
+    .sort()
+  const assignedFiles = Object.keys(PAGE_DIAGRAM_KIND).sort()
+  const allowedKinds = new Set(DIAGRAM_KINDS)
+  const failures = []
+  const usage = new Map()
+
+  assert.deepEqual(assignedFiles, markdownFiles)
+
+  for (const [file, kind] of Object.entries(PAGE_DIAGRAM_KIND)) {
+    if (!allowedKinds.has(kind)) {
+      failures.push(`${file}: unknown diagram kind ${kind}`)
+      continue
+    }
+
+    usage.set(kind, (usage.get(kind) ?? 0) + 1)
+  }
+
+  const dominantKinds = [...usage.entries()]
+    .filter(([, count]) => count > maxKnowledgeBasePagesPerDiagramKind)
+    .map(([kind, count]) => `${kind}:${count}`)
+
+  assert.equal(new Set(DIAGRAM_KINDS).size, DIAGRAM_KINDS.length)
+  assert.ok(
+    usage.size >= minKnowledgeBaseDiagramKinds,
+    `expected at least ${minKnowledgeBaseDiagramKinds} diagram kinds, got ${usage.size}`
+  )
+  assert.deepEqual(dominantKinds, [])
+  assert.deepEqual(failures, [])
+})
+
+test('visual taxonomy helper normalizes expected knowledge-base paths', () => {
+  assert.equal(
+    visualKindForFile('10-knowledge-base/controls/frenet-trajectory-math.md'),
+    'road-corridor-geometry'
+  )
+  assert.equal(
+    visualKindForFile('10-knowledge-base\\controls\\frenet-trajectory-math.md'),
+    'road-corridor-geometry'
+  )
+  assert.equal(
+    visualKindForFile('./10-knowledge-base/controls/frenet-trajectory-math.md'),
+    'road-corridor-geometry'
+  )
+  assert.equal(
+    visualKindForFile(path.join(repoRoot, '10-knowledge-base/controls/frenet-trajectory-math.md')),
+    'road-corridor-geometry'
+  )
+  assert.throws(
+    () => visualKindForFile('10-knowledge-base/missing.md'),
+    /Missing visual taxonomy assignment for 10-knowledge-base\/missing\.md/
+  )
+})
+
 test('curated knowledge-base visual assets keep accessible metadata', () => {
   const knowledgeBaseDir = path.join(repoRoot, '10-knowledge-base')
   const markdownFiles = readMarkdownFiles(knowledgeBaseDir)
@@ -153,12 +213,19 @@ test('curated knowledge-base visual assets keep accessible metadata', () => {
     }
 
     const svg = fs.readFileSync(imagePath, 'utf8')
+    const expectedKind = PAGE_DIAGRAM_KIND[relPath]
+    const rootSvgOpen = svg.match(/<svg\b[^>]*>/)?.[0]
+    const diagramKind = rootSvgOpen?.match(/data-diagram-kind="([^"]+)"/)?.[1]
     const svgRootCount = (svg.match(/<svg\b/g) ?? []).length
     const titleCount = (svg.match(/<title\b/g) ?? []).length
     const descMatches = [...svg.matchAll(/<desc\b[^>]*>([\s\S]*?)<\/desc>/g)]
 
     if (svgRootCount !== 1 || !svg.trimEnd().endsWith('</svg>')) {
       failures.push(`${relPath}: expected one complete root SVG element`)
+    }
+
+    if (!rootSvgOpen) {
+      failures.push(`${relPath}: expected an opening root SVG element`)
     }
 
     if (titleCount !== 1) {
@@ -171,6 +238,14 @@ test('curated knowledge-base visual assets keep accessible metadata', () => {
 
     if (!descMatches.some((match) => match[1].includes(caption))) {
       failures.push(`${relPath}: SVG desc should include the curated Visual caption`)
+    }
+
+    if (!expectedKind) {
+      failures.push(`${relPath}: missing taxonomy assignment`)
+    }
+
+    if (diagramKind !== expectedKind) {
+      failures.push(`${relPath}: SVG diagram kind ${diagramKind ?? 'missing'} should match ${expectedKind}`)
     }
 
     if (/generic|placeholder|auto-generated/i.test(svg)) {

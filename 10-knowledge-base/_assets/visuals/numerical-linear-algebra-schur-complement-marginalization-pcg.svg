@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="matrix-structure">
   <title id="title">block matrix and factor graph</title>
   <desc id="desc">block matrix and factor graph showing landmark/nuisance elimination, Schur complement, reduced pose system, marginalization prior, and PCG.</desc>
   <defs>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="numerical-factorization">
   <title id="title">square-root information workflow</title>
   <desc id="desc">square-root information workflow showing whitened residuals, QR factor, information matrix, selected marginal covariance recovery, and dense inverse avoidance.</desc>
   <defs>

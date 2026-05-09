@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="beam-noise-model">
   <title id="title">LiDAR point formation diagram</title>
   <desc id="desc">LiDAR point formation diagram showing emitted pulse or chirp, time-of-flight/FMCW measurement, beam angle, reflectance, incidence angle, weather dropout, and range noise.</desc>
   <defs>

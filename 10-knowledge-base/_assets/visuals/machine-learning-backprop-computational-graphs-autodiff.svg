@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="computational-graph">
   <title id="title">computational graph</title>
   <desc id="desc">computational graph with forward values and reverse-mode vector-Jacobian products flowing back to parameters, including detach/graph-break warning points.</desc>
   <defs>
