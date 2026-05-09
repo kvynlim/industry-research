@@ -22,9 +22,10 @@
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
 | What are world models | `30-autonomy-stack/world-models/overview.md` | `90-synthesis/master/master-synthesis.md` |
+| World-model first principles | `10-knowledge-base/machine-learning/world-models-first-principles.md` | Latent state, transition models, observation/reward heads, Dreamer/PlaNet, tokenized, diffusion, and JEPA branches |
 | Diffusion-based | `30-autonomy-stack/world-models/diffusion-world-models.md` | `10-knowledge-base/machine-learning/diffusion-models.md` |
 | Occupancy-based | `30-autonomy-stack/world-models/occupancy-world-models.md` | `30-autonomy-stack/world-models/occupancy-networks-comparison.md` (20 methods) |
-| Tokenized / JEPA | `30-autonomy-stack/world-models/tokenized-and-jepa.md` | `10-knowledge-base/machine-learning/vqvae-tokenization.md` |
+| Tokenized / JEPA | `30-autonomy-stack/world-models/tokenized-and-jepa.md` | `10-knowledge-base/machine-learning/vqvae-tokenization.md`, `10-knowledge-base/machine-learning/jepa-latent-predictive-learning.md` |
 | RL with world models | `30-autonomy-stack/world-models/rl-with-world-models.md` | `30-autonomy-stack/world-models/dreamer-world-model-rl.md` |
 | OccWorld setup | `30-autonomy-stack/world-models/occworld-implementation.md` | `30-autonomy-stack/world-models/occupancy-networks-comparison.md` |
 | Open-source repos | `30-autonomy-stack/world-models/opensource-implementations.md` | 21 repos rated |
@@ -32,6 +33,16 @@
 | Occupancy on Orin | `30-autonomy-stack/world-models/occupancy-deployment-orin.md` | FlashOcc TensorRT, nvblox, LiDAR voxelization, multi-resolution grids |
 | LiDAR-native world models | `30-autonomy-stack/world-models/lidar-native-world-models.md` | Copilot4D, UnO, LidarDM, LiDARCrafter, 4D occupancy forecasting, point cloud prediction, AD-L-JEPA, self-supervised training, Orin deployment |
 | Occupancy flow & 4D scenes | `30-autonomy-stack/world-models/occupancy-flow-4d-scenes.md` | Scene flow (ZeroFlow 0.028m EPE, DeFlow SOTA), 4D occupancy forecasting (UnO, OccSora, Cam4DOcc), dynamic 3D Gaussians, K-Planes 10900x compression, flow-guided Frenet planning, Mamba temporal, Orin 26-40ms FP16, $6-11K training |
+
+#### Machine learning foundations
+| Topic | Primary | Supporting |
+|-------|---------|-----------|
+| ML foundation ladder | `10-knowledge-base/machine-learning/overview.md` | Reading path from perceptron and logits through backprop, optimization, CNNs, RNNs, transformers, Mamba, JEPA, and world models |
+| Linear and probabilistic classifiers | `10-knowledge-base/machine-learning/perceptron-linear-classifiers.md` | `10-knowledge-base/machine-learning/logistic-softmax-cross-entropy.md` |
+| Training mechanics | `10-knowledge-base/machine-learning/backprop-computational-graphs-autodiff.md` | `10-knowledge-base/machine-learning/optimization-training-dynamics.md`, `10-knowledge-base/machine-learning/initialization-normalization-regularization.md` |
+| Spatial and temporal neural networks | `10-knowledge-base/machine-learning/convolutional-neural-networks.md` | `10-knowledge-base/machine-learning/recurrent-neural-networks-lstm-gru.md`, `10-knowledge-base/machine-learning/sequence-models-rnn-ssm-attention-first-principles.md` |
+| Transformer and foundation models | `10-knowledge-base/machine-learning/attention-transformers-first-principles.md` | `10-knowledge-base/machine-learning/vision-transformers-first-principles.md`, `10-knowledge-base/machine-learning/foundation-model-training-first-principles.md` |
+| Self-supervised and predictive learning | `10-knowledge-base/machine-learning/self-supervised-learning-first-principles.md` | `10-knowledge-base/machine-learning/jepa-latent-predictive-learning.md`, `10-knowledge-base/machine-learning/world-models-first-principles.md` |
 
 #### Perception
 | Topic | Primary | Supporting |
@@ -41,7 +52,9 @@
 | DINOv2 for driving | `30-autonomy-stack/perception/overview/dinov2-foundation-models-driving.md` | LoRA, adapter integration |
 | CenterPoint/OpenPCDet | `30-autonomy-stack/perception/overview/openpcdet-centerpoint.md` | `20-av-platform/compute/tensorrt-deployment-guide.md` |
 | Production systems | `30-autonomy-stack/perception/overview/production-perception-systems.md` | Waymo/Tesla/comma sensor suites |
-| Perception method library | `30-autonomy-stack/perception/methods/overview.md` | 63 atomic method files across camera BEV, occupancy, Gaussian/3DGS, LiDAR MOS, radar-camera/4D radar, event/FMCW, open-world/OOD, robust fusion, V2X, latency, and data-engine evaluation |
+| Perception method library | `30-autonomy-stack/perception/methods/overview.md` | 73 atomic method files across camera BEV, occupancy, Gaussian/3DGS, LiDAR MOS, LiDAR denoising/removal, radar-camera/4D radar, event/FMCW, open-world/OOD, robust fusion, V2X, latency, and data-engine evaluation |
+| LiDAR artifact removal | `30-autonomy-stack/perception/overview/lidar-artifact-removal-techniques.md` | LIORNet, LiSnowNet, SLiDE, TripleMixer, classical filters, weather artifacts, ghost/multipath behavior, dynamic-map cleaning, and validation |
+| Weather robustness datasets | `30-autonomy-stack/perception/datasets-benchmarks/weather-robustness-datasets.md` | WADS, CADC/CADC+, SemanticSTF, REHEARSE-3D, RainSense, SemanticSpray, RADIATE, and Seeing Through Fog/DENSE |
 | Perception coverage audit | `30-autonomy-stack/perception/overview/coverage-audit-2026.md` | May 2026 multi-agent sweeps across camera BEV/occupancy, LiDAR MOS, 4D radar, open-world/OOD, V2X, robust fusion, deployment validation, and benchmarks |
 | Sensor fusion | `30-autonomy-stack/perception/overview/sensor-fusion-architectures.md` | BEVFusion, masked modality training |
 | Infrastructure cooperative perception | `30-autonomy-stack/perception/overview/infrastructure-cooperative-perception.md` | V2I fusion, fixed sensors, DAIR-V2X, airport existing systems |
@@ -65,7 +78,7 @@
 #### Method-level SLAM
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
-| SLAM method library | `30-autonomy-stack/localization-mapping/slam-methods/overview.md` | 71 focused method files plus an overview page covering classical, LiDAR, LIVO, visual, RGB-D, neural, Gaussian, radar, and fusion SLAM |
+| SLAM method library | `30-autonomy-stack/localization-mapping/slam-methods/overview.md` | 74 focused method files plus an overview page covering classical, LiDAR, LIVO, visual, RGB-D, neural, Gaussian, radar, fusion SLAM, and map cleaning |
 | SLAM coverage audit | `30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md` | Source-backed backlog plus May 2026 discovery sweeps: LVI-SAM, FAST-LIVO/R3LIVE, KISS-SLAM, MOLA, robust/certifiable PGO, C-SLAM, degeneracy-robust LIO, event/thermal/multi-camera VIO, GPR/UWB/RF fallbacks, 4D radar, Gaussian/foundation SLAM, and current benchmarks |
 | AV / indoor / outdoor selection | `30-autonomy-stack/localization-mapping/slam-methods/av-indoor-outdoor-decision-matrix.md` | Method fit by GNSS availability, dynamics, map dependence, compute budget, and safety criticality |
 | Benchmarks and datasets | `30-autonomy-stack/localization-mapping/slam-methods/benchmarking-metrics-datasets.md` | ATE/RPE, KITTI drift, loop closure, map quality, dynamic-scene metrics, KITTI/KITTI-360, EuRoC, TUM, Oxford, Boreas, MulRan |
@@ -77,6 +90,7 @@
 | Indoor and dense SLAM | `30-autonomy-stack/localization-mapping/slam-methods/rtab-map.md` | `kinectfusion.md`, `elasticfusion.md`, `bundlefusion.md`, `imap.md`, `nice-slam.md`, `co-slam-eslam.md`, `nerf-slam.md` |
 | Learned, semantic, and Gaussian SLAM | `30-autonomy-stack/localization-mapping/slam-methods/splatam.md` | `lo-net-learned-lidar-odometry.md`, `regformer-learned-registration.md`, `semantic-slam.md`, `dynamic-object-aware-slam.md`, `object-level-slam.md`, `gs-slam-monogs.md`, `photo-slam.md` |
 | Outdoor Gaussian and radar SLAM | `30-autonomy-stack/localization-mapping/slam-methods/splat-loam.md` | `gigaslam.md`, `wildgs-slam.md`, `splat-slam.md`, `s3po-gs.md`, `gaussian-lic.md`, `gs-livm.md`, `vigs-slam.md`, `dynamic-4d-gaussian-slam.md`, `radarsplat-rio.md`, `radar-odometry-radar-slam.md`, `radar-inertial-odometry.md`, `radar-lidar-inertial-fusion.md` |
+| Dynamic map cleaning | `30-autonomy-stack/localization-mapping/slam-methods/lidar-map-cleaning-dynamic-removal.md` | `erasor.md`, `removert.md`, 4dNDF, HeLiMOS-style evaluation, static-map preservation, and dynamic-object removal risks |
 
 #### Localization & mapping
 | Topic | Primary | Supporting |
@@ -111,6 +125,7 @@
 | Sensor degradation & health monitoring | `20-av-platform/sensors/sensor-degradation-health-monitoring.md` | Degradation taxonomy (optical/mechanical/environmental/electronic), 10 airside contamination sources, per-sensor diagnostics (LiDAR 7-check, radar SNR/coverage, thermal NUC/dead pixel, camera exposure/blur), cross-sensor consistency scoring, EMA-based temporal tracking with z-score anomaly, response matrix (4 sensors × 4 severity), fleet health analytics (zone correlation, seasonal patterns), predictive maintenance (linear extrapolation), cleaning schedules, 1 Hz ROS monitoring at <2ms, $35K/11 weeks |
 | Automated sensor cleaning | `20-av-platform/sensors/automated-sensor-cleaning.md` | Physical self-maintenance for 16-20 hr/day tarmac ops: cleaning modality comparison (air curtains, air burst, wipers, washer fluid, ultrasonic, heated windows, hydrophobic coatings, UV photocatalytic), contamination-to-cleaning mapping (de-icing glycol requires chemical cleaning — air jets spread it), per-sensor architecture (germanium thermal windows air-only, no wipers), health monitor closed-loop integration, power/weight budget (15-40W, 1.5-3.0 kg), $200-500/vehicle hardware, 15-25% availability improvement, 60-80% fewer depot cleaning visits |
 | Solid-state LiDAR & photonics | `20-av-platform/sensors/solid-state-lidar-photonics.md` | FMCW vs ToF measurement principles, silicon photonics integration (SiPh LiDAR-on-chip), OPA beam steering (GHz point-to-point, 0.01-0.05° angular resolution), MEMS mirror reliability, flash LiDAR for docking, per-point velocity (jet blast detection, zero-latency approaching-object detection), 1550nm eye safety (100x margin), Aeva Atlas/Voyant Helium/SiLC comparison, 50-200x longer MTBF (100K+ hrs), $150-450K/year fleet savings, Orin GTSAM velocity factor, adaptive resolution for active perception, phased migration strategy, $110-175K over 48 weeks |
+| LiDAR ghost and multipath artifacts | `20-av-platform/sensors/lidar-ghost-multipath-artifacts.md` | Wet surfaces, aircraft skins, glass, retroreflector bloom, sun/receiver saturation, multi-return ambiguity, and cross-sensor checks |
 | Energy-efficient inference 24/7 | `20-av-platform/compute/energy-efficient-inference-24-7.md` | Orin 15W/30W/50W power modes vs throughput, dynamic model switching (40-60% time in low-complexity), thermal throttling curves (-10C to +50C tarmac), battery-aware compute (SoC-correlated power budgets), DLA+GPU concurrent scheduling, per-model watt measurements, sleep/wake with <500ms wake-up, fleet-level energy optimization, 8-15% more daily operating hours, 12-18C lower junction temp |
 | Edge-cloud hybrid inference | `20-av-platform/compute/edge-cloud-hybrid-inference.md` | Three-tier architecture (on-vehicle Orin + airport MEC edge + cloud), model placement decision framework, split inference patterns, bandwidth/latency analysis, NVIDIA Triton on edge servers, graceful degradation (vehicle always autonomous), security, cost-benefit ($2,500/vehicle for shared edge vs $2,000-5,000 per Thor upgrade), industry approaches, airport advantage (bounded geography + private 5G) |
 | Airport 5G | `20-av-platform/networking-connectivity/airport-5g-cbrs.md` | `20-av-platform/networking-connectivity/airport-5g-case-studies.md` |
@@ -130,6 +145,7 @@
 | Functional safety software | `60-safety-validation/standards-certification/functional-safety-software.md` | MISRA C, ISO 26262 Part 6, static analysis, CI/CD, ROS safety patterns |
 | Scenario taxonomy & edge cases | `60-safety-validation/verification-validation/airside-scenario-taxonomy.md` | ISO 34502 adapted for airside, SOTIF hazard catalog (H1-H8+), 115 functional scenarios, ODD definition, Pegasus 6-layer, STPA, risk matrix, regulatory mapping |
 | Testing & validation methodology | `60-safety-validation/verification-validation/testing-validation-methodology.md` | V-model, scenario-based testing (ASAM OpenSCENARIO 2.0), coverage metrics (N-wise covering arrays), corner case/adversarial testing (CMA-ES falsification, LLM scenario generation, metamorphic testing), SIL/HIL/VIL, statistical safety (Zhao-Weng, Bayesian), shadow mode, regression/CI/CD, digital twin, airside test protocols, $105K first airport |
+| LiDAR artifact removal validation | `60-safety-validation/verification-validation/robustness/lidar-artifact-removal-validation.md` | Raw-vs-filtered evidence, do-not-delete hazard tests, weather/ghost/dynamic-object labels, localization observability, ODD degradation, and SOTIF argumentation |
 | Runtime verification & monitoring | `60-safety-validation/runtime-assurance/runtime-verification-monitoring.md` | STL monitors (<1ms, 20 airside specs), OOD detection (energy+Mahalanobis+ensemble, 95-98% AUROC), maximally permissive shields (1-5% intervention), safety MCU (STM32H725), METAR ODD monitoring, WCET <5.5ms, ISO 26262 ASIL decomposition, UL 4600 compliance, DO-178C credit, fleet anomaly correlation, $115-200K/32 weeks |
 | Online perception monitoring & ODD enforcement | `60-safety-validation/runtime-assurance/online-perception-monitoring-odd-enforcement.md` | ML-specific silent degradation detection (domain shift, model staleness, adversarial natural conditions), input distribution monitoring (KL divergence, MMD on backbone features), output consistency checking (CUSUM/EWMA on detection counts, class distributions, tracking metrics), cross-modal consistency (LiDAR vs radar vs camera agreement), OOD detection integration (energy + Mahalanobis), ODD boundary state machine (NORMAL→DEGRADED→RESTRICTED→SUSPENDED with hysteresis), Perception Health Score (Bayesian fusion of monitors), calibration drift detection, temporal anomaly detection, <5ms total on Orin, ISO 3691-4/UL 4600/EU AI Act compliance |
 | Formal verification of neural networks | `60-safety-validation/verification-validation/formal-verification-neural-networks.md` | SMT/MILP complete verification (<100K params), alpha-beta-CROWN over-approximation (millions of params, VNN-COMP winner), IBP/SABR certified training, Lipschitz bounds for safety margins, layered strategy: complete for safety-critical (policy, CBF, Simplex), scalable for perception (PointPillars, CenterPoint), runtime for residual, ISO 3691-4/UL 4600/EU AI Act compliance |
@@ -336,34 +352,34 @@
 
 | Metric | Value |
 |--------|-------|
-| Reader Markdown pages | 465 |
-| Core research documents | 457 |
-| Reader/research lines | 307k+ |
+| Reader Markdown pages | 506 |
+| Core research documents | 498 |
+| Reader/research lines | 315k+ |
 | `00-start-here/` documents | 4 |
-| `10-knowledge-base/` documents | 61 |
-| `20-av-platform/` documents | 27 |
-| `30-autonomy-stack/` documents | 230 |
+| `10-knowledge-base/` documents | 77 |
+| `20-av-platform/` documents | 28 |
+| `30-autonomy-stack/` documents | 253 |
 | `40-runtime-systems/` documents | 10 |
 | `50-cloud-fleet/` documents | 20 |
-| `60-safety-validation/` documents | 24 |
+| `60-safety-validation/` documents | 25 |
 | `70-operations-domains/` documents | 24 |
 | `80-industry-intel/` documents | 52 |
 | `90-synthesis/` documents | 9 |
 | Companies covered | 20 |
 | Technology domains | 9 |
-| Method-level SLAM library | 71 method files + overview |
-| Method-level perception files | 63 |
-| Safety and validation documents | 24 |
-| AV platform documents | 27 |
-| Knowledge base documents | 61 |
+| Method-level SLAM library | 74 method files + overview |
+| Method-level perception files | 73 |
+| Safety and validation documents | 25 |
+| AV platform documents | 28 |
+| Knowledge base documents | 77 |
 | Synthesis documents | 9 |
-| Perception documents | 91 |
-| Localization/mapping | 85 |
+| Perception documents | 111 |
+| Localization/mapping | 88 |
 | Planning documents | 15 |
 | Multi-agent and V2X | 6 |
-| Robustness validation files | 2 |
-| Papers referenced | 400+ |
-| Open-source repos evaluated | 50+ |
+| Robustness validation files | 3 |
+| Papers referenced | 500+ |
+| Open-source repos evaluated | 60+ |
 | Occupancy methods compared | 20 |
 | Online mapping methods compared | 16 |
 | Cooperative perception methods | 10+ |

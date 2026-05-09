@@ -2,6 +2,8 @@
 
 **Date:** March 2025
 
+First-principles companion pages: [World Models](../../10-knowledge-base/machine-learning/world-models-first-principles.md), [JEPA Latent Predictive Learning](../../10-knowledge-base/machine-learning/jepa-latent-predictive-learning.md), and [Attention and Transformers](../../10-knowledge-base/machine-learning/attention-transformers-first-principles.md).
+
 ---
 
 ## Table of Contents

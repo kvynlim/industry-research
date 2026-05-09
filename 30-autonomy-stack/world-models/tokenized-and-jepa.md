@@ -2,6 +2,8 @@
 
 ## Comprehensive Technical Report
 
+First-principles companion pages: [JEPA Latent Predictive Learning](../../10-knowledge-base/machine-learning/jepa-latent-predictive-learning.md), [World Models](../../10-knowledge-base/machine-learning/world-models-first-principles.md), and [Sequence Models, State-Space Models, and Attention](../../10-knowledge-base/machine-learning/sequence-models-rnn-ssm-attention-first-principles.md).
+
 ---
 
 ## 1. Tokenized / Discrete World Models

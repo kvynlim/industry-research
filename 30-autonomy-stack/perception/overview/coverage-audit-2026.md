@@ -6,9 +6,9 @@ The perception library is broad, but the May 2026 agent sweeps found several met
 
 | Item | Status |
 |---|---|
-| Dedicated perception files | 21 top-level perception synthesis/audit files plus 63 atomic method files in [Perception Method Library](../methods/overview.md). |
-| Strongest existing coverage | Production sensor suites, CenterPoint/OpenPCDet, BEV basics, method-level camera BEV/occupancy, Gaussian/3DGS occupancy, LiDAR MOS, radar-camera fusion, radar/event/FMCW, open-world/OOD, robust fusion, V2X, latency, data engines, model compression, uncertainty, and thermal fusion. |
-| Most severe structural gap | Remaining P0/P1 items still need atomic pages: panoptic/open-vocabulary occupancy, temporal occupancy uncertainty, radar-camera/4D-radar follow-ons, newer cooperative compression, airside FOD datasets, and long-tail adverse-weather datasets. |
+| Dedicated perception files | 27 top-level perception synthesis/audit files, 10 dataset/benchmark pages, and 73 atomic method files in [Perception Method Library](../methods/overview.md). |
+| Strongest existing coverage | Production sensor suites, CenterPoint/OpenPCDet, BEV basics, method-level camera BEV/occupancy, Gaussian/3DGS occupancy, LiDAR MOS, LiDAR artifact removal, learned denoising, adverse-weather datasets, radar-camera fusion, radar/event/FMCW, open-world/OOD, robust fusion, V2X, latency, data engines, model compression, uncertainty, and thermal fusion. |
+| Most severe structural gap | Remaining P0/P1 items still need atomic pages: panoptic/open-vocabulary occupancy, temporal occupancy uncertainty, radar-camera/4D-radar follow-ons, newer cooperative compression, airside FOD datasets, and public-data gaps for dust, de-icing mist, steam, glycol film, and wet-apron multipath. |
 | How to use this audit | Use the method library for promoted atomic pages. Use the P0/P1/P2 rows below as discovery clusters and backlog for remaining splits. Update this audit whenever a missing perception method becomes a dedicated file. |
 
 ## Multi-Agent Discovery Sweep (2026-05-08)
@@ -37,7 +37,18 @@ Fresh parallel discovery and writing agents promoted the first Gaussian/4DGS and
 | 4D occupancy and sparse-query perception | [Cam4DOcc](../methods/cam4docc.md), [StreamingFlow](../methods/streamingflow.md), [Sparse4D](../methods/sparse4d.md) |
 | Radar-camera fusion | [TacoDepth](../methods/tacodepth.md), [RaCFormer](../methods/racformer.md) |
 
-Next perception promotion queue: UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, CVFusion, RobuRCDet, 4DRC-OCC, SparseBEV, DETR4D, ForeSight, DriveBench, SAM4D, and airside FOD benchmarks.
+## LIORNet and Adverse-Weather Removal Wave (2026-05-09)
+
+The next loop broadened the LIORNet question from one snow-removal method into a full removal stack: learned LiDAR denoising, classical outlier filters, weather artifact removal, ghost/multipath failure modes, dynamic map cleaning, validation evidence, and weather robustness datasets.
+
+| Cluster | Promoted files |
+|---|---|
+| Learned LiDAR denoising/removal | [LIORNet](../methods/liornet.md), [LiSnowNet](../methods/lisnownet.md), [SLiDE](../methods/slide-lidar-desnowing.md), [TripleMixer](../methods/triplemixer.md), [3D-KNN Blind-Spot Desnowing](../methods/3d-knn-blind-spot-desnowing.md), [3D-OutDet](../methods/3d-outdet.md), [AdverseNet](../methods/adversenet.md), [DenoiseCP-Net](../methods/denoisecp-net.md) |
+| Classical and broad artifact removal | [Classical LiDAR Outlier Removal](../methods/classical-lidar-outlier-removal.md), [LiDAR Weather Artifact Removal](../methods/lidar-weather-artifact-removal.md), [LiDAR Artifact Removal Techniques](lidar-artifact-removal-techniques.md), [LiDAR Ghost and Multipath Artifacts](../../../20-av-platform/sensors/lidar-ghost-multipath-artifacts.md) |
+| Weather robustness datasets | [Weather Robustness Datasets](../datasets-benchmarks/weather-robustness-datasets.md), [WADS](../datasets-benchmarks/wads-winter-adverse-driving-dataset.md), [CADC/CADC+](../datasets-benchmarks/cadc-cadc-plus.md), [SemanticSTF](../datasets-benchmarks/semanticstf.md), [REHEARSE-3D](../datasets-benchmarks/rehearse-3d.md), [RainSense](../datasets-benchmarks/rainsense.md), [SemanticSpray](../datasets-benchmarks/semantic-spray.md), [RADIATE](../datasets-benchmarks/radiate.md), [Seeing Through Fog/DENSE](../datasets-benchmarks/seeing-through-fog-dense.md) |
+| Safety and map-cleaning bridge | [LiDAR Artifact Removal Validation](../../../60-safety-validation/verification-validation/robustness/lidar-artifact-removal-validation.md), [ERASOR](../../localization-mapping/slam-methods/erasor.md), [Removert](../../localization-mapping/slam-methods/removert.md), [LiDAR Map Cleaning and Dynamic Removal](../../localization-mapping/slam-methods/lidar-map-cleaning-dynamic-removal.md) |
+
+Next perception promotion queue: UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, CVFusion, RobuRCDet, 4DRC-OCC, SparseBEV, DETR4D, ForeSight, DriveBench, SAM4D, airside FOD benchmarks, and airside-specific dust/de-icing/steam validation datasets.
 
 ### P0 Discovery Clusters To Split Or Link
 

@@ -15,7 +15,7 @@ This page turns the repo's gap audits into a repeatable research loop. It exists
 
 ## Current Promotion Waves
 
-The 2026-05-09 loops promoted four high-value gap clusters into first-class pages.
+The 2026-05-09 loops promoted six high-value gap clusters into first-class pages.
 
 | Track | Promoted coverage |
 |---|---|
@@ -23,6 +23,8 @@ The 2026-05-09 loops promoted four high-value gap clusters into first-class page
 | SLAM and mapping methods | MOLA, KISS-SLAM, KISS-Matcher, LVI-SAM, FAST-LIVO/FAST-LIVO2, R2LIVE/R3LIVE, Splat-SLAM, S3PO-GS, Gaussian-LIC, GS-LIVM, VIGS-SLAM, dynamic 4D Gaussian SLAM, and RadarSplat-RIO. |
 | Sensor and estimation fundamentals | LiDAR, camera, IMU, GNSS/RTK, radar, event/thermal, time synchronization, multi-sensor calibration observability, wheel odometry, visible-camera hardware, and IMU/GNSS/RTK hardware. |
 | First-principles foundations | Gaussian noise, Mahalanobis gating, MAP/MLE, robust statistics, mixtures, Gauss-Newton, LM, dogleg, Cholesky, QR/SVD, sparse solvers, Lie groups, PnP, ICP/GICP/NDT, occupancy grids, data association, JPDA/MHT/RFS, filters, sensor likelihoods, signal processing, radar ambiguity, CFAR, timestamping, and statistical benchmarking. |
+| LiDAR artifact removal and map cleaning | LIORNet, LiSnowNet, SLiDE, TripleMixer, 3D-KNN blind-spot de-snowing, 3D-OutDet, AdverseNet, DenoiseCP-Net, classical outlier filters, broad weather artifact removal, LiDAR ghost/multipath artifacts, ERASOR, Removert, dynamic map cleaning, and artifact-removal validation. |
+| ML foundations for autonomy | Perceptrons, logistic/softmax cross-entropy, MLPs, backprop/autodiff, optimization dynamics, initialization/normalization/regularization, CNNs, RNN/LSTM/GRU, attention/transformers, vision transformers, SSL, sequence models, foundation training, JEPA, and world-model first principles. |
 
 ## Active Next Queue
 
@@ -30,9 +32,10 @@ The 2026-05-09 loops promoted four high-value gap clusters into first-class page
 |---|---|---|
 | P0 | Perception occupancy and radar | UnO, Drive-OccWorld, ST-Occ, STCOcc, EvOcc, 4DRC-OCC, CVFusion, RobuRCDet. |
 | P0 | Sparse and end-to-end perception | SparseBEV, DETR4D, ForeSight, SparseDrive, DiffusionDrive, SAM4D, DriveBench. |
+| P0 | Removal validation and adverse-weather datasets | Airside dust, de-icing mist, steam, glycol film, wet apron multipath, retroreflector bloom, and do-not-delete hazard labels. |
 | P0 | SLAM robustness and backends | Robust PGO/GNC/riSAM, certifiable pose-graph optimization, Kimera-RPGO/PCM, Scan Context family, LiDAR bundle-adjustment factors. |
 | P0 | Sensor and calibration fundamentals | Ultrasonic proximity models, thermal IR radiometry as a standalone file, fleet calibration operations, calibration-bay fixtures, and online calibration drift response. |
-| P0 | First-principles extensions | Continuous-time estimation, spline/GP trajectory representations, certifiable robust PGO, optimal experiment design for calibration, and advanced covariance consistency under robust losses. |
+| P0 | First-principles extensions | Continuous-time estimation, spline/GP trajectory representations, certifiable robust PGO, optimal experiment design for calibration, covariance consistency under robust losses, and RL/control foundations for learned autonomy. |
 | P1 | Collaborative and infrastructure perception | V2XScenes, UrbanIng-V2X, QuantV2X, RCP-Bench, TruckV2X, collaborative Gaussian occupancy. |
 | P1 | Alternative localization sensors | UWB/range-only SLAM, GPR localization, event-camera VIO, thermal RGBT VIO, wheel/LiDAR/IMU factor graphs. |
 

@@ -7,8 +7,10 @@ This repository is an end-to-end autonomous-vehicle research knowledge base. Sta
 | Understand the whole architecture | `90-synthesis/master/master-synthesis.md` |
 | Review fundamentals | `10-knowledge-base/` |
 | Learn estimator first principles | `10-knowledge-base/probability-statistics/gaussian-noise-covariance-information.md` |
+| Learn machine-learning first principles | `10-knowledge-base/machine-learning/overview.md` |
 | Select hardware and sensors | `20-av-platform/` |
 | Study autonomy methods | `30-autonomy-stack/` |
+| Study LiDAR artifact/removal techniques | `30-autonomy-stack/perception/overview/lidar-artifact-removal-techniques.md` |
 | Deploy on vehicle | `40-runtime-systems/` |
 | Build fleet and cloud systems | `50-cloud-fleet/` |
 | Build the safety case | `60-safety-validation/` |

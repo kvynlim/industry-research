@@ -8,6 +8,8 @@
 
 **Summary:** LiDAR provides centimeter-level 3D geometry but degrades significantly in rain (-30-50% point density), fog (-20-75% range), snow (-15-40% AP), de-icing spray (near-total blindness), and jet blast (range shimmer ±0.5m). 4D radar maintains stable performance across all weather conditions due to millimeter-wave physics — wavelengths (4mm at 77 GHz) are 100-1000x larger than weather particles. Fusing both sensors creates a perception system that maintains >85% of clear-weather performance in conditions where either sensor alone drops below 50%. This document covers the full radar-LiDAR fusion pipeline from early fusion (point cloud concatenation), through mid-level fusion (BEV feature alignment), to late fusion (detection-level merging), with specific architectures proven for adverse weather (L4DR achieving +20% mAP in dense fog, RLNet adaptive gating). For the reference airside AV stack's airside stack, the recommendation is **asymmetric mid-level fusion: LiDAR-primary with radar weather augmentation** — using radar to denoise and densify LiDAR features when weather degrades, rather than treating both sensors equally. The Continental ARS548 4D radar already in the hardware roadmap provides the foundation; integration cost is $35-55K over 12 weeks.
 
+For LiDAR-only preprocessing, snow/rain/fog artifact removal, and benchmark coverage, see [LiDAR Artifact Removal Techniques](lidar-artifact-removal-techniques.md) and [Weather Robustness Datasets](../datasets-benchmarks/weather-robustness-datasets.md).
+
 ---
 
 ## Table of Contents

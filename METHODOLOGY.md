@@ -6,9 +6,9 @@
 
 ## Overview
 
-This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 457-document research corpus, surfaced as 465 VitePress reader pages.
+This research corpus began as a 24-hour intensive research session on **2026-03-21/22** using Claude Opus 4.6 with a 1M context window, augmented by parallel web-searching research agents. It has since been expanded and reorganized into a 498-document research corpus, surfaced as 506 VitePress reader pages.
 
-The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 307k+ lines of Markdown.
+The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 315k+ lines of Markdown.
 
 ## Research Process
 
@@ -57,7 +57,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 ### Phase 10: Method-Level Perception Library
 - **Method:** Five parallel writing agents split the perception coverage audit into atomic, one-method research files across camera BEV/occupancy, LiDAR/radar/event/FMCW perception, open-world/open-vocabulary perception, robust fusion/validation, and cooperative/latency/data-engine methods
-- **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), initially with 54 single-technique method files and now expanded to 63 atomic method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
+- **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), initially with 54 single-technique method files and now expanded to 73 atomic method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
 
 ### Phase 11: Cross-Architecture Knowledge Gap Audit
 - **Method:** Six parallel research agents audited the post-restructure architecture across foundations, AV platform, autonomy stack, runtime/cloud, safety/validation, and operations/industry. One autonomy agent was split into two narrower replacement agents after exceeding context, preserving coverage without overloading the review.
@@ -75,6 +75,10 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 - **Method:** Five parallel web/discovery rounds audited probability/statistics, nonlinear optimization, numerical linear algebra, association/tracking, and broader AV robotics foundations. Five writing agents then promoted the selected gaps into atomic first-principles KB files with disjoint ownership.
 - **Output:** 33 source-backed knowledge-base files across probability/statistics, optimization, numerical linear algebra, geometry, mapping, state estimation, sensors, signal processing, and systems engineering. The wave covers Gaussian noise, Mahalanobis gating, MAP/MLE, robust statistics, mixtures, Gauss-Newton, Levenberg-Marquardt, Cholesky, QR/SVD, sparse solvers, Lie groups, PnP, ICP/GICP/NDT, occupancy grids, data association, JPDA/MHT/RFS, filters, sensor likelihoods, radar ambiguity, CFAR, timestamping, and statistical benchmarking.
 
+### Phase 15: LIORNet, LiDAR Removal, and Machine-Learning Foundations
+- **Method:** Parallel discovery agents audited LIORNet, adverse-weather LiDAR denoising, classical outlier removal, map-cleaning methods, weather datasets, and first-principles ML gaps. Five writing agents then promoted the selected work into disjoint file groups: learned LiDAR denoisers, broad removal and map-cleaning techniques, weather robustness datasets, classical ML foundations, and modern ML foundations.
+- **Output:** 41 source-backed files: LIORNet and adjacent denoising methods, classical LiDAR outlier and weather artifact removal, LiDAR ghost/multipath artifacts, artifact-removal validation, ERASOR/Removert/map-cleaning pages, weather robustness dataset pages, and a machine-learning ladder from perceptrons, logits, backprop, optimization, CNNs, and RNNs to transformers, Mamba, JEPA, foundation-model training, and world-model first principles.
+
 ## Quality Controls
 
 1. **Spec Review:** Design specification reviewed by automated spec-review agent with factual corrections
@@ -88,11 +92,12 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 9. **P0 Gap Promotion:** High-priority cross-architecture gaps are promoted into first-class files before P1/P2 backlog work begins
 10. **Continuous Research Loop:** Discovery, triage, promotion, cross-linking, verification, and next-queue selection are now documented as a repeatable loop
 11. **First-Principles Layering:** Applied perception, SLAM, mapping, and sensor files now link back to reusable math primitives instead of repeating estimator fundamentals inline
+12. **Removal Safety Separation:** LiDAR artifact removal now separates nuisance-point deletion, ghost/multipath diagnosis, dynamic-map cleaning, and safety validation so filtering does not become an unexamined hazard-deletion step
 
 ## Limitations
 
 1. **Web search rate limits:** Some agents hit API rate limits during research. Affected topics were written from training knowledge rather than live web search.
-2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with 2026-05-08 and 2026-05-09 refreshes for SLAM, perception, Gaussian/3DGS methods, sensor fundamentals, and first-principles estimator math. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM, open-world perception, and 4D radar) may have newer developments.
+2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with 2026-05-08 and 2026-05-09 refreshes for SLAM, perception, Gaussian/3DGS methods, sensor fundamentals, first-principles estimator math, LIORNet/adverse-weather LiDAR removal, weather datasets, and machine-learning foundations. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM, open-world perception, adverse-weather denoising, and 4D radar) may have newer developments.
 3. **Airside data gap:** No public airside driving datasets exist, so comparative analysis relies on published deployment reports rather than reproducible benchmarks.
 4. **Company information:** Some companies (UISEE, AeroVect) have limited public technical information. Claims are attributed but not all independently verified.
 5. **Regulatory predictions:** Timeline predictions for FAA/EASA standards are based on published roadmaps and industry trends, not official commitments.
@@ -101,15 +106,15 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 457 |
-| Reader pages | 465 |
-| Total lines | 307k+ |
-| Research agents spawned | 150+ |
+| Core research documents | 498 |
+| Reader pages | 506 |
+| Total lines | 315k+ |
+| Research agents spawned | 160+ |
 | Companies researched | 20 |
-| Method-level SLAM library | 71 method files + overview |
-| Method-level perception files | 63 |
-| Papers referenced | 400+ |
-| GitHub repos evaluated | 50+ |
+| Method-level SLAM library | 74 method files + overview |
+| Method-level perception files | 73 |
+| Papers referenced | 500+ |
+| GitHub repos evaluated | 60+ |
 | API endpoints documented | 15+ |
 | Airport deployments documented | 15+ |
 | Static reader | VitePress on GitHub Pages |

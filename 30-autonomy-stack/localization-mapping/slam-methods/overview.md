@@ -19,6 +19,7 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | Offline survey processing | [Map Construction Pipeline](../maps/map-construction-pipeline.md) | Shows where SLAM outputs become fleet-deployable HD maps, geodetic alignment, QA artifacts, and OTA packages. |
 | Ego-state fusion and uncertainty | [Robust State Estimation Multi-Sensor](../overview/robust-state-estimation-multi-sensor.md) | SLAM factors must land in an estimator with sane gating, covariance, fallback, and sensor-fault behavior. |
 | Factor graph foundations | [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) | The common backend language for LIO-SAM, map optimization, loop closure, IMU preintegration, and production smoothing. |
+| Dynamic map cleaning and object removal | [LiDAR Map Cleaning and Dynamic Removal](lidar-map-cleaning-dynamic-removal.md) | Connects ERASOR, Removert, temporal visibility, semantic masks, and multi-session consensus to production map construction. |
 | Dense/neural scene representations | [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md) | Connects [Splat-SLAM](splat-slam.md), [S3PO-GS](s3po-gs.md), [Gaussian-LIC](gaussian-lic.md), [GS-LIVM](gs-livm.md), [VIGS-SLAM](vigs-slam.md), [Dynamic 4D Gaussian SLAM](dynamic-4d-gaussian-slam.md), and [RadarSplat-RIO](radarsplat-rio.md) to future dense mapping, semantic map QA, and simulation. |
 | Coverage audit and backlog | [SLAM Coverage Audit and Backlog](coverage-audit-2026.md) | Tracks missing first-class method pages found by parallel web-search agents so the library does not silently omit major techniques. |
 
@@ -124,6 +125,7 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | [GLIM](glim.md) | Range-inertial factor-graph mapping | How do GPU scan-matching factors, GTSAM, and manual map correction fit together? |
 | [MOLA](mola.md) | Modular LiDAR odometry, mapping, and localization | When is a ROS 2-ready modular mapping/localization framework useful? |
 | [Autoware NDT](ndt.md) | Production scan-to-map localization | What can the AV open-source ecosystem teach about diagnostics and integration? |
+| [ERASOR](erasor.md), [Removert](removert.md), [LiDAR Map Cleaning and Dynamic Removal](lidar-map-cleaning-dynamic-removal.md) | Dynamic map cleaning | How should a static operational map be built from dynamic scenes without deleting valid structure or preserving ghost objects? |
 | [Splat-SLAM](splat-slam.md), [S3PO-GS](s3po-gs.md) | Gaussian visual SLAM | What can RGB-only Gaussian maps do, and why are scale and uncertainty still limiting? |
 | [Gaussian-LIC](gaussian-lic.md), [GS-LIVM](gs-livm.md), [VIGS-SLAM](vigs-slam.md) | Multi-sensor Gaussian SLAM | How do LiDAR, camera, and IMU constraints stabilize neural/Gaussian maps? |
 | [Dynamic 4D Gaussian SLAM](dynamic-4d-gaussian-slam.md), [RadarSplat-RIO](radarsplat-rio.md) | Dynamic/radar Gaussian SLAM | How should dynamic scenes and radar measurements be handled before these maps are trusted? |
@@ -135,6 +137,7 @@ For airside autonomous vehicles, the practical answer is not "run SLAM online fo
 | SLAM is a mapping and correction system, not a substitute for a production localization architecture. | Use it to build and maintain maps; use scan-to-map localization for normal mapped operation. |
 | The front-end is environment-dependent; the backend pattern is reusable. | ICP/NDT/visual residuals differ, but factor graphs, robust kernels, covariance, and loop closures recur. |
 | Public benchmark wins do not imply airside readiness. | Airports need repeated-stand negatives, dynamic aircraft/GSE changes, wet tarmac, night lighting, and geodetic map QA. |
+| Removal belongs in both perception and mapping. | Online denoising protects detection and tracking; offline dynamic-object removal protects map quality, localization residuals, and long-term change detection. |
 | The safest baseline is hybrid. | LiDAR-inertial for survey, LiDAR-only validation, GTSAM global optimization, place recognition for loop/recovery, and production VGICP/NDT for runtime localization. |
 | Neural/Gaussian SLAM is a map-representation opportunity, not yet the pose backbone. | Use it for dense QA, semantic overlays, and simulation until uncertainty and failure monitoring mature. |
 
