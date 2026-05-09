@@ -1,11 +1,5 @@
 # Backpropagation, Computational Graphs, and Autodiff: First Principles
 
-<!-- kb-figure:start -->
-![Reverse-mode autodiff graph](../_assets/figures/machine-learning-backprop-computational-graphs-autodiff.svg)
-
-*Figure: how backprop moves vector-Jacobian products backward through the computational graph to train parameters.*
-<!-- kb-figure:end -->
-
 ## The Accounting System Behind Deep Learning
 
 Backpropagation is not a neural-network trick. It is reverse-mode automatic

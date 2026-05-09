@@ -1,11 +1,5 @@
 # Neural Architecture Innovations for World Models
 
-<!-- kb-figure:start -->
-![World-model architecture menu](../_assets/figures/systems-engineering-architecture-innovations.svg)
-
-*Figure: how architecture choices offer different scaling, memory, routing, and generation tradeoffs for world models.*
-<!-- kb-figure:end -->
-
 ## Beyond Standard Transformers — Architectures That Could Give an Edge
 
 ---

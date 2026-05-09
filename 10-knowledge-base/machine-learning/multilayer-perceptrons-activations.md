@@ -1,11 +1,5 @@
 # Multilayer Perceptrons and Activations: First Principles
 
-<!-- kb-figure:start -->
-![MLP nonlinear feature stack](../_assets/figures/machine-learning-multilayer-perceptrons-activations.svg)
-
-*Figure: why nonlinear activations make stacked linear transforms useful as function approximators.*
-<!-- kb-figure:end -->
-
 ## Why A Stack Of Linear Layers Needs Nonlinearity
 
 A multilayer perceptron (MLP) is a composition of affine maps and elementwise

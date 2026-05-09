@@ -1,11 +1,5 @@
 # Foundation Model Training: First Principles
 
-<!-- kb-figure:start -->
-![Foundation-model training lifecycle](../_assets/figures/machine-learning-foundation-model-training-first-principles.svg)
-
-*Figure: how large reusable models move from broad data mixtures to task-specific AV evaluation.*
-<!-- kb-figure:end -->
-
 ## Scope
 
 This note explains the training principles behind modern foundation models and adapts them to AV perception, SLAM, mapping, and world models. It covers data, tokens, scaling laws, optimization, evaluation, and adaptation. It is not a replacement for implementation-specific MLOps docs. It links to [self-supervised-learning-first-principles.md](self-supervised-learning-first-principles.md), [vqvae-tokenization.md](vqvae-tokenization.md), [transformer-world-models.md](transformer-world-models.md), and [world-models-first-principles.md](world-models-first-principles.md).

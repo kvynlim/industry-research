@@ -1,11 +1,5 @@
 # Diffusion, Score Models, Flow Matching, and Samplers
 
-<!-- kb-figure:start -->
-![Score and flow sampler paths](../_assets/figures/machine-learning-diffusion-score-flow-samplers-first-principles.svg)
-
-*Figure: how score models and flow matching define vector fields that guide samples back toward the data distribution.*
-<!-- kb-figure:end -->
-
 ## Scope
 
 This page isolates the sampler and objective mechanics behind diffusion-style models. The existing [Diffusion Models](diffusion-models.md) page explains the broader generative framework and driving applications. This page focuses on the first principles needed to review AV world models, trajectory generators, occupancy forecasters, and denoising models.

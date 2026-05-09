@@ -1,11 +1,5 @@
 # Energy-Based Models: First Principles
 
-<!-- kb-figure:start -->
-![Energy landscape view](../_assets/figures/machine-learning-energy-based-models-first-principles.svg)
-
-*Figure: how energy-based models represent compatibility through an energy surface rather than a direct normalized predictor.*
-<!-- kb-figure:end -->
-
 ## Scope
 
 Energy-based models (EBMs) assign a scalar energy to a candidate state, label,

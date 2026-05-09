@@ -1,11 +1,5 @@
 # JEPA and Latent Predictive Learning
 
-<!-- kb-figure:start -->
-![JEPA latent prediction path](../_assets/figures/machine-learning-jepa-latent-predictive-learning.svg)
-
-*Figure: how JEPA predicts target representations from context without reconstructing pixels.*
-<!-- kb-figure:end -->
-
 ## Scope
 
 JEPA stands for Joint Embedding Predictive Architecture. This note explains JEPA as a first-principles route to world models that predict in representation space rather than pixel or token space. It complements [self-supervised-learning-first-principles.md](self-supervised-learning-first-principles.md), [world-models-first-principles.md](world-models-first-principles.md), and [30-autonomy-stack/world-models/tokenized-and-jepa.md](../../30-autonomy-stack/world-models/tokenized-and-jepa.md).

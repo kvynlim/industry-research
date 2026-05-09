@@ -6,12 +6,6 @@ landmark, object, map cell, latent token, and action, we represent how variables
 depend on each other and exploit that structure for estimation, learning, and
 planning.
 
-<!-- kb-figure:start -->
-![Message-passing graphical model](../_assets/figures/probability-statistics-probabilistic-graphical-models-message-passing.svg)
-
-*Figure: how graphical models move local messages through a dependency graph to compute beliefs and marginals.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Likelihood, MAP, MLE, and Least Squares](likelihood-map-mle-least-squares.md)

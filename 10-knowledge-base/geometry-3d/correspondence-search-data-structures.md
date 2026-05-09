@@ -9,12 +9,6 @@ the search structure returns stale, biased, or poorly gated matches.
 
 ---
 
-<!-- kb-figure:start -->
-![Correspondence search choices](../_assets/figures/geometry-3d-correspondence-search-data-structures.svg)
-
-*Figure: how nearest-neighbor data structures reduce raw geometric matching to a gated candidate set.*
-<!-- kb-figure:end -->
-
 ## 1. Related Docs
 
 - [Point Cloud Registration Math: ICP, GICP, VGICP, and NDT](point-cloud-registration-math-icp-ndt-gicp.md)

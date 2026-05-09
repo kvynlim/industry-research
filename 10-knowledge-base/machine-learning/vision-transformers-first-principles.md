@@ -1,11 +1,5 @@
 # Vision Transformers: First Principles
 
-<!-- kb-figure:start -->
-![Vision transformer patch flow](../_assets/figures/machine-learning-vision-transformers-first-principles.svg)
-
-*Figure: how ViT-style models tokenize images and recover dense spatial outputs for perception.*
-<!-- kb-figure:end -->
-
 ## Scope
 
 This note explains why transformers work for images, BEV grids, and point clouds, and how those ideas translate into AV perception, SLAM, and mapping. It avoids duplicating the deeper deployment survey in [sparse-attention-3d-perception.md](sparse-attention-3d-perception.md) and the world-model transformer details in [transformer-world-models.md](transformer-world-models.md).

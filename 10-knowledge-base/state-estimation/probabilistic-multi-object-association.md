@@ -8,12 +8,6 @@ objects make a single hard assignment brittle.
 
 ---
 
-<!-- kb-figure:start -->
-![Probabilistic association matrix](../_assets/figures/state-estimation-probabilistic-multi-object-association.svg)
-
-*Figure: how multi-object trackers represent ambiguous detection-to-track assignments probabilistically.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Data Association and Gating](data-association-and-gating.md)

@@ -1,11 +1,5 @@
 # Sparse Matrices, Fill-In, and Ordering
 
-<!-- kb-figure:start -->
-![Sparse matrix ordering changes fill-in during factorization](../_assets/figures/numerical-linear-algebra-sparse-matrices-fill-in-ordering.svg)
-
-*Figure: Variable ordering changes fill-in during sparse factorization, directly affecting memory, runtime, and whether real-time SLAM remains feasible.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

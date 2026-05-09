@@ -9,12 +9,6 @@ evaluation metric.
 
 ---
 
-<!-- kb-figure:start -->
-![Sensor likelihood error budget](../_assets/figures/sensors-sensor-likelihoods-noise-error-budgets.svg)
-
-*Figure: how physical sensor noise becomes likelihoods, covariances, gates, and fusion decisions.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Bayesian Filtering and Error-State Kalman Filters](../state-estimation/bayesian-filtering-and-eskf.md)

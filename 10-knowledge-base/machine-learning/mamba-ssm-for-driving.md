@@ -1,11 +1,5 @@
 # Mamba & State Space Models for Autonomous Driving
 
-<!-- kb-figure:start -->
-![Selective state-space sequence model](../_assets/figures/machine-learning-mamba-ssm-for-driving.svg)
-
-*Figure: how Mamba-style selective state spaces process long driving sequences with recurrent state rather than full attention.*
-<!-- kb-figure:end -->
-
 ## The O(n) Alternative to Transformers for AV World Models
 
 **Last updated:** 2026-03-22

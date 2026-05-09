@@ -7,12 +7,6 @@ models, both become least-squares problems. This is the mathematical bridge
 between Bayes filters, factor graphs, bundle adjustment, scan matching, and
 calibration solvers.
 
-<!-- kb-figure:start -->
-![Likelihood to MAP estimate](../_assets/figures/probability-statistics-likelihood-map-mle-least-squares.svg)
-
-*Figure: how likelihoods and priors become MLE, MAP, and least-squares objectives.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](gaussian-noise-covariance-information.md)

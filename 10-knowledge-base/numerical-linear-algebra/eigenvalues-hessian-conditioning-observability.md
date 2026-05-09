@@ -1,11 +1,5 @@
 # Eigenvalues, Hessian Conditioning, and Observability
 
-<!-- kb-figure:start -->
-![Hessian spectrum separating constrained directions and nullspaces](../_assets/figures/numerical-linear-algebra-eigenvalues-hessian-conditioning-observability.svg)
-
-*Figure: The Hessian spectrum separates well-constrained directions, weakly constrained directions, and nullspaces that require damping, priors, or better excitation.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md)

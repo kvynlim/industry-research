@@ -9,12 +9,6 @@ incidence angle, atmosphere, timing, and calibration."
 
 ---
 
-<!-- kb-figure:start -->
-![LiDAR point formation](../_assets/figures/geometry-3d-lidar-working-principles-noise-models.svg)
-
-*Figure: how timing, beam geometry, reflectance, and range noise produce each point in a LiDAR scan.*
-<!-- kb-figure:end -->
-
 ## 1. What a LiDAR Point Measures
 
 A scanning LiDAR point is usually stored as:

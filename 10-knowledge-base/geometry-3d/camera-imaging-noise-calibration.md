@@ -8,12 +8,6 @@ geometric bearings with photometric uncertainty and time semantics.
 
 ---
 
-<!-- kb-figure:start -->
-![Camera measurement and calibration chain](../_assets/figures/geometry-3d-camera-imaging-noise-calibration.svg)
-
-*Figure: how photons, lens geometry, sensor noise, and timing all affect the pixel measurement used by perception and SLAM.*
-<!-- kb-figure:end -->
-
 ## 1. Measurement Model
 
 For a 3D point expressed in the camera optical frame:

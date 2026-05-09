@@ -1,11 +1,5 @@
 # Positional Encodings and Coordinate Tokenization
 
-<!-- kb-figure:start -->
-![Position-aware token grid](../_assets/figures/machine-learning-positional-encodings-and-coordinate-tokenization-first-principles.svg)
-
-*Figure: how coordinates and time become model inputs so sequence or spatial tokens keep geometric meaning.*
-<!-- kb-figure:end -->
-
 ## Why This Page Exists
 
 Attention layers are permutation-invariant unless position is added. AV models need position in several forms: image pixels, BEV cells, LiDAR points, map coordinates, ego-frame poses, timestamps, and trajectory waypoints. A positional encoding mistake can look like a model weakness while the real bug is coordinate representation.

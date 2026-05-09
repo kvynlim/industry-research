@@ -6,12 +6,6 @@ finite-horizon optimal control problem. Iterative LQR (iLQR) solves a local
 quadratic approximation of a nonlinear trajectory optimization problem. Both
 are ways to turn vehicle models, limits, and costs into executable commands.
 
-<!-- kb-figure:start -->
-![Receding-horizon constrained control loop](../_assets/figures/controls-constrained-optimization-mpc-ilqr-first-principles.svg)
-
-*Figure: how MPC and iLQR repeatedly convert state estimates, constraints, and costs into the next applied control.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Vehicle Dynamics and Control Fundamentals](vehicle-dynamics-and-control.md)

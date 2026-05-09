@@ -1,11 +1,5 @@
 # Masked Modeling: First Principles
 
-<!-- kb-figure:start -->
-![Masked modeling objective](../_assets/figures/machine-learning-masked-modeling-first-principles.svg)
-
-*Figure: how masked objectives force representations to infer missing visual, BEV, or sequence content.*
-<!-- kb-figure:end -->
-
 ## Scope
 
 Masked modeling trains a model to infer hidden parts of an input from visible

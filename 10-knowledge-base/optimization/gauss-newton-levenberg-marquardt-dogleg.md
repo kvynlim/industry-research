@@ -1,11 +1,5 @@
 # Gauss-Newton, Levenberg-Marquardt, and Dogleg
 
-<!-- kb-figure:start -->
-![Nonlinear optimizer step geometry](../_assets/figures/optimization-gauss-newton-levenberg-marquardt-dogleg.svg)
-
-*Figure: how Gauss-Newton, Levenberg-Marquardt, and Dogleg choose update steps under nonlinearity.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Nonlinear Least Squares from First Principles](./nonlinear-least-squares-first-principles.md)

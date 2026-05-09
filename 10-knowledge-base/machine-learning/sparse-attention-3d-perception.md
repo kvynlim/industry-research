@@ -1,11 +1,5 @@
 # Sparse Attention Mechanisms and Transformer Architectures for 3D Point Cloud Perception
 
-<!-- kb-figure:start -->
-![Sparse 3D attention pattern](../_assets/figures/machine-learning-sparse-attention-3d-perception.svg)
-
-*Figure: how point or voxel sparsity limits attention to useful neighborhoods for real-time 3D perception.*
-<!-- kb-figure:end -->
-
 ## From O(n^2) Dense Attention to Real-Time Sparse Transformers on NVIDIA Orin
 
 **Last updated:** 2026-04-11
@@ -2586,7 +2580,6 @@ import tensorrt as trt
 import pycuda.driver as cuda
 import pycuda.autoinit
 
-
 class AttentionSegmentationNode:
     def __init__(self):
         rospy.init_node('attention_segmentation')
@@ -2663,7 +2656,6 @@ class AttentionSegmentationNode:
         runtime = trt.Runtime(trt.Logger(trt.Logger.WARNING))
         with open(path, 'rb') as f:
             return runtime.deserialize_cuda_engine(f.read())
-
 
 if __name__ == '__main__':
     try:

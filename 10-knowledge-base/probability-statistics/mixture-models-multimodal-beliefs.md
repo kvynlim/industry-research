@@ -7,12 +7,6 @@ count, and detector outputs with class and pose ambiguity. Mixture models keep
 several explanations alive by representing belief as a weighted sum of simpler
 distributions.
 
-<!-- kb-figure:start -->
-![Multimodal belief mixture](../_assets/figures/probability-statistics-mixture-models-multimodal-beliefs.svg)
-
-*Figure: how mixture components preserve multiple plausible explanations instead of collapsing to one mean.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](gaussian-noise-covariance-information.md)

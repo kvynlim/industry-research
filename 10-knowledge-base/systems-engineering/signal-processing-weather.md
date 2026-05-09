@@ -5,12 +5,6 @@
 
 ---
 
-<!-- kb-figure:start -->
-![Weather processing chain from evidence to degraded response](../_assets/figures/systems-engineering-signal-processing-weather.svg)
-
-*Figure: The weather-processing recommendations form a chain from dual-return evidence through DSOR and LIOR cleanup, temporal filtering, severity classification, and degraded-mode response.*
-<!-- kb-figure:end -->
-
 ## Methodology
 
 Each recommendation was verified by:

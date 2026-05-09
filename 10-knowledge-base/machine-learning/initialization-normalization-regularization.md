@@ -1,11 +1,5 @@
 # Initialization, Normalization, and Regularization: First Principles
 
-<!-- kb-figure:start -->
-![Trainability stabilizers](../_assets/figures/machine-learning-initialization-normalization-regularization.svg)
-
-*Figure: how initialization, normalization, and regularization keep deep networks numerically trainable.*
-<!-- kb-figure:end -->
-
 ## Making Deep Networks Trainable And Less Brittle
 
 Deep networks are compositions of many transformations. If activations or

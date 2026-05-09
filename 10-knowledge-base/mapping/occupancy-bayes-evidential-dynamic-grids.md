@@ -9,12 +9,6 @@ inverse models, and static-world priors can all break in traffic.
 
 ---
 
-<!-- kb-figure:start -->
-![Occupancy grid evidence update](../_assets/figures/mapping-occupancy-bayes-evidential-dynamic-grids.svg)
-
-*Figure: how grid cells accumulate probabilistic or evidential updates and track dynamic occupancy over time.*
-<!-- kb-figure:end -->
-
 ## 1. Related Docs
 
 - [Geodesy, Map Projections, and Datums](../geometry-3d/geodesy-map-projections-datums.md)

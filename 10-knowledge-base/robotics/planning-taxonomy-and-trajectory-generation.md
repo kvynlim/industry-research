@@ -10,12 +10,6 @@ industrial vehicles, and airport airside autonomy.
 
 ---
 
-<!-- kb-figure:start -->
-![Planning stack taxonomy](../_assets/figures/robotics-planning-taxonomy-and-trajectory-generation.svg)
-
-*Figure: how route, behavior, motion, trajectory, and control layers divide planning responsibilities.*
-<!-- kb-figure:end -->
-
 ## 1. AV, Indoor, Outdoor, and Airside Relevance
 
 | Domain | Planning emphasis | Example |

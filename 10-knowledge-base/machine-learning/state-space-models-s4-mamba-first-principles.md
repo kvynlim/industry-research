@@ -1,11 +1,5 @@
 # State Space Models, S4, and Mamba: First Principles
 
-<!-- kb-figure:start -->
-![State-space model views](../_assets/figures/machine-learning-state-space-models-s4-mamba-first-principles.svg)
-
-*Figure: how continuous dynamics, convolution views, and selective scanning connect S4 and Mamba models.*
-<!-- kb-figure:end -->
-
 ## Why This Page Exists
 
 State-space models are the bridge between classical dynamical systems and modern long-sequence neural networks. They matter for AV research because autonomy data is naturally streaming: LiDAR sweeps, camera frames, radar detections, tracks, occupancy maps, map-change evidence, and world-model latents arrive over time.

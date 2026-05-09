@@ -13,12 +13,6 @@ moving objects.
 
 ---
 
-<!-- kb-figure:start -->
-![Motion distortion and deskew timeline](../_assets/figures/geometry-3d-rolling-shutter-lidar-deskew-motion-distortion.svg)
-
-*Figure: how rolling cameras and spinning LiDARs require per-row or per-point pose correction during vehicle motion.*
-<!-- kb-figure:end -->
-
 ## 1. Related Docs
 
 - [Continuous-Time Trajectory Splines and Gaussian Process Priors](../state-estimation/continuous-time-trajectory-splines-gp-priors.md)

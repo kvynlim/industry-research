@@ -8,12 +8,6 @@ before using them for perception, SLAM, mapping, or validation.
 
 ---
 
-<!-- kb-figure:start -->
-![Event and thermal sensing timeline](../_assets/figures/geometry-3d-event-thermal-camera-models.svg)
-
-*Figure: how asynchronous event streams and slower thermal frames carry different timing and noise assumptions.*
-<!-- kb-figure:end -->
-
 ## 1. Event Camera Measurement Model
 
 An event camera pixel stores a reference log intensity. It emits an event when

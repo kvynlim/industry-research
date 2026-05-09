@@ -9,12 +9,6 @@ revise a short trajectory segment rather than only the latest state.
 
 ---
 
-<!-- kb-figure:start -->
-![Information-form smoothing graph](../_assets/figures/state-estimation-information-filters-and-smoothers.svg)
-
-*Figure: how information filters and smoothers accumulate constraints in precision form.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Bayesian Filtering and Error-State Kalman Filters](bayesian-filtering-and-eskf.md)

@@ -9,12 +9,6 @@ model.
 
 ---
 
-<!-- kb-figure:start -->
-![Track-to-detection association](../_assets/figures/state-estimation-data-association-and-gating.svg)
-
-*Figure: how gating and assignment connect uncertain detections to existing tracks.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Bayesian Filtering and Error-State Kalman Filters](bayesian-filtering-and-eskf.md)

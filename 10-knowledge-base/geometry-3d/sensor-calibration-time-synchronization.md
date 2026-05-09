@@ -11,12 +11,6 @@ tracking, GNSS/INS localization, online mapping, docking, and incident replay.
 
 ---
 
-<!-- kb-figure:start -->
-![Calibration and synchronization contract](../_assets/figures/geometry-3d-sensor-calibration-time-synchronization.svg)
-
-*Figure: how time, trigger semantics, and extrinsic calibration must agree before multi-sensor fusion is trustworthy.*
-<!-- kb-figure:end -->
-
 ## 1. AV, Indoor, Outdoor, and Airside Relevance
 
 | Domain | Calibration priority | Time priority |

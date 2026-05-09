@@ -1,11 +1,5 @@
 # World Models: First Principles
 
-<!-- kb-figure:start -->
-![World-model sense-predict-act loop](../_assets/figures/machine-learning-world-models-first-principles.svg)
-
-*Figure: how a world model learns latent dynamics that support prediction, planning, and action selection.*
-<!-- kb-figure:end -->
-
 ## Scope
 
 This note explains world models as learned predictive models of environment dynamics, with emphasis on AV perception, SLAM, mapping, occupancy prediction, and planning. It is a conceptual foundation for the more specialized local docs: [transformer-world-models.md](transformer-world-models.md), [diffusion-models.md](diffusion-models.md), [vqvae-tokenization.md](vqvae-tokenization.md), [jepa-latent-predictive-learning.md](jepa-latent-predictive-learning.md), and the world-model folder under [30-autonomy-stack/world-models](../../30-autonomy-stack/world-models/overview.md).

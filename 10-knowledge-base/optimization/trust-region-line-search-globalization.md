@@ -1,11 +1,5 @@
 # Trust Region and Line Search Globalization
 
-<!-- kb-figure:start -->
-![Globalization decision surface](../_assets/figures/optimization-trust-region-line-search-globalization.svg)
-
-*Figure: how globalization methods keep nonlinear solvers from taking unstable or overconfident steps.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Nonlinear Least Squares from First Principles](./nonlinear-least-squares-first-principles.md)

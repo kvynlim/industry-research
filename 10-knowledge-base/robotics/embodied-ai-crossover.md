@@ -1,11 +1,5 @@
 # Embodied AI and Robotics Crossover for Autonomous Vehicles
 
-<!-- kb-figure:start -->
-![Embodied AI transfer path](../_assets/figures/robotics-embodied-ai-crossover.svg)
-
-*Figure: how robotics foundation models transfer useful priors into vehicle autonomy while requiring safety constraints.*
-<!-- kb-figure:end -->
-
 ## How Robotics Foundation Models Transfer to Driving
 
 ---

@@ -8,12 +8,6 @@ confident in the wrong trajectory.
 
 ---
 
-<!-- kb-figure:start -->
-![IMU preintegration between keyframes](../_assets/figures/state-estimation-imu-error-models-preintegration.svg)
-
-*Figure: how many high-rate IMU samples become one bias-aware factor between estimator keyframes.*
-<!-- kb-figure:end -->
-
 ## 1. Measurement Model
 
 For body frame `B` and world frame `W`:

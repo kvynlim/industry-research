@@ -1,11 +1,5 @@
 # GTSAM Factor Graph Optimization: Comprehensive Technical Reference
 
-<!-- kb-figure:start -->
-![GTSAM factor graph and Bayes tree](../_assets/figures/state-estimation-gtsam-factor-graphs.svg)
-
-*Figure: how GTSAM represents multi-sensor constraints and updates them through factor graph inference.*
-<!-- kb-figure:end -->
-
 ## Table of Contents
 
 1. [Factor Graph Fundamentals](#1-factor-graph-fundamentals)

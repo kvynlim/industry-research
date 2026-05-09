@@ -1,11 +1,5 @@
 # Sequence Models: RNNs, SSMs, Attention, and Mamba
 
-<!-- kb-figure:start -->
-![Sequence model memory choices](../_assets/figures/machine-learning-sequence-models-rnn-ssm-attention-first-principles.svg)
-
-*Figure: how recurrent, state-space, attention, and Mamba models store and update temporal context.*
-<!-- kb-figure:end -->
-
 ## Scope
 
 This note explains sequence modeling from first principles, from RNNs through S4, Mamba, Mamba-2, Mamba-3, and attention. It is intended for AV temporal perception, SLAM, mapping, tracking, and world-model readers. For driving-specific Mamba papers and deployment detail, see [mamba-ssm-for-driving.md](mamba-ssm-for-driving.md). For attention math, see [attention-transformers-first-principles.md](attention-transformers-first-principles.md).

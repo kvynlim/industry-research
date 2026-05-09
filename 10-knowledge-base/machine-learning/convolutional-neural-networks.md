@@ -1,11 +1,5 @@
 # Convolutional Neural Networks: First Principles
 
-<!-- kb-figure:start -->
-![Convolutional receptive field](../_assets/figures/machine-learning-convolutional-neural-networks.svg)
-
-*Figure: how locality and weight sharing turn image or BEV grids into increasingly abstract feature maps.*
-<!-- kb-figure:end -->
-
 ## Locality, Weight Sharing, and Translation Structure
 
 A fully connected layer treats every input position as unrelated:

@@ -8,12 +8,6 @@ and what did processing distort?
 
 ---
 
-<!-- kb-figure:start -->
-![Sampling and spectral leakage](../_assets/figures/signal-processing-sampling-fft-windowing-filtering.svg)
-
-*Figure: how sampling, windowing, and filtering control frequency-domain artifacts and aliasing.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Radar Ambiguity, Chirp Design, and Doppler Limits](radar-ambiguity-chirp-design-doppler-limits.md)

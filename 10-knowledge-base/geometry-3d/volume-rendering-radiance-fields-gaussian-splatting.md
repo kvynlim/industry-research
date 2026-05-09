@@ -13,12 +13,6 @@ unless the capture and priors are controlled.
 
 ---
 
-<!-- kb-figure:start -->
-![Radiance-field rendering path](../_assets/figures/geometry-3d-volume-rendering-radiance-fields-gaussian-splatting.svg)
-
-*Figure: how NeRF-style volume rendering and Gaussian splatting turn scene representations into pixels and map evidence.*
-<!-- kb-figure:end -->
-
 ## 1. Related Docs
 
 - [Camera Projective Geometry, PnP, and Triangulation](camera-projective-geometry-pnp-triangulation.md)

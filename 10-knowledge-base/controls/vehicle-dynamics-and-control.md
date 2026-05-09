@@ -11,12 +11,6 @@ industrial vehicles, and airport ground vehicles.
 
 ---
 
-<!-- kb-figure:start -->
-![Vehicle model fidelity ladder](../_assets/figures/controls-vehicle-dynamics-and-control.svg)
-
-*Figure: how control models move from simple path tracking to force, slip, and actuator-limited vehicle behavior.*
-<!-- kb-figure:end -->
-
 ## 1. AV, Indoor, Outdoor, and Airside Relevance
 
 | Domain | Dynamics/control concern | Example |

@@ -1,11 +1,5 @@
 # Nonlinear Least Squares from First Principles
 
-<!-- kb-figure:start -->
-![Nonlinear least-squares iteration](../_assets/figures/optimization-nonlinear-least-squares-first-principles.svg)
-
-*Figure: how residual minimization repeatedly linearizes, solves, updates, and checks convergence.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Gauss-Newton, Levenberg-Marquardt, and Dogleg](./gauss-newton-levenberg-marquardt-dogleg.md)

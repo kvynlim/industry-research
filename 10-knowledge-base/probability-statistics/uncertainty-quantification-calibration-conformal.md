@@ -5,12 +5,6 @@ enough to support decisions. Calibration asks whether predicted probabilities
 match empirical frequencies. Conformal prediction wraps a predictor with
 finite-sample coverage guarantees under exchangeability assumptions.
 
-<!-- kb-figure:start -->
-![Calibration and conformal coverage](../_assets/figures/probability-statistics-uncertainty-quantification-calibration-conformal.svg)
-
-*Figure: how reliability diagrams and conformal prediction connect confidence to empirical coverage.*
-<!-- kb-figure:end -->
-
 ## Related docs
 
 - [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](gaussian-noise-covariance-information.md)
