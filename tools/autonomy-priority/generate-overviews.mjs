@@ -76,15 +76,23 @@ export function replaceGeneratedBlock(markdown, table) {
   return markdown.slice(0, startMarker.index) + replacement + markdown.slice(endMarker.index + endMarker[0].length)
 }
 
-export function updateOverview({ relDir, overview }, root = repoRoot) {
+function prepareOverviewUpdate({ relDir, overview }, root) {
   const overviewPath = path.join(root, overview)
   const markdown = fs.readFileSync(overviewPath, 'utf8')
   const table = formatPriorityTable(priorityRowsForDirectory(relDir, root), relDir)
-  fs.writeFileSync(overviewPath, replaceGeneratedBlock(markdown, table), 'utf8')
+  return { overviewPath, markdown: replaceGeneratedBlock(markdown, table) }
+}
+
+export function updateOverview(config, root = repoRoot) {
+  const { overviewPath, markdown } = prepareOverviewUpdate(config, root)
+  fs.writeFileSync(overviewPath, markdown, 'utf8')
 }
 
 export function updateAllOverviews(root = repoRoot) {
-  for (const config of OVERVIEWS) updateOverview(config, root)
+  const updates = OVERVIEWS.map((config) => prepareOverviewUpdate(config, root))
+  for (const { overviewPath, markdown } of updates) {
+    fs.writeFileSync(overviewPath, markdown, 'utf8')
+  }
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

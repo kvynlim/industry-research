@@ -5,7 +5,11 @@ import os from 'node:os'
 import path from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { formatPriorityTable, replaceGeneratedBlock } from '../tools/autonomy-priority/generate-overviews.mjs'
+import {
+  formatPriorityTable,
+  replaceGeneratedBlock,
+  updateAllOverviews
+} from '../tools/autonomy-priority/generate-overviews.mjs'
 import {
   ALLOWED_MATURITY_VALUES,
   ALLOWED_STAGE_VALUES,
@@ -169,6 +173,37 @@ old
 <!-- priority-table:start -->
 `
   assert.throws(() => replaceGeneratedBlock(source, 'new table'), /priority-table start marker must appear before end marker/)
+})
+
+test('does not partially update overviews when a later overview is invalid', (t) => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'priority-overviews-'))
+  t.after(() => fs.rmSync(tempRoot, { recursive: true, force: true }))
+
+  const perceptionDir = path.join(tempRoot, '30-autonomy-stack/perception/methods')
+  const slamDir = path.join(tempRoot, '30-autonomy-stack/localization-mapping/slam-methods')
+  fs.mkdirSync(perceptionDir, { recursive: true })
+  fs.mkdirSync(slamDir, { recursive: true })
+
+  const perceptionOverview = path.join(perceptionDir, 'overview.md')
+  const slamOverview = path.join(slamDir, 'overview.md')
+  const originalPerception = `# Perception Overview
+
+<!-- priority-table:start -->
+keep this exact text
+<!-- priority-table:end -->
+`
+  fs.writeFileSync(perceptionOverview, originalPerception, 'utf8')
+  fs.writeFileSync(
+    slamOverview,
+    `# SLAM Overview
+
+No generated marker block yet.
+`,
+    'utf8'
+  )
+
+  assert.throws(() => updateAllOverviews(tempRoot), /missing priority-table marker block/)
+  assert.equal(fs.readFileSync(perceptionOverview, 'utf8'), originalPerception)
 })
 
 test('extracts one hidden priority block before the first section', () => {
