@@ -108,7 +108,7 @@ test('robust losses knowledge-base page covers canonical estimators and links', 
     const source = fs.readFileSync(path.join(repoRoot, relPath), 'utf8')
     assert.match(
       source,
-      /robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure\.md/,
+      /\]\([^)]*robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure\.md(?:#[^)]*)?\)/,
       `${relPath} should link to the robust losses page`
     )
   }
