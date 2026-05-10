@@ -106,6 +106,7 @@ test('builds sidebar groups from the existing repository folders', () => {
 
   assert.deepEqual(sectionNames, [
     'Start Here',
+    'Priority Ratings',
     'Knowledge Base',
     'AV Platform',
     'Autonomy Stack',
@@ -126,6 +127,19 @@ test('builds sidebar groups from the existing repository folders', () => {
   assert.ok(startHere.items.some((item) => item.link === '/INDEX/'))
   assert.ok(startHere.items.some((item) => item.link === '/GLOSSARY'))
   assert.ok(startHere.items.some((item) => item.link === '/METHODOLOGY'))
+
+  const priorityRatings = sidebar.find((section) => section.text === 'Priority Ratings')
+  assert.equal(priorityRatings.collapsed, false)
+  assert.deepEqual(priorityRatings.items, [
+    {
+      text: 'Perception Method Ratings',
+      link: '/30-autonomy-stack/perception/methods/overview'
+    },
+    {
+      text: 'SLAM Method Ratings',
+      link: '/30-autonomy-stack/localization-mapping/slam-methods/overview'
+    }
+  ])
 })
 
 test('includes every public architecture page in the sidebar', () => {

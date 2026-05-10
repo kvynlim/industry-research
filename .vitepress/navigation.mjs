@@ -28,6 +28,17 @@ const START_FILES = [
   { rel: 'METHODOLOGY.md', text: 'Methodology' }
 ]
 
+const PRIORITY_RATING_LINKS = [
+  {
+    text: 'Perception Method Ratings',
+    link: '/30-autonomy-stack/perception/methods/overview'
+  },
+  {
+    text: 'SLAM Method Ratings',
+    link: '/30-autonomy-stack/localization-mapping/slam-methods/overview'
+  }
+]
+
 const ACRONYMS = new Map([
   ['ai', 'AI'],
   ['av', 'AV'],
@@ -173,6 +184,11 @@ export function buildSidebar(root = repoRoot) {
       text: 'Start Here',
       collapsed: false,
       items: startItems
+    },
+    {
+      text: 'Priority Ratings',
+      collapsed: false,
+      items: PRIORITY_RATING_LINKS
     }
   ]
 
