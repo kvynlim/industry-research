@@ -2,6 +2,14 @@
 
 This directory is the method-level perception library. Each page should represent one technique, method, benchmark, or dataset-backed evaluation primitive. Broad synthesis pages in `30-autonomy-stack/perception/overview/` remain useful for system design, but this library is where individual methods get enough space for architecture, data, benchmarks, failure modes, deployment fit, and airside relevance.
 
+## Priority Ratings
+
+Priority ratings are editorial reading and deployment triage signals. `Learning` answers what to read early for general autonomy understanding. `Deployment` answers what to evaluate early for AV deployment in the tagged context; it is not a certification or product-readiness claim.
+
+<!-- priority-table:start -->
+No rated method pages yet.
+<!-- priority-table:end -->
+
 ## How to Use This Library
 
 | Need | Start here |

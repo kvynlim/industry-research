@@ -9,6 +9,14 @@ This directory is the method-level SLAM library. It should help a reader answer 
 
 For airside autonomous vehicles, the practical answer is not "run SLAM online forever." The production stack should separate offline map construction, online scan-to-map localization, high-rate state estimation, and loop-closure/relocalization. SLAM remains critical for survey mapping, map maintenance, fallback odometry, validation against map-localization failures, and research into future dense or neural map representations.
 
+## Priority Ratings
+
+Priority ratings are editorial reading and deployment triage signals. `Learning` answers what to read early for SLAM/localization understanding. `Deployment` answers what to evaluate early for AV deployment in the tagged context; it is not a certification or product-readiness claim.
+
+<!-- priority-table:start -->
+No rated method pages yet.
+<!-- priority-table:end -->
+
 ## Repo Cross-Links
 
 | Topic | Read next | Why it matters for this library |
