@@ -1,11 +1,12 @@
-# World-Model-Powered Airside Autonomous Vehicle Stack
+# World-Model-Powered Autonomous Vehicle Stack: Airside Reference ODD
 
 ## Design Specification
 
 **Date:** 2026-03-21
-**Type:** Research Design — Next-Generation AV Stack for Airport Airside Operations
+**Type:** Research Design — Next-Generation AV Stack with Airport Airside as Reference ODD
 **Context:** Greenfield parallel track alongside existing reference airside AV stack ROS Noetic stack (Simplex architecture)
 **Approach:** Dual-Track Foundation (Data Engine + World Model Stack)
+**Domain stance:** The concrete examples are airside because that is the best-developed reference ODD. The architecture should keep domain context explicit so the same stack can be re-evaluated for road, warehouse, yard, port, mining, construction, agriculture, delivery robot, and campus deployments.
 
 ---
 
@@ -101,7 +102,7 @@ The current reference airside AV stack ADS stack is a production-tested, modular
 2. **Sensor-agnostic:** The BEV encoder accepts a configurable sensor manifest. Start with LiDAR-only, add cameras and radar without architecture changes.
 3. **Graceful degradation:** If the new stack fails, hesitates, or detects OOD, the current stack takes over seamlessly. The vehicle never stops being safe.
 4. **Data flywheel:** Every meter driven generates training data. The system improves from its own operation.
-5. **Airport-aware:** Unlike road AV stacks, this system integrates with airport data sources (A-CDM, NOTAM, ADS-B, A-SMGCS) as first-class inputs.
+5. **Domain-aware:** The stack accepts domain context as first-class input. For airside this means A-CDM, NOTAM, ADS-B, and A-SMGCS; for other domains it may mean WMS/TMS systems, yard-management systems, mine dispatch, port TOS, farm boundaries, or road maps and traffic rules.
 
 ---
 

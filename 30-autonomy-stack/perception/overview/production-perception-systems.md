@@ -2,7 +2,7 @@
 
 ## Overview
 
-This report analyzes perception systems deployed in production autonomous vehicles -- not research prototypes, but systems carrying real passengers and cargo on public roads and airport aprons. The goal is to extract concrete lessons for airside AV development from companies that have solved (or failed to solve) real-world perception at scale.
+This report analyzes perception systems deployed in production autonomous vehicles -- not research prototypes, but systems carrying real passengers and cargo on public roads, airport aprons, and managed sites. The goal is to extract concrete perception lessons that transfer across AV domains, with airside autonomy treated as one reference ODD rather than the default deployment lens.
 
 Related deep dives: [LiDAR Artifact Removal Techniques](lidar-artifact-removal-techniques.md), [Weather Robustness Datasets](../datasets-benchmarks/weather-robustness-datasets.md), and [LiDAR Artifact Removal Validation](../../../60-safety-validation/verification-validation/robustness/lidar-artifact-removal-validation.md).
 

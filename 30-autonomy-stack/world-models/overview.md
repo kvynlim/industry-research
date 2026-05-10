@@ -11,7 +11,7 @@ First-principles companion pages: [World Models](../../10-knowledge-base/machine
 1. [What Are World Models in the AV Context?](#1-what-are-world-models-in-the-av-context)
 2. [Key Architectures and Papers (2023--2025)](#2-key-architectures-and-papers-20232025)
 3. [How World Models Improve AV Stacks](#3-how-world-models-improve-av-stacks)
-4. [Airside (Airport Tarmac) Operations](#4-specific-considerations-for-airside-airport-tarmac-operations)
+4. [Domain Transfer: Airside Reference ODD](#4-domain-transfer-airside-reference-odd)
 5. [State of the Art: Deployable vs. Research-Only](#5-state-of-the-art-as-of-early-2025)
 
 ---
@@ -396,7 +396,9 @@ HD maps are expensive to create and maintain, representing a major scalability b
 
 ---
 
-## 4. Specific Considerations for Airside (Airport Tarmac) Operations
+## 4. Domain Transfer: Airside Reference ODD
+
+Airside airport operations are a detailed transfer case for world models because the domain combines low-speed autonomy, managed routes, unusual actors, infrastructure data, and safety-case pressure. The same transfer logic should be repeated for road AVs, warehouses, logistics yards, ports, mines, construction sites, agriculture, delivery robots, and outdoor campuses before claiming deployment relevance.
 
 ### 4.1 Environment Characteristics
 

@@ -1,5 +1,7 @@
 # Getting Started: Day 1 Guide
 
+This guide is an airside-reference implementation path. It is useful because the repo has concrete airside ROS bag, GSE, FOD, and jet-blast examples, but it should not be read as the default path for every AV domain.
+
 ## From Research to Running Code — Your First Week
 
 ---

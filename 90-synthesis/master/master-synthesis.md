@@ -1,7 +1,7 @@
-# World Models & AI for Airside Autonomous Vehicles: Master Synthesis
+# World Models & AI for Autonomous Vehicles: Airside Reference ODD Master Synthesis
 
 **Date:** 2026-03-21
-**Scope:** Comprehensive research survey across 20 deep-dive reports covering world models, VLAs, simulation, end-to-end driving, and their applicability to autonomous vehicles operating on airport airside.
+**Scope:** Comprehensive research survey across 20 deep-dive reports covering world models, VLAs, simulation, end-to-end driving, and their applicability to autonomous vehicles. Airport airside operations are the detailed reference ODD in this synthesis, not the default lens for the whole repository.
 
 ---
 
@@ -23,6 +23,8 @@
 ---
 
 ## 1. Executive Summary
+
+Read this page as an airside reference case for a generic AV stack. The same stack questions should be re-evaluated for road AVs, warehouses, logistics yards, ports, mines, construction sites, farms, delivery robots, and campuses before deployment claims are transferred.
 
 The autonomous driving field has undergone a paradigm shift from modular perception-planning-control pipelines toward **learned world models** and **end-to-end architectures**. Three converging trends make this the right time to adopt these approaches for airside AV:
 
@@ -48,8 +50,8 @@ Key advantages over current airside AV solutions (TractEasy, reference airside A
 
 ### 2.1 World Model Architectures (Maturity Ranking)
 
-| Approach | Maturity | Key Systems | Airside Fit |
-|----------|----------|-------------|-------------|
+| Approach | Maturity | Key Systems | Domain Fit Notes |
+|----------|----------|-------------|------------------|
 | **Latent world models + RL** | Production | DreamerV3/V4, TD-MPC2, Think2Drive | High — proven for control |
 | **VLA (Vision-Language-Action)** | Near-production | Alpamayo, LINGO-2, DriveVLM, pi0 | Very High — language grounding |
 | **Diffusion world models** | Research+ | GAIA-2, Vista, DriveDreamer-2, DIAMOND | High — simulation & planning |
