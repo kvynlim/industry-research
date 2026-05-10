@@ -10,6 +10,8 @@ This research corpus began as a 24-hour intensive research session on **2026-03-
 
 The current reading surface is the static VitePress portal at https://kvynlim.github.io/industry-research/. The Markdown files remain the source of truth; the site adds search, generated navigation, clean URLs, last-updated metadata, and browser-friendly reading across 334k+ lines of Markdown.
 
+Domain stance: the corpus is a generic AV knowledge base. Airside autonomous vehicles are the most developed reference ODD because the current research base is deepest there, but method ratings and generic stack pages should not treat airside as the default deployment context.
+
 ## Research Process
 
 ### Phase 1: Foundational Research (20 parallel agents)
@@ -57,7 +59,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 
 ### Phase 10: Method-Level Perception Library
 - **Method:** Five parallel writing agents split the perception coverage audit into atomic, one-method research files across camera BEV/occupancy, LiDAR/radar/event/FMCW perception, open-world/open-vocabulary perception, robust fusion/validation, and cooperative/latency/data-engine methods
-- **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), initially with 54 single-technique method files and now expanded to 93 atomic method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, airside fit, implementation notes, and sources
+- **Output:** [Perception Method Library](30-autonomy-stack/perception/methods/overview.md), initially with 54 single-technique method files and now expanded to 93 atomic method files that follow a shared structure for core idea, inputs/outputs, architecture, training/evaluation, strengths, failure modes, domain fit, transfer notes for explicitly scoped ODDs, implementation notes, and sources
 
 ### Phase 11: Cross-Architecture Knowledge Gap Audit
 - **Method:** Six parallel research agents audited the post-restructure architecture across foundations, AV platform, autonomy stack, runtime/cloud, safety/validation, and operations/industry. One autonomy agent was split into two narrower replacement agents after exceeding context, preserving coverage without overloading the review.
@@ -105,12 +107,13 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 10. **Continuous Research Loop:** Discovery, triage, promotion, cross-linking, verification, and next-queue selection are now documented as a repeatable loop
 11. **First-Principles Layering:** Applied perception, SLAM, mapping, and sensor files now link back to reusable math primitives instead of repeating estimator fundamentals inline
 12. **Removal Safety Separation:** LiDAR artifact removal now separates nuisance-point deletion, ghost/multipath diagnosis, dynamic-map cleaning, and safety validation so filtering does not become an unexamined hazard-deletion step
+13. **Domain Fit Rebalance:** Generic method and synthesis pages should use Domain Fit language across canonical AV domains, while airside-specific pages remain airside-first with transfer notes where relevant.
 
 ## Limitations
 
 1. **Web search rate limits:** Some agents hit API rate limits during research. Affected topics were written from training knowledge rather than live web search.
 2. **Point-in-time:** Research broadly reflects the state of the field as of March 2026, with 2026-05-08 and 2026-05-09 refreshes for SLAM, perception, Gaussian/3DGS methods, sensor fundamentals, first-principles estimator math, LIORNet/adverse-weather LiDAR removal, dynamic/static object removal, scene-flow/MOS benchmarks, moved-object map-change datasets, weather datasets, machine-learning foundations, radar-camera/FMCW perception, robust SLAM backends, collaborative and alternative-sensor SLAM, lifelong localization, adverse/OOD/FOD/V2X benchmarks, and perception/SLAM reliability protocols. Fast-moving areas (world models, VLAs, neural/Gaussian SLAM, open-world perception, dynamic map cleaning, adverse-weather denoising, and 4D radar) may have newer developments.
-3. **Airside data gap:** No public airside driving datasets exist, so comparative analysis relies on published deployment reports rather than reproducible benchmarks.
+3. **Reference-ODD imbalance:** Airside has the deepest current coverage and no public large-scale airside driving datasets, so some deployment comparisons rely on published reports rather than reproducible benchmarks. Generic method pages should separate airside-specific evidence from broader AV deployment relevance.
 4. **Company information:** Some companies (UISEE, AeroVect) have limited public technical information. Claims are attributed but not all independently verified.
 5. **Regulatory predictions:** Timeline predictions for FAA/EASA standards are based on published roadmaps and industry trends, not official commitments.
 
@@ -138,7 +141,7 @@ The current reading surface is the static VitePress portal at https://kvynlim.gi
 2. **Add new platform research:** Create it in the appropriate `20-av-platform/<domain>/` directory for compute, sensors, networking/connectivity, or drive-by-wire material.
 3. **Add new autonomy-stack research:** Create it in the appropriate `30-autonomy-stack/<domain>/` directory for world models, perception, planning, localization/mapping, simulation, VLA/VLM, E2E driving, or multi-agent/V2X material.
 4. **Add safety, validation, or robustness research:** Create it in the appropriate `60-safety-validation/<domain>/` directory.
-5. **Add operational or industry research:** Use `70-operations-domains/` for airside/deployment/business-case material and `80-industry-intel/` for companies, market intelligence, and regulations.
+5. **Add operational or industry research:** Use `70-operations-domains/` for domain operations across airside, warehouse, logistics yard, port, mining, construction, agriculture, road AV, delivery robot, and outdoor campus material. Use `80-industry-intel/` for companies, market intelligence, regulations, and cross-domain deployment evidence.
 6. **Update a finding:** Edit the document, run `rg` to find all references to the finding across the corpus, update all
 7. **Add a new POC:** Add to `90-synthesis/poc-roadmaps/poc-proposals.md` and `90-synthesis/readiness-risk/technology-readiness.md`
 8. **Track regulatory changes:** Update `80-industry-intel/regulations/regulatory-trajectory-deep-dive.md`

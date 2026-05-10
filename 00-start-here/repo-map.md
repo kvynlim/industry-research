@@ -9,7 +9,7 @@
 | `40-runtime-systems/` | ROS, Autoware, middleware, edge inference, deployment, monitoring, and data logging. |
 | `50-cloud-fleet/` | Cloud data platforms, MLOps, map ops, OTA, fleet management, and observability. |
 | `60-safety-validation/` | Safety case, standards, certification, verification, validation, runtime assurance, and cybersecurity. |
-| `70-operations-domains/` | Domain operations for airside, indoor warehouse, outdoor campus, road AV, and deployment playbooks. |
+| `70-operations-domains/` | Domain operations for airside, warehouse, logistics yard, port, mining, construction, agriculture, road AV, delivery robot, outdoor campus, and deployment playbooks. |
 | `80-industry-intel/` | Company profiles, market research, regulations, and deployments. |
 | `90-synthesis/` | Executive synthesis, decisions, POCs, readiness, risk, and the continuous research loop. |
 

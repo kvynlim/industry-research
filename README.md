@@ -1,6 +1,6 @@
 # Industry Research
 
-Personal research command center for autonomous vehicle technology, airport airside operations, world models, safety, deployment, and fleet systems.
+Markdown-first knowledge base for autonomous vehicle technology across road, airside, warehouse, logistics yard, port, mining, construction, agriculture, delivery robot, and outdoor campus domains. Airside autonomous vehicles remain the best-developed reference ODD, not the default evaluation lens.
 
 **Read it as a site:** https://kvynlim.github.io/industry-research/
 
@@ -29,6 +29,8 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 The corpus is being organized as an end-to-end AV knowledge base: fundamentals, platform hardware, autonomy stack, runtime systems, cloud/fleet systems, safety validation, operations domains, industry intelligence, and synthesis.
 
+Airside is used as a detailed reference ODD where the corpus has the deepest deployment evidence. Generic autonomy-stack methods, ratings, and synthesis pages should still state how ideas transfer across road AVs, warehouses, yards, ports, mines, construction sites, farms, delivery robots, and campus systems.
+
 ## Start Here
 
 | Need | Open |
@@ -53,11 +55,12 @@ The corpus is being organized as an end-to-end AV knowledge base: fundamentals, 
 |------|------------------|-----|
 | World models for autonomous driving | [World Models Overview](30-autonomy-stack/world-models/overview.md) | Frames diffusion, occupancy, self-supervised occupancy flow, UniScene-style occupancy-centric generation, tokenized, JEPA, RL, and LiDAR-native approaches. |
 | Airport airside operations | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Connects the AV stack to pushback, turnaround, FOD, jet blast, airport data systems, and GSE. |
+| Cross-domain deployment signals | [2024-2026 Autonomy Deployment Index](80-industry-intel/deployments/2024-2026-autonomy-deployment-index.md) | Compares airside, yard, warehouse, mining, delivery, and road ADS deployment evidence without treating one ODD as the default. |
 | Safety case and certification | [Certification Guide](60-safety-validation/standards-certification/certification-guide.md) | Pulls together ISO 3691-4, UL 4600, SOTIF, runtime monitoring, fail-operational design, and validation. |
 | Production deployment | [Deployment Playbook](70-operations-domains/deployment-playbooks/deployment-playbook.md) | Turns research into staged rollout, shadow mode, OTA, fleet management, and operational procedures. |
 | Fleet economics | [Fleet TCO Business Case](70-operations-domains/airside/business-case/fleet-tco-business-case.md) | Tracks vehicle CAPEX, labor savings, certification costs, operator ratios, and break-even logic. |
 | Edge hardware choices | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Grounds model choices in compute, power, TensorRT, DLA, and sensor constraints. |
-| Perception stack | [Production Perception Systems](30-autonomy-stack/perception/overview/production-perception-systems.md) | Compares production AV approaches and the perception patterns that transfer to airside autonomy. |
+| Perception stack | [Production Perception Systems](30-autonomy-stack/perception/overview/production-perception-systems.md) | Compares production AV approaches and the perception patterns that transfer across road, airside, and managed-site autonomy. |
 | Method-level perception | [Perception Method Library](30-autonomy-stack/perception/methods/overview.md) | Splits BEV, occupancy, LiDAR-camera/radar-camera fusion, dynamic Gaussian/3DGS/4DGS, LiDAR MOS, scene flow, 4D radar, FMCW LiDAR, open-world occupancy/attributes, robust fusion, V2X, latency, and data-engine methods into single-technique research pages. |
 | LiDAR artifact removal | [LiDAR Artifact Removal Techniques](30-autonomy-stack/perception/overview/lidar-artifact-removal-techniques.md) | Connects LIORNet, learned denoisers, classical outlier filters, weather artifacts, ghost/multipath behavior, map cleaning, datasets, and safety validation. |
 | Dynamic and static object removal | [LiDAR Map Cleaning and Dynamic Removal](30-autonomy-stack/localization-mapping/slam-methods/lidar-map-cleaning-dynamic-removal.md) | Connects ERASOR, Removert, MapCleaner, ERASOR++, 4dNDF, FreeDOM, STATIC-LIO, MOVES, RTMap/DUFOMap, LT-mapper/Khronos, MOS/scene-flow methods, moved-object datasets, and false-deletion validation. |
