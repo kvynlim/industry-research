@@ -1,5 +1,16 @@
 # 4DMOS
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "mapping", "validation"]
+  reason: "Extends LiDAR motion segmentation with temporal 4D reasoning."
+method-priority:end -->
+
 ## What It Is
 
 - 4DMOS is PRBonn's sparse-convolution method for receding moving object segmentation in 3D LiDAR data.

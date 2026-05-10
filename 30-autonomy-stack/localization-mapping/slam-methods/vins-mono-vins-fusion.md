@@ -1,5 +1,16 @@
 # VINS-Mono and VINS-Fusion
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied"]
+  reason: "Widely used visual-inertial baseline for GNSS-denied motion estimation."
+method-priority:end -->
+
 ## Executive Summary
 
 VINS-Mono and VINS-Fusion are optimization-based visual-inertial state estimation systems from HKUST's Aerial Robotics Group. VINS-Mono is the classic monocular camera plus IMU estimator: it performs robust initialization, tightly coupled nonlinear optimization over visual features and IMU preintegration, relocalization, and 4-DoF pose-graph optimization. VINS-Fusion extends the family to multiple sensor configurations, including mono + IMU, stereo + IMU, stereo-only, and global sensor fusion such as GPS through a pose-graph framework.

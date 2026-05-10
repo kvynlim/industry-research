@@ -1,5 +1,16 @@
 # K-Radar
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "benchmark"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["perception", "adverse-weather", "validation"]
+  reason: "Key 4D radar dataset and benchmark for all-weather perception evaluation."
+method-priority:end -->
+
 ## What It Is
 
 - K-Radar is the KAIST-Radar 4D radar dataset and benchmark for autonomous driving.

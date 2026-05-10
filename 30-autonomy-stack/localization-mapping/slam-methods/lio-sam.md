@@ -1,5 +1,16 @@
 # LIO-SAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization"]
+  reason: "Canonical factor-graph LIO reference for LiDAR, IMU, GPS, and loop factors."
+method-priority:end -->
+
 ## Executive Summary
 
 LIO-SAM is a tightly coupled LiDAR-inertial SLAM system built around factor-graph smoothing. It is important because it made a practical, open-source, GTSAM-based architecture for combining IMU preintegration, LiDAR scan-to-map constraints, GPS factors, and loop-closure factors in one online mapper. For autonomous vehicle work, its greatest value is not raw odometry speed; it is the clean demonstration of how a LiDAR odometry front end can be embedded in a smoothing backend that accepts other absolute and relative measurements.

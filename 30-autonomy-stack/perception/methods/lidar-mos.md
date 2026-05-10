@@ -1,5 +1,16 @@
 # LiDAR-MOS
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["perception", "mapping", "validation"]
+  reason: "Moving-object segmentation is central to map hygiene and dynamic-scene handling."
+method-priority:end -->
+
 ## What It Is
 
 - LiDAR-MOS is the PRBonn LMNet method for moving object segmentation in 3D LiDAR sequences.

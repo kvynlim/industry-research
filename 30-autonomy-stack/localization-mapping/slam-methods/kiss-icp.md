@@ -1,5 +1,16 @@
 # KISS-ICP: Keep It Small and Simple ICP
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["slam", "mapping", "outdoor"]
+  reason: "Strong LiDAR-only odometry baseline for evaluating registration stacks."
+method-priority:end -->
+
 Related localization docs: [SLAM algorithms](../overview/lidar-slam-algorithms.md), [production LiDAR map localization](../overview/production-lidar-map-localization.md), and [map construction pipeline](../maps/map-construction-pipeline.md).
 
 ## Executive Summary

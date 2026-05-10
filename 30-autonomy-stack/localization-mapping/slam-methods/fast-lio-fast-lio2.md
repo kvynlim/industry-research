@@ -1,5 +1,16 @@
 # FAST-LIO and FAST-LIO2
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "Core LiDAR-inertial baseline for mapping and localization fallback."
+method-priority:end -->
+
 ## Executive Summary
 
 FAST-LIO and FAST-LIO2 are tightly coupled LiDAR-inertial odometry systems from the HKU MARS Lab lineage. FAST-LIO introduced a fast iterated extended Kalman filter formulation for fusing LiDAR feature points and IMU data. FAST-LIO2 removed the feature extraction stage, directly registering raw LiDAR points to an incremental map maintained by an ikd-tree. The result is one of the most influential modern LIO baselines: fast, accurate, direct, and compatible with both spinning and solid-state LiDARs.

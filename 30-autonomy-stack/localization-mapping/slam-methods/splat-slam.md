@@ -1,5 +1,16 @@
 # Splat-SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation"]
+  reason: "Useful Gaussian SLAM reference, but not a runtime pose backbone."
+method-priority:end -->
+
 Related docs: [GS-SLAM and MonoGS](gs-slam-monogs.md), [SplaTAM](splatam.md), [WildGS-SLAM](wildgs-slam.md), [MASt3R-SLAM](mast3r-slam.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary

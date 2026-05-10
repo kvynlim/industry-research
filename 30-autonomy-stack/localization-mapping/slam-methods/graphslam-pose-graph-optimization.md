@@ -1,5 +1,16 @@
 # GraphSLAM and Pose Graph Optimization
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "method-family"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization"]
+  reason: "Core graph formulation behind mapping, loop closure, and smoothing."
+method-priority:end -->
+
 ## Executive Summary
 
 GraphSLAM reframes SLAM as sparse nonlinear optimization. Instead of recursively maintaining a single filter belief, the system builds a graph: nodes are robot poses or landmarks, and edges are constraints from odometry, scan matching, GPS, visual matches, or loop closures. The solution is the set of poses and map variables that best satisfies all constraints. Pose graph optimization is the most common reduced form: optimize only robot/keyframe poses, then build the map by projecting sensor data through the optimized trajectory.

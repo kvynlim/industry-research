@@ -1,5 +1,16 @@
 # MoME
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "fallback", "validation"]
+  reason: "Useful resilient fusion pattern for adverse sensor failure cases."
+method-priority:end -->
+
 ## What It Is
 
 - MoME is a camera-LiDAR 3D object detection architecture for resilient sensor fusion.

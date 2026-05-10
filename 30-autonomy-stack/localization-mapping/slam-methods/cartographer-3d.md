@@ -1,5 +1,16 @@
 # Cartographer 3D
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "classic-baseline"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "indoor"]
+  reason: "Mature submap SLAM reference for indoor and robotics mapping."
+method-priority:end -->
+
 ## Executive Summary
 
 Cartographer is Google's real-time SLAM system for 2D and 3D mapping across multiple platforms and sensor configurations. Cartographer 3D combines local submap construction, scan-to-submap matching, IMU-aided pose extrapolation, and a global pose graph that searches for loop-closure constraints in background threads. It is historically important because it provided a production-quality open-source submap and loop-closure architecture, even though active development has largely stopped.

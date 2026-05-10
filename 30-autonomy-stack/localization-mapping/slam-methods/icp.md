@@ -1,5 +1,16 @@
 # Point-to-Point ICP for 3D SLAM and LiDAR Localization
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 5
+  type: "method-family"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization"]
+  reason: "Core registration primitive behind LiDAR odometry and scan-to-map localization."
+method-priority:end -->
+
 Related library pages: [Production LiDAR-to-Map Localization](../overview/production-lidar-map-localization.md) and [Modern LiDAR SLAM and Odometry Algorithms](../overview/lidar-slam-algorithms.md).
 
 ## Executive Summary

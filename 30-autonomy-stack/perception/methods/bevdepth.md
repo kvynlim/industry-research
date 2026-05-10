@@ -1,5 +1,16 @@
 # BEVDepth
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av"]
+  reason: "Important depth-aware BEV bridge for camera-only 3D perception."
+method-priority:end -->
+
 ## What It Is
 
 - BEVDepth is a camera-only multi-view 3D object detector built to fix unreliable depth in BEV lifting.

@@ -1,5 +1,16 @@
 # SurroundOcc
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation"]
+  reason: "Foundational camera occupancy reference for planning-facing perception."
+method-priority:end -->
+
 ## What It Is
 
 - SurroundOcc is a multi-camera 3D semantic occupancy prediction method for autonomous driving.

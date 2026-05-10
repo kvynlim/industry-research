@@ -1,5 +1,16 @@
 # RadarPillars
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "classic-baseline"
+  maturity: "prototype"
+  tags: ["perception", "adverse-weather"]
+  reason: "Core radar-native detection baseline for weather-robust perception."
+method-priority:end -->
+
 ## What It Is
 
 - RadarPillars is a pillar-based 3D object detector for 4D radar point clouds.

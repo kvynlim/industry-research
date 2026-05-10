@@ -1,5 +1,16 @@
 # Scan Context Family
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "fielded-pattern"
+  tags: ["slam", "runtime-localization", "mapping"]
+  reason: "Core LiDAR place-recognition pattern for loop closure and relocalization."
+method-priority:end -->
+
 ## Executive Summary
 
 Scan Context is a handcrafted LiDAR place-recognition family for loop closure, relocalization, and multi-session map retrieval. A single 3D scan is converted into a polar bird's-eye descriptor: rings represent radial distance, sectors represent azimuth, and each bin stores a compact structural statistic, classically the maximum point height. Matching is efficient because a ring key supports coarse nearest-neighbor retrieval and circular sector shifts estimate yaw.

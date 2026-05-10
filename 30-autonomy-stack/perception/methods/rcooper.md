@@ -1,5 +1,16 @@
 # RCooper
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "benchmark"
+  stage: "frontier"
+  maturity: "fielded-pattern"
+  tags: ["perception", "validation", "road-av"]
+  reason: "Cooperative-perception dataset relevant to infrastructure-assisted sensing."
+method-priority:end -->
+
 ## What It Is
 
 RCooper is a CVPR 2024 real-world dataset and benchmark for roadside cooperative perception.

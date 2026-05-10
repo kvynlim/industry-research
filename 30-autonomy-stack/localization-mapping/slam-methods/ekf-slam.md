@@ -1,5 +1,16 @@
 # EKF-SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 2
+  type: "method-family"
+  stage: "foundation"
+  maturity: "historical"
+  tags: ["slam", "indoor"]
+  reason: "Foundation for estimator thinking, but rarely the direct modern AV stack."
+method-priority:end -->
+
 ## Executive Summary
 
 Extended Kalman Filter SLAM is the classical recursive formulation of simultaneous localization and mapping. It keeps a single joint Gaussian belief over the robot pose and all mapped landmarks, propagates that belief through the motion model, and updates it whenever landmarks are observed. Its main historical importance is that it proved SLAM could be solved probabilistically and gave robotics a concrete implementation pattern: keep cross-correlations between robot pose and landmarks, because those correlations are the information that makes loop closure possible.

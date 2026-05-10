@@ -1,5 +1,16 @@
 # Sparse4D
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av"]
+  reason: "Practical sparse-query direction for camera 3D detection and tracking."
+method-priority:end -->
+
 ## What It Is
 
 - Sparse4D is a sparse query-based family of multi-view camera 3D detection and tracking methods.

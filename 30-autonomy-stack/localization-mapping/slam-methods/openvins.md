@@ -1,5 +1,16 @@
 # OpenVINS
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "indoor"]
+  reason: "Practical VIO baseline for camera-IMU state estimation and fallback odometry."
+method-priority:end -->
+
 ## Executive Summary
 
 OpenVINS is an open-source visual-inertial estimation platform centered on a sliding-window Multi-State Constraint Kalman Filter (MSCKF). It is a research and engineering framework rather than only a single algorithm release: it includes sparse feature tracking, inertial propagation, MSCKF updates, optional SLAM landmarks, online calibration for camera intrinsics/extrinsics and camera-IMU time offset, simulation, evaluation tools, and detailed derivations.

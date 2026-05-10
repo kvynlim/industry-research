@@ -1,5 +1,16 @@
 # Availability-Aware Sensor Fusion
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "architecture-pattern"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["perception", "fallback", "validation"]
+  reason: "Directly targets sensor degradation and availability-aware fusion."
+method-priority:end -->
+
 ## What It Is
 
 - Availability-aware Sensor Fusion, or ASF, is a 4D radar, LiDAR, and camera fusion method.

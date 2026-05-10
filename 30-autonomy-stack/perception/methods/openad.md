@@ -1,5 +1,16 @@
 # OpenAD
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "benchmark"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["perception", "validation", "data-engine"]
+  reason: "Open-world benchmark for corner cases and unseen categories."
+method-priority:end -->
+
 ## What It Is
 
 - OpenAD is a benchmark for open-world 3D object detection in autonomous driving.

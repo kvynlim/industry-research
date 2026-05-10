@@ -1,5 +1,16 @@
 # Clipomaly
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine"]
+  reason: "Useful anomaly-detection reference for long-tail discovery workflows."
+method-priority:end -->
+
 ## What It Is
 
 - Clipomaly is a language-guided open-world anomaly segmentation method for autonomous driving.

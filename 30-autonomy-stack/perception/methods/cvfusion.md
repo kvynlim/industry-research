@@ -1,5 +1,16 @@
 # CVFusion
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "adverse-weather"]
+  reason: "Important radar-camera fusion method for degraded visual conditions."
+method-priority:end -->
+
 ## What It Is
 
 - CVFusion is an ICCV 2025 4D radar-camera 3D object detection method.

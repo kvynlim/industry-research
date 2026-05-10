@@ -1,5 +1,16 @@
 # Conformal Boxes
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["perception", "validation"]
+  reason: "Practical uncertainty wrapper for detection risk and release gates."
+method-priority:end -->
+
 ## What It Is
 
 - Conformal Boxes is this library's name for conformal bounding-box uncertainty around object detections.

@@ -7,7 +7,23 @@ This directory is the method-level perception library. Each page should represen
 Priority ratings are editorial reading and deployment triage signals. `Learning` answers what to read early for general autonomy understanding. `Deployment` answers what to evaluate early for AV deployment in the tagged context; it is not a certification or product-readiness claim.
 
 <!-- priority-table:start -->
-No rated method pages yet.
+| Method | Learning | Deployment | Type | Stage | Maturity | Tags | Reason |
+|---|---:|---:|---|---|---|---|---|
+| [Availability-Aware Sensor Fusion](availability-aware-sensor-fusion.md) | 4 | 5 | `architecture-pattern` | `deployment-pattern` | `prototype` | `perception`, `fallback`, `validation` | Directly targets sensor degradation and availability-aware fusion. |
+| [LiDAR-MOS](lidar-mos.md) | 4 | 5 | `method-family` | `deployment-pattern` | `prototype` | `perception`, `mapping`, `validation` | Moving-object segmentation is central to map hygiene and dynamic-scene handling. |
+| [BEVDepth](bevdepth.md) | 4 | 4 | `method` | `modern-core` | `prototype` | `perception`, `road-av` | Important depth-aware BEV bridge for camera-only 3D perception. |
+| [BEVDet](bevdet.md) | 4 | 4 | `method` | `modern-core` | `prototype` | `perception`, `road-av` | Baseline camera BEV detector that organizes many later BEV methods. |
+| [Conformal Boxes](conformal-boxes.md) | 4 | 4 | `method` | `deployment-pattern` | `prototype` | `perception`, `validation` | Practical uncertainty wrapper for detection risk and release gates. |
+| [OpenAD](openad.md) | 4 | 4 | `benchmark` | `modern-core` | `fielded-pattern` | `perception`, `validation`, `data-engine` | Open-world benchmark for corner cases and unseen categories. |
+| [RadarPillars](radarpillars.md) | 4 | 4 | `method` | `classic-baseline` | `prototype` | `perception`, `adverse-weather` | Core radar-native detection baseline for weather-robust perception. |
+| [SurroundOcc](surroundocc.md) | 4 | 4 | `method` | `modern-core` | `prototype` | `perception`, `road-av`, `validation` | Foundational camera occupancy reference for planning-facing perception. |
+| [4DMOS](4dmos.md) | 3 | 4 | `method` | `modern-core` | `prototype` | `perception`, `mapping`, `validation` | Extends LiDAR motion segmentation with temporal 4D reasoning. |
+| [CVFusion](cvfusion.md) | 3 | 4 | `method` | `modern-core` | `prototype` | `perception`, `adverse-weather` | Important radar-camera fusion method for degraded visual conditions. |
+| [K-Radar](k-radar.md) | 3 | 4 | `benchmark` | `modern-core` | `fielded-pattern` | `perception`, `adverse-weather`, `validation` | Key 4D radar dataset and benchmark for all-weather perception evaluation. |
+| [MoME](mome.md) | 3 | 4 | `method` | `modern-core` | `prototype` | `perception`, `fallback`, `validation` | Useful resilient fusion pattern for adverse sensor failure cases. |
+| [Sparse4D](sparse4d.md) | 3 | 4 | `method-family` | `modern-core` | `prototype` | `perception`, `road-av` | Practical sparse-query direction for camera 3D detection and tracking. |
+| [Clipomaly](clipomaly.md) | 3 | 3 | `method` | `frontier` | `research` | `perception`, `validation`, `data-engine` | Useful anomaly-detection reference for long-tail discovery workflows. |
+| [RCooper](rcooper.md) | 3 | 3 | `benchmark` | `frontier` | `fielded-pattern` | `perception`, `validation`, `road-av` | Cooperative-perception dataset relevant to infrastructure-assisted sensing. |
 <!-- priority-table:end -->
 
 ## How to Use This Library

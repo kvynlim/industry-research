@@ -1,5 +1,16 @@
 # BEVDet
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av"]
+  reason: "Baseline camera BEV detector that organizes many later BEV methods."
+method-priority:end -->
+
 ## What It Is
 
 - BEVDet is a camera-only, multi-camera 3D object detector that predicts boxes in bird's-eye view.

@@ -1,5 +1,16 @@
 # Normal Distributions Transform (NDT) for 3D SLAM and AV Localization
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "fielded-pattern"
+  tags: ["runtime-localization", "road-av", "outdoor"]
+  reason: "Mature scan-to-map localization pattern used in AV and robotics stacks."
+method-priority:end -->
+
 Related library pages: [Production LiDAR-to-Map Localization](../overview/production-lidar-map-localization.md) and [Modern LiDAR SLAM and Odometry Algorithms](../overview/lidar-slam-algorithms.md).
 
 ## Executive Summary

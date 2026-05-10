@@ -1,5 +1,16 @@
 # RTAB-Map
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "indoor"]
+  reason: "Practical multi-sensor robotics SLAM stack with broad deployment use."
+method-priority:end -->
+
 ## Executive Summary
 
 RTAB-Map, short for Real-Time Appearance-Based Mapping, is a mature open-source graph-SLAM library and application for RGB-D, stereo, lidar, and 2D laser robots. It combines visual or lidar odometry, appearance-based loop closure, proximity detection, graph optimization, map/database management, and ROS integration. For practical indoor RGB-D robotics, it is the most deployable method in this group.

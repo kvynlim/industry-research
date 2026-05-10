@@ -1,5 +1,16 @@
 # ORB-SLAM2 and ORB-SLAM3
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "method-family"
+  stage: "classic-baseline"
+  maturity: "fielded-pattern"
+  tags: ["slam", "indoor", "outdoor"]
+  reason: "Strong visual SLAM baseline, but not a primary AV localization backbone."
+method-priority:end -->
+
 ## Executive Summary
 
 ORB-SLAM2 and ORB-SLAM3 are the reference feature-based visual SLAM systems for many robotics research stacks. ORB-SLAM2 generalized the original monocular ORB-SLAM architecture to monocular, stereo, and RGB-D cameras with real-time tracking, local mapping, loop closing, relocalization, map reuse, and bundle-adjustment based optimization. ORB-SLAM3 extended the family to visual-inertial operation, fisheye models, and a multi-map "Atlas" representation that can start a new map after tracking loss and merge it later through place recognition.

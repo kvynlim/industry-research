@@ -1,5 +1,16 @@
 # Factor Graph SLAM with iSAM2 and GTSAM
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization"]
+  reason: "Backend pattern for smoothing, loop closure, and multi-sensor pose estimation."
+method-priority:end -->
+
 ## Executive Summary
 
 Factor graph SLAM is the modern generalization of graph-based state estimation. Variables represent unknowns such as poses, velocities, IMU biases, landmarks, calibration parameters, and map anchors. Factors represent probabilistic constraints from sensors and priors. GTSAM is the most influential robotics library for this formulation, and iSAM2 is its incremental smoothing algorithm based on the Bayes tree.
