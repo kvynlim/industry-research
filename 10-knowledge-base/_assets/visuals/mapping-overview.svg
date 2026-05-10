@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="map-and-planning-stack">
+  <title id="title">Mapping Foundations for Autonomy</title>
+  <desc id="desc">section-level autonomy-role diagram showing mapping foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#0f766e"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="54" y="48" width="1292" height="624" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="92" y="96" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#0f172a">Mapping Foundations for Autonomy</text>
+  <text x="92" y="128" font-family="Arial, sans-serif" font-size="16" fill="#475569">Persistent spatial memory with provenance, dynamic separation, and planning-facing layers.</text>
+  <!-- layout:map-and-planning-stack -->
+  <rect x="118" y="198" width="198" height="104" rx="14" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="217" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Sensor evidence</text>
+  <text x="217" y="267" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">rays, classes, poses</text>
+  <rect x="386" y="198" width="204" height="104" rx="14" fill="#ccfbf1" stroke="#0f766e" stroke-width="2"/>
+  <text x="488" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Update policy</text>
+  <text x="488" y="267" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">confidence and recency</text>
+  <rect x="660" y="174" width="230" height="152" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="775" y="214" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#172033">Persistent map</text>
+  <text x="775" y="246" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">occupancy, semantic layers</text>
+  <text x="775" y="272" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">TSDF, ESDF, surfels</text>
+  <rect x="960" y="198" width="204" height="104" rx="14" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="1062" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Map QA</text>
+  <text x="1062" y="267" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">version, drift, conflicts</text>
+  <rect x="1014" y="390" width="204" height="104" rx="14" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="1116" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Planning interface</text>
+  <text x="1116" y="459" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">drivable space and costs</text>
+  <line x1="316" y1="250" x2="378" y2="250" stroke="#0f766e" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="590" y1="250" x2="652" y2="250" stroke="#0f766e" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="890" y1="250" x2="952" y2="250" stroke="#0f766e" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1062 304 C1078 340 1095 365 1116 382" fill="none" stroke="#0f766e" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="152" y="402" width="266" height="132" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="176" y="438" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Dynamic or static</text>
+  <circle cx="196" cy="474" r="12" fill="#0284c7"/>
+  <text x="220" y="480" font-family="Arial, sans-serif" font-size="14" fill="#334155">moving actor evidence</text>
+  <rect x="184" y="500" width="24" height="18" fill="#64748b"/>
+  <text x="220" y="516" font-family="Arial, sans-serif" font-size="14" fill="#334155">persistent structure</text>
+  <rect x="484" y="402" width="328" height="132" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="508" y="438" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Diagnostic trace</text>
+  <text x="508" y="474" font-family="Arial, sans-serif" font-size="14" fill="#334155">Who observed it, when, and why</text>
+  <text x="508" y="504" font-family="Arial, sans-serif" font-size="14" fill="#334155">the map state changed</text>
+</svg>
+

@@ -8,7 +8,14 @@ import { DIAGRAM_KINDS, PAGE_DIAGRAM_KIND, visualKindForFile } from '../tools/kn
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const minKnowledgeBaseDiagramKinds = 30
 const maxKnowledgeBasePagesPerDiagramKind = 7
-const overviewFoldersWithContract = []
+const overviewFoldersWithContract = [
+  'controls',
+  'mapping',
+  'optimization',
+  'robotics',
+  'sensors',
+  'signal-processing'
+]
 const legacyOverviewContractExceptions = new Set(['machine-learning'])
 
 const requiredOverviewHeadings = [

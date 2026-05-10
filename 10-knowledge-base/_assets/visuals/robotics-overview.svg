@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="systems-map">
+  <title id="title">Robotics Foundations for Autonomy</title>
+  <desc id="desc">section-level autonomy-role diagram showing robotics foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="54" y="48" width="1292" height="624" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="92" y="96" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#0f172a">Robotics Foundations for Autonomy</text>
+  <text x="92" y="128" font-family="Arial, sans-serif" font-size="16" fill="#475569">Task decomposition and handoff contracts from route intent to monitored execution.</text>
+  <!-- layout:systems-map -->
+  <rect x="118" y="214" width="170" height="88" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="203" y="251" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Mission</text>
+  <text x="203" y="277" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">task and ODD</text>
+  <rect x="348" y="214" width="170" height="88" rx="14" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="433" y="251" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Route</text>
+  <text x="433" y="277" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">corridor choice</text>
+  <rect x="578" y="214" width="170" height="88" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="663" y="251" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Behavior</text>
+  <text x="663" y="277" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">maneuver choice</text>
+  <rect x="808" y="214" width="170" height="88" rx="14" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="893" y="251" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Motion</text>
+  <text x="893" y="277" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">candidate path</text>
+  <rect x="1038" y="214" width="170" height="88" rx="14" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="1123" y="251" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Control</text>
+  <text x="1123" y="277" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">tracked command</text>
+  <line x1="288" y1="258" x2="340" y2="258" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="518" y1="258" x2="570" y2="258" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="748" y1="258" x2="800" y2="258" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="978" y1="258" x2="1030" y2="258" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="178" y="390" width="260" height="132" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="202" y="428" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Map vocabulary</text>
+  <text x="202" y="462" font-family="Arial, sans-serif" font-size="14" fill="#334155">Lanelets, bounds, rules</text>
+  <text x="202" y="492" font-family="Arial, sans-serif" font-size="14" fill="#334155">Routing graph and zones</text>
+  <rect x="520" y="390" width="360" height="132" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="544" y="428" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Boundary diagnosis</text>
+  <text x="544" y="462" font-family="Arial, sans-serif" font-size="14" fill="#334155">Separate route, behavior, motion, trajectory, control</text>
+  <text x="544" y="492" font-family="Arial, sans-serif" font-size="14" fill="#334155">Assign evidence to the layer that produced it</text>
+  <rect x="962" y="390" width="260" height="132" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="986" y="428" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Embodiment</text>
+  <text x="986" y="462" font-family="Arial, sans-serif" font-size="14" fill="#334155">Vehicle model and ODD</text>
+  <text x="986" y="492" font-family="Arial, sans-serif" font-size="14" fill="#334155">Handoff assumptions</text>
+</svg>
+

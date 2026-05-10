@@ -2,7 +2,7 @@
 
 Date: 2026-05-09
 
-Scope: `10-knowledge-base` only. This reassessment covers all 109 live Markdown research files.
+Scope: `10-knowledge-base` only. This reassessment covers all 116 live Markdown research files.
 
 ## Assumption Change
 
@@ -22,8 +22,8 @@ Each file was reassessed as its own research note:
 
 ## Summary
 
-- Live knowledge-base Markdown files: 109.
-- Files requiring a replacement visual if generated figures are removed: 109.
+- Live knowledge-base Markdown files: 116.
+- Files requiring a replacement visual if generated figures are removed: 116.
 - Files that can safely lose the generated visual without replacement: 0.
 - Recommended default: one carefully designed replacement diagram per file.
 - Multi-diagram expansion should be reserved for later deepening passes; the current goal is baseline replacement coverage.
@@ -35,6 +35,7 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/controls/constrained-optimization-mpc-ilqr-first-principles.md` - Visual needed: yes. Replacement visual: receding-horizon control loop showing state estimate, prediction model, constraints, cost, QP/NLP solve, first-control application, and warm-start feedback.
 - `10-knowledge-base/controls/frenet-trajectory-math.md` - Visual needed: yes. Replacement visual: road centerline with Frenet `s` and `d` axes, sampled lateral offsets, jerk-optimal profile, vehicle envelope, and collision-check corridor.
 - `10-knowledge-base/controls/mdp-pomdp-belief-space-rl-first-principles.md` - Visual needed: yes. Replacement visual: POMDP belief-update loop connecting hidden state, action, observation, Bayes belief update, policy, value, and uncertainty.
+- `10-knowledge-base/controls/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing control foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/controls/vehicle-dynamics-and-control.md` - Visual needed: yes. Replacement visual: model-fidelity ladder from kinematic bicycle to dynamic bicycle, tire force/slip, actuator delay, controller output, and failure diagnostics.
 
 ### Geometry 3D
@@ -95,6 +96,7 @@ Each file was reassessed as its own research note:
 
 - `10-knowledge-base/mapping/neural-implicit-slam-differentiable-mapping-first-principles.md` - Visual needed: yes. Replacement visual: keyframes, pose variables, sampled camera rays, implicit field parameters, photometric/depth/SDF losses, optimization loop, and map validation.
 - `10-knowledge-base/mapping/occupancy-bayes-evidential-dynamic-grids.md` - Visual needed: yes. Replacement visual: ray-based occupancy update showing prior cell state, inverse sensor model, log-odds/evidential mass, dynamic occupancy, and diagnostic failure cases.
+- `10-knowledge-base/mapping/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing mapping foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/mapping/semantic-mapping-and-map-fusion-first-principles.md` - Visual needed: yes. Replacement visual: geometric occupancy, semantic class probabilities, instance IDs, dynamic/static flags, temporal fusion, provenance, and planner-facing map layers.
 - `10-knowledge-base/mapping/volumetric-map-representations-tsdf-esdf-octree-surfels.md` - Visual needed: yes. Replacement visual: representation comparison showing occupancy, TSDF, ESDF, octree sparsity, surfels, and planner/collision/rendering tradeoffs.
 
@@ -113,6 +115,7 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/optimization/gauss-newton-levenberg-marquardt-dogleg.md` - Visual needed: yes. Replacement visual: nonlinear step geometry comparing Gauss-Newton, LM damping, trust-region radius, dogleg path, accept/reject ratio, and failure modes.
 - `10-knowledge-base/optimization/jacobians-autodiff-manifold-linearization.md` - Visual needed: yes. Replacement visual: Jacobian-source comparison showing analytic, numeric, autodiff, manifold retraction, perturbation convention, and residual linearization.
 - `10-knowledge-base/optimization/nonlinear-least-squares-first-principles.md` - Visual needed: yes. Replacement visual: nonlinear least-squares iteration loop from residual construction to linearization, normal equations/solver, state update, convergence test, and diagnostics.
+- `10-knowledge-base/optimization/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing optimization foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/optimization/trust-region-line-search-globalization.md` - Visual needed: yes. Replacement visual: trust-region versus line-search decision geometry showing local model, step candidate, ratio test, backtracking, radius update, and instability prevention.
 
 ### Probability And Statistics
@@ -132,15 +135,18 @@ Each file was reassessed as its own research note:
 
 - `10-knowledge-base/robotics/embodied-ai-crossover.md` - Visual needed: yes. Replacement visual: transfer map from robotics foundation models, diffusion policy, action tokenization, and embodied priors into constrained vehicle autonomy.
 - `10-knowledge-base/robotics/lanelet2-maps.md` - Visual needed: yes. Replacement visual: Lanelet2 map primitive diagram showing lanelets, left/right bounds, regulatory elements, routing graph, airport extensions, and dynamic zones.
+- `10-knowledge-base/robotics/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing robotics foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/robotics/planning-taxonomy-and-trajectory-generation.md` - Visual needed: yes. Replacement visual: layered planning stack from route to behavior to motion to trajectory validation to controller/runtime assurance.
 
 ### Sensors
 
+- `10-knowledge-base/sensors/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing sensor foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/sensors/sensor-likelihoods-noise-error-budgets.md` - Visual needed: yes. Replacement visual: sensor likelihood/error-budget pipeline showing physical noise, covariance allocation, measurement model, gating/fusion, and diagnostics.
 
 ### Signal Processing
 
 - `10-knowledge-base/signal-processing/cfar-detection-thresholding.md` - Visual needed: yes. Replacement visual: CFAR sliding window with cell-under-test, guard cells, training cells, clutter estimate, adaptive threshold, and detection output.
+- `10-knowledge-base/signal-processing/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing signal processing foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/signal-processing/radar-ambiguity-chirp-design-doppler-limits.md` - Visual needed: yes. Replacement visual: range-Doppler ambiguity diagram linking chirp slope, bandwidth, sampling rate, PRI, unambiguous range, and velocity limits.
 - `10-knowledge-base/signal-processing/radar-fmcw-mimo-doppler.md` - Visual needed: yes. Replacement visual: FMCW/MIMO radar pipeline from chirps to beat frequency, range FFT, Doppler FFT, virtual array angle, CFAR, and ghost/multipath artifacts.
 - `10-knowledge-base/signal-processing/sampling-fft-windowing-filtering.md` - Visual needed: yes. Replacement visual: sampling and frequency-domain diagram showing aliasing, FFT bins, spectral leakage, windowing, filter response, and implementation diagnostics.
@@ -178,7 +184,7 @@ Each file was reassessed as its own research note:
 
 ## Implementation Implication
 
-If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 109 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
+If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 116 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
 
 Suggested replacement order:
 

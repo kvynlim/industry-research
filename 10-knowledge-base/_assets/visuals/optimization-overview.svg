@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="solver-loop">
+  <title id="title">Optimization Foundations for Autonomy</title>
+  <desc id="desc">section-level autonomy-role diagram showing optimization foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="54" y="48" width="1292" height="624" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="92" y="96" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#0f172a">Optimization Foundations for Autonomy</text>
+  <text x="92" y="128" font-family="Arial, sans-serif" font-size="16" fill="#475569">Objective construction, linearization, step acceptance, and solver diagnosis.</text>
+  <!-- layout:solver-loop -->
+  <ellipse cx="700" cy="350" rx="312" ry="190" fill="#faf5ff" stroke="#7c3aed" stroke-width="3"/>
+  <rect x="282" y="218" width="204" height="86" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="384" y="254" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Residuals</text>
+  <text x="384" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">meaning and scale</text>
+  <rect x="598" y="154" width="204" height="86" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="700" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Jacobians</text>
+  <text x="700" y="216" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">autodiff or analytic</text>
+  <rect x="914" y="218" width="204" height="86" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="1016" y="254" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Linear solve</text>
+  <text x="1016" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">rank and conditioning</text>
+  <rect x="914" y="402" width="204" height="86" rx="14" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="1016" y="438" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Step policy</text>
+  <text x="1016" y="464" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">damping and trust</text>
+  <rect x="598" y="466" width="204" height="86" rx="14" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="700" y="502" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Update state</text>
+  <text x="700" y="528" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">manifold retraction</text>
+  <rect x="282" y="402" width="204" height="86" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+  <text x="384" y="438" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172033">Convergence</text>
+  <text x="384" y="464" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#334155">cost, step, gradient</text>
+  <path d="M486 246 C530 204 558 190 590 190" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M804 190 C850 194 886 214 906 238" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1016 306 C1028 338 1028 370 1016 394" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M914 482 C878 516 838 528 810 520" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M590 520 C536 506 506 482 494 456" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M384 400 C356 350 356 316 384 306" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="120" y="548" width="358" height="72" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="144" y="580" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Review</text>
+  <text x="214" y="580" font-family="Arial, sans-serif" font-size="14" fill="#334155">residual meaning, scale, derivatives</text>
+  <rect x="522" y="548" width="358" height="72" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="546" y="580" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Debug</text>
+  <text x="606" y="580" font-family="Arial, sans-serif" font-size="14" fill="#334155">bad model, bad step, bad conditioning</text>
+  <rect x="924" y="548" width="358" height="72" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="948" y="580" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Apply</text>
+  <text x="1002" y="580" font-family="Arial, sans-serif" font-size="14" fill="#334155">SLAM, calibration, planning, control</text>
+</svg>
+
