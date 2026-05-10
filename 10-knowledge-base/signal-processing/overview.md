@@ -90,4 +90,3 @@ Common failure modes include aliasing, spectral leakage, filter delay, phase dis
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-

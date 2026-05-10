@@ -89,4 +89,3 @@ Common failure modes include stale tiles, overconfident occupancy, semantic labe
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-

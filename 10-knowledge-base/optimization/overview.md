@@ -90,4 +90,3 @@ Common failure modes include unit mismatch, unwhitened residuals, wrong perturba
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-

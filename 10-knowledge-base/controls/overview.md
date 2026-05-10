@@ -89,4 +89,3 @@ Common failure modes include open-loop trajectory validation, objectives that hi
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-

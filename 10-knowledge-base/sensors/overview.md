@@ -86,4 +86,3 @@ Common failure modes include overconfident covariances, stale calibration, weath
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-
