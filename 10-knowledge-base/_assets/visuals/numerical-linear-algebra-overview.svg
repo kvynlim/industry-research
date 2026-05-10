@@ -50,4 +50,3 @@
   <rect x="405" y="625" width="590" height="48" rx="12" fill="#fff7e8" stroke="#c57c16" stroke-width="2"/>
   <text x="700" y="656" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#5a3400">Diagnostic focus: a pose update can hide a weak yaw mode.</text>
 </svg>
-

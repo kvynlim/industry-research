@@ -42,4 +42,3 @@
   <rect x="350" y="585" width="700" height="54" rx="14" fill="#ffece8" stroke="#c5533d" stroke-width="2"/>
   <text x="700" y="618" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#702516">Diagnostic focus: numeric covariance is not the same as calibrated confidence.</text>
 </svg>
-

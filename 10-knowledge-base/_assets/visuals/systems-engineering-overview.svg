@@ -46,4 +46,3 @@
   <rect x="260" y="575" width="880" height="58" rx="14" fill="#fff7e8" stroke="#c57c16" stroke-width="2"/>
   <text x="700" y="610" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#5a3400">Diagnostic focus: metrics must connect to replay timing, lineage, and monitors.</text>
 </svg>
-

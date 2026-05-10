@@ -58,4 +58,3 @@
   <text x="1175" y="518" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#3d2465">wrong order</text>
   <text x="700" y="620" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#34445a">Registration stays geometry until mapping commits it into persistent state.</text>
 </svg>
-
