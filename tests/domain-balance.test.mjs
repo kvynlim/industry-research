@@ -100,6 +100,21 @@ test('auditDomainBalance counts canonical domain buckets by file and mention wit
   assert.deepEqual(after, before)
 })
 
+test('auditDomainBalance counts ADS-B as airside without road ADS false positives', (t) => {
+  const root = makeFixture({
+    'README.md': '# Overview\nADS-B surveillance supports airport operations.\n',
+    'INDEX.md': '# Overview\nRoad ADS programs evaluate automated driving systems.\n'
+  })
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }))
+
+  const report = auditDomainBalance(root)
+
+  assert.deepEqual(report.domains.airside, { files: 1, mentions: 2 })
+  assert.deepEqual(report.domains.road, { files: 1, mentions: 2 })
+  assert.deepEqual(report.folders.root.domains.airside, 2)
+  assert.deepEqual(report.folders.root.domains.road, 2)
+})
+
 test('formatAuditReport emits deterministic Markdown tables', (t) => {
   const root = makeFixture({
     'README.md': '# Overview\nAirport apron.\n',

@@ -22,11 +22,11 @@ export const CONTENT_DIRS = [
 export const DOMAIN_BUCKETS = [
   {
     id: 'airside',
-    regex: /\b(airside|airport|apron|ramp|gse|pushback|fod|jet\s*blast|turnaround|changi|caas)\b/gi
+    regex: /\b(ads\s*-\s*b|airside|airport|apron|ramp|gse|pushback|fod|jet\s*blast|turnaround|changi|caas)\b/gi
   },
   {
     id: 'road',
-    regex: /\b(road|roadway|highway|street|urban driving|robotaxi|waymo|cruise|adas|ads|road av)\b/gi
+    regex: /\b(road\s+ads|automated driving systems?|road|roadway|highway|street|urban driving|robotaxi|waymo|cruise|adas|road av)\b/gi
   },
   {
     id: 'warehouse',
