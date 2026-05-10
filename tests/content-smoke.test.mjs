@@ -21,6 +21,7 @@ const requiredDocs = [
   '60-safety-validation/standards-certification/iso-3691-4-deep-dive.md',
   '20-av-platform/compute/nvidia-orin-technical.md',
   '10-knowledge-base/geometry-3d/pointpillars.md',
+  '10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md',
   '30-autonomy-stack/perception/overview/sensor-fusion-architectures.md'
 ]
 
@@ -66,6 +67,50 @@ test('repository corpus contains acceptance search terms', () => {
 
   for (const term of ['Waymo', 'world models', 'ISO 3691-4', 'Orin']) {
     assert.ok(corpus.toLowerCase().includes(term.toLowerCase()), `corpus should contain ${term}`)
+  }
+})
+
+test('robust losses knowledge-base page covers canonical estimators and links', () => {
+  const robustLossPage = '10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md'
+  const robustLossPath = path.join(repoRoot, robustLossPage)
+  const markdown = fs.readFileSync(robustLossPath, 'utf8')
+  const requiredTerms = [
+    'Huber',
+    'Cauchy',
+    'Tukey',
+    'Geman-McClure',
+    'M-estimator',
+    'influence function',
+    'IRLS',
+    'whitened'
+  ]
+
+  for (const term of requiredTerms) {
+    assert.ok(markdown.includes(term), `${robustLossPage} should include ${term}`)
+  }
+
+  const linkTargets = [
+    '10-knowledge-base/probability-statistics/robust-statistics-ransac-hypothesis-testing.md',
+    '10-knowledge-base/probability-statistics/likelihood-map-mle-least-squares.md',
+    '10-knowledge-base/optimization/nonlinear-least-squares-first-principles.md',
+    '10-knowledge-base/optimization/factor-graph-solver-patterns-ceres-gtsam-g2o.md',
+    '10-knowledge-base/state-estimation/gtsam-factor-graphs.md',
+    '30-autonomy-stack/localization-mapping/slam-methods/icp.md',
+    '30-autonomy-stack/localization-mapping/slam-methods/point-to-plane-icp.md',
+    '30-autonomy-stack/localization-mapping/slam-methods/graphslam-pose-graph-optimization.md',
+    '30-autonomy-stack/localization-mapping/slam-methods/bundle-adjustment-slam.md',
+    '30-autonomy-stack/localization-mapping/slam-methods/robust-pgo-gnc-risam.md',
+    '30-autonomy-stack/perception/methods/overview.md',
+    '30-autonomy-stack/perception/methods/adverse-weather-radar-lidar-3d-detection.md'
+  ]
+
+  for (const relPath of linkTargets) {
+    const source = fs.readFileSync(path.join(repoRoot, relPath), 'utf8')
+    assert.match(
+      source,
+      /robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure\.md/,
+      `${relPath} should link to the robust losses page`
+    )
   }
 })
 
