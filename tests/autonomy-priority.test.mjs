@@ -5,6 +5,7 @@ import os from 'node:os'
 import path from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath, pathToFileURL } from 'node:url'
+import { formatPriorityTable, replaceGeneratedBlock } from '../tools/autonomy-priority/generate-overviews.mjs'
 import {
   ALLOWED_MATURITY_VALUES,
   ALLOWED_STAGE_VALUES,
@@ -43,6 +44,132 @@ method-priority:end -->
 ## Executive Summary
 Body.
 `
+
+test('formats priority rows as deterministic Markdown', () => {
+  const table = formatPriorityTable(
+    [
+      {
+        relPath: '30-autonomy-stack/perception/methods/bevdet.md',
+        title: 'BEVDet',
+        priority: {
+          learning: 4,
+          deployment: 4,
+          type: 'method',
+          stage: 'modern-core',
+          maturity: 'prototype',
+          tags: ['perception', 'road-av'],
+          reason: 'Baseline camera BEV detector that organizes many later BEV methods.'
+        }
+      }
+    ],
+    '30-autonomy-stack/perception/methods'
+  )
+
+  assert.equal(
+    table,
+    [
+      '| Method | Learning | Deployment | Type | Stage | Maturity | Tags | Reason |',
+      '|---|---:|---:|---|---|---|---|---|',
+      '| [BEVDet](bevdet.md) | 4 | 4 | `method` | `modern-core` | `prototype` | `perception`, `road-av` | Baseline camera BEV detector that organizes many later BEV methods. |'
+    ].join('\n')
+  )
+})
+
+test('formats empty priority rows as a placeholder message', () => {
+  assert.equal(formatPriorityTable([], '30-autonomy-stack/perception/methods'), 'No rated method pages yet.')
+})
+
+test('escapes generated Markdown table and link content', () => {
+  const table = formatPriorityTable(
+    [
+      {
+        relPath: '30-autonomy-stack/perception/methods/grid-bev-fusion.md',
+        title: 'Grid [BEV]|Fusion',
+        priority: {
+          learning: 3,
+          deployment: 2,
+          type: 'method',
+          stage: 'frontier',
+          maturity: 'research',
+          tags: ['perception|vision', 'road-av'],
+          reason: 'Compares camera | radar fusion while retaining bracketed [context].'
+        }
+      }
+    ],
+    '30-autonomy-stack/perception/methods'
+  )
+
+  assert.equal(
+    table,
+    [
+      '| Method | Learning | Deployment | Type | Stage | Maturity | Tags | Reason |',
+      '|---|---:|---:|---|---|---|---|---|',
+      '| [Grid \\[BEV\\]\\|Fusion](grid-bev-fusion.md) | 3 | 2 | `method` | `frontier` | `research` | `perception\\|vision`, `road-av` | Compares camera \\| radar fusion while retaining bracketed [context]. |'
+    ].join('\n')
+  )
+})
+
+test('replaces generated priority table marker blocks', () => {
+  const source = `# Overview
+
+## Priority Ratings
+
+<!-- priority-table:start -->
+old
+<!-- priority-table:end -->
+`
+  const next = replaceGeneratedBlock(source, 'new table')
+  assert.match(next, /<!-- priority-table:start -->\nnew table\n<!-- priority-table:end -->/)
+})
+
+test('rejects missing generated priority table markers', () => {
+  assert.throws(
+    () => replaceGeneratedBlock('# Overview\n\nNo marker block.\n', 'new table'),
+    /missing priority-table marker block/
+  )
+})
+
+test('rejects duplicate generated priority table markers', () => {
+  const source = `# Overview
+
+<!-- priority-table:start -->
+old
+<!-- priority-table:end -->
+
+<!-- priority-table:start -->
+older
+<!-- priority-table:end -->
+`
+  assert.throws(() => replaceGeneratedBlock(source, 'new table'), /duplicate priority-table marker block/)
+})
+
+test('rejects generated priority table start markers without end markers', () => {
+  const source = `# Overview
+
+<!-- priority-table:start -->
+old
+`
+  assert.throws(() => replaceGeneratedBlock(source, 'new table'), /start marker without end marker/)
+})
+
+test('rejects generated priority table end markers without start markers', () => {
+  const source = `# Overview
+
+old
+<!-- priority-table:end -->
+`
+  assert.throws(() => replaceGeneratedBlock(source, 'new table'), /end marker without start marker/)
+})
+
+test('rejects reversed generated priority table markers', () => {
+  const source = `# Overview
+
+<!-- priority-table:end -->
+old
+<!-- priority-table:start -->
+`
+  assert.throws(() => replaceGeneratedBlock(source, 'new table'), /priority-table start marker must appear before end marker/)
+})
 
 test('extracts one hidden priority block before the first section', () => {
   const blocks = extractPriorityBlocks(validMarkdown, 'fast-lio-fast-lio2.md')
