@@ -72,9 +72,9 @@ test('formats priority rows as deterministic Markdown', () => {
   assert.equal(
     table,
     [
-      '| Method | Learning | Deployment | Type | Stage | Maturity | Tags | Reason |',
-      '|---|---|---|---|---|---|---|---|',
-      '| [BEVDet](bevdet.md) | ★★★★☆ | ★★★★☆ | `method` | `modern-core` | `prototype` | `perception`, `road-av` | Baseline camera BEV detector that organizes many later BEV methods. |'
+      '| Method | Rating | Stage | Maturity | Reason |',
+      '|---|---|---|---|---|',
+      '| [BEVDet](bevdet.md) | Learning: ★★★★☆<br>Deployment: ★★★★☆ | `modern-core` | `prototype` | Baseline camera BEV detector that organizes many later BEV methods. |'
     ].join('\n')
   )
 })
@@ -106,9 +106,9 @@ test('escapes generated Markdown table and link content', () => {
   assert.equal(
     table,
     [
-      '| Method | Learning | Deployment | Type | Stage | Maturity | Tags | Reason |',
-      '|---|---|---|---|---|---|---|---|',
-      '| [Grid \\[BEV\\]\\|Fusion](grid-bev-fusion.md) | ★★★☆☆ | ★★☆☆☆ | `method` | `frontier` | `research` | `perception\\|vision`, `road-av` | Compares camera \\| radar fusion while retaining bracketed [context]. |'
+      '| Method | Rating | Stage | Maturity | Reason |',
+      '|---|---|---|---|---|',
+      '| [Grid \\[BEV\\]\\|Fusion](grid-bev-fusion.md) | Learning: ★★★☆☆<br>Deployment: ★★☆☆☆ | `frontier` | `research` | Compares camera \\| radar fusion while retaining bracketed [context]. |'
     ].join('\n')
   )
 })

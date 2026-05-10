@@ -29,25 +29,27 @@ function renderStars(value) {
   return '★'.repeat(value) + '☆'.repeat(5 - value)
 }
 
+function renderRating(priority) {
+  return `Learning: ${renderStars(priority.learning)}<br>Deployment: ${renderStars(priority.deployment)}`
+}
+
 export function formatPriorityTable(rows, relDir) {
   if (rows.length === 0) return 'No rated method pages yet.'
 
   const lines = [
-    '| Method | Learning | Deployment | Type | Stage | Maturity | Tags | Reason |',
-    '|---|---|---|---|---|---|---|---|'
+    '| Method | Rating | Stage | Maturity | Reason |',
+    '|---|---|---|---|---|'
   ]
 
   for (const row of rows) {
     const href = path.posix.relative(relDir, row.relPath)
     const title = escapeLinkText(row.title)
-    const tags = row.priority.tags.map((tag) => `\`${escapeTableCell(tag)}\``).join(', ')
     const reason = escapeTableCell(row.priority.reason)
     lines.push(
-      `| [${title}](${href}) | ${renderStars(row.priority.learning)} | ${renderStars(row.priority.deployment)} | ` +
-        `\`${escapeTableCell(row.priority.type)}\` | ` +
+      `| [${title}](${href}) | ${renderRating(row.priority)} | ` +
         `\`${escapeTableCell(row.priority.stage)}\` | ` +
         `\`${escapeTableCell(row.priority.maturity)}\` | ` +
-        `${tags} | ${reason} |`
+        `${reason} |`
     )
   }
   return lines.join('\n')
