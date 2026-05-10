@@ -129,7 +129,7 @@ Convergence tuning:
 | Max correspondence distance | Start 1-3 m coarse, shrink to 0.3-1 m fine |
 | Iterations | 10-30 with good initial pose; 30-60 for coarse refinement |
 | Damping | Use LM or trust region when Hessian condition number is high |
-| [Robust loss](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) | Required near vehicles, aircraft, pedestrians, rain, and temporary equipment |
+| [Outlier weighting](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) | Required near vehicles, aircraft, pedestrians, rain, and temporary equipment |
 
 Point-to-plane ICP converges fastest when:
 

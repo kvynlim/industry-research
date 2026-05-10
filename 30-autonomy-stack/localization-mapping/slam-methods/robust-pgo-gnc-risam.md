@@ -41,7 +41,7 @@ Large residuals dominate a quadratic objective, so one wrong loop closure can ov
 cost_ij = rho(||e_ij||^2_Omega)
 ```
 
-The problem is that useful [robust kernels](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) are usually non-convex. They reduce the effect of outliers, but they also create bad local minima and make the solution more sensitive to initialization.
+The problem is that these kernels are usually non-convex. They reduce the effect of outliers, but they also create bad local minima and make the solution more sensitive to initialization.
 
 GNC addresses this by solving a sequence of related problems. Early iterations use a convexified or less aggressive loss that gives the optimizer a wide convergence basin. Later iterations increase non-convexity so outliers are downweighted strongly. In Black-Rangarajan form, each measurement also receives an outlier weight:
 
@@ -99,7 +99,7 @@ but it makes the backend less brittle to unavoidable data-association errors.
 
 3. **Initialize the graph.** Use odometry chaining, local SLAM output, or previous incremental estimates. GNC is more tolerant than direct non-convex [robust losses](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md), but not magic.
 
-4. **Start with a [softened robust loss](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md).** Choose a GNC loss such as [Geman-McClure-style robustification](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) or truncated least squares with a large control parameter.
+4. **Start with a softened loss schedule.** Choose a GNC loss such as [Geman-McClure-style robustification](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) or truncated least squares with a large control parameter.
 
 5. **Alternate state and weight updates.** Solve weighted PGO, recompute residuals, and update edge weights.
 
@@ -168,7 +168,7 @@ Robust PGO is best for offline HD-map construction, fleet map merging, and mediu
 - GTSAM robust noise model support: https://gtsam.org/2019/09/20/robust-noise-model.html
 - GTSAM: https://github.com/borglab/gtsam
 - g2o: https://github.com/RainerKuemmerle/g2o
-- Ceres Solver [robust loss functions](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md): https://ceres-solver.org/nnls_modeling.html#lossfunction
+- Ceres Solver loss-function documentation: https://ceres-solver.org/nnls_modeling.html#lossfunction
 
 ## Practical Recommendation
 
