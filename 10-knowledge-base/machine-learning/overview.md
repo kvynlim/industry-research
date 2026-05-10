@@ -1,242 +1,128 @@
-# Machine Learning Foundations for AV Perception
+# Machine Learning Foundations for Autonomy
 
 <!-- kb-visual:start -->
-![Machine Learning Foundations for AV Perception curated visual](../_assets/visuals/machine-learning-overview.svg)
+![Machine Learning Foundations for Autonomy curated visual](../_assets/visuals/machine-learning-overview.svg)
 
-*Visual: actual reading-dependency ladder from linear models to CNN/RNN, transformers, SSL/tokenization, world models, and AV review usage.*
+*Visual: machine-learning foundation ladder from linear models and gradients to sequence models, self-supervision, world models, evaluation, and autonomy review.*
 <!-- kb-visual:end -->
 
-## Why This Ladder Exists
+## Why This Foundation Exists
 
-Autonomous-vehicle perception stacks are often described through the current
-model family: BEV encoders, sparse attention, occupancy networks, world models,
-diffusion planners, or state-space temporal fusion. Those systems are modern,
-but the failure modes that matter in review still reduce to older first
-principles:
+Autonomy stacks increasingly describe learned behavior through model families: BEV encoders, sparse attention, occupancy networks, diffusion policies, state-space temporal fusion, or world models. Those systems change quickly, but the review questions that decide whether the model can be trusted are older and more stable: what representation is learned, what objective shaped it, what data contract supports it, and what runtime behavior is actually monitored.
 
-- Is the classifier learning a decision boundary or memorizing a shortcut?
-- Are logits, probabilities, and losses being interpreted correctly?
-- Are gradients flowing through the computation that the team thinks they are?
-- Are optimization dynamics stable under rare-object imbalance, hard negatives,
-  and multi-task losses?
-- Are convolutions, recurrence, attention, and state-space layers being used
-  for the invariances they actually encode?
-- Are representation objectives, tokenization choices, calibration procedures,
-  and leakage checks aligned with the downstream safety claim?
+This foundation exists to keep model review grounded in first principles instead of product names. Linear scores, logits, cross-entropy, backpropagation, optimizer state, convolutional invariance, recurrent memory, attention, tokenization, self-supervision, latent dynamics, calibration, and leakage checks all remain relevant when a modern autonomy model fails in deployment.
 
-This folder is organized as a ladder. The early notes build the classical
-machinery: linear decision functions, probabilistic classification, multilayer
-perceptrons, backpropagation, optimization, initialization, normalization,
-regularization, convolutions, and recurrent networks. The later notes connect
-those foundations to tokenization, transformers, diffusion, Mamba-style state
-space models, contrastive and masked objectives, energy-based modeling,
-world-model evaluation, and sparse 3D perception.
+## What This Field Studies From First Principles
 
-The intended reader is an AV engineer or researcher who needs to debug model
-behavior, not just call a library. The notes emphasize math, implementation
-interfaces, failure modes, and perception relevance.
+Machine learning studies how data, parameterized functions, objectives, gradients, architectures, regularizers, evaluation protocols, and deployment interfaces create learned behavior. In this section, the emphasis is supervised classification, differentiable representation learning, training dynamics, sequence modeling, self-supervised objectives, latent and generative models, world-model learning, calibration, and evidence needed for autonomy review.
 
----
+The first-principles thread is cumulative: affine scores become probabilistic classifiers; nonlinear layers become learned representations; computation graphs carry gradients; optimization dynamics shape what is learned; architecture choices encode spatial and temporal assumptions; representation objectives define invariances; evaluation decides whether the resulting evidence survives deployment.
 
-## Recommended Reading Order
+## Autonomy Problem Map
 
-### 1. Linear Decisions
+Machine learning is central wherever autonomy depends on learned perception, scene understanding, prediction, representation learning, model comparison, confidence calibration, or world-model rollouts. It consumes sensor tensors, labels, pseudo-labels, logs, priors, map context, trajectories, objectives, and deployment constraints. It produces features, logits, probabilities, embeddings, detections, segmentations, tokens, latent states, rollouts, calibrated thresholds, and model-release evidence.
 
-1. [Perceptron and Linear Classifiers](perceptron-linear-classifiers.md)
-   - Starts from affine scores `s = W x + b`.
-   - Explains perceptron updates, margins, separability, multiclass templates,
-     and why linear probes remain useful for AV features.
+The autonomy risk is shortcut learning under a plausible metric. A model can improve validation mAP, open-loop loss, or benchmark score while learning leakage, label artifacts, spurious correlations, unstable calibration, or invariances that erase safety-relevant evidence. The review must connect training evidence to runtime use inside perception, prediction, planning, monitoring, and release gates.
 
-2. [Logistic, Softmax, and Cross-Entropy](logistic-softmax-cross-entropy.md)
-   - Turns raw scores into normalized probabilities.
-   - Derives binary logistic loss, softmax likelihood, cross-entropy gradients,
-     calibration concerns, and segmentation/detection pitfalls.
+## Core Mental Model
 
-### 2. Differentiable Representation Learning
+Think in contracts between data, representation, objective, architecture, evaluation, and deployment. A learned model is not just a function approximation artifact; it is a runtime component whose outputs must carry interpretable semantics for downstream autonomy modules.
 
-3. [Multilayer Perceptrons and Activations](multilayer-perceptrons-activations.md)
-   - Shows why stacked affine maps need nonlinearities.
-   - Covers ReLU-family activations, hidden representations, capacity, and
-     MLP heads used in modern perception systems.
+Wrong mental model: machine learning is not just choosing the newest model family; it is the discipline of designing learned representations, objectives, data contracts, evaluation evidence, and deployment behavior that remain meaningful inside an autonomy stack.
 
-4. [Backpropagation, Computational Graphs, and Autodiff](backprop-computational-graphs-autodiff.md)
-   - Derives reverse-mode differentiation from the chain rule.
-   - Connects the 1986 backprop result to PyTorch autograd, tensor graphs,
-     detach/no-grad behavior, and gradient debugging.
+The practical ladder is: `linear scores -> probabilistic losses -> hidden representations -> gradients and optimizer state -> spatial and temporal architectures -> token and latent objectives -> world-model rollouts -> calibration, leakage checks, and deployment monitors`. A diffusion world model, sparse 3D attention network, or Mamba-style temporal model still inherits logits, losses, gradients, initialization, normalization, optimizer state, representation invariances, and calibration obligations.
 
-### 3. Training Dynamics
+Diagnostic checks from this mental model:
 
-5. [Optimization and Training Dynamics](optimization-training-dynamics.md)
-   - Treats training as stochastic numerical optimization.
-   - Covers SGD, momentum, Adam, AdamW, schedules, gradient clipping, loss
-     balancing, mixed precision, and diagnostics for unstable AV training.
+- Classifier failures start with score definitions, label encoding, class imbalance, calibration, thresholding, and shortcut features before blaming the backbone.
+- Training failures start with gradient paths, optimizer state, learning-rate schedules, initialization, normalization statistics, mixed precision, and multi-task loss scale.
+- Spatial failures start with receptive field, stride, interpolation, coordinate transforms, padding policy, and whether the architecture encodes the invariance the task needs.
+- Temporal failures start with state reset policy, sequence length, latency, BPTT truncation, hidden-state leakage, timestamp alignment, and memory/computation limits.
+- Representation failures start with pretext objective, token definition, positional encoding, negative sampling, masking policy, and whether the learned invariance deletes safety-relevant evidence.
 
-6. [Initialization, Normalization, and Regularization](initialization-normalization-regularization.md)
-   - Explains signal propagation through depth.
-   - Covers Xavier/Glorot, He initialization, BatchNorm, LayerNorm, dropout,
-     weight decay, data augmentation, and deployment-time normalization risks.
+## What This Foundation Lets You Review
 
-### 4. Structure in Space and Time
+- Is the model learning a deployable representation or exploiting leakage, shortcuts, or label artifacts?
+- Are losses, logits, probabilities, thresholds, and calibration interpreted consistently across training, validation, and runtime monitors?
+- Do architecture choices match the spatial, temporal, and compute constraints of the autonomy task?
+- Are world-model or prediction objectives evaluated against closed-loop planning utility rather than open-loop loss alone?
+- Which failure belongs to ML foundations, and which should be handed to probability, optimization, controls, systems engineering, or MLOps?
 
-7. [Convolutional Neural Networks](convolutional-neural-networks.md)
-   - Builds convolutions from local weight sharing and translation equivariance.
-   - Covers receptive fields, stride, padding, dilation, grouped/depthwise
-     convolution, BEV grids, camera feature pyramids, and deployment tradeoffs.
+## Problem-Class Coverage
 
-8. [Recurrent Neural Networks, LSTM, and GRU](recurrent-neural-networks-lstm-gru.md)
-   - Builds sequence models from shared state transitions.
-   - Covers BPTT, vanishing/exploding gradients, LSTM/GRU gating, temporal
-     fusion, tracking, and where recurrence still beats large attention blocks.
+| Problem Class | Role Of This Foundation | Representative Applied Pages |
+|---|---|---|
+| Perception and scene understanding | primary - learned encoders, detectors, segmenters, calibration, and leakage review define whether perception evidence is reliable. | [Production Perception Systems](../../30-autonomy-stack/perception/overview/production-perception-systems.md) for deployment review. |
+| Localization, SLAM, and state estimation | supporting - learned features, descriptors, depth, place recognition, and learned priors can feed estimators, but estimator consistency is owned elsewhere. | [Robust State Estimation and Multi-Sensor Localization Fusion](../../30-autonomy-stack/localization-mapping/overview/robust-state-estimation-multi-sensor.md) for estimator handoff. |
+| Mapping and spatial memory | supporting - learned occupancy, semantics, implicit fields, and world-model priors shape map evidence without owning persistent map policy. | [World Models Overview](../../30-autonomy-stack/world-models/overview.md) for learned scene memory. |
+| Prediction and world modeling | primary - sequence models, latent dynamics, generative rollouts, and world-model objectives define learned future-state evidence. | [World Models Overview](../../30-autonomy-stack/world-models/overview.md) for rollout review. |
+| Planning and decision making | supporting - learned costs, policies, imitation, and world models influence planning, but feasibility and safety constraints need planning/control review. | [Neural Motion Planning](../../30-autonomy-stack/planning/neural-motion-planning.md) for planning-facing objective review. |
+| Control and actuation | not central - ML may estimate latent state or learned dynamics, but closed-loop command feasibility belongs to controls. | [Neural Motion Planning](../../30-autonomy-stack/planning/neural-motion-planning.md) for learning-to-planning handoff before control review. |
+| Safety, validation, and assurance | primary - data splits, leakage, calibration, robustness, confidence intervals, and model comparison are central to ML safety evidence. | [Production ML Deployment](../../40-runtime-systems/ml-deployment/production-ml-deployment.md) for release and monitoring evidence. |
+| Runtime systems and operations | supporting - model size, batching, precision, determinism, monitoring, and fallback behavior affect runtime operations, but system ownership sits in deployment and operations. | [Production ML Deployment](../../40-runtime-systems/ml-deployment/production-ml-deployment.md) for runtime model contract review. |
 
-### 5. Modern AV Model Families
+## Reading Paths By Task
 
-9. [Attention and Transformers: First Principles](attention-transformers-first-principles.md)
-   - Builds attention from query/key/value matching before the
-     driving-specific transformer world-model note.
+For linear decision semantics, read [Perceptron and Linear Classifiers](perceptron-linear-classifiers.md), then [Logistic, Softmax, and Cross-Entropy](logistic-softmax-cross-entropy.md).
 
-10. [Vision Transformers: First Principles](vision-transformers-first-principles.md)
-    - Connects image, BEV, and point-cloud tokenization to transformer
-      perception architectures.
+For differentiable representation learning, read [Multilayer Perceptrons and Activations](multilayer-perceptrons-activations.md), [Backpropagation, Computational Graphs, and Autodiff](backprop-computational-graphs-autodiff.md), [Convolutional Neural Networks](convolutional-neural-networks.md), and [Recurrent Neural Networks, LSTM, and GRU](recurrent-neural-networks-lstm-gru.md).
 
-11. [Sequence Models: RNNs, SSMs, Attention, and Mamba](sequence-models-rnn-ssm-attention-first-principles.md)
-    - Places recurrent models, attention, and state-space sequence models on a
-      single temporal-modeling axis.
+For training instability, read [Optimization and Training Dynamics](optimization-training-dynamics.md), [Initialization, Normalization, and Regularization](initialization-normalization-regularization.md), and [Multi-Task Losses and Objectives](multi-task-losses-and-objectives-first-principles.md).
 
-12. [Self-Supervised Learning: First Principles](self-supervised-learning-first-principles.md)
-    - Covers representation learning from unlabeled AV-scale data.
+For attention and sequence architectures, read [Attention and Transformers: First Principles](attention-transformers-first-principles.md), [Vision Transformers: First Principles](vision-transformers-first-principles.md), [Sequence Models: RNNs, SSMs, Attention, and Mamba](sequence-models-rnn-ssm-attention-first-principles.md), [State-Space Models, S4, and Mamba](state-space-models-s4-mamba-first-principles.md), [Mamba and State Space Models for Autonomous Driving](mamba-ssm-for-driving.md), and [Sparse Attention for 3D Perception](sparse-attention-3d-perception.md).
 
-13. [Foundation Model Training: First Principles](foundation-model-training-first-principles.md)
-    - Covers data, scaling, optimization, evaluation, and adaptation for modern
-      large AV models.
-
-14. [World Models: First Principles](world-models-first-principles.md)
-    - Frames learned predictive dynamics models before the specialized token,
-      transformer, diffusion, and JEPA notes.
-
-15. [JEPA and Latent Predictive Learning](jepa-latent-predictive-learning.md)
-    - Covers predictive learning in representation space as another world-model
-      route.
-
-16. [VQ-VAE and Discrete Tokenization](vqvae-tokenization.md)
-   - Converts continuous BEV or scene features into discrete tokens for
-     autoregressive or generative world models.
-
-17. [Transformer Architecture for World Models](transformer-world-models.md)
-    - Covers self-attention, causal masking, KV caches, positional encodings,
-      and scene forecasting.
-
-18. [Sparse Attention for 3D Perception](sparse-attention-3d-perception.md)
-    - Focuses attention computation on sparse spatial structures such as voxels,
-      pillars, queries, and object-centric tokens.
-
-19. [Mamba and State Space Models for Autonomous Driving](mamba-ssm-for-driving.md)
-    - Explains selective state-space sequence models as an O(n) alternative or
-      complement to temporal transformers.
-
-20. [Diffusion Models](diffusion-models.md)
-    - Covers score-based denoising and its role in video generation, trajectory
-      sampling, occupancy forecasting, and planning.
-
-### 6. Objective, Tokenization, and Evaluation Companions
-
-21. [Autoencoders, VAEs, and Latent Variable Models](autoencoders-vae-and-latent-variable-models-first-principles.md)
-    - Connects reconstruction, latent bottlenecks, amortized inference, and
-      generative likelihoods to perception and world-model representations.
-
-22. [Contrastive Learning and InfoNCE](contrastive-learning-infonsce-first-principles.md)
-    - Derives pairwise and instance-discrimination objectives, batch negatives,
-      temperature, and common shortcut failures in AV self-supervision.
-
-23. [Masked Modeling](masked-modeling-first-principles.md)
-    - Covers MAE/BERT-style masking, reconstruction targets, mask ratios, and
-      transfer differences across images, voxels, LiDAR, BEV tokens, and motion.
-
-24. [Energy-Based Models](energy-based-models-first-principles.md)
-    - Frames scoring, normalization, contrastive divergence, score matching,
-      and anomaly/OOD use without treating energy scores as magic confidence.
-
-25. [Tokenization and Discretization](tokenization-and-discretization-first-principles.md)
-    - Generalizes beyond VQ-VAE into text tokens, image patches, BEV grids,
-      point/voxel tokens, motion tokens, and quantization artifacts.
-
-26. [Positional Encodings and Coordinate Tokenization](positional-encodings-and-coordinate-tokenization-first-principles.md)
-    - Explains sinusoidal, learned, relative, rotary, Fourier, and 3D coordinate
-      encodings for spatial-temporal driving models.
-
-27. [State-Space Models, S4, and Mamba](state-space-models-s4-mamba-first-principles.md)
-    - Gives the mathematical foundation beneath selective state-space sequence
-      models before applying Mamba to AV temporal perception.
-
-28. [Diffusion, Score, Flow, and Samplers](diffusion-score-flow-samplers-first-principles.md)
-    - Unifies denoising diffusion, score-based SDEs, probability-flow ODEs,
-      consistency/flow matching, and sampler tradeoffs.
-
-29. [Multi-Task Losses and Objectives](multi-task-losses-and-objectives-first-principles.md)
-    - Covers task weighting, gradient conflict, uncertainty weighting, PCGrad,
-      and deployment implications for unified perception stacks.
-
-30. [Evaluation, Calibration, and Data Leakage](evaluation-calibration-and-data-leakage-first-principles.md)
-    - Covers train/val/test hygiene, calibration metrics, statistical testing,
-      leakage modes, and safety-relevant model comparison.
-
-31. [World-Model Evaluation and Planning Objectives](world-model-evaluation-and-planning-objectives-first-principles.md)
-    - Separates prediction loss, latent quality, rollout stability, closed-loop
-      planning utility, and safety monitorability.
-
----
+For self-supervision, tokenization, generative modeling, and world-model evaluation, follow the grouped page list below from representation objectives through rollout utility.
 
 ## Dependency Map
 
 ```
-linear scores
-  -> logistic / softmax losses
-  -> MLPs and activations
-  -> backprop and autodiff
-  -> optimization dynamics
-  -> init / norm / regularization
-  -> CNNs and RNNs
-  -> tokenization, attention, SSMs, diffusion
-  -> contrastive / masked / energy / latent objectives
-  -> calibration, leakage checks, and multi-task objective design
-  -> AV perception, prediction, planning, and world modeling
+data contract and labels
+  -> linear scores and probabilistic losses
+  -> hidden representations and gradients
+  -> optimizer, normalization, and regularization dynamics
+  -> spatial, temporal, attention, and state-space architecture choices
+  -> tokenization, self-supervised, latent, and generative objectives
+  -> world-model rollouts and planning-facing evaluation
+  -> calibration, leakage checks, deployment monitors, and autonomy review
 ```
 
-The ladder is intentionally cumulative. For example, a diffusion world model
-still uses logits or continuous losses, backpropagation, initialization,
-normalization, optimizer choices, convolutional inductive bias, sequence
-modeling, and calibration checks. A sparse attention perception model still has
-linear projections, softmax or sigmoid losses, cross-entropy class heads, and
-optimizer state that can silently dominate behavior.
+Machine learning depends on probability for uncertainty semantics, optimization for solver mechanics, numerical linear algebra for stable tensor computation, geometry and sensors for measurement structure, systems engineering for data lineage and release evidence, and controls/planning for closed-loop utility. Downstream, it feeds perception, prediction, world modeling, learned costs, monitoring, and model-release decisions.
 
----
+## Interfaces, Artifacts, and Failure Modes
 
-## How To Use These Notes In AV Reviews
+Core artifacts include datasets, split manifests, labels, pseudo-labels, data contracts, augmentation policies, losses, logits, probabilities, embeddings, feature maps, tokens, latent states, optimizer checkpoints, calibration plots, leakage reports, model cards, runtime thresholds, precision settings, batching contracts, fallback behavior, and deployment monitors.
 
-Use the early notes as a diagnostic checklist:
+Diagnostic case: a self-supervised perception backbone improves validation mAP but degrades closed-loop behavior after deployment. The ML review starts with split hygiene, representation shortcuts, calibration, task-loss weighting, and temporal context. If the failure is caused by timestamp drift, the handoff is systems engineering; if the issue is threshold calibration, the handoff is probability/statistics; if actuator feasibility is the limiting factor, the handoff is controls.
 
-- For a classifier failure, start with `s = W x + b`, logits, label encoding,
-  class imbalance, calibration, and thresholding before blaming the backbone.
-- For a training failure, inspect gradient paths, optimizer state, learning-rate
-  schedule, initialization, normalization statistics, and multi-task loss scale.
-- For a spatial failure, check receptive field, stride, interpolation,
-  coordinate transforms, and padding before changing the architecture family.
-- For a temporal failure, check state reset policy, sequence length, latency,
-  BPTT truncation, hidden-state leakage, and timestamp alignment.
-- For a representation failure, check the pretext objective, token definition,
-  positional encoding, negative sampling, masking policy, and whether the
-  learned invariance deletes safety-relevant evidence.
-- For a model-comparison failure, check leakage, calibration, confidence
-  intervals, statistical power, and whether the metric matches the operational
-  risk being claimed.
-- For a deployment failure, check train/inference mode, dtype, normalization,
-  deterministic kernels, batching, and memory layout.
+Common failure modes include shortcut learning, train/validation leakage, label artifacts, score-probability confusion, calibration drift, rare-object imbalance, hard-negative instability, broken gradient paths, stale normalization statistics, train/inference mode mismatch, dtype changes, nondeterministic kernels, batching differences, memory-layout regressions, hidden-state leakage, open-loop world-model metrics that do not predict planning utility, and deployment monitors that do not observe the right semantics.
 
-The modern notes should be read as extensions, not replacements. Transformers,
-Mamba, and diffusion models are different ways to structure computation and
-probability, but they inherit the same numerical and statistical constraints as
-the classical models.
+## Boundaries With Neighboring Foundations
 
----
+Machine learning owns learned representations, learned objectives, architectures, calibration/leakage review, world-model learning, evaluation, and deployment failure modes. Probability owns the semantics of uncertainty and statistical evidence; optimization owns solver mechanics and residual updates; controls owns closed-loop command feasibility; systems engineering owns timing, release gates, runtime observability, and operational evidence.
+
+- Owns: learned representations, learned objectives, architecture suitability, logits/loss interpretation, calibration and leakage review, world-model learning, model comparison, and deployment behavior of learned components.
+- Hands off to: probability/statistics for uncertainty semantics, optimization for solver mechanics, controls for command feasibility, systems engineering for timing and release evidence, and MLOps/runtime systems for production orchestration.
+- Does not own: statistical meaning of uncertainty, nonlinear solver mechanics, actuator feasibility, timing infrastructure, release gates, runtime observability platforms, or fleet operations policy.
+
+## Pages In This Section
+
+linear decisions and classification: [perceptron-linear-classifiers.md](perceptron-linear-classifiers.md), [logistic-softmax-cross-entropy.md](logistic-softmax-cross-entropy.md)
+
+differentiable representation learning: [multilayer-perceptrons-activations.md](multilayer-perceptrons-activations.md), [backprop-computational-graphs-autodiff.md](backprop-computational-graphs-autodiff.md), [convolutional-neural-networks.md](convolutional-neural-networks.md), [recurrent-neural-networks-lstm-gru.md](recurrent-neural-networks-lstm-gru.md)
+
+training dynamics and regularization: [optimization-training-dynamics.md](optimization-training-dynamics.md), [initialization-normalization-regularization.md](initialization-normalization-regularization.md), [multi-task-losses-and-objectives-first-principles.md](multi-task-losses-and-objectives-first-principles.md)
+
+attention and sequence architectures: [attention-transformers-first-principles.md](attention-transformers-first-principles.md), [vision-transformers-first-principles.md](vision-transformers-first-principles.md), [sequence-models-rnn-ssm-attention-first-principles.md](sequence-models-rnn-ssm-attention-first-principles.md), [state-space-models-s4-mamba-first-principles.md](state-space-models-s4-mamba-first-principles.md), [mamba-ssm-for-driving.md](mamba-ssm-for-driving.md), [sparse-attention-3d-perception.md](sparse-attention-3d-perception.md)
+
+self-supervision and representation objectives: [self-supervised-learning-first-principles.md](self-supervised-learning-first-principles.md), [contrastive-learning-infonsce-first-principles.md](contrastive-learning-infonsce-first-principles.md), [masked-modeling-first-principles.md](masked-modeling-first-principles.md), [jepa-latent-predictive-learning.md](jepa-latent-predictive-learning.md), [foundation-model-training-first-principles.md](foundation-model-training-first-principles.md)
+
+latent and generative models: [autoencoders-vae-and-latent-variable-models-first-principles.md](autoencoders-vae-and-latent-variable-models-first-principles.md), [vqvae-tokenization.md](vqvae-tokenization.md), [diffusion-models.md](diffusion-models.md), [diffusion-score-flow-samplers-first-principles.md](diffusion-score-flow-samplers-first-principles.md), [energy-based-models-first-principles.md](energy-based-models-first-principles.md)
+
+tokenization and spatial-temporal encoding: [tokenization-and-discretization-first-principles.md](tokenization-and-discretization-first-principles.md), [positional-encodings-and-coordinate-tokenization-first-principles.md](positional-encodings-and-coordinate-tokenization-first-principles.md)
+
+world models and planning-facing evaluation: [world-models-first-principles.md](world-models-first-principles.md), [transformer-world-models.md](transformer-world-models.md), [world-model-evaluation-and-planning-objectives-first-principles.md](world-model-evaluation-and-planning-objectives-first-principles.md)
+
+evaluation and deployment evidence: [evaluation-calibration-and-data-leakage-first-principles.md](evaluation-calibration-and-data-leakage-first-principles.md)
 
 ## Core Sources
 

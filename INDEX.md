@@ -220,6 +220,22 @@
 | Fleet anomaly root-cause attribution | `50-cloud-fleet/observability/fleet-anomaly-root-cause-attribution.md` | Automated causal attribution for fleet-level anomalies: CUSUM/EWMA statistical monitoring, hierarchical anomaly detection (fleet→airport→vehicle→subsystem), causal discovery (NOTEARS, PC algorithm), Shapley-value attribution, Bayesian diagnosis trees, OTA regression detection, map staleness attribution, environmental correlation, streaming pipeline (Kafka/Flink), MTTR reduction |
 | Fleet predictive maintenance | `50-cloud-fleet/fleet-management/fleet-predictive-maintenance.md` | PHM framework (ISO 13381, 4-level architecture), Weibull failure analysis (LiDAR β=1.8-2.2/25-40K hrs, motors β=3.5/40-60K hrs), correlated failure modes (de-icing, salt spray, heat events), ML prediction (LSTM/XGBoost/autoencoder anomaly), multi-echelon spare parts inventory (4-level), cold-start sizing for new airports, joint maintenance-operations scheduling (CP-SAT), fleet availability modeling (95%+ vehicle, 98%+ fleet), seasonal profiles, ROS diagnostics integration, $7-19.5K/vehicle/year maintenance cost, 30-40% cost reduction with predictive vs reactive, $50-80K implementation |
 
+#### Foundation overview entry points
+| Topic | Primary | Scope |
+|-------|---------|-------|
+| Probability and statistics foundations | `10-knowledge-base/probability-statistics/overview.md` | Uncertainty, likelihoods, covariance, gates, robust statistics, calibration, and decision thresholds |
+| Optimization foundations | `10-knowledge-base/optimization/overview.md` | Residual objectives, Jacobians, manifold linearization, globalization, and solver patterns |
+| Numerical linear algebra foundations | `10-knowledge-base/numerical-linear-algebra/overview.md` | Factorization, conditioning, rank, sparsity, Schur complements, marginalization, and covariance recovery |
+| State estimation foundations | `10-knowledge-base/state-estimation/overview.md` | Filtering, smoothing, fusion, association, observability, integrity, and deployed estimator lifecycle |
+| Geometry and sensor foundations | `10-knowledge-base/geometry-3d/overview.md` | Frames, projection, Lie groups, registration, calibration, and sensor geometry |
+| Mapping foundations | `10-knowledge-base/mapping/overview.md` | Occupancy, semantic layers, volumetric maps, fusion policy, dynamic/static separation, and map QA |
+| Sensor foundations | `10-knowledge-base/sensors/overview.md` | Measurement likelihoods, error budgets, observability limits, degradation modes, and modality handoff assumptions |
+| Signal processing foundations | `10-knowledge-base/signal-processing/overview.md` | Sampling, filtering, FFT, radar processing, CFAR, aliasing, windowing, and clutter contracts |
+| Controls foundations | `10-knowledge-base/controls/overview.md` | Closed-loop tracking, vehicle dynamics, MPC/iLQR, constraints, actuator limits, and safety filters |
+| Robotics foundations | `10-knowledge-base/robotics/overview.md` | Robot/task vocabulary, route/behavior/motion-planning boundaries, Lanelet2 concepts, and embodiment assumptions |
+| Systems engineering foundations | `10-knowledge-base/systems-engineering/overview.md` | Timing, latency, validation metrics, release gates, observability, architecture contracts, and evidence flow |
+| Machine learning foundations | `10-knowledge-base/machine-learning/overview.md` | Learned representations, objectives, architectures, self-supervision, world models, evaluation, and deployment failure modes |
+
 #### Mathematical foundations
 | Topic | Primary |
 |-------|---------|

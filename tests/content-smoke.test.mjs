@@ -11,6 +11,7 @@ const maxKnowledgeBasePagesPerDiagramKind = 7
 const overviewFoldersWithContract = [
   'controls',
   'geometry-3d',
+  'machine-learning',
   'mapping',
   'numerical-linear-algebra',
   'optimization',
@@ -21,7 +22,7 @@ const overviewFoldersWithContract = [
   'state-estimation',
   'systems-engineering'
 ]
-const legacyOverviewContractExceptions = new Set(['machine-learning'])
+const legacyOverviewContractExceptions = new Set()
 
 const requiredOverviewHeadings = [
   'Why This Foundation Exists',
@@ -199,6 +200,13 @@ test('existing knowledge-base overview pages are registered for the contract', (
     .filter((folder) => !overviewFoldersWithContract.includes(folder))
 
   assert.deepEqual(unregistered, [])
+})
+
+test('every public knowledge-base folder has an overview page', () => {
+  const missing = directPublicKnowledgeBaseFolders(repoRoot)
+    .filter((folder) => !fs.existsSync(path.join(repoRoot, '10-knowledge-base', folder, 'overview.md')))
+
+  assert.deepEqual(missing, [])
 })
 
 test('completed knowledge-base section overviews follow the overview contract', () => {
