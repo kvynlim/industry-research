@@ -125,6 +125,7 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/probability-statistics/mixture-models-multimodal-beliefs.md` - Visual needed: yes. Replacement visual: multimodal density with mixture components, responsibilities, hypothesis weights, mean-collapse warning, and tracking/localization examples.
 - `10-knowledge-base/probability-statistics/probabilistic-graphical-models-message-passing.md` - Visual needed: yes. Replacement visual: factor graph or Bayesian network with local messages, variable elimination, belief/marginal computation, and AV factor examples.
 - `10-knowledge-base/probability-statistics/robust-statistics-ransac-hypothesis-testing.md` - Visual needed: yes. Replacement visual: inlier/outlier scatter with RANSAC hypotheses, consensus set, robust loss curve, hypothesis-test threshold, and failure diagnostics.
+- `10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md` - Visual needed: yes. Replacement visual: robust loss comparison plot showing squared, Huber, Cauchy, Tukey, and Geman-McClure loss, influence, IRLS weight, whitening scale, and outlier rejection behavior.
 - `10-knowledge-base/probability-statistics/uncertainty-quantification-calibration-conformal.md` - Visual needed: yes. Replacement visual: reliability diagram plus conformal prediction-set construction showing calibration data, coverage guarantee, uncertainty type, and AV decision use.
 
 ### Robotics

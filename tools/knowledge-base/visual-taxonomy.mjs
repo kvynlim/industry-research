@@ -128,6 +128,7 @@ export const PAGE_DIAGRAM_KIND = Object.freeze({
   '10-knowledge-base/probability-statistics/mixture-models-multimodal-beliefs.md': 'density-mixture',
   '10-knowledge-base/probability-statistics/probabilistic-graphical-models-message-passing.md': 'factor-graph',
   '10-knowledge-base/probability-statistics/robust-statistics-ransac-hypothesis-testing.md': 'probability-thresholds',
+  '10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md': 'objective-landscape',
   '10-knowledge-base/probability-statistics/uncertainty-quantification-calibration-conformal.md': 'uncertainty-geometry',
   '10-knowledge-base/robotics/embodied-ai-crossover.md': 'systems-map',
   '10-knowledge-base/robotics/lanelet2-maps.md': 'map-and-planning-stack',
