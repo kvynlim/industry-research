@@ -1,12 +1,19 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import {
   ALLOWED_MATURITY_VALUES,
   ALLOWED_STAGE_VALUES,
   ALLOWED_TAGS,
   ALLOWED_TYPE_VALUES,
+  checkPriorityMetadata,
   extractPriorityBlocks,
   parsePriorityYaml,
+  priorityRowsForDirectory,
   validatePriority
 } from '../tools/autonomy-priority/priority-metadata.mjs'
 
@@ -85,10 +92,40 @@ method-priority:end -->
   )
 })
 
+test('rejects priority blocks before the H1 heading', () => {
+  const markdown = `<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping"]
+  reason: "Core baseline used to validate placement after the page H1 heading."
+method-priority:end -->
+
+# Early Priority
+
+## Executive Summary
+Body.
+`
+  assert.throws(
+    () => extractPriorityBlocks(markdown, 'early.md'),
+    /early.md: method-priority block must appear after the H1 heading/
+  )
+})
+
 test('rejects malformed priority YAML subset', () => {
   assert.throws(
     () => parsePriorityYaml('learning: 4\n', 'bad-yaml.md'),
     /bad-yaml.md: priority block must start with "priority:"/
+  )
+})
+
+test('rejects duplicate priority YAML keys', () => {
+  assert.throws(
+    () => parsePriorityYaml('priority:\n  learning: 4\n  learning: 5\n', 'duplicate-field.md'),
+    /duplicate-field.md: duplicate field learning/
   )
 })
 
@@ -132,6 +169,140 @@ test('rejects invalid tag schema', () => {
 
   const duplicate = validatePriority({ ...validPriority, tags: ['slam', 'mapping', 'slam'] }, 'bad-tags.md')
   assert.ok(duplicate.errors.some((error) => error.includes('tags must be unique')))
+})
+
+test('rejects unknown priority fields', () => {
+  const result = validatePriority({ ...validPriority, source: 'manual' }, 'unknown-field.md')
+  assert.ok(result.errors.some((error) => error.includes('unexpected field source')))
+})
+
+test('reports checker errors for malformed priority blocks without throwing', (t) => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'priority-metadata-'))
+  t.after(() => fs.rmSync(tempRoot, { recursive: true, force: true }))
+
+  const methodsDir = path.join(tempRoot, '30-autonomy-stack/perception/methods')
+  const slamDir = path.join(tempRoot, '30-autonomy-stack/localization-mapping/slam-methods')
+  fs.mkdirSync(methodsDir, { recursive: true })
+  fs.mkdirSync(slamDir, { recursive: true })
+  fs.writeFileSync(
+    path.join(methodsDir, 'bad.md'),
+    `# Bad Metadata
+
+<!-- method-priority:start
+learning: 4
+method-priority:end -->
+`,
+    'utf8'
+  )
+
+  const result = checkPriorityMetadata(tempRoot)
+  assert.equal(result.ok, false)
+  assert.deepEqual(result.errors, [
+    '30-autonomy-stack/perception/methods/bad.md: priority block must start with "priority:"'
+  ])
+})
+
+test('reports checker errors for unmatched priority block markers', (t) => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'priority-markers-'))
+  t.after(() => fs.rmSync(tempRoot, { recursive: true, force: true }))
+
+  const methodsDir = path.join(tempRoot, '30-autonomy-stack/perception/methods')
+  const slamDir = path.join(tempRoot, '30-autonomy-stack/localization-mapping/slam-methods')
+  fs.mkdirSync(methodsDir, { recursive: true })
+  fs.mkdirSync(slamDir, { recursive: true })
+  fs.writeFileSync(
+    path.join(methodsDir, 'bad-markers.md'),
+    `# Bad Markers
+
+<!-- method-priority:start
+priority:
+  learning: 4
+`,
+    'utf8'
+  )
+
+  const result = checkPriorityMetadata(tempRoot)
+  assert.equal(result.ok, false)
+  assert.deepEqual(result.errors, [
+    '30-autonomy-stack/perception/methods/bad-markers.md: malformed method-priority block markers'
+  ])
+})
+
+test('allows markdown files with no priority markers', (t) => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'priority-missing-'))
+  t.after(() => fs.rmSync(tempRoot, { recursive: true, force: true }))
+
+  const methodsDir = path.join(tempRoot, '30-autonomy-stack/perception/methods')
+  const slamDir = path.join(tempRoot, '30-autonomy-stack/localization-mapping/slam-methods')
+  fs.mkdirSync(methodsDir, { recursive: true })
+  fs.mkdirSync(slamDir, { recursive: true })
+  fs.writeFileSync(
+    path.join(methodsDir, 'missing.md'),
+    `# Missing Metadata
+
+## Executive Summary
+Metadata rollout is still optional for this file.
+`,
+    'utf8'
+  )
+
+  assert.deepEqual(checkPriorityMetadata(tempRoot), { ok: true, errors: [] })
+})
+
+test('throws when directory priority rows include invalid metadata', (t) => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'priority-rows-'))
+  t.after(() => fs.rmSync(tempRoot, { recursive: true, force: true }))
+
+  const relDir = '30-autonomy-stack/perception/methods'
+  const methodsDir = path.join(tempRoot, relDir)
+  const slamDir = path.join(tempRoot, '30-autonomy-stack/localization-mapping/slam-methods')
+  fs.mkdirSync(methodsDir, { recursive: true })
+  fs.mkdirSync(slamDir, { recursive: true })
+  fs.writeFileSync(
+    path.join(methodsDir, 'invalid-row.md'),
+    `# Invalid Row
+
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 6
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping"]
+  reason: "Parseable metadata that should fail validation before row generation."
+method-priority:end -->
+
+## Executive Summary
+Body.
+`,
+    'utf8'
+  )
+
+  assert.throws(
+    () => priorityRowsForDirectory(relDir, tempRoot),
+    /30-autonomy-stack\/perception\/methods\/invalid-row.md: deployment must be an integer from 1 to 5/
+  )
+})
+
+test('does not run the check CLI when imported by a process with --check', (t) => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'priority-import-'))
+  t.after(() => fs.rmSync(tempRoot, { recursive: true, force: true }))
+
+  const modulePath = fileURLToPath(new URL('../tools/autonomy-priority/priority-metadata.mjs', import.meta.url))
+  const importer = path.join(tempRoot, 'importer.mjs')
+  fs.writeFileSync(
+    importer,
+    `import ${JSON.stringify(pathToFileURL(modulePath).href)}
+console.log('imported')
+`,
+    'utf8'
+  )
+
+  const result = spawnSync(process.execPath, [importer, '--check'], { encoding: 'utf8' })
+  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.stderr, '')
+  assert.equal(result.stdout.trim(), 'imported')
 })
 
 test('exports stable enum sets for documentation and generation', () => {
