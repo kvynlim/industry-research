@@ -15,22 +15,22 @@ Priority ratings are editorial reading and deployment triage signals. `Learning`
 
 <!-- priority-table:start -->
 | Method | Learning | Deployment | Type | Stage | Maturity | Tags | Reason |
-|---|---:|---:|---|---|---|---|---|
-| [Point-to-Point ICP for 3D SLAM and LiDAR Localization](icp.md) | 5 | 5 | `method-family` | `foundation` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization` | Core registration primitive behind LiDAR odometry and scan-to-map localization. |
-| [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md) | 4 | 5 | `method-family` | `modern-core` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization`, `outdoor` | Core LiDAR-inertial baseline for mapping and localization fallback. |
-| [LIO-SAM](lio-sam.md) | 4 | 5 | `method` | `modern-core` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization` | Canonical factor-graph LIO reference for LiDAR, IMU, GPS, and loop factors. |
-| [Normal Distributions Transform (NDT) for 3D SLAM and AV Localization](ndt.md) | 4 | 5 | `method` | `deployment-pattern` | `fielded-pattern` | `runtime-localization`, `road-av`, `outdoor` | Mature scan-to-map localization pattern used in AV and robotics stacks. |
-| [Scan Context Family](scan-context-family.md) | 4 | 5 | `method-family` | `deployment-pattern` | `fielded-pattern` | `slam`, `runtime-localization`, `mapping` | Core LiDAR place-recognition pattern for loop closure and relocalization. |
-| [Factor Graph SLAM with iSAM2 and GTSAM](factor-graph-isam2-gtsam.md) | 5 | 4 | `architecture-pattern` | `foundation` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization` | Backend pattern for smoothing, loop closure, and multi-sensor pose estimation. |
-| [GraphSLAM and Pose Graph Optimization](graphslam-pose-graph-optimization.md) | 5 | 4 | `method-family` | `foundation` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization` | Core graph formulation behind mapping, loop closure, and smoothing. |
-| [KISS-ICP: Keep It Small and Simple ICP](kiss-icp.md) | 4 | 4 | `method` | `modern-core` | `prototype` | `slam`, `mapping`, `outdoor` | Strong LiDAR-only odometry baseline for evaluating registration stacks. |
-| [OpenVINS](openvins.md) | 4 | 4 | `method` | `modern-core` | `fielded-pattern` | `slam`, `fallback`, `indoor` | Practical VIO baseline for camera-IMU state estimation and fallback odometry. |
-| [VINS-Mono and VINS-Fusion](vins-mono-vins-fusion.md) | 4 | 4 | `method-family` | `modern-core` | `fielded-pattern` | `slam`, `fallback`, `gnss-denied` | Widely used visual-inertial baseline for GNSS-denied motion estimation. |
-| [Cartographer 3D](cartographer-3d.md) | 3 | 4 | `method` | `classic-baseline` | `fielded-pattern` | `slam`, `mapping`, `indoor` | Mature submap SLAM reference for indoor and robotics mapping. |
-| [RTAB-Map](rtab-map.md) | 3 | 4 | `method` | `deployment-pattern` | `fielded-pattern` | `slam`, `mapping`, `indoor` | Practical multi-sensor robotics SLAM stack with broad deployment use. |
-| [ORB-SLAM2 and ORB-SLAM3](orb-slam2-orb-slam3.md) | 4 | 3 | `method-family` | `classic-baseline` | `fielded-pattern` | `slam`, `indoor`, `outdoor` | Strong visual SLAM baseline, but not a primary AV localization backbone. |
-| [EKF-SLAM](ekf-slam.md) | 5 | 2 | `method-family` | `foundation` | `historical` | `slam`, `indoor` | Foundation for estimator thinking, but rarely the direct modern AV stack. |
-| [Splat-SLAM](splat-slam.md) | 3 | 2 | `method` | `frontier` | `research` | `slam`, `mapping`, `simulation` | Useful Gaussian SLAM reference, but not a runtime pose backbone. |
+|---|---|---|---|---|---|---|---|
+| [Point-to-Point ICP for 3D SLAM and LiDAR Localization](icp.md) | ★★★★★ | ★★★★★ | `method-family` | `foundation` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization` | Core registration primitive behind LiDAR odometry and scan-to-map localization. |
+| [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md) | ★★★★☆ | ★★★★★ | `method-family` | `modern-core` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization`, `outdoor` | Core LiDAR-inertial baseline for mapping and localization fallback. |
+| [LIO-SAM](lio-sam.md) | ★★★★☆ | ★★★★★ | `method` | `modern-core` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization` | Canonical factor-graph LIO reference for LiDAR, IMU, GPS, and loop factors. |
+| [Normal Distributions Transform (NDT) for 3D SLAM and AV Localization](ndt.md) | ★★★★☆ | ★★★★★ | `method` | `deployment-pattern` | `fielded-pattern` | `runtime-localization`, `road-av`, `outdoor` | Mature scan-to-map localization pattern used in AV and robotics stacks. |
+| [Scan Context Family](scan-context-family.md) | ★★★★☆ | ★★★★★ | `method-family` | `deployment-pattern` | `fielded-pattern` | `slam`, `runtime-localization`, `mapping` | Core LiDAR place-recognition pattern for loop closure and relocalization. |
+| [Factor Graph SLAM with iSAM2 and GTSAM](factor-graph-isam2-gtsam.md) | ★★★★★ | ★★★★☆ | `architecture-pattern` | `foundation` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization` | Backend pattern for smoothing, loop closure, and multi-sensor pose estimation. |
+| [GraphSLAM and Pose Graph Optimization](graphslam-pose-graph-optimization.md) | ★★★★★ | ★★★★☆ | `method-family` | `foundation` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization` | Core graph formulation behind mapping, loop closure, and smoothing. |
+| [KISS-ICP: Keep It Small and Simple ICP](kiss-icp.md) | ★★★★☆ | ★★★★☆ | `method` | `modern-core` | `prototype` | `slam`, `mapping`, `outdoor` | Strong LiDAR-only odometry baseline for evaluating registration stacks. |
+| [OpenVINS](openvins.md) | ★★★★☆ | ★★★★☆ | `method` | `modern-core` | `fielded-pattern` | `slam`, `fallback`, `indoor` | Practical VIO baseline for camera-IMU state estimation and fallback odometry. |
+| [VINS-Mono and VINS-Fusion](vins-mono-vins-fusion.md) | ★★★★☆ | ★★★★☆ | `method-family` | `modern-core` | `fielded-pattern` | `slam`, `fallback`, `gnss-denied` | Widely used visual-inertial baseline for GNSS-denied motion estimation. |
+| [Cartographer 3D](cartographer-3d.md) | ★★★☆☆ | ★★★★☆ | `method` | `classic-baseline` | `fielded-pattern` | `slam`, `mapping`, `indoor` | Mature submap SLAM reference for indoor and robotics mapping. |
+| [RTAB-Map](rtab-map.md) | ★★★☆☆ | ★★★★☆ | `method` | `deployment-pattern` | `fielded-pattern` | `slam`, `mapping`, `indoor` | Practical multi-sensor robotics SLAM stack with broad deployment use. |
+| [ORB-SLAM2 and ORB-SLAM3](orb-slam2-orb-slam3.md) | ★★★★☆ | ★★★☆☆ | `method-family` | `classic-baseline` | `fielded-pattern` | `slam`, `indoor`, `outdoor` | Strong visual SLAM baseline, but not a primary AV localization backbone. |
+| [EKF-SLAM](ekf-slam.md) | ★★★★★ | ★★☆☆☆ | `method-family` | `foundation` | `historical` | `slam`, `indoor` | Foundation for estimator thinking, but rarely the direct modern AV stack. |
+| [Splat-SLAM](splat-slam.md) | ★★★☆☆ | ★★☆☆☆ | `method` | `frontier` | `research` | `slam`, `mapping`, `simulation` | Useful Gaussian SLAM reference, but not a runtime pose backbone. |
 <!-- priority-table:end -->
 
 ## Repo Cross-Links

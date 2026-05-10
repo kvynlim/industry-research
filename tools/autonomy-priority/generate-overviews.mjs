@@ -25,12 +25,16 @@ function escapeLinkText(value) {
   return escapeTableCell(value).replaceAll('[', '\\[').replaceAll(']', '\\]')
 }
 
+function renderStars(value) {
+  return '★'.repeat(value) + '☆'.repeat(5 - value)
+}
+
 export function formatPriorityTable(rows, relDir) {
   if (rows.length === 0) return 'No rated method pages yet.'
 
   const lines = [
     '| Method | Learning | Deployment | Type | Stage | Maturity | Tags | Reason |',
-    '|---|---:|---:|---|---|---|---|---|'
+    '|---|---|---|---|---|---|---|---|'
   ]
 
   for (const row of rows) {
@@ -39,7 +43,7 @@ export function formatPriorityTable(rows, relDir) {
     const tags = row.priority.tags.map((tag) => `\`${escapeTableCell(tag)}\``).join(', ')
     const reason = escapeTableCell(row.priority.reason)
     lines.push(
-      `| [${title}](${href}) | ${row.priority.learning} | ${row.priority.deployment} | ` +
+      `| [${title}](${href}) | ${renderStars(row.priority.learning)} | ${renderStars(row.priority.deployment)} | ` +
         `\`${escapeTableCell(row.priority.type)}\` | ` +
         `\`${escapeTableCell(row.priority.stage)}\` | ` +
         `\`${escapeTableCell(row.priority.maturity)}\` | ` +
