@@ -19,7 +19,7 @@ Iterative Closest Point (ICP) is the baseline rigid registration method for alig
 
 For 3D SLAM and AV localization, point-to-point ICP is best understood as the control case: it tells us what can be achieved with geometry alone and almost no modeling assumptions. It is useful as a LiDAR odometry baseline, a fallback when normals/covariances are unreliable, a map-building primitive, and a diagnostic reference for more advanced methods. It should not be the primary production scan-to-map matcher for airside localization because it converges slowly on smooth surfaces, is sensitive to sampling density, and can invent artificial constraints from point discretization on planes.
 
-Modern systems that appear to use "plain ICP" successfully usually add engineering around it: motion compensation, adaptive correspondence thresholds, robust kernels, voxelized local maps, trimming, multi-resolution schedules, and high-quality initialization. KISS-ICP is the current proof point: a carefully engineered point-to-point pipeline can compete with more complex LiDAR odometry systems, but it is still an odometry method rather than a full replacement for probabilistic scan-to-map registration.
+Modern systems that appear to use "plain ICP" successfully usually add engineering around it: motion compensation, adaptive correspondence thresholds, [robust kernels](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md), voxelized local maps, trimming, multi-resolution schedules, and high-quality initialization. KISS-ICP is the current proof point: a carefully engineered point-to-point pipeline can compete with more complex LiDAR odometry systems, but it is still an odometry method rather than a full replacement for probabilistic scan-to-map registration.
 
 ## Math / Objective
 
@@ -268,7 +268,7 @@ Public datasets:
 - Newer College for handheld/robotic indoor-outdoor motion.
 - Hilti SLAM Challenge for aggressive handheld/robot motion, where plain LiDAR-only ICP is heavily stressed.
 
-KISS-ICP is the key modern comparison point. It uses point-to-point ICP with adaptive correspondence thresholding, robust loss, motion compensation, and voxelized mapping, and reports state-of-the-art-class odometry across multiple platforms without IMU. That result should not be interpreted as "plain ICP is enough"; it shows that careful pipeline design can make the simple objective competitive for odometry.
+KISS-ICP is the key modern comparison point. It uses point-to-point ICP with adaptive correspondence thresholding, [robust loss](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md), motion compensation, and voxelized mapping, and reports state-of-the-art-class odometry across multiple platforms without IMU. That result should not be interpreted as "plain ICP is enough"; it shows that careful pipeline design can make the simple objective competitive for odometry.
 
 For airside work, public road benchmarks are not sufficient. Airport-specific validation must include open apron traversals, gate areas with aircraft churn, terminal facade operation, and long taxi-lane segments.
 
@@ -286,7 +286,7 @@ For airside work, public road benchmarks are not sufficient. Airport-specific va
 Implementation details to require in production code:
 
 - Deterministic max iterations and bounded correspondence count.
-- Robust kernel and trimmed matching.
+- [Robust kernel](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) and trimmed matching.
 - Adaptive correspondence threshold or multi-resolution threshold schedule.
 - Per-result quality struct with fitness, RMSE, covariance/information, iteration count, and rejection reasons.
 - Optional fixed seed for randomized subsampling.

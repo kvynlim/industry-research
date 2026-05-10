@@ -161,7 +161,7 @@ The full objective becomes a factor graph with reprojection, inertial, prior, lo
 
 **Bad calibration.** Intrinsic, extrinsic, or timestamp errors appear as systematic reprojection residuals and can distort the map.
 
-**Outlier correspondences.** Wrong feature matches create high-leverage residuals. Robust losses help but cannot fully replace geometric validation.
+**Outlier correspondences.** Wrong feature matches create high-leverage residuals. [Robust losses](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) help but cannot fully replace geometric validation.
 
 **Local minima.** BA is nonlinear and needs reasonable initialization.
 

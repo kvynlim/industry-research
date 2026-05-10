@@ -129,7 +129,7 @@ Convergence tuning:
 | Max correspondence distance | Start 1-3 m coarse, shrink to 0.3-1 m fine |
 | Iterations | 10-30 with good initial pose; 30-60 for coarse refinement |
 | Damping | Use LM or trust region when Hessian condition number is high |
-| Robust loss | Required near vehicles, aircraft, pedestrians, rain, and temporary equipment |
+| [Robust loss](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) | Required near vehicles, aircraft, pedestrians, rain, and temporary equipment |
 
 Point-to-plane ICP converges fastest when:
 
@@ -222,7 +222,7 @@ It is also a bridge between simple ICP and probabilistic methods. GICP can be vi
 | Highways | Medium | Works near barriers/signs; weak in open lanes |
 | Forests | Medium-low | Normals are noisy on vegetation; point-to-point or GICP may be better |
 | Airports | High near terminal, low on open apron | Must separate vertical-structure matches from ground-only matches |
-| Construction/mining | High with stable geometry | Dust, moving machinery, and sparse long-range returns require robust loss |
+| Construction/mining | High with stable geometry | Dust, moving machinery, and sparse long-range returns require [robust loss](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) |
 
 ## Airside Deployment Notes
 
@@ -256,7 +256,7 @@ Component benchmarks:
 | Same scan with controlled perturbations | Measure convergence basin |
 | Downsample sweep | Tune voxel size versus accuracy/runtime |
 | Normal radius sweep | Tune normal stability versus edge preservation |
-| Dynamic object injection | Validate robust loss and rejection thresholds |
+| Dynamic object injection | Validate [robust loss](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) and rejection thresholds |
 
 System benchmarks:
 
@@ -284,7 +284,7 @@ Open3D's ICP tutorial demonstrates the practical convergence difference: point-t
 
 | Implementation | Notes |
 |---|---|
-| Open3D `TransformationEstimationPointToPlane` | Easy Python/C++ experiments; supports robust kernels in registration pipeline |
+| Open3D `TransformationEstimationPointToPlane` | Easy Python/C++ experiments; supports [robust kernels](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) in registration pipeline |
 | PCL registration stack | Mature C++ base; point-to-plane variants commonly built with custom estimators |
 | libpointmatcher | Flexible filters/outlier models; useful for research and tuning |
 | LOAM / LeGO-LOAM / LIO-SAM family | Use point-to-plane-like planar feature residuals in LiDAR odometry |
@@ -294,7 +294,7 @@ Open3D's ICP tutorial demonstrates the practical convergence difference: point-t
 Production implementation requirements:
 
 - Store target normal, normal confidence, and source LiDAR ID with each residual.
-- Provide a robust loss and distance/normal-angle gates.
+- Provide a [robust loss](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) and distance/normal-angle gates.
 - Expose the full 6x6 Hessian or information matrix.
 - Mark factors as partially degenerate when eigenvalue ratios fail thresholds.
 - Support multi-resolution operation with shrinking correspondence gates.

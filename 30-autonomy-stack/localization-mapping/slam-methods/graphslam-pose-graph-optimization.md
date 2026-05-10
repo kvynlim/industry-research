@@ -48,7 +48,7 @@ measurement model h_i_j(x_i, x_j)
 information matrix Omega_ij = covariance^-1
 ```
 
-Noise does not need to be perfectly Gaussian, but the basic least-squares formulation treats each residual as locally Gaussian. In production systems, robust losses, switchable constraints, max-mixtures, or graduated non-convexity are used to reduce sensitivity to outliers.
+Noise does not need to be perfectly Gaussian, but the basic least-squares formulation treats each residual as locally Gaussian. In production systems, [robust losses](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md), switchable constraints, max-mixtures, or graduated non-convexity are used to reduce sensitivity to outliers.
 
 ## State and Map Representation
 
@@ -94,7 +94,7 @@ Full GraphSLAM may include landmarks, calibration variables, sensor biases, and 
 
 5. **Verify geometry.** Run ICP/GICP/NDT, PnP, essential-matrix checks, or multi-stage geometric validation. Estimate covariance from the Hessian, residual distribution, or empirical calibration.
 
-6. **Add robust loop edges.** Use robust kernels, switchable constraints, max-mixtures, or consistency checks before inserting the edge.
+6. **Add robust loop edges.** Use [robust kernels](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md), switchable constraints, max-mixtures, or consistency checks before inserting the edge.
 
 7. **Anchor the gauge.** Add a prior on the first pose, GPS/RTK factors, or ground control points. Without an anchor, the global frame is arbitrary.
 
@@ -210,7 +210,7 @@ Airside is a strong pose-graph use case because operations need centimeter-to-de
 - RTK-GPS factors when fix quality is high.
 - GCP or surveyed landmark priors for map construction.
 - Loop closure edges from verified place recognition.
-- Robust kernels on GPS and loop closures.
+- [Robust kernels](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) on GPS and loop closures.
 
 Airside-specific cautions:
 
@@ -249,7 +249,7 @@ Metrics:
 
 - **g2o:** General graph optimization framework for SLAM and bundle adjustment: https://github.com/RainerKuemmerle/g2o
 - **GTSAM:** Factor graph and iSAM2 smoothing library: https://gtsam.org/ and https://github.com/borglab/gtsam
-- **Ceres Solver:** General nonlinear least-squares solver with robust losses and sparse Schur options: https://ceres-solver.org/
+- **Ceres Solver:** General nonlinear least-squares solver with [robust losses](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) and sparse Schur options: https://ceres-solver.org/
 - **Google Cartographer:** 2D/3D SLAM with submaps and pose graph optimization: https://github.com/cartographer-project/cartographer
 - **RTAB-Map:** Graph-based RGB-D/LiDAR SLAM with loop closure: https://github.com/introlab/rtabmap
 - **Kimera:** Metric-semantic visual-inertial SLAM components with pose graph optimization: https://github.com/MIT-SPARK/Kimera
@@ -263,7 +263,7 @@ For airside AVs:
 - Use a factor-graph implementation such as GTSAM/iSAM2 for online operation.
 - Use batch Ceres/g2o/GTSAM for offline map construction.
 - Require geometric verification before adding loop closures.
-- Use robust losses and switchable/outlier-tolerant factors for loop closures and GPS.
+- Use [robust losses](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) and switchable/outlier-tolerant factors for loop closures and GPS.
 - Keep high-rate control on a smooth local odometry frame.
 - Build occupancy/TSDF/ESDF products from optimized poses, not from raw odometry.
 

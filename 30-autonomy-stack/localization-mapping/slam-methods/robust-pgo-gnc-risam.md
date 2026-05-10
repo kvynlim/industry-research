@@ -15,7 +15,7 @@ method-priority:end -->
 
 Robust pose graph optimization is the backend layer that tries to keep SLAM globally consistent when the front end supplies bad loop closures, bad inter-session matches, or overconfident registration factors. Standard pose graph optimization assumes mostly Gaussian inlier errors. In real mapping systems, especially long-range LiDAR or visual loop closure, the graph often contains a small number of high-leverage outliers that can fold the whole trajectory.
 
-Graduated Non-Convexity (GNC) is a practical robust-estimation strategy for this setting. It starts with a smoother, easier objective and gradually turns it into a strongly robust non-convex objective. The goal is to avoid the poor local minima that appear when hard robust losses are applied from the beginning. riSAM extends this idea to online incremental SLAM: it keeps the iSAM-style incremental backend but adds a GNC-based robust optimization schedule suitable for streaming measurements.
+Graduated Non-Convexity (GNC) is a practical robust-estimation strategy for this setting. It starts with a smoother, easier objective and gradually turns it into a strongly robust non-convex objective. The goal is to avoid the poor local minima that appear when hard [robust losses](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) are applied from the beginning. riSAM extends this idea to online incremental SLAM: it keeps the iSAM-style incremental backend but adds a GNC-based robust optimization schedule suitable for streaming measurements.
 
 This page is distinct from the general [GraphSLAM and Pose Graph Optimization](graphslam-pose-graph-optimization.md) and [Factor Graph SLAM with iSAM2 and GTSAM](factor-graph-isam2-gtsam.md) pages. Those describe the graph abstraction and sparse smoothing machinery. This page focuses on the robustness layer that decides how much a suspect measurement should influence the backend.
 
@@ -35,13 +35,13 @@ In ordinary least-squares PGO, each edge contributes a quadratic penalty:
 cost_ij = ||e_ij||^2_Omega
 ```
 
-Large residuals dominate a quadratic objective, so one wrong loop closure can overpower many correct odometry edges. Robust kernels cap or downweight large residuals:
+Large residuals dominate a quadratic objective, so one wrong loop closure can overpower many correct odometry edges. [Robust kernels](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) cap or downweight large residuals:
 
 ```text
 cost_ij = rho(||e_ij||^2_Omega)
 ```
 
-The problem is that useful robust kernels are usually non-convex. They reduce the effect of outliers, but they also create bad local minima and make the solution more sensitive to initialization.
+The problem is that useful [robust kernels](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) are usually non-convex. They reduce the effect of outliers, but they also create bad local minima and make the solution more sensitive to initialization.
 
 GNC addresses this by solving a sequence of related problems. Early iterations use a convexified or less aggressive loss that gives the optimizer a wide convergence basin. Later iterations increase non-convexity so outliers are downweighted strongly. In Black-Rangarajan form, each measurement also receives an outlier weight:
 
@@ -97,9 +97,9 @@ but it makes the backend less brittle to unavoidable data-association errors.
 
 2. **Classify risky edges.** Treat loop closures, inter-session closures, GPS under multipath, and weak registrations as robust candidates. Consecutive odometry can be robust too, but in many systems it is trusted more than long-range closures.
 
-3. **Initialize the graph.** Use odometry chaining, local SLAM output, or previous incremental estimates. GNC is more tolerant than direct non-convex robust losses, but not magic.
+3. **Initialize the graph.** Use odometry chaining, local SLAM output, or previous incremental estimates. GNC is more tolerant than direct non-convex [robust losses](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md), but not magic.
 
-4. **Start with a softened robust loss.** Choose a GNC loss such as [Geman-McClure-style robustification](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) or truncated least squares with a large control parameter.
+4. **Start with a [softened robust loss](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md).** Choose a GNC loss such as [Geman-McClure-style robustification](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) or truncated least squares with a large control parameter.
 
 5. **Alternate state and weight updates.** Solve weighted PGO, recompute residuals, and update edge weights.
 
@@ -130,7 +130,7 @@ but it makes the backend less brittle to unavoidable data-association errors.
 
 **Ambiguous repeated structure.** Airports, parking decks, warehouses, and corridors can produce wrong closures with plausible residuals.
 
-**Overusing robust kernels.** Making every factor aggressively robust can weaken observability and let the graph drift.
+**Overusing [robust kernels](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md).** Making every factor aggressively robust can weaken observability and let the graph drift.
 
 **Hidden failures.** Downweighted edges can make a graph look healthy while the front end keeps producing bad associations. The weights must be monitored.
 
@@ -154,7 +154,7 @@ Robust PGO is best for offline HD-map construction, fleet map merging, and mediu
 ## Implementation Notes
 
 - Start with a standard GTSAM, g2o, Ceres, or Kimera-RPGO pose graph before adding robust scheduling.
-- Use robust losses only on factors that can plausibly be outliers. Consecutive odometry and IMU factors usually need different treatment from loop closures.
+- Use [robust losses](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) only on factors that can plausibly be outliers. Consecutive odometry and IMU factors usually need different treatment from loop closures.
 - Store per-edge residual, weight, covariance, source module, and acceptance history.
 - Tune robust thresholds from real residual distributions, not only benchmark defaults.
 - In incremental operation, bound update time and measure loop-closure-induced latency.
@@ -168,7 +168,7 @@ Robust PGO is best for offline HD-map construction, fleet map merging, and mediu
 - GTSAM robust noise model support: https://gtsam.org/2019/09/20/robust-noise-model.html
 - GTSAM: https://github.com/borglab/gtsam
 - g2o: https://github.com/RainerKuemmerle/g2o
-- Ceres Solver robust loss functions: https://ceres-solver.org/nnls_modeling.html#lossfunction
+- Ceres Solver [robust loss functions](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md): https://ceres-solver.org/nnls_modeling.html#lossfunction
 
 ## Practical Recommendation
 
