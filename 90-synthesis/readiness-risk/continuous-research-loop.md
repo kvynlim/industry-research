@@ -52,7 +52,7 @@ The 2026-05-09 loops promoted thirteen high-value gap clusters into first-class 
 1. Prefer one file per method or technique when the user needs depth.
 2. Keep family synthesis in overview files; put method evidence in method files.
 3. Use primary sources first: papers, official project pages, official repos, standards, or vendor documentation.
-4. Every method page should state inputs, outputs, assumptions, failure modes, AV relevance, indoor/outdoor transfer, and airside fit where relevant.
+4. Every generic method page should state inputs, outputs, assumptions, failure modes, AV relevance, and Domain Fit across the relevant canonical domains. Domain-specific pages should state their primary ODD and include transfer notes when the idea generalizes.
 5. Every sensor/foundation page should connect measurement physics to perception, SLAM, mapping, validation, and operational monitoring.
 6. After every wave, update the relevant coverage audit, [Research Index](../../INDEX.md), [README](../../README.md), and [Methodology](../../METHODOLOGY.md).
 

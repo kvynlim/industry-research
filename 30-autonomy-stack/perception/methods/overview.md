@@ -1,10 +1,10 @@
 # Perception Method Library Overview
 
-This directory is the method-level perception library. Each page should represent one technique, method, benchmark, or dataset-backed evaluation primitive. Broad synthesis pages in `30-autonomy-stack/perception/overview/` remain useful for system design, but this library is where individual methods get enough space for architecture, data, benchmarks, failure modes, deployment fit, and airside relevance.
+This directory is the method-level perception library. Each page should represent one technique, method, benchmark, or dataset-backed evaluation primitive. Broad synthesis pages in `30-autonomy-stack/perception/overview/` remain useful for system design, but this library is where individual methods get enough space for architecture, data, benchmarks, failure modes, deployment fit, Domain Fit, transfer notes for explicitly scoped ODDs, and sources.
 
 ## Priority Ratings
 
-Priority ratings are editorial reading and deployment triage signals. `Learning` answers what to read early for general autonomy understanding. `Deployment` answers what to evaluate early for AV deployment in the tagged context; it is not a certification or product-readiness claim.
+Priority ratings are editorial reading and deployment triage signals. `Learning` answers what to read early for general autonomy understanding. `Deployment` answers what to evaluate early for AV deployment in the tagged context; it is not a certification, product-readiness, or all-domain average claim. If a method's deployment score is driven by a specific domain or stack role, the reason text should name that context.
 
 <!-- priority-table:start -->
 | Method | Rating | Stage | Maturity | Reason |
@@ -113,6 +113,18 @@ Priority ratings are editorial reading and deployment triage signals. `Learning`
 | [WildDet3D](wilddet3d.md) | Learning: ★★★☆☆<br>Deployment: ★★★☆☆ | `modern-core` | `prototype` | WildDet3D is rated as a supporting perception method for autonomy-stack triage and follow-up reading. |
 <!-- priority-table:end -->
 
+## Domain Fit Guidance
+
+Generic method pages should use `Domain Fit`, not `Airside Fit`, as the default deployment lens. Use three to six compact rows or bullets rather than a large matrix.
+
+| Domain | Fit | Note |
+|---|---|---|
+| Road AV | strong / conditional / weak / insufficient evidence | State whether the method has road-scale evidence, actor coverage, and runtime maturity. |
+| Airside | strong / conditional / weak / insufficient evidence | Include apron, GSE, FOD, aircraft-proximity, and weather relevance only when supported by the method evidence. |
+| Warehouse / logistics yard / port / mining / construction / agriculture / delivery robot / outdoor campus | strong / conditional / weak / insufficient evidence | Add only the domains where the method assumptions or validation signals materially transfer. |
+
+Airside-specific pages may stay airside-first, but generic pages should not make airside the only deployment lens.
+
 ## How to Use This Library
 
 For loss and residual foundations behind perception methods, use [3D Object Detection Losses and Assignment](../../../10-knowledge-base/geometry-3d/3d-object-detection-losses-assignment-first-principles.md) for detector training objectives and [Robust Losses and M-Estimators](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) for outlier-heavy geometric residuals that connect perception outputs to calibration, tracking, and SLAM.
@@ -135,7 +147,7 @@ For loss and residual foundations behind perception methods, use [3D Object Dete
 | One file, one method | A page should not bundle multiple unrelated methods just because they share a modality. If two papers solve the same exact technique lineage, the page can compare versions, but the title must still name the primary method. |
 | Overview pages link out | Existing files such as [BEV Encoding Architectures](../overview/bev-encoding.md), [Streaming Temporal Perception](../overview/streaming-temporal-perception.md), and [Infrastructure Cooperative Perception](../overview/infrastructure-cooperative-perception.md) should summarize families and point here for method-level details. |
 | Benchmarks count as methods when they shape evaluation | Pages such as MSC-Bench, S2R-Bench, LASP, OpenAD, and Fail2Drive deserve first-class treatment because they define what a deployment team measures. |
-| Airside fit is mandatory | Every page should explicitly say what transfers to airport apron autonomy, what does not, and what evidence would be required before using it in a safety case. |
+| Domain fit is mandatory for generic pages | Generic method pages should state the domains where the method is a strong, conditional, weak, or insufficient-evidence fit. Airside-specific pages may use a transfer note instead. |
 | Sources stay close to claims | Each method page must include primary paper, project, dataset, or repository links so future refreshes can verify claims quickly. |
 
 ## Standard Page Shape
@@ -149,7 +161,7 @@ Each method page should include:
 5. Training/evaluation setup and benchmark signals.
 6. Strengths.
 7. Failure modes and deployment risks.
-8. Airside autonomous-vehicle fit.
+8. Domain Fit, or an airside transfer note when the page is explicitly airside-specific.
 9. Implementation notes.
 10. Sources.
 

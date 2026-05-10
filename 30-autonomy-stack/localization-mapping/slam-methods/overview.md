@@ -3,15 +3,15 @@
 This directory is the method-level SLAM library. It should help a reader answer four questions before opening any individual method page:
 
 1. What role does SLAM play relative to odometry, map construction, and production localization?
-2. Which method family should be evaluated for a given AV, indoor, or outdoor environment?
+2. Which method family should be evaluated for a given road, airside, warehouse, yard, port, mining, construction, agriculture, delivery, or campus environment?
 3. Which benchmark and metric suite gives a fair result?
 4. Which open-source stack is a reasonable starting point, and which is only a research reference?
 
-For airside autonomous vehicles, the practical answer is not "run SLAM online forever." The production stack should separate offline map construction, online scan-to-map localization, high-rate state estimation, and loop-closure/relocalization. SLAM remains critical for survey mapping, map maintenance, fallback odometry, validation against map-localization failures, and research into future dense or neural map representations.
+For production AVs, the practical answer is usually not "run SLAM online forever." The stack should separate offline map construction, online scan-to-map localization, high-rate state estimation, and loop-closure/relocalization. Airside remains a useful reference ODD for this separation, but the same decision pattern also applies to road AVs, warehouses, logistics yards, ports, mines, construction sites, and campuses with different sensor and operational constraints.
 
 ## Priority Ratings
 
-Priority ratings are editorial reading and deployment triage signals. `Learning` answers what to read early for SLAM/localization understanding. `Deployment` answers what to evaluate early for AV deployment in the tagged context; it is not a certification or product-readiness claim.
+Priority ratings are editorial reading and deployment triage signals. `Learning` answers what to read early for SLAM/localization understanding. `Deployment` answers what to evaluate early for AV deployment in the tagged context; it is not a certification, product-readiness, or all-domain average claim. If a method's deployment score is driven by a specific domain or stack role, the reason text should name that context.
 
 <!-- priority-table:start -->
 | Method | Rating | Stage | Maturity | Reason |
@@ -148,6 +148,18 @@ Priority ratings are editorial reading and deployment triage signals. `Learning`
 | [VIGS-SLAM and VINGS-Mono](vigs-slam.md) | Learning: ★★★☆☆<br>Deployment: ★★☆☆☆ | `frontier` | `research` | VIGS-SLAM and VINGS-Mono is rated for neural or Gaussian SLAM research and future dense map representation workflows. |
 | [WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments](wildgs-slam.md) | Learning: ★★★☆☆<br>Deployment: ★★☆☆☆ | `frontier` | `research` | WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments is rated for neural or Gaussian SLAM research and future dense map representation workflows. |
 <!-- priority-table:end -->
+
+## Domain Fit Guidance
+
+Generic SLAM method pages should use `Domain Fit`, not `Airside Fit`, as the default deployment lens. Keep the section compact and focus on where method assumptions match the operating domain.
+
+| Domain | Fit | Note |
+|---|---|---|
+| Road AV | strong / conditional / weak / insufficient evidence | Check speed, map freshness, GNSS availability, and road-scale validation evidence. |
+| Airside | strong / conditional / weak / insufficient evidence | Check open-apron geometry, aircraft/GSE dynamics, low-speed routes, FOD, and airport map operations. |
+| Warehouse / logistics yard / port / mining / construction / agriculture / delivery robot / outdoor campus | strong / conditional / weak / insufficient evidence | Add only the domains where sensor, map, localization, and operational assumptions materially transfer. |
+
+Airside-specific pages may stay airside-first, but generic pages should not make airside the only deployment lens.
 
 ## Repo Cross-Links
 

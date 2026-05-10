@@ -6,17 +6,17 @@
 
 ## Technology Readiness Levels (TRL)
 
-| TRL | Definition | For Airside AV |
-|-----|-----------|----------------|
-| 1 | Basic principles observed | Research paper published |
-| 2 | Technology concept formulated | Architecture designed |
-| 3 | Proof of concept | Works on recorded data (bags) |
-| 4 | Lab validation | Works in simulation (CARLA/3DGS) |
-| 5 | Relevant environment validation | Works on vehicle in shadow mode |
-| 6 | Prototype demonstrated | Drives autonomously in controlled area |
-| 7 | System prototype in operational environment | Shadow mode at real airport |
-| 8 | System complete and qualified | Safety case approved, full operations |
-| 9 | System proven in operations | Multi-airport, fleet-scale |
+| TRL | Definition | Deployment Evidence Lens |
+|-----|-----------|--------------------------|
+| 1 | Basic principles observed | Research paper, standard, or credible technical principle published |
+| 2 | Technology concept formulated | Architecture or operating concept defined for an explicit ODD |
+| 3 | Proof of concept | Works on recorded data, benchmark data, or a narrow offline prototype |
+| 4 | Lab validation | Works in simulation, bench test, or controlled replay with measurable criteria |
+| 5 | Relevant environment validation | Works on vehicle, robot, or field equipment in shadow mode or supervised trials |
+| 6 | Prototype demonstrated | Performs the target task autonomously in a controlled area with fallback controls |
+| 7 | System prototype in operational environment | Runs in the real ODD with operational monitors, evidence logging, and stakeholder acceptance |
+| 8 | System complete and qualified | Safety case, operating procedure, and release evidence accepted for the scoped deployment |
+| 9 | System proven in operations | Multi-site or fleet-scale operation with post-market monitoring and incident learning |
 
 ---
 
