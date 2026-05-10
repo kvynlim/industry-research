@@ -8,6 +8,34 @@ import { DIAGRAM_KINDS, PAGE_DIAGRAM_KIND, visualKindForFile } from '../tools/kn
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const minKnowledgeBaseDiagramKinds = 30
 const maxKnowledgeBasePagesPerDiagramKind = 7
+const overviewFoldersWithContract = []
+const legacyOverviewContractExceptions = new Set(['machine-learning'])
+
+const requiredOverviewHeadings = [
+  'Why This Foundation Exists',
+  'What This Field Studies From First Principles',
+  'Autonomy Problem Map',
+  'Core Mental Model',
+  'What This Foundation Lets You Review',
+  'Problem-Class Coverage',
+  'Reading Paths By Task',
+  'Dependency Map',
+  'Interfaces, Artifacts, and Failure Modes',
+  'Boundaries With Neighboring Foundations',
+  'Pages In This Section',
+  'Core Sources'
+]
+
+const requiredProblemClasses = [
+  'Perception and scene understanding',
+  'Localization, SLAM, and state estimation',
+  'Mapping and spatial memory',
+  'Prediction and world modeling',
+  'Planning and decision making',
+  'Control and actuation',
+  'Safety, validation, and assurance',
+  'Runtime systems and operations'
+]
 
 const requiredDocs = [
   'README.md',
@@ -45,6 +73,23 @@ function readMarkdownFiles(dir) {
   }
 
   return files
+}
+
+function directPublicKnowledgeBaseFolders(root) {
+  const knowledgeBaseDir = path.join(root, '10-knowledge-base')
+  return fs
+    .readdirSync(knowledgeBaseDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && entry.name !== '_assets')
+    .map((entry) => entry.name)
+    .sort()
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function h2Index(markdown, heading) {
+  return markdown.match(new RegExp(`^## ${escapeRegExp(heading)}\\s*$`, 'm'))?.index ?? -1
 }
 
 test('required top-level and representative nested docs exist', () => {
@@ -133,6 +178,79 @@ test('knowledge-base pages do not include generated figure placeholders', () => 
   }
 
   assert.deepEqual(generated, [])
+})
+
+test('existing knowledge-base overview pages are registered for the contract', () => {
+  const unregistered = directPublicKnowledgeBaseFolders(repoRoot)
+    .filter((folder) => fs.existsSync(path.join(repoRoot, '10-knowledge-base', folder, 'overview.md')))
+    .filter((folder) => !legacyOverviewContractExceptions.has(folder))
+    .filter((folder) => !overviewFoldersWithContract.includes(folder))
+
+  assert.deepEqual(unregistered, [])
+})
+
+test('completed knowledge-base section overviews follow the overview contract', () => {
+  const failures = []
+
+  for (const folder of overviewFoldersWithContract) {
+    const relPath = `10-knowledge-base/${folder}/overview.md`
+    const absPath = path.join(repoRoot, relPath)
+
+    if (!fs.existsSync(absPath)) {
+      failures.push(`${relPath}: missing overview page`)
+      continue
+    }
+
+    const markdown = fs.readFileSync(absPath, 'utf8')
+    const h1Match = markdown.match(/^# .+ Foundations for Autonomy$/m)
+    assert.ok(h1Match, `${relPath}: should use the autonomy H1`)
+
+    const afterH1 = markdown.slice(h1Match.index + h1Match[0].length).trimStart()
+    assert.ok(afterH1.startsWith('<!-- kb-visual:start -->'), `${relPath}: visual block should appear immediately after H1`)
+
+    let lastHeadingIndex = -1
+    for (const heading of requiredOverviewHeadings) {
+      const headingIndex = h2Index(markdown, heading)
+      if (headingIndex < 0) {
+        failures.push(`${relPath}: missing heading ${heading}`)
+        continue
+      }
+      if (headingIndex < lastHeadingIndex) {
+        failures.push(`${relPath}: heading ${heading} is out of order`)
+      }
+      lastHeadingIndex = headingIndex
+    }
+
+    const problemHeader = '| Problem Class | Role Of This Foundation | Representative Applied Pages |'
+    if (!markdown.includes(problemHeader)) {
+      failures.push(`${relPath}: missing required problem-class table header`)
+    }
+
+    for (const problemClass of requiredProblemClasses) {
+      if (!markdown.includes(`| ${problemClass} |`)) {
+        failures.push(`${relPath}: missing problem-class row ${problemClass}`)
+      }
+    }
+
+    const reviewQuestionCount = (markdown.match(/^- .+\?$/gm) ?? []).length
+    if (reviewQuestionCount < 3 || reviewQuestionCount > 5) {
+      failures.push(`${relPath}: expected 3-5 review questions`)
+    }
+
+    const appliedLinks = new Set(
+      Array.from(markdown.matchAll(/\]\((\.\.\/\.\.\/(?!10-knowledge-base\/)[^)]+\.md(?:#[^)]+)?)\)/g))
+        .map((match) => match[1])
+    )
+    if (appliedLinks.size < 3 || appliedLinks.size > 5) {
+      failures.push(`${relPath}: expected 3-5 unique applied links outside 10-knowledge-base`)
+    }
+
+    if (!/Diagnostic case:/i.test(markdown)) {
+      failures.push(`${relPath}: missing diagnostic micro-case`)
+    }
+  }
+
+  assert.deepEqual(failures, [])
 })
 
 test('knowledge-base pages include one curated replacement visual', () => {

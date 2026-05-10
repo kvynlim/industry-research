@@ -38,6 +38,18 @@ function collectSidebarLinks(items) {
   return links
 }
 
+function directKnowledgeBaseFoldersWithOverview(root) {
+  const knowledgeBaseDir = path.join(root, '10-knowledge-base')
+  return fs
+    .readdirSync(knowledgeBaseDir, { withFileTypes: true })
+    .filter((entry) => {
+      if (!entry.isDirectory() || entry.name === '_assets') return false
+      return fs.existsSync(path.join(knowledgeBaseDir, entry.name, 'overview.md'))
+    })
+    .map((entry) => entry.name)
+    .sort()
+}
+
 function readMarkdownFiles(root, relDir) {
   const absDir = path.join(root, relDir)
   const files = []
@@ -149,6 +161,21 @@ test('includes every public architecture page in the sidebar', () => {
     .filter((link) => !sidebarLinks.has(link))
 
   assert.deepEqual(missingLinks, [])
+})
+
+test('knowledge-base overview pages are group links and first children', () => {
+  const sidebar = buildSidebar(repoRoot)
+  const knowledgeBase = sidebar.find((section) => section.text === 'Knowledge Base')
+  assert.ok(knowledgeBase, 'Knowledge Base sidebar group should exist')
+
+  for (const folder of directKnowledgeBaseFoldersWithOverview(repoRoot)) {
+    const folderItem = knowledgeBase.items.find((item) => item.text === titleFromPath(folder))
+    const overviewLink = `/10-knowledge-base/${folder}/overview`
+
+    assert.ok(folderItem, `${folder} sidebar group should exist`)
+    assert.equal(folderItem.link, overviewLink, `${folder} group should link to overview`)
+    assert.equal(folderItem.items?.[0]?.link, overviewLink, `${folder} first child should be overview`)
+  }
 })
 
 test('does not include planning/spec files as public research pages', () => {

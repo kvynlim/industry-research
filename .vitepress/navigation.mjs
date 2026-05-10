@@ -124,6 +124,11 @@ export function linkForMarkdown(relPath) {
   return `/${normalized.replace(/\.md$/i, '')}`
 }
 
+function overviewFileRel(root, relDir) {
+  const candidate = joinRel(relDir, 'overview.md')
+  return pathExists(root, candidate) ? candidate : null
+}
+
 function directoryEntries(root, relDir) {
   const absDir = path.join(root, relDir)
   if (!fs.existsSync(absDir)) return []
@@ -137,7 +142,13 @@ function directoryEntries(root, relDir) {
 export function buildDirectoryItems(root, relDir) {
   const entries = directoryEntries(root, relDir)
   const directories = entries.filter((entry) => entry.isDirectory())
-  const files = entries.filter((entry) => entry.isFile() && isMarkdownFile(entry.name))
+  const files = entries
+    .filter((entry) => entry.isFile() && isMarkdownFile(entry.name))
+    .sort((a, b) => {
+      return a.name.localeCompare(b.name, 'en')
+    })
+  const overviewFile = files.find((entry) => entry.name === 'overview.md') ?? null
+  const regularFiles = files.filter((entry) => entry.name !== 'overview.md')
 
   const directoryItems = directories
     .map((entry) => {
@@ -145,15 +156,20 @@ export function buildDirectoryItems(root, relDir) {
       const childItems = buildDirectoryItems(root, childRel)
       if (childItems.length === 0) return null
 
-      return {
+      const item = {
         text: titleFromPath(entry.name),
         collapsed: true,
         items: childItems
       }
+
+      const overviewRel = overviewFileRel(root, childRel)
+      if (overviewRel) item.link = linkForMarkdown(overviewRel)
+
+      return item
     })
     .filter(Boolean)
 
-  const fileItems = files.map((entry) => {
+  const fileItems = regularFiles.map((entry) => {
     const fileRel = joinRel(relDir, entry.name)
     return {
       text: titleForFile(root, fileRel),
@@ -161,7 +177,14 @@ export function buildDirectoryItems(root, relDir) {
     }
   })
 
-  return [...directoryItems, ...fileItems]
+  const overviewItem = overviewFile
+    ? {
+        text: titleForFile(root, joinRel(relDir, overviewFile.name)),
+        link: linkForMarkdown(joinRel(relDir, overviewFile.name))
+      }
+    : null
+
+  return [overviewItem].concat(directoryItems, fileItems).filter(Boolean)
 }
 
 export function buildSidebar(root = repoRoot) {
