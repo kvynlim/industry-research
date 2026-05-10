@@ -26,6 +26,12 @@
 - Modify: `tools/knowledge-base/visual-taxonomy.mjs`
 - Modify: `docs/superpowers/notes/2026-05-09-knowledge-base-visual-reassessment-generated-removed.md`
 
+## Preconditions
+
+- `docs/superpowers/plans/2026-05-10-kb-overview-contract-navigation.md` has landed.
+- `docs/superpowers/plans/2026-05-10-kb-overviews-batch-a.md` has landed.
+- Batch A overview pages, taxonomy entries, manifest lines, and contract tests are present. If not, execute Batch A first.
+
 ## Batch Page Briefs
 
 | File | H1 | Visual file | Diagram kind | Core role | Diagnostic micro-case |
@@ -36,9 +42,21 @@
 | `10-knowledge-base/state-estimation/overview.md` | `# State Estimation Foundations for Autonomy` | `state-estimation-overview.svg` | `state-estimation-chain` | Time-evolving latent state, prediction/update cycles, smoothing, fusion, association, observability, and integrity. | A localizer is trusted after a GNSS outage because covariance remains finite even though observable constraints no longer justify lane-level confidence. |
 | `10-knowledge-base/systems-engineering/overview.md` | `# Systems Engineering Foundations for Autonomy` | `systems-engineering-overview.svg` | `systems-map` | Timing, latency, validation metrics, release gates, observability, architecture contracts, operational error budgets, and evidence flow. | A perception model passes offline metrics but fails release because replay timing, data lineage, and runtime monitoring do not support the safety claim. |
 
+## Visual Caption Map
+
+For each overview, use one exact caption string in three places: the Markdown visual-caption line, the SVG `<desc>`, and the reassessment manifest line after `Replacement visual:`. Do not paraphrase between those locations.
+
+```text
+geometry-3d: section-level autonomy-role diagram showing 3D geometry foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+numerical-linear-algebra: section-level autonomy-role diagram showing numerical linear algebra foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+probability-statistics: section-level autonomy-role diagram showing probability and statistics foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+state-estimation: section-level autonomy-role diagram showing state-estimation foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+systems-engineering: section-level autonomy-role diagram showing systems-engineering foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+```
+
 ## Boundary Requirements
 
-Use these boundaries in `Boundaries With Neighboring Foundations`:
+Use three parts per page in `Boundaries With Neighboring Foundations`: ownership, non-ownership/handoff, and a diagnostic micro-case using the case from `Batch Page Briefs`. The micro-case must connect symptom to wrong foundation mental model to the neighboring foundation that owns the next layer of diagnosis.
 
 ```text
 geometry-3d: Own frames, transforms, projection, Lie geometry, sensor geometry, calibration geometry, and registration geometry. Registration remains geometry until committed into persistent map state.
@@ -54,6 +72,8 @@ systems-engineering: Own cross-cutting integration contracts: timing, latency, m
 - Modify: `tests/content-smoke.test.mjs`
 
 - [ ] **Step 1: Replace `overviewFoldersWithContract`**
+
+If `overviewFoldersWithContract` is absent, stop and run the contract/navigation plan first. If Batch A overview pages are absent, stop and run Batch A first.
 
 Use this value:
 
@@ -81,7 +101,7 @@ Run:
 node --test tests/content-smoke.test.mjs
 ```
 
-Expected: FAIL with missing overview pages for the five newly activated folders.
+Expected: FAIL only for missing overview pages in `geometry-3d`, `numerical-linear-algebra`, `probability-statistics`, `state-estimation`, and `systems-engineering`.
 
 ## Task 2: Write Batch B Overview Pages
 
@@ -89,6 +109,8 @@ Expected: FAIL with missing overview pages for the five newly activated folders.
 - Create the five `overview.md` files listed in the file map.
 
 - [ ] **Step 1: Use the required H2 contract**
+
+For every page, start with the exact H1 from `Batch Page Briefs`, immediately followed by one `kb-visual` block using `../_assets/visuals/<section>-overview.svg` and the section-specific caption from the Visual Caption Map. The SVG `<desc>` must include the same caption text.
 
 Use this H2 sequence on every page:
 
@@ -107,7 +129,14 @@ Use this H2 sequence on every page:
 ## Core Sources
 ```
 
-Use these problem-class row labels exactly:
+In `Problem-Class Coverage`, use exactly this table shape:
+
+```markdown
+| Problem Class | Role Of This Foundation | Representative Applied Pages |
+|---|---|---|
+```
+
+Use these problem-class row labels exactly once:
 
 ```markdown
 | Perception and scene understanding |
@@ -118,6 +147,14 @@ Use these problem-class row labels exactly:
 | Control and actuation |
 | Safety, validation, and assurance |
 | Runtime systems and operations |
+```
+
+In `Role Of This Foundation`, start every cell with `primary`, `supporting`, or `not central`, then add a section-specific explanation. Across the table, include 3-5 unique applied links outside `10-knowledge-base`; each applied link must include a reason phrase tied to review or debugging.
+
+The `Core Sources` section must contain only sources directly used while writing the overview. If the overview is synthesized only from existing pages in the folder and no additional external source is opened, use this sentence:
+
+```markdown
+This overview synthesizes the section pages listed above; no additional external sources were used.
 ```
 
 - [ ] **Step 2: Add section-specific review questions**
@@ -134,7 +171,7 @@ systems-engineering: timing, latency, architecture contracts, validation metrics
 
 - [ ] **Step 3: Add local inventories in `Pages In This Section`**
 
-Use these exact page inventories:
+Use every exact filename below, but group `Pages In This Section` by learning role rather than raw order. For systems engineering, use groups such as `architecture and theory`, `timing and interface contracts`, `validation and evidence`, and `degraded-operation examples`.
 
 ```text
 geometry-3d: 3d-object-detection-losses-assignment-first-principles.md, camera-imaging-noise-calibration.md, camera-projective-geometry-pnp-triangulation.md, coordinate-frames-projections-se3.md, correspondence-search-data-structures.md, event-thermal-camera-models.md, geodesy-map-projections-datums.md, lidar-working-principles-noise-models.md, lie-groups-se3-so3-jacobians.md, multi-sensor-calibration-observability.md, point-cloud-registration-math-icp-ndt-gicp.md, point-cloud-segmentation-losses-metrics-first-principles.md, pointpillars.md, rolling-shutter-lidar-deskew-motion-distortion.md, sensor-calibration-time-synchronization.md, volume-rendering-radiance-fields-gaussian-splatting.md
@@ -156,6 +193,8 @@ state-estimation: 30-autonomy-stack/localization-mapping/overview/robust-state-e
 systems-engineering: 40-runtime-systems/ml-deployment/perception-slam-runtime-interface-contract.md, 40-runtime-systems/middleware/topic-freshness-and-stale-data-contracts.md, 40-runtime-systems/monitoring-observability/ros2-timing-diagnostics-observability.md
 ```
 
+When writing Markdown links from `10-knowledge-base/<folder>/overview.md`, convert every applied repo-relative target to a correct relative link. Example: use `../../30-autonomy-stack/localization-mapping/slam-methods/factor-graph-isam2-gtsam.md`, not `30-autonomy-stack/localization-mapping/slam-methods/factor-graph-isam2-gtsam.md`.
+
 - [ ] **Step 5: Run link checker**
 
 Run:
@@ -174,7 +213,7 @@ Expected: PASS.
 
 - [ ] **Step 1: Create SVG assets**
 
-Each SVG must use `width="1400"`, `height="720"`, `viewBox="0 0 1400 720"`, `role="img"`, a `<title>`, a `<desc>`, the matching `data-diagram-kind`, and a layout comment matching its assigned kind such as `<!-- layout:matrix-structure -->` for `numerical-linear-algebra-overview.svg`.
+Each SVG must use `width="1400"`, `height="720"`, `viewBox="0 0 1400 720"`, `role="img"`, a `<title>`, a `<desc>`, the matching `data-diagram-kind`, and a layout comment matching its assigned kind such as `<!-- layout:matrix-structure -->` for `numerical-linear-algebra-overview.svg`. The `<desc>` must include the exact caption from the Visual Caption Map.
 
 - [ ] **Step 2: Add taxonomy entries**
 
@@ -223,7 +262,17 @@ Run:
 (rg --files 10-knowledge-base -g '*.md' | Measure-Object).Count
 ```
 
-Expected: `121` if no other Markdown pages were added after Batch A. Set visible manifest count lines to the command output.
+Set visible manifest count lines to the command output. Update the Scope sentence and every Summary count bullet, not only the first count mention.
+
+- [ ] **Step 3: Verify manifest entry count**
+
+Run:
+
+```powershell
+(Select-String -Path docs/superpowers/notes/2026-05-09-knowledge-base-visual-reassessment-generated-removed.md -Pattern '^- `10-knowledge-base/.+\.md` - Visual needed: yes').Count
+```
+
+Expected: the manifest entry count equals the live Markdown count from Step 2.
 
 ## Task 5: Verify And Commit Batch B
 

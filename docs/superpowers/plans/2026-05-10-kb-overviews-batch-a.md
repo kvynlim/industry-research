@@ -28,6 +28,12 @@
 - Modify: `tools/knowledge-base/visual-taxonomy.mjs`
 - Modify: `docs/superpowers/notes/2026-05-09-knowledge-base-visual-reassessment-generated-removed.md`
 
+## Preconditions
+
+- `docs/superpowers/plans/2026-05-10-kb-overview-contract-navigation.md` has landed.
+- `tests/content-smoke.test.mjs` defines `overviewFoldersWithContract`, `legacyOverviewContractExceptions`, `requiredOverviewHeadings`, `requiredProblemClasses`, `directPublicKnowledgeBaseFolders`, and the overview contract tests.
+- `.vitepress/navigation.mjs` already links folder groups to `overview.md` when present.
+
 ## Required Page Contract
 
 Every page in this batch must use this exact H2 order:
@@ -47,7 +53,14 @@ Every page in this batch must use this exact H2 order:
 ## Core Sources
 ```
 
-Every `Problem-Class Coverage` table must include these row labels exactly:
+Every `Problem-Class Coverage` table must use this exact table shape:
+
+```markdown
+| Problem Class | Role Of This Foundation | Representative Applied Pages |
+|---|---|---|
+```
+
+Every table must include these row labels exactly once:
 
 ```markdown
 | Perception and scene understanding |
@@ -58,6 +71,14 @@ Every `Problem-Class Coverage` table must include these row labels exactly:
 | Control and actuation |
 | Safety, validation, and assurance |
 | Runtime systems and operations |
+```
+
+In `Role Of This Foundation`, start every cell with `primary`, `supporting`, or `not central`, then add a section-specific explanation. Across the table, include 3-5 unique applied links outside `10-knowledge-base`; each applied link must include a reason phrase tied to review or debugging.
+
+The `Core Sources` section must contain only sources directly used while writing the overview. If the overview is synthesized only from existing pages in the folder and no additional external source is opened, use this sentence:
+
+```markdown
+This overview synthesizes the section pages listed above; no additional external sources were used.
 ```
 
 ## Batch Page Briefs
@@ -71,9 +92,22 @@ Every `Problem-Class Coverage` table must include these row labels exactly:
 | `10-knowledge-base/sensors/overview.md` | `# Sensor Foundations for Autonomy` | `sensors-overview.svg` | `error-budget` | Cross-modality measurement likelihoods, error budgets, observability limits, degradation modes, and likelihood contracts. | A fusion stack gates out valid LiDAR returns in rain because the range-noise model and confidence contract were copied from dry-road data. |
 | `10-knowledge-base/signal-processing/overview.md` | `# Signal Processing Foundations for Autonomy` | `signal-processing-overview.svg` | `signal-processing-chain` | Sampling, filtering, FFT, radar range-Doppler-angle processing, CFAR, aliasing, windowing, clutter suppression, and raw-to-feature contracts. | A radar detector misses crossing traffic because chirp/FFT/CFAR assumptions produce a blind spot in velocity or clutter conditions. |
 
+## Visual Caption Map
+
+For each overview, use one exact caption string in three places: the Markdown visual-caption line, the SVG `<desc>`, and the reassessment manifest line after `Replacement visual:`. Do not paraphrase between those locations.
+
+```text
+controls: section-level autonomy-role diagram showing control foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+mapping: section-level autonomy-role diagram showing mapping foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+optimization: section-level autonomy-role diagram showing optimization foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+robotics: section-level autonomy-role diagram showing robotics foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+sensors: section-level autonomy-role diagram showing sensor foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+signal-processing: section-level autonomy-role diagram showing signal processing foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+```
+
 ## Boundary Requirements
 
-Use these boundaries in `Boundaries With Neighboring Foundations`:
+Use three bullets per page in `Boundaries With Neighboring Foundations`: `Owns`, `Hands off to`, and `Does not own`. The handoff bullet must name the neighboring foundation and the condition that triggers the handoff.
 
 ```text
 controls: Own closed-loop tracking, MPC, iLQR, constraints, stability, vehicle dynamics, receding-horizon command generation, actuator limits, and safety filters. Do not reframe controls as behavior planning or as generic optimization.
@@ -90,6 +124,8 @@ signal-processing: Own raw-to-feature transforms: sampling, filtering, FFT, rada
 - Modify: `tests/content-smoke.test.mjs`
 
 - [ ] **Step 1: Replace `overviewFoldersWithContract`**
+
+If `overviewFoldersWithContract` is absent, stop and run the contract/navigation plan first.
 
 Use this value:
 
@@ -121,7 +157,7 @@ Expected: FAIL with missing overview pages for the six activated folders.
 
 - [ ] **Step 1: Create each page with the required H1 and visual block**
 
-For every page, put the `kb-visual` block immediately after the H1. Use the image file and diagram title from the batch page briefs.
+For every page, put the `kb-visual` block immediately after the H1. Use the image file and diagram title from the batch page briefs, and use the exact caption from the Visual Caption Map.
 
 - [ ] **Step 2: Add section-specific review questions**
 
@@ -162,6 +198,8 @@ sensors: 30-autonomy-stack/perception/overview/production-perception-systems.md,
 signal-processing: 30-autonomy-stack/perception/methods/k-radar.md, 30-autonomy-stack/perception/overview/radar-lidar-fusion-adverse-weather.md, 30-autonomy-stack/perception/datasets-benchmarks/dual-radar-4d-radar-adverse-weather.md
 ```
 
+When writing Markdown links from `10-knowledge-base/<folder>/overview.md`, convert every applied repo-relative target to a correct relative link. Example: use `../../30-autonomy-stack/planning/trajectory-tracking-control.md`, not `30-autonomy-stack/planning/trajectory-tracking-control.md`.
+
 - [ ] **Step 5: Run link checker**
 
 Run:
@@ -180,7 +218,7 @@ Expected: PASS.
 
 - [ ] **Step 1: Create SVG assets**
 
-Each SVG must use `width="1400"`, `height="720"`, `viewBox="0 0 1400 720"`, `role="img"`, a `<title>`, a `<desc>`, the matching `data-diagram-kind`, and a layout comment matching its assigned kind such as `<!-- layout:closed-loop-control -->` for `controls-overview.svg`.
+Each SVG must use `width="1400"`, `height="720"`, `viewBox="0 0 1400 720"`, `role="img"`, a `<title>`, a `<desc>`, the matching `data-diagram-kind`, and a layout comment matching its assigned kind such as `<!-- layout:closed-loop-control -->` for `controls-overview.svg`. The `<desc>` must include the exact caption from the Visual Caption Map.
 
 - [ ] **Step 2: Add taxonomy entries**
 
@@ -231,7 +269,17 @@ Run:
 (rg --files 10-knowledge-base -g '*.md' | Measure-Object).Count
 ```
 
-Expected: `116` if no other Markdown pages were added after the approved spec. Set visible manifest count lines to the command output.
+Set visible manifest count lines to the command output. Update the Scope sentence and every Summary count bullet, not only the first count mention.
+
+- [ ] **Step 3: Verify manifest entry count**
+
+Run:
+
+```powershell
+(Select-String -Path docs/superpowers/notes/2026-05-09-knowledge-base-visual-reassessment-generated-removed.md -Pattern '^- `10-knowledge-base/.+\.md` - Visual needed: yes').Count
+```
+
+Expected: the manifest entry count equals the live Markdown count from Step 2.
 
 ## Task 5: Verify And Commit Batch A
 

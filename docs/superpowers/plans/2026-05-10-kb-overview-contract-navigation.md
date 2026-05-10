@@ -4,7 +4,7 @@
 
 **Goal:** Add the mechanical sidebar behavior and reusable overview contract tests needed before writing the new section overviews.
 
-**Architecture:** Directories with an `overview.md` become navigable sidebar groups, and the overview page is sorted as the first child. The content contract test starts with an empty activation list so this phase lands green; each content batch expands that list for the overview pages it creates.
+**Architecture:** Directories with an `overview.md` become navigable sidebar groups, and the overview page is emitted before both subdirectories and regular files. The content contract test starts with an empty activation list so this phase lands green; each content batch expands that list for the overview pages it creates.
 
 **Tech Stack:** Node.js test runner, VitePress sidebar config in `.vitepress/navigation.mjs`, Markdown smoke tests in `tests/content-smoke.test.mjs`.
 
@@ -22,27 +22,9 @@
 **Files:**
 - Modify: `tests/navigation.test.mjs`
 
-- [ ] **Step 1: Add recursive sidebar lookup helper**
+- [ ] **Step 1: Add direct knowledge-base folder helper**
 
 Add after `collectSidebarLinks`:
-
-```js
-function findSidebarItem(items, predicate) {
-  for (const item of items) {
-    if (predicate(item)) return item
-    if (item.items) {
-      const child = findSidebarItem(item.items, predicate)
-      if (child) return child
-    }
-  }
-
-  return null
-}
-```
-
-- [ ] **Step 2: Add direct knowledge-base folder helper**
-
-Add after `findSidebarItem`:
 
 ```js
 function directKnowledgeBaseFoldersWithOverview(root) {
@@ -58,7 +40,7 @@ function directKnowledgeBaseFoldersWithOverview(root) {
 }
 ```
 
-- [ ] **Step 3: Add failing navigation test**
+- [ ] **Step 2: Add failing navigation test**
 
 Add after `includes every public architecture page in the sidebar`:
 
@@ -69,7 +51,7 @@ test('knowledge-base overview pages are group links and first children', () => {
   assert.ok(knowledgeBase, 'Knowledge Base sidebar group should exist')
 
   for (const folder of directKnowledgeBaseFoldersWithOverview(repoRoot)) {
-    const folderItem = findSidebarItem(knowledgeBase.items, (item) => item.text === titleFromPath(folder))
+    const folderItem = knowledgeBase.items.find((item) => item.text === titleFromPath(folder))
     const overviewLink = `/10-knowledge-base/${folder}/overview`
 
     assert.ok(folderItem, `${folder} sidebar group should exist`)
@@ -79,7 +61,7 @@ test('knowledge-base overview pages are group links and first children', () => {
 })
 ```
 
-- [ ] **Step 4: Run the focused test and confirm red**
+- [ ] **Step 3: Run the focused test and confirm red**
 
 Run:
 
@@ -105,7 +87,7 @@ function overviewFileRel(root, relDir) {
 }
 ```
 
-- [ ] **Step 2: Sort `overview.md` before other files**
+- [ ] **Step 2: Split `overview.md` from regular Markdown files**
 
 Replace the existing `files` assignment in `buildDirectoryItems` with:
 
@@ -113,13 +95,34 @@ Replace the existing `files` assignment in `buildDirectoryItems` with:
   const files = entries
     .filter((entry) => entry.isFile() && isMarkdownFile(entry.name))
     .sort((a, b) => {
-      if (a.name === 'overview.md') return -1
-      if (b.name === 'overview.md') return 1
       return a.name.localeCompare(b.name, 'en')
     })
+  const overviewFile = files.find((entry) => entry.name === 'overview.md') ?? null
+  const regularFiles = files.filter((entry) => entry.name !== 'overview.md')
 ```
 
-- [ ] **Step 3: Add overview links to directory groups**
+- [ ] **Step 3: Replace file item construction**
+
+Replace the existing `fileItems` assignment with:
+
+```js
+  const fileItems = regularFiles.map((entry) => {
+    const fileRel = joinRel(relDir, entry.name)
+    return {
+      text: titleForFile(root, fileRel),
+      link: linkForMarkdown(fileRel)
+    }
+  })
+
+  const overviewItem = overviewFile
+    ? {
+        text: titleForFile(root, joinRel(relDir, overviewFile.name)),
+        link: linkForMarkdown(joinRel(relDir, overviewFile.name))
+      }
+    : null
+```
+
+- [ ] **Step 4: Add overview links to directory groups**
 
 Replace the directory item object returned inside `directoryItems` with:
 
@@ -136,7 +139,15 @@ Replace the directory item object returned inside `directoryItems` with:
       return item
 ```
 
-- [ ] **Step 4: Run the navigation test and confirm green**
+- [ ] **Step 5: Return overview before directories and regular files**
+
+Replace the final return statement in `buildDirectoryItems` with:
+
+```js
+  return [overviewItem].concat(directoryItems, fileItems).filter(Boolean)
+```
+
+- [ ] **Step 6: Run the navigation test and confirm green**
 
 Run:
 
@@ -144,7 +155,7 @@ Run:
 node --test tests/navigation.test.mjs
 ```
 
-Expected: PASS.
+Expected: PASS. This should also keep overview pages first if a folder later gains subdirectories.
 
 ## Task 3: Add Dormant Overview Contract Test
 
@@ -157,6 +168,7 @@ Add after `maxKnowledgeBasePagesPerDiagramKind`:
 
 ```js
 const overviewFoldersWithContract = []
+const legacyOverviewContractExceptions = new Set(['machine-learning'])
 
 const requiredOverviewHeadings = [
   'Why This Foundation Exists',
@@ -185,7 +197,45 @@ const requiredProblemClasses = [
 ]
 ```
 
-- [ ] **Step 2: Add contract test**
+- [ ] **Step 2: Add contract helper functions**
+
+Add after `readMarkdownFiles`:
+
+```js
+function directPublicKnowledgeBaseFolders(root) {
+  const knowledgeBaseDir = path.join(root, '10-knowledge-base')
+  return fs
+    .readdirSync(knowledgeBaseDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && entry.name !== '_assets')
+    .map((entry) => entry.name)
+    .sort()
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function h2Index(markdown, heading) {
+  return markdown.match(new RegExp(`^## ${escapeRegExp(heading)}\\s*$`, 'm'))?.index ?? -1
+}
+```
+
+- [ ] **Step 3: Add overview registration guard**
+
+Add before the overview contract test:
+
+```js
+test('existing knowledge-base overview pages are registered for the contract', () => {
+  const unregistered = directPublicKnowledgeBaseFolders(repoRoot)
+    .filter((folder) => fs.existsSync(path.join(repoRoot, '10-knowledge-base', folder, 'overview.md')))
+    .filter((folder) => !legacyOverviewContractExceptions.has(folder))
+    .filter((folder) => !overviewFoldersWithContract.includes(folder))
+
+  assert.deepEqual(unregistered, [])
+})
+```
+
+- [ ] **Step 4: Add contract test**
 
 Add before `knowledge-base pages include one curated replacement visual`:
 
@@ -211,13 +261,20 @@ test('completed knowledge-base section overviews follow the overview contract', 
 
     let lastHeadingIndex = -1
     for (const heading of requiredOverviewHeadings) {
-      const headingIndex = markdown.indexOf(`## ${heading}`)
+      const headingIndex = h2Index(markdown, heading)
       if (headingIndex < 0) {
         failures.push(`${relPath}: missing heading ${heading}`)
-      } else if (headingIndex < lastHeadingIndex) {
+        continue
+      }
+      if (headingIndex < lastHeadingIndex) {
         failures.push(`${relPath}: heading ${heading} is out of order`)
       }
       lastHeadingIndex = headingIndex
+    }
+
+    const problemHeader = '| Problem Class | Role Of This Foundation | Representative Applied Pages |'
+    if (!markdown.includes(problemHeader)) {
+      failures.push(`${relPath}: missing required problem-class table header`)
     }
 
     for (const problemClass of requiredProblemClasses) {
@@ -225,13 +282,30 @@ test('completed knowledge-base section overviews follow the overview contract', 
         failures.push(`${relPath}: missing problem-class row ${problemClass}`)
       }
     }
+
+    const reviewQuestionCount = (markdown.match(/^- .+\?$/gm) ?? []).length
+    if (reviewQuestionCount < 3 || reviewQuestionCount > 5) {
+      failures.push(`${relPath}: expected 3-5 review questions`)
+    }
+
+    const appliedLinks = new Set(
+      Array.from(markdown.matchAll(/\]\((\.\.\/\.\.\/(?!10-knowledge-base\/)[^)]+\.md(?:#[^)]+)?)\)/g))
+        .map((match) => match[1])
+    )
+    if (appliedLinks.size < 3 || appliedLinks.size > 5) {
+      failures.push(`${relPath}: expected 3-5 unique applied links outside 10-knowledge-base`)
+    }
+
+    if (!/Diagnostic case:/i.test(markdown)) {
+      failures.push(`${relPath}: missing diagnostic micro-case`)
+    }
   }
 
   assert.deepEqual(failures, [])
 })
 ```
 
-- [ ] **Step 3: Run focused content test and confirm green**
+- [ ] **Step 5: Run focused content test and confirm green**
 
 Run:
 
