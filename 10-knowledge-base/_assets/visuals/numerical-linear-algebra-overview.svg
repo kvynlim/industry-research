@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="matrix-structure">
+  <title id="title">Numerical Linear Algebra Foundations for Autonomy</title>
+  <desc id="desc">section-level autonomy-role diagram showing numerical linear algebra foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.</desc>
+  <!-- layout:matrix-structure -->
+  <rect width="1400" height="720" fill="#f8faf7"/>
+  <text x="700" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#1f3440">Sparse information structure behind autonomy solves</text>
+  <rect x="80" y="120" width="330" height="470" rx="16" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="245" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#23423a">Weighted Jacobian</text>
+  <g fill="#dbe9f8" stroke="#477db0" stroke-width="1.5">
+    <rect x="130" y="205" width="38" height="38"/>
+    <rect x="170" y="205" width="38" height="38"/>
+    <rect x="250" y="205" width="38" height="38"/>
+    <rect x="290" y="205" width="38" height="38"/>
+    <rect x="130" y="245" width="38" height="38"/>
+    <rect x="210" y="245" width="38" height="38"/>
+    <rect x="250" y="245" width="38" height="38"/>
+    <rect x="170" y="285" width="38" height="38"/>
+    <rect x="210" y="285" width="38" height="38"/>
+    <rect x="290" y="285" width="38" height="38"/>
+    <rect x="130" y="365" width="38" height="38"/>
+    <rect x="210" y="365" width="38" height="38"/>
+    <rect x="250" y="405" width="38" height="38"/>
+    <rect x="290" y="445" width="38" height="38"/>
+  </g>
+  <text x="245" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#354b48">rows are constraints</text>
+  <text x="245" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#354b48">columns are variables</text>
+  <path d="M430 355 C485 355 500 355 545 355" fill="none" stroke="#6c7b86" stroke-width="4"/>
+  <rect x="545" y="120" width="310" height="470" rx="16" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="700" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#23423a">Factorization Choices</text>
+  <rect x="595" y="205" width="210" height="55" rx="8" fill="#e8f2ff" stroke="#477db0" stroke-width="2"/>
+  <text x="700" y="239" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#183a5a">QR or SVD: rank</text>
+  <rect x="595" y="285" width="210" height="55" rx="8" fill="#eaf7ed" stroke="#4d945d" stroke-width="2"/>
+  <text x="700" y="319" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1e4b2b">Cholesky: fast</text>
+  <rect x="595" y="365" width="210" height="55" rx="8" fill="#fff1d8" stroke="#c57c16" stroke-width="2"/>
+  <text x="700" y="399" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#5a3400">Schur: eliminate</text>
+  <rect x="595" y="445" width="210" height="55" rx="8" fill="#f0e8ff" stroke="#7f57c2" stroke-width="2"/>
+  <text x="700" y="479" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#3b2761">PCG: iterate</text>
+  <text x="700" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#354b48">ordering controls fill-in</text>
+  <path d="M875 355 C930 355 945 355 990 355" fill="none" stroke="#6c7b86" stroke-width="4"/>
+  <rect x="990" y="120" width="330" height="470" rx="16" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="1155" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#23423a">Review Evidence</text>
+  <rect x="1040" y="205" width="230" height="58" rx="8" fill="#e8f2ff" stroke="#477db0" stroke-width="2"/>
+  <text x="1155" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#183a5a">rank and nullspace</text>
+  <rect x="1040" y="290" width="230" height="58" rx="8" fill="#eaf7ed" stroke="#4d945d" stroke-width="2"/>
+  <text x="1155" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#1e4b2b">conditioning</text>
+  <rect x="1040" y="375" width="230" height="58" rx="8" fill="#fff1d8" stroke="#c57c16" stroke-width="2"/>
+  <text x="1155" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#5a3400">marginal prior</text>
+  <rect x="1040" y="460" width="230" height="58" rx="8" fill="#f0e8ff" stroke="#7f57c2" stroke-width="2"/>
+  <text x="1155" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#3b2761">covariance query</text>
+  <rect x="405" y="625" width="590" height="48" rx="12" fill="#fff7e8" stroke="#c57c16" stroke-width="2"/>
+  <text x="700" y="656" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#5a3400">Diagnostic focus: a pose update can hide a weak yaw mode.</text>
+</svg>
+

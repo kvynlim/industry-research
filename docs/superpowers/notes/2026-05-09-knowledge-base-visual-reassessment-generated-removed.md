@@ -2,7 +2,7 @@
 
 Date: 2026-05-09
 
-Scope: `10-knowledge-base` only. This reassessment covers all 116 live Markdown research files.
+Scope: `10-knowledge-base` only. This reassessment covers all 121 live Markdown research files.
 
 ## Assumption Change
 
@@ -22,8 +22,8 @@ Each file was reassessed as its own research note:
 
 ## Summary
 
-- Live knowledge-base Markdown files: 116.
-- Files requiring a replacement visual if generated figures are removed: 116.
+- Live knowledge-base Markdown files: 121.
+- Files requiring a replacement visual if generated figures are removed: 121.
 - Files that can safely lose the generated visual without replacement: 0.
 - Recommended default: one carefully designed replacement diagram per file.
 - Multi-diagram expansion should be reserved for later deepening passes; the current goal is baseline replacement coverage.
@@ -50,6 +50,7 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/geometry-3d/lidar-working-principles-noise-models.md` - Visual needed: yes. Replacement visual: LiDAR point formation diagram showing emitted pulse or chirp, time-of-flight/FMCW measurement, beam angle, reflectance, incidence angle, weather dropout, and range noise.
 - `10-knowledge-base/geometry-3d/lie-groups-se3-so3-jacobians.md` - Visual needed: yes. Replacement visual: manifold/tangent-space diagram showing SO(3)/SE(3), Exp/log maps, left/right perturbations, adjoint transform, and residual Jacobian linearization.
 - `10-knowledge-base/geometry-3d/multi-sensor-calibration-observability.md` - Visual needed: yes. Replacement visual: calibration factor graph linking camera, LiDAR, IMU, targetless constraints, time offset, motion excitation, and observability rank.
+- `10-knowledge-base/geometry-3d/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing 3D geometry foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/geometry-3d/point-cloud-registration-math-icp-ndt-gicp.md` - Visual needed: yes. Replacement visual: registration iteration loop comparing ICP correspondences, GICP covariances, NDT grid cells, residual model, solve step, and local-minimum failure.
 - `10-knowledge-base/geometry-3d/point-cloud-segmentation-losses-metrics-first-principles.md` - Visual needed: yes. Replacement visual: raw points/range image/voxel neighborhoods to per-point logits, class weighting, Dice/Lovasz/focal losses, confusion matrix, and mIoU aggregation.
 - `10-knowledge-base/geometry-3d/pointpillars.md` - Visual needed: yes. Replacement visual: PointPillars tensor pipeline from raw points to pillar grid/tensor, PFN pooling, BEV scatter, 2D backbone, and detector/world-model outputs.
@@ -104,6 +105,7 @@ Each file was reassessed as its own research note:
 
 - `10-knowledge-base/numerical-linear-algebra/cholesky-ldlt-normal-equations.md` - Visual needed: yes. Replacement visual: residual Jacobian to normal equations to SPD check, Cholesky/LDLT factorization, conditioning warning, and solve/back-substitution path.
 - `10-knowledge-base/numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md` - Visual needed: yes. Replacement visual: Hessian eigen-spectrum separating well-constrained modes, weak modes, nullspace/gauge freedom, damping, priors, and excitation.
+- `10-knowledge-base/numerical-linear-algebra/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing numerical linear algebra foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/numerical-linear-algebra/qr-svd-rank-revealing-solvers.md` - Visual needed: yes. Replacement visual: QR and SVD least-squares factorization comparison showing rank threshold, singular values, nullspace, and why normal equations hide rank.
 - `10-knowledge-base/numerical-linear-algebra/schur-complement-marginalization-pcg.md` - Visual needed: yes. Replacement visual: block matrix and factor graph showing landmark/nuisance elimination, Schur complement, reduced pose system, marginalization prior, and PCG.
 - `10-knowledge-base/numerical-linear-algebra/sparse-matrices-fill-in-ordering.md` - Visual needed: yes. Replacement visual: sparse matrix before/after permutation showing fill-in, elimination graph, ordering choices, memory/runtime impact, and real-time feasibility.
@@ -126,6 +128,7 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/probability-statistics/likelihood-map-mle-least-squares.md` - Visual needed: yes. Replacement visual: likelihood-prior-posterior flow showing MLE versus MAP, Gaussian residual to least squares, and objective surface.
 - `10-knowledge-base/probability-statistics/mahalanobis-chi-square-gating.md` - Visual needed: yes. Replacement visual: innovation covariance ellipse with Mahalanobis distance, chi-square gate, NIS/NEES consistency, accepted/rejected measurements, and threshold tuning.
 - `10-knowledge-base/probability-statistics/mixture-models-multimodal-beliefs.md` - Visual needed: yes. Replacement visual: multimodal density with mixture components, responsibilities, hypothesis weights, mean-collapse warning, and tracking/localization examples.
+- `10-knowledge-base/probability-statistics/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing probability and statistics foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/probability-statistics/probabilistic-graphical-models-message-passing.md` - Visual needed: yes. Replacement visual: factor graph or Bayesian network with local messages, variable elimination, belief/marginal computation, and AV factor examples.
 - `10-knowledge-base/probability-statistics/robust-statistics-ransac-hypothesis-testing.md` - Visual needed: yes. Replacement visual: inlier/outlier scatter with RANSAC hypotheses, consensus set, robust loss curve, hypothesis-test threshold, and failure diagnostics.
 - `10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md` - Visual needed: yes. Replacement visual: robust loss comparison plot showing squared, Huber, Cauchy, Tukey, and Geman-McClure loss, influence, IRLS weight, whitening scale, and outlier rejection behavior.
@@ -166,6 +169,7 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/state-estimation/loop-closure-place-recognition-first-principles.md` - Visual needed: yes. Replacement visual: descriptor retrieval, candidate gating, geometric verification, false-loop rejection, accepted pose-graph factor, and safety monitor.
 - `10-knowledge-base/state-estimation/multi-sensor-fusion-measurement-models-first-principles.md` - Visual needed: yes. Replacement visual: camera/LiDAR/radar/GNSS/IMU measurements through frames/time alignment, likelihoods, feature/object/track fusion, covariance, and correlation warnings.
 - `10-knowledge-base/state-estimation/out-of-sequence-measurements-fixed-lag-smoothing.md` - Visual needed: yes. Replacement visual: measurement timeline showing acquisition time, arrival time, fixed-lag smoother window, retrodiction update, stale rejection, and replay policy.
+- `10-knowledge-base/state-estimation/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing state-estimation foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/state-estimation/particle-filters-and-hypothesis-management.md` - Visual needed: yes. Replacement visual: particle-filter cycle showing proposal, weighting, resampling, multimodal posterior, hypothesis management, and degeneracy diagnostics.
 - `10-knowledge-base/state-estimation/probabilistic-multi-object-association.md` - Visual needed: yes. Replacement visual: association probability matrix and hypothesis tree for JPDA/MHT showing ambiguous detections, track weights, and pruning.
 - `10-knowledge-base/state-estimation/rtk-gps-imu-localization.md` - Visual needed: yes. Replacement visual: multi-sensor localization factor graph connecting GNSS/RTK, IMU preintegration, wheel odometry, LiDAR localization, frames, and GPS-denied fallback.
@@ -177,6 +181,7 @@ Each file was reassessed as its own research note:
 
 - `10-knowledge-base/systems-engineering/architecture-innovations.md` - Visual needed: yes. Replacement visual: architecture decision matrix for world models comparing SSM/Mamba, MoE, DiT, flow matching, tokenization, efficient attention, GNNs, retrieval, and test-time compute.
 - `10-knowledge-base/systems-engineering/benchmarking-metrics-statistical-validity.md` - Visual needed: yes. Replacement visual: benchmark evidence pipeline from scenario sampling and split design to metrics, confidence intervals, statistical test, and release decision.
+- `10-knowledge-base/systems-engineering/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing systems-engineering foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/systems-engineering/signal-processing-weather.md` - Visual needed: yes. Replacement visual: weather/degraded-operation chain from multi-return evidence through DSOR/LIOR, temporal filtering, severity state, jet-exhaust model, and planner/health response.
 - `10-knowledge-base/systems-engineering/theoretical-foundations.md` - Visual needed: yes. Replacement visual: world-model theory dependency map connecting formal dynamics, predictive coding, representation learning, causality, control/game theory, safety ML, and scaling/generalization.
 - `10-knowledge-base/systems-engineering/time-sync-ptp-timestamping-latency-models.md` - Visual needed: yes. Replacement visual: PTP timestamp exchange and latency model showing grandmaster, sync/follow-up, hardware timestamp, path delay, offset correction, and fusion impact.
@@ -184,7 +189,7 @@ Each file was reassessed as its own research note:
 
 ## Implementation Implication
 
-If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 116 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
+If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 121 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
 
 Suggested replacement order:
 

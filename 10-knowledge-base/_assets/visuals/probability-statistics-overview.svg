@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="information-map">
+  <title id="title">Probability and Statistics Foundations for Autonomy</title>
+  <desc id="desc">section-level autonomy-role diagram showing probability and statistics foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.</desc>
+  <!-- layout:information-map -->
+  <rect width="1400" height="720" fill="#fbfaf6"/>
+  <text x="700" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#2c3340">Evidence, uncertainty, and decisions</text>
+  <circle cx="225" cy="210" r="84" fill="#e8f2ff" stroke="#477db0" stroke-width="3"/>
+  <text x="225" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#183a5a">Evidence</text>
+  <text x="225" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#183a5a">data, residuals, scores</text>
+  <circle cx="520" cy="210" r="84" fill="#eaf7ed" stroke="#4d945d" stroke-width="3"/>
+  <text x="520" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#1e4b2b">Likelihood</text>
+  <text x="520" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#1e4b2b">model of support</text>
+  <circle cx="815" cy="210" r="84" fill="#fff1d8" stroke="#c57c16" stroke-width="3"/>
+  <text x="815" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#5a3400">Belief</text>
+  <text x="815" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#5a3400">prior and posterior</text>
+  <circle cx="1110" cy="210" r="84" fill="#f0e8ff" stroke="#7f57c2" stroke-width="3"/>
+  <text x="1110" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#3b2761">Decision</text>
+  <text x="1110" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#3b2761">gate or threshold</text>
+  <path d="M309 210 L436 210" stroke="#697986" stroke-width="4"/>
+  <path d="M604 210 L731 210" stroke="#697986" stroke-width="4"/>
+  <path d="M899 210 L1026 210" stroke="#697986" stroke-width="4"/>
+  <rect x="100" y="390" width="245" height="105" rx="12" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="222" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#2c3340">Perception</text>
+  <text x="222" y="454" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">calibrated confidence</text>
+  <text x="222" y="478" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">operating points</text>
+  <rect x="415" y="390" width="245" height="105" rx="12" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="537" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#2c3340">State Estimation</text>
+  <text x="537" y="454" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">gates and NIS</text>
+  <text x="537" y="478" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">covariance meaning</text>
+  <rect x="730" y="390" width="245" height="105" rx="12" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="852" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#2c3340">Prediction</text>
+  <text x="852" y="454" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">multimodal belief</text>
+  <text x="852" y="478" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">coverage claims</text>
+  <rect x="1045" y="390" width="245" height="105" rx="12" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="1167" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#2c3340">Safety Review</text>
+  <text x="1167" y="454" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">hypothesis tests</text>
+  <text x="1167" y="478" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">threshold evidence</text>
+  <path d="M225 294 L225 390" stroke="#697986" stroke-width="3"/>
+  <path d="M520 294 L537 390" stroke="#697986" stroke-width="3"/>
+  <path d="M815 294 L852 390" stroke="#697986" stroke-width="3"/>
+  <path d="M1110 294 L1167 390" stroke="#697986" stroke-width="3"/>
+  <rect x="350" y="585" width="700" height="54" rx="14" fill="#ffece8" stroke="#c5533d" stroke-width="2"/>
+  <text x="700" y="618" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#702516">Diagnostic focus: numeric covariance is not the same as calibrated confidence.</text>
+</svg>
+

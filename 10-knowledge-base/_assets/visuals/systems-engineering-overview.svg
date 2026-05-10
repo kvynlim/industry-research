@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="systems-map">
+  <title id="title">Systems Engineering Foundations for Autonomy</title>
+  <desc id="desc">section-level autonomy-role diagram showing systems-engineering foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.</desc>
+  <!-- layout:systems-map -->
+  <rect width="1400" height="720" fill="#f7f8fa"/>
+  <text x="700" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#243240">Evidence flow across the autonomy system</text>
+  <rect x="75" y="120" width="230" height="110" rx="14" fill="#e8f2ff" stroke="#477db0" stroke-width="3"/>
+  <text x="190" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#183a5a">Architecture</text>
+  <text x="190" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#183a5a">ownership and contracts</text>
+  <rect x="355" y="120" width="230" height="110" rx="14" fill="#eaf7ed" stroke="#4d945d" stroke-width="3"/>
+  <text x="470" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#1e4b2b">Timing</text>
+  <text x="470" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1e4b2b">latency and freshness</text>
+  <rect x="635" y="120" width="230" height="110" rx="14" fill="#fff1d8" stroke="#c57c16" stroke-width="3"/>
+  <text x="750" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#5a3400">Validation</text>
+  <text x="750" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#5a3400">metrics and splits</text>
+  <rect x="915" y="120" width="230" height="110" rx="14" fill="#f0e8ff" stroke="#7f57c2" stroke-width="3"/>
+  <text x="1030" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#3b2761">Release Gate</text>
+  <text x="1030" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#3b2761">evidence decision</text>
+  <rect x="1195" y="120" width="130" height="110" rx="14" fill="#ffece8" stroke="#c5533d" stroke-width="3"/>
+  <text x="1260" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#702516">Ops</text>
+  <text x="1260" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#702516">monitoring</text>
+  <path d="M305 175 L355 175" stroke="#697986" stroke-width="4"/>
+  <path d="M585 175 L635 175" stroke="#697986" stroke-width="4"/>
+  <path d="M865 175 L915 175" stroke="#697986" stroke-width="4"/>
+  <path d="M1145 175 L1195 175" stroke="#697986" stroke-width="4"/>
+  <rect x="110" y="345" width="230" height="115" rx="12" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="225" y="383" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#243240">Perception</text>
+  <text x="225" y="413" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">offline metrics</text>
+  <text x="225" y="437" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">runtime contract</text>
+  <rect x="430" y="345" width="230" height="115" rx="12" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="545" y="383" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#243240">SLAM</text>
+  <text x="545" y="413" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">timestamps</text>
+  <text x="545" y="437" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">lineage</text>
+  <rect x="750" y="345" width="230" height="115" rx="12" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="865" y="383" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#243240">Planning</text>
+  <text x="865" y="413" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">fresh inputs</text>
+  <text x="865" y="437" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">decision timing</text>
+  <rect x="1070" y="345" width="230" height="115" rx="12" fill="#ffffff" stroke="#c8d3cf" stroke-width="2"/>
+  <text x="1185" y="383" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#243240">Runtime</text>
+  <text x="1185" y="413" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">observability</text>
+  <text x="1185" y="437" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#4b5968">error budgets</text>
+  <path d="M225 345 L190 230" stroke="#697986" stroke-width="3"/>
+  <path d="M545 345 L470 230" stroke="#697986" stroke-width="3"/>
+  <path d="M865 345 L750 230" stroke="#697986" stroke-width="3"/>
+  <path d="M1185 345 L1260 230" stroke="#697986" stroke-width="3"/>
+  <rect x="260" y="575" width="880" height="58" rx="14" fill="#fff7e8" stroke="#c57c16" stroke-width="2"/>
+  <text x="700" y="610" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#5a3400">Diagnostic focus: metrics must connect to replay timing, lineage, and monitors.</text>
+</svg>
+

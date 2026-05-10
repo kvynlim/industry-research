@@ -10,11 +10,16 @@ const minKnowledgeBaseDiagramKinds = 30
 const maxKnowledgeBasePagesPerDiagramKind = 7
 const overviewFoldersWithContract = [
   'controls',
+  'geometry-3d',
   'mapping',
+  'numerical-linear-algebra',
   'optimization',
+  'probability-statistics',
   'robotics',
   'sensors',
-  'signal-processing'
+  'signal-processing',
+  'state-estimation',
+  'systems-engineering'
 ]
 const legacyOverviewContractExceptions = new Set(['machine-learning'])
 
