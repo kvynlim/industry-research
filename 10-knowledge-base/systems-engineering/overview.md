@@ -79,6 +79,7 @@ Common failure modes include offline/runtime mismatch, stale-topic contracts, un
 
 - Owns: cross-cutting integration contracts, timing, latency, metrics, release gates, architecture tradeoffs, observability, operational error budgets, and evidence flow.
 - Hands off to: each owning foundation for local mathematical or algorithmic failure modes, and runtime or MLOps pages for implementation operations.
+- Does not own: each foundation's local mathematics or local failure-mode explanation.
 - Diagnostic logic: if the failure is that evidence does not connect across timing, lineage, release, monitoring, or architecture contracts, debug here; if the failure is a local geometry, estimation, control, probability, or optimization mechanism, return to that owning foundation.
 
 ## Pages In This Section
@@ -104,4 +105,3 @@ Degraded-operation examples:
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-

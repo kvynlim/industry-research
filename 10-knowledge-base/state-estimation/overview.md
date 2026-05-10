@@ -79,6 +79,7 @@ Common failure modes include double-counted correlations, stale measurements, wr
 
 - Owns: time-evolving latent state, prediction/update, smoothing, fusion, association, out-of-sequence data, observability, and integrity.
 - Hands off to: probability for Mahalanobis, NIS, and NEES statistics; numerical linear algebra for matrix factorization; and mapping for persistent map policy.
+- Does not own: raw probability semantics, low-level linear algebra, or persistent map policy.
 - Diagnostic logic: if the failure is where measurements enter prediction/update, smoothing, tracking, SLAM, or integrity over time, debug here; if the question is statistical meaning of a gate, move to probability; if it is factorization or covariance extraction mechanics, move to numerical linear algebra.
 
 ## Pages In This Section
@@ -116,4 +117,3 @@ SLAM graph structure, observability, and integrity:
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-

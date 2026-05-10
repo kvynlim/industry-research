@@ -79,6 +79,7 @@ Common failure modes include inverted transforms, left/right perturbation mismat
 
 - Owns: frames, transforms, projection, Lie geometry, sensor geometry, calibration geometry, and registration geometry.
 - Hands off to: mapping for persistent representation, state estimation for time-evolving latent state, and optimization for nonlinear step policy.
+- Does not own: persistent map state or estimator state management after geometric evidence has been committed or fused.
 - Diagnostic logic: if the failure is caused by transform order, projection validity, calibration observability, or registration residual geometry, debug here; if the aligned result has already become map state, continue in mapping, and if it is fused through prediction/update over time, continue in state estimation.
 
 ## Pages In This Section
@@ -114,4 +115,3 @@ Point-cloud perception and learned 3D representations:
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-

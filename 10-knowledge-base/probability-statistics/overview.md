@@ -79,6 +79,7 @@ Common failure modes include score-probability confusion, uncalibrated confidenc
 
 - Owns: belief, evidence, uncertainty semantics, likelihoods, priors, calibration, hypothesis testing, robust statistics, and thresholds.
 - Hands off to: optimization for solver algorithms and state estimation for temporal fusion architecture.
+- Does not own: solver algorithms or the temporal fusion architecture that decides where statistics enter estimator state.
 - Diagnostic logic: if the failure is about what a probability, covariance, gate, confidence score, or threshold means statistically, debug here; if the failure is how the nonlinear problem is solved, move to optimization; if it is where the statistic enters prediction/update over time, move to state estimation.
 
 ## Pages In This Section
@@ -105,4 +106,3 @@ Robustness, multimodality, and calibrated uncertainty:
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-

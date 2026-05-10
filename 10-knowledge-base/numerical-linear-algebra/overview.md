@@ -77,6 +77,7 @@ Common failure modes include rank loss hidden by damping, poor scaling, fill-in 
 
 - Owns: factorization, conditioning, rank, nullspaces, sparsity, ordering, fill-in, Schur complements, marginalization algebra, covariance recovery, and PCG.
 - Hands off to: optimization for residual construction and nonlinear step policy, and state estimation for estimator design and observability interpretation.
+- Does not own: estimator architecture, nonlinear residual semantics, or solver-library guidance.
 - Diagnostic logic: if the issue is matrix rank, conditioning, fill-in, or covariance extraction, debug here; if the issue is which residuals were built or how nonlinear trust was updated, move to optimization; if the issue is what the weak mode means for fusion integrity, move to state estimation.
 
 ## Pages In This Section
@@ -99,4 +100,3 @@ Information form and uncertainty recovery:
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
-
