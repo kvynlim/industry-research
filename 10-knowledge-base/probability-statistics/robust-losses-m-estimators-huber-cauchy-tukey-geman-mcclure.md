@@ -43,16 +43,24 @@ applied after residuals are in comparable statistical units.
 
 ## Core math
 
+There are two related conventions to keep separate:
+
+- A scalar teaching convention writes the loss as `rho_r(r)`, with influence
+  `psi(r) = d rho_r(r) / d r` and IRLS weight `w(r) = psi(r) / r`.
+- Many solver and library APIs take the squared whitened residual norm
+  `s = ||e||^2`, write the robustifier as `rho_s(s)`, and use derivatives with
+  respect to `s`. Library constants and factors of `2` therefore vary.
+
 For a whitened scalar residual `r`, ordinary least squares minimizes:
 
 ```text
-rho(r) = 0.5 * r^2
+rho_r(r) = 0.5 * r^2
 ```
 
 The influence function is:
 
 ```text
-psi(r) = d rho(r) / d r
+psi(r) = d rho_r(r) / d r
 ```
 
 For squared loss:
@@ -65,7 +73,7 @@ Influence grows without bound, so one very large residual can dominate the
 solution. An M-estimator replaces the quadratic penalty:
 
 ```text
-min_x sum_i rho(r_i(x))
+min_x sum_i rho_r(r_i(x))
 ```
 
 Many solvers implement this through iteratively reweighted least squares
@@ -76,10 +84,12 @@ w(r) = psi(r) / r
 min_dx 0.5 * sum_i w(r_i) * (r_i + J_i dx)^2
 ```
 
-For vector residual blocks, use the whitened norm:
+For vector residual blocks in a solver, use the whitened squared norm:
 
 ```text
+e_i = L_i r_i
 s_i = ||L_i r_i||^2
+cost_i = rho_s(s_i)
 ```
 
 where `L_i` is the square-root information matrix. Robust thresholds are then
@@ -100,8 +110,8 @@ For residual `r` and scale `k`:
 Huber loss:
 
 ```text
-rho(r) = 0.5 * r^2                 if |r| <= k
-rho(r) = k * (|r| - 0.5 * k)       otherwise
+rho_r(r) = 0.5 * r^2                 if |r| <= k
+rho_r(r) = k * (|r| - 0.5 * k)       otherwise
 
 w(r) = 1                           if |r| <= k
 w(r) = k / |r|                     otherwise
@@ -110,15 +120,15 @@ w(r) = k / |r|                     otherwise
 Cauchy-style loss:
 
 ```text
-rho(r) = 0.5 * k^2 * log(1 + (r / k)^2)
+rho_r(r) = 0.5 * k^2 * log(1 + (r / k)^2)
 w(r) = 1 / (1 + (r / k)^2)
 ```
 
 Tukey bisquare:
 
 ```text
-rho(r) = (k^2 / 6) * (1 - (1 - (r / k)^2)^3)   if |r| <= k
-rho(r) = k^2 / 6                               otherwise
+rho_r(r) = (k^2 / 6) * (1 - (1 - (r / k)^2)^3)   if |r| <= k
+rho_r(r) = k^2 / 6                               otherwise
 
 w(r) = (1 - (r / k)^2)^2                       if |r| <= k
 w(r) = 0                                       otherwise
@@ -127,13 +137,15 @@ w(r) = 0                                       otherwise
 Geman-McClure-style loss:
 
 ```text
-rho(r) = r^2 / (r^2 + k^2)
-w(r) = k^2 / (r^2 + k^2)^2
+rho_r(r) = r^2 / (r^2 + k^2)
+w(r) proportional to k^2 / (r^2 + k^2)^2
 ```
 
-The exact constants vary across libraries. The operational question is the
-same: how quickly should a residual lose influence as it leaves the inlier
-noise band?
+For Geman-McClure, that weight expression is up to constant normalization,
+depending on whether the loss is written as a scalar residual loss `rho_r(r)` or
+a squared-norm solver loss `rho_s(s)`. The exact constants vary across
+libraries. The operational question is the same: how quickly should a residual
+lose influence as it leaves the inlier noise band?
 
 ## Choosing a loss
 
@@ -157,7 +169,8 @@ Robust loss scale should usually be set after whitening:
 
 ```text
 e = L * r
-cost = rho(||e||^2)
+s = ||e||^2
+cost = rho_s(s)
 ```
 
 This is why a Huber threshold such as `k = 1.345` means roughly "number of
@@ -189,5 +202,5 @@ Practical checks:
 - Huber, "Robust Estimation of a Location Parameter": https://projecteuclid.org/journals/annals-of-mathematical-statistics/volume-35/issue-1/Robust-Estimation-of-a-Location-Parameter/10.1214/aoms/1177703732.full
 - Ceres Solver, "LossFunction": https://ceres-solver.readthedocs.io/latest/nnls_modeling.html#lossfunction
 - GTSAM Doxygen, `gtsam::noiseModel::Robust`: https://gtsam.org/doxygen/a04491.html
-- SciPy, `scipy.optimize.least_squares`: https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html
+- SciPy, `scipy.optimize.least_squares`: https://docs.scipy.org/doc/scipy-1.13.0/reference/generated/scipy.optimize.least_squares.html
 - Black and Rangarajan, "On the Unification of Line Processes, Outlier Rejection, and Robust Statistics with Applications in Early Vision": https://doi.org/10.1023/A:1008185302314

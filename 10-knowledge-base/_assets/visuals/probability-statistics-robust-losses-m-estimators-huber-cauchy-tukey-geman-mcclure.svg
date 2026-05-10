@@ -19,21 +19,59 @@
   <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
 
 <!-- layout:objective-landscape -->
-<rect x="120" y="202" width="560" height="360" rx="16" fill="url(#grid)" stroke="#94a3b8" stroke-width="2"/>
-<ellipse cx="420" cy="370" rx="230" ry="128" fill="none" stroke="#2563eb" stroke-width="3" opacity="0.78"/>
-<ellipse cx="444" cy="380" rx="192" ry="108" fill="none" stroke="#16a34a" stroke-width="3" opacity="0.78"/>
-<ellipse cx="468" cy="390" rx="154" ry="88" fill="none" stroke="#ea580c" stroke-width="3" opacity="0.78"/>
-<ellipse cx="492" cy="400" rx="116" ry="68" fill="none" stroke="#0891b2" stroke-width="3" opacity="0.78"/>
-<polyline points="224,488 302,438 366,414 428,378 506,350" fill="none" stroke="#e11d48" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<circle cx="506" cy="350" r="34" fill="#ffe4e6" stroke="#e11d48" stroke-width="3"/>
-<text x="506" y="355" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">squared</text>
-<rect x="780" y="224" width="230" height="84" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-<text x="895" y="272" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">Huber</text>
-
-<rect x="940" y="386" width="230" height="84" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
-<text x="1055" y="434" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">Cauchy</text>
-
-<line x1="1010" y1="310" x2="1010" y2="382" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<text x="790" y="604" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">objective geometry shows descent, curvature, and basins</text>
+<!-- variant:robust-loss-comparison -->
+<text x="80" y="180" font-size="14" font-weight="700" fill="#475569">Scalar view: rho_r(r), psi(r), w(r)=psi(r)/r. Solver APIs often use s=||e||^2 after whitening.</text>
+<line x1="116" y1="176" x2="158" y2="176" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+<text x="168" y="181" font-size="14" font-weight="800" fill="#172033">Squared</text>
+<line x1="344" y1="176" x2="386" y2="176" stroke="#2563eb" stroke-width="5" stroke-linecap="round"/>
+<text x="396" y="181" font-size="14" font-weight="800" fill="#172033">Huber</text>
+<line x1="572" y1="176" x2="614" y2="176" stroke="#16a34a" stroke-width="5" stroke-linecap="round"/>
+<text x="624" y="181" font-size="14" font-weight="800" fill="#172033">Cauchy</text>
+<line x1="800" y1="176" x2="842" y2="176" stroke="#ea580c" stroke-width="5" stroke-linecap="round"/>
+<text x="852" y="181" font-size="14" font-weight="800" fill="#172033">Tukey</text>
+<line x1="1028" y1="176" x2="1070" y2="176" stroke="#7c3aed" stroke-width="5" stroke-linecap="round"/>
+<text x="1080" y="181" font-size="14" font-weight="800" fill="#172033">Geman-McClure</text>
+<rect x="92" y="214" width="380" height="190" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<line x1="128" y1="362" x2="450" y2="362" stroke="#64748b" stroke-width="2"/>
+<line x1="128" y1="362" x2="128" y2="242" stroke="#64748b" stroke-width="2"/>
+<text x="110" y="240" font-size="15" font-weight="800" fill="#0f172a">loss rho_r(r)</text>
+<text x="110" y="386" font-size="12" font-weight="600" fill="#64748b">bounded/redescending losses stop growing</text>
+<polyline points="130,354 190,344 250,318 310,274 430,238" fill="none" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="130,354 190,344 250,318 310,286 430,252" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="130,354 190,346 250,326 310,302 430,284" fill="none" stroke="#16a34a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="130,354 190,346 250,326 310,310 430,310" fill="none" stroke="#ea580c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="130,354 190,344 250,324 310,312 430,304" fill="none" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="510" y="214" width="380" height="190" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<line x1="546" y1="362" x2="868" y2="362" stroke="#64748b" stroke-width="2"/>
+<line x1="546" y1="362" x2="546" y2="242" stroke="#64748b" stroke-width="2"/>
+<text x="528" y="240" font-size="15" font-weight="800" fill="#0f172a">influence psi(r)</text>
+<text x="528" y="386" font-size="12" font-weight="600" fill="#64748b">large residuals lose pull</text>
+<polyline points="548,360 608,340 668,318 728,294 848,248" fill="none" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="548,360 608,340 668,318 728,302 848,302" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="548,360 608,342 668,324 728,320 848,338" fill="none" stroke="#16a34a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="548,360 608,342 668,326 728,342 848,360" fill="none" stroke="#ea580c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="548,360 608,340 668,328 728,340 848,356" fill="none" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="928" y="214" width="380" height="190" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<line x1="964" y1="362" x2="1286" y2="362" stroke="#64748b" stroke-width="2"/>
+<line x1="964" y1="362" x2="964" y2="242" stroke="#64748b" stroke-width="2"/>
+<text x="946" y="240" font-size="15" font-weight="800" fill="#0f172a">IRLS weight w(r)</text>
+<text x="946" y="386" font-size="12" font-weight="600" fill="#64748b">downweight or reject outliers</text>
+<polyline points="966,260 1026,260 1086,260 1146,260 1266,260" fill="none" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="966,260 1026,260 1086,272 1146,304 1266,336" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="966,260 1026,264 1086,286 1146,322 1266,352" fill="none" stroke="#16a34a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="966,260 1026,266 1086,308 1146,354 1266,354" fill="none" stroke="#ea580c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="966,260 1026,270 1086,304 1146,338 1266,352" fill="none" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="108" y="452" width="1184" height="90" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+<line x1="158" y1="498" x2="1232" y2="498" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
+<circle cx="318" cy="498" r="13" fill="#16a34a"/>
+<circle cx="560" cy="498" r="13" fill="#2563eb"/>
+<circle cx="838" cy="498" r="13" fill="#ea580c"/>
+<circle cx="1068" cy="498" r="13" fill="#e11d48"/>
+<text x="252" y="570" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">whiten first: e=L*r</text>
+<text x="560" y="570" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">inlier band near k</text>
+<text x="838" y="570" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">soft downweight</text>
+<text x="1068" y="570" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">redescending rejection</text>
+<text x="116" y="464" font-size="15" font-weight="800" fill="#0f172a">Whitening scale and outlier behavior</text>
+<text x="1200" y="526" text-anchor="middle" font-size="13" font-weight="700" fill="#64748b">|r| or sqrt(s)</text>
 
 </svg>

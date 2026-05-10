@@ -680,7 +680,74 @@ ${label(nodeName(spec, 0, 'factorization path'), 642, 552, { maxChars: 34 })}
 `)
 }
 
+function axisBox(x, y, width, height, title, subtitle = '') {
+  const subtitleMarkup = subtitle
+    ? `<text x="${x + 18}" y="${y + height - 18}" font-size="12" font-weight="600" fill="#64748b">${escapeXml(subtitle)}</text>`
+    : ''
+
+  return `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+<line x1="${x + 36}" y1="${y + height - 42}" x2="${x + width - 22}" y2="${y + height - 42}" stroke="#64748b" stroke-width="2"/>
+<line x1="${x + 36}" y1="${y + height - 42}" x2="${x + 36}" y2="${y + 28}" stroke="#64748b" stroke-width="2"/>
+<text x="${x + 18}" y="${y + 26}" font-size="15" font-weight="800" fill="#0f172a">${escapeXml(title)}</text>
+${subtitleMarkup}`
+}
+
+function renderRobustLossComparison(spec) {
+  const legend = [
+    ['Squared', '#0f172a'],
+    ['Huber', '#2563eb'],
+    ['Cauchy', '#16a34a'],
+    ['Tukey', '#ea580c'],
+    ['Geman-McClure', '#7c3aed']
+  ].map(([name, color], index) => {
+    const x = 116 + index * 228
+    return `<line x1="${x}" y1="176" x2="${x + 42}" y2="176" stroke="${color}" stroke-width="5" stroke-linecap="round"/>
+<text x="${x + 52}" y="181" font-size="14" font-weight="800" fill="#172033">${escapeXml(name)}</text>`
+  }).join('\n')
+
+  return frame(spec, `
+<!-- layout:objective-landscape -->
+<!-- variant:robust-loss-comparison -->
+<text x="80" y="180" font-size="14" font-weight="700" fill="#475569">Scalar view: rho_r(r), psi(r), w(r)=psi(r)/r. Solver APIs often use s=||e||^2 after whitening.</text>
+${legend}
+${axisBox(92, 214, 380, 190, 'loss rho_r(r)', 'bounded/redescending losses stop growing')}
+${polyline([[130, 354], [190, 344], [250, 318], [310, 274], [430, 238]], '#0f172a', 3.5)}
+${polyline([[130, 354], [190, 344], [250, 318], [310, 286], [430, 252]], '#2563eb', 3.5)}
+${polyline([[130, 354], [190, 346], [250, 326], [310, 302], [430, 284]], '#16a34a', 3.5)}
+${polyline([[130, 354], [190, 346], [250, 326], [310, 310], [430, 310]], '#ea580c', 3.5)}
+${polyline([[130, 354], [190, 344], [250, 324], [310, 312], [430, 304]], '#7c3aed', 3.5)}
+${axisBox(510, 214, 380, 190, 'influence psi(r)', 'large residuals lose pull')}
+${polyline([[548, 360], [608, 340], [668, 318], [728, 294], [848, 248]], '#0f172a', 3.5)}
+${polyline([[548, 360], [608, 340], [668, 318], [728, 302], [848, 302]], '#2563eb', 3.5)}
+${polyline([[548, 360], [608, 342], [668, 324], [728, 320], [848, 338]], '#16a34a', 3.5)}
+${polyline([[548, 360], [608, 342], [668, 326], [728, 342], [848, 360]], '#ea580c', 3.5)}
+${polyline([[548, 360], [608, 340], [668, 328], [728, 340], [848, 356]], '#7c3aed', 3.5)}
+${axisBox(928, 214, 380, 190, 'IRLS weight w(r)', 'downweight or reject outliers')}
+${polyline([[966, 260], [1026, 260], [1086, 260], [1146, 260], [1266, 260]], '#0f172a', 3.5)}
+${polyline([[966, 260], [1026, 260], [1086, 272], [1146, 304], [1266, 336]], '#2563eb', 3.5)}
+${polyline([[966, 260], [1026, 264], [1086, 286], [1146, 322], [1266, 352]], '#16a34a', 3.5)}
+${polyline([[966, 260], [1026, 266], [1086, 308], [1146, 354], [1266, 354]], '#ea580c', 3.5)}
+${polyline([[966, 260], [1026, 270], [1086, 304], [1146, 338], [1266, 352]], '#7c3aed', 3.5)}
+<rect x="108" y="452" width="1184" height="90" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+<line x1="158" y1="498" x2="1232" y2="498" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
+<circle cx="318" cy="498" r="13" fill="#16a34a"/>
+<circle cx="560" cy="498" r="13" fill="#2563eb"/>
+<circle cx="838" cy="498" r="13" fill="#ea580c"/>
+<circle cx="1068" cy="498" r="13" fill="#e11d48"/>
+${label('whiten first: e=L*r', 252, 570, { maxChars: 28 })}
+${label('inlier band near k', 560, 570, { maxChars: 28 })}
+${label('soft downweight', 838, 570, { maxChars: 28 })}
+${label('redescending rejection', 1068, 570, { maxChars: 30 })}
+<text x="116" y="464" font-size="15" font-weight="800" fill="#0f172a">Whitening scale and outlier behavior</text>
+<text x="1200" y="526" text-anchor="middle" font-size="13" font-weight="700" fill="#64748b">|r| or sqrt(s)</text>
+`)
+}
+
 function renderObjectiveLandscape(spec) {
+  if (spec.file.endsWith('robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md')) {
+    return renderRobustLossComparison(spec)
+  }
+
   return frame(spec, `
 <!-- layout:objective-landscape -->
 ${landscapeLayout(spec)}
