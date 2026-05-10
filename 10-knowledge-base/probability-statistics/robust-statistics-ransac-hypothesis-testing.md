@@ -16,6 +16,7 @@ different ways to prevent those failures from dominating the estimate.
 ## Related docs
 
 - [Likelihood, MAP, MLE, and Least Squares](likelihood-map-mle-least-squares.md)
+- [Robust Losses and M-Estimators: Huber, Cauchy, Tukey, and Geman-McClure](robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
 - [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](gaussian-noise-covariance-information.md)
 - [Mahalanobis and Chi-Square Gating](mahalanobis-chi-square-gating.md)
 - [Mixture Models and Multimodal Beliefs](mixture-models-multimodal-beliefs.md)

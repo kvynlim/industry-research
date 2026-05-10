@@ -114,6 +114,7 @@ method-priority:end -->
 - Radar-camera and radar-occupancy methods: [RaCFormer](racformer.md), [CVFusion](cvfusion.md), [4D Radar-Camera Occupancy](4d-radar-camera-occupancy.md).
 - LiDAR weather and validation: [LiDAR Weather Artifact Removal](lidar-weather-artifact-removal.md), [LiSnowNet](lisnownet.md), [MultiCorrupt](multicorrupt.md).
 - Cooperative perception context: [RCooper](rcooper.md), [V2X-ReaLO](v2x-realo.md), [CoHFF](cohff.md).
+- Robust residual foundations for multipath, ghost returns, and degraded LiDAR points: [Robust Losses and M-Estimators](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md).
 
 ## Sources
 

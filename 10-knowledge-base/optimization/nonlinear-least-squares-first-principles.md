@@ -13,6 +13,7 @@
 - [Jacobians, Autodiff, and Manifold Linearization](./jacobians-autodiff-manifold-linearization.md)
 - [Factor Graph Solver Patterns: Ceres, GTSAM, and g2o](./factor-graph-solver-patterns-ceres-gtsam-g2o.md)
 - [GTSAM Factor Graphs](../state-estimation/gtsam-factor-graphs.md)
+- [Robust Losses and M-Estimators](../probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 

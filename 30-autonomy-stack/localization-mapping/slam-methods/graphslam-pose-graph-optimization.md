@@ -154,7 +154,7 @@ Robust pose graph optimization replaces squared loss with a robust objective:
 min sum rho( ||e_ij||_Omega^2 )
 ```
 
-Common choices are Huber, Cauchy, Tukey, dynamic covariance scaling, switchable constraints, and max-mixtures.
+Common choices include [Huber, Cauchy, Tukey, and Geman-McClure robust losses](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md), plus dynamic covariance scaling, switchable constraints, and max-mixtures.
 
 ## Failure Modes
 

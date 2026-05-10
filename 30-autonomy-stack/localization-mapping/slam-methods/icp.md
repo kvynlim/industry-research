@@ -63,7 +63,7 @@ min_T sum_i rho( w_i || R p_i + t - q_i ||_2^2 )
 
 where:
 
-- `rho` is a robust loss such as Huber, Cauchy, Tukey, or Geman-McClure.
+- `rho` is a [robust loss such as Huber, Cauchy, Tukey, or Geman-McClure](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md).
 - `w_i` may encode range, intensity, semantic class, local geometry, or per-LiDAR trust.
 - Correspondences are gated by maximum distance, reciprocal matching, normal angle if normals are available, or trimmed residual rank.
 

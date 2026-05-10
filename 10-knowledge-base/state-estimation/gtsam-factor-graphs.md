@@ -6,6 +6,10 @@
 *Visual: GTSAM factor graph and Bayes tree showing pose variables, IMU/GNSS/LiDAR factors, linearization, incremental update, marginal, and custom factor lifecycle.*
 <!-- kb-visual:end -->
 
+## Related docs
+
+- [Robust Losses and M-Estimators](../probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
+
 ## Table of Contents
 
 1. [Factor Graph Fundamentals](#1-factor-graph-fundamentals)

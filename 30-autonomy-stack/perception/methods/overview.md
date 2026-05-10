@@ -115,6 +115,8 @@ Priority ratings are editorial reading and deployment triage signals. `Learning`
 
 ## How to Use This Library
 
+For loss and residual foundations behind perception methods, use [3D Object Detection Losses and Assignment](../../../10-knowledge-base/geometry-3d/3d-object-detection-losses-assignment-first-principles.md) for detector training objectives and [Robust Losses and M-Estimators](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) for outlier-heavy geometric residuals that connect perception outputs to calibration, tracking, and SLAM.
+
 | Need | Start here |
 |---|---|
 | Camera BEV, occupancy, and freespace | [BEVDet](bevdet.md), [BEVDepth](bevdepth.md), [BEVStereo](bevstereo.md), [SOLOFusion](solo-fusion.md), [Sparse4D](sparse4d.md), [TPVFormer](tpvformer.md), [SurroundOcc](surroundocc.md), [SparseOcc](sparseocc.md), [FlashOcc](flashocc.md), [SelfOcc](selfocc.md), [RenderOcc](renderocc.md), [LiDAR-Camera Occupancy Fusion](lidar-camera-occupancy-fusion.md), [Dynamic Occupancy and Freespace](dynamic-occupancy-freespace.md), [Spatiotemporal Memory Occupancy Flow](spatiotemporal-memory-occupancy-flow.md) |

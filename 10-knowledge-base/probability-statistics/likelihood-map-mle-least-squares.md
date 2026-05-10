@@ -20,6 +20,7 @@ calibration solvers.
 - [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
 - [Bayesian Filtering and Error-State Kalman Filters](../state-estimation/bayesian-filtering-and-eskf.md)
 - [Robust Statistics, RANSAC, and Hypothesis Testing](robust-statistics-ransac-hypothesis-testing.md)
+- [Robust Losses and M-Estimators: Huber, Cauchy, Tukey, and Geman-McClure](robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 

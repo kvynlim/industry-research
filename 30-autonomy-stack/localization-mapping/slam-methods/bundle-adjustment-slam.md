@@ -121,7 +121,7 @@ where:
 
 - `pi(.)` is the camera projection model.
 - `Sigma_ij` is the image measurement covariance.
-- `rho(.)` is often a robust loss such as Huber or Cauchy.
+- `rho(.)` is often a [robust loss such as Huber or Cauchy](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md).
 
 Linearization gives a sparse block system:
 

@@ -99,7 +99,7 @@ but it makes the backend less brittle to unavoidable data-association errors.
 
 3. **Initialize the graph.** Use odometry chaining, local SLAM output, or previous incremental estimates. GNC is more tolerant than direct non-convex robust losses, but not magic.
 
-4. **Start with a softened robust loss.** Choose a GNC loss such as Geman-McClure-style or truncated least squares with a large control parameter.
+4. **Start with a softened robust loss.** Choose a GNC loss such as [Geman-McClure-style robustification](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) or truncated least squares with a large control parameter.
 
 5. **Alternate state and weight updates.** Solve weighted PGO, recompute residuals, and update edge weights.
 

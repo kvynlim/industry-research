@@ -95,7 +95,7 @@ That is why point-to-plane ICP does not fight harmless tangential sampling diffe
 
 5. **Build residuals**
    - Residual: `n_i dot (T p_i - q_i)`.
-   - Weight by normal confidence, range, semantic stability, and robust loss.
+   - Weight by normal confidence, range, semantic stability, and [robust loss](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md).
    - Downweight ground in x/y/yaw-sensitive localization zones if it dominates the correspondence set.
 
 6. **Solve and update**

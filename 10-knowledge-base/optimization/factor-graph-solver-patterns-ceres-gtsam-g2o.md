@@ -14,6 +14,7 @@
 - [Jacobians, Autodiff, and Manifold Linearization](./jacobians-autodiff-manifold-linearization.md)
 - [GTSAM Factor Graphs](../state-estimation/gtsam-factor-graphs.md)
 - [Factor Graph SLAM with iSAM2 and GTSAM](../../30-autonomy-stack/localization-mapping/slam-methods/factor-graph-isam2-gtsam.md)
+- [Robust Losses and M-Estimators](../probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
