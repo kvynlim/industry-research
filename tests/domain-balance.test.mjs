@@ -77,7 +77,7 @@ test('auditDomainBalance counts canonical domain buckets by file and mention wit
   const report = auditDomainBalance(root)
   const after = snapshotFiles(root)
 
-  assert.equal(report.sourceFiles, 4)
+  assert.equal(report.totalFiles, 4)
   assert.deepEqual(report.domains.airside, { files: 1, mentions: 3 })
   assert.deepEqual(report.domains.road, { files: 1, mentions: 2 })
   assert.deepEqual(report.domains.warehouse, { files: 1, mentions: 2 })

@@ -97,7 +97,7 @@ export function auditDomainBalance(root = repoRoot) {
   }
 
   return {
-    sourceFiles: files.length,
+    totalFiles: files.length,
     domains,
     folders
   }
@@ -107,7 +107,7 @@ export function formatAuditReport(report) {
   const lines = [
     '# Domain Balance Audit',
     '',
-    `Source Markdown files: ${report.sourceFiles}`,
+    `Source Markdown files: ${report.totalFiles}`,
     '',
     '## Domain Summary',
     '',
