@@ -24,15 +24,18 @@ Out of scope:
 - Full prerequisite graphs.
 - Any claim that a high score means a method is safety-certified or product-ready.
 
-## Minimal Metadata
+## Balanced Metadata
 
-Each rated page gets one hidden block with only four fields.
+Each rated page gets one hidden block with seven fields. This is enough to disambiguate the score without turning each page into a mini database.
 
 ```yaml
 <!-- method-priority:start
 priority:
   learning: 4
   deployment: 5
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
   tags: ["road-av", "airside", "mapping", "runtime-localization"]
   reason: "Core LiDAR-inertial baseline for mapping and localization fallback."
 method-priority:end -->
@@ -41,9 +44,10 @@ method-priority:end -->
 Rules:
 
 - `learning` and `deployment` are required integers from 1 to 5.
+- `type`, `stage`, and `maturity` are required short enums.
 - `tags` is a compact routing list, not a full taxonomy. Use 2-6 tags.
 - `reason` is one short sentence, 40-180 characters.
-- Do not add maturity, prerequisites, per-context scores, or extra reason fields in the first pass.
+- Do not add prerequisites, per-context scores, or extra reason fields in the first pass.
 
 The block must appear after the H1 and before the first `##`. It is one HTML comment, so it is parsed by tooling and hidden from normal page content.
 
@@ -70,6 +74,35 @@ Deployment score:
 | 1 | Watchlist, historical, or unlikely to affect stack decisions soon. |
 
 `deployment` is scoped by `tags` and `reason`. Do not average across all AV domains. A warehouse-only localization method can be `deployment: 5` if it is critical for warehouse autonomy and tagged accordingly.
+
+## Type, Stage, And Maturity
+
+These fields keep the two scores interpretable while staying compact.
+
+Allowed `type` values:
+
+- `method`
+- `method-family`
+- `architecture-pattern`
+- `benchmark`
+
+Allowed `stage` values:
+
+- `foundation`
+- `classic-baseline`
+- `modern-core`
+- `deployment-pattern`
+- `frontier`
+- `reference`
+
+Allowed `maturity` values:
+
+- `fielded-pattern`
+- `pilot-proven`
+- `prototype`
+- `research`
+- `watchlist`
+- `historical`
 
 ## Tags
 
@@ -107,13 +140,13 @@ Add tags only when they explain the score. For example, avoid tagging every LiDA
 
 ## Calibration Examples
 
-| Method type | Learning | Deployment | Tags | Reason |
-|---|---:|---:|---|---|
-| EKF-SLAM | 5 | 2 | `slam`, `indoor` | Foundation for estimator thinking, but rarely the direct modern AV stack. |
-| FAST-LIO2 / LIO family | 4 | 5 | `slam`, `mapping`, `runtime-localization`, `outdoor` | Core LiDAR-inertial pattern for mapping and localization fallback. |
-| Production LiDAR scan-to-map localization | 4 | 5 | `runtime-localization`, `road-av`, `airside` | Central deployment pattern for mapped AV operation. |
-| Neural/Gaussian SLAM | 3 | 3 | `slam`, `mapping`, `simulation` | Useful for map QA and simulation, but not primary runtime localization. |
-| Open-world perception methods | 4 | 4 | `perception`, `validation`, `data-engine` | Important for long-tail perception and deployment-risk discovery. |
+| Method type | Learning | Deployment | Type | Stage | Maturity | Tags | Reason |
+|---|---:|---:|---|---|---|---|---|
+| EKF-SLAM | 5 | 2 | `method-family` | `foundation` | `historical` | `slam`, `indoor` | Foundation for estimator thinking, but rarely the direct modern AV stack. |
+| FAST-LIO2 / LIO family | 4 | 5 | `method-family` | `modern-core` | `fielded-pattern` | `slam`, `mapping`, `runtime-localization`, `outdoor` | Core LiDAR-inertial pattern for mapping and localization fallback. |
+| Production LiDAR scan-to-map localization | 4 | 5 | `architecture-pattern` | `deployment-pattern` | `fielded-pattern` | `runtime-localization`, `road-av`, `airside` | Central deployment pattern for mapped AV operation. |
+| Neural/Gaussian SLAM | 3 | 3 | `method-family` | `frontier` | `research` | `slam`, `mapping`, `simulation` | Useful for map QA and simulation, but not primary runtime localization. |
+| Open-world perception methods | 4 | 4 | `method-family` | `modern-core` | `prototype` | `perception`, `validation`, `data-engine` | Important for long-tail perception and deployment-risk discovery. |
 
 ## Display Behavior
 
@@ -122,6 +155,9 @@ Method pages and generated overview tables should show the same concise fields:
 ```text
 Learning: 4/5
 Deployment: 5/5
+Type: method-family
+Stage: modern-core
+Maturity: fielded-pattern
 Tags: road-av, airside, mapping, runtime-localization
 Reason: Core LiDAR-inertial baseline for mapping and localization fallback.
 ```
@@ -145,7 +181,7 @@ Rules:
 Phase 1 must add parser and validation tooling before any rating batch:
 
 - Parse `method-priority` marker comments.
-- Validate required fields, integer score range, allowed tags, unique tags, and reason length.
+- Validate required fields, integer score range, enum values, allowed tags, unique tags, and reason length.
 - Fail on malformed present metadata.
 - Tolerate missing metadata during partial rollout.
 
@@ -153,13 +189,13 @@ Phase 2 rates a seed set:
 
 - 15-25 SLAM/localization pages.
 - 15-25 perception pages.
-- Include examples across high-learning, high-deployment, specialist, frontier, and watchlist cases.
+- Include examples across high-learning, high-deployment, frontier, historical, and watchlist cases.
 
 Phase 3 backfills remaining method pages in batches, starting with pages linked from the overview tables and coverage audits.
 
 ## Acceptance Criteria
 
-- The repo defines the concise four-field rating block.
+- The repo defines the balanced seven-field rating block.
 - Perception and SLAM overview pages explain the score meanings.
 - Parser tests cover valid, missing, duplicate, and malformed metadata.
 - Generated overview tables identify high-priority learning and deployment entries.
