@@ -1,5 +1,16 @@
 # Radar Teach-Repeat Localization
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "Radar Teach-Repeat Localization is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 ## Summary
 
 Radar teach-repeat localization lets a robot record a route during a teaching pass and later repeat that route using radar-based localization against the taught experience. It is route-following localization, not general radar odometry. Radar odometry estimates frame-to-frame motion from live radar scans; radar teach-repeat localizes the live robot to a stored route graph or taught keyframes and uses that relative pose to follow the route.

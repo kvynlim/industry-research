@@ -1,5 +1,16 @@
 # Kimera-Multi
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "validation", "runtime-localization"]
+  reason: "Kimera-Multi is rated for robust or collaborative backend design in multi-session SLAM and validation."
+method-priority:end -->
+
 ## Executive Summary
 
 Kimera-Multi is a distributed multi-robot extension of the MIT-SPARK Kimera stack. Each robot runs local visual-inertial SLAM and metric-semantic meshing, then collaborates with peers through distributed place recognition, robust distributed pose graph optimization, and mesh deformation. The goal is a globally consistent, semantically annotated 3D mesh without relying on a central server.

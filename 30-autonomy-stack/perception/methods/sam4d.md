@@ -1,5 +1,16 @@
 # SAM4D
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "SAM4D is rated for open-world perception, annotation leverage, and long-tail validation workflows."
+method-priority:end -->
+
 ## What It Is
 
 - SAM4D is an ICCV 2025 promptable segmentation model for camera and LiDAR streams.

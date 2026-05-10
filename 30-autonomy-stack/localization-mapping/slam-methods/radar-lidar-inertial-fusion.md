@@ -1,5 +1,16 @@
 # Radar-LiDAR-Inertial Fusion for Robust Odometry and SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "architecture-pattern"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "Radar-LiDAR-Inertial Fusion for Robust Odometry and SLAM is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 Related docs: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md), [radar-inertial odometry](radar-inertial-odometry.md), [FAST-LIO2](fast-lio-fast-lio2.md), [LIO-SAM](lio-sam.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary

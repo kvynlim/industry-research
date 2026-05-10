@@ -1,5 +1,16 @@
 # Dynamic-Object-Aware SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "Dynamic-Object-Aware SLAM is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## Executive Summary
 
 Dynamic-object-aware SLAM modifies odometry and mapping so moving or movable objects do not corrupt the estimated ego pose or static map. The core idea is simple: most SLAM systems assume a static world, but autonomous vehicles, indoor robots, and airside vehicles operate around people, cars, carts, aircraft, service equipment, doors, and temporary infrastructure. A robust system must decide which measurements belong to persistent map structure, which belong to dynamic actors, and which are uncertain.

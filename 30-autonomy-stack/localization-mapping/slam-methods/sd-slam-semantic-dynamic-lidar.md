@@ -1,5 +1,16 @@
 # SD-SLAM Semantic Dynamic LiDAR
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "SD-SLAM Semantic Dynamic LiDAR is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 **Last updated:** 2026-05-09
 
 ## Executive Summary

@@ -1,5 +1,16 @@
 # RobuRCDet
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["perception", "fallback", "validation", "adverse-weather", "road-av"]
+  reason: "RobuRCDet is rated for alternative-sensor perception and adverse-weather fallback evaluation."
+method-priority:end -->
+
 ## Executive Summary
 
 - RobuRCDet is an ICLR 2025 radar-camera fusion detector for robust 3D object detection in BEV.

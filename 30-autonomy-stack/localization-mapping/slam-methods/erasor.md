@@ -1,5 +1,16 @@
 # ERASOR
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "ERASOR is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## What It Is
 
 ERASOR is a LiDAR dynamic object removal method for building static 3D point-cloud maps from scan sequences that contain moving objects. The name stands for Egocentric Ratio of Pseudo Occupancy-based Dynamic Object Removal. It was published in RA-L with ICRA 2021 option and has an official ROS/PCL implementation.

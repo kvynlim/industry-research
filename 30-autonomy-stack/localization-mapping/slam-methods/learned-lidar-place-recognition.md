@@ -1,5 +1,16 @@
 # Learned LiDAR Place Recognition
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "validation"]
+  reason: "Learned LiDAR Place Recognition is rated for foundational SLAM modeling, optimization, registration, or mapping concepts."
+method-priority:end -->
+
 Related docs: [Scan Context Family](scan-context-family.md), [Loop Closure and Place Recognition](loop-closure-place-recognition.md), [BEV-LIO(LC)](bev-lio-lc.md), [LiDAR map cleaning](lidar-map-cleaning-dynamic-removal.md), and [GraphSLAM and Pose Graph Optimization](graphslam-pose-graph-optimization.md).
 
 **Last updated:** 2026-05-09

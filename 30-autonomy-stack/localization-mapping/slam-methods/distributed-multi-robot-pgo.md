@@ -1,5 +1,16 @@
 # Distributed Multi-Robot Pose Graph Optimization
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "validation", "runtime-localization"]
+  reason: "Distributed Multi-Robot Pose Graph Optimization is rated for robust or collaborative backend design in multi-session SLAM and validation."
+method-priority:end -->
+
 ## Executive Summary
 
 Distributed multi-robot pose graph optimization is the backend problem behind collaborative SLAM: each robot has its own trajectory and local measurements, while inter-robot loop closures connect robots into a shared map. A centralized backend sends all robot graphs to one machine. A distributed backend lets robots optimize jointly while communicating only with neighbors or teammates that share measurements.

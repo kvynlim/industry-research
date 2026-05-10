@@ -1,5 +1,16 @@
 # Semantic SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "Semantic SLAM is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 Semantic SLAM augments geometric localization and mapping with class, instance, material, or scene-graph information. Instead of producing only points, surfels, voxels, meshes, poses, or occupancy, it tries to answer "what is this part of the map?" and sometimes uses those semantic labels to improve pose estimation, loop closure, dynamic filtering, and robot behavior.

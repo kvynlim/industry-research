@@ -1,5 +1,16 @@
 # WildDet3D
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "validation", "road-av"]
+  reason: "WildDet3D is rated as a supporting perception method for autonomy-stack triage and follow-up reading."
+method-priority:end -->
+
 ## What It Is
 
 - WildDet3D is a promptable monocular 3D object detection model for in-the-wild images.

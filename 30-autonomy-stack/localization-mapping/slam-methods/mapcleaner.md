@@ -1,5 +1,16 @@
 # MapCleaner
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "MapCleaner is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## Executive Summary
 
 MapCleaner is a learning-free LiDAR map-cleaning method for removing moving-object traces from point-cloud maps built in autonomous-driving scenarios. It is an offline or post-processing cleaner: it takes a registered point-cloud map and the source scan sequence, separates terrain from above-ground obstacle structure, and uses frame-level visibility evidence to decide which obstacle-map points are dynamic.

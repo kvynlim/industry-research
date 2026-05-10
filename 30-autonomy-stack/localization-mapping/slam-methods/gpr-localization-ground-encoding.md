@@ -1,5 +1,16 @@
 # GPR Localization and Ground Encoding
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "GPR Localization and Ground Encoding is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 ## Summary
 
 Ground-penetrating radar localization uses subsurface structure as a localization signal. Instead of matching cameras to appearance or LiDAR to surface geometry, localizing GPR measures below-ground reflectivity patterns that are often stable across weather, lighting, snow, dust, and surface-appearance changes.

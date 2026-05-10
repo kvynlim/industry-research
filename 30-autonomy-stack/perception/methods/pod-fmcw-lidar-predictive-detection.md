@@ -1,5 +1,16 @@
 # POD FMCW LiDAR Predictive Detection
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["perception", "fallback", "validation", "adverse-weather", "road-av"]
+  reason: "POD FMCW LiDAR Predictive Detection is rated for alternative-sensor perception and adverse-weather fallback evaluation."
+method-priority:end -->
+
 ## What It Is
 
 - POD is a 2025 predictive object detection framework for single-frame FMCW LiDAR point clouds.

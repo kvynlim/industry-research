@@ -1,5 +1,16 @@
 # BundleFusion
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "architecture-pattern"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "BundleFusion is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 BundleFusion is a real-time RGB-D reconstruction system that estimates globally optimized camera poses online and continuously reintegrates the surface so the dense map remains globally consistent. It combines sparse feature correspondences, dense geometric and photometric matching, robust relocalization, global pose optimization, and TSDF surface reintegration in one scanning pipeline.

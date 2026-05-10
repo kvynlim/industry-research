@@ -1,5 +1,16 @@
 # NeRF-SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "NeRF-SLAM is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 ## Executive Summary
 
 NeRF-SLAM is a real-time dense monocular SLAM and mapping pipeline that combines dense visual SLAM with neural radiance field reconstruction. The Rosinol, Leonard, and Carlone system uses dense monocular SLAM to provide poses, depth maps, and depth uncertainty, then trains a real-time hierarchical volumetric NeRF-style map for geometric and photometric reconstruction.

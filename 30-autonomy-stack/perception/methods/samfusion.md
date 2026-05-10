@@ -1,5 +1,16 @@
 # SAMFusion
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "architecture-pattern"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "SAMFusion is rated for open-world perception, annotation leverage, and long-tail validation workflows."
+method-priority:end -->
+
 ## Executive Summary
 
 - SAMFusion is a sensor-adaptive multimodal 3D object detector for adverse weather.

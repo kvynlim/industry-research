@@ -1,5 +1,16 @@
 # Radar Place Recognition: 4DRaL and SHeRLoc
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "architecture-pattern"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "Radar Place Recognition: 4DRaL and SHeRLoc is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 Related docs: [Radar Odometry and Radar SLAM](radar-odometry-radar-slam.md), [4D imaging radar RIO/SLAM](4d-imaging-radar-rio-slam.md), [Scan Context Family](scan-context-family.md), [Loop Closure and Place Recognition](loop-closure-place-recognition.md), and [Radar-LiDAR-Inertial Fusion](radar-lidar-inertial-fusion.md).
 
 **Last updated:** 2026-05-09

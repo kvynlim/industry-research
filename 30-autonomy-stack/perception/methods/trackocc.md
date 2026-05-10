@@ -1,5 +1,16 @@
 # TrackOcc
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "TrackOcc is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - TrackOcc is an ICRA 2025 camera-based 4D panoptic occupancy tracking method.

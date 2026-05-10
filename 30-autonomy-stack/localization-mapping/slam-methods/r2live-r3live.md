@@ -1,5 +1,16 @@
 # R2LIVE and R3LIVE
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "R2LIVE and R3LIVE is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [FAST-LIVO and FAST-LIVO2](fast-livo-fast-livo2.md), [LVI-SAM](lvi-sam.md), [GLIM](glim.md), and [robust state estimation and multi-sensor localization fusion](../overview/robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary

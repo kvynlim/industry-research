@@ -1,5 +1,16 @@
 # Dynamic Map Cleaning Benchmarks
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["slam", "validation", "data-engine", "outdoor"]
+  reason: "Dynamic Map Cleaning Benchmarks is rated as a SLAM benchmark or reference page for comparing methods and deployments."
+method-priority:end -->
+
 **Last updated:** 2026-05-09
 
 ## Why It Matters

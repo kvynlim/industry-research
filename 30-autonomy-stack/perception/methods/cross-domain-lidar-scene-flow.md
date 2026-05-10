@@ -1,5 +1,16 @@
 # Cross-Domain LiDAR Scene Flow
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "mapping", "validation", "road-av"]
+  reason: "Cross-Domain LiDAR Scene Flow is rated for motion segmentation, scene flow, or dynamic-object perception workflows."
+method-priority:end -->
+
 ## What It Is
 
 - Cross-domain LiDAR scene flow estimates per-point 3D motion while trying to transfer across sensors, datasets, ranges, and temporal gaps.

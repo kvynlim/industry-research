@@ -1,5 +1,16 @@
 # AIDE
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "AIDE is rated for operational perception validation, calibration, or safety-screening workflows."
+method-priority:end -->
+
 ## What It Is
 
 AIDE is a CVPR 2024 automatic data engine for object detection in autonomous driving.

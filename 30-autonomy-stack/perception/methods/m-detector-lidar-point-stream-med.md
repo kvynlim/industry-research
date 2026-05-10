@@ -1,5 +1,16 @@
 # M-detector LiDAR Point-Stream MED
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "M-detector LiDAR Point-Stream MED is rated for operational perception validation, calibration, or safety-screening workflows."
+method-priority:end -->
+
 **Last updated:** 2026-05-09
 
 ## What It Is

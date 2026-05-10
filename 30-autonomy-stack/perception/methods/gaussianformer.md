@@ -1,5 +1,16 @@
 # GaussianFormer
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "simulation", "validation", "road-av"]
+  reason: "GaussianFormer is rated for neural scene representation learning and simulation-oriented perception research."
+method-priority:end -->
+
 ## What It Is
 
 - GaussianFormer is an ECCV 2024 camera-based 3D semantic occupancy method that represents a driving scene as sparse semantic 3D Gaussians.

@@ -1,5 +1,16 @@
 # Open-Source SLAM Stack Comparison
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["slam", "validation", "data-engine", "outdoor"]
+  reason: "Open-Source SLAM Stack Comparison is rated as a SLAM benchmark or reference page for comparing methods and deployments."
+method-priority:end -->
+
 This comparison is for engineering selection, not leaderboard admiration. A SLAM stack is useful when its sensor assumptions, license, ROS support, diagnostics, map outputs, runtime behavior, and maintenance model match the deployment. For airside AVs, the likely production architecture is a hybrid: offline LiDAR-inertial SLAM and factor-graph map optimization for survey, validated scan-to-map localization for runtime, and place-recognition recovery for startup and faults.
 
 ## Repo Cross-Links

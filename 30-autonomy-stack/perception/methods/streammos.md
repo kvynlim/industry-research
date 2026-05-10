@@ -1,5 +1,16 @@
 # StreamMOS
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "mapping", "validation", "road-av"]
+  reason: "StreamMOS is rated for motion segmentation, scene flow, or dynamic-object perception workflows."
+method-priority:end -->
+
 ## What It Is
 
 - StreamMOS is a streaming LiDAR moving object segmentation method.

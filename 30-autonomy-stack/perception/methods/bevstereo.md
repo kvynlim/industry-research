@@ -1,5 +1,16 @@
 # BEVStereo
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "BEVStereo is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - BEVStereo is a temporal multi-view 3D detector that improves camera BEV depth using dynamic temporal stereo.

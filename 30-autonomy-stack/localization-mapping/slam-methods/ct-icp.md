@@ -1,5 +1,16 @@
 # CT-ICP: Continuous-Time ICP
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "validation"]
+  reason: "CT-ICP: Continuous-Time ICP is rated for foundational SLAM modeling, optimization, registration, or mapping concepts."
+method-priority:end -->
+
 Related localization docs: [SLAM algorithms](../overview/lidar-slam-algorithms.md), [production LiDAR map localization](../overview/production-lidar-map-localization.md), and [map construction pipeline](../maps/map-construction-pipeline.md).
 
 ## Executive Summary

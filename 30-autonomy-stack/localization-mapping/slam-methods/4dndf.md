@@ -1,5 +1,16 @@
 # 4dNDF
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "4dNDF is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 ## Executive Summary
 
 4dNDF is a neural implicit LiDAR mapping method for dynamic scenes. It fits a time-dependent truncated signed distance function (TSDF) to a sequence of LiDAR scans, then uses the learned 4D representation to extract a static map and segment dynamic points.

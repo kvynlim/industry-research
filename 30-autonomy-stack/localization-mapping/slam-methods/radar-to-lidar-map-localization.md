@@ -1,5 +1,16 @@
 # Radar-to-LiDAR Map Localization
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "Radar-to-LiDAR Map Localization is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 Related docs: [production LiDAR map localization](../overview/production-lidar-map-localization.md), [LiDAR place recognition](../overview/lidar-place-recognition-relocalization.md), [radar teach-and-repeat localization](radar-teach-repeat-localization.md), [radar odometry and radar SLAM](radar-odometry-radar-slam.md), [radar-inertial odometry](radar-inertial-odometry.md), [radar-LiDAR-inertial fusion](radar-lidar-inertial-fusion.md), [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md), and [radar FMCW/MIMO/Doppler](../../../10-knowledge-base/signal-processing/radar-fmcw-mimo-doppler.md).
 
 ## Executive Summary

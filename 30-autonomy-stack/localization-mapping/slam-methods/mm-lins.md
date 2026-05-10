@@ -1,5 +1,16 @@
 # MM-LINS
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "MM-LINS is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [FAST-LIO / FAST-LIO2](fast-lio-fast-lio2.md), [LIO-SAM](lio-sam.md), [GLIM](glim.md), [MOLA](mola.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), [robust PGO](robust-pgo-gnc-risam.md), [LiDAR place recognition](../overview/lidar-place-recognition-relocalization.md), [production LiDAR map localization](../overview/production-lidar-map-localization.md), and [LiDAR sensors](../../../20-av-platform/sensors/robosense-lidar.md).
 
 ## Executive Summary

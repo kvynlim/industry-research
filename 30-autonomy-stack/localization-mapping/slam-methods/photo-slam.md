@@ -1,5 +1,16 @@
 # Photo-SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "Photo-SLAM is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 ## Executive Summary
 
 Photo-SLAM is a CVPR 2024 system for real-time localization and photorealistic mapping with monocular, stereo, and RGB-D cameras. Its main design choice is hybrid: it keeps explicit geometric features for localization, drawing heavily from ORB-SLAM3-style visual SLAM, while using learnable hyper primitives and Gaussian-pyramid training for photorealistic map rendering. This makes it more localization-aware than pure rendering-first Gaussian mapping systems.

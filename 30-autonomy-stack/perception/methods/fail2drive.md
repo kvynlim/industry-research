@@ -1,5 +1,16 @@
 # Fail2Drive
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "Fail2Drive is rated for operational perception validation, calibration, or safety-screening workflows."
+method-priority:end -->
+
 ## What It Is
 
 Fail2Drive is a closed-loop generalization benchmark for autonomous driving.

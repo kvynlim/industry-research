@@ -1,5 +1,16 @@
 # OVAD And OVODA Open-Vocabulary 3D Attributes
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "OVAD And OVODA Open-Vocabulary 3D Attributes is rated for open-world perception, annotation leverage, and long-tail validation workflows."
+method-priority:end -->
+
 **Last updated:** 2026-05-09
 
 OVAD is an open-vocabulary attribute dataset built on nuScenes, and OVODA is the associated open-vocabulary multimodal 3D object and attribute detection framework. Together they move 3D detection beyond closed class names toward object attributes such as spatial relationships, motion state, interaction cues, material-like descriptors, and scene dynamics.

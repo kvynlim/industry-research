@@ -1,5 +1,16 @@
 # ROMAN Object Map Alignment
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["slam", "mapping", "validation"]
+  reason: "ROMAN Object Map Alignment is rated as a supporting SLAM method for autonomy-stack triage and follow-up reading."
+method-priority:end -->
+
 Related docs: [Object-Level SLAM](object-level-slam.md), [Semantic SLAM](semantic-slam.md), [Loop Closure and Place Recognition](loop-closure-place-recognition.md), [Distributed Multi-Robot PGO](distributed-multi-robot-pgo.md), [Kimera-Multi](kimera-multi.md), and [Kimera-RPGO / PCM](kimera-rpgo-pcm.md).
 
 **Last updated:** 2026-05-09

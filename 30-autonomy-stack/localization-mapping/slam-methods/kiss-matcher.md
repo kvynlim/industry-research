@@ -1,5 +1,16 @@
 # KISS-Matcher
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "KISS-Matcher is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [KISS-ICP](kiss-icp.md), [KISS-SLAM](kiss-slam.md), [GLIM](glim.md), [GICP and VGICP](gicp-vgicp.md), and [production LiDAR map localization](../overview/production-lidar-map-localization.md).
 
 ## Executive Summary

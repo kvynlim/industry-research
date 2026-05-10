@@ -1,5 +1,16 @@
 # KinectFusion
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "architecture-pattern"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "KinectFusion is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 KinectFusion is the foundational real-time dense RGB-D mapping method that made handheld depth-camera reconstruction practical. It fuses each incoming depth frame into a truncated signed distance function (TSDF) volume and tracks the current camera pose by aligning the live depth frame to a raycast view of the fused model with coarse-to-fine point-to-plane ICP.

@@ -1,5 +1,16 @@
 # Dynamic Occupancy Freespace
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "Dynamic Occupancy Freespace is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## Executive Summary
 
 - Dynamic occupancy freespace models predict both what space is occupied and what space is free now or in the future.

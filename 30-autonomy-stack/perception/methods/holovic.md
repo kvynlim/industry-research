@@ -1,5 +1,16 @@
 # HoloVIC
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "data-engine"]
+  reason: "HoloVIC is rated for cooperative perception and infrastructure-assisted sensing evaluation."
+method-priority:end -->
+
 ## What It Is
 
 HoloVIC is a CVPR 2024 dataset and benchmark for large-scale, holistic vehicle-infrastructure cooperative perception.

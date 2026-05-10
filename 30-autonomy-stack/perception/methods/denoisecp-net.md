@@ -1,5 +1,16 @@
 # DenoiseCP-Net
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "adverse-weather", "validation", "fallback"]
+  reason: "DenoiseCP-Net is rated for cleaning, stress testing, or failure detection in degraded perception conditions."
+method-priority:end -->
+
 ## What It Is
 
 - DenoiseCP-Net is a 2025 LiDAR-based collective perception method for adverse weather.

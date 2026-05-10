@@ -1,5 +1,16 @@
 # MASt3R-SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "MASt3R-SLAM is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 MASt3R-SLAM is a CVPR 2025 monocular dense SLAM system built around MASt3R, a learned two-view 3D reconstruction and matching prior. Instead of starting from handcrafted features, dense optical flow, stereo depth, or IMU preintegration, it uses a foundation-style two-view model to predict pointmaps and matching features, then builds real-time tracking, mapping, loop closure, and global optimization around those pointmaps.

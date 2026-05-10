@@ -1,5 +1,16 @@
 # 3D-KNN Blind-Spot Desnowing
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "adverse-weather", "validation", "fallback"]
+  reason: "3D-KNN Blind-Spot Desnowing is rated for cleaning, stress testing, or failure detection in degraded perception conditions."
+method-priority:end -->
+
 ## What It Is
 
 - 3D-KNN Blind-Spot Desnowing refers to the Remote Sensing paper "Self-Supervised LiDAR Desnowing with 3D-KNN Blind-Spot Networks."

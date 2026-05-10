@@ -1,5 +1,16 @@
 # Co-SLAM and ESLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "Co-SLAM and ESLAM is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 Co-SLAM and ESLAM are 2023 neural implicit RGB-D SLAM systems that made the post-[NICE-SLAM](nice-slam.md) generation faster and more detailed. Both replace a slow global neural field with hybrid representations that are easier to optimize online. Co-SLAM uses a joint coordinate and sparse parametric encoding: a multi-resolution hash grid for high-frequency detail plus one-blob encoding for surface coherence and completion. ESLAM uses multi-scale axis-aligned feature planes with shallow decoders that output TSDF and RGB values.

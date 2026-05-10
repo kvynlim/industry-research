@@ -1,5 +1,16 @@
 # Occupancy Grid, TSDF, and ESDF Mapping
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "validation"]
+  reason: "Occupancy Grid, TSDF, and ESDF Mapping is rated for foundational SLAM modeling, optimization, registration, or mapping concepts."
+method-priority:end -->
+
 ## Executive Summary
 
 Occupancy grids, TSDFs, and ESDFs are classical spatial map representations built from range sensors and estimated poses. They are not SLAM backends by themselves, but they are core outputs and consumers of SLAM: pose estimates determine how sensor rays are integrated, and map quality feeds localization, planning, collision checking, and change detection.

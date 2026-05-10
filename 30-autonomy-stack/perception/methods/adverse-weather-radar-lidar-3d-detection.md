@@ -1,5 +1,16 @@
 # Adverse-Weather Radar-LiDAR 3D Detection
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["perception", "fallback", "validation", "adverse-weather", "road-av"]
+  reason: "Adverse-Weather Radar-LiDAR 3D Detection is rated for alternative-sensor perception and adverse-weather fallback evaluation."
+method-priority:end -->
+
 ## Executive Summary
 
 - Adverse-weather radar-LiDAR 3D detection fuses precise LiDAR geometry with weather-robust radar returns for object detection under rain, snow, fog, poor light, and sensor degradation.

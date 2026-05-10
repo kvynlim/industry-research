@@ -1,5 +1,16 @@
 # GLIM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "GLIM is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [GTSAM and iSAM2](factor-graph-isam2-gtsam.md), [GICP and VGICP](gicp-vgicp.md), [LIO-SAM](lio-sam.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [KISS-ICP](kiss-icp.md), [CT-ICP](ct-icp.md), [Open-Source SLAM Stack Comparison](open-source-stack-comparison.md), and [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Executive Summary

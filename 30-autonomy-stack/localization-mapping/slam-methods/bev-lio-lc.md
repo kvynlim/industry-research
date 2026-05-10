@@ -1,5 +1,16 @@
 # BEV-LIO(LC)
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "BEV-LIO(LC) is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [LIO-SAM](lio-sam.md), [Scan Context Family](scan-context-family.md), [Learned LiDAR Place Recognition](learned-lidar-place-recognition.md), [Loop Closure and Place Recognition](loop-closure-place-recognition.md), and [GraphSLAM and Pose Graph Optimization](graphslam-pose-graph-optimization.md).
 
 **Last updated:** 2026-05-09

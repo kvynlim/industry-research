@@ -1,5 +1,16 @@
 # Loop Closure and Place Recognition
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "validation"]
+  reason: "Loop Closure and Place Recognition is rated for foundational SLAM modeling, optimization, registration, or mapping concepts."
+method-priority:end -->
+
 ## Executive Summary
 
 Loop closure is the SLAM mechanism that recognizes a return to a previously visited place and adds a constraint that corrects accumulated drift. Place recognition is the front-end retrieval problem: given the current observation, find candidate past observations or map locations that might be the same place. Geometric verification then estimates the relative pose and rejects false candidates. The backend finally adds a robust loop closure factor to a pose graph or factor graph.

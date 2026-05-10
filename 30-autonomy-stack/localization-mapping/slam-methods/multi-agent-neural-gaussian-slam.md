@@ -1,5 +1,16 @@
 # Multi-Agent Neural and Gaussian SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "validation", "runtime-localization"]
+  reason: "Multi-Agent Neural and Gaussian SLAM is rated for robust or collaborative backend design in multi-session SLAM and validation."
+method-priority:end -->
+
 Related docs: [Distributed Multi-Robot PGO](distributed-multi-robot-pgo.md), [COVINS / COVINS-G](covins-covins-g.md), [Kimera-Multi](kimera-multi.md), [CO-SLAM / ESLAM](co-slam-eslam.md), [Gaussian SLAM / MonoGS](gs-slam-monogs.md), and [SplaTAM](splatam.md).
 
 **Last updated:** 2026-05-09

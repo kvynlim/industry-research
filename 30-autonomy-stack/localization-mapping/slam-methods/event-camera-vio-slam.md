@@ -1,5 +1,16 @@
 # Event-Camera VIO and SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "Event-Camera VIO and SLAM is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 Related docs: [OpenVINS](openvins.md), [VINS-Mono / VINS-Fusion](vins-mono-vins-fusion.md), [SVO](svo.md), [LSD-SLAM / DSO](lsd-slam-dso.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), [event and thermal camera models](../../../10-knowledge-base/geometry-3d/event-thermal-camera-models.md), [visible cameras](../../../20-av-platform/sensors/visible-cameras.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary

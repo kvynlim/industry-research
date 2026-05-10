@@ -1,5 +1,16 @@
 # M2-Occ
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "M2-Occ is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - M2-Occ is a camera-based 3D semantic occupancy method for incomplete multi-camera inputs.

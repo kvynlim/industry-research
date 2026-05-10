@@ -1,5 +1,16 @@
 # RenderOcc
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "RenderOcc is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - RenderOcc is a vision-centric 3D occupancy method trained with 2D rendering supervision.

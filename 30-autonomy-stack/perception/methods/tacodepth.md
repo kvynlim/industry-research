@@ -1,5 +1,16 @@
 # TacoDepth
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "validation", "road-av"]
+  reason: "TacoDepth is rated as a supporting perception method for autonomy-stack triage and follow-up reading."
+method-priority:end -->
+
 ## What It Is
 
 - TacoDepth is a CVPR 2025 radar-camera dense depth estimation method.

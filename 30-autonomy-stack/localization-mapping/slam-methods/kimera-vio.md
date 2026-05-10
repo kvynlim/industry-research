@@ -1,5 +1,16 @@
 # Kimera-VIO
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "Kimera-VIO is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 Kimera-VIO is the visual-inertial odometry component of the MIT-SPARK Kimera stack. It is an optimization-based VIO system built around stereo cameras plus IMU, with optional mono + IMU operation. The full Kimera library extends the VIO front end into robust pose-graph optimization, local and global mesh reconstruction, and semantic 3D reconstruction; this page focuses on Kimera-VIO as a method-level SLAM/VIO component.

@@ -1,5 +1,16 @@
 # WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method-family"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 Related docs: [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md), [ORB-SLAM2/ORB-SLAM3](orb-slam2-orb-slam3.md), [loop closure and place recognition](loop-closure-place-recognition.md), and [SLAM benchmarking](benchmarking-metrics-datasets.md).
 
 ## Executive Summary

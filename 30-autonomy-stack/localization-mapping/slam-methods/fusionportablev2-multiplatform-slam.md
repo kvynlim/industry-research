@@ -1,5 +1,16 @@
 # FusionPortableV2 Multi-Platform SLAM Dataset
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["slam", "validation", "data-engine", "outdoor", "indoor"]
+  reason: "FusionPortableV2 Multi-Platform SLAM Dataset is rated as a SLAM benchmark or reference page for comparing methods and deployments."
+method-priority:end -->
+
 Related docs: [benchmarking metrics and datasets](benchmarking-metrics-datasets.md), [LVI-SAM](lvi-sam.md), [FAST-LIVO2](fast-livo-fast-livo2.md), [event-camera VIO/SLAM](event-camera-vio-slam.md), and [M2DGR / M3DGR ground fusion](ground-fusion-m2dgr-m3dgr.md).
 
 **Last updated:** 2026-05-09

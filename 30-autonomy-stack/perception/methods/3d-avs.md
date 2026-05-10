@@ -1,5 +1,16 @@
 # 3D-AVS
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "3D-AVS is rated for open-world perception, annotation leverage, and long-tail validation workflows."
+method-priority:end -->
+
 ## What It Is
 
 - 3D-AVS is a LiDAR-based 3D Auto-Vocabulary Segmentation method.

@@ -1,5 +1,16 @@
 # LT-Mapper, Khronos, and Lifelong Mapping
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "LT-Mapper, Khronos, and Lifelong Mapping is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## Summary
 
 Lifelong mapping is the map-lifecycle problem that starts after a robot can already build a usable map. It maintains a map across days, seasons, construction, furniture moves, aircraft stand changes, sensor replacements, and fleet sessions. The central question is not only "which points are dynamic?" but "what changed, when did it change, how persistent is it, and which map version should localization use?"

@@ -1,5 +1,16 @@
 # TPVFormer
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "TPVFormer is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - TPVFormer is a vision-based 3D semantic occupancy method built around a tri-perspective-view representation.

@@ -1,5 +1,16 @@
 # Cam4DOcc
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "Cam4DOcc is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - Cam4DOcc is a CVPR 2024 benchmark for camera-only 4D occupancy forecasting.

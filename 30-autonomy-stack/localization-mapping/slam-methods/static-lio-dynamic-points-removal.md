@@ -1,5 +1,16 @@
 # STATIC-LIO Dynamic Points Removal
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "STATIC-LIO Dynamic Points Removal is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## Executive Summary
 
 STATIC-LIO is a LiDAR-inertial odometry framework that couples dynamic point removal with pose estimation. Its name expands to Sliding window and Terrain AssisTed dynamIC points removal LiDAR Inertial Odometry. Instead of treating odometry as a prerequisite for later map cleaning, it feeds retained static points back into the LIO process so dynamic filtering and ego-motion estimation improve each other.

@@ -1,5 +1,16 @@
 # RadarSplat-RIO
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "RadarSplat-RIO is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 Related docs: [Radar-Inertial Odometry](radar-inertial-odometry.md), [Radar Odometry and Radar SLAM](radar-odometry-radar-slam.md), [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary

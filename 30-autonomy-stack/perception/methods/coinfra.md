@@ -1,5 +1,16 @@
 # CoInfra
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "data-engine"]
+  reason: "CoInfra is rated for cooperative perception and infrastructure-assisted sensing evaluation."
+method-priority:end -->
+
 ## What It Is
 
 CoInfra is a large-scale cooperative infrastructure perception system and dataset.

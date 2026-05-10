@@ -1,5 +1,16 @@
 # GS-LIVM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["slam", "mapping", "validation"]
+  reason: "GS-LIVM is rated as a supporting SLAM method for autonomy-stack triage and follow-up reading."
+method-priority:end -->
+
 Related docs: [Gaussian-LIC and Gaussian-LIC2](gaussian-lic.md), [GLIM](glim.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [Splat-LOAM](splat-loam.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary

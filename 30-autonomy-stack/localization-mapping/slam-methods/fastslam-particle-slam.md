@@ -1,5 +1,16 @@
 # FastSLAM and Particle SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "method-family"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "validation"]
+  reason: "FastSLAM and Particle SLAM is rated for foundational SLAM modeling, optimization, registration, or mapping concepts."
+method-priority:end -->
+
 ## Executive Summary
 
 FastSLAM is the classical Rao-Blackwellized particle-filter solution to SLAM. Instead of maintaining one dense Gaussian over robot pose and all landmarks, it samples possible robot trajectories with particles and attaches an independent map estimate to each particle. Conditioned on a sampled trajectory, landmarks become independent, so the map can be represented as many small estimators rather than one dense covariance matrix. This factorization was the breakthrough that made particle-filter SLAM attractive for ambiguous data association and grid mapping.

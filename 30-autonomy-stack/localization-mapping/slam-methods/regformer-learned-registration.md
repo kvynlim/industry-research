@@ -1,5 +1,16 @@
 # RegFormer Learned Registration
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["slam", "mapping", "validation"]
+  reason: "RegFormer Learned Registration is rated as a supporting SLAM method for autonomy-stack triage and follow-up reading."
+method-priority:end -->
+
 ## Executive Summary
 
 RegFormer is a learned large-scale LiDAR point-cloud registration network. It uses a projection-aware hierarchical transformer to align outdoor LiDAR scans without the classical two-stage pattern of handcrafted descriptors plus RANSAC. Its importance for SLAM is that it pushes learned registration toward outdoor, vehicle-scale scans rather than only object-level or indoor point clouds.

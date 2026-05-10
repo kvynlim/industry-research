@@ -1,5 +1,16 @@
 # Kimera-RPGO and Pairwise Consistency Maximization
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "validation", "runtime-localization"]
+  reason: "Kimera-RPGO and Pairwise Consistency Maximization is rated for robust or collaborative backend design in multi-session SLAM and validation."
+method-priority:end -->
+
 ## Executive Summary
 
 Kimera-RPGO is the robust pose graph optimization component associated with the MIT-SPARK Kimera stack. Its original role is to take odometry edges and loop-closure edges from Kimera-VIO/Kimera and produce a globally consistent trajectory while rejecting inconsistent loop closures. The important backend idea is Pairwise Consistency Maximization (PCM): build a consistency graph over candidate loop closures, connect candidates that are mutually compatible, then select a large mutually consistent subset before pose graph optimization.

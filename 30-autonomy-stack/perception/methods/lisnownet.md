@@ -1,5 +1,16 @@
 # LiSnowNet
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "adverse-weather", "validation", "fallback"]
+  reason: "LiSnowNet is rated for cleaning, stress testing, or failure detection in degraded perception conditions."
+method-priority:end -->
+
 ## What It Is
 
 - LiSnowNet is an IROS 2022 unsupervised LiDAR snow-removal method for point clouds corrupted by snowfall.

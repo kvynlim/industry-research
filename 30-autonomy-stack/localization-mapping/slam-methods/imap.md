@@ -1,5 +1,16 @@
 # iMAP
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "iMAP is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 ## Executive Summary
 
 iMAP, "Implicit Mapping and Positioning in Real-Time," is the first widely cited neural implicit SLAM system to use a multilayer perceptron (MLP) as the only scene representation for real-time RGB-D SLAM. It trains a scene-specific neural field online from RGB-D frames and uses the same field for tracking by differentiable rendering. The method runs separate tracking and mapping processes, with reported tracking around 10 Hz and global map updating around 2 Hz.

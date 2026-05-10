@@ -1,5 +1,16 @@
 # Radar-Inertial Online Temporal Calibration
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "Radar-Inertial Online Temporal Calibration is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 Related docs: [radar-inertial odometry](radar-inertial-odometry.md), [4D imaging radar RIO and SLAM](4d-imaging-radar-rio-slam.md), [radar-LiDAR-inertial fusion](radar-lidar-inertial-fusion.md), [sensor calibration and time synchronization](../../../10-knowledge-base/geometry-3d/sensor-calibration-time-synchronization.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 **Last updated:** 2026-05-09

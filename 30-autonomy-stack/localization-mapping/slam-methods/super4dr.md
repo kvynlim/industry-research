@@ -1,5 +1,16 @@
 # Super4DR
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["slam", "mapping", "validation"]
+  reason: "Super4DR is rated as a supporting SLAM method for autonomy-stack triage and follow-up reading."
+method-priority:end -->
+
 Related docs: [4D imaging radar RIO/SLAM](4d-imaging-radar-rio-slam.md), [Radar Odometry and Radar SLAM](radar-odometry-radar-slam.md), [RadarSplat-RIO](radarsplat-rio.md), [Radar-LiDAR-Inertial Fusion](radar-lidar-inertial-fusion.md), and [4D radar sensors](../../../20-av-platform/sensors/4d-radar.md).
 
 **Last updated:** 2026-05-09

@@ -1,5 +1,16 @@
 # Semantic-LiDAR-Inertial-Wheel Odometry
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "Semantic-LiDAR-Inertial-Wheel Odometry is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [semantic SLAM](semantic-slam.md), [dynamic-object-aware SLAM](dynamic-object-aware-slam.md), [FAST-LIO2](fast-lio-fast-lio2.md), [LiDAR map cleaning and dynamic removal](lidar-map-cleaning-dynamic-removal.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 **Last updated:** 2026-05-09

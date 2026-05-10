@@ -1,5 +1,16 @@
 # LIR-LIVO
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "LIR-LIVO is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [FAST-LIVO and FAST-LIVO2](fast-livo-fast-livo2.md), [LVI-SAM](lvi-sam.md), [R2LIVE and R3LIVE](r2live-r3live.md), [visual-inertial SLAM](vins-mono-vins-fusion.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 **Last updated:** 2026-05-09

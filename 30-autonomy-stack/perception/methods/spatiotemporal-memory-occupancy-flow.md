@@ -1,5 +1,16 @@
 # Spatiotemporal Memory Occupancy Flow
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "Spatiotemporal Memory Occupancy Flow is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## Executive Summary
 
 - Spatiotemporal memory occupancy flow methods use historical observations to improve 3D occupancy and motion prediction.

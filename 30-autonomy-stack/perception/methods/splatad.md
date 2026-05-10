@@ -1,5 +1,16 @@
 # SplatAD
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "simulation", "validation", "road-av"]
+  reason: "SplatAD is rated for neural scene representation learning and simulation-oriented perception research."
+method-priority:end -->
+
 ## What It Is
 
 - SplatAD is a CVPR 2025 method for real-time camera and LiDAR rendering with 3D Gaussian Splatting in autonomous-driving scenes.

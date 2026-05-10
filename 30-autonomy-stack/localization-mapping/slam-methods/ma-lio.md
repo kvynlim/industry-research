@@ -1,5 +1,16 @@
 # MA-LIO
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "MA-LIO is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [FAST-LIO2](fast-lio-fast-lio2.md), [MM-LINS](mm-lins.md), [continuous-time registration](continuous-time-registration.md), [GEODE Degenerate LiDAR Benchmark](geode-degenerate-lidar-benchmark.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 **Last updated:** 2026-05-09

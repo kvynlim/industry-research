@@ -1,5 +1,16 @@
 # Radar-Inertial Odometry
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "Radar-Inertial Odometry is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 Related docs: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md), [radar odometry and radar SLAM](radar-odometry-radar-slam.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), [EKF-SLAM](ekf-slam.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary

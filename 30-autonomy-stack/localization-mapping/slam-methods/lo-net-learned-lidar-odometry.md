@@ -1,5 +1,16 @@
 # LO-Net Learned LiDAR Odometry
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["slam", "mapping", "validation"]
+  reason: "LO-Net Learned LiDAR Odometry is rated as a supporting SLAM method for autonomy-stack triage and follow-up reading."
+method-priority:end -->
+
 ## Executive Summary
 
 LO-Net is a 2019 learned LiDAR odometry method that projects consecutive 3D LiDAR scans into ordered range-image tensors and uses a convolutional network to estimate frame-to-frame 6-DoF motion. Its main contribution is not that it replaced geometry-based LiDAR odometry in production; it showed that a network can learn scan features, motion cues, surface-normal structure, and an explicit mask for unreliable or dynamic points in a real-time LiDAR odometry pipeline.

@@ -1,5 +1,16 @@
 # PIN-SLAM Neural LiDAR Mapping
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "PIN-SLAM Neural LiDAR Mapping is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 Related docs: [NeRF-SLAM](nerf-slam.md), [NICE-SLAM](nice-slam.md), [CO-SLAM / ESLAM](co-slam-eslam.md), [KISS-ICP](kiss-icp.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), and [Occupancy Grid, TSDF, and ESDF Mapping](occupancy-grid-tsdf-esdf-mapping.md).
 
 **Last updated:** 2026-05-09

@@ -1,5 +1,16 @@
 # SuMa
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "SuMa is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 ## Executive Summary
 
 SuMa, short for Surfel-based Mapping, is a dense 3D LiDAR SLAM method by Behley and Stachniss. It builds a surfel map from rotating 3D laser scans, renders synthetic model views from that map, and performs projective point-to-plane alignment between the current scan and the rendered map. It also includes loop-closure detection and pose-graph optimization to produce globally consistent maps.

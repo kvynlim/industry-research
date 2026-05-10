@@ -1,5 +1,16 @@
 # RaCFormer
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["perception", "fallback", "validation", "adverse-weather", "road-av"]
+  reason: "RaCFormer is rated for alternative-sensor perception and adverse-weather fallback evaluation."
+method-priority:end -->
+
 ## What It Is
 
 - RaCFormer is a CVPR 2025 radar-camera 3D object detection method.

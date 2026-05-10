@@ -1,5 +1,16 @@
 # SLAM Decision Matrix for AV, Indoor, and Outdoor Systems
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["slam", "validation", "data-engine", "outdoor", "indoor"]
+  reason: "SLAM Decision Matrix for AV, Indoor, and Outdoor Systems is rated as a SLAM benchmark or reference page for comparing methods and deployments."
+method-priority:end -->
+
 This file is a practical selection matrix for choosing SLAM, odometry, and localization methods by operating domain. It is intentionally biased toward deployability: sensor availability, timing, map product, failure detection, license, and maintenance matter as much as benchmark error.
 
 ## Repo Cross-Links

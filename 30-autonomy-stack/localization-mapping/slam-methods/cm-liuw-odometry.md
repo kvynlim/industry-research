@@ -1,5 +1,16 @@
 # CM-LIUW-Odometry
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "CM-LIUW-Odometry is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [FAST-LIO2](fast-lio-fast-lio2.md), [UWB / radio ranging SLAM](uwb-radio-ranging-slam.md), [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md), and [radar-LiDAR-inertial fusion](radar-lidar-inertial-fusion.md).
 
 **Last updated:** 2026-05-09

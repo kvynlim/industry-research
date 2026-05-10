@@ -1,5 +1,16 @@
 # RC-AutoCalib
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "RC-AutoCalib is rated for operational perception validation, calibration, or safety-screening workflows."
+method-priority:end -->
+
 ## What It Is
 
 - RC-AutoCalib is an end-to-end radar-camera automatic calibration network.

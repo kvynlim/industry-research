@@ -1,5 +1,16 @@
 # Removert
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "Removert is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## What It Is
 
 Removert is a static point-cloud map construction method for dynamic environments. The name summarizes the core strategy: remove dynamic candidates first, then revert points that were likely removed by mistake. It was published at IROS 2020 as "Remove, then Revert: Static Point cloud Map Construction using Multiresolution Range Images" and has a public ROS/PCL implementation.

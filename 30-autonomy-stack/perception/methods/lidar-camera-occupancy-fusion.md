@@ -1,5 +1,16 @@
 # LiDAR-Camera Occupancy Fusion
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "LiDAR-Camera Occupancy Fusion is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## Executive Summary
 
 - LiDAR-camera occupancy fusion predicts dense 3D semantic occupancy by combining LiDAR geometry with camera semantics.

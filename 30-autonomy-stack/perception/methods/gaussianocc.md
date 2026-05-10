@@ -1,5 +1,16 @@
 # GaussianOcc
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "GaussianOcc is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - GaussianOcc is an ICCV 2025 method for fully self-supervised 3D occupancy estimation with Gaussian splatting.

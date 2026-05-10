@@ -1,5 +1,16 @@
 # 4D Imaging Radar RIO and SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "4D Imaging Radar RIO and SLAM is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 Related docs: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md), [radar FMCW/MIMO/Doppler](../../../10-knowledge-base/signal-processing/radar-fmcw-mimo-doppler.md), [radar ambiguity and Doppler limits](../../../10-knowledge-base/signal-processing/radar-ambiguity-chirp-design-doppler-limits.md), [radar-inertial odometry](radar-inertial-odometry.md), [radar odometry and radar SLAM](radar-odometry-radar-slam.md), [radar-LiDAR-inertial fusion](radar-lidar-inertial-fusion.md), [RadarSplat RIO](radarsplat-rio.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary

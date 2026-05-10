@@ -1,5 +1,16 @@
 # SLAM Benchmarking Metrics and Datasets
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["slam", "validation", "data-engine", "outdoor"]
+  reason: "SLAM Benchmarking Metrics and Datasets is rated as a SLAM benchmark or reference page for comparing methods and deployments."
+method-priority:end -->
+
 SLAM benchmarking is easy to do badly. A single ATE number can hide scale alignment, loop-closure jumps, bad covariance, relocalization failures, compute spikes, and map artifacts that make a method unusable in a production AV or indoor robot. This guide defines the metrics and dataset choices that should be used across the method-level SLAM library.
 
 ## Repo Cross-Links

@@ -1,5 +1,16 @@
 # Certifiable Pose Graph Optimization
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "validation", "runtime-localization"]
+  reason: "Certifiable Pose Graph Optimization is rated for robust or collaborative backend design in multi-session SLAM and validation."
+method-priority:end -->
+
 ## Executive Summary
 
 Certifiable pose graph optimization asks a stronger question than normal SLAM backends: not only "what trajectory minimizes the graph cost?", but "can we prove this solution is globally optimal for the stated graph objective?" This matters because pose graph optimization is non-convex. Gauss-Newton, Levenberg-Marquardt, Dogleg, and iSAM2 can converge quickly, but they normally return a local optimum with no certificate.

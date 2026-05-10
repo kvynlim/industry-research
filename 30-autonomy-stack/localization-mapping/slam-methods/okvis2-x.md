@@ -1,5 +1,16 @@
 # OKVIS2-X
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "OKVIS2-X is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 Related docs: [OpenVINS](openvins.md), [VINS-Mono / VINS-Fusion](vins-mono-vins-fusion.md), [ORB-SLAM2 / ORB-SLAM3](orb-slam2-orb-slam3.md), [Kimera-VIO](kimera-vio.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), [occupancy / TSDF / ESDF mapping](occupancy-grid-tsdf-esdf-mapping.md), [production LiDAR map localization](../overview/production-lidar-map-localization.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary

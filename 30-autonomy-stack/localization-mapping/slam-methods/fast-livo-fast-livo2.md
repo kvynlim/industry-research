@@ -1,5 +1,16 @@
 # FAST-LIVO and FAST-LIVO2
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "FAST-LIVO and FAST-LIVO2 is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [LVI-SAM](lvi-sam.md), [R2LIVE and R3LIVE](r2live-r3live.md), [GLIM](glim.md), and [robust state estimation and multi-sensor localization fusion](../overview/robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary

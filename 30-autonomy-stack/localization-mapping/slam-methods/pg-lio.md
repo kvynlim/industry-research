@@ -1,5 +1,16 @@
 # PG-LIO
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "PG-LIO is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [FAST-LIO2](fast-lio-fast-lio2.md), [COIN-LIO / intensity-aided context](radar-lidar-inertial-fusion.md), [continuous-time registration](continuous-time-registration.md), [LiDAR degeneracy](../overview/production-lidar-map-localization.md), and [factor graphs and iSAM2](factor-graph-isam2-gtsam.md).
 
 **Last updated:** 2026-05-09

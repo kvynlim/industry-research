@@ -1,5 +1,16 @@
 # DrivingGaussian
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "simulation", "validation", "road-av"]
+  reason: "DrivingGaussian is rated for neural scene representation learning and simulation-oriented perception research."
+method-priority:end -->
+
 ## What It Is
 
 - DrivingGaussian is a CVPR 2024 method for reconstructing surrounding dynamic autonomous-driving scenes with 3D Gaussian Splatting.

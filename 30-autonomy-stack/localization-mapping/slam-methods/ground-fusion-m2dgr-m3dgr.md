@@ -1,5 +1,16 @@
 # Ground-Fusion, M2DGR, and M3DGR
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["slam", "validation", "data-engine", "outdoor"]
+  reason: "Ground-Fusion, M2DGR, and M3DGR is rated as a SLAM benchmark or reference page for comparing methods and deployments."
+method-priority:end -->
+
 Related docs: [LVI-SAM](lvi-sam.md), [VINS-Mono and VINS-Fusion](vins-mono-vins-fusion.md), [FAST-LIO2](fast-lio-fast-lio2.md), [benchmarking metrics and datasets](benchmarking-metrics-datasets.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 **Last updated:** 2026-05-09

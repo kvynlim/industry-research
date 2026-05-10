@@ -1,5 +1,16 @@
 # S2M
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "S2M is rated for open-world perception, annotation leverage, and long-tail validation workflows."
+method-priority:end -->
+
 ## What It Is
 
 - S2M is a framework for out-of-distribution object segmentation in semantic segmentation.

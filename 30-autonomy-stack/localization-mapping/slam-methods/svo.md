@@ -1,5 +1,16 @@
 # SVO
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "SVO is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 SVO, or Semi-Direct Visual Odometry, is a lightweight visual odometry family from the Robotics and Perception Group at the University of Zurich. It sits between direct methods such as [LSD-SLAM / DSO](lsd-slam-dso.md) and feature-based systems such as [ORB-SLAM2 / ORB-SLAM3](orb-slam2-orb-slam3.md). The key idea is to use direct image alignment for fast frame-to-frame pose estimation while using sparse feature geometry and probabilistic depth estimation for mapping.

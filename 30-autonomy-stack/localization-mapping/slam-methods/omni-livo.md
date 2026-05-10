@@ -1,5 +1,16 @@
 # Omni-LIVO and Multi-LVI-SAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "Omni-LIVO and Multi-LVI-SAM is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [LVI-SAM](lvi-sam.md), [FAST-LIVO and FAST-LIVO2](fast-livo-fast-livo2.md), [R2LIVE and R3LIVE](r2live-r3live.md), [LIR-LIVO](lir-livo.md), [multi-sensor robust state estimation](../overview/robust-state-estimation-multi-sensor.md), and [multi-LiDAR calibration](../../../20-av-platform/sensors/multi-lidar-calibration.md).
 
 **Last updated:** 2026-05-09

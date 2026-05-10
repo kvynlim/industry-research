@@ -1,5 +1,16 @@
 # SOLOFusion
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "SOLOFusion is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - SOLOFusion is the method introduced in "Time Will Tell" for temporal multi-view 3D object detection.

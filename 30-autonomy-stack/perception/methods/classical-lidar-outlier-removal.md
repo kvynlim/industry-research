@@ -1,5 +1,16 @@
 # Classical LiDAR Outlier Removal
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "adverse-weather", "validation", "fallback", "mapping"]
+  reason: "Classical LiDAR Outlier Removal is rated for cleaning, stress testing, or failure detection in degraded perception conditions."
+method-priority:end -->
+
 ## What It Is
 
 Classical LiDAR outlier removal is the family of deterministic point-cloud filters that remove measurements that look physically implausible before detection, segmentation, SLAM, or map building. These filters are not one method. They include baseline library operators such as Statistical Outlier Removal (SOR) and Radius Outlier Removal (ROR), weather-tuned extensions such as DROR, DSOR, LIOR, DDIOR, D-LIOR, IDSOR, DVIOR, SDOR, and LIDSOR, and production wrappers that expose removed points as diagnostics rather than silently dropping them.

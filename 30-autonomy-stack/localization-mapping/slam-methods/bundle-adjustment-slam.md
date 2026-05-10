@@ -1,5 +1,16 @@
 # Bundle Adjustment SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "validation"]
+  reason: "Bundle Adjustment SLAM is rated for foundational SLAM modeling, optimization, registration, or mapping concepts."
+method-priority:end -->
+
 ## Executive Summary
 
 Bundle adjustment is the maximum-likelihood optimization of camera poses, 3D landmarks, and often camera calibration parameters from image measurements. In visual SLAM, it is the core backend that refines keyframe poses and sparse map points by minimizing reprojection error. Local bundle adjustment keeps real-time visual SLAM accurate over a sliding set of keyframes; global bundle adjustment is used after loop closure, map merging, or offline reconstruction.

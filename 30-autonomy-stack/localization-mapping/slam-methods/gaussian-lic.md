@@ -1,5 +1,16 @@
 # Gaussian-LIC and Gaussian-LIC2
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method-family"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "Gaussian-LIC and Gaussian-LIC2 is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 Related docs: [GS-LIVM](gs-livm.md), [GLIM](glim.md), [LIO-SAM](lio-sam.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary

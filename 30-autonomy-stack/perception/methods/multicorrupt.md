@@ -1,5 +1,16 @@
 # MultiCorrupt
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["perception", "validation", "data-engine", "road-av", "adverse-weather"]
+  reason: "MultiCorrupt is rated as a benchmark or dataset reference for perception robustness and validation coverage."
+method-priority:end -->
+
 ## What It Is
 
 - MultiCorrupt is a multi-modal robustness dataset and benchmark for LiDAR-camera 3D object detection.

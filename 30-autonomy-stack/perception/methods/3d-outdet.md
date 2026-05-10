@@ -1,5 +1,16 @@
 # 3D-OutDet
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "validation", "road-av"]
+  reason: "3D-OutDet is rated as a supporting perception method for autonomy-stack triage and follow-up reading."
+method-priority:end -->
+
 ## What It Is
 
 - 3D-OutDet is a learned outlier detector for 3D LiDAR point clouds captured in adverse weather.

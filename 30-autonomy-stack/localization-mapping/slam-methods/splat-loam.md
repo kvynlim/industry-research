@@ -1,5 +1,16 @@
 # Splat-LOAM: Gaussian Splatting LiDAR Odometry and Mapping
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method-family"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "Splat-LOAM: Gaussian Splatting LiDAR Odometry and Mapping is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 Related docs: [LOAM](loam.md), [CT-ICP](ct-icp.md), [KISS-ICP](kiss-icp.md), [FAST-LIO2](fast-lio-fast-lio2.md), [SLAM benchmarking](benchmarking-metrics-datasets.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary

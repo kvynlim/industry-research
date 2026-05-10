@@ -1,5 +1,16 @@
 # ERASOR++
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "ERASOR++ is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## Executive Summary
 
 ERASOR++ is a post-processing LiDAR map-cleaning method that extends [ERASOR](erasor.md) for static point-cloud map construction. It keeps ERASOR's egocentric pseudo-occupancy idea but replaces the simple vertical height-difference descriptor with a Height Coding Descriptor and adds tests that reduce false removal of static structure.

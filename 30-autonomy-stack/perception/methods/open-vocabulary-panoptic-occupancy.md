@@ -1,5 +1,16 @@
 # Open-Vocabulary Panoptic Occupancy
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "Open-Vocabulary Panoptic Occupancy is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 **Last updated:** 2026-05-09
 
 Open-vocabulary panoptic occupancy combines three trends: dense 3D occupancy prediction, panoptic instance-aware scene representation, and language-aligned open-vocabulary semantics. PanoOcc, LangOcc, OpenOcc, and newer instance-centric occupancy benchmarks point toward AV perception systems that represent not only boxes and lanes, but the occupied 3D world with semantics, instances, and queryable language labels.

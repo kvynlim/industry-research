@@ -1,5 +1,16 @@
 # Point-to-Plane ICP for 3D SLAM and LiDAR Localization
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "method-family"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "validation"]
+  reason: "Point-to-Plane ICP for 3D SLAM and LiDAR Localization is rated for foundational SLAM modeling, optimization, registration, or mapping concepts."
+method-priority:end -->
+
 Related library pages: [Production LiDAR-to-Map Localization](../overview/production-lidar-map-localization.md) and [Modern LiDAR SLAM and Odometry Algorithms](../overview/lidar-slam-algorithms.md).
 
 ## Executive Summary

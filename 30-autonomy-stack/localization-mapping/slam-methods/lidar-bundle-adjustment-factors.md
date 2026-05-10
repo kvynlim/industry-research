@@ -1,5 +1,16 @@
 # LiDAR Bundle Adjustment Factors
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "validation"]
+  reason: "LiDAR Bundle Adjustment Factors is rated for foundational SLAM modeling, optimization, registration, or mapping concepts."
+method-priority:end -->
+
 ## Executive Summary
 
 LiDAR bundle adjustment adapts the bundle-adjustment idea from visual SLAM to point-cloud mapping. Instead of minimizing image reprojection error over camera poses and landmarks, LiDAR BA optimizes scan or keyframe poses against geometric feature constraints such as point-to-plane, point-to-line, voxelized plane, GICP, or integrated ICP residuals.

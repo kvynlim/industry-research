@@ -1,5 +1,16 @@
 # AutoOcc
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "AutoOcc is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - AutoOcc is an ICCV 2025 automatic open-ended semantic occupancy annotation pipeline.

@@ -1,5 +1,16 @@
 # SLiDE
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "adverse-weather", "validation", "fallback", "mapping"]
+  reason: "SLiDE is rated for cleaning, stress testing, or failure detection in degraded perception conditions."
+method-priority:end -->
+
 ## What It Is
 
 - SLiDE is an ECCV 2022 self-supervised LiDAR de-snowing method.

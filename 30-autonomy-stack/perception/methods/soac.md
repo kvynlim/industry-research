@@ -1,5 +1,16 @@
 # SOAC
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "validation", "road-av"]
+  reason: "SOAC is rated as a supporting perception method for autonomy-stack triage and follow-up reading."
+method-priority:end -->
+
 ## What It Is
 
 - SOAC is a targetless spatio-temporal calibration method for multi-sensor autonomous driving rigs.

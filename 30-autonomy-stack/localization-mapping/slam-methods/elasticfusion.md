@@ -1,5 +1,16 @@
 # ElasticFusion
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "architecture-pattern"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "ElasticFusion is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 ElasticFusion is a dense RGB-D SLAM system that builds a surfel map and maintains global consistency through non-rigid map deformation rather than a conventional pose graph. It performs dense frame-to-model tracking, fuses observations into an active surfel model, detects revisits, and deforms the map to close loops while continuing online operation.

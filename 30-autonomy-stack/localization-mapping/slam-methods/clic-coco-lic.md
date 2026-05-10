@@ -1,5 +1,16 @@
 # CLIC and Coco-LIC
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "CLIC and Coco-LIC is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [continuous-time registration](continuous-time-registration.md), [LVI-SAM](lvi-sam.md), [FAST-LIVO2](fast-livo-fast-livo2.md), [R2LIVE and R3LIVE](r2live-r3live.md), and [factor graphs and iSAM2](factor-graph-isam2-gtsam.md).
 
 **Last updated:** 2026-05-09

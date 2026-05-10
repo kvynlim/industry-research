@@ -1,5 +1,16 @@
 # Streaming Gaussian Occupancy
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "mapping"]
+  reason: "Streaming Gaussian Occupancy is rated for BEV, occupancy, or freespace modeling that feeds planning-facing autonomy stacks."
+method-priority:end -->
+
 ## What It Is
 
 - Streaming Gaussian Occupancy is a lineage of temporal occupancy methods that carry a compact Gaussian or query state across frames.

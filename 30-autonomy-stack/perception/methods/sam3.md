@@ -1,5 +1,16 @@
 # SAM 3
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "SAM 3 is rated for open-world perception, annotation leverage, and long-tail validation workflows."
+method-priority:end -->
+
 ## What It Is
 
 - SAM 3 is Meta's Segment Anything Model 3.

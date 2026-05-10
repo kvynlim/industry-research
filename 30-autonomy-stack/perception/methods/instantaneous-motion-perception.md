@@ -1,5 +1,16 @@
 # Instantaneous Motion Perception
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "mapping", "validation", "road-av"]
+  reason: "Instantaneous Motion Perception is rated for motion segmentation, scene flow, or dynamic-object perception workflows."
+method-priority:end -->
+
 ## What It Is
 
 - Instantaneous Motion Perception refers here to the CVPR 2024 method "Instantaneous Perception of Moving Objects in 3D."

@@ -1,5 +1,16 @@
 # Point-LIO
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "Point-LIO is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 ## Executive Summary
 
 Point-LIO is a high-bandwidth LiDAR-inertial odometry method that updates the state at individual LiDAR point timestamps instead of waiting for a full scan. Its main contribution is latency and motion bandwidth: the paper and repository report 4-8 kHz odometry output, robustness to severe vibration, and experiments with angular velocity around 75 rad/s. This makes Point-LIO important for aggressive UAVs, fast spinning robots, and control loops that need very fresh odometry.

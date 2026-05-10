@@ -1,5 +1,16 @@
 # OW-OVD
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "OW-OVD is rated for open-world perception, annotation leverage, and long-tail validation workflows."
+method-priority:end -->
+
 ## What It Is
 
 - OW-OVD is a 2D object detection method that unifies open-world object detection and open-vocabulary object detection.

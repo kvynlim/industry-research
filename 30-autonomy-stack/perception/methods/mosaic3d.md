@@ -1,5 +1,16 @@
 # Mosaic3D
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method-family"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine", "road-av", "mapping"]
+  reason: "Mosaic3D is rated for open-vocabulary 3D segmentation, dataset leverage, and long-tail perception validation."
+method-priority:end -->
+
 ## What It Is
 
 - Mosaic3D is both a foundation dataset and a foundation model for open-vocabulary 3D segmentation.

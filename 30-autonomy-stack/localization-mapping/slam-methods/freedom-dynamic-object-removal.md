@@ -1,5 +1,16 @@
 # FreeDOM Dynamic Object Removal
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "FreeDOM Dynamic Object Removal is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## Executive Summary
 
 FreeDOM is an online dynamic-object-removal framework for static LiDAR map construction. It estimates conservative free space, removes dynamic points from incoming scans in a scan-removal front end, and refines the map in a back end using incremental free-space evidence.

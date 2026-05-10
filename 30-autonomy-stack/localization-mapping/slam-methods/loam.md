@@ -1,5 +1,16 @@
 # LOAM: Lidar Odometry and Mapping in Real-time
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "LOAM: Lidar Odometry and Mapping in Real-time is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related localization docs: [SLAM algorithms](../overview/lidar-slam-algorithms.md), [production LiDAR map localization](../overview/production-lidar-map-localization.md), and [map construction pipeline](../maps/map-construction-pipeline.md).
 
 ## Executive Summary

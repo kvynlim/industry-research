@@ -1,5 +1,16 @@
 # Radar Odometry and Radar SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "Radar Odometry and Radar SLAM is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 Related docs: [4D imaging radar](../../../20-av-platform/sensors/4d-radar.md), [SLAM benchmarking](benchmarking-metrics-datasets.md), [loop closure and place recognition](loop-closure-place-recognition.md), [factor graphs and iSAM2](factor-graph-isam2-gtsam.md), and [robust state estimation](../overview/robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary

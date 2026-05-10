@@ -1,5 +1,16 @@
 # MotionSeg3D
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "mapping", "validation", "road-av"]
+  reason: "MotionSeg3D is rated for motion segmentation, scene flow, or dynamic-object perception workflows."
+method-priority:end -->
+
 ## What It Is
 
 - MotionSeg3D is the IROS 2022 method "Efficient Spatial-Temporal Information Fusion for LiDAR-Based 3D Moving Object Segmentation."

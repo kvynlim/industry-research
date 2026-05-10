@@ -1,5 +1,16 @@
 # D2SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "validation", "runtime-localization"]
+  reason: "D2SLAM is rated for robust or collaborative backend design in multi-session SLAM and validation."
+method-priority:end -->
+
 ## Executive Summary
 
 D2SLAM is a decentralized and distributed collaborative visual-inertial SLAM system for aerial swarms. The name refers to the combination of decentralized operation, with no required central node, and distributed computation, where the estimation work is split across robots rather than redundantly repeated everywhere.

@@ -1,5 +1,16 @@
 # LIORNet
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "adverse-weather", "validation", "fallback"]
+  reason: "LIORNet is rated for cleaning, stress testing, or failure detection in degraded perception conditions."
+method-priority:end -->
+
 ## What It Is
 
 - LIORNet is a 2026 self-supervised LiDAR snow-removal framework for autonomous driving under adverse weather.

@@ -1,5 +1,16 @@
 # GenZ-ICP and GenZ-LIO
 
+<!-- method-priority:start
+priority:
+  learning: 5
+  deployment: 4
+  type: "method-family"
+  stage: "foundation"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "validation"]
+  reason: "GenZ-ICP and GenZ-LIO is rated for foundational SLAM modeling, optimization, registration, or mapping concepts."
+method-priority:end -->
+
 Related docs: [ICP](icp.md), [Point-to-Plane ICP](point-to-plane-icp.md), [KISS-ICP](kiss-icp.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [GEODE Degenerate LiDAR Benchmark](geode-degenerate-lidar-benchmark.md), and [Production LiDAR-to-Map Localization](../overview/production-lidar-map-localization.md).
 
 **Last updated:** 2026-05-09

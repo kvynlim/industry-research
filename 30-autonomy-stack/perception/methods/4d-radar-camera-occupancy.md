@@ -1,5 +1,16 @@
 # 4D Radar-Camera Occupancy
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["perception", "fallback", "validation", "adverse-weather", "road-av"]
+  reason: "4D Radar-Camera Occupancy is rated for alternative-sensor perception and adverse-weather fallback evaluation."
+method-priority:end -->
+
 ## What It Is
 
 - 4D radar-camera occupancy covers dense 3D semantic occupancy prediction from imaging radar, cameras, or both.

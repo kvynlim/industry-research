@@ -1,5 +1,16 @@
 # S3PO-GS
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "S3PO-GS is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 Related docs: [Splat-SLAM](splat-slam.md), [MASt3R-SLAM](mast3r-slam.md), [GS-SLAM and MonoGS](gs-slam-monogs.md), [WildGS-SLAM](wildgs-slam.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary

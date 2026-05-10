@@ -1,5 +1,16 @@
 # DistillNeRF
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "simulation", "validation", "road-av"]
+  reason: "DistillNeRF is rated for neural scene representation learning and simulation-oriented perception research."
+method-priority:end -->
+
 ## What It Is
 
 - DistillNeRF is a NeurIPS 2024 self-supervised framework for 3D scene perception from sparse, single-frame multi-view camera inputs.

@@ -1,5 +1,16 @@
 # COVINS and COVINS-G
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "validation", "runtime-localization"]
+  reason: "COVINS and COVINS-G is rated for robust or collaborative backend design in multi-session SLAM and validation."
+method-priority:end -->
+
 ## Executive Summary
 
 COVINS is a centralized collaborative visual-inertial SLAM system. Each agent runs visual-inertial odometry onboard and sends selected map information to a server backend. The backend performs place recognition, global optimization, map merging, redundancy reduction, and multi-agent 3D mapping. The design prioritizes scalable collaboration for large environments and teams of more than ten agents while preserving onboard autonomy.

@@ -1,5 +1,16 @@
 # HUGS Urban Gaussians
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "simulation", "validation", "road-av"]
+  reason: "HUGS Urban Gaussians is rated for neural scene representation learning and simulation-oriented perception research."
+method-priority:end -->
+
 ## What It Is
 
 - HUGS is a CVPR 2024 method for holistic urban 3D scene understanding via Gaussian Splatting.

@@ -1,5 +1,16 @@
 # Robust Pose Graph Optimization with GNC and riSAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "architecture-pattern"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "validation", "runtime-localization"]
+  reason: "Robust Pose Graph Optimization with GNC and riSAM is rated for robust or collaborative backend design in multi-session SLAM and validation."
+method-priority:end -->
+
 ## Executive Summary
 
 Robust pose graph optimization is the backend layer that tries to keep SLAM globally consistent when the front end supplies bad loop closures, bad inter-session matches, or overconfident registration factors. Standard pose graph optimization assumes mostly Gaussian inlier errors. In real mapping systems, especially long-range LiDAR or visual loop closure, the graph often contains a small number of high-leverage outliers that can fold the whole trajectory.

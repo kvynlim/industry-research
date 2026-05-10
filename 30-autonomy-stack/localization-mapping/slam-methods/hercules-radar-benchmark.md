@@ -1,5 +1,16 @@
 # HeRCULES Radar Benchmark
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["slam", "validation", "data-engine", "outdoor", "adverse-weather"]
+  reason: "HeRCULES Radar Benchmark is rated as a SLAM benchmark or reference page for comparing methods and deployments."
+method-priority:end -->
+
 Related docs: [4D imaging radar RIO and SLAM](4d-imaging-radar-rio-slam.md), [SNAIL Radar Benchmark](snail-radar-benchmark.md), [radar odometry and radar SLAM](radar-odometry-radar-slam.md), [radar-LiDAR-inertial fusion](radar-lidar-inertial-fusion.md), and [loop closure and place recognition](loop-closure-place-recognition.md).
 
 **Last updated:** 2026-05-09

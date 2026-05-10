@@ -1,5 +1,16 @@
 # DPVO and DPV-SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "DPVO and DPV-SLAM is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 DPVO, Deep Patch Visual Odometry, is a learned monocular visual odometry system from Princeton that keeps the optimization-inspired structure of [DROID-SLAM](droid-slam.md) but replaces dense flow with sparse learned patch correspondence. The result is a much faster and lighter visual odometry front end: it tracks a small set of learned patches, uses a recurrent update operator, and applies differentiable bundle adjustment over poses and patch depths.

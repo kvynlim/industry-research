@@ -1,5 +1,16 @@
 # GigaSLAM: Large-Scale Monocular SLAM with Hierarchical Gaussian Splats
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method-family"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "GigaSLAM: Large-Scale Monocular SLAM with Hierarchical Gaussian Splats is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 Related docs: [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md), [SLAM benchmarking](benchmarking-metrics-datasets.md), [loop closure and place recognition](loop-closure-place-recognition.md), and [ORB-SLAM2/ORB-SLAM3](orb-slam2-orb-slam3.md).
 
 ## Executive Summary

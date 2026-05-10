@@ -1,5 +1,16 @@
 # SLAM3R and VGGT Foundation SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method-family"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "SLAM3R and VGGT Foundation SLAM is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 Related docs: [MASt3R-SLAM](mast3r-slam.md), [DROID-SLAM](droid-slam.md), [DPVO](dpvo.md), [ORB-SLAM2 / ORB-SLAM3](orb-slam2-orb-slam3.md), [NeRF-SLAM](nerf-slam.md), and [Gaussian SLAM / MonoGS](gs-slam-monogs.md).
 
 **Last updated:** 2026-05-09

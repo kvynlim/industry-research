@@ -1,5 +1,16 @@
 # Open3DTrack
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "Open3DTrack is rated for open-world perception, annotation leverage, and long-tail validation workflows."
+method-priority:end -->
+
 ## What It Is
 
 - Open3DTrack is a 2024-2025 open-vocabulary 3D multi-object tracking method.

@@ -1,5 +1,16 @@
 # TripleMixer
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "adverse-weather", "validation", "fallback"]
+  reason: "TripleMixer is rated for cleaning, stress testing, or failure detection in degraded perception conditions."
+method-priority:end -->
+
 ## What It Is
 
 - TripleMixer is a 2024/2025 learned 3D point-cloud denoising model for adverse weather.

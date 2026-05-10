@@ -1,5 +1,16 @@
 # RTMap, DUFOMap, and Recursive Map Maintenance
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "RTMap, DUFOMap, and Recursive Map Maintenance is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## Summary
 
 Recursive map maintenance keeps an operational map alive while the robot or fleet continues to localize, detect changes, and update a prior. It is related to lifelong mapping, but the emphasis is online recursion: the current map is both a localization reference and an evolving memory that receives new observations.

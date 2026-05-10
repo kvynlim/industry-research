@@ -1,5 +1,16 @@
 # VIGS-SLAM and VINGS-Mono
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method-family"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "VIGS-SLAM and VINGS-Mono is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 Related docs: [VINS-Mono and VINS-Fusion](vins-mono-vins-fusion.md), [OpenVINS](openvins.md), [GS-SLAM and MonoGS](gs-slam-monogs.md), [S3PO-GS](s3po-gs.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary

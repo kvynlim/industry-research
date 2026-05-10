@@ -1,5 +1,16 @@
 # GEODE Degenerate LiDAR Benchmark
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["slam", "validation", "data-engine", "outdoor"]
+  reason: "GEODE Degenerate LiDAR Benchmark is rated as a SLAM benchmark or reference page for comparing methods and deployments."
+method-priority:end -->
+
 Related docs: [FAST-LIO2](fast-lio-fast-lio2.md), [KISS-ICP](kiss-icp.md), [CT-ICP](ct-icp.md), [production LiDAR-to-map localization](../overview/production-lidar-map-localization.md), and [benchmarking metrics and datasets](benchmarking-metrics-datasets.md).
 
 **Last updated:** 2026-05-09

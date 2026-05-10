@@ -1,5 +1,16 @@
 # LSD-SLAM and DSO
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "method-family"
+  stage: "classic-baseline"
+  maturity: "historical"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "LSD-SLAM and DSO are rated for direct visual SLAM foundations and camera-only fallback concepts."
+method-priority:end -->
+
 ## Executive Summary
 
 LSD-SLAM and DSO are the canonical direct-method visual odometry/SLAM systems from the TUM direct visual SLAM line. They contrast sharply with feature-based systems such as [ORB-SLAM2 / ORB-SLAM3](orb-slam2-orb-slam3.md): instead of extracting descriptors and minimizing feature reprojection error, they align images by minimizing photometric error over selected pixels.

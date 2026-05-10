@@ -1,5 +1,16 @@
 # LiDAR Weather Artifact Removal
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "adverse-weather", "validation", "fallback", "mapping"]
+  reason: "LiDAR Weather Artifact Removal is rated for cleaning, stress testing, or failure detection in degraded perception conditions."
+method-priority:end -->
+
 ## What It Is
 
 LiDAR weather artifact removal is the preprocessing and validation layer that separates real obstacles from returns caused by precipitation, aerosols, spray, steam, reflective ground, and receiver saturation. It is broader than snow denoising and broader than LIORNet. A production stack needs a weather-artifact family covering snow, rain, fog, dust, road spray, de-icing mist or steam, wet-surface multipath, retroreflector blooming, and sun or receiver saturation.

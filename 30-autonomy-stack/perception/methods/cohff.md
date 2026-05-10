@@ -1,5 +1,16 @@
 # CoHFF
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "data-engine"]
+  reason: "CoHFF is rated for cooperative perception and infrastructure-assisted sensing evaluation."
+method-priority:end -->
+
 ## What It Is
 
 CoHFF is a CVPR 2024 method for collaborative semantic occupancy prediction in connected autonomous driving.

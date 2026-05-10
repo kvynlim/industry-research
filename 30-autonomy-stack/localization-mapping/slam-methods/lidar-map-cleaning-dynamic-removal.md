@@ -1,5 +1,16 @@
 # LiDAR Map Cleaning and Dynamic Removal
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "LiDAR Map Cleaning and Dynamic Removal is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## Executive Summary
 
 LiDAR map cleaning removes transient, dynamic, ghost, and artifact points from accumulated point-cloud maps so localization, planning, QA, and annotation operate on a stable representation of the environment. It is broader than online moving-object segmentation. A production airside stack needs both runtime dynamic masks and offline static-map cleaning.

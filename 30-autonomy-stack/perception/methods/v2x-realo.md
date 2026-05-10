@@ -1,5 +1,16 @@
 # V2X-ReaLO
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method"
+  stage: "frontier"
+  maturity: "prototype"
+  tags: ["perception", "road-av", "validation", "data-engine"]
+  reason: "V2X-ReaLO is rated for cooperative perception and infrastructure-assisted sensing evaluation."
+method-priority:end -->
+
 ## What It Is
 
 V2X-ReaLO is an online framework and dataset for real-world V2X cooperative perception.

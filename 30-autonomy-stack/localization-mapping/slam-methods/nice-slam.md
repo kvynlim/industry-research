@@ -1,5 +1,16 @@
 # NICE-SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "NICE-SLAM is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 ## Executive Summary
 
 NICE-SLAM, "Neural Implicit Scalable Encoding for SLAM," is a dense RGB-D SLAM system that represents the scene with hierarchical feature grids and neural implicit decoders. It was designed to overcome the scale and detail limitations of [iMAP](imap.md). Instead of storing the whole scene in one global MLP, NICE-SLAM stores local features in multi-level grids and uses pretrained decoders to render depth and color for tracking and mapping.

@@ -1,5 +1,16 @@
 # Neural Scene Flow Priors
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "mapping", "validation", "road-av"]
+  reason: "Neural Scene Flow Priors is rated for motion segmentation, scene flow, or dynamic-object perception workflows."
+method-priority:end -->
+
 ## What It Is
 
 - Neural Scene Flow Prior is a NeurIPS 2021 scene-flow method for estimating 3D motion between point clouds.

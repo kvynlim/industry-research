@@ -1,5 +1,16 @@
 # Dynamic-Aware LIO BTSA
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "Dynamic-Aware LIO BTSA is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 **Last updated:** 2026-05-09
 
 ## Executive Summary

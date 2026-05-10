@@ -1,5 +1,16 @@
 # MOVES and Label-Free Map Cleaning
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["slam", "mapping", "validation", "runtime-localization", "outdoor"]
+  reason: "MOVES and Label-Free Map Cleaning is rated for dynamic-object filtering and map-cleaning workflows that protect localization maps."
+method-priority:end -->
+
 ## Summary
 
 Label-free map cleaning removes moving and movable objects from LiDAR maps without requiring dense semantic segmentation labels. This gap matters because labeled dynamic-object data is expensive, domain-specific, and often unavailable for industrial, airport, warehouse, mining, or campus environments.

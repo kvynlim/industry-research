@@ -1,5 +1,16 @@
 # MOLA, MOLA-LO, and MOLA-LIO
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 5
+  type: "method-family"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "mapping", "runtime-localization", "outdoor"]
+  reason: "MOLA, MOLA-LO, and MOLA-LIO is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
+method-priority:end -->
+
 Related docs: [KISS-ICP](kiss-icp.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [GLIM](glim.md), [GICP and VGICP](gicp-vgicp.md), and [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
 
 ## Executive Summary

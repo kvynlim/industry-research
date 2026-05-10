@@ -1,5 +1,16 @@
 # GS-SLAM and MonoGS
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method-family"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "GS-SLAM and MonoGS is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 ## Executive Summary
 
 GS-SLAM and MonoGS are first-wave Gaussian Splatting SLAM systems from the 2023-2024 burst of work that adapted 3D Gaussian maps to online camera tracking and dense reconstruction. GS-SLAM focuses on dense visual RGB-D SLAM with adaptive Gaussian expansion and coarse-to-fine pose tracking. MonoGS, formally "Gaussian Splatting SLAM," demonstrates a dense SLAM system based on 3D Gaussian Splatting with monocular support and additional stereo/RGB-D modes.

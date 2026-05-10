@@ -1,5 +1,16 @@
 # Mask4D
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 4
+  type: "method"
+  stage: "modern-core"
+  maturity: "prototype"
+  tags: ["perception", "mapping", "validation", "road-av"]
+  reason: "Mask4D is rated for motion segmentation, scene flow, or dynamic-object perception workflows."
+method-priority:end -->
+
 ## What It Is
 
 - Mask4D is an end-to-end mask-based 4D panoptic segmentation method for LiDAR sequences.

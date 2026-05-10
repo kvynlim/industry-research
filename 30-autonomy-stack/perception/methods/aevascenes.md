@@ -1,5 +1,16 @@
 # AevaScenes
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "benchmark"
+  stage: "reference"
+  maturity: "fielded-pattern"
+  tags: ["perception", "validation", "data-engine", "road-av"]
+  reason: "AevaScenes is rated as a benchmark or dataset reference for perception robustness and validation coverage."
+method-priority:end -->
+
 ## What It Is
 
 - AevaScenes is an open-access FMCW 4D LiDAR and camera dataset for autonomous vehicle research.

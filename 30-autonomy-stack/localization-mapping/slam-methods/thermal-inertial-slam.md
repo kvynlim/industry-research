@@ -1,5 +1,16 @@
 # Thermal-Inertial SLAM and Odometry
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "Thermal-Inertial SLAM and Odometry is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 Related docs: [event and thermal camera models](../../../10-knowledge-base/geometry-3d/event-thermal-camera-models.md), [thermal IR cameras](../../../20-av-platform/sensors/thermal-ir-cameras.md), [night operations thermal fusion](../../perception/overview/night-operations-thermal-fusion.md), [OpenVINS](openvins.md), [VINS-Mono / VINS-Fusion](vins-mono-vins-fusion.md), [SVO](svo.md), [LSD-SLAM / DSO](lsd-slam-dso.md), and [robust multi-sensor localization](../overview/robust-state-estimation-multi-sensor.md).
 
 ## Executive Summary

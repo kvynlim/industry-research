@@ -1,5 +1,16 @@
 # AdverseNet
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "pilot-proven"
+  tags: ["perception", "adverse-weather", "validation", "fallback"]
+  reason: "AdverseNet is rated for cleaning, stress testing, or failure detection in degraded perception conditions."
+method-priority:end -->
+
 ## What It Is
 
 - AdverseNet is an IEEE Sensors Journal 2025 LiDAR point-cloud denoising network for rainy, snowy, and foggy weather.

@@ -1,5 +1,16 @@
 # Object-Level SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "Object-Level SLAM is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 Object-level SLAM represents objects as map entities with pose, class, size, shape, and sometimes motion, rather than treating the world only as points, voxels, surfels, or grid cells. It can make maps more compact, human-readable, and useful for planning and interaction. Important examples include SLAM++, CubeSLAM, QuadricSLAM, Fusion++, MaskFusion, MID-Fusion, and DSP-SLAM.

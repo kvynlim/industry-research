@@ -1,5 +1,16 @@
 # V2X-Radar
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 4
+  type: "method"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["perception", "fallback", "validation", "adverse-weather", "road-av"]
+  reason: "V2X-Radar is rated for alternative-sensor perception and adverse-weather fallback evaluation."
+method-priority:end -->
+
 ## What It Is
 
 - V2X-Radar is a real-world cooperative perception dataset with 4D radar.

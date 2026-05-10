@@ -1,5 +1,16 @@
 # UWB and Radio Ranging SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 3
+  type: "method-family"
+  stage: "deployment-pattern"
+  maturity: "prototype"
+  tags: ["slam", "fallback", "gnss-denied", "outdoor", "adverse-weather"]
+  reason: "UWB and Radio Ranging SLAM is rated for alternative-sensor localization under adverse weather, weak LiDAR, or GNSS-denied conditions."
+method-priority:end -->
+
 ## Executive Summary
 
 UWB and radio ranging SLAM uses distance measurements from radio transceivers as localization constraints. Unlike cameras and LiDAR, range measurements can remain useful in darkness, smoke, dust, textureless corridors, and visually degraded indoor spaces. The measurement is usually simple:

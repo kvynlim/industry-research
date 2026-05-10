@@ -1,5 +1,16 @@
 # SplaTAM
 
+<!-- method-priority:start
+priority:
+  learning: 3
+  deployment: 2
+  type: "method"
+  stage: "frontier"
+  maturity: "research"
+  tags: ["slam", "mapping", "simulation", "validation"]
+  reason: "SplaTAM is rated for neural or Gaussian SLAM research and future dense map representation workflows."
+method-priority:end -->
+
 ## Executive Summary
 
 SplaTAM, short for Splat, Track and Map, is a dense RGB-D SLAM method that uses 3D Gaussian primitives as the online map representation. It tracks camera pose by rendering the current Gaussian map and optimizing pose against incoming RGB-D frames, and it maps by adding and optimizing Gaussians for newly observed scene regions. Its significance is that it helped establish 3D Gaussian Splatting as a viable explicit, differentiable, real-time-ish map representation for dense SLAM.

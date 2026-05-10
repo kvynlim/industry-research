@@ -1,5 +1,16 @@
 # DROID-SLAM
 
+<!-- method-priority:start
+priority:
+  learning: 4
+  deployment: 3
+  type: "method"
+  stage: "modern-core"
+  maturity: "fielded-pattern"
+  tags: ["slam", "fallback", "gnss-denied", "indoor", "validation"]
+  reason: "DROID-SLAM is rated for visual or visual-inertial SLAM coverage, especially fallback and GNSS-denied use."
+method-priority:end -->
+
 ## Executive Summary
 
 DROID-SLAM is a deep visual SLAM system from Princeton that estimates camera poses and dense depth through learned recurrent updates and a differentiable Dense Bundle Adjustment layer. It supports monocular, stereo, and RGB-D video at test time, despite being trained on monocular synthetic data. It was one of the key systems that made learned SLAM credible against strong classical baselines such as [ORB-SLAM2 / ORB-SLAM3](orb-slam2-orb-slam3.md), [LSD-SLAM / DSO](lsd-slam-dso.md), and [VINS-Mono / VINS-Fusion](vins-mono-vins-fusion.md).
