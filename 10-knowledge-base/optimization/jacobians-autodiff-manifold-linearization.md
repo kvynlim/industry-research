@@ -12,6 +12,8 @@
 - [Gauss-Newton, Levenberg-Marquardt, and Dogleg](./gauss-newton-levenberg-marquardt-dogleg.md)
 - [Trust Region and Line Search Globalization](./trust-region-line-search-globalization.md)
 - [Factor Graph Solver Patterns: Ceres, GTSAM, and g2o](./factor-graph-solver-patterns-ceres-gtsam-g2o.md)
+- [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md)
+- [Objective and Residual Design Audit](./objective-residual-design-and-audit.md)
 - [Coordinate Frames, Projections, and SE(3)](../geometry-3d/coordinate-frames-projections-se3.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
@@ -164,6 +166,70 @@ The residual is a tangent vector. Jacobian columns should describe how that tang
 - **Autodiff through nonsmooth logic:** The derivative corresponds to one branch but the residual jumps across branches. Move association and gating outside the cost function.
 - **Singularity in parameterization:** Euler angles near gimbal lock create unstable Jacobians. Prefer SO(3) local coordinates.
 - **Unscaled columns:** Parameters with different units create poorly conditioned systems. Normalize parameterization or scale residuals and priors.
+
+## Concept Cards
+
+All Jacobian checks on manifold variables must perturb through the same `Plus`, `boxplus`, or `retract` operation used by the solver. The derivative being checked must state whether it is for the raw residual or the whitened residual.
+
+### Jacobian consistency
+
+- What it means here: The derivative supplied to the solver matches the implemented residual, residual scaling, state ordering, and local-coordinate convention.
+- Math object: `J = d r / d delta` or `J = d e / d delta` for tangent perturbation `delta`.
+- Effect on the solve: Determines step direction, predicted reduction, and whether the local model is trustworthy.
+- What it solves: Confirms that the linearized residual change matches the actual residual code near the committed state.
+- What it does not solve: It does not prove the residual is physically correct or well weighted.
+- Minimal example: Compare an analytic pose-factor Jacobian against a central finite difference through the solver's retraction.
+- Failure symptoms: Cost increases after apparently good steps, accepted steps oscillate, or finite-difference columns show sign and scale errors.
+- Diagnostic artifact: Jacobian comparison report for raw and whitened residuals.
+- Normal vs abnormal artifact: Normal columns agree within tolerance using the same perturbation convention; abnormal columns differ by sign, frame, scale, block order, or whitening.
+- First debugging move: Check one residual block on a synthetic state with printed residuals, perturbations, and Jacobian columns.
+- Do not confuse with: Residual correctness, covariance scale, or rank deficiency.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md).
+
+### Local coordinates
+
+- What it means here: The minimal tangent coordinates used to represent small changes to a constrained variable.
+- Math object: `delta = local(X, Y)` with `Y = retract_X(delta)`.
+- Effect on the solve: Defines the dimension, units, and convention of Jacobian columns for rotations, poses, and other manifolds.
+- What it solves: Avoids differentiating with respect to invalid ambient coordinates.
+- What it does not solve: It does not choose left-versus-right update conventions or fix frame mistakes automatically.
+- Minimal example: A unit quaternion stores four scalars but uses a three-vector local rotation perturbation.
+- Failure symptoms: Extra rotation degree of freedom, quaternion norm drift, or Jacobian checks that pass in ambient space but fail in solver space.
+- Diagnostic artifact: Local-coordinate finite-difference report showing stored dimension versus tangent dimension.
+- Normal vs abnormal artifact: Normal artifacts perturb the minimal tangent vector and preserve the manifold constraint; abnormal artifacts add directly to storage coefficients.
+- First debugging move: Print the manifold's local dimension, storage dimension, and exact `Plus` or `retract` call used in optimization.
+- Do not confuse with: Coordinate frame, parameter block memory layout, or residual frame convention.
+- Read next: [Objective and Residual Design Audit](./objective-residual-design-and-audit.md).
+
+### Manifold update
+
+- What it means here: Applying a tangent perturbation to a constrained state through the solver's valid state-update operation.
+- Math object: `X_next = X boxplus delta`, `X_next = retract_X(delta)`, or a Lie-group update such as `X Exp(delta)`.
+- Effect on the solve: Keeps rotations, poses, and normalized variables on their valid manifold during trial and accepted updates.
+- What it solves: Prevents invalid updates such as directly adding to quaternion coefficients.
+- What it does not solve: It does not make a wrong residual frame, wrong perturbation side, or bad initialization correct.
+- Minimal example: Update an SE(3) pose with a six-vector twist and then re-evaluate the residual.
+- Failure symptoms: Normalization jumps, angle-wrap discontinuities, left/right perturbation mismatch, or inconsistent covariance dimensions.
+- Diagnostic artifact: Trial-state update trace showing committed state, tangent step, retracted state, and residual after update.
+- Normal vs abnormal artifact: Normal traces stay on the manifold and match the solver's convention; abnormal traces normalize after an invalid ambient update or use a different convention in tests.
+- First debugging move: Trace the actual update path from linear solve output to trial-state construction.
+- Do not confuse with: Linearization itself, local-coordinate inverse, or gauge anchoring.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md).
+
+### Tangent finite-difference check
+
+- What it means here: A numerical derivative check that perturbs each tangent coordinate through the same manifold update used by the solver.
+- Math object: `J[:,j] ~= (r(X boxplus h e_j) - r(X boxplus -h e_j)) / (2h)` or the same formula for whitened residual `e`.
+- Effect on the solve: Validates analytic or autodiff Jacobian columns in the coordinates the optimizer actually solves for.
+- What it solves: Finds sign, frame, ordering, whitening, and left/right perturbation errors in Jacobian blocks.
+- What it does not solve: It does not handle nonsmooth residual logic, data association jumps, or badly chosen finite-difference step sizes automatically.
+- Minimal example: Perturb yaw by `+h` and `-h` through `retract`, then compare the reprojection-residual difference to the yaw Jacobian column.
+- Failure symptoms: Agreement changes with step size, only identity-pose tests pass, or raw residual checks pass while whitened residual checks fail.
+- Diagnostic artifact: Tangent finite-difference table with column error, perturbation convention, residual type, and step size.
+- Normal vs abnormal artifact: Normal error is small and stable over a reasonable step range; abnormal error is convention-dependent, scale-dependent, or discontinuous.
+- First debugging move: Disable robust losses and discontinuous association, then compare raw residual derivatives before checking whitened residual derivatives.
+- Do not confuse with: Ambient finite differences or automatic differentiation.
+- Read next: [Objective and Residual Design Audit](./objective-residual-design-and-audit.md).
 
 ## Sources
 

@@ -12,6 +12,8 @@
 - [Trust Region and Line Search Globalization](./trust-region-line-search-globalization.md)
 - [Jacobians, Autodiff, and Manifold Linearization](./jacobians-autodiff-manifold-linearization.md)
 - [Factor Graph Solver Patterns: Ceres, GTSAM, and g2o](./factor-graph-solver-patterns-ceres-gtsam-g2o.md)
+- [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md)
+- [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md)
 - [Bundle Adjustment SLAM](../../30-autonomy-stack/localization-mapping/slam-methods/bundle-adjustment-slam.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
@@ -227,6 +229,68 @@ Use dogleg when:
 - **False convergence:** Step norm is small because damping is huge, not because the optimum is reached. Inspect gradient norm and residual distribution.
 - **Oscillation:** Robust loss thresholds, poor measurement covariances, or inconsistent loop closures can make successive accepted steps fight each other.
 - **Manifold update bug:** Cost may change discontinuously near angle wrapping or quaternion normalization. Test residuals across small perturbations.
+
+## Concept Cards
+
+### Gauss-Newton step
+
+- What it means here: The update that minimizes the current linearized least-squares model.
+- Math object: `Delta_gn = argmin_Delta 0.5 * ||F + J Delta||^2`, often solved as `J^T J Delta = -J^T F`.
+- Effect on the solve: Gives a fast local step when the residual model is smooth and the current estimate is close.
+- What it solves: Efficient local least-squares progress for well-scaled, well-constrained problems.
+- What it does not solve: It does not protect against poor initialization, outliers, rank deficiency, or invalid local models.
+- Minimal example: One bundle-adjustment iteration from a visual-inertial initialization.
+- Failure symptoms: Cost increases, the step is too large, or the direction is dominated by weak or badly scaled variables.
+- Diagnostic artifact: Predicted-versus-actual reduction, step norm, gradient norm, and linear solver summary.
+- Normal vs abnormal artifact: Normal actual reduction tracks prediction for accepted steps; abnormal prediction is optimistic or has the wrong sign.
+- First debugging move: Evaluate the objective along scaled versions of the Gauss-Newton step.
+- Do not confuse with: Cholesky, QR, Schur, or any particular linear backend.
+- Read next: [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md).
+
+### Levenberg-Marquardt damping
+
+- What it means here: A numerical step-control term that makes the local solve more conservative when the Gauss-Newton model is unreliable.
+- Math object: `(J^T J + lambda D) Delta = -J^T F`.
+- Effect on the solve: Interpolates between Gauss-Newton-like behavior at low damping and scaled-gradient behavior at high damping.
+- What it solves: Stabilizes aggressive or ill-conditioned local steps and supports trust-region-style rejection and retry.
+- What it does not solve: It does not add real sensor information, replace a prior, fix gauge freedom, or repair a wrong residual.
+- Minimal example: Increase `lambda` after a rejected calibration trial step, then retry with a smaller update.
+- Failure symptoms: Damping grows, step norm becomes tiny, cost barely changes, and the solver reports convergence with a bad artifact.
+- Diagnostic artifact: Damping trace, gain ratio, accepted/rejected step counts, gradient norm, and final termination reason.
+- Normal vs abnormal artifact: Normal damping decreases after reliable accepted steps; abnormal damping remains huge or grows while progress stalls.
+- First debugging move: Check residual whitening, Jacobian consistency, and rank before tuning damping policy.
+- Do not confuse with: Damping stabilizes a numerical step but does not add real sensor information or replace a prior.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md).
+
+### Dogleg step
+
+- What it means here: A trust-region step selected along a piecewise path from steepest descent toward the Gauss-Newton step.
+- Math object: A point on `0 -> Delta_sd -> Delta_gn` constrained by `||Delta|| <= radius`.
+- Effect on the solve: Bounds the update while still using the Gauss-Newton direction when it is trusted.
+- What it solves: Provides trust-region step control without repeatedly solving damped LM systems.
+- What it does not solve: It does not make an indefinite, rank-broken, or badly modeled problem well posed.
+- Minimal example: Clip a pose-graph update to the trust-region boundary when the full Gauss-Newton step is too long.
+- Failure symptoms: The selected step stays near steepest descent, the radius shrinks repeatedly, or gain ratios remain poor.
+- Diagnostic artifact: Trust-region radius, selected dogleg segment, Gauss-Newton step norm, Cauchy step norm, and gain ratio.
+- Normal vs abnormal artifact: Normal segments move toward full Gauss-Newton near convergence; abnormal traces stay clipped with low actual reduction.
+- First debugging move: Compare the steepest-descent, dogleg, and Gauss-Newton candidate costs on the same trial-state path.
+- Do not confuse with: Line-search step length or linear solver choice.
+- Read next: [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md).
+
+### False convergence
+
+- What it means here: A solver stops because a numeric stopping rule is satisfied even though the optimized artifact is still wrong or unsupported.
+- Math object: A tolerance trigger on step norm, cost change, gradient norm, iteration count, or damping-limited update.
+- Effect on the solve: Ends iterations and can make a bad local state look like a successful optimization.
+- What it solves: It only satisfies a stopping criterion.
+- What it does not solve: It does not validate residual design, scale, gauge handling, observability, or downstream product quality.
+- Minimal example: LM stops on small step norm because damping is enormous, while residual histograms remain biased.
+- Failure symptoms: Good-looking solver summary with bad map, calibration, or trajectory; tiny steps with non-small gradient; high damping at termination.
+- Diagnostic artifact: Final termination reason, damping trace, gradient norm, residual histograms, and accepted-step history.
+- Normal vs abnormal artifact: Normal convergence has consistent cost, gradient, step, and residual artifacts; abnormal convergence satisfies one weak tolerance while diagnostics disagree.
+- First debugging move: Read the exact termination reason and compare it against residual distributions and physical validation checks.
+- Do not confuse with: Successful convergence, local minimum certification, or rank resolution.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md).
 
 ## Sources
 

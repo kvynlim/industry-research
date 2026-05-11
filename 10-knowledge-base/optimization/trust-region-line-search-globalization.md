@@ -12,6 +12,8 @@
 - [Gauss-Newton, Levenberg-Marquardt, and Dogleg](./gauss-newton-levenberg-marquardt-dogleg.md)
 - [Jacobians, Autodiff, and Manifold Linearization](./jacobians-autodiff-manifold-linearization.md)
 - [Factor Graph Solver Patterns: Ceres, GTSAM, and g2o](./factor-graph-solver-patterns-ceres-gtsam-g2o.md)
+- [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md)
+- [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md)
 - [Factor Graph SLAM with iSAM2 and GTSAM](../../30-autonomy-stack/localization-mapping/slam-methods/factor-graph-isam2-gtsam.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
@@ -168,6 +170,70 @@ In AV estimation:
 - **Cost decreases but trajectory worsens:** The objective is misweighted. Check covariance scales and factor units.
 - **Converges to wrong basin:** Globalization improves local convergence, not global data association. Revisit front-end association, loop verification, and initialization.
 - **Step valid in vector space but invalid on manifold:** Retraction, angle normalization, or quaternion layout is wrong.
+
+## Concept Cards
+
+The solver builds a trial state from the committed state, evaluates actual against predicted reduction, accepts or rejects the trial, and rejected steps leave the committed state unchanged. This trial-state lifecycle is the key distinction between a proposed local update and the state published or carried into the next accepted iteration.
+
+### Trust-region ratio
+
+- What it means here: The ratio comparing true objective decrease at a trial state with decrease predicted by the local model.
+- Math object: `rho = (f(x) - f(x boxplus p)) / (m(0) - m(p))`.
+- Effect on the solve: Accepts or rejects trial states and drives trust-region radius or LM damping updates.
+- What it solves: Measures whether the local quadratic model is reliable for the proposed step.
+- What it does not solve: It does not identify which residual, Jacobian, or association caused a bad model.
+- Minimal example: Reject a loop-closure update when actual cost increases even though the model predicted decrease.
+- Failure symptoms: Negative ratios, erratic ratios, repeated rejections, shrinking radius, or growing damping.
+- Diagnostic artifact: Per-iteration actual reduction, predicted reduction, gain ratio, radius or damping, and accept/reject flag.
+- Normal vs abnormal artifact: Normal ratios are positive and often approach 1 near convergence; abnormal ratios are negative, undefined, or inconsistent for small steps.
+- First debugging move: Recompute cost at the committed and trial states using the same residual scaling used by the solver.
+- Do not confuse with: Final convergence tolerance or residual chi-square.
+- Read next: [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md).
+
+### Line-search step length
+
+- What it means here: The scalar multiplier applied to a chosen descent direction before constructing a trial state.
+- Math object: `x_trial = x boxplus (alpha p)`.
+- Effect on the solve: Keeps a direction but shortens the move until sufficient decrease or curvature conditions are met.
+- What it solves: Prevents a full candidate step from increasing the objective.
+- What it does not solve: It does not fix a non-descent direction, wrong gradient, nonsmooth residual, or bad objective design.
+- Minimal example: Backtrack `alpha` after a planning-cost update crosses a sharp obstacle penalty.
+- Failure symptoms: `alpha` becomes tiny, many objective evaluations occur per iteration, or progress stalls despite a nonzero gradient.
+- Diagnostic artifact: Step length trace, Armijo/Wolfe status, directional derivative, and cost samples along the direction.
+- Normal vs abnormal artifact: Normal step lengths recover toward larger values as the model improves; abnormal lengths remain tiny or fail sufficient decrease.
+- First debugging move: Plot objective values along the search direction from the committed state.
+- Do not confuse with: Trust-region radius or LM damping.
+- Read next: [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md).
+
+### Step acceptance
+
+- What it means here: The decision that turns a trial state into the next committed state or discards it.
+- Math object: Acceptance predicate from gain ratio, Armijo condition, Wolfe conditions, or solver-specific sufficient-decrease rule.
+- Effect on the solve: Determines whether the optimization state changes after an evaluated trial.
+- What it solves: Protects the committed estimate when the local model fails to predict the nonlinear objective.
+- What it does not solve: It does not certify output quality, fix residual scale, or guarantee global optimality.
+- Minimal example: LM rejects `x boxplus Delta`, leaves `x` unchanged, increases damping, and tries a more conservative step.
+- Failure symptoms: Solver performs many linear solves with little state progress, published states flicker if trial states leak downstream, or accepted and rejected costs are mixed in logs.
+- Diagnostic artifact: Committed-state and trial-state cost log with accept/reject status.
+- Normal vs abnormal artifact: Normal logs distinguish trial and committed states with occasional rejection; abnormal logs overwrite committed state on rejection or report trial artifacts as accepted output.
+- First debugging move: Verify every diagnostic plot labels whether it came from the committed state or a rejected trial state.
+- Do not confuse with: Convergence criterion or linear solver success.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md).
+
+### Local model validity
+
+- What it means here: The region where the linearized or quadratic approximation predicts the true nonlinear objective well enough to guide steps.
+- Math object: Agreement between `m(p)` and `f(x boxplus p)` for tangent perturbations `p`.
+- Effect on the solve: Controls whether trust-region, LM, dogleg, or line-search decisions make useful progress.
+- What it solves: Explains why a step that is optimal for the local model can be rejected by the nonlinear objective.
+- What it does not solve: It does not repair discontinuous association, wrong residual definitions, or initialization outside the basin.
+- Minimal example: A point-to-plane ICP linearization is valid for small pose changes but fails after correspondences change.
+- Failure symptoms: Good predicted reduction with bad actual reduction, repeated rejected steps, or line search that can only accept tiny moves.
+- Diagnostic artifact: Cost and residual sweep around the committed state along candidate directions.
+- Normal vs abnormal artifact: Normal sweeps show prediction accuracy for small steps and graceful degradation; abnormal sweeps jump, flip sign, or disagree immediately.
+- First debugging move: Freeze associations and robust weights, then compare actual residual change with `J p` for small scaled steps.
+- Do not confuse with: Solver method choice or library choice.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md).
 
 ## Sources
 

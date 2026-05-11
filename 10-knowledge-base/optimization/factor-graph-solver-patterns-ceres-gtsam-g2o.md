@@ -12,6 +12,9 @@
 - [Gauss-Newton, Levenberg-Marquardt, and Dogleg](./gauss-newton-levenberg-marquardt-dogleg.md)
 - [Trust Region and Line Search Globalization](./trust-region-line-search-globalization.md)
 - [Jacobians, Autodiff, and Manifold Linearization](./jacobians-autodiff-manifold-linearization.md)
+- [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md)
+- [Objective and Residual Design Audit](./objective-residual-design-and-audit.md)
+- [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md)
 - [GTSAM Factor Graphs](../state-estimation/gtsam-factor-graphs.md)
 - [Factor Graph SLAM with iSAM2 and GTSAM](../../30-autonomy-stack/localization-mapping/slam-methods/factor-graph-isam2-gtsam.md)
 - [Robust Losses and M-Estimators](../probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
@@ -227,6 +230,23 @@ The g2o paper presents it as a general C++ framework for graph-based nonlinear l
 - **Incremental stale linearization:** iSAM2 estimate lags after large loop closure. Tune relinearization thresholds or force broader relinearization when large corrections arrive.
 - **Robust loss hides systemic errors:** Cost becomes stable but map remains biased. Inspect raw residuals and rejected/downweighted factors.
 - **Library migration bugs:** Ceres, GTSAM, and g2o differ in residual sign conventions, quaternion layout, local update conventions, and noise placement. Port one factor at a time with numerical checks.
+
+## Concept Cards
+
+### Solver method versus solver library
+
+- What it means here: Separate the mathematical method and linear backend from the software library that exposes them.
+- Math object: Method/backend choices include Gauss-Newton, LM, dogleg, QR, Cholesky, Schur, and PCG; library choices include Ceres, GTSAM, and g2o APIs, defaults, and diagnostics.
+- Effect on the solve: Prevents a library comparison from accidentally changing residuals, local coordinates, damping, ordering, or linear solver at the same time.
+- What it solves: Clarifies whether an observed behavior comes from the algorithm, backend, objective, parameterization, or library default.
+- What it does not solve: It does not make different libraries equivalent or replace residual and Jacobian audits.
+- Minimal example: Compare Ceres LM with sparse Schur against GTSAM LM with Cholesky only after matching residual signs, whitening, manifolds, and stopping tolerances.
+- Failure symptoms: Same graph appears to converge differently across libraries, but configurations also changed loss placement, quaternion layout, or linear backend.
+- Diagnostic artifact: Side-by-side method, backend, residual, manifold, loss, ordering, and tolerance configuration table with solver summaries.
+- Normal vs abnormal artifact: Normal comparison changes one layer at a time; abnormal comparison swaps library, method, residual scaling, and backend together.
+- First debugging move: Freeze one residual block and one linearized system, then compare the next step or solve telemetry across implementations.
+- Do not confuse with: Gauss-Newton, LM, dogleg, QR, Cholesky, Schur, and PCG are method/backend choices, while Ceres, GTSAM, and g2o are libraries that expose different APIs and defaults.
+- Read next: [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md).
 
 ## Sources
 

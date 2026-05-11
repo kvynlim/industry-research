@@ -12,6 +12,9 @@
 - [Trust Region and Line Search Globalization](./trust-region-line-search-globalization.md)
 - [Jacobians, Autodiff, and Manifold Linearization](./jacobians-autodiff-manifold-linearization.md)
 - [Factor Graph Solver Patterns: Ceres, GTSAM, and g2o](./factor-graph-solver-patterns-ceres-gtsam-g2o.md)
+- [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md)
+- [Objective and Residual Design Audit](./objective-residual-design-and-audit.md)
+- [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md)
 - [GTSAM Factor Graphs](../state-estimation/gtsam-factor-graphs.md)
 - [Robust Losses and M-Estimators](../probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
 
@@ -167,6 +170,68 @@ Normal equations are compact and expose the graph information matrix, but formin
 - **Outliers:** A few false matches or loop closures dominate the objective. Use front-end gating, switchable constraints, graduated robustification, or robust loss functions.
 - **Poor initialization:** Linearization is only local. Use odometry, PnP, ICP, inertial propagation, or map priors to initialize near the correct basin.
 - **Numerical conditioning:** Large unit disparities or poorly scaled parameters cause unstable steps. Normalize state parameterizations and use solver scaling options where available.
+
+## Concept Cards
+
+### Residual
+
+- What it means here: A vector error produced by comparing a predicted measurement, prior, or constraint against its target.
+- Math object: `r_i(x) = h_i(x) - z_i`, or a tangent-space log error for pose constraints.
+- Effect on the solve: Defines the components that are squared, weighted, linearized, and driven toward zero.
+- What it solves: Encodes the physical mismatch the optimizer is supposed to reduce.
+- What it does not solve: It does not set statistical scale, reject outliers, or prove the solved artifact is valid.
+- Minimal example: Predicted camera pixel minus observed feature pixel.
+- Failure symptoms: Synthetic truth has nonzero error, a sign perturbation moves the state the wrong way, or cost falls while the artifact worsens.
+- Diagnostic artifact: Raw residual equation, raw residual trace, and zero-residual synthetic case.
+- Normal vs abnormal artifact: Normal residuals are near zero at constructed truth; abnormal residuals show bias, wrong sign, wrong frame, or wrong units.
+- First debugging move: Rebuild the residual from the measurement equation before changing solver settings.
+- Do not confuse with: Objective value, whitened residual, robust loss, or measurement covariance.
+- Read next: [Objective and Residual Design Audit](./objective-residual-design-and-audit.md).
+
+### Whitened residual
+
+- What it means here: A raw residual expressed in normalized noise units by applying square-root information.
+- Math object: `e_i = L_i r_i`, where `L_i^T L_i = Sigma_i^-1`.
+- Effect on the solve: Sets relative influence between heterogeneous residual families such as pixels, meters, radians, and seconds.
+- What it solves: Makes expected inlier errors comparable across sensors and constraints.
+- What it does not solve: It does not fix a wrong covariance, remove outliers, or add observability.
+- Minimal example: Divide a scalar GNSS position residual by its standard deviation.
+- Failure symptoms: One sensor dominates the objective, a residual family disappears, or robust loss thresholds behave unpredictably.
+- Diagnostic artifact: Raw-versus-whitened residual printout and per-family whitened residual histogram.
+- Normal vs abnormal artifact: Normal inlier components are order 1 after whitening; abnormal components are systematically huge, tiny, saturated, or double-scaled.
+- First debugging move: Verify the square-root information matrix is applied exactly once and before robust loss evaluation.
+- Do not confuse with: Robust weight, posterior covariance, or information matrix storage.
+- Read next: [Objective and Residual Design Audit](./objective-residual-design-and-audit.md).
+
+### Linearization
+
+- What it means here: The local first-order approximation of residual change around the current state.
+- Math object: `F(x boxplus Delta) ~= F(x) + J Delta`.
+- Effect on the solve: Creates the local least-squares subproblem and predicted reduction used to choose a step.
+- What it solves: Turns a nonlinear residual problem into a tractable local linear problem for one iteration.
+- What it does not solve: It does not make a poor initialization, discontinuous residual, or stale association globally valid.
+- Minimal example: Linearizing a point-to-plane ICP residual around the current pose estimate.
+- Failure symptoms: Actual reduction disagrees with predicted reduction, trial steps are repeatedly rejected, or small perturbations do not match `J Delta`.
+- Diagnostic artifact: Predicted-versus-actual residual change for scaled trial steps.
+- Normal vs abnormal artifact: Normal predictions match actual changes for small tangent steps; abnormal predictions fail even near the committed state.
+- First debugging move: Sweep the residual along a small multiple of the proposed tangent step and compare it with `F + J Delta`.
+- Do not confuse with: Global convergence, line search, or solver library choice.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md).
+
+### Normal equations
+
+- What it means here: The symmetric linear system produced by first-order optimality of the linearized least-squares subproblem.
+- Math object: `J^T J Delta = -J^T F`, or `H Delta = -g`.
+- Effect on the solve: Converts residual and Jacobian blocks into a step direction using the approximate Hessian and gradient.
+- What it solves: Provides a compact way to compute a Gauss-Newton-style update and expose information-matrix structure.
+- What it does not solve: It does not avoid conditioning loss, handle rank deficiency by itself, or validate residual modeling.
+- Minimal example: Solve `H Delta = -g` for a relative pose graph after stacking whitened Jacobian blocks.
+- Failure symptoms: Cholesky failure, tiny or negative pivots, unstable covariance, or steps dominated by poorly scaled columns.
+- Diagnostic artifact: Linear solver summary, pivot log, condition estimate, and normal-equation residual.
+- Normal vs abnormal artifact: Normal `H` is symmetric positive semidefinite with only expected gauge modes; abnormal `H` has unexpected rank loss, scale spread, or indefiniteness from bad inputs.
+- First debugging move: Check whitening and gauge constraints, then compare a QR or square-root solve on a representative small problem.
+- Do not confuse with: Square-root QR system, true Hessian, or posterior covariance.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md).
 
 ## Sources
 
