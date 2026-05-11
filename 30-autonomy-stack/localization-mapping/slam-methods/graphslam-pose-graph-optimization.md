@@ -174,6 +174,8 @@ Common choices include [Huber, Cauchy, Tukey, and Geman-McClure robust losses](.
 
 **Map deformation side effects.** A large loop closure correction can move old map elements abruptly. Downstream localization, planning, and change detection must handle this explicitly.
 
+When a pose graph reports convergence but the map deforms, triage residual scale, Jacobian consistency, rank, and covariance through the [Nonlinear Solver Diagnostics Crosswalk](../../../10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md).
+
 ## AV Relevance
 
 Pose graph optimization is highly relevant to autonomous vehicles:

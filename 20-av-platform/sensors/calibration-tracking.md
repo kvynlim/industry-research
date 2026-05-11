@@ -68,6 +68,8 @@ The key practical consideration: ICP-based monitoring works well for *detecting*
 - ICP may fail in featureless environments (flat apron with no structures). Mitigation: only compute when overlap region has sufficient geometric complexity (eigenvalue ratio check on covariance).
 - Short-range overlap regions may have too few points. Mitigation: require minimum point count (e.g., 500 points) before running ICP.
 
+For calibration failures caused by the wrong residual, inconsistent Jacobian, poor scale, brittle damping, or an invalid local model, start with the [Nonlinear Solver Diagnostics Crosswalk](../../10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md).
+
 **Revised Implementation Plan:**
 1. Create `airside_calibration_monitor` package with nodelet (1 week)
 2. Implement overlap region detection from TF tree (2 days)

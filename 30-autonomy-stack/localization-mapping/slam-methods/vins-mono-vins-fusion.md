@@ -145,6 +145,8 @@ Marginalization keeps the optimization real time:
 - Their information is converted into a prior on the remaining states.
 - This prior must be handled carefully because incorrect marginalization or linearization can make the estimator inconsistent.
 
+For fixed-lag symptoms caused by stale linearization, gauge handling, rank, or marginalization priors, use the [Sparse Estimation Backend Crosswalk](../../../10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md).
+
 Global fusion in VINS-Fusion can be expressed as pose-graph optimization:
 
 ```text

@@ -157,6 +157,8 @@ The full objective becomes a factor graph with reprojection, inertial, prior, lo
 
 **Poor parallax.** Forward motion with distant features gives weak depth estimates; landmarks can drift toward infinity.
 
+For BA-specific symptoms such as low reprojection cost with weak geometry, use [Objective and Residual Design Audit](../../../10-knowledge-base/optimization/objective-residual-design-and-audit.md) and [Sparse Estimation Backend Crosswalk](../../../10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md).
+
 **Rolling shutter and motion blur.** Fast motion or vibration violates the global-shutter projection model.
 
 **Bad calibration.** Intrinsic, extrinsic, or timestamp errors appear as systematic reprojection residuals and can distort the map.

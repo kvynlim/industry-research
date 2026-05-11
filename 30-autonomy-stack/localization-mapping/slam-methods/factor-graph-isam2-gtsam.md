@@ -203,6 +203,8 @@ This avoids full batch optimization on every timestep while preserving the smoot
 
 **Numerical conditioning.** Mixing units, extreme covariance ratios, constrained noise models, and poorly observable geometry can destabilize sparse factorization.
 
+For a failure-oriented route through residual design, Jacobian checks, step acceptance, rank, covariance, and backend choices, use the [Nonlinear Solver Diagnostics Crosswalk](../../../10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md).
+
 **Compute spikes.** Large loop closures can affect many Bayes tree cliques and cause update-time spikes.
 
 **Frame misuse.** Applying global graph corrections directly to control-frame odometry can create unsafe pose jumps.
