@@ -50,6 +50,13 @@ const requiredProblemClasses = [
   'Runtime systems and operations'
 ]
 
+const solverDiagnosticPages = [
+  '10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md',
+  '10-knowledge-base/optimization/objective-residual-design-and-audit.md',
+  '10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md',
+  '10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md'
+]
+
 const requiredDocs = [
   'README.md',
   'INDEX.md',
@@ -63,18 +70,8 @@ const requiredDocs = [
   '20-av-platform/compute/nvidia-orin-technical.md',
   '10-knowledge-base/geometry-3d/pointpillars.md',
   '10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md',
-  '10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md',
-  '10-knowledge-base/optimization/objective-residual-design-and-audit.md',
-  '10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md',
-  '10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md',
+  ...solverDiagnosticPages,
   '30-autonomy-stack/perception/overview/sensor-fusion-architectures.md'
-]
-
-const solverDiagnosticPages = [
-  '10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md',
-  '10-knowledge-base/optimization/objective-residual-design-and-audit.md',
-  '10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md',
-  '10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md'
 ]
 
 const solverDiagnosticEntryPoints = [
@@ -242,9 +239,11 @@ test('solver diagnostics pages cover required concepts and diagnostic contracts'
     'Read next'
   ]
 
-  for (const relPath of solverDiagnosticPages) {
-    assert.ok(requiredTerms[relPath], `${relPath} should have required term coverage`)
-  }
+  assert.deepEqual(
+    Object.keys(requiredTerms).sort(),
+    solverDiagnosticPages.slice().sort(),
+    'solver diagnostics requiredTerms keys should match solverDiagnosticPages'
+  )
 
   for (const [relPath, terms] of Object.entries(requiredTerms)) {
     const markdown = fs.readFileSync(path.join(repoRoot, relPath), 'utf8')
