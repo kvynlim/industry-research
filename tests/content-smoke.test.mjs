@@ -242,6 +242,10 @@ test('solver diagnostics pages cover required concepts and diagnostic contracts'
     'Read next'
   ]
 
+  for (const relPath of solverDiagnosticPages) {
+    assert.ok(requiredTerms[relPath], `${relPath} should have required term coverage`)
+  }
+
   for (const [relPath, terms] of Object.entries(requiredTerms)) {
     const markdown = fs.readFileSync(path.join(repoRoot, relPath), 'utf8')
     for (const term of terms) {
@@ -258,7 +262,7 @@ test('solver diagnostics path is discoverable from entry points and glossary', (
     const markdown = fs.readFileSync(path.join(repoRoot, relPath), 'utf8')
     assert.match(
       markdown,
-      /nonlinear-solver-diagnostics-crosswalk\.md/,
+      /\]\([^)]*nonlinear-solver-diagnostics-crosswalk\.md(?:#[^)]*)?\)/,
       `${relPath} should link to the nonlinear solver diagnostics crosswalk`
     )
   }
