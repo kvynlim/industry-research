@@ -63,7 +63,26 @@ const requiredDocs = [
   '20-av-platform/compute/nvidia-orin-technical.md',
   '10-knowledge-base/geometry-3d/pointpillars.md',
   '10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md',
+  '10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md',
+  '10-knowledge-base/optimization/objective-residual-design-and-audit.md',
+  '10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md',
+  '10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md',
   '30-autonomy-stack/perception/overview/sensor-fusion-architectures.md'
+]
+
+const solverDiagnosticPages = [
+  '10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md',
+  '10-knowledge-base/optimization/objective-residual-design-and-audit.md',
+  '10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md',
+  '10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md'
+]
+
+const solverDiagnosticEntryPoints = [
+  'README.md',
+  'INDEX.md',
+  '00-start-here/reading-guide.md',
+  '10-knowledge-base/optimization/overview.md',
+  '10-knowledge-base/numerical-linear-algebra/overview.md'
 ]
 
 function readMarkdownFiles(dir) {
@@ -169,6 +188,96 @@ test('robust losses knowledge-base page covers canonical estimators and links', 
       /\]\([^)]*robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure\.md(?:#[^)]*)?\)/,
       `${relPath} should link to the robust losses page`
     )
+  }
+})
+
+test('solver diagnostics pages cover required concepts and diagnostic contracts', () => {
+  const requiredTerms = {
+    '10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md': [
+      'A calibration, map, or plan can fail',
+      'Ownership Map',
+      'Symptom-First Diagnostic',
+      'Damping versus prior versus gauge fix',
+      'initial symptom',
+      'what not to conclude'
+    ],
+    '10-knowledge-base/optimization/objective-residual-design-and-audit.md': [
+      'Objective and Residual Design Audit',
+      'raw residual definition',
+      'whitening matrix',
+      'expected whitened residual distribution',
+      'synthetic zero-residual test',
+      'Measurement covariance versus robust weight'
+    ],
+    '10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md': [
+      'Solver Selection and Convergence Diagnosis',
+      'trial state',
+      'actual against predicted reduction',
+      'Rejected steps leave the committed state unchanged',
+      'false convergence',
+      'solver library choice'
+    ],
+    '10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md': [
+      'Sparse Estimation Backend Crosswalk',
+      'rank and nullspaces',
+      'sparsity, ordering, and fill-in',
+      'Schur complement for solving',
+      'marginalization prior',
+      'PCG stagnates'
+    ]
+  }
+
+  const requiredConceptCardFields = [
+    'What it means here',
+    'Math object',
+    'Effect on the solve',
+    'What it solves',
+    'What it does not solve',
+    'Minimal example',
+    'Failure symptoms',
+    'Diagnostic artifact',
+    'Normal vs abnormal artifact',
+    'First debugging move',
+    'Do not confuse with',
+    'Read next'
+  ]
+
+  for (const [relPath, terms] of Object.entries(requiredTerms)) {
+    const markdown = fs.readFileSync(path.join(repoRoot, relPath), 'utf8')
+    for (const term of terms) {
+      assert.ok(markdown.includes(term), `${relPath} should include ${term}`)
+    }
+    for (const field of requiredConceptCardFields) {
+      assert.ok(markdown.includes(field), `${relPath} should include concept-card field ${field}`)
+    }
+  }
+})
+
+test('solver diagnostics path is discoverable from entry points and glossary', () => {
+  for (const relPath of solverDiagnosticEntryPoints) {
+    const markdown = fs.readFileSync(path.join(repoRoot, relPath), 'utf8')
+    assert.match(
+      markdown,
+      /nonlinear-solver-diagnostics-crosswalk\.md/,
+      `${relPath} should link to the nonlinear solver diagnostics crosswalk`
+    )
+  }
+
+  const glossary = fs.readFileSync(path.join(repoRoot, 'GLOSSARY.md'), 'utf8')
+  assert.ok(glossary.includes('### Optimization and Numerical Linear Algebra'))
+
+  for (const term of [
+    'Residual',
+    'Whitened residual',
+    'Jacobian',
+    'Manifold update',
+    'Rank deficiency',
+    'Schur complement',
+    'Marginalization prior',
+    'Covariance recovery',
+    'PCG'
+  ]) {
+    assert.match(glossary, new RegExp(`\\*\\*${term}\\*\\*`), `GLOSSARY.md should define ${term}`)
   }
 })
 
