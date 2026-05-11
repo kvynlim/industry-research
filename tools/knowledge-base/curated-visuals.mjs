@@ -646,6 +646,10 @@ ${architectureStackLayout(spec, { layers: ['map layer', 'route layer', 'behavior
 }
 
 function renderMatrixStructure(spec) {
+  if (spec.file.endsWith('sparse-estimation-backend-crosswalk.md')) {
+    return renderSparseEstimationBackendCrosswalk(spec)
+  }
+
   return frame(spec, `
 <!-- layout:matrix-structure -->
 <rect x="222" y="196" width="378" height="378" rx="16" fill="url(#grid)" stroke="#0f172a" stroke-width="3"/>
@@ -654,6 +658,143 @@ ${box(766, 236, 250, 82, nodeName(spec, 0, 'ordering'), { ...palette(3), titleCh
 ${box(886, 416, 250, 82, nodeName(spec, 1, 'fill in'), { ...palette(2), titleChars: 22 })}
 ${arrow(602, 344, 762, 278, '#64748b', 3)}
 ${arrow(602, 410, 882, 458, '#64748b', 3)}
+`)
+}
+
+function renderNonlinearSolverDiagnosticsCrosswalk(spec) {
+  const stages = [
+    ['measurement /\nobjective', 92, 'wrong target'],
+    ['residual', 260, 'wrong sign'],
+    ['scale /\nwhitening', 428, 'bad units'],
+    ['Jacobian /\nlinearization', 596, 'bad derivative'],
+    ['damping /\nstep acceptance /\nlocal model', 764, 'bad trial'],
+    ['rank /\nconditioning /\nbackend', 932, 'singular mode'],
+    ['covariance /\nartifact diagnostics', 1100, 'bad evidence']
+  ]
+
+  const pipeline = stages.map(([title, x, failure], index) => {
+    const colors = palette(index)
+    const next = index < stages.length - 1 ? arrow(x + 142, 278, x + 166, 278, '#64748b', 2.5) : ''
+    return `${box(x, 226, 142, 104, title, { ...colors, titleChars: 15, titleLines: 3, titleSize: 14 })}
+${label(failure, x + 71, 358, { fill: colors.stroke, maxChars: 18 })}
+${next}`
+  }).join('\n')
+
+  return frame(spec, `
+<!-- layout:solver-loop -->
+${pipeline}
+<rect x="112" y="414" width="1160" height="118" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+${textBlock('Symptom-first routing', 160, 452, { anchor: 'start', size: 18, weight: 800, maxChars: 26 })}
+${label('low cost but bad output', 274, 494, { maxChars: 26 })}
+${arrow(384, 486, 492, 486, '#e11d48', 3)}
+${label('rejected steps', 594, 494, { maxChars: 22 })}
+${arrow(694, 486, 802, 486, '#ea580c', 3)}
+${label('factor failure / PCG stagnation', 940, 494, { maxChars: 30 })}
+${arrow(1088, 486, 1192, 486, '#2563eb', 3)}
+${label('inspect concrete artifact', 1138, 574, { maxChars: 30 })}
+${pathArrow('M1194 502 C1178 546 1152 560 1138 564', '#2563eb', 3)}
+${label('residual histograms, finite differences, gain ratio, spectra, fill, covariance', 700, 620, { maxChars: 82 })}
+`)
+}
+
+function renderObjectiveResidualAudit(spec) {
+  const stages = [
+    ['measurement\nmodel', 112, 248],
+    ['raw\nresidual', 310, 248],
+    ['covariance /\nwhitening', 508, 248],
+    ['robust\nweight', 706, 248],
+    ['Jacobian\ncheck', 904, 248],
+    ['residual\ndiagnostics', 1102, 248]
+  ]
+
+  const flow = stages.map(([title, x, y], index) => {
+    const colors = palette(index)
+    const next = index < stages.length - 1 ? arrow(x + 144, y + 48, x + 190, y + 48, '#64748b', 2.5) : ''
+    return `${box(x, y, 144, 96, title, { ...colors, titleChars: 16, titleLines: 2, titleSize: 15 })}
+${next}`
+  }).join('\n')
+
+  return frame(spec, `
+<!-- layout:objective-landscape -->
+${flow}
+<rect x="150" y="432" width="300" height="130" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+${textBlock('synthetic zero residual', 300, 468, { size: 16, maxChars: 24 })}
+${polyline([[206, 514], [258, 514], [286, 490], [332, 538], [392, 486]], '#16a34a', 4)}
+<rect x="550" y="432" width="300" height="130" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+${textBlock('whitened histogram', 700, 468, { size: 16, maxChars: 24 })}
+<rect x="610" y="526" width="28" height="22" rx="4" fill="#bfdbfe"/>
+<rect x="650" y="494" width="28" height="54" rx="4" fill="#60a5fa"/>
+<rect x="690" y="476" width="28" height="72" rx="4" fill="#2563eb"/>
+<rect x="730" y="498" width="28" height="50" rx="4" fill="#60a5fa"/>
+<rect x="770" y="528" width="28" height="20" rx="4" fill="#bfdbfe"/>
+<rect x="950" y="432" width="300" height="130" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+${textBlock('per-family cost share', 1100, 468, { size: 16, maxChars: 24 })}
+<circle cx="1026" cy="522" r="34" fill="#fed7aa"/>
+<path d="M1026 522 L1026 488 A34 34 0 0 1 1056 538 Z" fill="#ea580c"/>
+<circle cx="1120" cy="522" r="34" fill="#dbeafe"/>
+<path d="M1120 522 L1120 488 A34 34 0 1 1 1096 546 Z" fill="#2563eb"/>
+${label('audit artifacts prove scale, signs, outliers, and derivatives before solver tuning', 700, 624, { maxChars: 82 })}
+`)
+}
+
+function renderSolverSelectionConvergence(spec) {
+  return frame(spec, `
+<!-- layout:optimization-step-geometry -->
+<rect x="108" y="202" width="342" height="340" rx="16" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+${textBlock('Solver choice', 138, 238, { anchor: 'start', size: 18, weight: 800, maxChars: 22 })}
+${box(148, 268, 112, 68, 'GN', { ...palette(0), titleChars: 8, titleSize: 18 })}
+${box(292, 268, 112, 68, 'LM /\ndogleg', { ...palette(1), titleChars: 10, titleLines: 2, titleSize: 15 })}
+${box(148, 368, 112, 68, 'backend\nchoice', { ...palette(2), titleChars: 12, titleLines: 2, titleSize: 15 })}
+${box(292, 368, 112, 68, 'QR/SVD /\nSchur/PCG', { ...palette(3), titleChars: 12, titleLines: 2, titleSize: 14 })}
+<rect x="528" y="202" width="344" height="340" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+${textBlock('Trial-state lifecycle', 558, 238, { anchor: 'start', size: 18, weight: 800, maxChars: 28 })}
+${box(578, 276, 104, 64, 'committed\nstate', { ...palette(0), titleChars: 13, titleLines: 2, titleSize: 14 })}
+${arrow(686, 308, 728, 308, '#64748b', 3)}
+${box(734, 276, 104, 64, 'trial\nstate', { ...palette(4), titleChars: 10, titleLines: 2, titleSize: 14 })}
+${pathArrow('M786 344 C808 380 810 414 786 450', '#16a34a', 3)}
+${textBlock('accept', 826, 402, { size: 13, weight: 800, fill: '#16a34a', maxChars: 10 })}
+${pathArrow('M734 450 C672 424 646 376 650 344', '#e11d48', 3)}
+${textBlock('reject: state unchanged', 572, 430, { anchor: 'start', size: 13, weight: 800, fill: '#e11d48', maxChars: 24 })}
+${box(610, 474, 198, 52, 'actual vs predicted reduction', { ...palette(5), titleChars: 28, titleSize: 13 })}
+<rect x="948" y="202" width="342" height="340" rx="16" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+${textBlock('Symptom routing', 978, 238, { anchor: 'start', size: 18, weight: 800, maxChars: 24 })}
+${label('trust-region ratio', 1118, 292, { maxChars: 22 })}
+${polyline([[998, 314], [1058, 292], [1118, 320], [1178, 272], [1240, 300]], '#2563eb', 4)}
+${label('line-search step length', 1118, 376, { maxChars: 26 })}
+<line x1="998" y1="398" x2="1240" y2="398" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+<circle cx="1068" cy="398" r="13" fill="#ea580c"/>
+<circle cx="1198" cy="398" r="13" fill="#16a34a"/>
+${label('convergence / false convergence telemetry', 1118, 478, { maxChars: 38 })}
+${label('cost, gradient, step norm, damping, accepted/rejected counts', 700, 620, { maxChars: 76 })}
+`)
+}
+
+function renderSparseEstimationBackendCrosswalk(spec) {
+  return frame(spec, `
+<!-- layout:matrix-structure -->
+<rect x="100" y="202" width="214" height="214" rx="14" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+${miniMatrix(126, 228, 6, 6, 28, { strong: '#2563eb', mid: '#bfdbfe', active: (row, col) => (row === col || Math.abs(row - col) === 1 || (row < 2 && col > 3) ? 2 : (row + col) % 5 === 0 ? 1 : 0) })}
+${label('Jacobian sparsity', 206, 454, { maxChars: 24 })}
+${arrow(318, 304, 392, 304, '#64748b', 3)}
+<rect x="404" y="202" width="214" height="214" rx="14" fill="#f8fafc" stroke="#7c3aed" stroke-width="3"/>
+${miniMatrix(430, 228, 6, 6, 28, { strong: '#7c3aed', mid: '#ddd6fe', active: (row, col) => (col <= row || row === 0 || col === 5 ? 2 : (row + col) % 4 === 0 ? 1 : 0) })}
+${label('ordering / fill-in', 510, 454, { maxChars: 24 })}
+${arrow(622, 304, 696, 304, '#64748b', 3)}
+<rect x="708" y="202" width="260" height="214" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+${textBlock('factorization choice', 838, 236, { size: 16, weight: 800, maxChars: 24 })}
+${label('Cholesky / LDLT', 838, 286, { maxChars: 24 })}
+${label('QR / SVD', 838, 340, { maxChars: 18 })}
+${label('rank robustness vs speed', 838, 392, { maxChars: 28 })}
+${arrow(972, 304, 1046, 304, '#64748b', 3)}
+<rect x="1058" y="202" width="240" height="214" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="3"/>
+${textBlock('Schur solve', 1110, 242, { anchor: 'start', size: 16, weight: 800, maxChars: 18 })}
+${textBlock('vs', 1168, 306, { size: 18, weight: 900, fill: '#0891b2', maxChars: 4 })}
+${textBlock('marginalization prior', 1110, 372, { anchor: 'start', size: 16, weight: 800, maxChars: 24 })}
+${pathArrow('M206 466 C248 552 444 570 572 520', '#2563eb', 3)}
+${box(572, 494, 218, 72, 'square-root information /\ncovariance recovery', { ...palette(0), titleChars: 28, titleLines: 2, titleSize: 14 })}
+${pathArrow('M838 418 C866 538 976 584 1088 532', '#16a34a', 3)}
+${box(1010, 494, 236, 72, 'PCG /\npreconditioner /\nstagnation', { ...palette(1), titleChars: 18, titleLines: 3, titleSize: 14 })}
+${label('backend diagnostics connect structure, rank, memory, covariance, and iterative residuals', 700, 626, { maxChars: 84 })}
 `)
 }
 
@@ -744,6 +885,10 @@ ${label('redescending rejection', 1068, 570, { maxChars: 30 })}
 }
 
 function renderObjectiveLandscape(spec) {
+  if (spec.file.endsWith('objective-residual-design-and-audit.md')) {
+    return renderObjectiveResidualAudit(spec)
+  }
+
   if (spec.file.endsWith('robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md')) {
     return renderRobustLossComparison(spec)
   }
@@ -767,6 +912,10 @@ ${arrow(990, 332, 1010, 434, '#64748b', 3)}
 }
 
 function renderOptimizationStepGeometry(spec) {
+  if (spec.file.endsWith('solver-selection-and-convergence-diagnosis.md')) {
+    return renderSolverSelectionConvergence(spec)
+  }
+
   return frame(spec, `
 <!-- layout:optimization-step-geometry -->
 ${landscapeLayout(spec, { label: 'step geometry compares gradient, trust region, and update size' })}
@@ -880,6 +1029,10 @@ ${radarLayout(spec, { spectrum: 'windowed spectrum' })}
 }
 
 function renderSolverLoop(spec) {
+  if (spec.file.endsWith('nonlinear-solver-diagnostics-crosswalk.md')) {
+    return renderNonlinearSolverDiagnosticsCrosswalk(spec)
+  }
+
   return frame(spec, `
 <!-- layout:solver-loop -->
 ${loopControlLayout(spec, { label: 'solver iterations update residuals until convergence' })}

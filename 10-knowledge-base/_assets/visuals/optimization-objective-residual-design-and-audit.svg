@@ -19,22 +19,49 @@
   <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
 
 <!-- layout:objective-landscape -->
-<rect x="120" y="202" width="560" height="360" rx="16" fill="url(#grid)" stroke="#94a3b8" stroke-width="2"/>
-<ellipse cx="420" cy="370" rx="230" ry="128" fill="none" stroke="#2563eb" stroke-width="3" opacity="0.78"/>
-<ellipse cx="444" cy="380" rx="192" ry="108" fill="none" stroke="#16a34a" stroke-width="3" opacity="0.78"/>
-<ellipse cx="468" cy="390" rx="154" ry="88" fill="none" stroke="#ea580c" stroke-width="3" opacity="0.78"/>
-<ellipse cx="492" cy="400" rx="116" ry="68" fill="none" stroke="#0891b2" stroke-width="3" opacity="0.78"/>
-<polyline points="224,488 302,438 366,414 428,378 506,350" fill="none" stroke="#e11d48" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<circle cx="506" cy="350" r="34" fill="#ffe4e6" stroke="#e11d48" stroke-width="3"/>
-<text x="506" y="355" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">measurement</text>
-<text x="506" y="372" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">model</text>
-<rect x="780" y="224" width="230" height="84" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-<text x="895" y="272" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">whitened residual</text>
+<rect x="112" y="248" width="144" height="96" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="184" y="302" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">measurement</text>
+<text x="184" y="320" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">model</text>
 
-<rect x="940" y="386" width="230" height="84" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
-<text x="1055" y="434" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">diagnostics</text>
+<line x1="256" y1="296" x2="302" y2="296" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="310" y="248" width="144" height="96" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="382" y="302" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">raw residual</text>
 
-<line x1="1010" y1="310" x2="1010" y2="382" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<text x="790" y="604" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">objective geometry shows descent, curvature, and basins</text>
+<line x1="454" y1="296" x2="500" y2="296" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="508" y="248" width="144" height="96" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="580" y="302" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">covariance /</text>
+<text x="580" y="320" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">whitening</text>
+
+<line x1="652" y1="296" x2="698" y2="296" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="706" y="248" width="144" height="96" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+<text x="778" y="302" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">robust weight</text>
+
+<line x1="850" y1="296" x2="896" y2="296" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="904" y="248" width="144" height="96" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="976" y="302" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">Jacobian check</text>
+
+<line x1="1048" y1="296" x2="1094" y2="296" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="1102" y="248" width="144" height="96" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
+<text x="1174" y="302" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">residual</text>
+<text x="1174" y="320" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">diagnostics</text>
+
+
+<rect x="150" y="432" width="300" height="130" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+<text x="300" y="468" text-anchor="middle" font-size="16" font-weight="700" fill="#172033">synthetic zero residual</text>
+<polyline points="206,514 258,514 286,490 332,538 392,486" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="550" y="432" width="300" height="130" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+<text x="700" y="468" text-anchor="middle" font-size="16" font-weight="700" fill="#172033">whitened histogram</text>
+<rect x="610" y="526" width="28" height="22" rx="4" fill="#bfdbfe"/>
+<rect x="650" y="494" width="28" height="54" rx="4" fill="#60a5fa"/>
+<rect x="690" y="476" width="28" height="72" rx="4" fill="#2563eb"/>
+<rect x="730" y="498" width="28" height="50" rx="4" fill="#60a5fa"/>
+<rect x="770" y="528" width="28" height="20" rx="4" fill="#bfdbfe"/>
+<rect x="950" y="432" width="300" height="130" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+<text x="1100" y="468" text-anchor="middle" font-size="16" font-weight="700" fill="#172033">per-family cost share</text>
+<circle cx="1026" cy="522" r="34" fill="#fed7aa"/>
+<path d="M1026 522 L1026 488 A34 34 0 0 1 1056 538 Z" fill="#ea580c"/>
+<circle cx="1120" cy="522" r="34" fill="#dbeafe"/>
+<path d="M1120 522 L1120 488 A34 34 0 1 1 1096 546 Z" fill="#2563eb"/>
+<text x="700" y="624" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">audit artifacts prove scale, signs, outliers, and derivatives before solver tuning</text>
 
 </svg>
