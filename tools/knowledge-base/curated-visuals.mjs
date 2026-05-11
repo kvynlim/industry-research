@@ -17,6 +17,12 @@ const reassessmentPath = path.join(
 )
 const markerStart = '<!-- kb-visual:start -->'
 const markerEnd = '<!-- kb-visual:end -->'
+const forcedAssetFiles = new Set([
+  '10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md',
+  '10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md',
+  '10-knowledge-base/optimization/objective-residual-design-and-audit.md',
+  '10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md'
+])
 
 function escapeXml(value) {
   return String(value)
@@ -1335,6 +1341,19 @@ function insertOrReplaceVisualBlock(markdown, block, file) {
   return `${markdown.slice(0, insertAt).trimEnd()}\n\n${block}\n\n${markdown.slice(insertAt).trimStart()}`
 }
 
+function writeIfChanged(filePath, content) {
+  if (fs.existsSync(filePath) && fs.readFileSync(filePath, 'utf8') === content) return
+  fs.writeFileSync(filePath, content, 'utf8')
+}
+
+function shouldUpdateMarkdown(markdown) {
+  return !markdown.includes(markerStart) || !markdown.includes(markerEnd)
+}
+
+function shouldUpdateAsset(spec, assetPath) {
+  return forcedAssetFiles.has(spec.file) || !fs.existsSync(assetPath)
+}
+
 const specs = parseReassessment()
 validateManifestAgainstLiveFiles(specs)
 fs.mkdirSync(visualRoot, { recursive: true })
@@ -1345,10 +1364,14 @@ for (const spec of specs) {
   const assetPath = path.join(visualRoot, spec.asset)
   const markdownPath = path.join(repoRoot, spec.file)
   const markdown = fs.readFileSync(markdownPath, 'utf8')
-  const updatedMarkdown = insertOrReplaceVisualBlock(markdown, visualBlock(spec), spec.file)
 
-  fs.writeFileSync(assetPath, svg, 'utf8')
-  fs.writeFileSync(markdownPath, updatedMarkdown, 'utf8')
+  if (shouldUpdateAsset(spec, assetPath)) {
+    writeIfChanged(assetPath, svg)
+  }
+
+  if (shouldUpdateMarkdown(markdown)) {
+    writeIfChanged(markdownPath, insertOrReplaceVisualBlock(markdown, visualBlock(spec), spec.file))
+  }
 }
 
 console.log(`Wrote ${specs.length} curated knowledge-base visuals.`)
