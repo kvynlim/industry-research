@@ -67,6 +67,34 @@ The result should give readers three depths:
   marginalization, or covariance as global uncertainty outside the local
   tangent-space assumptions.
 
+## Target Pages
+
+The initial implementation should create exactly four new knowledge-base pages:
+
+```text
+10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md
+10-knowledge-base/optimization/objective-residual-design-and-audit.md
+10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md
+10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md
+```
+
+The first three pages provide the optimization-side diagnostic path. The fourth
+page is required because the requested backend topics - rank, conditioning,
+sparsity, factorization, Schur complements, marginalization, covariance
+recovery, and PCG - are too large to treat as side notes inside the nonlinear
+solver bridge.
+
+Do not create this page in the initial implementation:
+
+```text
+10-knowledge-base/numerical-linear-algebra/pcg-and-preconditioning.md
+```
+
+PCG and preconditioning should be strengthened in
+`schur-complement-marginalization-pcg.md` and routed through the sparse backend
+crosswalk. A standalone PCG page can be proposed in a later design only if the
+strengthened canonical page becomes too large or too implementation-specific.
+
 ## Architecture
 
 ### Layer 1: Bridge Pages
@@ -109,8 +137,7 @@ It should include:
   control.
 - Disambiguation boxes for concepts readers commonly confuse.
 
-Create a second bridge page if the numerical-linear-algebra backend discussion
-would make the first bridge page too large:
+Create:
 
 ```text
 10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md
@@ -134,9 +161,39 @@ This page owns backend design and debugging choices:
 - covariance recovery;
 - PCG and preconditioning.
 
-The second bridge page is required if the implementation cannot cover these
-backend topics clearly within the optimization bridge without becoming too long.
-It should live in `numerical-linear-algebra`, not in a new folder.
+This page is required in the initial implementation. It should live in
+`numerical-linear-algebra`, not in a new folder.
+
+### Ownership Map Contract
+
+The primary bridge page must include an ownership map with these boundaries:
+
+| Domain | Owns | Does Not Own | Diagnostic Artifacts |
+|---|---|---|---|
+| Probability/statistics | Likelihoods, noise models, measurement covariance, information, whitening, Mahalanobis and chi-square meaning, robust-loss statistical interpretation. | Solver damping, factorization mechanics, estimator lifecycle. | Raw and whitened residual distributions, NIS/NEES, covariance validation, gate statistics. |
+| Geometry | Frames, measurement geometry, SE(3)/SO(3), Exp/Log, adjoints, local coordinates, tangent conventions. | Noise validity, nonlinear method choice, backend solve. | Frame tests, adjoint tests, tangent finite differences, projection or registration sanity cases. |
+| Optimization | Objective assembly, residual blocks as functions, Jacobian consistency, linearization loop, GN/LM/dogleg, trust-region, line-search, convergence. | Raw probability semantics, low-level factorization, estimator integrity policy. | Cost history, gradient and step norms, gain ratio, damping or radius, rejected steps. |
+| Numerical linear algebra | `J`/`H` structure, rank, conditioning, sparsity, ordering, factorization, Schur algebra, PCG, covariance recovery mechanics. | Physical observability claims, association, estimator lifecycle. | Spectra, pivots, condition estimates, fill reports, factor failures, PCG residuals. |
+| State estimation | State definition, process and measurement lifecycle, association, smoothing/windowing, marginalization policy, gauge, observability, consistency, integrity. | Raw probability semantics, low-level linear solve details. | Expected gauge dimension, FEJ/nullspace tests, prior audits, NIS/NEES, replay checks. |
+
+The bridge should explicitly say that observability is not only matrix rank.
+Rank and nullspaces expose local numerical structure, while state estimation
+owns the interpretation of those modes as estimator consistency, gauge policy,
+and integrity evidence.
+
+### Required Disambiguation Boxes
+
+The bridge and concept hub pages must include short disambiguation boxes for:
+
+- Damping versus prior versus gauge fix.
+- Schur complement for solving versus marginalization prior construction.
+- Measurement covariance versus robust weight versus posterior or marginal
+  covariance.
+- Rank deficiency and nullspace versus poor conditioning and weak modes.
+- Tangent local coordinates versus ambient parameter storage.
+- Solver method versus solver library.
+- Marginal covariance versus conditional covariance versus inverse diagonal
+  information block.
 
 ### Layer 2: New Concept Hub Pages
 
@@ -165,6 +222,29 @@ right problem. It should cover:
 - residual-family diagnostics;
 - small synthetic tests for residual blocks.
 
+For each residual family, the page should require an audit checklist:
+
+```text
+raw residual definition
+sign convention
+frame convention
+units
+dimension
+covariance source
+whitening matrix
+robust loss order
+expected whitened residual distribution
+synthetic zero-residual test
+sign perturbation test
+tangent finite-difference Jacobian test
+per-factor residual histogram
+```
+
+The page must distinguish measurement covariance, information and square-root
+information, robust weights, posterior covariance, marginal covariance, and
+gauge-dependent covariance. These objects can interact in one solve, but they
+answer different questions.
+
 Create:
 
 ```text
@@ -192,14 +272,25 @@ configuration. It should cover:
 - when to change residual design, initialization, nonlinear method, linear
   backend, ordering, damping, or covariance strategy.
 
-Optional later page:
+The page must state the trial-state lifecycle explicitly: a nonlinear iteration
+forms a tangent step, retracts to a trial state, evaluates actual cost at that
+trial state, compares actual against predicted reduction, and only then accepts
+or rejects the update. Rejected steps leave the committed state unchanged while
+damping, trust-region radius, or line-search length changes.
+
+The solver selection matrix should include rows for problem condition, expected
+symptoms, nonlinear method, linear backend, avoid-when guidance, and telemetry
+that confirms the choice.
+
+Deferred out-of-scope page:
 
 ```text
 10-knowledge-base/numerical-linear-algebra/pcg-and-preconditioning.md
 ```
 
-Only add this if PCG needs treatment beyond the existing Schur complement,
-marginalization, and PCG page. It is not part of the initial required scope.
+Do not add this page in the initial implementation. PCG diagnostics belong in
+`schur-complement-marginalization-pcg.md` and the required sparse backend
+crosswalk for this pass.
 
 ### Layer 3: Strengthen Canonical Pages
 
@@ -223,6 +314,29 @@ Required strengthening targets:
 | `numerical-linear-algebra/schur-complement-marginalization-pcg.md` | Schur solve, marginalization, stale linearization, PCG behavior |
 | `numerical-linear-algebra/square-root-information-and-covariance-recovery.md` | square-root forms, covariance recovery, tangent-space covariance |
 
+All Jacobian checks on manifold variables must perturb through the same
+`Plus`, `boxplus`, or `retract` operation used by the solver. The strengthened
+Jacobian page must state the left/right perturbation convention, tangent
+coordinate order, quaternion storage order, and whether the checked derivative
+is for the raw residual or the whitened residual.
+
+The sparse backend crosswalk and strengthened numerical-linear-algebra pages
+must include a backend decision matrix covering Cholesky, LDLT, QR, SVD, Schur,
+and PCG by:
+
+- positive-definite or indefinite assumptions;
+- rank robustness;
+- sparsity and fill behavior;
+- covariance-recovery implications;
+- runtime and memory behavior;
+- diagnostic value.
+
+PCG coverage must state the SPD requirement, preconditioner used,
+unpreconditioned and preconditioned residual norms, iteration count, stopping
+tolerance, coupling to nonlinear progress, symmetry test for matrix-vector
+products, stagnation symptoms, and comparison against explicit Schur or a direct
+solve on a small representative case.
+
 ## Concept Card Contract
 
 Every new bridge or concept hub page should use concept cards. Existing pages
@@ -240,8 +354,11 @@ Use this structure:
 | Effect on the solve | How it changes a step, acceptance decision, observability, runtime, memory, covariance, or output validity. |
 | What it solves | The problem this concept is meant to address. |
 | What it does not solve | The common overclaim or misuse. |
-| Failure symptom | The log, plot, artifact, or behavior that appears when it is wrong. |
+| Minimal example | One concrete calibration, SLAM/mapping, planning/control, or solver-log example showing the concept in use or failure. |
+| Failure symptoms | Two or three logs, plots, artifacts, or behaviors that appear when the concept is wrong. |
 | Diagnostic artifact | The concrete thing to inspect: finite differences, residual histogram, gain ratio, eigenvectors, condition estimate, fill report, PCG residual, covariance block, etc. |
+| Normal vs abnormal artifact | What the diagnostic artifact looks like when healthy and when suspicious. |
+| First debugging move | The first concrete check a reviewer should perform. |
 | Do not confuse with | A nearby concept that is often mixed up. |
 | Read next | Canonical page links. |
 ```
@@ -297,6 +414,47 @@ Each entry should link to the most specific stable heading available. If an
 entry needs an anchor that does not yet exist, add a clear heading to the
 owning page during implementation.
 
+## Symptom-First Diagnostic Contract
+
+The primary bridge page must include a symptom-to-diagnostic table with these
+columns:
+
+| Column | Meaning |
+|---|---|
+| Symptom | What the engineer sees first in logs, maps, calibration output, covariance, or planner behavior. |
+| Likely Layer | Residual, scale, Jacobian, local model, nonlinear policy, linear backend, marginalization, covariance, or estimator interpretation. |
+| Common Causes | The most likely implementation or modeling causes. |
+| First Artifact To Inspect | The concrete diagnostic output to open first. |
+| Disambiguating Check | The fastest check that separates two similar causes. |
+| Likely Next Concept Card | The concept card that should be read next. |
+| Canonical Derivation Link | The first-principles page that owns the deeper math. |
+
+The table should include at least these symptom families:
+
+- Cost decreases but the calibration, map, or plan gets worse.
+- Many LM, dogleg, trust-region, or line-search steps are rejected.
+- Damping grows large and the step norm becomes tiny.
+- A sensor or residual family dominates the objective.
+- Cholesky or LDLT fails.
+- Rank appears full but covariance is nonsensical.
+- Covariance looks overconfident in a weakly observed mode.
+- Runtime or memory explodes after graph growth.
+- PCG stagnates or reaches the iteration limit.
+- A trajectory is smooth but physically unsafe or behaviorally wrong.
+
+The bridge page must also include reading paths:
+
+- If you have solver logs, start with convergence, damping, gain ratio, rejected
+  steps, and gradient/step norms.
+- If the output is physically wrong despite low cost, start with residual
+  design, whitening, and Jacobian consistency.
+- If the linear solve fails or covariance is suspicious, start with rank,
+  conditioning, factorization, nullspaces, and covariance recovery.
+- If runtime or memory explodes, start with sparsity, ordering, fill-in, Schur,
+  and PCG.
+- If the estimator appears inconsistent, start with gauge policy, observability,
+  marginalization, NIS/NEES, and state-estimation integrity pages.
+
 ## Bridge Page Failure Spine
 
 The primary bridge page should include a table that explains the motivating
@@ -317,6 +475,18 @@ Use the same three recurring examples across bridge sections:
 - Planning or control: cost scaling makes a smooth but unsafe trajectory look
   optimal.
 
+Each recurring example must be worked end-to-end at least once:
+
+```text
+initial symptom
+-> wrong object or wrong layer
+-> diagnostic artifact
+-> interpretation
+-> what to change
+-> what not to conclude
+-> read next
+```
+
 ## Cross-Linking
 
 Update targeted links from:
@@ -324,6 +494,7 @@ Update targeted links from:
 - `10-knowledge-base/optimization/overview.md`
 - `10-knowledge-base/numerical-linear-algebra/overview.md`
 - `00-start-here/reading-guide.md`
+- `README.md`
 - `INDEX.md`
 - relevant existing optimization pages
 - relevant existing numerical linear algebra pages
@@ -332,6 +503,11 @@ Update targeted links from:
 
 Links should help readers move from symptom to concept to canonical derivation.
 Do not force links into unrelated method pages.
+
+No `.vitepress/navigation.mjs` change is expected. Sidebar navigation is
+directory-driven and will pick up the new Markdown files automatically.
+Prominence should come from `overview.md` reading paths, `README.md`, `INDEX.md`,
+`00-start-here/reading-guide.md`, and targeted related-doc links.
 
 ## Visual Contract
 
@@ -342,44 +518,66 @@ visual contract:
 - one SVG asset under `10-knowledge-base/_assets/visuals/`;
 - one explicit taxonomy assignment in `tools/knowledge-base/visual-taxonomy.mjs`;
 - renderer support in `tools/knowledge-base/curated-visuals.mjs` if the diagram
-  type is new.
+  type is new;
+- matching SVG `data-diagram-kind`;
+- SVG `<desc>` content that matches the visual caption's teaching intent;
+- no generic, placeholder, or auto-generated wording.
+
+Use existing diagram kinds unless a new diagram kind is clearly justified:
+
+| Page | Diagram Kind |
+|---|---|
+| `optimization/nonlinear-solver-diagnostics-crosswalk.md` | `solver-loop` |
+| `optimization/objective-residual-design-and-audit.md` | `objective-landscape` |
+| `optimization/solver-selection-and-convergence-diagnosis.md` | `optimization-step-geometry` |
+| `numerical-linear-algebra/sparse-estimation-backend-crosswalk.md` | `matrix-structure` |
 
 Recommended visuals:
 
 - `optimization-nonlinear-solver-diagnostics-crosswalk.svg`: pipeline and
   failure-layer map from measurement model to diagnostic artifact.
-- `numerical-linear-algebra-sparse-estimation-backend-crosswalk.svg`, if the
-  optional backend bridge page is created: sparse backend decision map from
-  Jacobian structure to factorization, Schur, marginalization, covariance, and
-  PCG.
+- `numerical-linear-algebra-sparse-estimation-backend-crosswalk.svg`: sparse
+  backend decision map from Jacobian structure to factorization, Schur,
+  marginalization, covariance, and PCG.
 - `optimization-objective-residual-design-and-audit.svg`: residual audit flow
   from measurement model to whitened residual and diagnostics.
 - `optimization-solver-selection-and-convergence-diagnosis.svg`: solver choice
   matrix and convergence symptom routing.
 
+Update the visual reassessment manifest:
+
+```text
+docs/superpowers/notes/2026-05-09-knowledge-base-visual-reassessment-generated-removed.md
+```
+
+The live knowledge-base Markdown count should move from 121 to 125 after the
+four required pages are added, and the file-by-file reassessment should include
+one replacement-visual description for each new page.
+
 ## Data Flow
 
 Implementation should follow this order:
 
-1. Add the approved new Markdown pages with visual blocks.
+1. Add the four required new Markdown pages with visual blocks.
 2. Add or generate the required SVG assets and taxonomy mappings.
-3. Add concept-card sections and stable anchors to existing canonical pages.
-4. Update `GLOSSARY.md` with the technical glossary section.
-5. Update overviews, reading guide, `INDEX.md`, and targeted related-doc links.
-6. Run tests and docs build.
+3. Update the visual reassessment manifest and live KB counts from 121 to 125.
+4. Add concept-card sections and stable anchors to existing canonical pages.
+5. Update `GLOSSARY.md` with the technical glossary section.
+6. Update overviews, `README.md`, reading guide, `INDEX.md`, and targeted
+   related-doc links.
+7. Run tests, link checks, and docs build.
 
 ## Error Handling
 
 Expected risks and responses:
 
-- If the scope grows too large, keep the primary bridge page and two concept hub
-  pages as the required deliverable; create the backend bridge only if the
-  backend material cannot remain clear inside the primary bridge and
-  strengthened numerical-linear-algebra pages.
+- If the scope grows too large, keep the four target pages as the required
+  deliverable and reduce only optional cross-links or later deepening. Do not
+  drop the sparse backend crosswalk from the initial scope.
 - If a new page duplicates an existing derivation, convert the duplicate into a
   concept-card summary and link to the canonical page.
 - If visual taxonomy tests fail, add or correct the visual assignment and SVG
-  asset.
+  asset, then update the visual reassessment manifest if a page was added.
 - If link checks fail, correct relative links and anchor names.
 - If a concept has no stable anchor, add a heading to the owning page rather
   than linking to a broad page top.
@@ -391,6 +589,7 @@ Run:
 ```text
 npm test
 npm run priority:check
+npm run links:check
 npm run docs:build
 ```
 
@@ -398,6 +597,7 @@ Before claiming implementation completion, run:
 
 ```text
 npm run verify
+npm run links:check
 ```
 
 ## Review Criteria
@@ -405,12 +605,25 @@ npm run verify
 The implementation is acceptable when:
 
 - The main bridge page directly explains the motivating failure sentence.
+- The bridge page includes both cause-first and symptom-first diagnostic
+  tables.
+- At least three recurring examples are worked through the diagnostic route.
 - The architecture adds bridge and concept-hub depth without one-page-per-term
   sprawl.
-- Every named concept has either a glossary link, a concept card, a strengthened
-  existing section, or a new hub section.
+- Every named concept has a glossary link and at least one concept card,
+  strengthened canonical section, or new hub section. A glossary link alone is
+  not sufficient for major concepts such as PCG, rank deficiency, covariance
+  recovery, Schur complement, or marginalization.
+- Major concept cards include minimal examples, normal/abnormal diagnostic
+  artifact guidance, and first debugging moves.
+- The bridge page provides explicit reading paths for learners starting from
+  symptoms, logs, bad outputs, backend failures, or estimator inconsistency.
+- The required sparse backend crosswalk exists and covers rank, conditioning,
+  sparsity, factorization, Schur, marginalization, covariance recovery, and PCG.
 - Existing canonical pages remain the derivation homes.
-- New pages have visual blocks, SVG assets, and taxonomy assignments.
-- Overviews, reading guide, and `INDEX.md` expose the new diagnostic path.
+- New pages have visual blocks, SVG assets, taxonomy assignments, and visual
+  reassessment manifest entries.
+- Overviews, `README.md`, reading guide, and `INDEX.md` expose the new
+  diagnostic path.
 - Links from applied SLAM or calibration pages are targeted and useful.
-- Tests, priority check, docs build, and final verify pass.
+- Tests, priority check, link check, docs build, and final verify pass.
