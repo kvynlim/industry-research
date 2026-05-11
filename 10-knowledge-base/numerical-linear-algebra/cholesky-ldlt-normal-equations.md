@@ -13,6 +13,8 @@
 - [Sparse Matrices, Fill-In, and Ordering](sparse-matrices-fill-in-ordering.md)
 - [Square-Root Information and Covariance Recovery](square-root-information-and-covariance-recovery.md)
 - [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md)
+- [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
+- [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
@@ -218,6 +220,68 @@ actual_cost_drop / predicted_cost_drop
 ### Damping is not a prior
 
 LM damping can make a solve numerically possible, but it should not be interpreted as real information. If the global frame is unanchored, damping may choose a step but the posterior covariance still has gauge directions. For map publication, covariance queries, and loop closure consistency, use explicit priors or explicit gauge handling.
+
+## Concept cards
+
+### Cholesky
+
+- What it means here: The standard sparse direct factorization for symmetric positive definite normal equations or information matrices.
+- Math object: `H = L L^T` or `P H P^T = L L^T`.
+- Effect on the solve: It gives fast triangular solves when the system is constrained, scaled, and SPD.
+- What it solves: It efficiently computes a Gauss-Newton or LM linear step for large sparse estimation problems.
+- What it does not solve: It does not diagnose rank deficiency as clearly as QR or SVD and cannot make a semidefinite gauge observable.
+- Minimal example: A pose graph with a first-pose prior factors cleanly after fill-reducing ordering.
+- Failure symptoms: Non-positive pivot, factorization exception, residual grows after solve, or warning reported near a misleading variable.
+- Diagnostic artifact: Factorization status, pivot or diagonal log, permutation, `nnz(L)`, and linear residual `||H delta - b|| / ||b||`.
+- Normal vs abnormal artifact: A clean factorization with positive pivots and small residual is normal; a factorization warning is abnormal unless it matches an intentionally unanchored diagnostic case.
+- First debugging move: Rebuild a representative problem as explicit whitened `J`, then compare Cholesky against QR or SVD.
+- Do not confuse with: Sparse QR, which factors the Jacobian directly rather than `J^T J`.
+- Read next: [QR, SVD, and Rank-Revealing Solvers](qr-svd-rank-revealing-solvers.md).
+
+### LDLT
+
+- What it means here: A symmetric factorization that separates triangular structure from diagonal or block-diagonal pivots.
+- Math object: `H = L D L^T`, often with a permutation and library-specific pivoting behavior.
+- Effect on the solve: It can expose small, zero, or negative pivots more directly than plain Cholesky in diagnostic paths.
+- What it solves: It solves symmetric linear systems and helps inspect definiteness when the backend supports the needed pivoting.
+- What it does not solve: It does not remove the need for gauge fixing, damping, or a rank-revealing method in semidefinite problems.
+- Minimal example: A damped Hessian factors with positive `D` entries while the undamped Hessian has zero gauge pivots.
+- Failure symptoms: Tiny or negative `D` entries, pivot growth, permutation changes, or unstable solutions under small perturbations.
+- Diagnostic artifact: `D` pivot values, block pivots if present, permutation, factorization status, and nearby variable key.
+- Normal vs abnormal artifact: Expected tiny pivots on declared gauge coordinates are normal in a debug run; negative pivots in a supposedly Gauss-Newton `J^T J` matrix are abnormal.
+- First debugging move: Check symmetry and compare the assembled `H` against `J^T J` on a small case.
+- Do not confuse with: Full indefinite factorization; some library `LDLT` implementations are not robust Bunch-Kaufman solvers.
+- Read next: [Eigenvalues, Hessian Conditioning, and Observability](eigenvalues-hessian-conditioning-observability.md).
+
+### Normal-equation conditioning
+
+- What it means here: The numerical fragility introduced by solving through `H = J^T J` instead of the original Jacobian least-squares problem.
+- Math object: `cond(J^T J) = cond(J)^2` for full-rank `J`.
+- Effect on the solve: Weak directions become much harder to resolve and double precision can lose meaningful digits.
+- What it solves: It explains why a Cholesky step can be unstable even when QR on `J` is still usable.
+- What it does not solve: It does not identify the modeling cause of the weak direction by itself.
+- Minimal example: If `cond(J) = 1e8`, then `cond(J^T J) = 1e16`, near double precision limits.
+- Failure symptoms: Large normal-equation residual, QR/Cholesky disagreement, sensitivity to whitening, or noisy covariance in weak modes.
+- Diagnostic artifact: Singular spectrum of `J`, eigen-spectrum of `H`, condition estimates, and comparison of QR versus normal-equation steps.
+- Normal vs abnormal artifact: Some condition-number growth is inherent when forming `J^T J`; a warning-level squared condition number with unstable steps is abnormal for a production solve.
+- First debugging move: Compute `cond(J)` and `cond(H)` on the same whitened representative matrix.
+- Do not confuse with: Fill-in, which is a sparsity and memory issue rather than a floating-point sensitivity issue.
+- Read next: [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md).
+
+### Positive definiteness failure
+
+- What it means here: The matrix presented to an SPD solver is singular, semidefinite, indefinite, asymmetric, or too numerically fragile for positive pivots.
+- Math object: Failed SPD test or non-positive pivot in `H`, `H + lambda D^T D`, or a Schur complement.
+- Effect on the solve: The linear step cannot be trusted from an SPD Cholesky path.
+- What it solves: It converts a backend exception into a targeted diagnostic branch: rank, gauge, robust weights, marginalization, symmetry, or scaling.
+- What it does not solve: It does not prove the first variable named in the exception caused the modeling bug.
+- Minimal example: A pose graph without an anchor has a semidefinite Hessian and fails Cholesky.
+- Failure symptoms: Non-positive pivot, `IndeterminantLinearSystemException`, negative eigenvalue, NaNs after backsolve, or repeated LM damping increases.
+- Diagnostic artifact: Factorization warning, pivot location, symmetry norm `||H - H^T||`, smallest eigenvalues, and variable neighborhood around the reported key.
+- Normal vs abnormal artifact: Failure is normal for an intentionally unanchored observability test; it is abnormal in a production graph that declares all gauges anchored and all robust weights valid.
+- First debugging move: Add the minimal expected gauge anchor on a copy and see whether only the predicted failure disappears.
+- Do not confuse with: Nonlinear cost rejection, where the linear solve succeeds but the trial state is not accepted.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md).
 
 ## Failure modes and diagnostics
 

@@ -13,6 +13,8 @@
 - [Sparse Matrices, Fill-In, and Ordering](sparse-matrices-fill-in-ordering.md)
 - [Square-Root Information and Covariance Recovery](square-root-information-and-covariance-recovery.md)
 - [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md)
+- [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
+- [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [Sensor Calibration and Time Synchronization](../geometry-3d/sensor-calibration-time-synchronization.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
@@ -188,6 +190,68 @@ For a custom residual, add tests that compare analytic and numerical Jacobians. 
 - A time-offset calibration with constant velocity is less informative than one with acceleration.
 
 These tests catch mistakes that Cholesky may only report later as a vague failure near a different variable.
+
+## Concept cards
+
+### Column-pivoted QR
+
+- What it means here: A QR factorization that permutes Jacobian columns so independent tangent directions are processed before weak or redundant directions.
+- Math object: `J P = Q R`, with `R` diagonal magnitudes used as a practical rank signal.
+- Effect on the solve: It avoids normal-equation condition-number squaring and exposes which columns are late, weak, or dependent.
+- What it solves: It provides a robust dense diagnostic and fallback for least-squares systems that may be rank deficient.
+- What it does not solve: It does not explain the physical cause of a weak direction without the variable-key and tangent-coordinate map.
+- Minimal example: A calibration Jacobian pivots well-excited yaw and translation columns early while a time-offset column appears late.
+- Failure symptoms: Rank estimate changes with threshold, late pivots concentrate in one sensor's extrinsic block, or QR disagrees with Cholesky.
+- Diagnostic artifact: Pivot order, `R` diagonal, rank threshold, and each pivot mapped back to variable key plus tangent coordinate.
+- Normal vs abnormal artifact: Late columns for known gauge coordinates are normal; late columns for supposedly excited calibration parameters are abnormal.
+- First debugging move: Print the last pivoted columns with their variable keys, tangent coordinate names, column norms, and factor provenance.
+- Do not confuse with: Fill-reducing ordering, which targets sparse factor memory rather than numerical rank.
+- Read next: [Sparse Matrices, Fill-In, and Ordering](sparse-matrices-fill-in-ordering.md).
+
+### SVD singular vector
+
+- What it means here: A right singular vector describes a state perturbation direction associated with one singular value of the Jacobian.
+- Math object: In `J = U S V^T`, column `v_i` of `V` satisfies `||J v_i|| = sigma_i`.
+- Effect on the solve: Small-singular-value vectors show weakly constrained or null directions that can dominate updates and covariance.
+- What it solves: It translates a scalar rank warning into an interpretable state-motion pattern.
+- What it does not solve: It does not decide whether the direction is physically acceptable or operationally safe.
+- Minimal example: A small singular vector has similar yaw entries across all poses, revealing global yaw gauge.
+- Failure symptoms: Singular vectors mix unrelated coordinates, indicate missing Jacobian columns, or align with a calibration parameter that should be excited.
+- Diagnostic artifact: Singular value, right singular vector entries grouped by variable key and tangent coordinate, and residual response `J v_i`.
+- Normal vs abnormal artifact: Coherent global transform modes are normal for unanchored graphs; isolated spikes in one tangent coordinate often indicate implementation or scaling bugs.
+- First debugging move: Sort vector entries by absolute magnitude and inspect the top variable-key/tangent-coordinate contributions.
+- Do not confuse with: A variable ordering permutation; a singular vector is a direction in tangent space, not a solver storage order.
+- Read next: [Eigenvalues, Hessian Conditioning, and Observability](eigenvalues-hessian-conditioning-observability.md).
+
+### Rank threshold
+
+- What it means here: The cutoff used to decide which singular values or QR diagonal entries count as numerically nonzero.
+- Math object: A rule such as `sigma_i > tau sigma_max` or `|R_ii| > tau |R_11|`.
+- Effect on the solve: It controls rank, pseudoinverse behavior, and which tangent directions are treated as observable.
+- What it solves: It makes rank decisions reproducible and tied to matrix scale, sensor noise, and machine precision.
+- What it does not solve: It cannot turn physically weak excitation into trustworthy information.
+- Minimal example: A straight-driving calibration run may cross a permissive numerical threshold while still failing a physical excitation threshold.
+- Failure symptoms: Rank count flips under small threshold changes, covariance blocks jump, or weak directions disappear after column scaling only.
+- Diagnostic artifact: Threshold value, singular spectrum, QR diagonal, whitening status, and below-threshold directions mapped to variable keys and tangent coordinates.
+- Normal vs abnormal artifact: A stable gap between kept and rejected values is normal; no spectral gap and threshold-sensitive diagnostics are abnormal.
+- First debugging move: Sweep the threshold and plot rank plus top weak variable-key/tangent-coordinate contributions.
+- Do not confuse with: Solver convergence tolerance, which controls iteration stopping rather than matrix rank.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md).
+
+### Minimum-norm solution
+
+- What it means here: The least-squares update with the smallest tangent-space norm among all updates that minimize the linear residual.
+- Math object: `delta = V S^+ U^T b`, where zeroed singular directions receive no component.
+- Effect on the solve: It chooses one representative update in a rank-deficient system without adding physical information.
+- What it solves: It gives a deterministic diagnostic solution and can avoid arbitrary motion in nullspace directions.
+- What it does not solve: It does not define a physically meaningful gauge, posterior covariance, or integrity claim.
+- Minimal example: In an unanchored pose graph, SVD can return a step with no global translation component.
+- Failure symptoms: Solution norm depends on state scaling, gauge coordinates look artificially stable, or downstream code treats the chosen gauge as observed.
+- Diagnostic artifact: Pseudoinverse threshold, retained singular values, rejected singular vectors, and update components by variable key and tangent coordinate.
+- Normal vs abnormal artifact: Zero update along declared nullspace is normal; small-norm behavior caused by arbitrary units or missing tangent scaling is abnormal.
+- First debugging move: Verify the tangent-space norm uses meaningful scaling and inspect the rejected singular vectors.
+- Do not confuse with: A damped LM step, which changes the linear system and can bias weak directions.
+- Read next: [Square-Root Information and Covariance Recovery](square-root-information-and-covariance-recovery.md).
 
 ## Failure modes and diagnostics
 

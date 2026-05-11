@@ -13,6 +13,8 @@
 - [Sparse Matrices, Fill-In, and Ordering](sparse-matrices-fill-in-ordering.md)
 - [Square-Root Information and Covariance Recovery](square-root-information-and-covariance-recovery.md)
 - [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md)
+- [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
+- [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [Bayesian Filtering and ESKF](../state-estimation/bayesian-filtering-and-eskf.md)
 - [IMU Error Models and Preintegration](../state-estimation/imu-error-models-preintegration.md)
 
@@ -216,6 +218,70 @@ Calibration and mapping runs should excite the states being estimated:
 - Estimate vertical lidar extrinsics: include non-flat geometry or pitched motion.
 
 No solver can recover information that the dataset does not contain.
+
+State estimation owns physical observability and integrity interpretation; numerical linear algebra exposes local matrix structure.
+
+## Concept cards
+
+### Rank deficiency
+
+- What it means here: The linearized Jacobian does not have enough independent columns to constrain every tangent coordinate in the current solve.
+- Math object: Rank of the whitened Jacobian `J`, equivalently zero or near-zero eigenvalues of `H = J^T J`.
+- Effect on the solve: The step is nonunique, Cholesky may fail, and covariance in unconstrained coordinates is not finite.
+- What it solves: It names the local algebraic reason a backend cannot determine a unique update.
+- What it does not solve: It does not decide whether the missing information is acceptable, physically observable elsewhere, or an integrity hazard.
+- Minimal example: A relative pose graph with no prior can translate every pose by the same vector with no residual change.
+- Failure symptoms: Non-positive pivots, huge covariance, threshold-sensitive rank, or solution changes when a tiny prior is added.
+- Diagnostic artifact: Singular values, rank estimate, and weak eigenvectors grouped by variable key and tangent coordinate.
+- Normal vs abnormal artifact: A known gauge produces the expected rank loss; an unexpected missing column, bad whitening, or degenerate dataset produces an abnormal rank loss.
+- First debugging move: Export the whitened `J` with the column-to-key map and compare numerical rank against the expected model symmetry.
+- Do not confuse with: High but finite condition number, which is weak observability rather than exact rank loss.
+- Read next: [QR, SVD, and Rank-Revealing Solvers](qr-svd-rank-revealing-solvers.md).
+
+### Nullspace
+
+- What it means here: A set of tangent directions that leave the linearized residual unchanged.
+- Math object: Vectors `v` where `J v = 0`, or approximately null vectors where `||J v||` is near the noise floor.
+- Effect on the solve: The solver can move along those directions without changing the linearized objective, so the update and covariance require gauge handling or a pseudoinverse convention.
+- What it solves: It turns vague "underconstrained" failures into specific state-motion patterns.
+- What it does not solve: It does not prove the nonlinear system is globally unobservable away from the current linearization point.
+- Minimal example: In bearing-only landmark observation, moving a landmark along the viewing ray is locally weak or unobservable.
+- Failure symptoms: Singular vectors show coherent global translation, yaw, scale, or landmark-depth motion.
+- Diagnostic artifact: Nullspace basis visualized as perturbations on variable keys and tangent coordinates.
+- Normal vs abnormal artifact: Expected global frame nullspace is normal before anchoring; a nullspace aligned with one sensor factor's missing coordinate is abnormal.
+- First debugging move: Animate or print the smallest singular vectors by variable block to identify the physical mode.
+- Do not confuse with: Gauge freedom, which is a model symmetry and a common source of nullspace.
+- Read next: [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md).
+
+### Gauge freedom
+
+- What it means here: A coordinate symmetry of the estimator where multiple state assignments represent the same measurements.
+- Math object: A structured nullspace induced by transformations such as global pose, yaw, or scale.
+- Effect on the solve: The Hessian is positive semidefinite until the gauge is fixed or a physically meaningful prior is added.
+- What it solves: It explains why a graph with correct factors can still be singular.
+- What it does not solve: It does not provide real external information or improve physical observability.
+- Minimal example: A pose graph with only relative measurements has arbitrary global frame coordinates.
+- Failure symptoms: Cholesky failure, arbitrary map origin, covariance unavailable, or solution shifts when the anchor changes.
+- Diagnostic artifact: Gauge dimension, anchor sensitivity test, and nullspace vectors matching global transformations.
+- Normal vs abnormal artifact: A gauge matching the sensor model is normal; extra gauge modes after adding intended anchors are abnormal.
+- First debugging move: Add a minimal temporary gauge fix on a representative problem and verify only the expected modes disappear.
+- Do not confuse with: A prior, which injects physical information with a covariance.
+- Read next: [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md).
+
+### Condition number
+
+- What it means here: The ratio between the strongest and weakest constrained local directions in the linearized system.
+- Math object: `cond(J) = sigma_max / sigma_min` or, for positive definite normal equations, `cond(H) = lambda_max / lambda_min = cond(J)^2`.
+- Effect on the solve: Floating-point perturbations, scaling mistakes, and residual noise can dominate the computed step.
+- What it solves: It warns that the problem may be technically full rank but numerically fragile.
+- What it does not solve: It does not identify which physical direction is weak unless paired with eigenvectors or singular vectors.
+- Minimal example: A landmark triangulated from tiny baseline has a very small depth singular value.
+- Failure symptoms: Threshold-sensitive updates, large linear residual after solve, unstable covariance, or different steps from Cholesky and QR.
+- Diagnostic artifact: Spectrum, condition estimate, weak eigenvectors, whitening status, and normal-equation residual.
+- Normal vs abnormal artifact: Wide spectra can be normal across mixed state units after correct whitening; explosive condition growth after forming `J^T J` is abnormal when QR is stable.
+- First debugging move: Compare the singular spectrum of whitened `J` with the eigen-spectrum of `H`.
+- Do not confuse with: Rank deficiency, where the weakest direction is zero or below the adopted rank threshold.
+- Read next: [QR, SVD, and Rank-Revealing Solvers](qr-svd-rank-revealing-solvers.md).
 
 ## Failure modes and diagnostics
 

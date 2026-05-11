@@ -13,6 +13,8 @@
 - [Eigenvalues, Hessian Conditioning, and Observability](eigenvalues-hessian-conditioning-observability.md)
 - [Sparse Matrices, Fill-In, and Ordering](sparse-matrices-fill-in-ordering.md)
 - [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md)
+- [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
+- [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
@@ -223,6 +225,68 @@ For poses, covariance is expressed in the tangent space at the estimate, not as 
 - Units.
 
 GTSAM explicitly notes that covariance matrices are in relative coordinates because optimization is performed through local increments.
+
+## Concept cards
+
+### Square-root information
+
+- What it means here: A factor representation whose transpose times itself equals an information matrix.
+- Math object: `Lambda = R^T R` or whitened residual model `||R delta - d||^2`.
+- Effect on the solve: It preserves least-squares structure, supports stable factorization, and avoids explicit covariance inversion.
+- What it solves: It gives solvers a numerically practical way to combine Gaussian factors and priors.
+- What it does not solve: It does not guarantee the information is full rank or globally valid after nonlinear relinearization.
+- Minimal example: A measurement covariance `Sigma = L L^T` whitens residuals with triangular solves by `L`.
+- Failure symptoms: Cost mismatch, wrong residual scale, covariance too small, or factor orientation bug.
+- Diagnostic artifact: `R`, `R^T R` reconstruction check, whitened residual norm, and covariance-weighted raw residual comparison.
+- Normal vs abnormal artifact: `R^T R` matching the intended information is normal; using `R R^T` by mistake is abnormal.
+- First debugging move: On a small dense case, compare raw covariance weighting with square-root weighting at the same perturbation.
+- Do not confuse with: Covariance square root, where `Sigma = L L^T` rather than `Lambda = R^T R`.
+- Read next: [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md).
+
+### Marginal covariance
+
+- What it means here: The uncertainty block for a subset of variables after accounting for correlations with all other active variables.
+- Math object: The selected diagonal or off-diagonal block of `Sigma = Lambda^-1`.
+- Effect on the solve: It supports health monitoring, gating, calibration uncertainty, and integrity checks after estimation.
+- What it solves: It answers "how uncertain is this variable block in the joint posterior coordinates?"
+- What it does not solve: It does not describe uncertainty conditioned on holding neighboring variables fixed.
+- Minimal example: Query the latest pose's `6 x 6` tangent covariance block from a sparse factor.
+- Failure symptoms: Inverting only `Lambda_ii`, ignoring gauge freedom, reporting covariance in the wrong tangent convention, or computing full dense covariance online.
+- Diagnostic artifact: Requested covariance blocks, factor backsolve trace, rank/gauge status, tangent-coordinate convention, and selected inverse entries.
+- Normal vs abnormal artifact: Marginal covariance larger than inverse diagonal information is normal when variables are correlated; smaller or unit-inconsistent blocks are abnormal.
+- First debugging move: Query one block through the library covariance API and compare it to dense inversion on a tiny representative system.
+- Do not confuse with: Conditional covariance or inverse diagonal information; marginal covariance accounts for correlations, conditional covariance holds other variables fixed, and inverse diagonal information ignores off-diagonal coupling.
+- Read next: [Eigenvalues, Hessian Conditioning, and Observability](eigenvalues-hessian-conditioning-observability.md).
+
+### Conditional covariance
+
+- What it means here: The uncertainty of one variable block when another block is treated as known.
+- Math object: For information partition `Lambda = [A B; B^T C]`, the conditional information of `x` given `y` is `A`, so conditional covariance is `A^-1` when valid.
+- Effect on the solve: It can look much smaller than marginal covariance because correlations with held-fixed variables are not released.
+- What it solves: It describes local uncertainty under a stated conditioning assumption.
+- What it does not solve: It does not report the standalone posterior uncertainty of the variable in the full joint problem.
+- Minimal example: A landmark is precise if the camera poses are fixed, but much less precise after camera-pose uncertainty is marginalized in.
+- Failure symptoms: Health metrics look overconfident, covariance changes drastically when conditioning variables are released, or documentation omits what was held fixed.
+- Diagnostic artifact: Partitioned information blocks, conditioned variable list, fixed variable list, and comparison to marginal covariance.
+- Normal vs abnormal artifact: Conditional covariance smaller than marginal covariance is normal; reporting it as marginal uncertainty is abnormal.
+- First debugging move: Write down which variables are held fixed and compute both conditional and marginal covariance on the same small system.
+- Do not confuse with: Marginal covariance or inverse diagonal information; conditional covariance depends on an explicit fixed-variable assumption.
+- Read next: [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md).
+
+### Covariance recovery
+
+- What it means here: Extracting selected covariance entries or blocks from an information or square-root factor after solving.
+- Math object: Solves with `R^T` and `R` to obtain selected columns of `Sigma = (R^T R)^-1`.
+- Effect on the solve: It can be much more expensive than the MAP solve and can expose hidden rank or gauge problems.
+- What it solves: It provides uncertainty blocks needed for diagnostics, gating, and reporting without necessarily forming a full dense inverse.
+- What it does not solve: It does not make covariance finite in rank-deficient coordinates.
+- Minimal example: Solve `R^T y = e_i`, then `R z = y` to recover covariance column `i`.
+- Failure symptoms: Query time spikes, memory explodes, rank-deficient warning, covariance block unavailable, or full inverse accidentally computed online.
+- Diagnostic artifact: Requested block list, solve count, rank threshold, gauge handling, backsolve residuals, memory use, and elapsed covariance-query time.
+- Normal vs abnormal artifact: Selected block recovery with bounded solve count is normal; broad full-map covariance recovery in an online loop is abnormal.
+- First debugging move: Reduce the query to one block and verify it against dense inversion on a small gauge-fixed problem.
+- Do not confuse with: Marginal covariance versus conditional covariance versus inverse diagonal information; covariance recovery is the algorithm that retrieves whichever covariance quantity was requested.
+- Read next: [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md).
 
 ## Failure modes and diagnostics
 

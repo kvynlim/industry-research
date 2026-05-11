@@ -13,6 +13,8 @@
 - [Eigenvalues, Hessian Conditioning, and Observability](eigenvalues-hessian-conditioning-observability.md)
 - [Square-Root Information and Covariance Recovery](square-root-information-and-covariance-recovery.md)
 - [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md)
+- [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
+- [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
@@ -203,6 +205,68 @@ Start with the solver default, then benchmark:
 - Problem-specific ordering for bundle adjustment and marginalization.
 
 Do not select ordering by name alone. Compare memory, factor nonzeros, and wall time on representative logs.
+
+## Concept cards
+
+### Sparsity pattern
+
+- What it means here: The zero and nonzero structure induced by which factors touch which variables, independent of the current numeric values.
+- Math object: The nonzero pattern of `J`, `H`, or block adjacency in the factor graph.
+- Effect on the solve: It controls storage layout, symbolic analysis, possible parallelism, and the starting point for fill-in.
+- What it solves: It tells the backend what structure can be exploited before numeric factorization.
+- What it does not solve: It does not guarantee a small factor, fast solve, or well-conditioned matrix.
+- Minimal example: A chain of odometry factors creates block tridiagonal pose-pose sparsity.
+- Failure symptoms: Matrix dimensions differ from variable counts, unexpected dense rows, or pattern changes causing symbolic reuse bugs.
+- Diagnostic artifact: Sparsity plot, block adjacency graph, scalar and block nonzero counts, and variable-key ordering.
+- Normal vs abnormal artifact: Local factors creating sparse bands are normal; a supposedly local factor touching most variables is abnormal.
+- First debugging move: Visualize the block sparsity pattern and identify high-degree variables or dense factor rows.
+- Do not confuse with: Numeric zeros, which can appear inside a structurally nonzero block at one linearization point.
+- Read next: [Cholesky, LDLT, and Normal Equations](cholesky-ldlt-normal-equations.md).
+
+### Fill-in
+
+- What it means here: New nonzeros created in a factor during elimination, even though they were absent from the original matrix.
+- Math object: Additional entries in `L`, `R`, or the eliminated graph after forming cliques among eliminated neighbors.
+- Effect on the solve: It increases memory use, factorization time, cache pressure, and sometimes makes an otherwise sparse problem infeasible.
+- What it solves: It explains runtime and memory explosions that are not visible from the input matrix alone.
+- What it does not solve: It does not indicate rank deficiency or bad residual modeling by itself.
+- Minimal example: Eliminating the center node of a star connects all leaves into a dense clique.
+- Failure symptoms: `nnz(L)` spikes, peak memory exceeds budget, factorization time grows superlinearly, or online latency misses real-time deadlines.
+- Diagnostic artifact: `nnz(H)`, `nnz(L)`, fill ratio, elimination tree, peak memory, symbolic time, numeric factorization time, and ordering method.
+- Normal vs abnormal artifact: Some fill is normal in sparse direct solvers; sudden fill growth after a new factor type, loop closure, or marginal prior is abnormal.
+- First debugging move: Compare fill reports across AMD, COLAMD, METIS, and the domain-specific ordering on the same graph.
+- Do not confuse with: Dense covariance, which can be dense even when the information factor remains sparse.
+- Read next: [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md).
+
+### Ordering
+
+- What it means here: The variable elimination sequence chosen before factorization.
+- Math object: A permutation `P` applied as `P H P^T` or a column permutation for Jacobian-based QR.
+- Effect on the solve: It can change memory and runtime by orders of magnitude while leaving the exact solution unchanged.
+- What it solves: It reduces fill and makes sparse direct solves practical on representative graph structures.
+- What it does not solve: It does not fix missing priors, bad scaling, rank deficiency, or nonlinear model errors.
+- Minimal example: Bundle adjustment usually eliminates landmarks before poses so point blocks stay cheap.
+- Failure symptoms: Factorization runs out of memory, cache misses increase, solve time spikes after loop closures, or marginalization creates a dense separator.
+- Diagnostic artifact: Ordering report, variable groups, separator sizes, fill comparison, wall time, and peak memory by ordering.
+- Normal vs abnormal artifact: Different orderings producing different `nnz(L)` is normal; scalar coordinates of one manifold variable being split accidentally is abnormal.
+- First debugging move: Confirm the ordering is by variable block, then benchmark solver-default and problem-specific orderings.
+- Do not confuse with: Column pivoting for rank revelation, which changes order for numerical independence rather than fill reduction.
+- Read next: [QR, SVD, and Rank-Revealing Solvers](qr-svd-rank-revealing-solvers.md).
+
+### Symbolic versus numeric factorization
+
+- What it means here: Symbolic factorization plans the structure from sparsity and ordering; numeric factorization fills that structure with values.
+- Math object: Symbolic analysis predicts the pattern of `L` or `R`; numeric factorization computes pivots and entries.
+- Effect on the solve: Reusing symbolic analysis saves time when the graph structure is stable, but stale symbolic assumptions can corrupt performance or correctness.
+- What it solves: It separates graph-structure costs from numeric relinearization costs in nonlinear solvers.
+- What it does not solve: It does not permit reuse when variable activation, robust sparsity, or data association changes the pattern.
+- Minimal example: Fixed-lag smoothing can reuse symbolic analysis while the active factor graph pattern is unchanged across iterations.
+- Failure symptoms: Runtime jitter from repeated symbolic analysis, wrong memory estimates, symbolic reuse after pattern changes, or numeric factorization failing despite unchanged structure.
+- Diagnostic artifact: Symbolic-analysis time, numeric-factorization time, pattern hash, ordering identifier, nonzero counts, and dynamic-sparsity flags.
+- Normal vs abnormal artifact: Numeric values changing with a stable pattern is normal; pattern hash changes while the backend reuses symbolic data is abnormal.
+- First debugging move: Log a pattern hash and force symbolic rebuild when residual graph structure changes.
+- Do not confuse with: Reusing the nonlinear linearization point, which is a modeling decision and not a sparse-factorization cache.
+- Read next: [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md).
 
 ## Failure modes and diagnostics
 
