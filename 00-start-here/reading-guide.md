@@ -19,6 +19,12 @@ This repository is an end-to-end autonomous-vehicle research knowledge base. Sta
 | Compare companies and markets | `80-industry-intel/` |
 | Continue gap-filling research | `90-synthesis/readiness-risk/continuous-research-loop.md` |
 
+## Diagnostic Entry Points
+
+| Need | Start | Use When |
+|---|---|---|
+| Solver diagnostics for calibration, SLAM, maps, and planning | [Nonlinear Solver Diagnostics Crosswalk](../10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md) | Use when residuals, Jacobians, scaling, damping, rank, covariance, or backend choices may be the failure source. |
+
 ## Reading Order
 
 1. Read the root `README.md`.

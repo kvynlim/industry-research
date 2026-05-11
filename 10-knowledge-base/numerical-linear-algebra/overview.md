@@ -57,6 +57,10 @@ For rank and conditioning reviews, read [Eigenvalues, Hessian Conditioning, and 
 
 For sparse backend performance, start with [Sparse Matrices, Fill-In, and Ordering](sparse-matrices-fill-in-ordering.md), then read [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md).
 
+For sparse backend triage, start with [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md), then follow rank, factorization, Schur, covariance, or PCG links.
+
+For end-to-end solver failure triage that may start outside the linear algebra layer, use the [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md) before assigning the failure to a residual, nonlinear policy, or sparse backend.
+
 For uncertainty queries, read [Square-Root Information and Covariance Recovery](square-root-information-and-covariance-recovery.md) after the factorization and Schur complement notes.
 
 ## Dependency Map
@@ -78,6 +82,7 @@ Common failure modes include rank loss hidden by damping, poor scaling, fill-in 
 - Owns: factorization, conditioning, rank, nullspaces, sparsity, ordering, fill-in, Schur complements, marginalization algebra, covariance recovery, and PCG.
 - Hands off to: optimization for residual construction and nonlinear step policy, and state estimation for estimator design and observability interpretation.
 - Does not own: estimator architecture, nonlinear residual semantics, or solver-library guidance.
+- Boundary rule: state estimation owns the physical observability interpretation, while numerical linear algebra exposes the rank and conditioning structure that makes that interpretation visible.
 - Diagnostic logic: if the issue is matrix rank, conditioning, fill-in, or covariance extraction, debug here; if the issue is which residuals were built or how nonlinear trust was updated, move to optimization; if the issue is what the weak mode means for fusion integrity, move to state estimation.
 
 ## Pages In This Section
@@ -90,6 +95,7 @@ Rank, conditioning, and factorization:
 
 Sparsity, elimination, and marginalization:
 
+- [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
 - [Sparse Matrices, Fill-In, and Ordering](sparse-matrices-fill-in-ordering.md)
 - [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md)
 

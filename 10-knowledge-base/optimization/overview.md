@@ -59,6 +59,8 @@ For derivative debugging, read [Jacobians, Autodiff, Manifolds, and Linearizatio
 
 For solver deployment, read [Trust Region, Line Search, and Globalization](trust-region-line-search-globalization.md), then [Factor-Graph Solver Patterns](factor-graph-solver-patterns-ceres-gtsam-g2o.md).
 
+For solver failure triage, start with [Nonlinear Solver Diagnostics Crosswalk](nonlinear-solver-diagnostics-crosswalk.md), then use [Objective and Residual Design Audit](objective-residual-design-and-audit.md) or [Solver Selection and Convergence Diagnosis](solver-selection-and-convergence-diagnosis.md).
+
 ## Dependency Map
 
 Optimization depends on probability for residual meaning, likelihoods, robust losses, and whitening. It depends on geometry and state representation for perturbation conventions and manifolds. It depends on numerical linear algebra for sparse solves, conditioning, rank, and factorization.
@@ -70,6 +72,8 @@ It hands solver behavior back to SLAM, calibration, mapping, planning, control, 
 Core artifacts include residual definitions, Jacobian checks, cost histories, step norms, damping values, trust-region ratios, robust-loss settings, relinearization logs, convergence criteria, and solver summaries.
 
 Diagnostic case: A calibration solve diverges because residual scales are inconsistent and the optimizer accepts steps outside the local linearization regime.
+
+A calibration, map, or plan can fail for residual, Jacobian, scaling, damping, rank, covariance, or backend reasons; use the [Nonlinear Solver Diagnostics Crosswalk](nonlinear-solver-diagnostics-crosswalk.md) to route that failure before assigning it to the domain.
 
 Common failure modes include unit mismatch, unwhitened residuals, wrong perturbation side, stale Jacobians, rank deficiency, local minima, over-aggressive step acceptance, poor damping, and solver summaries that hide domain-specific invalidity.
 
@@ -84,7 +88,10 @@ Common failure modes include unit mismatch, unwhitened residuals, wrong perturba
 - [Factor-Graph Solver Patterns](factor-graph-solver-patterns-ceres-gtsam-g2o.md)
 - [Gauss-Newton, Levenberg-Marquardt, and Dogleg](gauss-newton-levenberg-marquardt-dogleg.md)
 - [Jacobians, Autodiff, Manifolds, and Linearization](jacobians-autodiff-manifold-linearization.md)
+- [Nonlinear Solver Diagnostics Crosswalk](nonlinear-solver-diagnostics-crosswalk.md)
 - [Nonlinear Least Squares](nonlinear-least-squares-first-principles.md)
+- [Objective and Residual Design Audit](objective-residual-design-and-audit.md)
+- [Solver Selection and Convergence Diagnosis](solver-selection-and-convergence-diagnosis.md)
 - [Trust Region, Line Search, and Globalization](trust-region-line-search-globalization.md)
 
 ## Core Sources

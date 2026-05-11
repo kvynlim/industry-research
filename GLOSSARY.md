@@ -106,6 +106,41 @@
 | **VLM** | Vision-Language Model — multimodal AI model |
 | **VQ-VAE** | Vector Quantized Variational Autoencoder — discrete tokenization |
 
+### Optimization and Numerical Linear Algebra
+
+| Term | Definition |
+|------|-----------|
+| **Objective** | Function minimized by a solver; in autonomy it combines residuals, priors, weights, and constraints. See [Objective and Residual Design Audit](10-knowledge-base/optimization/objective-residual-design-and-audit.md). |
+| **Residual** | Difference between a predicted measurement and an observed measurement, expressed in the correct frame and units. See [Nonlinear Least Squares](10-knowledge-base/optimization/nonlinear-least-squares-first-principles.md). |
+| **Whitened residual** | Residual premultiplied by square-root information so its components are in normalized noise units. See [Objective and Residual Design Audit](10-knowledge-base/optimization/objective-residual-design-and-audit.md). |
+| **Jacobian** | Derivative of a residual with respect to a local state perturbation. See [Jacobians, Autodiff, and Manifold Linearization](10-knowledge-base/optimization/jacobians-autodiff-manifold-linearization.md). |
+| **Manifold update** | Tangent-space update retracted back to a constrained state such as SO(3), SE(3), or a unit quaternion. See [Jacobians, Autodiff, and Manifold Linearization](10-knowledge-base/optimization/jacobians-autodiff-manifold-linearization.md). |
+| **Rank deficiency** | Condition where a Jacobian or Hessian has unobservable or redundant directions. See [Eigenvalues, Hessian Conditioning, and Observability](10-knowledge-base/numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md). |
+| **Schur complement** | Block elimination algebra used to solve reduced systems or form marginalization priors, with different interpretation in each use. See [Sparse Estimation Backend Crosswalk](10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md). |
+| **Marginalization prior** | Prior produced by eliminating old variables from a fixed-lag or reduced estimator while preserving their linearized information on remaining variables. See [Schur Complement, Marginalization, and PCG](10-knowledge-base/numerical-linear-algebra/schur-complement-marginalization-pcg.md). |
+| **Covariance recovery** | Process of extracting selected uncertainty blocks from a solved information or square-root system. See [Square-Root Information and Covariance Recovery](10-knowledge-base/numerical-linear-algebra/square-root-information-and-covariance-recovery.md). |
+| **PCG** | Preconditioned conjugate gradients, an iterative method for large symmetric positive definite systems. See [Sparse Estimation Backend Crosswalk](10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md). |
+| **Linearization** | Local first-order approximation of residuals around the current estimate. See [Nonlinear Least Squares](10-knowledge-base/optimization/nonlinear-least-squares-first-principles.md). |
+| **Local coordinates** | Tangent-space coordinates used to perturb manifold states during linearization. See [Jacobians, Autodiff, and Manifold Linearization](10-knowledge-base/optimization/jacobians-autodiff-manifold-linearization.md). |
+| **Normal equations** | Linear system `J^T J delta = -J^T r` formed from a least-squares linearization; fast but can square conditioning. See [Cholesky, LDLT, and Normal Equations](10-knowledge-base/numerical-linear-algebra/cholesky-ldlt-normal-equations.md). |
+| **Damping** | Numerical regularization that changes a nonlinear step to improve local stability; it is not a physical prior. See [Solver Selection and Convergence Diagnosis](10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md). |
+| **Trust-region ratio** | Actual reduction divided by predicted reduction, used to accept or reject trial steps and update the trust region. See [Trust Region and Line Search Globalization](10-knowledge-base/optimization/trust-region-line-search-globalization.md). |
+| **Line-search step length** | Scalar step multiplier selected to reduce the objective along a chosen direction. See [Trust Region and Line Search Globalization](10-knowledge-base/optimization/trust-region-line-search-globalization.md). |
+| **Convergence criterion** | Stopping rule based on cost change, gradient norm, step norm, solver status, or iteration budget. See [Solver Selection and Convergence Diagnosis](10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md). |
+| **Nullspace** | State direction that does not change the linearized residual. See [Eigenvalues, Hessian Conditioning, and Observability](10-knowledge-base/numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md). |
+| **Gauge freedom** | Model symmetry such as global pose or scale that measurements cannot determine without a chosen gauge or prior. See [Sparse Estimation Backend Crosswalk](10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md). |
+| **Condition number** | Ratio describing how sensitive a linear solve is to perturbations. See [Sparse Estimation Backend Crosswalk](10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md). |
+| **Sparsity** | Matrix structure where most entries are zero because factors touch only a few variables. See [Sparse Matrices, Fill-In, and Ordering](10-knowledge-base/numerical-linear-algebra/sparse-matrices-fill-in-ordering.md). |
+| **Fill-in** | New nonzero entries created during sparse elimination. See [Sparse Matrices, Fill-In, and Ordering](10-knowledge-base/numerical-linear-algebra/sparse-matrices-fill-in-ordering.md). |
+| **Ordering** | Variable elimination order that changes fill-in, runtime, memory, and sometimes diagnostic visibility. See [Sparse Estimation Backend Crosswalk](10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md). |
+| **Cholesky** | Factorization for symmetric positive definite systems, often used on normal equations. See [Cholesky, LDLT, and Normal Equations](10-knowledge-base/numerical-linear-algebra/cholesky-ldlt-normal-equations.md). |
+| **LDLT** | Symmetric factorization that can expose indefinite or semidefinite behavior more directly than plain Cholesky. See [Cholesky, LDLT, and Normal Equations](10-knowledge-base/numerical-linear-algebra/cholesky-ldlt-normal-equations.md). |
+| **QR** | Least-squares factorization that works directly on `J` and avoids explicitly forming `J^T J`. See [QR, SVD, and Rank-Revealing Solvers](10-knowledge-base/numerical-linear-algebra/qr-svd-rank-revealing-solvers.md). |
+| **SVD** | Singular value decomposition used to expose rank, weak modes, and nullspace directions. See [QR, SVD, and Rank-Revealing Solvers](10-knowledge-base/numerical-linear-algebra/qr-svd-rank-revealing-solvers.md). |
+| **Square-root information** | Factor whose transpose times itself is the information matrix, commonly used for stable residual whitening and priors. See [Square-Root Information and Covariance Recovery](10-knowledge-base/numerical-linear-algebra/square-root-information-and-covariance-recovery.md). |
+| **Marginal covariance** | Uncertainty block for selected variables after accounting for eliminated or unqueried variables. See [Square-Root Information and Covariance Recovery](10-knowledge-base/numerical-linear-algebra/square-root-information-and-covariance-recovery.md). |
+| **Preconditioner** | Approximate inverse or scaling that improves PCG convergence. See [Schur Complement, Marginalization, and PCG](10-knowledge-base/numerical-linear-algebra/schur-complement-marginalization-pcg.md). |
+
 ### Safety / Certification
 
 | Term | Definition |
