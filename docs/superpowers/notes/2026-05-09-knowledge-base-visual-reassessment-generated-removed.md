@@ -2,7 +2,7 @@
 
 Date: 2026-05-09
 
-Scope: `10-knowledge-base` only. This reassessment covers all 121 live Markdown research files.
+Scope: `10-knowledge-base` only. This reassessment covers all 125 live Markdown research files.
 
 ## Assumption Change
 
@@ -22,8 +22,8 @@ Each file was reassessed as its own research note:
 
 ## Summary
 
-- Live knowledge-base Markdown files: 121.
-- Files requiring a replacement visual if generated figures are removed: 121.
+- Live knowledge-base Markdown files: 125.
+- Files requiring a replacement visual if generated figures are removed: 125.
 - Files that can safely lose the generated visual without replacement: 0.
 - Recommended default: one carefully designed replacement diagram per file.
 - Multi-diagram expansion should be reserved for later deepening passes; the current goal is baseline replacement coverage.
@@ -108,6 +108,7 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/numerical-linear-algebra/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing numerical linear algebra foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
 - `10-knowledge-base/numerical-linear-algebra/qr-svd-rank-revealing-solvers.md` - Visual needed: yes. Replacement visual: QR and SVD least-squares factorization comparison showing rank threshold, singular values, nullspace, and why normal equations hide rank.
 - `10-knowledge-base/numerical-linear-algebra/schur-complement-marginalization-pcg.md` - Visual needed: yes. Replacement visual: block matrix and factor graph showing landmark/nuisance elimination, Schur complement, reduced pose system, marginalization prior, and PCG.
+- `10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md` - Visual needed: yes. Replacement visual: sparse backend decision map from Jacobian structure to factorization, Schur, marginalization, covariance, and PCG.
 - `10-knowledge-base/numerical-linear-algebra/sparse-matrices-fill-in-ordering.md` - Visual needed: yes. Replacement visual: sparse matrix before/after permutation showing fill-in, elimination graph, ordering choices, memory/runtime impact, and real-time feasibility.
 - `10-knowledge-base/numerical-linear-algebra/square-root-information-and-covariance-recovery.md` - Visual needed: yes. Replacement visual: square-root information workflow showing whitened residuals, QR factor, information matrix, selected marginal covariance recovery, and dense inverse avoidance.
 
@@ -117,7 +118,10 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/optimization/gauss-newton-levenberg-marquardt-dogleg.md` - Visual needed: yes. Replacement visual: nonlinear step geometry comparing Gauss-Newton, LM damping, trust-region radius, dogleg path, accept/reject ratio, and failure modes.
 - `10-knowledge-base/optimization/jacobians-autodiff-manifold-linearization.md` - Visual needed: yes. Replacement visual: Jacobian-source comparison showing analytic, numeric, autodiff, manifold retraction, perturbation convention, and residual linearization.
 - `10-knowledge-base/optimization/nonlinear-least-squares-first-principles.md` - Visual needed: yes. Replacement visual: nonlinear least-squares iteration loop from residual construction to linearization, normal equations/solver, state update, convergence test, and diagnostics.
+- `10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md` - Visual needed: yes. Replacement visual: pipeline and failure-layer map from measurement model to diagnostic artifact.
+- `10-knowledge-base/optimization/objective-residual-design-and-audit.md` - Visual needed: yes. Replacement visual: residual audit flow from measurement model to whitened residual and diagnostics.
 - `10-knowledge-base/optimization/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing optimization foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
+- `10-knowledge-base/optimization/solver-selection-and-convergence-diagnosis.md` - Visual needed: yes. Replacement visual: solver choice matrix and convergence symptom routing.
 - `10-knowledge-base/optimization/trust-region-line-search-globalization.md` - Visual needed: yes. Replacement visual: trust-region versus line-search decision geometry showing local model, step candidate, ratio test, backtracking, radius update, and instability prevention.
 
 ### Probability And Statistics
@@ -189,7 +193,7 @@ Each file was reassessed as its own research note:
 
 ## Implementation Implication
 
-If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 121 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
+If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 125 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
 
 Suggested replacement order:
 
