@@ -30,19 +30,21 @@ The design audit asks whether each `r_i`, `L_i`, and `rho_i` has the intended me
 
 | Audit Item | Question To Answer | Diagnostic Artifact |
 |---|---|---|
+| measurement prediction | What quantity does the model predict, in which frame, at which timestamp, and from which state variables? | Hand-computed prediction case and measurement trace. |
 | raw residual definition | What physical quantity is predicted, what is observed, and which direction is subtracted? | Residual equation and zero-residual synthetic case. |
+| frame and unit convention | Are predicted and observed quantities expressed in the same frame, timestamp, and units before whitening? | Frame trace, transform chain, and unit table by component. |
 | sign convention | Does a positive perturbation move the residual in the expected direction? | Sign perturbation test. |
-| frame convention | Are both predicted and observed quantities expressed in the same frame at the same timestamp? | Frame trace with transform chain. |
-| units | Are residual components in pixels, meters, radians, seconds, or normalized units before whitening? | Unit table by component. |
-| dimension | Does the residual dimension match the measurement and local error representation? | Residual block shape log. |
-| covariance source | Does `Sigma` come from a measured noise model, calibration report, empirical innovation statistics, or a tuning knob? | Covariance provenance note. |
-| whitening matrix | Is `L` a square-root information factor satisfying `L^T L = Sigma^-1`? | Whitening matrix inspection and residual histogram. |
-| robust loss order | Is the robust loss applied after residuals are normalized by expected inlier noise? | Robust weight versus whitened residual plot. |
-| expected whitened residual distribution | What should inlier components look like after whitening? | Whitened residual histogram and per-factor chi-square contribution. |
+| perturbation convention | Does the residual use the same local-coordinate, left/right, and state ordering convention as the solver? | Perturbation convention note and local-coordinate check. |
+| whitening/covariance | Does `Sigma` come from the intended noise source, and is `L` applied once with `L^T L = Sigma^-1`? | Covariance provenance, whitening matrix inspection, and raw-versus-whitened residual printout. |
+| robust loss | Is the robust loss applied after residuals are normalized by expected inlier noise? | Robust weight versus whitened residual plot. |
+| numeric/autodiff agreement | Do numeric, autodiff, and analytic Jacobians agree for representative residual blocks? | Jacobian comparison report. |
 | synthetic zero-residual test | Can a constructed truth state produce residuals at or near zero? | Unit test or logged synthetic solve. |
-| sign perturbation test | Does perturbing one state variable change the residual sign and magnitude as expected? | Residual delta table. |
-| tangent finite-difference Jacobian test | Does the Jacobian match finite differences through the solver's local coordinates? | Tangent derivative report. |
-| per-factor residual histogram | Which residual family dominates the objective or produces heavy tails? | Histogram by factor type. |
+| noise simulation | Does simulated inlier noise produce the expected whitened residual distribution? | Whitened residual histogram and per-factor chi-square contribution. |
+| residual histograms | Which residual families are biased, heavy-tailed, or inconsistent after whitening? | Raw and whitened histogram by factor type. |
+| per-family cost share | Which residual family dominates the objective, and is that dominance intended? | Cost contribution table by residual family. |
+| finite-difference Jacobian spot check | Does the Jacobian match finite differences through the solver's local coordinates? | Tangent derivative report for selected columns. |
+| left/right manifold update check | Does the derivative match the solver's chosen left or right manifold update? | Left/right perturbation comparison. |
+| outlier handling | Are gating, robust loss, switch variables, or rejection policies explicit and tested? | Accepted/rejected outlier trace and robust weight plot. |
 
 ## Scale, covariance, information, and robust weights
 
