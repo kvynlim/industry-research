@@ -121,8 +121,8 @@ Domain stance: the corpus is a generic AV knowledge base. Airside autonomous veh
 
 | Metric | Value |
 |--------|-------|
-| Core research documents | 595 |
-| Reader pages | 599 |
+| Core research documents | 596 |
+| Reader pages | 600 |
 | Total lines | 334k+ |
 | Research agents spawned | 190+ |
 | Companies researched | 20 |
