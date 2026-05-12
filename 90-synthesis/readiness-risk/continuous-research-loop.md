@@ -2,6 +2,8 @@
 
 This page turns the repo's gap audits into a repeatable research loop. It exists so perception, SLAM, mapping, sensors, and platform coverage keep moving from discovery to atomic files instead of remaining as broad backlog rows.
 
+For repeatable source monitoring, use the [Active Frontier Source Registry](active-frontier-source-registry.md). It records the sites, filters, query patterns, review cadence, and automation feasibility for active frontier discovery before candidates are routed into the canonical audits or backlog.
+
 ## Loop Contract
 
 | Stage | Output | Done when |
@@ -60,6 +62,7 @@ The 2026-05-09 loops promoted thirteen high-value gap clusters into first-class 
 
 | Audit | Role |
 |---|---|
+| [Active Frontier Source Registry](active-frontier-source-registry.md) | Lists source sites, native filters, query patterns, review cadence, canonical routing rules, and semi-automation boundaries for active frontier monitoring. |
 | [Perception Coverage Audit](../../30-autonomy-stack/perception/overview/coverage-audit-2026.md) | Tracks perception methods, benchmarks, datasets, and robustness gaps. |
 | [SLAM Coverage Audit](../../30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md) | Tracks SLAM, odometry, localization, backend, sensor-fusion, and benchmark gaps. |
 | [Knowledge Gap Backlog](knowledge-gap-backlog.md) | Tracks cross-architecture gaps outside the dedicated perception and SLAM audits. |

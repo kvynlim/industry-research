@@ -302,6 +302,7 @@
 | Competitive landscape | `80-industry-intel/market-competitive/competitive-landscape.md` — All players compared, strategic quadrant |
 | Technology readiness | `90-synthesis/readiness-risk/technology-readiness.md` — TRL per POC, go/no-go criteria |
 | Knowledge gap backlog | `90-synthesis/readiness-risk/knowledge-gap-backlog.md` — P0/P1/P2 missing research files across the end-to-end AV architecture |
+| Active frontier source registry | `90-synthesis/readiness-risk/active-frontier-source-registry.md` — Manual source and query registry for perception, SLAM, world models, VLA/VLM, datasets, and validation monitoring |
 | Getting started | `90-synthesis/master/getting-started.md` — Day 1 guide with runnable code |
 
 ---
@@ -310,10 +311,12 @@
 
 | Document | Key Contribution |
 |----------|-----------------|
+| `90-synthesis/readiness-risk/active-frontier-source-registry.md` | Manual-first registry of active frontier sources, native filters, query patterns, canonical routing rules, and semi-automation boundaries |
 | Web gap expansion wave | 31 source-backed files covering 4D radar-camera occupancy, CVFusion, FMCW LiDAR predictive detection, cross-domain scene flow, TrackOcc, dynamic 3DGS/4DGS, DistillNeRF, self-supervised occupancy flow, UniScene, robust/certifiable SLAM backends, lifelong map maintenance, GPR/radar localization, probability/control foundations, adverse/OOD/FOD datasets, and validation protocols |
 | Perception/SLAM reliability gap wave | 36 source-backed files covering occupancy fusion, dynamic/free-space occupancy, radar-LiDAR adverse-weather detection, RobuRCDet, SAMFusion, STU, synthetic FOD, OVAD/OVODA, open-vocabulary panoptic occupancy, RCP-Bench, V2X sequential datasets, Scan Context, LiDAR BA factors, Kimera-Multi, COVINS/COVINS-G, D2SLAM, UWB/range SLAM, OKVIS2-X, MM-LINS, event/thermal/radar localization, continuous-time and volumetric-map foundations, detection/tracking foundations, fleet-data contracts, and perception/SLAM/map validation protocols |
 | First-principles foundations wave | 37 source-backed KB files covering Gaussian noise, Mahalanobis/chi-square gating, MAP/MLE, robust statistics, mixtures, Gauss-Newton, LM, dogleg, Jacobians, residual audits, solver convergence diagnosis, Ceres/GTSAM/g2o, Cholesky/LDLT, QR/SVD, sparse solvers and backend crosswalks, square-root information, Schur/PCG, Lie groups, projective geometry, ICP/GICP/NDT, occupancy grids, geodesy, assignment, JPDA/MHT/RFS, filters, sensor likelihoods, signal processing, radar ambiguity, CFAR, timestamping, and statistical benchmarking |
 | `90-synthesis/readiness-risk/continuous-research-loop.md` | Continuous research loop for discovery, triage, atomic-file promotion, cross-linking, verification, and next-queue selection across perception, SLAM, sensors, and mapping |
+| `90-synthesis/readiness-risk/active-frontier-source-registry.md` | Source and query registry for manually tracking active frontier publications, datasets, benchmarks, code releases, industry research, and validation sources before routing candidates into canonical audits or backlogs |
 | Perception/SLAM/sensor deep-dive wave | 33 source-backed files covering SplatAD and Gaussian/4DGS perception, latest sparse/radar-camera perception, production LIVO/SLAM, Gaussian/radar SLAM, and sensor measurement/noise fundamentals |
 | `10-knowledge-base/`, `20-av-platform/`, `30-autonomy-stack/`, `40-runtime-systems/`, `50-cloud-fleet/`, `60-safety-validation/`, `70-operations-domains/` P0 gap wave | 35 source-backed P0 gap files covering foundations, platform power/diagnostics/ruggedization, planning/control/V2X, E2E/VLA/world models, runtime/cloud operations, safety evidence, and non-airside operations domains |
 | `90-synthesis/readiness-risk/knowledge-gap-backlog.md` | Cross-architecture gap backlog from parallel research agents: P0/P1/P2 missing files across foundations, platform, autonomy, runtime/cloud, safety, operations, and industry intelligence |
@@ -390,8 +393,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Reader Markdown pages | 599 |
-| Core research documents | 595 |
+| Reader Markdown pages | 600 |
+| Core research documents | 596 |
 | Reader/research lines | 334k+ |
 | `00-start-here/` documents | 4 |
 | `10-knowledge-base/` documents | 99 |
@@ -402,7 +405,7 @@
 | `60-safety-validation/` documents | 33 |
 | `70-operations-domains/` documents | 24 |
 | `80-industry-intel/` documents | 52 |
-| `90-synthesis/` documents | 9 |
+| `90-synthesis/` documents | 10 |
 | Companies covered | 20 |
 | Technology domains | 9 |
 | Method-level SLAM library | 100 method files + overview/audit |
@@ -410,7 +413,7 @@
 | Safety and validation documents | 33 |
 | AV platform documents | 28 |
 | Knowledge base documents | 99 |
-| Synthesis documents | 9 |
+| Synthesis documents | 10 |
 | Perception documents | 141 |
 | Localization/mapping | 116 |
 | Planning documents | 15 |

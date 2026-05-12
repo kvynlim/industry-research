@@ -10,8 +10,8 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 | Scope | Count |
 |-------|-------|
-| Reader pages | 599 |
-| Core research documents | 595 |
+| Reader pages | 600 |
+| Core research documents | 596 |
 | Corpus size | 334k+ lines |
 | Companies covered | 20 |
 | Technology domains | 9 |
@@ -19,7 +19,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | Method-level perception files | 93 |
 | Safety and validation docs | 33 |
 | AV platform docs | 28 |
-| Synthesis docs | 9 |
+| Synthesis docs | 10 |
 | Knowledge base docs | 99 |
 | Papers referenced | 700+ |
 | Open-source repos evaluated | 90+ |
@@ -42,6 +42,7 @@ Airside is used as a detailed reference ODD where the corpus has the deepest dep
 | Understand readiness and risk | [Technology Readiness](90-synthesis/readiness-risk/technology-readiness.md) |
 | Prioritize gap-filling research | [Knowledge Gap Backlog](90-synthesis/readiness-risk/knowledge-gap-backlog.md) |
 | Continue the research loop | [Continuous Research Loop](90-synthesis/readiness-risk/continuous-research-loop.md) |
+| Monitor active research sources | [Active Frontier Source Registry](90-synthesis/readiness-risk/active-frontier-source-registry.md) |
 | Compare the market | [Competitive Landscape](80-industry-intel/market-competitive/competitive-landscape.md) |
 | Read the core system architecture | [Design Spec](90-synthesis/decisions/design-spec.md) |
 | Go deep on perception methods | [Method-Level Perception Library](30-autonomy-stack/perception/methods/overview.md) |
@@ -88,7 +89,7 @@ Airside is used as a detailed reference ODD where the corpus has the deepest dep
 | `60-safety-validation/` | 33 | [Certification Guide](60-safety-validation/standards-certification/certification-guide.md) | Safety case, standards, runtime assurance, verification, validation, robustness, cybersecurity, incident reporting, reliability evidence, and evidence traceability. |
 | `70-operations-domains/` | 24 | [Airside Industry Overview](70-operations-domains/airside/operations/industry-overview.md) | Airside, warehouse, yard, port, mining, agriculture, construction, road AV, delivery robot, deployment, business-case, and safety operations. |
 | `80-industry-intel/` | 52 | [Company Index](INDEX.md#a-specific-company) | AV, airside, simulation, teleoperation, autonomy company profiles, market intelligence, and regulations. |
-| `90-synthesis/` | 9 | [Master Synthesis](90-synthesis/master/master-synthesis.md) | Executive synthesis, POCs, readiness, risk, decision framework, architecture, gap backlog, and continuous research loop. |
+| `90-synthesis/` | 10 | [Master Synthesis](90-synthesis/master/master-synthesis.md) | Executive synthesis, POCs, readiness, risk, decision framework, architecture, gap backlog, continuous research loop, and active frontier source registry. |
 
 ## Domain Snapshot
 

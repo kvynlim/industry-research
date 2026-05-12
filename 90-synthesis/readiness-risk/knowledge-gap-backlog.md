@@ -2,6 +2,8 @@
 
 This backlog consolidates the 2026-05-08 parallel gap audit across the end-to-end autonomous vehicle knowledge architecture. It complements the dedicated [SLAM coverage audit](../../30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md) and [perception coverage audit](../../30-autonomy-stack/perception/overview/coverage-audit-2026.md), which already track method-level gaps in those two libraries.
 
+For ongoing discovery inputs, use the [Active Frontier Source Registry](active-frontier-source-registry.md). It keeps source monitoring separate from this backlog: candidates discovered there should be verified, deduplicated, and then routed here only when they become durable cross-domain gaps.
+
 ## Audit Method
 
 Six parallel research agents audited the corpus by architecture domain:
