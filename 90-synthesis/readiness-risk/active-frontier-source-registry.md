@@ -174,7 +174,7 @@ This registry owns source discovery only. Candidate status is maintained in the 
 | SLAM, odometry, localization, mapping methods, SLAM benchmarks | [SLAM Coverage Audit](../../30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md) |
 | World models, VLA/VLM, end-to-end driving, simulation frontier | [Knowledge Gap Backlog](knowledge-gap-backlog.md) until a dedicated audit exists |
 | Cross-track datasets and benchmarks | Owning domain audit if method-specific; otherwise [Knowledge Gap Backlog](knowledge-gap-backlog.md) |
-| Validation, safety evidence, evaluation protocols | [Knowledge Gap Backlog](knowledge-gap-backlog.md) or relevant `60-safety-validation/` page |
+| Validation, safety evidence, evaluation protocols | [Knowledge Gap Backlog](knowledge-gap-backlog.md) until a dedicated validation audit exists |
 
 Promotion rule:
 
