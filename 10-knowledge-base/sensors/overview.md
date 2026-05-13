@@ -83,10 +83,6 @@ Common failure modes include overconfident covariances, stale calibration, weath
 
 - [Sensor Likelihoods, Noise, and Error Budgets](sensor-likelihoods-noise-error-budgets.md)
 
-Operational bridge:
-
-- [Sensor-to-Algorithm Readiness Contract](../../20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md)
-
 ## Core Sources
 
 This overview synthesizes the section pages listed above; no additional external sources were used.
