@@ -59,6 +59,8 @@ For semantic map fusion, read [Semantic Mapping and Map Fusion](semantic-mapping
 
 For differentiable or neural map updates, read [Neural Implicit SLAM and Differentiable Mapping](neural-implicit-slam-differentiable-mapping-first-principles.md) after the occupancy and representation notes.
 
+For photoreal dynamic scene reconstruction, digital twins, and Gaussian or NeRF static/dynamic decomposition, read [Dynamic 4D Neural and Gaussian Reconstruction](dynamic-4d-neural-gaussian-reconstruction.md), then use [Photoreal City-Scale 4D Reconstruction](../../30-autonomy-stack/localization-mapping/overview/photoreal-city-scale-4d-reconstruction.md) to connect the foundation to SLAM, simulation, and perception pages.
+
 ## Dependency Map
 
 Mapping depends on geometry for coordinate frames and registration, state estimation for poses and covariance, sensors for measurement likelihoods, and perception for semantic observations. It hands persistent representations to localization, planning, runtime distribution, safety review, and operations.
@@ -81,6 +83,7 @@ Common failure modes include stale tiles, overconfident occupancy, semantic labe
 
 ## Pages In This Section
 
+- [Dynamic 4D Neural and Gaussian Reconstruction](dynamic-4d-neural-gaussian-reconstruction.md)
 - [Neural Implicit SLAM and Differentiable Mapping](neural-implicit-slam-differentiable-mapping-first-principles.md)
 - [Occupancy, Bayes, Evidential, and Dynamic Grids](occupancy-bayes-evidential-dynamic-grids.md)
 - [Semantic Mapping and Map Fusion](semantic-mapping-and-map-fusion-first-principles.md)

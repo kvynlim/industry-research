@@ -13,6 +13,12 @@
 
 ---
 
+## Cross-Section Reading Path
+
+For photoreal 4D reconstruction, Gaussian maps, dynamic neural scene assets, and feed-forward splatting, start with [Photoreal City-Scale 4D Reconstruction](photoreal-city-scale-4d-reconstruction.md). That page separates SLAM pose sources from reconstruction assets and links into the relevant knowledge-base, simulation, perception, and world-model pages.
+
+---
+
 ## 1. Map-Free / Map-Lite Autonomous Driving
 
 ### 1.1 The Problem with HD Maps

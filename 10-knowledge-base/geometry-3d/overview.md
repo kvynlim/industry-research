@@ -59,7 +59,7 @@ For camera and projection issues, read [Camera Projective Geometry, PnP, and Tri
 
 For calibration and registration reviews, read [Multi-Sensor Calibration Observability](multi-sensor-calibration-observability.md), [Sensor Calibration and Time Synchronization](sensor-calibration-time-synchronization.md), and [Point Cloud Registration Math: ICP, NDT, and GICP](point-cloud-registration-math-icp-ndt-gicp.md). For the operational handoff before algorithms consume calibrated data, use [Sensor-to-Algorithm Readiness Contract](../../20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md).
 
-For learned 3D perception geometry, read [PointPillars](pointpillars.md), [3D Object Detection Losses and Assignment](3d-object-detection-losses-assignment-first-principles.md), and [Point Cloud Segmentation Losses and Metrics](point-cloud-segmentation-losses-metrics-first-principles.md).
+For learned 3D perception and reconstruction geometry, read [PointPillars](pointpillars.md), [3D Object Detection Losses and Assignment](3d-object-detection-losses-assignment-first-principles.md), [Point Cloud Segmentation Losses and Metrics](point-cloud-segmentation-losses-metrics-first-principles.md), and [Feed-Forward 3D Reconstruction and Splatting](feed-forward-3d-reconstruction-and-splatting.md).
 
 ## Dependency Map
 
@@ -111,6 +111,7 @@ Point-cloud perception and learned 3D representations:
 - [Point Cloud Segmentation Losses and Metrics](point-cloud-segmentation-losses-metrics-first-principles.md)
 - [PointPillars](pointpillars.md)
 - [Volume Rendering, Radiance Fields, and Gaussian Splatting](volume-rendering-radiance-fields-gaussian-splatting.md)
+- [Feed-Forward 3D Reconstruction and Splatting](feed-forward-3d-reconstruction-and-splatting.md)
 
 ## Core Sources
 
