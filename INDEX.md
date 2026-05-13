@@ -138,6 +138,7 @@
 | IMU, GNSS, and RTK hardware | `20-av-platform/sensors/imu-gnss-rtk.md` | Receiver/IMU classes, PPS/PTP wiring, antenna lever arms, correction transport, outage modes, spoofing/jamming health |
 | Thermal/IR cameras | `20-av-platform/sensors/thermal-ir-cameras.md` | FLIR Boson 640, LWIR fusion, night personnel, jet blast |
 | Multi-LiDAR calibration | `20-av-platform/sensors/multi-lidar-calibration.md` | Target-based + targetless (ICP, feature, learning-based), GTSAM-integrated online refinement, thermal drift compensation (-10C to +50C), PTP/PPS synchronization, overlap optimization for 4-8 RoboSense, calibration health monitoring, ISO 3691-4 traceability, 400-800h/year labor savings for 20+ vehicle fleet |
+| Sensor-to-algorithm readiness | `20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md` | Pre-algorithm contract for calibration, timestamp, TF, preprocessing, health, provenance, and reject/degrade gates before perception, fusion, SLAM, tracking, occupancy, mapping, and planning consume sensor data |
 | Sensor degradation & health monitoring | `20-av-platform/sensors/sensor-degradation-health-monitoring.md` | Degradation taxonomy (optical/mechanical/environmental/electronic), 10 airside contamination sources, per-sensor diagnostics (LiDAR 7-check, radar SNR/coverage, thermal NUC/dead pixel, camera exposure/blur), cross-sensor consistency scoring, EMA-based temporal tracking with z-score anomaly, response matrix (4 sensors × 4 severity), fleet health analytics (zone correlation, seasonal patterns), predictive maintenance (linear extrapolation), cleaning schedules, 1 Hz ROS monitoring at <2ms, $35K/11 weeks |
 | Automated sensor cleaning | `20-av-platform/sensors/automated-sensor-cleaning.md` | Physical self-maintenance for 16-20 hr/day tarmac ops: cleaning modality comparison (air curtains, air burst, wipers, washer fluid, ultrasonic, heated windows, hydrophobic coatings, UV photocatalytic), contamination-to-cleaning mapping (de-icing glycol requires chemical cleaning — air jets spread it), per-sensor architecture (germanium thermal windows air-only, no wipers), health monitor closed-loop integration, power/weight budget (15-40W, 1.5-3.0 kg), $200-500/vehicle hardware, 15-25% availability improvement, 60-80% fewer depot cleaning visits |
 | Solid-state LiDAR & photonics | `20-av-platform/sensors/solid-state-lidar-photonics.md` | FMCW vs ToF measurement principles, silicon photonics integration (SiPh LiDAR-on-chip), OPA beam steering (GHz point-to-point, 0.01-0.05° angular resolution), MEMS mirror reliability, flash LiDAR for docking, per-point velocity (jet blast detection, zero-latency approaching-object detection), 1550nm eye safety (100x margin), Aeva Atlas/Voyant Helium/SiLC comparison, 50-200x longer MTBF (100K+ hrs), $150-450K/year fleet savings, Orin GTSAM velocity factor, adaptive resolution for active perception, phased migration strategy, $110-175K over 48 weeks |
@@ -230,6 +231,7 @@
 | Geometry and sensor foundations | `10-knowledge-base/geometry-3d/overview.md` | Frames, projection, Lie groups, registration, calibration, and sensor geometry |
 | Mapping foundations | `10-knowledge-base/mapping/overview.md` | Occupancy, semantic layers, volumetric maps, fusion policy, dynamic/static separation, and map QA |
 | Sensor foundations | `10-knowledge-base/sensors/overview.md` | Measurement likelihoods, error budgets, observability limits, degradation modes, and modality handoff assumptions |
+| Sensor readiness handoff | `20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md` | Operational bridge from sensor foundations into algorithm input acceptance gates |
 | Signal processing foundations | `10-knowledge-base/signal-processing/overview.md` | Sampling, filtering, FFT, radar processing, CFAR, aliasing, windowing, and clutter contracts |
 | Controls foundations | `10-knowledge-base/controls/overview.md` | Closed-loop tracking, vehicle dynamics, MPC/iLQR, constraints, actuator limits, and safety filters |
 | Robotics foundations | `10-knowledge-base/robotics/overview.md` | Robot/task vocabulary, route/behavior/motion-planning boundaries, Lanelet2 concepts, and embodiment assumptions |
@@ -311,6 +313,7 @@
 
 | Document | Key Contribution |
 |----------|-----------------|
+| `20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md` | Bridge contract for sensor acquisition, calibration, synchronization, preprocessing, health, provenance, and algorithm input acceptance before perception/SLAM/fusion consumers run |
 | `90-synthesis/readiness-risk/active-frontier-source-registry.md` | Manual-first registry of active frontier sources, native filters, query patterns, canonical routing rules, and semi-automation boundaries |
 | Web gap expansion wave | 31 source-backed files covering 4D radar-camera occupancy, CVFusion, FMCW LiDAR predictive detection, cross-domain scene flow, TrackOcc, dynamic 3DGS/4DGS, DistillNeRF, self-supervised occupancy flow, UniScene, robust/certifiable SLAM backends, lifelong map maintenance, GPR/radar localization, probability/control foundations, adverse/OOD/FOD datasets, and validation protocols |
 | Perception/SLAM reliability gap wave | 36 source-backed files covering occupancy fusion, dynamic/free-space occupancy, radar-LiDAR adverse-weather detection, RobuRCDet, SAMFusion, STU, synthetic FOD, OVAD/OVODA, open-vocabulary panoptic occupancy, RCP-Bench, V2X sequential datasets, Scan Context, LiDAR BA factors, Kimera-Multi, COVINS/COVINS-G, D2SLAM, UWB/range SLAM, OKVIS2-X, MM-LINS, event/thermal/radar localization, continuous-time and volumetric-map foundations, detection/tracking foundations, fleet-data contracts, and perception/SLAM/map validation protocols |
@@ -330,6 +333,7 @@
 | `50-cloud-fleet/data-platform/cloud-backend-infrastructure.md` | Fleet data backend: three-zone data lake, S3+Lambda ingestion, MQTT streaming telemetry, Airflow orchestration, rosbag K8s processing, Feast feature store, auto-labeling, multi-airport isolation, $200-460/vehicle/month |
 | `30-autonomy-stack/localization-mapping/maps/map-construction-pipeline.md` | End-to-end HD map construction: survey drives → multi-session SLAM → alignment → annotation → Lanelet2 → QA → deployment. 5-7 days at $20-35K per airport, AMDB bootstrap, SAM+CLIP auto-annotation |
 | `20-av-platform/compute/edge-cloud-hybrid-inference.md` | Three-tier compute (vehicle+edge+cloud): model placement, split inference, graceful degradation, Triton edge server, $2,500/vehicle shared edge, airport private 5G advantage |
+| `20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md` | Sensor readiness contract: acquisition timestamps, calibration package, frame tree, preprocessing, health state, provenance, modality-specific checks, algorithm handoff table, reject/degrade rules, and evidence artifacts |
 | `20-av-platform/sensors/automated-sensor-cleaning.md` | Physical self-maintenance: air curtains + burst + washer + wiper + heated windows, contamination mapping, germanium-safe thermal cleaning, health monitor closed-loop, $200-500/vehicle, 15-25% availability gain |
 | `20-av-platform/sensors/solid-state-lidar-photonics.md` | Solid-state LiDAR: FMCW per-point velocity, silicon photonics OPA, Voyant Helium/Aeva Atlas/SiLC comparison, 100K+ hr MTBF, 1550nm eye safety, $150-450K/year fleet savings, phased migration strategy |
 | `20-av-platform/networking-connectivity/deterministic-networking-tsn.md` | Deterministic networking: IEEE 802.1 TSN (gPTP <100ns, TAS scheduling, FRER redundancy), safety messages <10μs (50-200x faster than CAN), mixed-criticality scheduling, CAN-TSN gateway, 5G TSN bridge, $230-440/vehicle |
@@ -392,12 +396,12 @@
 
 | Metric | Value |
 |--------|-------|
-| Reader Markdown pages | 600 |
-| Core research documents | 596 |
+| Reader Markdown pages | 601 |
+| Core research documents | 597 |
 | Reader/research lines | 334k+ |
 | `00-start-here/` documents | 4 |
 | `10-knowledge-base/` documents | 99 |
-| `20-av-platform/` documents | 28 |
+| `20-av-platform/` documents | 29 |
 | `30-autonomy-stack/` documents | 315 |
 | `40-runtime-systems/` documents | 10 |
 | `50-cloud-fleet/` documents | 21 |
@@ -410,7 +414,7 @@
 | Method-level SLAM library | 100 method files + overview/audit |
 | Method-level perception files | 93 |
 | Safety and validation documents | 33 |
-| AV platform documents | 28 |
+| AV platform documents | 29 |
 | Knowledge base documents | 99 |
 | Synthesis documents | 10 |
 | Perception documents | 141 |

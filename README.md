@@ -10,15 +10,15 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 
 | Scope | Count |
 |-------|-------|
-| Reader pages | 600 |
-| Core research documents | 596 |
+| Reader pages | 601 |
+| Core research documents | 597 |
 | Corpus size | 334k+ lines |
 | Companies covered | 20 |
 | Technology domains | 9 |
 | Method-level SLAM library | 100 method files + overview/audit |
 | Method-level perception files | 93 |
 | Safety and validation docs | 33 |
-| AV platform docs | 28 |
+| AV platform docs | 29 |
 | Synthesis docs | 10 |
 | Knowledge base docs | 99 |
 | Papers referenced | 700+ |
@@ -73,6 +73,7 @@ Airside is used as a detailed reference ODD where the corpus has the deepest dep
 | Machine learning foundations | [Machine Learning Foundations](10-knowledge-base/machine-learning/overview.md) | Starts from linear models and gradients through CNN/RNN/transformer/SSM foundations, self-supervision, world models, calibration, evaluation, and deployment review. |
 | Control and decision foundations | [Control Foundations](10-knowledge-base/controls/overview.md) | Starts the foundations path for closed-loop tracking, vehicle dynamics, MPC/iLQR, constraints, MDP/POMDP decision models, safety filters, and planner-controller review. |
 | Sensor and estimation fundamentals | [Sensor Foundations](10-knowledge-base/sensors/overview.md) | Starts the sensor-model foundation path, with supporting links into geometry, state estimation, signal processing, timing, calibration, and wheel odometry. |
+| Sensor readiness before algorithms | [Sensor-to-Algorithm Readiness Contract](20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md) | Consolidates calibration, synchronization, preprocessing, health, provenance, and fail-closed gates before perception, fusion, SLAM, tracking, occupancy, mapping, or planning consumes sensor-derived inputs. |
 | Perception validation datasets | [FOD and Airport Apron Detection Datasets](30-autonomy-stack/perception/datasets-benchmarks/fod-and-airport-apron-detection-datasets.md) | Connects MUSES, STU 3D anomaly segmentation, RCP-Bench, V2X datasets, sensor-corruption benchmarks, open-world/OOD anomaly segmentation, FOD datasets, synthetic FOD validation, FOD validation, and knowledge-base evaluation protocols. |
 | End-to-end architecture gaps | [Knowledge Gap Backlog](90-synthesis/readiness-risk/knowledge-gap-backlog.md) | Tracks P0/P1/P2 missing research files across fundamentals, platform, autonomy, runtime/cloud, safety, operations, and industry intelligence. |
 
@@ -82,7 +83,7 @@ Airside is used as a detailed reference ODD where the corpus has the deepest dep
 |---------|------|----------|---------------|
 | `00-start-here/` | 4 | [Reading Guide](00-start-here/reading-guide.md) | Reader entry points and orientation material. |
 | `10-knowledge-base/` | 125 | [Probability and Statistics Foundations](10-knowledge-base/probability-statistics/overview.md) | First-principles technical notes: probability/statistics, optimization, numerical linear algebra, geometry, mapping, state estimation, sensor likelihoods, signal processing, controls, robotics, ML, calibration, timing, continuous-time trajectories, and detection/tracking evidence. |
-| `20-av-platform/` | 28 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, connectivity, drive-by-wire, power, diagnostics, ruggedization, and edge-cloud architecture. |
+| `20-av-platform/` | 29 | [NVIDIA Orin Technical](20-av-platform/compute/nvidia-orin-technical.md) | Compute, sensors, sensor-to-algorithm readiness, connectivity, drive-by-wire, power, diagnostics, ruggedization, and edge-cloud architecture. |
 | `30-autonomy-stack/` | 315 | [World Models Overview](30-autonomy-stack/world-models/overview.md) | World models, perception, method-level perception, planning, localization, SLAM, simulation, VLA/VLM, E2E driving, and multi-agent systems. |
 | `40-runtime-systems/` | 10 | [Production ML Deployment](40-runtime-systems/ml-deployment/production-ml-deployment.md) | ML deployment, ROS/Autoware, observability, teleoperation, software operations, and vehicle-side data logging. |
 | `50-cloud-fleet/` | 21 | [Cloud Backend Infrastructure](50-cloud-fleet/data-platform/cloud-backend-infrastructure.md) | Data engines, fleet data loops, MLOps, OTA/SUMS, observability, map operations, data governance, perception/SLAM reliability telemetry, and fleet management. |
@@ -118,7 +119,7 @@ Airside is used as a detailed reference ODD where the corpus has the deepest dep
 | AV Platform | Docs |
 |-------------|------|
 | Compute | 7 |
-| Sensors | 13 |
+| Sensors | 14 |
 | Networking/connectivity | 3 |
 | Drive-by-wire | 2 |
 | Power/electrical | 1 |
