@@ -11,7 +11,7 @@ priority:
   reason: "Gaussian-LIC and Gaussian-LIC2 is rated for neural or Gaussian SLAM research and future dense map representation workflows."
 method-priority:end -->
 
-Related docs: [GS-LIVM](gs-livm.md), [GLIM](glim.md), [LIO-SAM](lio-sam.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
+Related docs: [Photoreal City-Scale 4D Reconstruction](../overview/photoreal-city-scale-4d-reconstruction.md), [GS-LIVM](gs-livm.md), [GLIM](glim.md), [LIO-SAM](lio-sam.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [Dynamic 4D Neural/Gaussian Reconstruction](../../../10-knowledge-base/mapping/dynamic-4d-neural-gaussian-reconstruction.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary
 
@@ -20,6 +20,8 @@ Gaussian-LIC is a LiDAR-inertial-camera Gaussian SLAM line that couples robust m
 Gaussian-LIC2 extends the line with a continuous-time trajectory optimization framework, real-time RGB and depth novel-view rendering, LiDAR-supervised Gaussian optimization, and lightweight zero-shot depth completion to fill LiDAR-blind areas. It also explores feeding Gaussian-map photometric constraints back into odometry under LiDAR degradation.
 
 For AVs, this family is more relevant than camera-only Gaussian SLAM because LiDAR and IMU provide metric geometry and high-rate motion constraints. It is still a research mapping stack, not a production AV localizer by itself.
+
+Within the broader photoreal 4D reconstruction stack, Gaussian-LIC and Gaussian-LIC2 belong on the SLAM side of the boundary because they estimate motion while maintaining a renderable Gaussian map. Street Gaussians, PVG, S3Gaussian, EmerNeRF, OmniRe, OG-Gaussian, and DrivingGaussian are better treated as reconstruction or simulation-support methods unless they include a live pose-estimation loop.
 
 ## Core Idea
 

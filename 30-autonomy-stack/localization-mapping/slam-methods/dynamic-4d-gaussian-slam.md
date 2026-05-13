@@ -11,7 +11,7 @@ priority:
   reason: "Dynamic 4D Gaussian SLAM is rated for neural or Gaussian SLAM research and future dense map representation workflows."
 method-priority:end -->
 
-Related docs: [WildGS-SLAM](wildgs-slam.md), [Dynamic-Object-Aware SLAM](dynamic-object-aware-slam.md), [Semantic SLAM](semantic-slam.md), [Splat-SLAM](splat-slam.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
+Related docs: [Photoreal City-Scale 4D Reconstruction](../overview/photoreal-city-scale-4d-reconstruction.md), [Dynamic 4D Neural/Gaussian Reconstruction](../../../10-knowledge-base/mapping/dynamic-4d-neural-gaussian-reconstruction.md), [WildGS-SLAM](wildgs-slam.md), [Dynamic-Object-Aware SLAM](dynamic-object-aware-slam.md), [Semantic SLAM](semantic-slam.md), [Splat-SLAM](splat-slam.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary
 
@@ -20,6 +20,8 @@ Dynamic 4D Gaussian SLAM is a 2025-2026 research wave that extends Gaussian SLAM
 The page covers the main taxonomy: 4DGS-SLAM, 4DTAM, D4DGS-SLAM, Dy3DGS-SLAM, and DAGS-SLAM. These systems differ in sensors and modeling choices, but they share the same core problem: dynamic objects can corrupt pose tracking and pollute maps, while modeling them increases dimensionality, ambiguity, and compute.
 
 For AVs and airside autonomy, dynamic Gaussian SLAM is important but early. It is most useful for research, offline dynamic-scene reconstruction, map cleaning, and simulation. It is not yet a production localization replacement for multi-sensor state estimation.
+
+Keep the boundary explicit: dynamic Gaussian SLAM estimates pose while maintaining a time-aware Gaussian map. Dynamic street reconstruction methods such as Street Gaussians, DrivingGaussian, OmniRe, S3Gaussian, PVG, OG-Gaussian, and EmerNeRF usually consume externally estimated poses, tracks, or priors and produce renderable 4D scene assets. They are important adjacent methods, but they should not be counted as SLAM backbones without a live tracking and mapping loop.
 
 ## Core Idea
 

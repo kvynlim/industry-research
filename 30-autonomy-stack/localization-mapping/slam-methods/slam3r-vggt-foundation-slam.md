@@ -11,7 +11,7 @@ priority:
   reason: "SLAM3R and VGGT Foundation SLAM is rated for neural or Gaussian SLAM research and future dense map representation workflows."
 method-priority:end -->
 
-Related docs: [MASt3R-SLAM](mast3r-slam.md), [DROID-SLAM](droid-slam.md), [DPVO](dpvo.md), [ORB-SLAM2 / ORB-SLAM3](orb-slam2-orb-slam3.md), [NeRF-SLAM](nerf-slam.md), and [Gaussian SLAM / MonoGS](gs-slam-monogs.md).
+Related docs: [Photoreal City-Scale 4D Reconstruction](../overview/photoreal-city-scale-4d-reconstruction.md), [Feed-Forward 3D Reconstruction and Splatting](../../../10-knowledge-base/geometry-3d/feed-forward-3d-reconstruction-and-splatting.md), [MASt3R-SLAM](mast3r-slam.md), [DROID-SLAM](droid-slam.md), [DPVO](dpvo.md), [ORB-SLAM2 / ORB-SLAM3](orb-slam2-orb-slam3.md), [NeRF-SLAM](nerf-slam.md), and [Gaussian SLAM / MonoGS](gs-slam-monogs.md).
 
 **Last updated:** 2026-05-09
 
@@ -27,6 +27,8 @@ The common idea is simple but disruptive: use a feed-forward 3D foundation model
 | VGGT-SLAM | VGGT submaps from uncalibrated monocular video | SL(4) projective submap alignment and loop constraints |
 | VGGT-SLAM++ | VGGT front end plus DEM graph construction | DEM tiles, DINOv2 embeddings, covisibility retrieval, local bundle adjustment |
 | ViSTA-SLAM | Lightweight symmetric two-view association model | Sim(3) pose graph with loop closure |
+
+Adjacent feed-forward splatting methods such as pixelSplat and AnySplat are relevant because they also predict 3D structure or Gaussian primitives from sparse images. They should be read as reconstruction and initialization relatives, not as SLAM systems, unless wrapped with streaming state, submap management, loop closure, and trajectory optimization.
 
 For AV and airside use, these are high-interest research systems for dense reconstruction, visual map inspection, and foundation-model benchmarking. They are not yet a substitute for calibrated LiDAR-inertial or visual-inertial production localization.
 
