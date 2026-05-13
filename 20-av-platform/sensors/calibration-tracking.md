@@ -4,6 +4,8 @@
 **Analyst:** Perception Engineering Review
 **Source code verified against:** `/home/kvyn/airside-ws/src/airside_perception/`
 
+**Pre-algorithm handoff:** Use the [Sensor-to-Algorithm Readiness Contract](sensor-to-algorithm-readiness-contract.md) to decide whether calibration, timestamp, TF, preprocessing, health, and provenance evidence is sufficient before downstream algorithms consume sensor-derived inputs.
+
 ---
 
 ## Part A: Calibration & Synchronization (Recommendations #6-8)

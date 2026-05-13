@@ -8,6 +8,8 @@
 
 **Summary:** Airport airside autonomous vehicles operate 16-20 hours/day in harsh conditions — jet exhaust, de-icing chemicals, hydraulic fluid mist, UV exposure, vibration from uneven tarmac, temperature cycles from -10°C to +50°C. Sensor degradation is not hypothetical: LiDAR lens contamination from bug splatter, de-icing residue, and tarmac grime reduces point cloud integrity by up to 75%. 4D radar radome ice accumulation or chemical film buildup degrades detection range by 15-30%. Thermal camera NUC (non-uniformity correction) drift causes false detection patterns after 100+ hours without recalibration. Without automated health monitoring, degraded sensors produce confident but incorrect detections — more dangerous than sensor failure, which at least triggers a known-safe fallback. This document covers self-diagnostic methods for each sensor modality, cross-sensor consistency checking, fleet-level degradation pattern mining, automated maintenance scheduling, and integration with the Simplex safety architecture. The key finding: **a lightweight sensor health monitor running at 1 Hz (total <2ms on Orin) can detect 90%+ of degradation modes before they impact perception accuracy**, using a combination of per-sensor statistical anomaly detection and cross-sensor consistency verification.
 
+Use the [Sensor-to-Algorithm Readiness Contract](sensor-to-algorithm-readiness-contract.md) to connect these health states to the acceptance, rejection, and degraded-mode rules for perception, fusion, SLAM, localization, tracking, occupancy, mapping, and planning-facing consumers.
+
 ---
 
 ## Table of Contents

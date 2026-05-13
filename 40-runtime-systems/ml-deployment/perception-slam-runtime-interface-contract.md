@@ -94,6 +94,7 @@ Use ROS diagnostics for component status and OpenTelemetry-compatible metrics/lo
 
 ## Related Repository Docs
 
+- `20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md`
 - `40-runtime-systems/ros-autoware/autoware-localization-timing-diagnostics.md`
 - `40-runtime-systems/middleware/topic-freshness-and-stale-data-contracts.md`
 - `50-cloud-fleet/observability/slam-timing-health-dashboard.md`

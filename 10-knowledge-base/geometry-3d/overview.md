@@ -57,7 +57,7 @@ For frame and pose debugging, start with [Coordinate Frames, Projections, and SE
 
 For camera and projection issues, read [Camera Projective Geometry, PnP, and Triangulation](camera-projective-geometry-pnp-triangulation.md), then [Camera Imaging, Noise, and Calibration](camera-imaging-noise-calibration.md).
 
-For calibration and registration reviews, read [Multi-Sensor Calibration Observability](multi-sensor-calibration-observability.md), [Sensor Calibration and Time Synchronization](sensor-calibration-time-synchronization.md), and [Point Cloud Registration Math: ICP, NDT, and GICP](point-cloud-registration-math-icp-ndt-gicp.md).
+For calibration and registration reviews, read [Multi-Sensor Calibration Observability](multi-sensor-calibration-observability.md), [Sensor Calibration and Time Synchronization](sensor-calibration-time-synchronization.md), and [Point Cloud Registration Math: ICP, NDT, and GICP](point-cloud-registration-math-icp-ndt-gicp.md). For the operational handoff before algorithms consume calibrated data, use [Sensor-to-Algorithm Readiness Contract](../../20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md).
 
 For learned 3D perception geometry, read [PointPillars](pointpillars.md), [3D Object Detection Losses and Assignment](3d-object-detection-losses-assignment-first-principles.md), and [Point Cloud Segmentation Losses and Metrics](point-cloud-segmentation-losses-metrics-first-principles.md).
 

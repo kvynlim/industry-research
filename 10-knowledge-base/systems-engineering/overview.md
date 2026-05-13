@@ -55,7 +55,7 @@ The practical model is: `architecture contract -> timing and data lineage -> val
 
 For architecture and system tradeoffs, start with [Architecture Innovations](architecture-innovations.md), then read [Theoretical Foundations](theoretical-foundations.md) to connect integration choices to autonomy concepts.
 
-For timing and synchronization reviews, read [Time Sync, PTP, Timestamping, and Latency Models](time-sync-ptp-timestamping-latency-models.md), then [Time Synchronization Error Budgets](time-synchronization-error-budgets.md).
+For timing and synchronization reviews, read [Time Sync, PTP, Timestamping, and Latency Models](time-sync-ptp-timestamping-latency-models.md), then [Time Synchronization Error Budgets](time-synchronization-error-budgets.md). To see how timing, calibration, preprocessing, health, and provenance become algorithm input gates, use [Sensor-to-Algorithm Readiness Contract](../../20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md).
 
 For validation and release evidence, read [Benchmarking Metrics and Statistical Validity](benchmarking-metrics-statistical-validity.md), then connect metric claims to the runtime contracts used in deployment.
 

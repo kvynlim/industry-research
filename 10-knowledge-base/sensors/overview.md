@@ -57,7 +57,7 @@ For measurement likelihoods and noise, start with [Sensor Likelihoods, Noise, an
 
 For degradation review, use the same page as a checklist for weather, occlusion, multipath, calibration drift, saturation, and observability limitations.
 
-For operational handoff, read the sensor page alongside fleet calibration and runtime operations material so the measurement contract is visible in logs and alerts.
+For operational handoff, read the sensor page alongside the [Sensor-to-Algorithm Readiness Contract](../../20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md), fleet calibration, and runtime operations material so the measurement contract is visible in logs, alerts, and downstream algorithm acceptance gates.
 
 ## Dependency Map
 
@@ -82,6 +82,10 @@ Common failure modes include overconfident covariances, stale calibration, weath
 ## Pages In This Section
 
 - [Sensor Likelihoods, Noise, and Error Budgets](sensor-likelihoods-noise-error-budgets.md)
+
+Operational bridge:
+
+- [Sensor-to-Algorithm Readiness Contract](../../20-av-platform/sensors/sensor-to-algorithm-readiness-contract.md)
 
 ## Core Sources
 
