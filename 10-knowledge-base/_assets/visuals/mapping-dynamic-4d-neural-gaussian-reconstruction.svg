@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc" data-diagram-kind="representation-comparison">
+  <title id="title">dynamic 4D scene decomposition</title>
+  <desc id="desc">dynamic 4D scene decomposition showing pose and calibration inputs, static infrastructure layer, dynamic actor layer, temporal model, rendered outputs, and validation boundary.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="720" fill="#f8fafc"/>
+  <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
+  <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">dynamic 4D scene decomposition</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">dynamic 4D scene decomposition showing pose and calibration inputs, static infrastructure layer, dynamic actor layer, temporal model, rendered outp...</text>
+  <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
+
+<!-- layout:representation-comparison -->
+<rect x="120" y="196" width="320" height="330" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+<text x="280" y="236" text-anchor="middle" font-size="14" font-weight="600" fill="#2563eb">voxels</text>
+<rect x="174" y="272" width="212" height="72" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="280" y="314" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">pose</text>
+
+<rect x="210" y="372" width="27" height="27" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="242" y="372" width="27" height="27" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="274" y="372" width="27" height="27" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="306" y="372" width="27" height="27" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="338" y="372" width="27" height="27" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="210" y="404" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="242" y="404" width="27" height="27" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="274" y="404" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="306" y="404" width="27" height="27" rx="5" fill="#dbeafe" stroke="#cbd5e1"/>
+<rect x="338" y="404" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="210" y="436" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="242" y="436" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="274" y="436" width="27" height="27" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="306" y="436" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="338" y="436" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="210" y="468" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="242" y="468" width="27" height="27" rx="5" fill="#dbeafe" stroke="#cbd5e1"/>
+<rect x="274" y="468" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="306" y="468" width="27" height="27" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="338" y="468" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+
+<polyline points="188,488 270,438 374,476" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="540" y="196" width="320" height="330" rx="16" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+<text x="700" y="236" text-anchor="middle" font-size="14" font-weight="600" fill="#16a34a">surfels</text>
+<rect x="594" y="272" width="212" height="72" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="700" y="314" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">calibration inputs</text>
+
+<rect x="630" y="372" width="27" height="27" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="662" y="372" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="694" y="372" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="726" y="372" width="27" height="27" rx="5" fill="#dbeafe" stroke="#cbd5e1"/>
+<rect x="758" y="372" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="630" y="404" width="27" height="27" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="662" y="404" width="27" height="27" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="694" y="404" width="27" height="27" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="726" y="404" width="27" height="27" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="758" y="404" width="27" height="27" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="630" y="436" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="662" y="436" width="27" height="27" rx="5" fill="#dbeafe" stroke="#cbd5e1"/>
+<rect x="694" y="436" width="27" height="27" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="726" y="436" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="758" y="436" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="630" y="468" width="27" height="27" rx="5" fill="#dbeafe" stroke="#cbd5e1"/>
+<rect x="662" y="468" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="694" y="468" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="726" y="468" width="27" height="27" rx="5" fill="#16a34a" stroke="#cbd5e1"/>
+<rect x="758" y="468" width="27" height="27" rx="5" fill="#dbeafe" stroke="#cbd5e1"/>
+
+<polyline points="608,488 690,438 794,476" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="960" y="196" width="320" height="330" rx="16" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+<text x="1120" y="236" text-anchor="middle" font-size="14" font-weight="600" fill="#ea580c">octree</text>
+<rect x="1014" y="272" width="212" height="72" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="1120" y="314" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">static</text>
+<text x="1120" y="332" text-anchor="middle" font-size="15" font-weight="700" fill="#172033">infrastructure</text>
+
+<rect x="1050" y="372" width="27" height="27" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1082" y="372" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1114" y="372" width="27" height="27" rx="5" fill="#dbeafe" stroke="#cbd5e1"/>
+<rect x="1146" y="372" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1178" y="372" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1050" y="404" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1082" y="404" width="27" height="27" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1114" y="404" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1146" y="404" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1178" y="404" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1050" y="436" width="27" height="27" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1082" y="436" width="27" height="27" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1114" y="436" width="27" height="27" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1146" y="436" width="27" height="27" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1178" y="436" width="27" height="27" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1050" y="468" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1082" y="468" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1114" y="468" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="1146" y="468" width="27" height="27" rx="5" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="1178" y="468" width="27" height="27" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+
+<polyline points="1028,488 1110,438 1214,476" fill="none" stroke="#ea580c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+</svg>

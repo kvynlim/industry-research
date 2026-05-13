@@ -1,5 +1,11 @@
 # Feed-Forward 3D Reconstruction and Splatting
 
+<!-- kb-visual:start -->
+![Feed-Forward 3D Reconstruction and Splatting curated visual](../_assets/visuals/geometry-3d-feed-forward-3d-reconstruction-and-splatting.svg)
+
+*Visual: feed-forward reconstruction pipeline from sparse images through learned camera, depth, pointmap, and Gaussian prediction to held-out rendering and geometry validation.*
+<!-- kb-visual:end -->
+
 Feed-forward 3D reconstruction predicts geometry or renderable scene primitives in one or a few neural-network passes. It is different from classical SfM, bundle adjustment, SLAM, NeRF, and optimization-based 3D Gaussian Splatting. Instead of optimizing a scene from scratch, the model learns a prior over geometry and uses that prior to infer camera parameters, depth, pointmaps, tracks, or Gaussian primitives from sparse images.
 
 The benefit is speed and robustness to limited views. The risk is that the model can hallucinate plausible structure where the measurements are weak.

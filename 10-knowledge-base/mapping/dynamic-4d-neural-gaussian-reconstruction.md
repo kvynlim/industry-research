@@ -1,8 +1,16 @@
 # Dynamic 4D Neural and Gaussian Reconstruction
 
+<!-- kb-visual:start -->
+![Dynamic 4D Neural and Gaussian Reconstruction curated visual](../_assets/visuals/mapping-dynamic-4d-neural-gaussian-reconstruction.svg)
+
+*Visual: dynamic 4D scene decomposition showing pose and calibration inputs, static infrastructure layer, dynamic actor layer, temporal model, rendered outputs, and validation boundary.*
+<!-- kb-visual:end -->
+
 Dynamic 4D reconstruction builds a renderable representation of a scene over space and time. In autonomous driving and airside domains, the hard part is not only rendering the background. The hard part is separating persistent infrastructure, parked-but-movable assets, active vehicles, people, shadows, weather artifacts, and dynamic appearance changes.
 
 This page covers the method taxonomy behind photoreal dynamic NeRF and Gaussian reconstruction. It is a mapping and reconstruction foundation page, not a production localization recommendation.
+
+Most methods in this page consume poses, calibrations, object tracks, occupancy priors, or other reconstruction inputs and then optimize a renderable 4D scene. Treat their outputs as simulation, visual QA, map-cleaning, or digital-twin assets. They do not replace pose-graph SLAM, localization state estimation, or certified map evidence unless they include a live tracking-and-mapping loop with validated uncertainty and health behavior.
 
 ## Related Docs
 
@@ -111,3 +119,6 @@ This is relevant when LiDAR coverage is sparse or unavailable. It also couples r
 - Chen et al., "Periodic Vibration Gaussian: Dynamic Urban Scene Reconstruction and Real-time Rendering." https://arxiv.org/abs/2311.18561
 - Shen et al., "OG-Gaussian: Occupancy Based Street Gaussians for Autonomous Driving." https://arxiv.org/abs/2502.14235
 - Sun et al., "SplatFlow: Self-Supervised Dynamic Gaussian Splatting in Neural Motion Flow Field." https://openaccess.thecvf.com/content/CVPR2025/html/Sun_SplatFlow_Self-Supervised_Dynamic_Gaussian_Splatting_in_Neural_Motion_Flow_Field_CVPR_2025_paper.html
+- Hess et al., "SplatAD: Real-Time Lidar and Camera Rendering with 3D Gaussian Splatting for Autonomous Driving." https://openaccess.thecvf.com/content/CVPR2025/html/Hess_SplatAD_Real-Time_Lidar_and_Camera_Rendering_with_3D_Gaussian_Splatting_CVPR_2025_paper.html
+- GS-LiDAR. https://arxiv.org/abs/2501.13971
+- LiDAR-GS. https://arxiv.org/abs/2410.05111

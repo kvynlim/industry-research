@@ -2,7 +2,7 @@
 
 Date: 2026-05-09
 
-Scope: `10-knowledge-base` only. This reassessment covers all 125 live Markdown research files.
+Scope: `10-knowledge-base` only. This reassessment covers all 127 live Markdown research files.
 
 ## Assumption Change
 
@@ -22,8 +22,8 @@ Each file was reassessed as its own research note:
 
 ## Summary
 
-- Live knowledge-base Markdown files: 125.
-- Files requiring a replacement visual if generated figures are removed: 125.
+- Live knowledge-base Markdown files: 127.
+- Files requiring a replacement visual if generated figures are removed: 127.
 - Files that can safely lose the generated visual without replacement: 0.
 - Recommended default: one carefully designed replacement diagram per file.
 - Multi-diagram expansion should be reserved for later deepening passes; the current goal is baseline replacement coverage.
@@ -46,6 +46,7 @@ Each file was reassessed as its own research note:
 - `10-knowledge-base/geometry-3d/coordinate-frames-projections-se3.md` - Visual needed: yes. Replacement visual: transform tree from map to odom to base to sensors to image plane, with SE(3) composition, projection, and common frame-error points.
 - `10-knowledge-base/geometry-3d/correspondence-search-data-structures.md` - Visual needed: yes. Replacement visual: correspondence-search comparison showing query point, KD-tree partition, voxel hash buckets, candidate gating, residual construction, and rejected matches.
 - `10-knowledge-base/geometry-3d/event-thermal-camera-models.md` - Visual needed: yes. Replacement visual: dual-sensor timing diagram contrasting asynchronous event threshold crossings with slower thermal frames, NUC/calibration, sync, and fusion.
+- `10-knowledge-base/geometry-3d/feed-forward-3d-reconstruction-and-splatting.md` - Visual needed: yes. Replacement visual: feed-forward reconstruction pipeline from sparse images through learned camera, depth, pointmap, and Gaussian prediction to held-out rendering and geometry validation.
 - `10-knowledge-base/geometry-3d/geodesy-map-projections-datums.md` - Visual needed: yes. Replacement visual: WGS84 to ECEF to ENU to projected local-map chain with datum/projection distortion and localization error budget.
 - `10-knowledge-base/geometry-3d/lidar-working-principles-noise-models.md` - Visual needed: yes. Replacement visual: LiDAR point formation diagram showing emitted pulse or chirp, time-of-flight/FMCW measurement, beam angle, reflectance, incidence angle, weather dropout, and range noise.
 - `10-knowledge-base/geometry-3d/lie-groups-se3-so3-jacobians.md` - Visual needed: yes. Replacement visual: manifold/tangent-space diagram showing SO(3)/SE(3), Exp/log maps, left/right perturbations, adjoint transform, and residual Jacobian linearization.
@@ -95,6 +96,7 @@ Each file was reassessed as its own research note:
 
 ### Mapping
 
+- `10-knowledge-base/mapping/dynamic-4d-neural-gaussian-reconstruction.md` - Visual needed: yes. Replacement visual: dynamic 4D scene decomposition showing pose and calibration inputs, static infrastructure layer, dynamic actor layer, temporal model, rendered outputs, and validation boundary.
 - `10-knowledge-base/mapping/neural-implicit-slam-differentiable-mapping-first-principles.md` - Visual needed: yes. Replacement visual: keyframes, pose variables, sampled camera rays, implicit field parameters, photometric/depth/SDF losses, optimization loop, and map validation.
 - `10-knowledge-base/mapping/occupancy-bayes-evidential-dynamic-grids.md` - Visual needed: yes. Replacement visual: ray-based occupancy update showing prior cell state, inverse sensor model, log-odds/evidential mass, dynamic occupancy, and diagnostic failure cases.
 - `10-knowledge-base/mapping/overview.md` - Visual needed: yes. Replacement visual: section-level autonomy-role diagram showing mapping foundations, autonomy problem classes, stack interfaces, reading paths, and failure diagnosis.
@@ -193,7 +195,7 @@ Each file was reassessed as its own research note:
 
 ## Implementation Implication
 
-If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 125 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
+If the generated figures are removed, the replacement backlog is not 14 optional pages; it is all 127 pages. Batch work should still be prioritized, but the baseline target changes to one purpose-built diagram per knowledge-base file.
 
 Suggested replacement order:
 
