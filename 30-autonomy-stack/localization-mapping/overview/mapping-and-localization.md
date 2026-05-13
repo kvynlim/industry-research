@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+0. [Cross-Section Reading Path](#cross-section-reading-path)
 1. [Map-Free / Map-Lite Autonomous Driving](#1-map-free--map-lite-autonomous-driving)
 2. [Online Mapping and Scene Understanding](#2-online-mapping-and-scene-understanding)
 3. [Localization Approaches](#3-localization-approaches)
