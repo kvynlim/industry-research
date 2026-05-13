@@ -8,72 +8,71 @@
     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
       <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
     </filter>
-    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
-      <path d="M28 0H0V28" fill="none" stroke="#e2e8f0" stroke-width="1"/>
-    </pattern>
   </defs>
   <rect width="1400" height="720" fill="#f8fafc"/>
   <rect x="42" y="38" width="1316" height="644" rx="20" fill="#ffffff" stroke="#d9e2ef" filter="url(#shadow)"/>
   <text x="80" y="88" font-size="30" font-weight="800" fill="#0f172a">feed-forward reconstruction pipeline</text>
-  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">feed-forward reconstruction pipeline from sparse images through learned camera, depth, pointmap, and Gaussian prediction to held-out rendering and...</text>
+  <text x="80" y="122" font-size="16" font-weight="600" fill="#475569">sparse images to learned geometry, Gaussian primitives, held-out rendering, and geometry validation</text>
   <rect x="80" y="144" width="1240" height="2" fill="#dbeafe"/>
 
-<!-- layout:tensor-pipeline -->
-<rect x="152" y="224" width="384" height="250" rx="16" fill="#f8fafc" stroke="#2563eb" stroke-width="3"/>
-<rect x="174" y="246" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="218" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="262" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="306" y="246" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="350" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="394" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="438" y="246" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="482" y="246" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="174" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="218" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="262" y="290" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="306" y="290" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="350" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="394" y="290" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="438" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="482" y="290" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="174" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="218" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="262" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="306" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="350" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="394" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="438" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="482" y="334" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="174" y="378" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="218" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="262" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="306" y="378" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="350" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="394" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="438" y="378" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="482" y="378" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="174" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="218" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="262" y="422" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="306" y="422" width="39" height="39" rx="5" fill="#2563eb" stroke="#cbd5e1"/>
-<rect x="350" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="394" y="422" width="39" height="39" rx="5" fill="#bfdbfe" stroke="#cbd5e1"/>
-<rect x="438" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
-<rect x="482" y="422" width="39" height="39" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+  <!-- layout:tensor-pipeline -->
+  <rect x="80" y="190" width="208" height="330" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+  <text x="184" y="226" text-anchor="middle" font-size="18" font-weight="800" fill="#1e40af">sparse images</text>
+  <rect x="110" y="258" width="78" height="56" rx="6" fill="#bfdbfe" stroke="#1d4ed8"/>
+  <rect x="145" y="290" width="78" height="56" rx="6" fill="#dbeafe" stroke="#1d4ed8"/>
+  <rect x="180" y="322" width="78" height="56" rx="6" fill="#eff6ff" stroke="#1d4ed8"/>
+  <circle cx="132" cy="284" r="10" fill="#f97316"/>
+  <path d="M116 305 L142 285 L166 303 L184 292 L184 310 L116 310 Z" fill="#2563eb" opacity="0.55"/>
+  <text x="184" y="420" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">multi-view frames</text>
+  <text x="184" y="442" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">calibrated or inferred</text>
 
-<line x1="550" y1="350" x2="704" y2="350" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="720" y="266" width="210" height="82" rx="14" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
-<text x="825" y="313" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">sparse images</text>
-<text x="825" y="334" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">through learned</text>
+  <line x1="298" y1="355" x2="356" y2="355" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
 
-<rect x="720" y="420" width="210" height="82" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
-<text x="825" y="467" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">depth</text>
+  <rect x="372" y="190" width="286" height="330" rx="16" fill="#f0fdfa" stroke="#0f766e" stroke-width="3"/>
+  <text x="515" y="226" text-anchor="middle" font-size="18" font-weight="800" fill="#0f766e">learned prediction</text>
+  <rect x="404" y="256" width="222" height="54" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="2"/>
+  <text x="515" y="290" text-anchor="middle" font-size="15" font-weight="800" fill="#134e4a">camera poses</text>
+  <rect x="404" y="328" width="222" height="54" rx="10" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+  <text x="515" y="362" text-anchor="middle" font-size="15" font-weight="800" fill="#164e63">depth maps</text>
+  <rect x="404" y="400" width="222" height="54" rx="10" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+  <text x="515" y="434" text-anchor="middle" font-size="15" font-weight="800" fill="#312e81">pointmaps</text>
+  <path d="M430 480 C475 458 548 458 600 482" fill="none" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="450" cy="476" r="5" fill="#0f766e"/>
+  <circle cx="492" cy="466" r="5" fill="#0891b2"/>
+  <circle cx="546" cy="468" r="5" fill="#4f46e5"/>
+  <circle cx="586" cy="482" r="5" fill="#0f766e"/>
 
-<line x1="824" y1="352" x2="824" y2="416" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<path d="M932 307 C1050 230 1150 272 1178 362" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="1054" y="382" width="210" height="82" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-<text x="1159" y="429" text-anchor="middle" font-size="17" font-weight="700" fill="#172033">pointmap</text>
+  <line x1="668" y1="355" x2="726" y2="355" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
 
-<text x="700" y="604" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">tensor stages reshape features into task outputs</text>
+  <rect x="742" y="190" width="216" height="330" rx="16" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+  <text x="850" y="226" text-anchor="middle" font-size="18" font-weight="800" fill="#c2410c">Gaussian primitives</text>
+  <ellipse cx="820" cy="322" rx="46" ry="18" fill="#fed7aa" stroke="#ea580c" stroke-width="2" transform="rotate(-18 820 322)"/>
+  <ellipse cx="878" cy="354" rx="56" ry="20" fill="#fdba74" stroke="#ea580c" stroke-width="2" transform="rotate(20 878 354)"/>
+  <ellipse cx="832" cy="405" rx="50" ry="17" fill="#ffedd5" stroke="#ea580c" stroke-width="2" transform="rotate(8 832 405)"/>
+  <circle cx="802" cy="278" r="8" fill="#fb923c"/>
+  <circle cx="896" cy="302" r="8" fill="#f97316"/>
+  <circle cx="908" cy="424" r="8" fill="#ea580c"/>
+  <text x="850" y="466" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">opacity, scale, color</text>
+  <text x="850" y="488" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">predicted in one pass</text>
 
+  <line x1="968" y1="355" x2="1026" y2="355" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <rect x="1042" y="190" width="206" height="330" rx="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="3"/>
+  <text x="1145" y="226" text-anchor="middle" font-size="18" font-weight="800" fill="#5b21b6">held-out rendering</text>
+  <rect x="1078" y="270" width="134" height="96" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <circle cx="1108" cy="300" r="10" fill="#fbbf24"/>
+  <path d="M1088 350 L1120 318 L1146 342 L1168 324 L1202 354 Z" fill="#7c3aed" opacity="0.55"/>
+  <rect x="1096" y="392" width="98" height="28" rx="14" fill="#ddd6fe" stroke="#7c3aed"/>
+  <text x="1145" y="412" text-anchor="middle" font-size="13" font-weight="800" fill="#4c1d95">novel view</text>
+  <text x="1145" y="466" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">render held-out frame</text>
+  <text x="1145" y="488" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">compare RGB and depth</text>
+
+  <line x1="1150" y1="530" x2="1150" y2="570" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <rect x="923" y="586" width="444" height="70" rx="16" fill="#f8fafc" stroke="#334155" stroke-width="3"/>
+  <text x="1145" y="617" text-anchor="middle" font-size="17" font-weight="800" fill="#0f172a">geometry validation</text>
+  <text x="1145" y="641" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">held-out views, LiDAR/depth checks, scale and pose residuals</text>
+
+  <path d="M922 620 C760 644 520 632 368 520" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+  <text x="612" y="628" text-anchor="middle" font-size="13" font-weight="700" fill="#64748b">validation feeds model and data triage</text>
 </svg>

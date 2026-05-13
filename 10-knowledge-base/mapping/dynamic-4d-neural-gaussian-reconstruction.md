@@ -120,5 +120,5 @@ This is relevant when LiDAR coverage is sparse or unavailable. It also couples r
 - Shen et al., "OG-Gaussian: Occupancy Based Street Gaussians for Autonomous Driving." https://arxiv.org/abs/2502.14235
 - Sun et al., "SplatFlow: Self-Supervised Dynamic Gaussian Splatting in Neural Motion Flow Field." https://openaccess.thecvf.com/content/CVPR2025/html/Sun_SplatFlow_Self-Supervised_Dynamic_Gaussian_Splatting_in_Neural_Motion_Flow_Field_CVPR_2025_paper.html
 - Hess et al., "SplatAD: Real-Time Lidar and Camera Rendering with 3D Gaussian Splatting for Autonomous Driving." https://openaccess.thecvf.com/content/CVPR2025/html/Hess_SplatAD_Real-Time_Lidar_and_Camera_Rendering_with_3D_Gaussian_Splatting_CVPR_2025_paper.html
-- GS-LiDAR. https://arxiv.org/abs/2501.13971
-- LiDAR-GS. https://arxiv.org/abs/2410.05111
+- Junzhe Jiang, Chun Gu, Yurui Chen, and Li Zhang, "GS-LiDAR: Generating Realistic LiDAR Point Clouds with Panoramic Gaussian Splatting." https://arxiv.org/abs/2501.13971
+- Qifeng Chen, Sheng Yang, Sicong Du, Tao Tang, Rengan Xie, Peng Chen, and Yuchi Huo, "LiDAR-GS: Real-time LiDAR Re-Simulation using Gaussian Splatting." https://arxiv.org/abs/2410.05111
