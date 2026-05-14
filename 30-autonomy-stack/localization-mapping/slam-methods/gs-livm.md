@@ -11,7 +11,7 @@ priority:
   reason: "GS-LIVM is rated as a supporting SLAM method for autonomy-stack triage and follow-up reading."
 method-priority:end -->
 
-Related docs: [Gaussian-LIC and Gaussian-LIC2](gaussian-lic.md), [GLIM](glim.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [Splat-LOAM](splat-loam.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
+Related docs: [Gaussian-LIC and Gaussian-LIC2](gaussian-lic.md), [RMGS-SLAM](rmgs-slam.md), [GLIM](glim.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [Splat-LOAM](splat-loam.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary
 
@@ -95,6 +95,7 @@ For production AV localization, GS-LIVM should be wrapped by a conventional stat
 | Method | Sensors | Gaussian map idea | AV interpretation |
 |---|---|---|---|
 | GS-LIVM | LiDAR + IMU + camera | Voxel 3DGS, GPR, covariance-centered outdoor mapping | Strong LIV Gaussian mapping baseline |
+| RMGS-SLAM | LiDAR + IMU + camera | Feed-forward plus voxel-PCA Gaussian initialization and Gaussian-GICP loop closure | Emerging large-scale LIV Gaussian SLAM baseline |
 | Gaussian-LIC2 | LiDAR + IMU + camera | Continuous-time LIC with depth completion and LiDAR-supervised Gaussians | Closely related real-time LIC SLAM |
 | Splat-LOAM | LiDAR | 2D Gaussian LiDAR map/rendering | LiDAR-only Gaussian odometry baseline |
 | GLIM | Range + IMU | Direct scan-matching factors, not Gaussian rendering | Strong metric mapping baseline |

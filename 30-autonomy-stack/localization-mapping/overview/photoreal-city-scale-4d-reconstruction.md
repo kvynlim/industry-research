@@ -19,7 +19,7 @@ Use this page to separate four claims:
 
 | Role | Methods | Local starting point | How to use |
 |---|---|---|---|
-| Metric SLAM with Gaussian maps | Gaussian-LIC, Gaussian-LIC2, GS-LIVM, VIGS-SLAM, Splat-LOAM | [Gaussian-LIC and Gaussian-LIC2](../slam-methods/gaussian-lic.md) | Evaluate pose, timing, calibration, and Gaussian map quality separately. |
+| Metric SLAM with Gaussian maps | Gaussian-LIC, Gaussian-LIC2, RMGS-SLAM, GS-LIVM, VIGS-SLAM, Splat-LOAM | [RMGS-SLAM](../slam-methods/rmgs-slam.md) and [Gaussian-LIC and Gaussian-LIC2](../slam-methods/gaussian-lic.md) | Evaluate pose, timing, calibration, and Gaussian map quality separately. |
 | Foundation/dense visual SLAM | SLAM3R, VGGT-SLAM, VGGT-SLAM++, MASt3R-SLAM, ViSTA-SLAM | [SLAM3R and VGGT Foundation SLAM](../slam-methods/slam3r-vggt-foundation-slam.md) | Use for reconstruction, visual map QA, and research baselines; do not assume safety localization. |
 | Dynamic street 4D reconstruction | Street Gaussians, DrivingGaussian, OmniRe, S3Gaussian, PVG, OG-Gaussian, EmerNeRF | [Dynamic 4D Neural/Gaussian Reconstruction](../../../10-knowledge-base/mapping/dynamic-4d-neural-gaussian-reconstruction.md) | Use for digital twins, replay, map cleaning, and simulation-support assets. |
 | Feed-forward splatting and reconstruction | VGGT, AnySplat, pixelSplat, MVSplat-style methods | [Feed-Forward 3D Reconstruction and Splatting](../../../10-knowledge-base/geometry-3d/feed-forward-3d-reconstruction-and-splatting.md) | Use for priors, initialization, quick reconstruction, and QA; audit hallucination and metric ambiguity. |
@@ -38,6 +38,7 @@ Use this page to separate four claims:
 | DrivingGaussian | composite surround-view 3DGS | Dedicated perception method page | Linked as the canonical atomic method page. |
 | Gaussian-LIC | LiDAR-inertial-camera Gaussian SLAM | Dedicated SLAM method page | Linked as the metric Gaussian-SLAM baseline. |
 | Gaussian-LIC2 | continuous-time LIC Gaussian SLAM | Covered in Gaussian-LIC page | Linked as the stronger continuous-time extension. |
+| RMGS-SLAM | real-time multi-sensor Gaussian SLAM | Dedicated SLAM method page | Promoted as the large-scale LIV 3DGS SLAM candidate with Gaussian-GICP loop closure. |
 | VGGT | feed-forward visual geometry model | Covered through VGGT-SLAM page | Covered in the feed-forward KB page and linked to foundation SLAM. |
 | AnySplat | feed-forward 3DGS from unconstrained views | Missing | Covered in the feed-forward KB page. |
 | pixelSplat | image-pair feed-forward 3DGS | Missing | Covered in the feed-forward KB page. |
@@ -46,7 +47,7 @@ Use this page to separate four claims:
 
 | Intent | Read in this order |
 |---|---|
-| I need a pose or SLAM method | [Production LiDAR Map Localization](production-lidar-map-localization.md) -> [Gaussian-LIC and Gaussian-LIC2](../slam-methods/gaussian-lic.md) -> [SLAM3R and VGGT Foundation SLAM](../slam-methods/slam3r-vggt-foundation-slam.md) -> [Dynamic 4D Gaussian SLAM](../slam-methods/dynamic-4d-gaussian-slam.md) |
+| I need a pose or SLAM method | [Production LiDAR Map Localization](production-lidar-map-localization.md) -> [RMGS-SLAM](../slam-methods/rmgs-slam.md) -> [Gaussian-LIC and Gaussian-LIC2](../slam-methods/gaussian-lic.md) -> [SLAM3R and VGGT Foundation SLAM](../slam-methods/slam3r-vggt-foundation-slam.md) -> [Dynamic 4D Gaussian SLAM](../slam-methods/dynamic-4d-gaussian-slam.md) |
 | I need a photoreal digital twin | [Dynamic 4D Neural/Gaussian Reconstruction](../../../10-knowledge-base/mapping/dynamic-4d-neural-gaussian-reconstruction.md) -> [3DGS Digital Twin Pipeline](../../simulation/3dgs-digital-twin.md) -> [Neural Scene Reconstruction](../../simulation/neural-scene-reconstruction.md) |
 | I need feed-forward initialization or priors | [Feed-Forward 3D Reconstruction and Splatting](../../../10-knowledge-base/geometry-3d/feed-forward-3d-reconstruction-and-splatting.md) -> [SLAM3R and VGGT Foundation SLAM](../slam-methods/slam3r-vggt-foundation-slam.md) |
 | I need math and failure modes | [Volume Rendering, Radiance Fields, and Gaussian Splatting](../../../10-knowledge-base/geometry-3d/volume-rendering-radiance-fields-gaussian-splatting.md) -> [Neural Implicit SLAM and Differentiable Mapping](../../../10-knowledge-base/mapping/neural-implicit-slam-differentiable-mapping-first-principles.md) -> [Continuous-Time Trajectory Splines and GP Priors](../../../10-knowledge-base/state-estimation/continuous-time-trajectory-splines-gp-priors.md) |
@@ -91,6 +92,7 @@ City-scale or airport-scale 4D reconstruction requires more than a good paper im
 ## Related Local Pages
 
 - [Gaussian-LIC and Gaussian-LIC2](../slam-methods/gaussian-lic.md)
+- [RMGS-SLAM](../slam-methods/rmgs-slam.md)
 - [SLAM3R and VGGT Foundation SLAM](../slam-methods/slam3r-vggt-foundation-slam.md)
 - [Dynamic 4D Gaussian SLAM](../slam-methods/dynamic-4d-gaussian-slam.md)
 - [Feed-Forward 3D Reconstruction and Splatting](../../../10-knowledge-base/geometry-3d/feed-forward-3d-reconstruction-and-splatting.md)
@@ -108,6 +110,7 @@ City-scale or airport-scale 4D reconstruction requires more than a good paper im
 - Gaussian-LIC repository: https://github.com/APRIL-ZJU/Gaussian-LIC
 - Gaussian-LIC project page: https://xingxingzuo.github.io/gaussian_lic/
 - Gaussian-LIC2 project page: https://xingxingzuo.github.io/gaussian_lic2/
+- RMGS-SLAM: https://arxiv.org/abs/2604.12942
 - Street Gaussians: https://arxiv.org/abs/2401.01339
 - S3Gaussian: https://arxiv.org/abs/2405.20323
 - EmerNeRF ICLR 2024 page: https://proceedings.iclr.cc/paper_files/paper/2024/hash/47fc64d05a394955b1ae2487bfef1ab0-Abstract-Conference.html

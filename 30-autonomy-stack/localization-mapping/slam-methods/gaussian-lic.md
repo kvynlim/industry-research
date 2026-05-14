@@ -11,7 +11,7 @@ priority:
   reason: "Gaussian-LIC and Gaussian-LIC2 is rated for neural or Gaussian SLAM research and future dense map representation workflows."
 method-priority:end -->
 
-Related docs: [Photoreal City-Scale 4D Reconstruction](../overview/photoreal-city-scale-4d-reconstruction.md), [GS-LIVM](gs-livm.md), [GLIM](glim.md), [LIO-SAM](lio-sam.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [Dynamic 4D Neural/Gaussian Reconstruction](../../../10-knowledge-base/mapping/dynamic-4d-neural-gaussian-reconstruction.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
+Related docs: [Photoreal City-Scale 4D Reconstruction](../overview/photoreal-city-scale-4d-reconstruction.md), [RMGS-SLAM](rmgs-slam.md), [GS-LIVM](gs-livm.md), [GLIM](glim.md), [LIO-SAM](lio-sam.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [Dynamic 4D Neural/Gaussian Reconstruction](../../../10-knowledge-base/mapping/dynamic-4d-neural-gaussian-reconstruction.md), and [Gaussian Splatting for Driving](../../perception/overview/gaussian-splatting-driving.md).
 
 ## Executive Summary
 
@@ -97,6 +97,7 @@ For production localization, the trusted pose should still come from a conservat
 |---|---|---|---|
 | Gaussian-LIC | LiDAR + IMU + camera | Real-time photo-realistic LIC Gaussian SLAM | Strong research mapper with metric sensors |
 | Gaussian-LIC2 | LiDAR + IMU + camera | Continuous-time LIC Gaussian SLAM with dense depth completion | More complete 2025 extension |
+| RMGS-SLAM | LiDAR + IMU + camera | Large-scale LIV 3DGS SLAM with Gaussian-GICP loop closure | Emerging large-scene multi-sensor baseline |
 | GS-LIVM | LiDAR + IMU + camera | Outdoor Gaussian LIV mapping with GPR/covariance-centered design | Closely related outdoor mapper |
 | FAST-LIO2 | LiDAR + IMU | Fast metric odometry | Production-adjacent front-end baseline |
 | GLIM | Range + IMU | Direct scan-matching factor-graph mapping | Strong map-building baseline |

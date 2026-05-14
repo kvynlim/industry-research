@@ -15,7 +15,7 @@ The repository remains Markdown-first, but the VitePress reader is the intended 
 | Corpus size | 334k+ lines |
 | Companies covered | 20 |
 | Technology domains | 9 |
-| Method-level SLAM library | 100 method files + overview/audit |
+| Method-level SLAM library | 100+ method files + overview/audit |
 | Method-level perception files | 93 |
 | Safety and validation docs | 33 |
 | AV platform docs | 29 |
@@ -102,7 +102,7 @@ Airside is used as a detailed reference ODD where the corpus has the deepest dep
 | Method-level perception library | 93 |
 | Planning | 15 |
 | Localization and mapping | 116 |
-| Method-level SLAM library | 100 method files + overview/audit |
+| Method-level SLAM library | 100+ method files + overview/audit |
 | Simulation | 7 |
 | VLA / VLM | 6 |
 | Multi-agent and V2X | 6 |
