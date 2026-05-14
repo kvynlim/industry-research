@@ -93,6 +93,7 @@
 | Topic | Primary | Supporting |
 |-------|---------|-----------|
 | SLAM method library | `30-autonomy-stack/localization-mapping/slam-methods/overview.md` | 100+ focused method files plus overview/audit pages covering classical, LiDAR, LIVO, visual, RGB-D, neural, Gaussian, radar, fusion SLAM, robust backends, collaborative SLAM, alternative sensors, lifelong localization, and map cleaning |
+| GLIM/GTSAM pipeline hub | `30-autonomy-stack/localization-mapping/slam-methods/glim-gtsam-pipeline-hub.md` | Cross-section route linking GLIM stages to GTSAM factor graph objects, Bayes trees, Hessians, sparse elimination, marginalization, robust losses, and diagnostic KB pages |
 | SLAM coverage audit | `30-autonomy-stack/localization-mapping/slam-methods/coverage-audit-2026.md` | Source-backed backlog plus May 2026 discovery sweeps: LVI-SAM, FAST-LIVO/R3LIVE, KISS-SLAM, MOLA, robust/certifiable PGO, C-SLAM systems, degeneracy-robust LIO, event/thermal/UWB VIO and localization, radar-to-LiDAR map matching, 4D radar, Gaussian/foundation SLAM, and current benchmarks |
 | AV / indoor / outdoor selection | `30-autonomy-stack/localization-mapping/slam-methods/av-indoor-outdoor-decision-matrix.md` | Method fit by GNSS availability, dynamics, map dependence, compute budget, and safety criticality |
 | Benchmarks and datasets | `30-autonomy-stack/localization-mapping/slam-methods/benchmarking-metrics-datasets.md` | ATE/RPE, KITTI drift, loop closure, map quality, dynamic-scene metrics, KITTI/KITTI-360, EuRoC, TUM, Oxford, Boreas, MulRan |

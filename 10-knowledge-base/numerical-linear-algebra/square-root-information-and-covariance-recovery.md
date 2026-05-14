@@ -16,6 +16,7 @@
 - [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
 - [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
@@ -36,6 +37,22 @@ For AV stacks, square-root information appears in:
 - Square-root filters and smoothers that avoid explicitly maintaining dense covariance.
 
 The hard part is covariance recovery. The matrix you factor for solving is usually sparse, but the covariance is generally dense. Computing all of it can be much more expensive than solving for the MAP estimate.
+
+## GTSAM and GLIM interpretation
+
+GTSAM noise models and Gaussian factors are square-root-information machinery in application clothing. A diagonal noise model divides residual dimensions by their sigmas; a Gaussian model can represent a fuller information structure; after linearization, the graph can be factored into square-root conditionals. `Marginals` then recovers selected covariance or information blocks around a solution and can choose Cholesky or QR factorization depending on conditioning needs.
+
+For GLIM, square-root information answers practical questions:
+
+| Question | Square-root/information object to inspect |
+|---|---|
+| Is this scan factor overconfident? | whitened residual magnitude and factor information scale |
+| Is the local pose constrained in all directions? | Hessian/information eigenvalues and weak eigenvectors |
+| Can I publish pose covariance? | selected marginal covariance for the latest pose or submap |
+| Did marginalization create a harmful prior? | square-root prior rank, separator variables, and condition estimate |
+| Why did Cholesky fail? | SPD status of the information matrix and comparison with QR/SVD diagnostics |
+
+Do not treat covariance recovery as a free byproduct. In city-scale maps, full covariance is usually dense and expensive. Query selected pose, submap, calibration, or boundary variables that are tied to operational decisions.
 
 ## Core math and algorithm steps
 

@@ -16,8 +16,12 @@
 - [Sparse Matrices, Fill-In, and Ordering](sparse-matrices-fill-in-ordering.md)
 - [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md)
 - [Square-Root Information and Covariance Recovery](square-root-information-and-covariance-recovery.md)
+- [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Backend decision matrix
+
+For GLIM and GTSAM-style SLAM, this page explains what happens below the method names. A fixed-lag odometry graph, a global submap graph, a loop-closure graph, and a map-refinement graph all reduce to sparse linearized systems after residuals are defined and whitened. When GLIM behaves unexpectedly, inspect this backend layer before blaming "the SLAM algorithm" as a whole.
 
 Sparse Estimation Backend Crosswalk is the routing page for rank and nullspaces, sparsity, ordering, and fill-in, factorization, Schur complement for solving, marginalization prior construction, covariance recovery, and PCG stagnates diagnostics.
 

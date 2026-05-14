@@ -15,12 +15,30 @@
 - [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md)
 - [Objective and Residual Design Audit](./objective-residual-design-and-audit.md)
 - [Coordinate Frames, Projections, and SE(3)](../geometry-3d/coordinate-frames-projections-se3.md)
+- [Lie Groups SE(3), SO(3), Adjoints, and Jacobians](../geometry-3d/lie-groups-se3-so3-jacobians.md)
+- [GTSAM Factor Graphs](../state-estimation/gtsam-factor-graphs.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
 The Jacobian is the interface between sensor physics and optimization. It tells the solver how residuals change when poses, landmarks, calibration parameters, velocities, biases, or time offsets are perturbed. A residual can look numerically plausible while its Jacobian is wrong; the optimizer will then take bad steps, reject good steps, or converge to biased results.
 
 Autonomous systems are especially exposed because their variables often live on manifolds. Rotations are not 3 independent unconstrained matrix rows, quaternions have 4 coefficients but 3 degrees of freedom, and poses compose on SE(3). Linearization must happen in local tangent coordinates, then be retracted back to the manifold.
+
+## GTSAM and GLIM interpretation
+
+GTSAM factor code is mostly a Jacobian contract. A factor's residual says what measurement error means; its Jacobian blocks say how that error changes under local perturbations of the connected variables. In GTSAM, those perturbations are expressed through `retract` and `localCoordinates`, so the Jacobian is with respect to tangent-space coordinates, not raw pose matrices or quaternions.
+
+For GLIM-style range-inertial mapping, the highest-risk Jacobians are:
+
+| Factor family | Jacobian risk |
+|---|---|
+| Scan-to-map or VGICP factors | frame convention, point covariance orientation, nearest-neighbor discontinuities, and robust weight handling |
+| IMU preintegration factors | bias Jacobians, gravity convention, time delta, and body/world frame convention |
+| Loop closure factors | relative-pose residual direction and covariance ordering |
+| GNSS or map-prior factors | lever arm, world frame, height convention, and covariance anisotropy |
+| Plane or environmental factors | normal direction sign, plane parameterization, and weak constraints parallel to the plane |
+
+A practical GTSAM workflow is: implement analytic or chained Jacobians for production, compare each factor against finite differences on representative states, and test degeneracy cases where a residual should be insensitive to a specific perturbation. If the Hessian eigenvectors show a weak direction that contradicts the scene geometry, inspect the factor Jacobians before retuning covariances.
 
 ## Core math and algorithm steps
 

@@ -26,6 +26,30 @@ The key practical idea is not "minimize pixels" or "minimize meters" directly. I
 
 For SLAM and mapping, nonlinear least squares also explains why graph sparsity matters. Each measurement touches only a few variables: an odometry factor touches two poses, a reprojection factor touches one camera and one landmark, and an IMU factor touches neighboring pose-velocity-bias states. The Jacobian is sparse, so the normal equations or square-root system can be solved much faster than dense algebra would suggest.
 
+## GTSAM and GLIM interpretation
+
+In GTSAM, nonlinear least squares is the bridge from a probabilistic graph to an executable solver. A `NonlinearFactorGraph` defines residual functions and noise models. A `Values` object provides the current linearization point. Each nonlinear factor evaluates a residual and Jacobian blocks for the variables it touches, and the optimizer turns those blocks into a sparse linearized system.
+
+For GLIM, this means the LiDAR registration problem is not just "run ICP, then optimize poses." Scan-to-scan, scan-to-submap, IMU, loop, GNSS, plane, or custom factors can all contribute residuals to the same graph. The graph is solved by repeatedly:
+
+```text
+evaluate factors
+  -> whiten residuals
+  -> linearize on SE(3) / NavState tangent coordinates
+  -> solve sparse least-squares subproblem
+  -> retract updates back to poses, velocities, biases, and submap states
+```
+
+When debugging GLIM or any GTSAM backend, classify the problem at this level first:
+
+| Symptom | Least-squares layer to inspect |
+|---|---|
+| A sensor dominates the solution | residual units, covariance, whitening, and robust kernel |
+| Optimizer takes unstable steps | initialization, local linearity, Jacobian sign/convention, and damping |
+| Cholesky or iSAM2 update fails | rank, gauge freedom, weak geometry, or bad Hessian construction |
+| Map is smooth but wrong | objective design, false correspondences, false loops, or overconfident priors |
+| Runtime explodes | sparsity pattern, variable ordering, dense priors, or excessive affected cliques |
+
 ## Core math and algorithm steps
 
 Let the state be `x` and the stacked residual vector be:

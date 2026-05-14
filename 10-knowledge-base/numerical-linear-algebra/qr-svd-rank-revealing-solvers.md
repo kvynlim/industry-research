@@ -15,6 +15,8 @@
 - [Schur Complement, Marginalization, and PCG](schur-complement-marginalization-pcg.md)
 - [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
 - [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
+- [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 - [Sensor Calibration and Time Synchronization](../geometry-3d/sensor-calibration-time-synchronization.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
@@ -31,6 +33,22 @@ In AV systems, rank-revealing solvers matter when:
 - Covariance needs to be computed in the presence of gauge modes.
 
 The point is not that QR or SVD should replace sparse Cholesky everywhere. The point is that every serious SLAM or mapping stack needs a robust path for debugging and rank assessment.
+
+## GTSAM and GLIM interpretation
+
+GTSAM often prefers Cholesky for speed, but several APIs expose QR as the more numerically stable path for poorly conditioned problems. The practical pattern is: use Cholesky for normal real-time operation when the graph is well constrained, then reproduce suspicious windows with QR, SVD, or eigen-analysis when a failure or overconfident covariance appears.
+
+For GLIM, QR/SVD diagnostics are especially useful on reduced problems:
+
+| Diagnostic slice | What QR/SVD can reveal |
+|---|---|
+| One scan-to-submap factor | pose directions weakly constrained by local point/voxel geometry |
+| A fixed-lag odometry window | whether IMU plus LiDAR constraints fully constrain active states except expected gauges |
+| A loop-closure candidate | whether the relative transform is supported by enough independent geometry |
+| A marginal prior | rank, dense coupling, and fake constraints introduced at removal time |
+| A custom factor | missing Jacobian columns, sign errors, or frame-convention mistakes |
+
+If QR/SVD and Cholesky disagree strongly on the same linearized window, treat the Cholesky result as a performance path, not as the diagnostic authority.
 
 ## Core math and algorithm steps
 

@@ -18,6 +18,8 @@
 
 For photoreal 4D reconstruction, Gaussian maps, dynamic neural scene assets, and feed-forward splatting, start with [Photoreal City-Scale 4D Reconstruction](photoreal-city-scale-4d-reconstruction.md). That page separates SLAM pose sources from reconstruction assets and links into the relevant knowledge-base, simulation, perception, and world-model pages.
 
+For GLIM, GTSAM, factor-graph SLAM, Bayes-tree updates, Hessian diagnostics, and sparse backend behavior, start with [GLIM and GTSAM Pipeline Hub](../slam-methods/glim-gtsam-pipeline-hub.md).
+
 ---
 
 ## 1. Map-Free / Map-Lite Autonomous Driving

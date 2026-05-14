@@ -16,6 +16,7 @@
 - [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
 - [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
@@ -30,6 +31,21 @@ Schur complement is the algebra behind several core estimation operations:
 For AV mapping, the classic example is bundle adjustment: many 3D points and fewer camera poses. Eliminating points creates a reduced camera system. This can turn an impossible full solve into a tractable one. The BAL paper and Ceres documentation both emphasize that Schur complement methods are central to large-scale bundle adjustment.
 
 For online SLAM, the same algebra is double-edged. Marginalization keeps computation bounded, but it also creates dense priors and locks in linearization choices.
+
+## GTSAM and GLIM interpretation
+
+GTSAM exposes marginalization through fixed-lag smoothers, Bayes-tree updates, and marginal covariance/information queries. Algebraically, these operations are Schur complements over variables that are removed from the active solve. The resulting prior preserves information on the remaining separator variables, but it can become dense and is tied to the linearization point at which it was created.
+
+In a GLIM-style pipeline:
+
+| Operation | Schur/marginalization meaning | Risk |
+|---|---|---|
+| Fixed-lag odometry | remove old poses, velocities, and biases while preserving a prior on the active window boundary | dense boundary prior, stale linearization, or fake gauge constraint |
+| Submap summarization | replace many frame-level constraints with submap-level factors | loss of detail or overconfident submap covariance |
+| Offline global refinement | eliminate nuisance variables or summarize local sessions | fill-in across sessions and heavy memory use |
+| Covariance reporting | recover selected marginal blocks around latest trajectory/submap variables | expensive if treated as full dense inverse |
+
+A marginal prior is information, not truth. If the prior was built from wrong correspondences, bad timing, or a poor linearization point, later optimization inherits that damage unless the system keeps enough raw factors to relinearize or rebuild the prior.
 
 ## Core math and algorithm steps
 

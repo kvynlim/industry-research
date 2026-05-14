@@ -9,6 +9,8 @@ This directory is the method-level SLAM library. It should help a reader answer 
 
 For production AVs, the practical answer is usually not "run SLAM online forever." The stack should separate offline map construction, online scan-to-map localization, high-rate state estimation, and loop-closure/relocalization. Airside remains a useful reference ODD for this separation, but the same decision pattern also applies to road AVs, warehouses, logistics yards, ports, mines, construction sites, and campuses with different sensor and operational constraints.
 
+For a compact cross-section route through GLIM, GTSAM, Bayes trees, Hessians, sparse linear algebra, and failure diagnostics, start with [GLIM and GTSAM Pipeline Hub](glim-gtsam-pipeline-hub.md).
+
 ## Priority Ratings
 
 Priority ratings are editorial reading and deployment triage signals. `Learning` answers what to read early for SLAM/localization understanding. `Deployment` answers what to evaluate early for AV deployment in the tagged context; it is not a certification, product-readiness, or all-domain average claim. If a method's deployment score is driven by a specific domain or stack role, the reason text should name that context.
@@ -279,6 +281,7 @@ Airside-specific pages may stay airside-first, but generic pages should not make
 | [ORB-SLAM3](orb-slam2-orb-slam3.md) | Visual and visual-inertial SLAM | What is the strongest sparse feature baseline for cameras? |
 | [OpenVINS](openvins.md) | Filter-based VIO | When is MSCKF-style VIO preferable to full bundle adjustment? |
 | [GLIM](glim.md) | Range-inertial factor-graph mapping | How do GPU scan-matching factors, GTSAM, and manual map correction fit together? |
+| [GLIM and GTSAM Pipeline Hub](glim-gtsam-pipeline-hub.md) | Cross-section SLAM/KB hub | How do GLIM pipeline stages map to GTSAM objects, mathematical topics, and diagnostic artifacts? |
 | [MOLA](mola.md) | Modular LiDAR odometry, mapping, and localization | When is a ROS 2-ready modular mapping/localization framework useful? |
 | [Autoware NDT](ndt.md) | Production scan-to-map localization | What can the AV open-source ecosystem teach about diagnostics and integration? |
 | [Scan Context Family](scan-context-family.md), [LiDAR Bundle-Adjustment Factors](lidar-bundle-adjustment-factors.md) | Loop-closure and LiDAR backend factors | How should LiDAR descriptors and LiDAR-specific BA factors support relocalization, map refinement, and offline QA? |

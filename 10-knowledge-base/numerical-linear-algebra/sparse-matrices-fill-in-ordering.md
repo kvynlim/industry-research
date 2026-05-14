@@ -16,6 +16,7 @@
 - [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
 - [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
@@ -30,6 +31,21 @@ For AV systems, fill-in determines:
 - Whether marginalization creates dense priors that slow every future update.
 - Whether camera-landmark bundle adjustment scales to city-scale mapping.
 - Whether a solver should use direct sparse factorization, Schur complement, or PCG.
+
+## GTSAM and GLIM interpretation
+
+GTSAM's factor graph API hides most sparse matrix assembly, but it does not remove sparse linear algebra. When a `NonlinearFactorGraph` is linearized, factor Jacobians define a sparse Gaussian graph. Variable elimination creates conditionals, fill-in, and eventually a Bayes net or Bayes tree. Ordering decides whether that structure stays tractable.
+
+In a GLIM-style pipeline:
+
+| Graph region | Sparsity pattern | Ordering/fill-in concern |
+|---|---|---|
+| Odometry fixed-lag window | mostly temporal chain with IMU and scan factors across adjacent states | usually local, but dense marginal priors can grow on the window boundary |
+| Submap graph | pose/submap nodes with registration and loop factors | loop closures can connect distant cliques and trigger larger re-elimination |
+| Multi-session merge | session-level anchors plus cross-session loop factors | wrong or dense session links can create expensive global separators |
+| Plane/GNSS/custom factors | unary or low-arity constraints | cheap individually, but shared calibration or map-frame variables can become high-degree hubs |
+
+If a GTSAM/GLIM run slows down after adding a seemingly small factor type, check whether it introduces a global variable, a dense prior, or a high-degree separator. The factor count may be modest while the eliminated cliques become large.
 
 ## Core math and algorithm steps
 

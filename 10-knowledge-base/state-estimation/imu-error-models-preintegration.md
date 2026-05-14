@@ -6,6 +6,14 @@
 *Visual: IMU preintegration timeline from high-rate samples through bias/noise model to preintegrated factor between keyframes, plus Allan variance cue.*
 <!-- kb-visual:end -->
 
+## Related Docs
+
+- [GTSAM Factor Graph Optimization](gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
+- [Lie Groups SE(3), SO(3), Adjoints, and Jacobians](../geometry-3d/lie-groups-se3-so3-jacobians.md)
+- [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](../probability-statistics/gaussian-noise-covariance-information.md)
+- [SLAM/VIO Observability, FEJ, Nullspace, and Consistency](slam-vio-observability-fej-nullspace-consistency.md)
+
 An IMU is the short-term motion backbone for localization. It measures angular
 rate and specific force at high rate, but its errors integrate quickly into
 attitude, velocity, and position drift. Correct IMU modeling is the difference
@@ -160,6 +168,21 @@ IMU samples i...j
 The key idea from on-manifold preintegration is that the deltas are expressed
 relative to the starting body frame and can be corrected for small bias changes
 without reintegrating every sample.
+
+### GTSAM and GLIM interpretation
+
+In GTSAM, IMU preintegration turns high-rate inertial packets into a factor over neighboring navigation states. The graph usually contains pose `X(i)`, velocity `V(i)`, and bias `B(i)` variables. The preintegrated factor constrains the motion from `i` to `j`, while a bias between factor models slow bias drift.
+
+In GLIM-like range-inertial SLAM, IMU factors serve four roles:
+
+| Role | Why it matters |
+|---|---|
+| Deskew support | supplies continuous motion for correcting LiDAR scans acquired over time |
+| Initialization | keeps scan matching inside the local basin during fast motion or sparse geometry |
+| Observability support | constrains roll, pitch, velocity, and short-term translation when LiDAR geometry is weak |
+| Bias estimation | prevents raw inertial drift from being mistaken for map deformation or scan residual bias |
+
+The IMU does not make every direction observable. Gravity helps roll/pitch, but yaw and global position still need LiDAR, loop closures, GNSS, wheel odometry, map priors, or other constraints. If GLIM drifts in yaw on long feature-poor paths, that is usually an observability and aiding problem, not just an IMU tuning problem.
 
 ---
 

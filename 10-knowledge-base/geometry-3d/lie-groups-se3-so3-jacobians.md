@@ -21,6 +21,7 @@ closure.
 - [Multi-Sensor Calibration Observability](multi-sensor-calibration-observability.md)
 - [GTSAM Factor Graphs](../state-estimation/gtsam-factor-graphs.md)
 - [IMU Error Models and Preintegration](../state-estimation/imu-error-models-preintegration.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ---
 
@@ -39,6 +40,24 @@ AV stacks repeatedly estimate and compose poses:
 The first-principles rule is simple: store a pose as a group element, optimize a
 small perturbation in the tangent space, and state whether the perturbation is
 left-applied or right-applied.
+
+---
+
+## 2.1 GTSAM and GLIM Interpretation
+
+GTSAM's pose variables are manifold values. A `Pose3` in `Values` is stored as a rigid transform, but optimizers update it through a local tangent vector. Factor residuals such as `BetweenFactor<Pose3>` therefore live in a 6D tangent space, and covariance/noise sigmas must use the same ordering and convention as that tangent vector.
+
+For GLIM and similar LiDAR-inertial graph systems, SE(3) convention errors are high-impact because several subsystems meet at the same pose:
+
+| Interface | Convention to audit |
+|---|---|
+| LiDAR scan residual | whether points, normals, and covariances are expressed in sensor, body, submap, or world frame |
+| IMU preintegration | body frame, gravity direction, pose/velocity frame, and bias convention |
+| Loop closure | whether the measured relative pose is `T_i^-1 T_j` or `T_j^-1 T_i` |
+| GNSS/map prior | vehicle body origin, antenna lever arm, ENU/NED/map frame, and covariance rotation |
+| Exported trajectory/map | whether the reported transform is body-to-world, world-to-body, LiDAR-to-map, or map-to-LiDAR |
+
+When a GLIM map is mirrored, rotated, drifting in yaw, or corrected in the wrong direction after loop closure, inspect SE(3) residual convention before changing solver parameters.
 
 ---
 

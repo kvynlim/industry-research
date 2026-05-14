@@ -59,6 +59,8 @@ For sparse backend performance, start with [Sparse Matrices, Fill-In, and Orderi
 
 For sparse backend triage, start with [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md), then follow rank, factorization, Schur, covariance, or PCG links.
 
+For GLIM/GTSAM-specific backend navigation, use the [GLIM and GTSAM Pipeline Hub](../../30-autonomy-stack/localization-mapping/slam-methods/glim-gtsam-pipeline-hub.md). It maps GLIM stages to GTSAM objects, Hessian/QR/Cholesky diagnostics, Bayes-tree update behavior, and marginalization artifacts.
+
 For end-to-end solver failure triage that may start outside the linear algebra layer, use the [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md) before assigning the failure to a residual, nonlinear policy, or sparse backend.
 
 For uncertainty queries, read [Square-Root Information and Covariance Recovery](square-root-information-and-covariance-recovery.md) after the factorization and Schur complement notes.

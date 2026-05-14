@@ -61,6 +61,8 @@ For differentiable or neural map updates, read [Neural Implicit SLAM and Differe
 
 For photoreal dynamic scene reconstruction, digital twins, and Gaussian or NeRF static/dynamic decomposition, read [Dynamic 4D Neural and Gaussian Reconstruction](dynamic-4d-neural-gaussian-reconstruction.md), then use [Photoreal City-Scale 4D Reconstruction](../../30-autonomy-stack/localization-mapping/overview/photoreal-city-scale-4d-reconstruction.md) to connect the foundation to SLAM, simulation, and perception pages.
 
+For GLIM/GTSAM map construction and range-inertial SLAM, use the [GLIM and GTSAM Pipeline Hub](../../30-autonomy-stack/localization-mapping/slam-methods/glim-gtsam-pipeline-hub.md) to connect submaps, global graph correction, offline map editing, marginalization, covariance, and exported map artifacts.
+
 ## Dependency Map
 
 Mapping depends on geometry for coordinate frames and registration, state estimation for poses and covariance, sensors for measurement likelihoods, and perception for semantic observations. It hands persistent representations to localization, planning, runtime distribution, safety review, and operations.

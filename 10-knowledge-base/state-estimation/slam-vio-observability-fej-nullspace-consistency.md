@@ -24,6 +24,7 @@ freedoms as the real nonlinear system.
 - [Continuous-Time Trajectory Splines and Gaussian Process Priors](continuous-time-trajectory-splines-gp-priors.md)
 - [Lie Groups, SE(3), SO(3), and Jacobians](../geometry-3d/lie-groups-se3-so3-jacobians.md)
 - [Eigenvalues, Hessian Conditioning, and Observability](../numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ---
 
@@ -40,6 +41,23 @@ freedoms as the real nonlinear system.
 In production localization, inconsistency shows up as a health-monitor problem:
 the estimator reports a small covariance while ground-truth error, replay
 residuals, or map mismatch keeps growing.
+
+---
+
+## GTSAM and GLIM Interpretation
+
+GTSAM will solve the graph you give it. It will not automatically know which directions are physically unobservable unless the factor model, priors, and marginalization policy preserve that structure. A missing prior, an overconfident prior, or a stale marginal factor can all change the apparent nullspace of the Hessian.
+
+For GLIM, observability has two levels:
+
+| Level | Example | Diagnostic |
+|---|---|---|
+| Global gauge | a relative-only submap graph can move as a whole without changing internal residuals | anchor prior, map-frame convention, or explicit gauge handling |
+| Local geometry | a scan in a corridor, on a flat apron, or beside a long wall weakly constrains some pose directions | Hessian eigenvectors, marginal covariance, registration residual anisotropy |
+| Inertial aiding | IMU constrains short-term motion and gravity but not global yaw/position by itself | yaw/position covariance growth, bias behavior, and aided/un-aided replay |
+| Marginalization consistency | fixed-lag priors can accidentally freeze gauge directions at stale linearization points | compare window length, prior rank, FEJ/nullspace policy, and replayed residuals |
+
+If a GLIM result is visually smooth but covariance is unrealistically tight, treat that as a failure. The estimator may be certain for mathematical reasons that do not exist in the physical sensor setup.
 
 ---
 

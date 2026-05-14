@@ -20,6 +20,7 @@ covariance, and a quadratic penalty that is fast to optimize and easy to audit.
 - [Sensor Calibration and Time Synchronization](../geometry-3d/sensor-calibration-time-synchronization.md)
 - [Mahalanobis and Chi-Square Gating](mahalanobis-chi-square-gating.md)
 - [Likelihood, MAP, MLE, and Least Squares](likelihood-map-mle-least-squares.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
@@ -42,6 +43,22 @@ measurements or prior knowledge, and its examples attach diagonal Gaussian noise
 models to priors, odometry, and GPS-like factors. The same idea appears across
 Kalman filters, bundle adjustment, ICP, graph SLAM, and multi-object tracking:
 each residual is paired with a scale and correlation model.
+
+## GTSAM and GLIM interpretation
+
+In GTSAM, a noise model is not documentation attached to a factor. It changes the objective. The residual returned by a factor is interpreted through covariance or information, then whitened before it contributes to the global least-squares system. That is why the same raw residual can either dominate the graph or be nearly ignored depending on its sigma.
+
+For GLIM and range-inertial mapping, noise modeling should be treated as an explicit interface between sensors:
+
+| Constraint | Noise/covariance question |
+|---|---|
+| Scan-matching factor | Which directions are strongly constrained by local geometry, and which are weak? |
+| IMU preintegration | Are continuous-time noise densities, sample rate, gravity, and bias random walk configured consistently? |
+| Loop closure | Is covariance conservative enough for aliasing and false positives? |
+| GNSS or surveyed control | Is anisotropy, height uncertainty, lever arm, and multipath represented? |
+| Plane or map prior | Does the factor constrain only the intended direction, or does it inject artificial certainty? |
+
+If GLIM produces a plausible but biased map, inspect whitening before solver tuning. Overconfident weak factors can pull the graph harder than high-quality factors with conservative covariance.
 
 ## First-principles math
 

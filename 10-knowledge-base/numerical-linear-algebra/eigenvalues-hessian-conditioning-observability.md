@@ -17,6 +17,8 @@
 - [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [Bayesian Filtering and ESKF](../state-estimation/bayesian-filtering-and-eskf.md)
 - [IMU Error Models and Preintegration](../state-estimation/imu-error-models-preintegration.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
+- [GICP and VGICP](../../30-autonomy-stack/localization-mapping/slam-methods/gicp-vgicp.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
@@ -147,6 +149,25 @@ cond(J^T J) = cond(J)^2
 This is why normal-equation Cholesky is fast but fragile when observability is weak.
 
 ## Implementation notes
+
+### GLIM scan-matching interpretation
+
+In GLIM, scan-matching and submap-matching factors contribute many point or voxel residuals. After whitening and linearization, those residuals contribute to the local Hessian:
+
+```text
+H_scan = J_scan^T J_scan
+```
+
+The eigenvectors of `H_scan` explain which pose directions the current geometry can constrain. This is more informative than a single scan-matching score.
+
+Examples:
+
+- Flat ground supplies strong information for height, roll, and pitch, but weak information for horizontal translation and yaw.
+- A long wall constrains motion normal to the wall better than motion along the wall.
+- Repeated terminal gates or warehouse aisles can create several local minima even when the Hessian near one minimum looks sharp.
+- Dynamic objects can add strong but wrong information if they dominate correspondences.
+
+For GLIM map QA, log or approximate weak directions for both fixed-lag odometry windows and global submap solves. If a weak mode aligns with an operationally important direction, such as lateral pose on an apron, the map needs external information: RTK/GNSS, wheel odometry, camera/radar constraints, surveyed control points, or verified loop closures.
 
 ### What to log
 

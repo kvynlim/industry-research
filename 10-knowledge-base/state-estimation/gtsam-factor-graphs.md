@@ -9,9 +9,31 @@
 ## Related docs
 
 - [Robust Losses and M-Estimators](../probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
+- [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](../probability-statistics/gaussian-noise-covariance-information.md)
+- [Likelihood, MAP, MLE, and Least Squares](../probability-statistics/likelihood-map-mle-least-squares.md)
+- [Probabilistic Graphical Models and Message Passing](../probability-statistics/probabilistic-graphical-models-message-passing.md)
+- [Nonlinear Least Squares from First Principles](../optimization/nonlinear-least-squares-first-principles.md)
+- [Jacobians, Autodiff, and Manifold Linearization](../optimization/jacobians-autodiff-manifold-linearization.md)
+- [Gauss-Newton, Levenberg-Marquardt, and Dogleg](../optimization/gauss-newton-levenberg-marquardt-dogleg.md)
+- [Factor Graph Solver Patterns: Ceres, GTSAM, and g2o](../optimization/factor-graph-solver-patterns-ceres-gtsam-g2o.md)
+- [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
+- [Eigenvalues, Hessian Conditioning, and Observability](../numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md)
+- [Sparse Matrices, Fill-In, and Ordering](../numerical-linear-algebra/sparse-matrices-fill-in-ordering.md)
+- [Sparse Estimation Backend Crosswalk](../numerical-linear-algebra/sparse-estimation-backend-crosswalk.md)
+- [Cholesky, LDLT, and Normal Equations](../numerical-linear-algebra/cholesky-ldlt-normal-equations.md)
+- [QR, SVD, and Rank-Revealing Solvers](../numerical-linear-algebra/qr-svd-rank-revealing-solvers.md)
+- [Square-Root Information and Covariance Recovery](../numerical-linear-algebra/square-root-information-and-covariance-recovery.md)
+- [Schur Complement, Marginalization, and PCG](../numerical-linear-algebra/schur-complement-marginalization-pcg.md)
+- [Lie Groups SE(3), SO(3), Adjoints, and Jacobians](../geometry-3d/lie-groups-se3-so3-jacobians.md)
+- [IMU Error Models and Preintegration](imu-error-models-preintegration.md)
+- [SLAM/VIO Observability, FEJ, Nullspace, and Consistency](slam-vio-observability-fej-nullspace-consistency.md)
+- [GLIM and GTSAM Pipeline Hub](../../30-autonomy-stack/localization-mapping/slam-methods/glim-gtsam-pipeline-hub.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Table of Contents
 
+- [GLIM Reading Frame](#glim-reading-frame)
+- [GTSAM Mathematical Stack Coverage Map](#gtsam-mathematical-stack-coverage-map)
 1. [Factor Graph Fundamentals](#1-factor-graph-fundamentals)
 2. [Mathematical Foundations](#2-mathematical-foundations)
 3. [ISAM2 Algorithm and the Bayes Tree](#3-isam2-algorithm-and-the-bayes-tree)
@@ -24,6 +46,72 @@
 10. [Failure Modes and Recovery](#10-failure-modes-and-recovery)
 11. [Comparison: GTSAM vs Ceres vs g2o](#11-comparison-gtsam-vs-ceres-vs-g2o)
 12. [AV System Integration Patterns](#12-av-system-integration-patterns)
+
+---
+
+## GLIM Reading Frame
+
+GLIM is a concrete application of the GTSAM model described on this page. Read it as:
+
+```text
+range/IMU measurements
+  -> residual factors
+  -> sparse factor graph
+  -> linearized Jacobian and Hessian
+  -> Bayes tree or batch sparse solve
+  -> optimized odometry, submaps, and global map
+```
+
+The mapping from concepts is:
+
+| GTSAM concept | GLIM use |
+|---|---|
+| `Values` | Pose, velocity, bias, and submap-pose assignments such as `X(i)`, `V(i)`, and `B(i)` |
+| `NonlinearFactorGraph` | Odometry and global mapping objectives |
+| Noise model | Measurement covariance and whitening for scan matching, IMU, loop, plane, GNSS, or custom factors |
+| Custom factor | `gtsam_points` scan-matching or VGICP-style residuals |
+| iSAM2 / Bayes tree | Incremental smoothing and partial relinearization where applicable |
+| Fixed-lag smoothing | Bounded odometry window with marginalization of old variables |
+| Hessian / information matrix | Local observability and covariance approximation for the current linearized graph |
+
+This is why GLIM should not be reduced to "GTSAM plus ICP." The key design move is putting point-cloud registration error into factor evaluation, then using GTSAM-style sparse optimization to solve the resulting map problem.
+
+## GTSAM Mathematical Stack Coverage Map
+
+Read GTSAM as a layered mathematical stack. The C++ API names are useful, but the underlying questions are probabilistic, geometric, numerical, and operational:
+
+```text
+measurements
+  -> likelihood factors and priors
+  -> whitened residual blocks
+  -> manifold-aware Jacobians
+  -> sparse linearized Gaussian graph
+  -> ordered elimination / Bayes tree
+  -> nonlinear update, marginal, or incremental relinearization
+```
+
+| GTSAM layer | Main GTSAM objects or methods | Mathematical method | Dedicated KB coverage | GLIM relevance |
+|---|---|---|---|---|
+| Probabilistic model | `NonlinearFactorGraph`, `PriorFactor`, `BetweenFactor`, `NoiseModelFactorN` | Factorization of a posterior into local likelihoods and priors | [Probabilistic Graphical Models and Message Passing](../probability-statistics/probabilistic-graphical-models-message-passing.md), [Likelihood, MAP, MLE, and Least Squares](../probability-statistics/likelihood-map-mle-least-squares.md) | Odometry, scan matching, loop closure, GNSS, plane, and custom map factors become one joint posterior |
+| Noise and whitening | `noiseModel::Diagonal`, `noiseModel::Gaussian`, robust noise models | Covariance, information, square-root information, Mahalanobis distance | [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](../probability-statistics/gaussian-noise-covariance-information.md), [Square-Root Information and Covariance Recovery](../numerical-linear-algebra/square-root-information-and-covariance-recovery.md) | Sensor trust is encoded by sigmas and square-root information before factors enter the solve |
+| Nonlinear objective | `error()`, `linearize()`, `NonlinearOptimizer` | MAP as nonlinear least squares | [Nonlinear Least Squares from First Principles](../optimization/nonlinear-least-squares-first-principles.md) | GLIM registration costs are solved as local nonlinear least-squares updates, not as isolated ICP transforms |
+| Manifold state space | `Pose2`, `Pose3`, `Rot3`, `NavState`, `Values`, `retract`, `localCoordinates` | Lie groups, local tangent coordinates, Exp/Log-style updates | [Lie Groups SE(3), SO(3), Adjoints, and Jacobians](../geometry-3d/lie-groups-se3-so3-jacobians.md), [Jacobians, Autodiff, and Manifold Linearization](../optimization/jacobians-autodiff-manifold-linearization.md) | Pose, velocity, bias, and submap updates must use the same tangent convention across scan, IMU, and loop factors |
+| Linearization | `GaussianFactorGraph`, `JacobianFactor`, `HessianFactor`, `linearizeToHessianFactor` | Taylor expansion, Jacobian blocks, approximate Hessian `J^T J` | [Jacobians, Autodiff, and Manifold Linearization](../optimization/jacobians-autodiff-manifold-linearization.md), [Eigenvalues, Hessian Conditioning, and Observability](../numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md) | Scan geometry weak modes appear as small eigenvalues in the local Hessian or information matrix |
+| Nonlinear step | `GaussNewtonOptimizer`, `LevenbergMarquardtOptimizer`, `DoglegOptimizer`, iSAM2 GN/Dogleg params | Gauss-Newton, LM damping, trust-region dogleg | [Gauss-Newton, Levenberg-Marquardt, and Dogleg](../optimization/gauss-newton-levenberg-marquardt-dogleg.md), [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md) | Poor initialization or dynamic-object residuals show up as rejected steps, damping growth, or bad actual/predicted reduction |
+| Sparse solve | `EliminatePreferCholesky`, QR choices, ordering APIs | Sparse Cholesky, sparse QR, fill-reducing ordering | [Cholesky, LDLT, and Normal Equations](../numerical-linear-algebra/cholesky-ldlt-normal-equations.md), [QR, SVD, and Rank-Revealing Solvers](../numerical-linear-algebra/qr-svd-rank-revealing-solvers.md), [Sparse Matrices, Fill-In, and Ordering](../numerical-linear-algebra/sparse-matrices-fill-in-ordering.md) | City-scale mapping depends on sparse block structure, good ordering, and diagnosing Cholesky failures as observability/modeling signals |
+| Elimination and inference | `GaussianBayesNet`, `BayesTree`, multifrontal elimination | Variable elimination, conditionals, separators, clique trees | [Probabilistic Graphical Models and Message Passing](../probability-statistics/probabilistic-graphical-models-message-passing.md), [Sparse Matrices, Fill-In, and Ordering](../numerical-linear-algebra/sparse-matrices-fill-in-ordering.md) | Incremental updates only remain fast when affected cliques stay local and loop closures do not force huge re-elimination |
+| Incremental smoothing | `ISAM2`, `ISAM2Params`, `relinearizeThreshold`, `relinearizeSkip` | Bayes tree update, partial relinearization, incremental reordering | [Factor Graph + iSAM2 + GTSAM](../../30-autonomy-stack/localization-mapping/slam-methods/factor-graph-isam2-gtsam.md) | Live GLIM-style odometry needs bounded update latency and explicit monitoring of relinearization behavior |
+| Marginals and fixed lag | `Marginals`, `IncrementalFixedLagSmoother`, factor removal | Schur complement, marginal covariance, dense prior factors | [Schur Complement, Marginalization, and PCG](../numerical-linear-algebra/schur-complement-marginalization-pcg.md), [Square-Root Information and Covariance Recovery](../numerical-linear-algebra/square-root-information-and-covariance-recovery.md) | Old pose/velocity/bias states can be removed, but their information becomes a prior on the active separator |
+| Robustness | `noiseModel::Robust`, Huber, Cauchy, Tukey-like kernels, switchable factors in user code | M-estimation, IRLS-style weighting, outlier influence control | [Robust Losses and M-Estimators](../probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) | Loop closures, GNSS in urban canyons, and dynamic-object scan residuals need robustification plus front-end gating |
+| Inertial navigation | `PreintegratedImuMeasurements`, `ImuFactor`, `CombinedImuFactor`, `imuBias::ConstantBias` | On-manifold preintegration, bias random walk, gravity-constrained dynamics | [IMU Error Models and Preintegration](imu-error-models-preintegration.md) | IMU factors stabilize deskew, short-term motion, bias estimation, and poor-geometry LiDAR segments |
+| Observability and consistency | Priors, gauges, marginal covariances, `IndeterminantLinearSystemException` | Nullspaces, rank deficiency, gauge fixing, Hessian conditioning | [SLAM/VIO Observability, FEJ, Nullspace, and Consistency](slam-vio-observability-fej-nullspace-consistency.md), [Eigenvalues, Hessian Conditioning, and Observability](../numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md) | A visually plausible map can still be mathematically weak if global frame, yaw, scale, or local scan directions are underconstrained |
+
+For GLIM specifically, use this reading order:
+
+1. Start with this page for the GTSAM object model: `NonlinearFactorGraph`, `Values`, factors, noise models, and optimizer choices.
+2. Read [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md) for the concrete pipeline: preprocessing, odometry, submaps, global mapping, offline correction, multi-session merge, and extensions.
+3. Read the math pages in the table when a GLIM symptom points to a layer: bad residuals, wrong Jacobians, rank deficiency, fill-in, marginalization artifacts, robust-kernel behavior, or iSAM2 relinearization.
+4. Keep the pipeline and the math connected during debugging. "GLIM failed" is usually too broad; the actionable question is whether the failure is in factor modeling, whitening, initialization, scan geometry, sparse elimination, marginalization, or front-end data quality.
 
 ---
 
@@ -67,7 +155,7 @@ GTSAM (Georgia Tech Smoothing and Mapping) is a BSD-licensed C++ library that im
 - **Manifold-aware optimization**: Variables live on differentiable manifolds (Lie groups like SE(3), SO(3)), not in flat Euclidean space. Optimization occurs in tangent spaces via retract/local operations.
 - **Key-based variable addressing**: Variables are addressed using `Key` (typedef to `size_t`), created via `symbol('x', 1)` for pose 1 or `symbol('l', 5)` for landmark 5.
 
-GTSAM 4.2 is the current stable release; GTSAM 4.3a0 (pre-release) introduces C++17 requirements, Boost removal, and substantial hybrid (discrete-continuous) inference enhancements.
+The upstream documentation currently lists GTSAM 4.2 as the stable release and the active development line as pre-4.3. Check the official docs before pinning a version, because wrapper, C++ standard, and hybrid-inference support can change across the 4.3 line.
 
 ---
 
@@ -1188,10 +1276,15 @@ Production AV systems should monitor:
 ### Online Resources
 
 - [GTSAM Official Site](https://gtsam.org/)
+- [GTSAM Documentation Index](https://gtsam.org/docs/)
 - [GTSAM Tutorials](https://gtsam.org/tutorials/intro.html)
+- [GTSAM Concepts](https://gtsam.org/notes/gtsam-concepts/)
 - [GTSAM by Example (Jupyter Book)](https://gtbook.github.io/gtsam-examples/)
 - [gtsam_points GitHub](https://github.com/koide3/gtsam_points)
 - [GTSAM GitHub Repository](https://github.com/borglab/gtsam)
+- [GTSAM NonlinearFactorGraph API](https://gtsam.org/doxygen/a05091.html)
+- [GTSAM ISAM2Params API](https://gtsam.org/doxygen/a04967.html)
+- [GTSAM Marginals API](https://gtsam.org/doxygen/a05003.html)
 - [Factor Graphs for Robot Perception (Dellaert & Kaess)](https://gtsam.org/2020/06/01/factor-graphs.html)
 - [GTSAM Manifold Concepts](https://gtsam.org/2021/02/23/uncertainties-part2.html)
 - [Robust Noise Models in GTSAM](https://gtsam.org/2019/09/20/robust-noise-model.html)

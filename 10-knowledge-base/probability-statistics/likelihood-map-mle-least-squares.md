@@ -21,6 +21,7 @@ calibration solvers.
 - [Bayesian Filtering and Error-State Kalman Filters](../state-estimation/bayesian-filtering-and-eskf.md)
 - [Robust Statistics, RANSAC, and Hypothesis Testing](robust-statistics-ransac-hypothesis-testing.md)
 - [Robust Losses and M-Estimators: Huber, Cauchy, Tukey, and Geman-McClure](robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
@@ -41,6 +42,23 @@ disguise:
 The value of the first-principles view is auditability. If a residual appears in
 a cost function, engineers should know what noise model it implies, what units
 it uses, and what prior assumptions it encodes.
+
+## GTSAM and GLIM interpretation
+
+GTSAM is a MAP estimation library in factor-graph form. `NonlinearFactorGraph` encodes the posterior density up to proportionality; `Values` is a candidate assignment; optimizers search for the assignment that maximizes the posterior or, equivalently for Gaussian factors, minimizes the summed whitened squared residuals.
+
+For GLIM, every pipeline component should be explainable as one of these probabilistic objects:
+
+| Pipeline component | MAP interpretation |
+|---|---|
+| Initial pose prior | prior belief that fixes gauge or anchors the map frame |
+| IMU factor | likelihood of high-rate inertial samples given pose, velocity, and bias states |
+| Scan-to-submap factor | likelihood of range observations under the current local map alignment |
+| Loop closure factor | likelihood that two distant trajectory/submap states have a measured relative transform |
+| GNSS/control-point factor | absolute-position likelihood in the chosen world frame |
+| Robust kernel or switch variable | heavy-tailed or mixture-like treatment of possible outliers |
+
+This framing keeps the pipeline auditable. A GLIM extension should not merely add a term because it improves one dataset; it should state the implied likelihood, covariance, outlier model, and variables it constrains.
 
 ## First-principles math
 

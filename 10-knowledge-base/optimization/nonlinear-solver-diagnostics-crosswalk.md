@@ -14,12 +14,16 @@
 - [Nonlinear Least Squares from First Principles](nonlinear-least-squares-first-principles.md)
 - [Jacobians, Autodiff, and Manifold Linearization](jacobians-autodiff-manifold-linearization.md)
 - [Eigenvalues, Hessian Conditioning, and Observability](../numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md)
+- [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Why this page exists
 
 A calibration, map, or plan can fail even when the optimizer reports convergence and the final scalar cost is low. The scalar objective is only a compressed summary of residual definitions, whitening, Jacobians, linear algebra, step acceptance, gauge choices, and state-estimation interpretation. This page routes from an initial symptom to the layer that owns it, then to the diagnostic artifact that can confirm or reject the hypothesis.
 
 Use it when the solved artifact is wrong, unsafe, unstable, or overconfident. The main discipline is to avoid jumping from "solver failed" to "change solver library." First identify whether the wrong object is a measurement model, residual family, local coordinate convention, linear backend, damping policy, prior, gauge anchor, covariance query, or downstream interpretation.
+
+For GTSAM/GLIM, this page is the failure triage map. `IndeterminantLinearSystemException`, huge iSAM2 update time, small but wrong covariance, rejected LM steps, or a warped map should each be routed to a layer: factor residual, whitening, Jacobian, manifold convention, sparse elimination, marginalization, robust loss, or observability. Do not treat GTSAM as a black box when the graph itself is the executable model.
 
 ## Failure spine
 

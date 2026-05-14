@@ -11,7 +11,7 @@ priority:
   reason: "GLIM is rated for LiDAR odometry, mapping, or scan-matching coverage in AV localization stacks."
 method-priority:end -->
 
-Related docs: [GTSAM and iSAM2](factor-graph-isam2-gtsam.md), [GICP and VGICP](gicp-vgicp.md), [LIO-SAM](lio-sam.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [KISS-ICP](kiss-icp.md), [CT-ICP](ct-icp.md), [Open-Source SLAM Stack Comparison](open-source-stack-comparison.md), and [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
+Related docs: [GLIM and GTSAM Pipeline Hub](glim-gtsam-pipeline-hub.md), [GTSAM and iSAM2](factor-graph-isam2-gtsam.md), [GICP and VGICP](gicp-vgicp.md), [LiDAR Bundle-Adjustment Factors](lidar-bundle-adjustment-factors.md), [LIO-SAM](lio-sam.md), [FAST-LIO and FAST-LIO2](fast-lio-fast-lio2.md), [KISS-ICP](kiss-icp.md), [CT-ICP](ct-icp.md), [Open-Source SLAM Stack Comparison](open-source-stack-comparison.md), [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md), [Probabilistic Graphical Models and Message Passing](../../../10-knowledge-base/probability-statistics/probabilistic-graphical-models-message-passing.md), [Eigenvalues, Hessian Conditioning, and Observability](../../../10-knowledge-base/numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md), [Sparse Estimation Backend Crosswalk](../../../10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md), and [Nonlinear Solver Diagnostics Crosswalk](../../../10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md).
 
 ## Executive Summary
 
@@ -54,6 +54,23 @@ This is computationally heavier, but GLIM makes it practical with GPU-accelerate
 
 For AV mapping, this matters because mapping quality is often dominated by accumulated alignment errors, loop-closure quality, and the ability to repair or refine maps offline. GLIM is closer to an advanced mapping workbench than a minimal odometry package.
 
+## Pipeline Spine
+
+Use GLIM as a layered pipeline, not as one monolithic "SLAM algorithm." Each layer has a different state, factor set, artifact, and diagnostic signal.
+
+| Layer | Main job | GLIM mechanism | Output artifact | What to inspect |
+|---|---|---|---|---|
+| Sensor ingestion | Bring range, IMU, and optional image streams into one time base | ROS 2 node or rosbag reader, sensor config, `T_lidar_imu`, topic config | Timestamped frames and sensor states | Topic timing, dropped scans, IMU rate, extrinsic direction |
+| Preprocessing | Make point clouds usable for matching | Downsampling, deskewing or continuous-time path depending config, nearest-neighbor structures | Preprocessed frame cloud | Sharpness of poles/edges, outlier ratio, voxel density |
+| Odometry estimation | Estimate short-horizon motion | Fixed-lag factor graph with scan-matching and IMU factors | `odom_imu.txt`, `odom_lidar.txt`, local trajectory | Per-frame residuals, smoother lag, weak geometry modes |
+| Submapping | Group locally optimized frames into map chunks | Submap creation from optimized local frames | Submap graph and local point-cloud chunks | Submap overlap, local map sharpness, dynamic clutter |
+| Global mapping | Correct long-range drift and align submaps | Submap factor graph with direct matching-cost factors and IMU constraints | `traj_imu.txt`, `traj_lidar.txt`, globally corrected map | Loop residuals, Hessian conditioning, graph jumps |
+| Offline correction | Repair failures and produce map artifacts | Offline viewer, manual loop factors, plane BA constraints, map editor, point removal | Corrected dump, exported PLY map | Before/after residuals, edited-object provenance |
+| Multi-session merge | Combine repeated mapping sessions | Manual alignment, fine registration, global matching-cost fusion | Merged map and trajectory set | Cross-session drift, common anchor consistency |
+| Extension layer | Add domain-specific constraints | Global callback slots and extension modules | Custom factors and monitoring hooks | Thread safety, factor covariance, update timing |
+
+The important design distinction is that odometry and global mapping are related but not the same product. Odometry should be stable and causal enough to support mapping. Global mapping may apply larger corrections after submap alignment, loop verification, or manual repair. A production vehicle control stack must not blindly consume global map jumps as its real-time control pose.
+
 ## Core Idea
 
 GLIM formulates 3D range-inertial SLAM as factor-graph optimization with scan-matching factors that directly evaluate point-cloud registration error.
@@ -68,6 +85,122 @@ The main technical ideas are:
 - **Global submap optimization:** create submaps, then optimize their poses with global matching cost minimization.
 - **Tightly coupled inertial constraints:** use IMU factors in odometry and global mapping to stabilize pose estimation, especially gravity-related degrees of freedom.
 - **Extensibility:** add custom constraints, callbacks, visual features, GNSS factors, loop detectors, or other modules through extension points.
+
+## Graph Anatomy
+
+GLIM's graph structure is best understood through two connected estimation problems: the odometry graph and the global mapping graph.
+
+### Odometry graph
+
+The odometry graph is a fixed-lag smoother over recent frames. It keeps only a bounded time window active so recent states can be relinearized and corrected without turning every frame into a full batch problem.
+
+Typical variables:
+
+```text
+X(i): IMU pose, usually T_odom_imu, stored as gtsam::Pose3
+V(i): IMU velocity in the odometry frame, stored as gtsam::Vector3
+B(i): IMU bias, stored as gtsam::imuBias::ConstantBias
+```
+
+Typical factors:
+
+```text
+prior(X0, V0, B0)
+imu_preintegration(X(i), V(i), B(i), X(i+1), V(i+1), B(i+1))
+scan_matching(X(i), X(j), local frame or keyframe point clouds)
+bias_random_walk(B(i), B(i+1))
+optional extension factors from callbacks
+```
+
+LiDAR-only continuous-time configurations are different: they may not create velocity and bias variables, and the pose variable may represent the LiDAR pose directly. That matters when adding custom factors because a callback factor must attach to variables that actually exist in the active window.
+
+### Global mapping graph
+
+The global graph lifts the problem from frame-level motion to submap-level consistency.
+
+Typical variables:
+
+```text
+X(k): submap pose, usually T_world_submap, stored as gtsam::Pose3
+V(2k), V(2k+1): endpoint velocities when IMU constraints are active
+B(2k), B(2k+1): endpoint biases when IMU constraints are active
+```
+
+Typical factors:
+
+```text
+submap_prior(X0)
+relative or direct matching-cost factors between overlapping submaps
+IMU constraints across submap endpoints
+explicit loop factors created by the offline viewer
+plane bundle-adjustment constraints created by the offline viewer
+custom GNSS/GCP/map-anchor factors if added through extensions
+```
+
+This is why GLIM is different from a plain pose graph. A classical pose graph often optimizes compact relative-pose residuals:
+
+```text
+e_ij = Log(Z_ij^-1 * X_i^-1 * X_j)
+```
+
+GLIM's stronger pattern is to keep point-cloud registration error in the factor evaluation path:
+
+```text
+cost_ij(X_i, X_j) = sum over point/voxel correspondences of matching_cost(T_i, T_j, cloud_i, cloud_j)
+```
+
+That direct cost keeps the backend closer to the geometry that produced the constraint. The tradeoff is heavier evaluation, stronger dependence on initialization and correspondences, and more need for GPU acceleration.
+
+## Factor Semantics
+
+The following table is the practical map from GLIM concepts to GTSAM and knowledge-base foundations.
+
+| GLIM concept | GTSAM / math object | What it means | Main KB topic |
+|---|---|---|---|
+| Pose, velocity, bias variables | `Values` keyed by `X(i)`, `V(i)`, `B(i)` | The current assignment for unknown states | [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) |
+| Scan-matching factor | `NoiseModelFactor`-style nonlinear factor, implemented through `gtsam_points` | A geometric likelihood from point-cloud registration residuals | [GICP and VGICP](gicp-vgicp.md) |
+| IMU factor | IMU preintegration factor | High-rate inertial data compressed between graph states | [Factor Graph SLAM with iSAM2 and GTSAM](factor-graph-isam2-gtsam.md) |
+| Fixed-lag smoother | Marginalization and sliding active set | Old states leave the active window and become priors on remaining states | [Sparse Estimation Backend Crosswalk](../../../10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md) |
+| Global submap graph | Sparse nonlinear least-squares problem | Submap poses are optimized against geometric matching and inertial constraints | [Factor Graph Solver Patterns](../../../10-knowledge-base/optimization/factor-graph-solver-patterns-ceres-gtsam-g2o.md) |
+| Hessian / information matrix | `H = J^T J` or `J^T Sigma^-1 J` | Local curvature and observability of the current graph | [Eigenvalues, Hessian Conditioning, and Observability](../../../10-knowledge-base/numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md) |
+| Bayes tree / iSAM2 | Incremental factorization structure | Efficiently updates affected cliques instead of solving the whole graph every time | [GTSAM and iSAM2](factor-graph-isam2-gtsam.md) |
+| Loop factor | Long-range constraint | Revisits or manual matches reduce drift but can corrupt the map if false or overweighted | [Robust PGO / GNC / riSAM](robust-pgo-gnc-risam.md) |
+| Manual plane BA factor | Geometric surface constraint | Human-added plane consistency factor to repair map geometry | [Objective and Residual Design Audit](../../../10-knowledge-base/optimization/objective-residual-design-and-audit.md) |
+
+## GTSAM, Bayes Nets, And Hessians
+
+GTSAM's name is "Smoothing and Mapping" because it estimates a trajectory or map state using all relevant measurements in a sparse posterior, not only the latest state. The probability model can be drawn as a Bayesian network, but GTSAM works most naturally with the equivalent factor graph:
+
+```text
+Bayesian-network view:
+  p(x_0:T, z_1:T) = p(x_0) product_t p(x_t | x_{t-1}) p(z_t | x_t)
+
+Factor-graph view:
+  p(X | Z) proportional_to product_i phi_i(X_i)
+
+Least-squares view:
+  X* = argmin_X sum_i 0.5 * ||r_i(X_i)||^2_Sigma_i
+```
+
+For GLIM, this translation is concrete:
+
+- `p(x_t | x_{t-1})` becomes IMU, motion, or scan-matching transition factors.
+- `p(z_t | x_t)` becomes range-data matching factors against keyframes, submaps, or a map.
+- Loop closures add non-Markov factors between distant submaps.
+- Manual constraints add human-verified factors after inspecting the map.
+
+After linearization, each factor contributes Jacobian blocks. The backend builds a local system:
+
+```text
+min_delta 0.5 ||J delta + r||^2
+H delta = -g
+H = J^T J
+g = J^T r
+```
+
+For whitened residuals, `H` is the local information matrix. In GLIM diagnostics, the small eigenvalues and eigenvectors of this Hessian tell you which motion directions are weakly constrained. On a flat apron, for example, ground returns may constrain height, roll, and pitch while leaving yaw and horizontal translation weak. A low scalar matching cost does not remove that observability limit.
+
+The Bayes tree matters when the graph is updated incrementally. New scan-matching, IMU, loop, or manual factors affect only part of the graph. iSAM2 updates the affected cliques, relinearizes variables whose estimates changed enough, and preserves sparse structure where possible. That is the computational reason factor graphs can be practical in online SLAM, and the same idea explains why false loop closures can cause compute spikes or large map corrections.
 
 ## Pipeline
 
@@ -85,6 +218,21 @@ The main technical ideas are:
 12. Use the offline viewer or map editor for manual loop closure, plane constraints, map cleanup, point removal, PLY export, or multi-session merging.
 
 GLIM separates odometry estimation, local mapping, and global mapping, but the modules are designed as one integrated process for efficiency.
+
+## Artifact Contract
+
+Treat every GLIM run as producing both numeric estimates and audit artifacts.
+
+| Artifact | Meaning | Use |
+|---|---|---|
+| `odom_imu.txt` | IMU-frame odometry before global loop correction | Inspect local drift and real-time odometry behavior |
+| `odom_lidar.txt` | LiDAR-frame odometry before global loop correction | Compare sensor-frame trajectory and map export alignment |
+| `traj_imu.txt` | IMU-frame trajectory after global mapping | Use for globally corrected map reconstruction and evaluation |
+| `traj_lidar.txt` | LiDAR-frame trajectory after global mapping | Use for point-cloud export and downstream map QA |
+| Dump directory | Graph, submaps, trajectory, and mapping state | Reopen in offline viewer for loops, planes, edits, exports |
+| Exported PLY | Dense point-cloud map artifact | Feed map QA, localization-map construction, meshing, or digital twin pipelines |
+
+For production-style map work, the dump is more valuable than a final point cloud alone. It preserves enough context to audit loop constraints, remove objects, adjust map corrections, and reproduce export decisions.
 
 ## Where It Fits
 
@@ -127,6 +275,45 @@ It should also not be confused with FAST-LIO, LIO-SAM, or KISS-ICP:
 - `gtsam_points` exposes reusable point-cloud factors and optimizers beyond GLIM itself.
 - Extension modules make it suitable for research on GNSS, visual constraints, loop detection, velocity constraints, calibration checks, or domain-specific factors.
 - Offline viewer and map editor are valuable for real mapping operations where fully automatic SLAM is not enough.
+
+## Knowledge-Base Reading Path
+
+Read GLIM through this sequence when the goal is to understand the full pipeline:
+
+| Question | Read |
+|---|---|
+| Where is the compact cross-section hub for the whole GLIM/GTSAM pipeline? | [GLIM and GTSAM Pipeline Hub](glim-gtsam-pipeline-hub.md) |
+| What is the probability model behind a SLAM graph? | [Probabilistic Graphical Models and Message Passing](../../../10-knowledge-base/probability-statistics/probabilistic-graphical-models-message-passing.md) |
+| How does GTSAM represent variables, factors, and nonlinear optimization? | [GTSAM Factor Graph Optimization](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md) |
+| How does a factor graph become a MAP least-squares problem? | [Likelihood, MAP, MLE, and Least Squares](../../../10-knowledge-base/probability-statistics/likelihood-map-mle-least-squares.md) and [Nonlinear Least Squares from First Principles](../../../10-knowledge-base/optimization/nonlinear-least-squares-first-principles.md) |
+| How should factor noise, covariance, information, and whitening be interpreted? | [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](../../../10-knowledge-base/probability-statistics/gaussian-noise-covariance-information.md) and [Square-Root Information and Covariance Recovery](../../../10-knowledge-base/numerical-linear-algebra/square-root-information-and-covariance-recovery.md) |
+| How do pose updates work on SE(3) instead of ordinary vector space? | [Lie Groups SE(3), SO(3), Adjoints, and Jacobians](../../../10-knowledge-base/geometry-3d/lie-groups-se3-so3-jacobians.md) and [Jacobians, Autodiff, and Manifold Linearization](../../../10-knowledge-base/optimization/jacobians-autodiff-manifold-linearization.md) |
+| Which nonlinear step is being taken: Gauss-Newton, LM, or Dogleg? | [Gauss-Newton, Levenberg-Marquardt, and Dogleg](../../../10-knowledge-base/optimization/gauss-newton-levenberg-marquardt-dogleg.md) |
+| How does iSAM2 update a graph incrementally? | [Factor Graph SLAM with iSAM2 and GTSAM](factor-graph-isam2-gtsam.md) |
+| What are the point-cloud residuals GLIM relies on? | [GICP and VGICP](gicp-vgicp.md) and [LiDAR Bundle-Adjustment Factors](lidar-bundle-adjustment-factors.md) |
+| How do IMU factors stabilize deskew, velocity, bias, and poor LiDAR geometry? | [IMU Error Models and Preintegration](../../../10-knowledge-base/state-estimation/imu-error-models-preintegration.md) |
+| Why do weak geometric scenes break scan matching? | [Eigenvalues, Hessian Conditioning, and Observability](../../../10-knowledge-base/numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md) |
+| What happens inside sparse elimination and variable ordering? | [Sparse Matrices, Fill-In, and Ordering](../../../10-knowledge-base/numerical-linear-algebra/sparse-matrices-fill-in-ordering.md), [Cholesky, LDLT, and Normal Equations](../../../10-knowledge-base/numerical-linear-algebra/cholesky-ldlt-normal-equations.md), and [QR, SVD, and Rank-Revealing Solvers](../../../10-knowledge-base/numerical-linear-algebra/qr-svd-rank-revealing-solvers.md) |
+| What happens when old states leave a fixed-lag window? | [Sparse Estimation Backend Crosswalk](../../../10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md) and [Schur Complement, Marginalization, and PCG](../../../10-knowledge-base/numerical-linear-algebra/schur-complement-marginalization-pcg.md) |
+| How do gauges, nullspaces, and fake certainty show up in SLAM/VIO? | [SLAM/VIO Observability, FEJ, Nullspace, and Consistency](../../../10-knowledge-base/state-estimation/slam-vio-observability-fej-nullspace-consistency.md) |
+| How should false loops, dynamic points, and GNSS jumps be handled? | [Robust Losses and M-Estimators](../../../10-knowledge-base/probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md) and [Robust Statistics, RANSAC, and Hypothesis Testing](../../../10-knowledge-base/probability-statistics/robust-statistics-ransac-hypothesis-testing.md) |
+| How do I debug a converged but wrong map? | [Nonlinear Solver Diagnostics Crosswalk](../../../10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md) and [Objective and Residual Design Audit](../../../10-knowledge-base/optimization/objective-residual-design-and-audit.md) |
+
+This reading path is intentionally broader than GLIM. GLIM is the application layer; the reason it works is the interaction among probabilistic graphical models, sparse nonlinear least squares, LiDAR registration residuals, and state-estimation observability.
+
+The shortest mental model is:
+
+```text
+sensor packets
+  -> motion-compensated range data and IMU increments
+  -> residual factors with covariance/noise models
+  -> GTSAM nonlinear graph over poses, velocities, biases, and submap poses
+  -> tangent-space linearization
+  -> sparse Jacobian/Hessian/Bayes-tree solve
+  -> updated trajectory, submaps, marginals, diagnostics, and exported map artifacts
+```
+
+If the pipeline is being audited, track each GLIM artifact back to a GTSAM layer. A trajectory jump is usually a factor, initialization, robust-kernel, loop-closure, or marginalization issue. A Cholesky exception is usually a gauge, rank, ordering, or bad-Hessian issue. A locally smooth but globally warped map is often a weak prior, false loop, bad covariance, or unmodeled dynamic-object issue.
 
 ## Limitations
 
@@ -201,6 +388,17 @@ Evaluation dimensions that matter for AV use:
 - Repeatability across different vehicle speeds, LiDAR models, weather, and traffic conditions.
 - Localization impact when using GLIM-generated maps in a separate online localizer.
 
+Solver and graph diagnostics to record:
+
+- Per-factor raw and whitened residual histograms for scan-matching, IMU, loop, plane, GNSS, or custom factors.
+- Final cost by factor family, not only total graph cost.
+- Hessian or approximate information eigenvalues for odometry windows and global submap solves.
+- Weak eigenvectors grouped by pose/velocity/bias/submap variable so degeneracy is interpretable.
+- Accepted step size, predicted-vs-actual reduction, and damping or trust-region state when available.
+- iSAM2 or fixed-lag update time distribution, especially after adding loop or manual factors.
+- Marginal covariance queries for key poses or submaps, interpreted with gauge and anchor policy documented.
+- Factor insertion and removal events when variables leave the fixed-lag window.
+
 For airport or industrial-yard AVs, add:
 
 - Lateral error against surveyed lane centerlines.
@@ -224,6 +422,20 @@ For airport or industrial-yard AVs, add:
 - Multi-session merge supports indoor and outdoor registration presets, manual alignment, fine registration, and global matching cost fusion.
 - Extension callbacks run across odometry, submapping, and global mapping threads, so extension modules must be thread-safe.
 - For AV deployments, isolate global map optimization from the control pose stream. Global optimization corrections are useful for mapping, but online vehicle control needs a stable localization frame with explicit correction handling.
+
+## Failure-Triage Checklist
+
+Use this checklist when GLIM produces a map that looks wrong, jumps after correction, or appears overconfident.
+
+| Symptom | First suspect | Evidence to inspect | Likely fix |
+|---|---|---|---|
+| Curved poles or smeared edges | Time sync, deskew, extrinsics | Residual by scan azimuth, IMU timing, `T_lidar_imu` direction | Recalibrate timing/extrinsics before tuning graph weights |
+| Good local map, bad loop closure | False loop or poor loop covariance | Before/after loop residuals, alignment overlay, robust weights | Reject loop, weaken covariance, add geometric verification |
+| Low cost but wrong open-area pose | Observability weakness | Hessian eigenvectors, valid correspondence distribution, height-band coverage | Inflate weak modes, add GNSS/GCP/wheel/map anchors |
+| Cholesky or solve instability | Gauge, rank, bad Jacobian, poor scaling | Factorization warning, rank spectrum, whitened residual magnitudes | Check priors, covariance units, factor Jacobians, robust loss placement |
+| Offline correction improves view but hurts metric QA | Objective mismatch | Survey residuals, held-out control points, point-cloud alignment | Add/weight metric anchors and evaluate against held-out geometry |
+| Map contains aircraft, vehicles, or temporary equipment | Dynamic-object contamination | Object masks, repeated-session disagreement, map editor history | Remove dynamic points, keep edit provenance, rerun localization QA |
+| Extension factor causes thread or graph errors | Callback lifecycle issue | Thread logs, variable IDs, smoother window membership | Attach only to live variables and make extension state thread-safe |
 
 ## Practical Recommendation
 

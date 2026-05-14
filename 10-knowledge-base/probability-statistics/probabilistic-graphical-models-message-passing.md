@@ -22,6 +22,7 @@ planning.
 - [GTSAM Factor Graphs](../state-estimation/gtsam-factor-graphs.md)
 - [Factor Graph Solver Patterns: Ceres, GTSAM, and g2o](../optimization/factor-graph-solver-patterns-ceres-gtsam-g2o.md)
 - [Schur Complement, Marginalization, and PCG](../numerical-linear-algebra/schur-complement-marginalization-pcg.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
@@ -123,6 +124,38 @@ argmin_X sum_i 0.5 * ||r_i(X_i)||^2_{Sigma_i}
 
 This is why factor graphs connect probability, optimization, and sparse linear
 algebra.
+
+### GLIM as a factor-graph example
+
+GLIM can be read as the following graphical-model conversion:
+
+```text
+Bayesian network:
+  poses evolve over time, IMU constrains transitions, range observations depend on poses
+
+Factor graph:
+  X(i), V(i), B(i), and submap variables connected by IMU, scan-matching, loop, plane, and custom factors
+
+Optimization problem:
+  minimize whitened geometric and inertial residuals over active states or submaps
+```
+
+The Bayesian-network view is useful for explaining temporal dependence. The factor-graph view is more useful for implementation because loop closures, manual map corrections, plane constraints, GNSS/GCP anchors, and scan-matching costs are all just additional local factors. This is the bridge from probability to GLIM's GTSAM backend.
+
+### GTSAM Bayes net and Bayes tree interpretation
+
+GTSAM starts from a factor graph because factors are the natural way to write measurement likelihoods. During elimination, that factor graph is transformed into a Bayes net: an ordered collection of conditionals. Grouping those conditionals by cliques gives a Bayes tree, which is the structure iSAM2 updates incrementally.
+
+The important distinction is:
+
+| Graphical object | Role in GTSAM/GLIM |
+|---|---|
+| Bayesian network | explains temporal generative structure such as state evolution and sensor measurements |
+| Factor graph | implementation model for arbitrary measurement factors, loops, priors, and map constraints |
+| Bayes net | result of eliminating variables from a linearized Gaussian factor graph |
+| Bayes tree | clique-structured representation that lets iSAM2 re-eliminate only affected subtrees |
+
+In GLIM, a loop closure can make a distant part of the trajectory probabilistically relevant again. In Bayes-tree terms, the affected cliques must be removed, turned back into factors, combined with the new loop factor, and re-eliminated. That is why loop closures can cause latency spikes even if the loop factor itself is small.
 
 ## First-principles math
 

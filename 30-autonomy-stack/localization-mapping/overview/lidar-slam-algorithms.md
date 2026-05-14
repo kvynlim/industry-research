@@ -17,6 +17,12 @@
 
 ---
 
+## Cross-Section Hub
+
+For the GLIM/GTSAM pipeline specifically, use [GLIM and GTSAM Pipeline Hub](../slam-methods/glim-gtsam-pipeline-hub.md). It maps LiDAR/range-inertial SLAM stages to GTSAM factor graph objects, Bayes-tree updates, Hessian diagnostics, sparse elimination, marginalization, and the relevant KB pages.
+
+---
+
 ## 1. KISS-ICP
 
 ### 1.1 Overview

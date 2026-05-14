@@ -59,6 +59,8 @@ For derivative debugging, read [Jacobians, Autodiff, Manifolds, and Linearizatio
 
 For solver deployment, read [Trust Region, Line Search, and Globalization](trust-region-line-search-globalization.md), then [Factor-Graph Solver Patterns](factor-graph-solver-patterns-ceres-gtsam-g2o.md).
 
+For GLIM/GTSAM pipeline work, use the [GLIM and GTSAM Pipeline Hub](../../30-autonomy-stack/localization-mapping/slam-methods/glim-gtsam-pipeline-hub.md) after reading the nonlinear least-squares, Jacobian, and Gauss-Newton/LM/Dogleg pages. It connects optimizer concepts to concrete SLAM artifacts such as scan factors, iSAM2 updates, Hessian diagnostics, and marginalization priors.
+
 For solver failure triage, start with [Nonlinear Solver Diagnostics Crosswalk](nonlinear-solver-diagnostics-crosswalk.md), then use [Objective and Residual Design Audit](objective-residual-design-and-audit.md) or [Solver Selection and Convergence Diagnosis](solver-selection-and-convergence-diagnosis.md).
 
 ## Dependency Map

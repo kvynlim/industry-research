@@ -119,6 +119,19 @@ NoiseModel: uncertainty and whitening
 Optimizer or ISAM2: batch or incremental inference
 ```
 
+The mathematical stack is:
+
+```text
+posterior factorization
+  -> Gaussian/robust likelihood factors
+  -> manifold residuals and Jacobian blocks
+  -> GaussianFactorGraph after linearization
+  -> ordered sparse elimination
+  -> Bayes net / Bayes tree / marginal covariance queries
+```
+
+For GLIM, this is the backbone that connects range-data registration to the rest of the state estimator. A VGICP or scan-matching factor is still just a factor: it contributes residuals, Jacobians, and a noise model. Once inserted, it competes statistically with IMU, loop closure, GNSS, plane, and custom extension factors in the same sparse graph.
+
 GTSAM's abstractions are explicitly probabilistic. A `NoiseModelFactor` represents a measurement likelihood with a Gaussian noise model. `Values` stores manifold-aware variables such as `Pose2`, `Pose3`, velocities, biases, points, or custom types. Linearization produces a `GaussianFactorGraph`.
 
 GTSAM's concepts define `retract` and `localCoordinates` for manifold types; Lie groups add operations such as `Expmap`, `Logmap`, `compose`, `between`, and Jacobian-aware versions.

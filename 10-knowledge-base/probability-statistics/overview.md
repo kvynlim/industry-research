@@ -61,6 +61,8 @@ For outliers, hypotheses, and robust review, read [Robust Statistics, RANSAC, an
 
 For calibrated uncertainty and multimodal beliefs, read [Uncertainty Quantification, Calibration, and Conformal Prediction](uncertainty-quantification-calibration-conformal.md), [Mixture Models and Multimodal Beliefs](mixture-models-multimodal-beliefs.md), and [Probabilistic Graphical Models and Message Passing](probabilistic-graphical-models-message-passing.md).
 
+For a concrete SLAM example of how likelihoods, priors, factor graphs, Bayes trees, covariance, and robust losses connect, use the [GLIM and GTSAM Pipeline Hub](../../30-autonomy-stack/localization-mapping/slam-methods/glim-gtsam-pipeline-hub.md).
+
 ## Dependency Map
 
 Probability and statistics depend on measurement models from sensors and geometry, residual definitions from optimization and estimation, and data splits or runtime observations from systems engineering. It feeds perception confidence, data association gates, estimator consistency checks, prediction uncertainty, validation thresholds, and safety evidence.

@@ -14,6 +14,8 @@
 - [Factor Graph Solver Patterns: Ceres, GTSAM, and g2o](./factor-graph-solver-patterns-ceres-gtsam-g2o.md)
 - [Nonlinear Solver Diagnostics Crosswalk](./nonlinear-solver-diagnostics-crosswalk.md)
 - [Solver Selection and Convergence Diagnosis](./solver-selection-and-convergence-diagnosis.md)
+- [GTSAM Factor Graphs](../state-estimation/gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 - [Bundle Adjustment SLAM](../../30-autonomy-stack/localization-mapping/slam-methods/bundle-adjustment-slam.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
@@ -21,6 +23,24 @@
 AV backends repeatedly solve the same local question: "Given the residuals and Jacobians at the current state, what update should I apply?" Gauss-Newton, Levenberg-Marquardt, and dogleg are the standard answers for nonlinear least-squares problems in SLAM, calibration, bundle adjustment, scan matching, pose graph optimization, and map alignment.
 
 Gauss-Newton is fast when the current estimate is already good and residuals are close to linear. Levenberg-Marquardt is more forgiving because it damps the step. Dogleg is a trust-region method that blends a cautious gradient step with the full Gauss-Newton step. Production systems often start with a robust method such as LM or dogleg and behave more like Gauss-Newton near convergence.
+
+## GTSAM and GLIM interpretation
+
+GTSAM exposes these methods as batch optimizers and also uses Gauss-Newton or dogleg-style update parameters inside iSAM2. The choice is not just a library setting:
+
+| Method | GTSAM meaning | GLIM-style implication |
+|---|---|---|
+| Gauss-Newton | Trusts the local linearization and solves the sparse least-squares step directly | Good for well-initialized odometry/submap problems; fragile when scan matching is far from the basin |
+| Levenberg-Marquardt | Adds damping and uses actual-vs-predicted reduction to control step size | Useful for batch map refinement, difficult loop closure, and debugging poor initialization |
+| Dogleg | Restricts the step inside a trust region using a path between steepest descent and Gauss-Newton | Useful when the full GN step is too aggressive but the problem is still close to least-squares structure |
+| iSAM2 GN/Dogleg | Updates only affected parts of the Bayes tree after adding/removing factors | Enables low-latency online smoothing, but depends on relinearization thresholds and clique size |
+
+For GLIM, optimizer failures should be read through solver telemetry:
+
+- Large damping or repeated rejected steps usually means initialization, covariance, robust weighting, or dynamic correspondences are wrong.
+- A successful cost decrease can still be a bad map if the objective contains false loop closures or overconfident priors.
+- Switching from Gauss-Newton to LM can help diagnose poor local linearization, but it does not fix rank deficiency or gauge freedom.
+- iSAM2 latency spikes often point to loop closures, dense marginal priors, or ordering/clique growth rather than merely "slow GTSAM."
 
 ## Core math and algorithm steps
 

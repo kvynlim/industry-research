@@ -16,6 +16,7 @@
 - [Sparse Estimation Backend Crosswalk](sparse-estimation-backend-crosswalk.md)
 - [Nonlinear Solver Diagnostics Crosswalk](../optimization/nonlinear-solver-diagnostics-crosswalk.md)
 - [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Why it matters for AV, perception, SLAM, and mapping
 
@@ -47,6 +48,23 @@ The practical rule is:
 - Use Cholesky or LDLT when the linearized system is well constrained, well scaled, and performance dominates.
 - Use QR or SVD when rank detection and numerical robustness matter more than speed.
 - Treat Cholesky failure as a model or observability signal, not just as a linear algebra nuisance.
+
+## GTSAM and GLIM interpretation
+
+GTSAM's fast path often relies on Cholesky-style sparse elimination of a positive definite linearized information system. That is appropriate when the graph is anchored, correctly whitened, and locally observable. If a GTSAM backend throws an indeterminate or indefinite linear-system exception, the detected variable is where factorization encountered the problem, not necessarily where the modeling error began.
+
+For GLIM, a Cholesky failure or unstable normal-equation step should trigger this checklist:
+
+| Check | Why |
+|---|---|
+| First-pose/map prior or gauge handling | relative-only graphs are semidefinite before gauge fixing |
+| Scan geometry eigenvalues | flat, corridor, wall, and sparse scenes create weak pose directions |
+| Noise scale ratios | overconfident LiDAR, GNSS, or plane factors can create numerical scale problems |
+| Robust weights | redescending losses or bad weights can remove too much information locally |
+| Marginalization prior | dense/stale priors can introduce bad conditioning or fake constraints |
+| Hand-coded Hessian/Jacobian factors | wrong signs or dimensions can make an impossible SPD system |
+
+Increasing LM damping can make a step computable, but it does not add real sensor information. If the graph is unobservable, fix the model or add a physically meaningful constraint.
 
 ## Core math and algorithm steps
 

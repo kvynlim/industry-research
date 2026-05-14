@@ -13,6 +13,8 @@
 - [Robust Losses and M-Estimators](../probability-statistics/robust-losses-m-estimators-huber-cauchy-tukey-geman-mcclure.md)
 - [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](../probability-statistics/gaussian-noise-covariance-information.md)
 - [Coordinate Frames, Projections, and SE(3)](../geometry-3d/coordinate-frames-projections-se3.md)
+- [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## What an objective is
 
@@ -25,6 +27,8 @@ min_x 0.5 * sum_i rho_i(||L_i r_i(x)||^2)
 ```
 
 The design audit asks whether each `r_i`, `L_i`, and `rho_i` has the intended meaning. A low scalar objective can hide a wrong residual sign, a frame convention bug, a missing safety term, or a residual family that overwhelms every other factor.
+
+For GTSAM and GLIM, treat every factor class or extension callback as part of the objective contract. The code path should answer: which variables does this factor touch, what measurement likelihood does it encode, what covariance or square-root information does it use, what robust policy applies, and what diagnostic output proves it is not dominating or silently ignored.
 
 ## Residual-family audit checklist
 

@@ -17,7 +17,39 @@ Factor graph SLAM is the modern generalization of graph-based state estimation. 
 
 For AV and airside autonomous vehicles, this is the recommended backend architecture. It can fuse LiDAR odometry, loop closures, RTK/GPS, IMU preintegration, wheel odometry, fiducials, map priors, and calibration factors in one sparse optimization problem. Unlike EKF-SLAM, it does not force all uncertainty into one dense covariance matrix. Unlike simple pose graph optimization, it can represent heterogeneous variables and sensor factors naturally. Unlike batch-only solvers, iSAM2 updates only the affected part of the Bayes tree and supports real-time incremental operation.
 
-This page is a method-level SLAM reference. For implementation details, custom factor examples, noise-model tuning, and GTSAM API notes, see [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
+This page is a method-level SLAM reference. For the cross-section GLIM/GTSAM reading path, see [GLIM and GTSAM Pipeline Hub](glim-gtsam-pipeline-hub.md). For implementation details, custom factor examples, noise-model tuning, and GTSAM API notes, see [GTSAM Factor Graphs](../../../10-knowledge-base/state-estimation/gtsam-factor-graphs.md).
+
+Related KB pages for the GLIM/GTSAM stack: [Probabilistic Graphical Models and Message Passing](../../../10-knowledge-base/probability-statistics/probabilistic-graphical-models-message-passing.md), [Likelihood, MAP, MLE, and Least Squares](../../../10-knowledge-base/probability-statistics/likelihood-map-mle-least-squares.md), [Gaussian Noise, Covariance, Information, Whitening, and Uncertainty Ellipses](../../../10-knowledge-base/probability-statistics/gaussian-noise-covariance-information.md), [Nonlinear Least Squares from First Principles](../../../10-knowledge-base/optimization/nonlinear-least-squares-first-principles.md), [Jacobians, Autodiff, and Manifold Linearization](../../../10-knowledge-base/optimization/jacobians-autodiff-manifold-linearization.md), [Gauss-Newton, Levenberg-Marquardt, and Dogleg](../../../10-knowledge-base/optimization/gauss-newton-levenberg-marquardt-dogleg.md), [Eigenvalues, Hessian Conditioning, and Observability](../../../10-knowledge-base/numerical-linear-algebra/eigenvalues-hessian-conditioning-observability.md), [Sparse Estimation Backend Crosswalk](../../../10-knowledge-base/numerical-linear-algebra/sparse-estimation-backend-crosswalk.md), and [Nonlinear Solver Diagnostics Crosswalk](../../../10-knowledge-base/optimization/nonlinear-solver-diagnostics-crosswalk.md).
+
+## GLIM Interpretation
+
+GLIM is the direct range-inertial example to keep in mind while reading this page. LIO-SAM shows the more classic graph pattern: run scan matching, compress that result into a relative pose factor, then optimize the pose graph. GLIM pushes the geometric registration cost itself into GTSAM-compatible factors through `gtsam_points`, then optimizes frame or submap states against those direct costs.
+
+That changes the debugging surface:
+
+| Classic factor graph issue | GLIM-specific version |
+|---|---|
+| Bad odometry between factor | Bad scan-matching residual, correspondence set, or voxel covariance |
+| False loop closure | Bad submap matching factor or manual loop factor |
+| Overconfident covariance | Scan-matching Hessian looks strong in a weak or repeated scene |
+| Gauge issue | Global map frame is not anchored to RTK/GCP/map prior |
+| Fixed-lag marginalization issue | Old odometry states leave the smoother with a dense prior over remaining states |
+| Compute spike | New loop or global factor affects a large portion of the Bayes tree or sparse graph |
+
+## GTSAM Mathematical Stack
+
+At method level, factor graph SLAM is not one algorithm but a stack of mathematical choices:
+
+| Layer | GTSAM/iSAM2 expression | What to audit |
+|---|---|---|
+| Posterior model | graph of priors and measurement factors | whether every factor has a defensible likelihood, variables, and covariance |
+| Manifold state | `Pose3`, `Rot3`, `NavState`, velocity, bias, calibration variables | local coordinate ordering, frame convention, and retraction behavior |
+| Linearization | factor residuals and Jacobian blocks around current `Values` | finite-difference agreement, whitening, and weak geometry |
+| Sparse backend | ordered elimination, Cholesky/QR, Bayes net/tree | fill-in, separator size, rank, conditioning, and failure location |
+| Incremental update | iSAM2 affected cliques and fluid relinearization | update latency, relinearization thresholds, stale variables, and loop-closure impact |
+| Marginal/covariance | selected marginal covariance or information blocks | gauge policy, dense priors, and whether covariance is operationally meaningful |
+
+For GLIM, this stack is the bridge between direct range registration and global mapping. A LiDAR factor can be mathematically correct and still harmful if its covariance is too tight in a weak geometric direction, if it introduces a large Bayes-tree update, or if it is marginalized into a stale dense prior.
 
 ## Historical Context
 

@@ -24,6 +24,7 @@ that influence after a residual becomes too large to look like an inlier.
 - [Factor Graph Solver Patterns: Ceres, GTSAM, and g2o](../optimization/factor-graph-solver-patterns-ceres-gtsam-g2o.md)
 - [GTSAM Factor Graph Optimization](../state-estimation/gtsam-factor-graphs.md)
 - [Point Cloud Registration Math: ICP, NDT, and GICP](../geometry-3d/point-cloud-registration-math-icp-ndt-gicp.md)
+- [GLIM](../../30-autonomy-stack/localization-mapping/slam-methods/glim.md)
 
 ## Why it matters for SLAM and perception
 
@@ -40,6 +41,22 @@ Robust losses show up wherever a stack minimizes residuals:
 
 The loss is not a substitute for the sensor model. A robust kernel should be
 applied after residuals are in comparable statistical units.
+
+## GTSAM and GLIM interpretation
+
+GTSAM robust noise models wrap an ordinary Gaussian noise model with an M-estimator. Conceptually, the factor is still evaluated as a residual with Jacobians, but large whitened residuals receive reduced influence. This is different from front-end outlier rejection: robustification limits damage after a factor is present, while gating decides whether the factor should be added at all.
+
+For GLIM-style mapping, robustification is usually needed at several levels:
+
+| Source of outliers | Practical robust strategy |
+|---|---|
+| Moving vehicles, pedestrians, aircraft, baggage carts, or forklifts | dynamic-object filtering before factor creation plus robust scan residuals |
+| False loop closures or repeated structures | geometric verification, conservative covariance, robust kernel, and possibly switchable constraints |
+| GNSS multipath | chi-square gating, HDOP/fix-quality dependent covariance, and Huber/Cauchy-style robust factors |
+| Mixed pixels, rain, dust, or reflective surfaces | point filtering and robust point/voxel residuals |
+| Manual map-edit corrections | treat edits as explicit constraints with uncertainty, not as infinitely trusted truth |
+
+Robust losses should be tuned in whitened units. If a loop closure residual is measured in meters and radians but is not correctly whitened, the robust threshold has no consistent meaning.
 
 ## Core math
 
